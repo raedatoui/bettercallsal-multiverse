@@ -43,10 +43,11 @@ export const HeaderComponent: FC = () => {
     const [selectedSlide, setSelectedSlide] = useState<number>(SiteOrder.indexOf(selectedSite) + 1);
     const [pauseTicker, setPauseTicker] = useState<boolean>(false);
 
-    const animate = (delay: number = 250) => {
+    const animate = (pauseAnim: boolean, delay: number = 250) => {
         setLeftSpinningState(`img0 fadein ${selectedSite}`);
         setRightSpinningState(`img1 fadein ${selectedSite}`);
-        setLoadAnimationStart(false);
+        if (!pauseAnim)
+            setLoadAnimationStart(false);
         setTimeout(() => {
             setBetterCallSalState('better-call-anim');
             setLeftSpinningState(`img0 hover ${selectedSite}`);
@@ -55,13 +56,16 @@ export const HeaderComponent: FC = () => {
                 setLeftSpinningState(`img0 ${selectedSite}`);
                 setRightSpinningState(`img1 ${selectedSite}`);
                 setBetterCallSalState('');
-                setTimeout(() => setLoadAnimationStart(true), 2000);
+                setTimeout(() => {
+                    if (!pauseAnim)
+                        setLoadAnimationStart(true);
+                }, 2000);
             }, 3000);
         }, delay);
     };
 
     useEffect(() => {
-        if (loaded) animate();
+        if (loaded) animate(false);
     }, [loaded, selectedSite]);
 
     useInterval(() => {
@@ -103,7 +107,7 @@ export const HeaderComponent: FC = () => {
                 />
                 <BetterCall
                     className={betterCallState}
-                    onClick={() => site && buffers.play(site?.header.ringAudio) && animate(0)}
+                    onClick={() => site && buffers.play(site?.header.ringAudio) && animate(true, 0)}
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>

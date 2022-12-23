@@ -11,7 +11,8 @@
       "name2": "Barra",
       "title": "Sound Mixer",
       "lowerBannerTxt": "Want Emails from Sal?",
-      "contentHeaderTxt": "In  sound  trouble?"
+      "contentHeaderTxt": "In  sound  trouble?",
+      "key": "biz"
     }
   },
   "fit": {
@@ -26,7 +27,8 @@
       "name2": "Barra",
       "title": "Fitness Guru",
       "lowerBannerTxt": "Want Workouts from Sal?",
-      "contentHeaderTxt": "In  fitness  trouble?"
+      "contentHeaderTxt": "In  fitness  trouble?",
+      "key": "fit"
     }
   },
   "art": {
@@ -41,7 +43,8 @@
       "name2": "Dali",
       "title": "The Great Masturbator",
       "lowerBannerTxt": "Want Art from Sal?",
-      "contentHeaderTxt": "In  art  trouble?"
+      "contentHeaderTxt": "In  art  trouble?",
+      "key": "art"
     }
   },
   "games": {
@@ -56,7 +59,8 @@
       "name2": "Sal Bros.",
       "title": "Hardcore Gamer",
       "lowerBannerTxt": "Want Games from Sal?",
-      "contentHeaderTxt": "In  gaming  trouble?"
+      "contentHeaderTxt": "In  gaming  trouble?",
+      "key": "games"
     }
   },
   "rocks": {
@@ -71,7 +75,8 @@
       "name2": "Barratone",
       "title": "Rock Star",
       "lowerBannerTxt": "Want Music from Sal?",
-      "contentHeaderTxt": "In  music  trouble?"
+      "contentHeaderTxt": "In  music  trouble?",
+      "key": "rocks"
     }
   },
   "construction": {
@@ -86,7 +91,8 @@
       "name2": "Sal",
       "title": "The Master Erecter",
       "lowerBannerTxt": "Want Construction from Sal?",
-      "contentHeaderTxt": "In  construction  trouble?"
+      "contentHeaderTxt": "In  construction  trouble?",
+      "key": "construction"
     }
   }
 }

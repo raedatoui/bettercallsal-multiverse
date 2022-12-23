@@ -21,7 +21,7 @@ const App = ({ Component, pageProps }: AppProps) => (
         <Skeleton />
         <GlobalStyle />
         <Fonts />
-        <SiteProvider defaultSite="rocks">
+        <SiteProvider defaultSite="biz">
             <SoundProvider>
                 <Component {...pageProps} />
             </SoundProvider>

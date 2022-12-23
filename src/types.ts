@@ -11,6 +11,7 @@ export const HeaderValidator = z.object({
     title: z.string(),
     lowerBannerTxt: z.string(),
     contentHeaderTxt: z.string(),
+    key: z.string(), // for csv parsing
 });
 
 export type Header = z.infer<typeof HeaderValidator>;
