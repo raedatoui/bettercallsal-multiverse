@@ -25,20 +25,20 @@ const sliderContent = {
 };
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
-    const { sites, selectedSite } = useContext(SiteContext);
+    const { sites, selectedSite, setSelectedSite } = useContext(SiteContext);
     const Slider = sliders[sliderType];
 
     const getClasses = (index: number): string => {
         if (!start)
-            if (SiteOrder[index] === selectedSite) return 'item initial';
+            if (SiteOrder[index] === selectedSite) return 'item initial visible';
             else return 'item';
 
         if (selectedSlide === index)
-            return 'item slideIn';
+            return 'item slideIn visible';
         if (selectedSlide === 0 && index === 5)
-            return 'item slideOut';
+            return 'item slideOut visible';
         if (selectedSlide - 1 === index)
-            return 'item slideOut';
+            return 'item slideOut visible';
         return 'item';
     };
     return (
@@ -49,48 +49,48 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
         >
             <Slider sw={sw} className="baseline">{`bettercallsal.${sites.biz?.name}`}</Slider>
             <Slider
-                // onClick={() => setSelectedSite?.('biz')}
-                href="https://bettercallsal.biz"
+                onClick={(event) => { event.stopPropagation(); setSelectedSite?.('biz'); }}
+                // href="https://bettercallsal.biz"
                 sw={sw}
                 className={getClasses(0)}
             >
                 { sliderContent[sliderType](sites.biz)}
             </Slider>
             <Slider
-                // onClick={() => setSelectedSite?.('fit')}
-                href="https://bettercallsal.fit"
+                onClick={(event) => { event.stopPropagation(); setSelectedSite?.('fit'); }}
+                // href="https://bettercallsal.fit"
                 sw={sw}
                 className={getClasses(1)}
             >
                 { sliderContent[sliderType](sites.fit)}
             </Slider>
             <Slider
-                // onClick={() => setSelectedSite?.('art')}
-                href="https://bettercallsal.art"
+                onClick={(event) => { event.stopPropagation(); setSelectedSite?.('art'); }}
+                // href="https://bettercallsal.art"
                 sw={sw}
                 className={getClasses(2)}
             >
                 { sliderContent[sliderType](sites.art)}
             </Slider>
             <Slider
-                // onClick={() => setSelectedSite?.('rocks')}
-                href="https://bettercallsal.rocks"
+                onClick={(event) => { event.stopPropagation(); setSelectedSite?.('rocks'); }}
+                // href="https://bettercallsal.rocks"
                 sw={sw}
                 className={getClasses(3)}
             >
                 { sliderContent[sliderType](sites.rocks)}
             </Slider>
             <Slider
-                // onClick={() => setSelectedSite?.('games')}
-                href="https://bettercallsal.games"
+                onClick={(event) => { event.stopPropagation(); setSelectedSite?.('games'); }}
+                // href="https://bettercallsal.games"
                 sw={sw}
                 className={getClasses(4)}
             >
                 { sliderContent[sliderType](sites.games)}
             </Slider>
             <Slider
-                // onClick={() => setSelectedSite?.('construction')}
-                href="https://bettercallsal.construction"
+                onClick={(event) => { event.stopPropagation(); setSelectedSite?.('construction'); }}
+                // href="https://bettercallsal.construction"
                 sw={sw}
                 className={getClasses(5)}
             >

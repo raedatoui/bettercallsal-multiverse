@@ -12,17 +12,21 @@ const SlidingItem = styled.a<{ sw: number }>`
   height: auto;
   display: inline-block;
   line-height: 37px;
+  visibility: hidden;
 
   &.baseline {
     opacity: 0;
+    visibility: visible;
   }
 
   &.item {
     position: absolute;
-    opacity: 1;
     transform: translateX(${props => `-${props.sw}px`});
     &.initial {
       transform: translateX(0);
+    }
+    &.visible {
+      visibility: visible;
     }
   }
 
