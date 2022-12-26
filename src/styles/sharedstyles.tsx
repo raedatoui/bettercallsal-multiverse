@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-const DefaultDiv = styled.div``;
 const Main = styled.main``;
 
 const Section = styled.section`
@@ -12,9 +11,7 @@ const MainSection = styled(Section)`
   box-sizing: border-box;
   height: 100%;
   @media only screen and (max-width: 1024px) {
-    #main-section {
       height: initial;
-    }
   }
 `;
 
@@ -24,40 +21,47 @@ const Row = styled.div`
     background-image: -webkit-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     background-image: -o-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     background-image: linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
+    display: flex;
+
+    @media only screen and (max-width: 1023px) {  
+        flex-direction: column;
+    }
 `;
 
-// const Title = styled.h1`
-//   margin: 0;
-//   line-height: 1.15;
-//   font-size: 4rem;
-//   text-align: center;
-//   text-decoration: none;
-//
-//   a {
-//     color: ${({ theme }) => theme.colors.secondary};
-//     text-decoration: none;
-//     &:hover,
-//     :focus,
-//     :active {
-//       text-decoration: underline;
-//     }
-//   }
-// `;
+const NavButton = styled.div`
+  font-family: Pragmatica, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-stretch: expanded;
+  font-weight: bold;
+  color: #232323;
+  text-align: center;
+  cursor: pointer;
+  background: -moz-linear-gradient(top, #eae41f 0%, #fea100);
+  background: -webkit-gradient(linear, left top, left bottom, from(#eae41f), to(#fea100));
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  border: 1px solid #fff;
+  -moz-box-shadow:
+          0 1px 3px rgba(000, 000, 000, 0.5),
+          inset 0 0 1px rgba(255, 255, 255, 0.7);
+  -webkit-box-shadow:
+          0 1px 3px rgba(000, 000, 000, 0.5),
+          inset 0 0 1px rgba(255, 255, 255, 0.7);
+  box-shadow:
+          0 1px 3px rgba(000, 000, 000, 0.5),
+          inset 0 0 1px rgba(255, 255, 255, 0.7);
+  text-shadow:
+            0 -1px 0 rgba(000, 000, 000, 0.4),
+          0 1px 0 rgba(255, 255, 255, 0.3);
+  
+  &:hover, &.selected {
+    cursor: pointer;
+    background: -moz-linear-gradient(top, #d1cb06 0%, #e58800);
+    background: -webkit-gradient(linear, left top, left bottom, from(#d1cb06), to(#e58800));
+    border: 1px solid #fff;
+  }
+`;
 
-// const Description = styled.p`
-//   text-align: center;
-//   line-height: 1.5;
-//   font-size: 1.5rem;
-// `;
-//
-// const CodeTag = styled.code`
-//   background: #fafafa;
-//   border-radius: 5px;
-//   margin: 0 0.75rem;
-//   padding: 0.75rem;
-//   font-size: 1.1rem;
-//   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-//     Bitstream Vera Sans Mono, Courier New, monospace;
-// `;
-
-export { Main, MainSection, Row, DefaultDiv };
+export { Main, MainSection, Row, NavButton };

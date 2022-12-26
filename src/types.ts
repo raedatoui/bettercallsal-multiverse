@@ -9,29 +9,56 @@ export const HeaderValidator = z.object({
     name1: z.string(),
     name2: z.string(),
     title: z.string(),
-    lowerBannerTxt: z.string(),
-    contentHeaderTxt: z.string(),
-    key: z.string(), // for csv parsing
+    lowerBanner: z.string(),
 });
 
 export type Header = z.infer<typeof HeaderValidator>;
 
-export const SiteValidator = z.object({
+export const LeftNavItemValidator = z.object({
     name: z.string(),
-    header: HeaderValidator
+    audio: z.string().nullable(),
+    video: z.string().nullable(),
+    link: z.string().nullable(),
+    category: z.string().nullable(),
 });
 
-export type Site = z.infer<typeof SiteValidator>;
+export type LeftNavNavItem = z.infer<typeof LeftNavItemValidator>;
 
-export const OrderedSites = ['biz', 'fit', 'art', 'rocks', 'games', 'construction'];
 export const SiteKeyValidator = z.enum(['biz', 'fit', 'art', 'rocks', 'games', 'construction']);
 
 export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
-export const SiteMapValidator = z.record(
-    SiteKeyValidator,
-    SiteValidator
-);
+export const SiteValidator = z.object({
+    name: SiteKeyValidator,
+    header: HeaderValidator,
+    contentHeader: z.string(),
+    leftNav: z.object({
+        image: z.string(),
+        text: z.string(),
+        video: z.string().nullable(),
+        items: z.array(LeftNavItemValidator),
+    }),
+    rightNav: z.object({
+        type: z.enum(['image', 'spotify']),
+        objectId: z.string(),
+    }),
+    footer: z.object({
+        text: z.string(),
+        image: z.string(),
+        ringAudio: z.string(),
+    }),
+});
+
+export type Site = z.infer<typeof SiteValidator>;
+
+export const SiteMapValidator = z.object({
+    biz: SiteValidator,
+    fit: SiteValidator,
+    art: SiteValidator,
+    rocks: SiteValidator,
+    games: SiteValidator,
+    construction: SiteValidator,
+});
 
 export type SiteMap = z.infer<typeof SiteMapValidator>;
 
@@ -49,3 +76,8 @@ export type Sound = z.infer<typeof SoundValidator> & {
 export type SoundMap = Record<string, Sound>;
 
 export type CbFn = () => void;
+
+export type Size = {
+    width: number | undefined;
+    height: number | undefined;
+};

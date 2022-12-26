@@ -1,0 +1,419 @@
+{
+  "biz": {
+    "name": "biz",
+    "header": {
+      "spinningSalsLeft": "/images/biz/sal-left.png",
+      "spinningSalsRight": "/images/biz/sal-right.png",
+      "spinningSalAudio": "/audio/biz/airhorn.wav",
+      "bizerkIcon": "/images/biz/mic.png",
+      "ringAudio": "/audio/biz/phone-ring.wav",
+      "name1": "Salvatore",
+      "name2": "Barra",
+      "title": "Sound Mixer",
+      "lowerBanner": "Want Emails from Sal?"
+    },
+    "contentHeader": "In  sound  trouble?",
+    "leftNav": {
+      "image": "/images/biz/nav-sq.jpg",
+      "text": "SAL WORKED FOR ME!!!!",
+      "video": "01agkvzV7Jk",
+      "items": [
+        {
+          "name": "salutations",
+          "audio": "/audio/biz/salutations.wav",
+          "video": null,
+          "link": "",
+          "category": null
+        },
+        {
+          "name": "TESTIMONIALS",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": null
+        },
+        {
+          "name": "as seen on tv",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": null
+        },
+        {
+          "name": "e-cards",
+          "audio": null,
+          "video": null,
+          "link": "",
+          "category": "Biz card"
+        },
+        {
+          "name": "office webcam",
+          "audio": null,
+          "video": "_QLX3hugymI",
+          "link": null,
+          "category": null
+        }
+      ]
+    },
+    "rightNav": {
+      "type": "spotify",
+      "objectId": "https://open.spotify.com/playlist/78pu7GaayYtdhTuSmIZz6X?si=BxmrcIffQ02fX9IInmlQIw"
+    },
+    "footer": {
+      "text": "welcome producers",
+      "image": "/images/biz/rca-mic.png",
+      "ringAudio": "/audio/biz/phone-ring.wav"
+    }
+  },
+  "fit": {
+    "name": "fit",
+    "header": {
+      "spinningSalsLeft": "/images/fit/shweaty-left.png",
+      "spinningSalsRight": "/images/fit/shweaty-right.png",
+      "spinningSalAudio": "/audio/fit/ready-for-this.wav",
+      "bizerkIcon": "/images/fit/namaste-smoking.gif",
+      "ringAudio": "/audio/fit/phone-ring.wav",
+      "name1": "Yogi",
+      "name2": "Barra",
+      "title": "Fitness Guru",
+      "lowerBanner": "Want Workouts from Sal?"
+    },
+    "contentHeader": "In  fitness  trouble?",
+    "leftNav": {
+      "image": "/images/fit/salwmeout.png",
+      "text": "SAL WORKED ME OUT!!!!",
+      "video": "",
+      "items": [
+        {
+          "name": "Sound Bath",
+          "audio": "/audio/fit/drone.mp3",
+          "video": null,
+          "link": "",
+          "category": "sound bath"
+        },
+        {
+          "name": "Yoga",
+          "audio": "/audio/fit/yoga.mp3",
+          "video": null,
+          "link": "",
+          "category": "yoga"
+        },
+        {
+          "name": "Strength",
+          "audio": "/audio/fit/Strength.mp3",
+          "video": null,
+          "link": "",
+          "category": "strength"
+        },
+        {
+          "name": "Meditation",
+          "audio": "/audio/fit/meditation.mp3",
+          "video": null,
+          "link": "",
+          "category": "meditation"
+        },
+        {
+          "name": "Stretch",
+          "audio": "/audio/fit/stretch.mp3",
+          "video": null,
+          "link": "",
+          "category": "stretch"
+        },
+        {
+          "name": "Barre",
+          "audio": "/audio/fit/barre.mp3",
+          "video": null,
+          "link": "",
+          "category": "barre"
+        },
+        {
+          "name": "Boxing",
+          "audio": "/audio/fit/boxing.mp3",
+          "video": null,
+          "link": "",
+          "category": "boxing"
+        },
+        {
+          "name": "Pilates",
+          "audio": "/audio/fit/pilates.mp3",
+          "video": null,
+          "link": "",
+          "category": "pilates"
+        },
+        {
+          "name": "Cycling",
+          "audio": "/audio/fit/cycling.mp3",
+          "video": null,
+          "link": "",
+          "category": "cycling"
+        },
+        {
+          "name": "All",
+          "audio": "/audio/fit/holdmusic.mp3",
+          "video": null,
+          "link": "",
+          "category": "all"
+        }
+      ]
+    },
+    "rightNav": {
+      "type": "image",
+      "objectId": "stretch.jpg"
+    },
+    "footer": {
+      "text": "NAMASTE",
+      "image": "/images/fit/om.png",
+      "ringAudio": "/audio/fit/phone-ring.wav"
+    }
+  },
+  "art": {
+    "name": "art",
+    "header": {
+      "spinningSalsLeft": "/images/art/spinning.art.left.png",
+      "spinningSalsRight": "/images/art/spinning.art.right.png",
+      "spinningSalAudio": "/audio/art/spinning.art.mp3",
+      "bizerkIcon": "/images/art/spray.gif",
+      "ringAudio": "/audio/art/ring.art.mp3",
+      "name1": "Salvatore",
+      "name2": "Dali",
+      "title": "The Great Masturbator",
+      "lowerBanner": "Want Art from Sal?"
+    },
+    "contentHeader": "In  art  trouble?",
+    "leftNav": {
+      "image": "/images/art/left.art.jpg",
+      "text": "ABOUT THE ARTIST!!!!",
+      "video": "",
+      "items": [
+        {
+          "name": "Salutations",
+          "audio": "/audio/art/Pavane.mp3",
+          "video": null,
+          "link": "",
+          "category": null
+        },
+        {
+          "name": "Classical",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "classical"
+        },
+        {
+          "name": "Sacred",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "sacred"
+        },
+        {
+          "name": "Historical",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "historical"
+        },
+        {
+          "name": "Contemporary",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "contemporary"
+        },
+        {
+          "name": "All",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "all"
+        }
+      ]
+    },
+    "rightNav": {
+      "type": "image",
+      "objectId": "spray.gif"
+    },
+    "footer": {
+      "text": "welcome artists",
+      "image": "/images/art/dali.gif",
+      "ringAudio": "/audio/art/ring.art.mp3"
+    }
+  },
+  "rocks": {
+    "name": "rocks",
+    "header": {
+      "spinningSalsLeft": "/images/rocks/spinning.rocks.left.png",
+      "spinningSalsRight": "/images/rocks/spinning.rocks.right.png",
+      "spinningSalAudio": "/audio/rocks/spinning.rocks.mp3",
+      "bizerkIcon": "/images/rocks/spinning.rocks.cat.gif",
+      "ringAudio": "/audio/rocks/ring.rocks.mp3",
+      "name1": "Sal",
+      "name2": "Barratone",
+      "title": "Rock Star",
+      "lowerBanner": "Want Music from Sal?"
+    },
+    "contentHeader": "In  music  trouble?",
+    "leftNav": {
+      "image": "/images/rocks/hardcore.jpg",
+      "text": "SAL ROCKED ME!!!!",
+      "video": "",
+      "items": [
+        {
+          "name": "Nature Creeps",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "nature-creeps"
+        },
+        {
+          "name": "Blind Archer",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "blind-archer"
+        },
+        {
+          "name": "Harjo",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "harjo"
+        },
+        {
+          "name": "RBN",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "rbn"
+        },
+        {
+          "name": "All",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "all"
+        }
+      ]
+    },
+    "rightNav": {
+      "type": "spotify",
+      "objectId": "https://open.spotify.com/playlist/78pu7GaayYtdhTuSmIZz6X?si=BxmrcIffQ02fX9IInmlQIw"
+    },
+    "footer": {
+      "text": "welcome rockstars",
+      "image": "/images/rocks/smashguitar.gif",
+      "ringAudio": "/audio/rocks/ring.rocks.mp3"
+    }
+  },
+  "games": {
+    "name": "games",
+    "header": {
+      "spinningSalsLeft": "/images/games/spinning.games.left.png",
+      "spinningSalsRight": "/images/games/spinning.games.right.png",
+      "spinningSalAudio": "/audio/games/spinning.games.mp3",
+      "bizerkIcon": "/images/games/coin6.gif",
+      "ringAudio": "/audio/games/ring.games.mp3",
+      "name1": "Super",
+      "name2": "Sal Bros.",
+      "title": "Hardcore Gamer",
+      "lowerBanner": "Want Games from Sal?"
+    },
+    "contentHeader": "In  gaming  trouble?",
+    "leftNav": {
+      "image": "/images/games/left.games.jpg",
+      "text": "SAL PLAYED ME!!!!",
+      "video": "",
+      "items": [
+        {
+          "name": "Salutations",
+          "audio": "/audio/games/salutations.games.mp3",
+          "video": null,
+          "link": "",
+          "category": null
+        },
+        {
+          "name": "Super Sal Bros.",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "game"
+        }
+      ]
+    },
+    "rightNav": {
+      "type": "spotify",
+      "objectId": "https://open.spotify.com/playlist/0YiVMTkk2hrl0ZT6qsP5BC?si=DLR9KAKeTAK7N0FIp7fyuQ"
+    },
+    "footer": {
+      "text": "welcome gamers",
+      "image": "/images/games/goomba2.gif",
+      "ringAudio": "/audio/games/ring.games.mp3"
+    }
+  },
+  "construction": {
+    "name": "construction",
+    "header": {
+      "spinningSalsLeft": "/images/construction/spinning.construction.left.png",
+      "spinningSalsRight": "/images/construction/spinning.construction.right.png",
+      "spinningSalAudio": "/audio/construction/cat.call.loud.mp3",
+      "bizerkIcon": "/images/construction/under.gif",
+      "ringAudio": "/audio/construction/ring.construction.mp3",
+      "name1": "Hard Hat",
+      "name2": "Sal",
+      "title": "The Master Erecter",
+      "lowerBanner": "Want Construction from Sal?"
+    },
+    "contentHeader": "In  construction  trouble?",
+    "leftNav": {
+      "image": "/images/construction/nav-sq.jpg",
+      "text": "SAL WORKED FOR ME!!!!",
+      "video": "01agkvzV7Jk",
+      "items": [
+        {
+          "name": "salutations",
+          "audio": "/audio/construction/salutations.wav",
+          "video": null,
+          "link": "",
+          "category": null
+        },
+        {
+          "name": "TESTIMONIALS",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": null
+        },
+        {
+          "name": "as seen on tv",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": null
+        },
+        {
+          "name": "e-cards",
+          "audio": null,
+          "video": null,
+          "link": "",
+          "category": "Biz card"
+        },
+        {
+          "name": "office webcam",
+          "audio": null,
+          "video": "_QLX3hugymI",
+          "link": null,
+          "category": null
+        }
+      ]
+    },
+    "rightNav": {
+      "type": "spotify",
+      "objectId": "https://open.spotify.com/playlist/78pu7GaayYtdhTuSmIZz6X?si=BxmrcIffQ02fX9IInmlQIw"
+    },
+    "footer": {
+      "text": "under construction",
+      "image": "/images/construction/footer.construction.png",
+      "ringAudio": "/audio/construction/ring.construction.mp3"
+    }
+  }
+}

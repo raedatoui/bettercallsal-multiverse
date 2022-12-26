@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { CbFn } from 'src/types';
 
-const useTimeout = (callback: CbFn, delay: number) => {
+export const useTimeout = (callback: CbFn, delay: number) => {
     const savedCallback = useRef<CbFn>(callback);
 
     useEffect(() => {
@@ -16,5 +16,3 @@ const useTimeout = (callback: CbFn, delay: number) => {
 
     }, [delay]);
 };
-
-export default useTimeout;

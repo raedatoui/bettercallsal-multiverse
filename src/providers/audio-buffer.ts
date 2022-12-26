@@ -83,7 +83,14 @@ class AudioBuffers {
     private async loadSounds() {
         this.loaded = false;
         if (this.selectedSite) {
-            const sounds = [this.selectedSite.header.ringAudio, this.selectedSite.header.spinningSalAudio];
+            const isNotNull = <T>(x: T): x is NonNullable<T> => !!x;
+            const navSounds = this.selectedSite.leftNav.items.map(i => i.audio).filter(isNotNull);
+            console.log(navSounds);
+            const sounds = [
+                this.selectedSite.header.ringAudio,
+                this.selectedSite.header.spinningSalAudio,
+                ...navSounds
+            ];
             await Promise.all(sounds.map(async (k) => this.loadBuffer(k)));
             this.loaded = true;
         }

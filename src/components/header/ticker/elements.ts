@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { slideOutFromLeft, slideInFromLeft } from '../animations';
 
-const SlidingItem = styled.a<{ sw: number }>`
+export const SlidingItem = styled.a<{ sw: number }>`
   font-size: 0.3635em;
   margin: auto;
   text-transform: uppercase;
@@ -21,7 +21,7 @@ const SlidingItem = styled.a<{ sw: number }>`
 
   &.item {
     position: absolute;
-    transform: translateX(${props => `-${props.sw}px`});
+    transform: translateX(${props => `${props.sw}px`});
     &.initial {
       transform: translateX(0);
     }
