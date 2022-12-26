@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Size } from 'src/types';
 // Define general type for useWindowSize hook, which includes width and height
-interface Size {
-    width: number | undefined;
-    height: number | undefined;
-}
 
 // Hook
 export const useWindowSize = (): Size => {

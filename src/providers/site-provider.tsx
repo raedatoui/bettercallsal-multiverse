@@ -1,11 +1,11 @@
 import React, { FC, useMemo, useState, createContext } from 'react';
 import { SiteKey, SiteMap, SiteMapValidator } from '../types';
-import sitesData from '../../public/sites.json';
+import sitesData from '../../public/content/sites.json';
 
 type SiteProviderType = {
     sites: SiteMap,
     selectedSite: SiteKey,
-    setSelectedSite?: (s: SiteKey) => void
+    setSelectedSite: (s: SiteKey) => void
 };
 
 const siteMap = SiteMapValidator.parse(sitesData);

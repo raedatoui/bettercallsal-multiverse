@@ -1,7 +1,7 @@
 import { unparse, parse } from 'papaparse';
 import { camelCase } from 'lodash';
 
-export type CsvRow = Record<string, unknown>;
+export type CsvRow = Record<string, string | CsvRow[]>;
 export type RowError = {
     code: string,
     row: number,

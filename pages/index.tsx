@@ -6,6 +6,7 @@ import {
     MainSection, Row
 } from '../src/styles/sharedstyles';
 import { HeaderComponent } from '../src/components/header';
+import {LeftNav} from "src/components/leftNav";
 
 const Home = () => (
     <>
@@ -40,9 +41,9 @@ const Home = () => (
         <Main id="main">
             <MainSection>
                 <HeaderComponent />
-                <div className="container">
-                    <Row />
-                </div>
+                <Row>
+                    <LeftNav />
+                </Row>
             </MainSection>
 
         </Main>

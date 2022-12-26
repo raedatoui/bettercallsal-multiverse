@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { AppProps } from 'next/app';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
+import { WindowSizeProvider } from 'src/providers/window-size';
 import { SoundProvider } from '../src/providers/audio-context';
 import { SiteProvider } from '../src/providers/site-provider';
 import Normalize from '../src/styles/normalize';
@@ -23,7 +24,9 @@ const App = ({ Component, pageProps }: AppProps) => (
         <Fonts />
         <SiteProvider defaultSite="biz">
             <SoundProvider>
-                <Component {...pageProps} />
+                <WindowSizeProvider>
+                    <Component {...pageProps} />
+                </WindowSizeProvider>
             </SoundProvider>
         </SiteProvider>
     </ThemeProvider>
