@@ -1,12 +1,14 @@
 /* eslint-disable max-len */
 import React from 'react';
 import Head from 'next/head';
+import { LeftNav } from 'src/components/leftNav';
+import { Middle } from 'src/components/middle';
 import {
     Main,
-    MainSection, Row
+    MainSection,
+    Row
 } from '../src/styles/sharedstyles';
 import { HeaderComponent } from '../src/components/header';
-import {LeftNav} from "src/components/leftNav";
 
 const Home = () => (
     <>
@@ -43,6 +45,7 @@ const Home = () => (
                 <HeaderComponent />
                 <Row>
                     <LeftNav />
+                    <Middle />
                 </Row>
             </MainSection>
 
