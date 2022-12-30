@@ -70,20 +70,20 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 };
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
-    const { sites, selectedSite, setSelectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite, setSelectedSite } = useContext(SiteContext);
     return (
         <TickerContainer
             background={backgroundColor}
             onMouseEnter={() => tickerCb(true)}
             onMouseLeave={() => tickerCb(false)}
         >
-            <SlidingItem sw={sw} className="baseline">{`bettercallsal.${sites.biz?.name}`}</SlidingItem>
+            <SlidingItem sw={sw} className="baseline">{`bettercallsal.${siteMap.biz?.name}`}</SlidingItem>
             <Slider
                 start={start}
                 selectedSlide={selectedSlide}
                 selectedSite={selectedSite}
                 setSelectedSite={setSelectedSite}
-                site={sites.biz}
+                site={siteMap.biz}
                 sw={sw}
                 index={0}
                 sliderType={sliderType}
@@ -93,7 +93,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                 selectedSlide={selectedSlide}
                 selectedSite={selectedSite}
                 setSelectedSite={setSelectedSite}
-                site={sites.fit}
+                site={siteMap.fit}
                 sw={sw}
                 index={1}
                 sliderType={sliderType}
@@ -103,7 +103,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                 selectedSlide={selectedSlide}
                 selectedSite={selectedSite}
                 setSelectedSite={setSelectedSite}
-                site={sites.art}
+                site={siteMap.art}
                 sw={sw}
                 index={2}
                 sliderType={sliderType}
@@ -113,7 +113,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                 selectedSlide={selectedSlide}
                 selectedSite={selectedSite}
                 setSelectedSite={setSelectedSite}
-                site={sites.rocks}
+                site={siteMap.rocks}
                 sw={sw}
                 index={3}
                 sliderType={sliderType}
@@ -123,7 +123,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                 selectedSlide={selectedSlide}
                 selectedSite={selectedSite}
                 setSelectedSite={setSelectedSite}
-                site={sites.games}
+                site={siteMap.games}
                 sw={sw}
                 index={4}
                 sliderType={sliderType}
@@ -133,7 +133,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                 selectedSlide={selectedSlide}
                 selectedSite={selectedSite}
                 setSelectedSite={setSelectedSite}
-                site={sites.construction}
+                site={siteMap.construction}
                 sw={sw}
                 index={5}
                 sliderType={sliderType}

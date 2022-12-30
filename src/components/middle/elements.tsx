@@ -56,3 +56,26 @@ export const ContentList = styled.div`
         grid-template-columns: repeat(2, 1fr);
     }
 `;
+
+export const ContentItem = styled.div`
+  margin: 10px;
+  position: relative;
+  &:hover {
+    transition: all 0.1s ease-in;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(234, 228, 31, 0.19);
+  }
+  
+  img {
+    object-fit: cover;
+    cursor: pointer;
+    width: 100%;
+  }
+`;
+
+export const ContentItemTitle = styled.div`
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: rgb(253, 0, 0);
+  padding: 0 5px;
+`;
