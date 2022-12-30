@@ -85,7 +85,6 @@ class AudioBuffers {
         if (this.selectedSite) {
             const isNotNull = <T>(x: T): x is NonNullable<T> => !!x;
             const navSounds = this.selectedSite.leftNav.items.map(i => i.audio).filter(isNotNull);
-            console.log(navSounds);
             const sounds = [
                 this.selectedSite.header.ringAudio,
                 this.selectedSite.header.spinningSalAudio,

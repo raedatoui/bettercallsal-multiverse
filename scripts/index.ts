@@ -1,7 +1,9 @@
-import { loadSites } from './parser';
+import { loadSites, loadContent } from './parser';
 
-const run = async () => {
-    await loadSites();
+const run = async (content = true) => {
+    if (!content)
+        await loadSites();
+    await loadContent('fit');
     // const response = await axios({
     //     method: 'get',
     //     url: 'https://collectionapi.metmuseum.org/public/collection/v1/objects/82443',

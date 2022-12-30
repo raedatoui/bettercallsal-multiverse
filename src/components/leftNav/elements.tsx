@@ -3,13 +3,14 @@ import { NavButton } from 'src/styles/sharedstyles';
 
 export const LeftNavContainer = styled.div`
   min-width: 250px;
-  width: 274px;
+  width: 250px;
+
 `;
 
 export const LeftNavMenu = styled.div`
-  padding: 8px 0;
-  background-color: #4b7aa3;
+  padding: 8px 0 30px 0;
   width: 100%;
+  background-color: #4b7aa3;
 `;
 
 export const LeftNavButton = styled(NavButton)`

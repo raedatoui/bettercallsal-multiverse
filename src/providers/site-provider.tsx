@@ -1,18 +1,42 @@
-import React, { FC, useMemo, useState, createContext } from 'react';
-import { SiteKey, SiteMap, SiteMapValidator } from '../types';
+import React, { FC, useMemo, useState, createContext, useEffect } from 'react';
+import axios from 'axios';
+import {
+    ArtContentListValidator,
+    BaseContentListValidator,
+    BizContentListValidator,
+    ContentMap,
+    FitContentListValidator,
+    RocksContentListValidator,
+    SiteKey,
+    SiteMap,
+    SiteMapValidator
+} from '../types';
 import sitesData from '../../public/content/sites.json';
 
 type SiteProviderType = {
-    sites: SiteMap,
+    siteMap: SiteMap,
     selectedSite: SiteKey,
-    setSelectedSite: (s: SiteKey) => void
+    setSelectedSite: (s: SiteKey) => void,
+    contentMap: ContentMap,
+    loading: boolean,
 };
 
 const siteMap = SiteMapValidator.parse(sitesData);
+const defaultContentMap = {
+    biz: [],
+    fit: [],
+    art: [],
+    rocks: [],
+    games: [],
+    construction: [],
+};
+
 const SiteContext = createContext<SiteProviderType>({
-    sites: siteMap,
-    selectedSite: 'games',
-    setSelectedSite: () => {}
+    siteMap,
+    selectedSite: 'biz',
+    setSelectedSite: () => {},
+    contentMap: defaultContentMap,
+    loading: true,
 });
 
 interface ProviderProps {
@@ -23,11 +47,65 @@ interface ProviderProps {
 const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     const [selectedSite, setSelectedSite] = useState<SiteKey>(defaultSite);
 
+    const [contentMap, setContentMap] = useState<ContentMap>(defaultContentMap);
+    const [loading, setLoading] = useState(true);
+
+    const setSite = (s: SiteKey) => {
+        setLoading(true);
+        setSelectedSite(s);
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data: response } = await axios.get(`/content/content-${selectedSite}.json`);
+                let parsed;
+                switch (selectedSite) {
+                    /* eslint-disable indent */
+                case 'biz':
+                    parsed = BizContentListValidator.parse(response);
+                    break;
+
+                case 'fit':
+                    parsed = FitContentListValidator.parse(response);
+                    break;
+
+                case 'art':
+                    parsed = ArtContentListValidator.parse(response);
+                    break;
+
+                case 'rocks':
+                    parsed = RocksContentListValidator.parse(response);
+                    break;
+
+                default:
+                    parsed = BaseContentListValidator.parse(response);
+                    break;
+                    /* eslint-disable indent */
+                }
+                setContentMap({
+                    ...contentMap,
+                    [selectedSite]: parsed
+                });
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        if (contentMap[selectedSite].length === 0) {
+            setLoading(true);
+            fetchData();
+        }
+
+    }, [contentMap, selectedSite]);
+
     const providedSites = useMemo<SiteProviderType>(() => ({
-        sites: siteMap,
+        siteMap,
         selectedSite,
-        setSelectedSite
-    }), [selectedSite]);
+        setSelectedSite: setSite,
+        loading,
+        contentMap,
+    }), [contentMap, loading, selectedSite]);
 
     return (
         <SiteContext.Provider value={providedSites}>

@@ -15,8 +15,8 @@ interface ProviderProps {
     children: JSX.Element;
 }
 const SoundProvider:FC<ProviderProps> = ({ children }) => {
-    const { sites, selectedSite } = useContext(SiteContext);
-    const site = sites[selectedSite];
+    const { siteMap, selectedSite } = useContext(SiteContext);
+    const site = siteMap[selectedSite];
     const [loaded, setLoaded] = useState<boolean>(false);
 
     const audioBuffers = useMemo<SoundProviderType>(() => {

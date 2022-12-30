@@ -13,8 +13,8 @@ import { SpinningSal, SpinningSalsContainer } from './spinning';
 import { BetterCall, BizerkIcon, BizerImage, BizerkImageContainer, SalName, SalCaption } from './middle';
 
 export const HeaderComponent: FC = () => {
-    const { sites, selectedSite } = useContext(SiteContext);
-    const site = sites[selectedSite];
+    const { siteMap, selectedSite } = useContext(SiteContext);
+    const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
 

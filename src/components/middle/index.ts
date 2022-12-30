@@ -1,1 +1,1 @@
-export { Middle } from './middle'
+export { Middle } from './middle';
