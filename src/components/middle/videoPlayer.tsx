@@ -24,7 +24,6 @@ interface VimeoPlayer {
 
 export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => {
     const { siteMap, selectedSite } = useContext(SiteContext);
-    const videoType = contentItem?.contentType;
 
     const site = siteMap[selectedSite];
     const [yPlayer, setYPlayer] = useState<YTPlayer>();

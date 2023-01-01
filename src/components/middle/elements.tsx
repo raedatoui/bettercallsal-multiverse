@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 
 export const MiddleSection = styled.div`
@@ -58,11 +58,6 @@ export const ContentList = styled.div`
     @media only screen and (min-width: 1024px) and (max-width: 1199px) {
         grid-template-columns: repeat(2, 1fr);
     }
-`;
-
-const rotateAnimation = keyframes`
-    from {transform: rotateY(0deg);}
-    to {transform: rotateY(3600deg);}
 `;
 
 export const ContentItem = styled.div`
