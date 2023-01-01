@@ -16,13 +16,11 @@ const MainSection = styled(Section)`
 `;
 
 const Row = styled.div`
-    width: 100%;
-    height: 100%;
     background-image: -webkit-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     background-image: -o-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     background-image: linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     display: flex;
-
+    position: relative;
     @media only screen and (max-width: 1023px) {  
         flex-direction: column;
     }
@@ -64,4 +62,10 @@ const NavButton = styled.div`
   }
 `;
 
-export { Main, MainSection, Row, NavButton };
+const StickyContainer = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+`;
+
+export { Main, MainSection, Row, NavButton, StickyContainer };

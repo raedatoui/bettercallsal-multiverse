@@ -101,7 +101,10 @@ export const loadContent = async (site: SiteKey): Promise<BaseContentItem[]> => 
             break;
 
         case 'rocks':
-            contentList = RocksContentListValidator.parse(rows);
+            contentList = RocksContentListValidator.parse(rows.map(r => ({
+                ...r,
+                views: parseInt(`${r.views}`.replace(/,/g, ''), 10)
+            })));
             break;
 
         default:

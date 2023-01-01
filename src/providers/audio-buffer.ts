@@ -8,14 +8,22 @@ class AudioBuffers {
     private context: AudioContext | null = null;
     private analyzer: AnalyserNode | null = null;
     public loaded: boolean;
-
     public contextLoaded: boolean;
+
     constructor() {
         this.soundMap = {};
         this.loadCount = 0;
         this.listCount = 0;
         this.loaded = false;
         this.contextLoaded = false;
+    }
+
+    public async updateSite(site: Site) {
+        if (this.selectedSite !== site && typeof window !== 'undefined') {
+            this.selectedSite = site;
+            this.loaded = false;
+            await this.loadSounds();
+        }
     }
 
     public createContext() {
@@ -26,13 +34,15 @@ class AudioBuffers {
             this.contextLoaded = true;
         }
     }
-    public play(sound: string): AudioBufferSourceNode | null {
+
+    public play(sound: string, loop: boolean = true): AudioBufferSourceNode | null {
         if (this.loaded) {
             const obj = this.soundMap[sound];
             if (obj && this.context && this.analyzer) {
                 const source = this.context.createBufferSource();
                 source.buffer = obj.buffer;
                 source.connect(this.analyzer);
+                source.loop = loop;
                 this.analyzer.connect(this.context.destination);
                 source.start(0, obj.pausedAt);
                 obj.startedAt = this.context.currentTime - obj.pausedAt;
@@ -42,6 +52,7 @@ class AudioBuffers {
         }
         return null;
     }
+
     public stop(sound: string) {
         const obj = this.soundMap[sound];
         if (obj) {
@@ -55,6 +66,7 @@ class AudioBuffers {
             obj.pausedAt = 0;
         }
     }
+
     public pause(sound: string) {
         if (this.loaded) {
             const obj = this.soundMap[sound];
@@ -72,14 +84,6 @@ class AudioBuffers {
         }
     }
 
-    public async updateSite(site: Site) {
-        if (this.selectedSite !== site && typeof window !== 'undefined') {
-            this.selectedSite = site;
-            this.loaded = false;
-            await this.loadSounds();
-        }
-    }
-
     private async loadSounds() {
         this.loaded = false;
         if (this.selectedSite) {
@@ -94,61 +98,8 @@ class AudioBuffers {
             this.loaded = true;
         }
     }
-    //     this.soundList = {
-    //         airhorn: {
-    //             url: '/audio/airhorn.wav',
-    //             source: '',
-    //             buffer: null,
-    //             startedAt: 0,
-    //             pausedAt: 0,
-    //         },
-    //         phoneRing: {
-    //             url: '/audio/phone-ring.wav',
-    //             source: null,
-    //             buffer: null,
-    //             startedAt: 0,
-    //             pausedAt: 0,
-    //         },
-    //         salutations: {
-    //             url: '/audio/salutations.wav',
-    //             source: null,
-    //             buffer: null,
-    //             startedAt: 0,
-    //             pausedAt: 0,
-    //         },
-    //         bettercallquick: {
-    //             url: '/audio/bettercallquick.wav',
-    //             source: null,
-    //             buffer: null,
-    //             startedAt: 0,
-    //             pausedAt: 0,
-    //         },
-    //         truck: {
-    //             url: '/audio/hard-horn.mp3',
-    //             source: '',
-    //             buffer: null,
-    //             startedAt: 0,
-    //             pausedAt: 0,
-    //         },
-    //         hardRing: {
-    //             url: '/audio/hard-ring.mp3',
-    //             source: '',
-    //             buffer: null,
-    //             startedAt: 0,
-    //             pausedAt: 0,
-    //         },
-    //     };
-    // }
-    //
-    // load() {
-    //     const keys = Object.keys(this.soundList);
-    //     this.listCount = keys.length;
-    //     keys.forEach(key => {
-    //         this.loadBuffer(key, this.soundList[key]);
-    //     });
-    // }
-    //
-    async loadBuffer(sound: string) {
+
+    private async loadBuffer(sound: string) {
         const request = new XMLHttpRequest();
         request.responseType = 'arraybuffer';
         // request.async = false;
@@ -169,22 +120,6 @@ class AudioBuffers {
                         buffer,
                         source: null
                     };
-                    // if (sound === 'airhorn')
-                    //     this.soundList.airhorn2 = {
-                    //         source: '',
-                    //         buffer: utils.clone(buffer),
-                    //         startedAt: 0,
-                    //         pausedAt: 0,
-                    //     };
-                    //
-                    // if (sound === 'truck')
-                    //     this.soundList.truck2 = {
-                    //         source: '',
-                    //         buffer: utils.clone(buffer),
-                    //         startedAt: 0,
-                    //         pausedAt: 0,
-                    //     };
-
                 },
                 error => {
                     console.error('decodeAudioData error', error);
@@ -197,19 +132,6 @@ class AudioBuffers {
         request.open('GET', sound, true);
         request.send();
     }
-    //
-    // updateBuffers(buffers) {
-    //     this.buffers = buffers;
-    // }
-    //
-    // getBuffers() {
-    //     return this.buffers;
-    // }
-    //
-    //
-
-    //
-
 }
 
 export default AudioBuffers;

@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+  env: {
+    selectedSite: 'biz',
+  },
   reactStrictMode: true,
   compiler: {
     styledComponents: true,

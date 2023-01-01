@@ -85,9 +85,9 @@ export type Size = {
 export const BaseContentItemValidator = z.object({
     name: z.string(),
     contentId: z.string(),
-    contentType: z.string(),
+    contentType: z.string(), // TODO: add an enum on this
     thumb: z.string(),
-    category: z.string(),
+    category: z.string(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
     description: z.string(),
     caption: z.string()
 });

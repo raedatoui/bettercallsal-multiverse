@@ -10,7 +10,9 @@ export const HeaderContainer = styled.header`
   transform-style: flat;
   background-image: linear-gradient(#FD9F00, #FBFA00);
   box-shadow: inset 0 0 100px hsla(0, 0%, 0%, .3);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
 
   .content {
     width: 100%;

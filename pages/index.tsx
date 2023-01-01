@@ -3,10 +3,11 @@ import React from 'react';
 import Head from 'next/head';
 import { LeftNav } from 'src/components/leftNav';
 import { Middle } from 'src/components/middle';
+import Script from 'next/script';
 import {
     Main,
     MainSection,
-    Row
+    Row,
 } from '../src/styles/sharedstyles';
 import { HeaderComponent } from '../src/components/header';
 
@@ -41,6 +42,14 @@ const Home = () => (
             <meta property="og:image" content="https://storage.googleapis.com/www.bettercallsal.biz/images/og.png" />
         </Head>
         <Main id="main">
+            <Script
+                id="youtube-iframe"
+                src="https://www.youtube.com/iframe_api"
+            />
+            <Script
+                id="vimeo-player"
+                src="https://player.vimeo.com/api/player.js"
+            />
             <MainSection>
                 <HeaderComponent />
                 <Row>
@@ -48,7 +57,6 @@ const Home = () => (
                     <Middle />
                 </Row>
             </MainSection>
-
         </Main>
     </>
 );
