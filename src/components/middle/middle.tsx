@@ -5,6 +5,7 @@ import {
 } from 'src/components/middle/elements';
 import { BizContentItem, BaseContentItem } from 'src/types';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
+import { shuffleList } from 'src/utils';
 
 interface Props { }
 
@@ -14,6 +15,9 @@ export const Middle: FC<Props> = () => {
     let contentList = contentMap[selectedSite];
     if (contentFilter !== '' && contentFilter !== 'all')
         contentList = contentMap[selectedSite].filter(i => i.category === contentFilter);
+    if (selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks')
+        contentList = shuffleList(contentList);
+
     const [selectedContent, setSelectedContent] = useState<BaseContentItem | null>();
 
     const videoClass = selectedContent?.contentId ? 'loaded' : '';

@@ -73,6 +73,7 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
 
                     case 'fit':
                         parsed = FitContentListValidator.parse(response);
+                        console.log(parsed);
                         break;
 
                     case 'art':
@@ -88,7 +89,6 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
                         break;
                     /* eslint-disable indent */
                 }
-                console.log(parsed);
                 setContentMap({
                     ...contentMap,
                     [selectedSite]: parsed
@@ -106,11 +106,6 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
 
     }, [contentMap, selectedSite]);
 
-    // useEffect(() => {
-    //     if (contentFilter && contentMap)
-    //         contentMap[selectedSite] = contentMap[selectedSite].filter(i => i.category === contentFilter);
-    //
-    // }, [contentFilter, contentMap]);
     const providedSites = useMemo<SiteProviderType>(() => ({
         siteMap,
         selectedSite,
