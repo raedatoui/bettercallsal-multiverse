@@ -1,9 +1,10 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
 import {
     Caption, ContentItem, ContentItemTitle, ContentList, MiddleSection, Quote
 } from 'src/components/middle/elements';
-
+import { BizContentItem, BaseContentItem } from 'src/types';
+import { VideoPlayer } from 'src/components/middle/videoPlayer';
 
 interface Props { }
 
@@ -12,6 +13,10 @@ export const Middle: FC<Props> = () => {
     const site = siteMap[selectedSite];
     const contentList = contentMap[selectedSite];
 
+    const [selectedContent, setSelectedContent] = useState<BaseContentItem | null>();
+
+    const videoClass = selectedContent?.contentId ? 'loaded' : '';
+
     return (
         <MiddleSection>
             <Caption>{site.contentHeader}</Caption>
@@ -19,7 +24,7 @@ export const Middle: FC<Props> = () => {
             <ContentList>
                 { loading && <div>loading</div> }
                 { !loading && contentList.map(i => (
-                    <ContentItem key={i.contentId}>
+                    <ContentItem key={i.contentId} onClick={() => setSelectedContent(i)}>
                         <img alt={i.name} src={`/images/${selectedSite}/thumbs/${i.thumb}`} />
                         <ContentItemTitle>
                             { i.name }
@@ -27,6 +32,11 @@ export const Middle: FC<Props> = () => {
                     </ContentItem>
                 ))}
             </ContentList>
+            <VideoPlayer
+                className={videoClass}
+                contentItem={selectedContent as BizContentItem}
+                deselect={() => setSelectedContent(null)}
+            />
         </MiddleSection>
     );
 };

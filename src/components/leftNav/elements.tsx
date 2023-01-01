@@ -4,7 +4,6 @@ import { NavButton } from 'src/styles/sharedstyles';
 export const LeftNavContainer = styled.div`
   min-width: 250px;
   width: 250px;
-
 `;
 
 export const LeftNavMenu = styled.div`
@@ -21,8 +20,8 @@ export const LeftNavButton = styled(NavButton)`
   font-size: 24px;
   height: 38px;
   line-height: 38px;
-  text-align: left;
-  
+  text-align: left !important;
+
   a {
     color: inherit;
     text-decoration: none;

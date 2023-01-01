@@ -62,7 +62,6 @@ export const SiteUrl = styled(SlidingItem)`
 export const LowerBanner = styled(SlidingItem)`
   letter-spacing: 4px;
   text-decoration: none;
-
   
   span {
     margin-left: 10px;

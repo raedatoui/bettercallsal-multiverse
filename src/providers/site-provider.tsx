@@ -61,26 +61,26 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
                 const { data: response } = await axios.get(`/content/content-${selectedSite}.json`);
                 let parsed;
                 switch (selectedSite) {
-                    /* eslint-disable indent */
-                case 'biz':
-                    parsed = BizContentListValidator.parse(response);
-                    break;
+                /* eslint-disable indent */
+                    case 'biz':
+                        parsed = BizContentListValidator.parse(response);
+                        break;
 
-                case 'fit':
-                    parsed = FitContentListValidator.parse(response);
-                    break;
+                    case 'fit':
+                        parsed = FitContentListValidator.parse(response);
+                        break;
 
-                case 'art':
-                    parsed = ArtContentListValidator.parse(response);
-                    break;
+                    case 'art':
+                        parsed = ArtContentListValidator.parse(response);
+                        break;
 
-                case 'rocks':
-                    parsed = RocksContentListValidator.parse(response);
-                    break;
+                    case 'rocks':
+                        parsed = RocksContentListValidator.parse(response);
+                        break;
 
-                default:
-                    parsed = BaseContentListValidator.parse(response);
-                    break;
+                    default:
+                        parsed = BaseContentListValidator.parse(response);
+                        break;
                     /* eslint-disable indent */
                 }
                 setContentMap({
@@ -95,6 +95,8 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
         if (contentMap[selectedSite].length === 0) {
             setLoading(true);
             fetchData();
+        } else {
+            setLoading(false);
         }
 
     }, [contentMap, selectedSite]);
