@@ -95,9 +95,8 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
         if (contentMap[selectedSite].length === 0) {
             setLoading(true);
             fetchData();
-        } else {
+        } else
             setLoading(false);
-        }
 
     }, [contentMap, selectedSite]);
 
