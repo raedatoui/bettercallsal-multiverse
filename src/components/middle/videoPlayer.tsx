@@ -78,7 +78,6 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                     }));
                 else
                     vimeoPlayer.loadVideo(contentItem.contentId);
-
     }, [contentItem?.contentType]);
 
     return (

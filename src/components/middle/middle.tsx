@@ -9,10 +9,11 @@ import { VideoPlayer } from 'src/components/middle/videoPlayer';
 interface Props { }
 
 export const Middle: FC<Props> = () => {
-    const { siteMap, selectedSite, contentMap, loading } = useContext(SiteContext);
+    const { siteMap, selectedSite, contentMap, loading, contentFilter } = useContext(SiteContext);
     const site = siteMap[selectedSite];
-    const contentList = contentMap[selectedSite];
-
+    let contentList = contentMap[selectedSite];
+    if (contentFilter !== '' && contentFilter !== 'all')
+        contentList = contentMap[selectedSite].filter(i => i.category === contentFilter);
     const [selectedContent, setSelectedContent] = useState<BaseContentItem | null>();
 
     const videoClass = selectedContent?.contentId ? 'loaded' : '';

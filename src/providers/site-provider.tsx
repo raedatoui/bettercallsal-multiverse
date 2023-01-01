@@ -19,6 +19,8 @@ type SiteProviderType = {
     setSelectedSite: (s: SiteKey) => void,
     contentMap: ContentMap,
     loading: boolean,
+    contentFilter: string,
+    setContentFilter: (c: string) => void,
 };
 
 const siteMap = SiteMapValidator.parse(sitesData);
@@ -37,6 +39,8 @@ const SiteContext = createContext<SiteProviderType>({
     setSelectedSite: () => {},
     contentMap: defaultContentMap,
     loading: true,
+    contentFilter: '',
+    setContentFilter: () => {},
 });
 
 interface ProviderProps {
@@ -46,12 +50,13 @@ interface ProviderProps {
 
 const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     const [selectedSite, setSelectedSite] = useState<SiteKey>(defaultSite);
-
     const [contentMap, setContentMap] = useState<ContentMap>(defaultContentMap);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [contentFilter, setContentFilter] = useState<string>('');
 
     const setSite = (s: SiteKey) => {
         setLoading(true);
+        setContentFilter('');
         setSelectedSite(s);
     };
 
@@ -83,6 +88,7 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
                         break;
                     /* eslint-disable indent */
                 }
+                console.log(parsed);
                 setContentMap({
                     ...contentMap,
                     [selectedSite]: parsed
@@ -100,13 +106,20 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
 
     }, [contentMap, selectedSite]);
 
+    // useEffect(() => {
+    //     if (contentFilter && contentMap)
+    //         contentMap[selectedSite] = contentMap[selectedSite].filter(i => i.category === contentFilter);
+    //
+    // }, [contentFilter, contentMap]);
     const providedSites = useMemo<SiteProviderType>(() => ({
         siteMap,
         selectedSite,
         setSelectedSite: setSite,
         loading,
         contentMap,
-    }), [contentMap, loading, selectedSite]);
+        contentFilter,
+        setContentFilter,
+    }), [contentMap, loading, selectedSite, contentFilter]);
 
     return (
         <SiteContext.Provider value={providedSites}>
