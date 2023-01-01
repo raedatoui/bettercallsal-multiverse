@@ -7,10 +7,10 @@ import { SoundContext } from 'src/providers/audio-context';
 
 interface ButtonProps {
     navItem: LeftNavNavItem;
-
-    audioCb: (a: string) => void
+    audioCb: (a: string) => void;
+    categoryCb: (c: string) => void;
 }
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb }) => {
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, categoryCb }) => {
     const { width } = useContext(WindowSizeContext);
 
     const ref = useRef<HTMLDivElement>(null);
@@ -27,12 +27,19 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb }) => {
     }, [width, ref]);
 
     const handleClick = () => {
+        // TODO move providers here and remove callback functions. do too many provider subscriber slow things down?
         if (navItem.audio)
             audioCb(navItem.audio);
+        if (navItem.category && navItem.category !== '') {
+            console.log('CAT', navItem.category);
+            categoryCb(navItem.category);
+        }
+
     };
 
     return (
-        <LeftNavButton ref={ref} onClick={handleClick}>{ navItem.name }</LeftNavButton>
+        <LeftNavButton
+            ref={ref} onClick={handleClick}>{ navItem.name }</LeftNavButton>
     );
 };
 
@@ -41,7 +48,7 @@ interface Props {
 }
 
 export const LeftNav: FC<Props> = () => {
-    const { siteMap, selectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite, setContentFilter } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -68,7 +75,7 @@ export const LeftNav: FC<Props> = () => {
         <LeftNavContainer>
             <LeftNavMenu>
                 { site.leftNav.items.map(i =>
-                    <NavButton key={i.name} navItem={i} audioCb={handleAudio} />) }
+                    <NavButton key={i.name} navItem={i} audioCb={handleAudio} categoryCb={setContentFilter} />) }
             </LeftNavMenu>
             <LeftAdd1>
                 <LeftAdd2>

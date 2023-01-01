@@ -2,7 +2,7 @@
 
 const nextConfig = {
   env: {
-    selectedSite: 'biz',
+    selectedSite: 'fit',
   },
   reactStrictMode: true,
   compiler: {
