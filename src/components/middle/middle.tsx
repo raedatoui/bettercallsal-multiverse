@@ -37,11 +37,13 @@ export const Middle: FC<Props> = () => {
                     </ContentItem>
                 ))}
             </ContentList>
+
             <VideoPlayer
                 className={videoClass}
                 contentItem={selectedContent as BizContentItem}
                 deselect={() => setSelectedContent(null)}
             />
+
         </MiddleSection>
     );
 };

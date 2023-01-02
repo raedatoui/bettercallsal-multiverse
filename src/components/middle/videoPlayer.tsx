@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
-import { Player, PlayerContainer, StopButton, VideoText } from 'src/components/middle/elements';
+import { Player, PlayerContainer, StopButton, Video, VideoText } from 'src/components/middle/elements';
 import { BizContentItem } from 'src/types';
 import { SiteContext } from 'src/providers/site-provider';
 
@@ -72,7 +72,7 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                     // @ts-ignore
                     setVPlayer(new Vimeo.Player('vplayer', {
                         id: contentItem.contentId,
-                        // width: 640,
+                        width: 640,
                         autoplay: true,
                         loop: true,
                     }));
@@ -83,14 +83,21 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
     return (
         <PlayerContainer className={className}>
             <VideoText>{`${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`}</VideoText>
-            <Player className={contentItem?.contentType === 'vimeo' ? 'hide' : ''}>
+            <Player className={contentItem?.contentType !== 'youtube' ? 'hide' : ''}>
                 <div id="yplayer" />
             </Player>
-            <Player className={contentItem?.contentType === 'youtube' ? 'hide' : ''}>
+            <Player className={contentItem?.contentType !== 'vimeo' ? 'hide' : ''}>
                 <div id="vplayer" />
             </Player>
+
+            { contentItem && contentItem.contentType === 'video' && (
+                <Video controls autoPlay>
+                    <source src={`/videos/${selectedSite}/${contentItem?.contentId}`} type="video/mp4" />
+                </Video>
+            ) }
+
             <StopButton onClick={() => stopVideo()}>STOP</StopButton>
-            <VideoText>View: {contentItem?.views.toLocaleString('US') ?? ''}</VideoText>
+            {/* <VideoText>View: {contentItem?.views.toLocaleString('US') ?? ''}</VideoText> */}
         </PlayerContainer>
     );
 };

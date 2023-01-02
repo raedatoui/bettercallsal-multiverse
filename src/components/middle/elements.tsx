@@ -94,7 +94,8 @@ export const PlayerContainer = styled.div`
   z-index: 2;
   display: none;
   &.loaded {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -113,6 +114,11 @@ export const Player = styled.div`
   &.hide {
     display: none;
   }
+`;
+
+export const Video = styled.video`
+  height: 500px;
+  margin: 0 auto;
 `;
 
 export const Bar = styled.div`
