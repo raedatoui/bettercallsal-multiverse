@@ -55,7 +55,6 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     const [contentFilter, setContentFilter] = useState<string>('');
 
     const setSite = (s: SiteKey) => {
-        setLoading(true);
         setContentFilter('');
         setSelectedSite(s);
     };

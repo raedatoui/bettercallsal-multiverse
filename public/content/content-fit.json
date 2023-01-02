@@ -21,7 +21,7 @@
   },
   {
     "name": "Vinyasa",
-    "contentId": "yoga_vinyasa",
+    "contentId": "yoga_vinyasa.mov",
     "contentType": "video",
     "thumb": "yoga_vinyasa.jpg",
     "category": "yoga",
@@ -91,7 +91,7 @@
   },
   {
     "name": "Cycling",
-    "contentId": "cycling.mov",
+    "contentId": "cycling.mp4",
     "contentType": "video",
     "thumb": "cycling.jpg",
     "category": "cycling",
@@ -111,7 +111,7 @@
   },
   {
     "name": "Prenatal Pilates",
-    "contentId": "prenatal_pilates.mov",
+    "contentId": "prenatal-pilates.mp4",
     "contentType": "video",
     "thumb": "prenatal_pilates.jpg",
     "category": "pilates",

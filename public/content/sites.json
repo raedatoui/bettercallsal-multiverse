@@ -100,7 +100,7 @@
         },
         {
           "name": "Strength",
-          "audio": "/audio/fit/Strength.mp3",
+          "audio": "/audio/fit/strength.wav",
           "video": null,
           "link": "",
           "category": "strength"
@@ -142,7 +142,7 @@
         },
         {
           "name": "Cycling",
-          "audio": "/audio/fit/cycling.mp3",
+          "audio": "/audio/fit/cycling2.mp3",
           "video": null,
           "link": "",
           "category": "cycling"
