@@ -97,7 +97,10 @@ export const loadContent = async (site: SiteKey): Promise<BaseContentItem[]> => 
             break;
 
         case 'art':
-            contentList = ArtContentListValidator.parse(rows);
+            contentList = ArtContentListValidator.parse(rows.map(r => ({
+                ...r,
+                year: r.year !== '' ? parseInt(`${r.year}`.replace(/,/g, ''), 10): undefined
+            })));
             break;
 
         case 'rocks':

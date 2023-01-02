@@ -96,6 +96,10 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                 </Video>
             ) }
 
+            { contentItem && selectedSite === 'art' && (
+                <img src={`images/${selectedSite}/${contentItem.contentId}`} />
+            )}
+
             <StopButton onClick={() => stopVideo()}>STOP</StopButton>
             {/* <VideoText>View: {contentItem?.views.toLocaleString('US') ?? ''}</VideoText> */}
         </PlayerContainer>

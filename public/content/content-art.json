@@ -1,0 +1,230 @@
+[
+  {
+    "name": "Allegory of an American Christmas ",
+    "contentId": "allegory.jpg",
+    "contentType": "quad",
+    "thumb": "allegory.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1934
+  },
+  {
+    "name": "Debris of an Automobile Giving Birth to a Blind Horse Biting a Telephone",
+    "contentId": "debris.jpg",
+    "contentType": "quad",
+    "thumb": "debris.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1938
+  },
+  {
+    "name": "Dionysus Spitting the Complete Image of Cadaqués on the Tip of the Tongue of a Three-Storied Gaudinian Woman",
+    "contentId": "dionysus.jpg",
+    "contentType": "quad",
+    "thumb": "dionysus.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1958
+  },
+  {
+    "name": "Double-sided Verso (Studio Scene)",
+    "contentId": "double-sided.jpg",
+    "contentType": "quad",
+    "thumb": "double-sided.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1925
+  },
+  {
+    "name": "Hairdresser Depressed by the Persistent Good Weather",
+    "contentId": "hairdresser.jpg",
+    "contentType": "quad",
+    "thumb": "hairdresser.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1934
+  },
+  {
+    "name": "Head of a Man with a Child",
+    "contentId": "head-man.jpg",
+    "contentType": "quad",
+    "thumb": "head-man.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1924
+  },
+  {
+    "name": "Portrait of Gala with a Lobster",
+    "contentId": "lobster-portrait.jpg",
+    "contentType": "quad",
+    "thumb": "lobster-portrait.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1934
+  },
+  {
+    "name": "Study of a Foot",
+    "contentId": "food.jpg",
+    "contentType": "quad",
+    "thumb": "food.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1922
+  },
+  {
+    "name": "Surrealist Warriors for a Four-part Screen, Centre Left",
+    "contentId": "surrealist-warriors.jpg",
+    "contentType": "quad",
+    "thumb": "surrealist-warriors.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1934
+  },
+  {
+    "name": "The Mysterious Sources of Harmony",
+    "contentId": "mysterious-harmony.jpg",
+    "contentType": "quad",
+    "thumb": "mysterious-harmony.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1932
+  },
+  {
+    "name": "The Persistence of Memory",
+    "contentId": "memory.jpg",
+    "contentType": "quad",
+    "thumb": "memory.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1931
+  },
+  {
+    "name": "The Sick Child",
+    "contentId": "sick.jpg",
+    "contentType": "quad",
+    "thumb": "sick.jpg",
+    "category": "contemporary",
+    "description": "",
+    "caption": "Artist",
+    "year": 1923
+  },
+  {
+    "name": "American Gothic",
+    "contentId": "american_gothic.jpg",
+    "contentType": "image",
+    "thumb": "american_gothic.jpg",
+    "category": "classical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Campagne De France",
+    "contentId": "campagne_de_france.jpg",
+    "contentType": "image",
+    "thumb": "campagne_de_france.jpg",
+    "category": "historical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Crucifixion",
+    "contentId": "crucifixion.jpg",
+    "contentType": "image",
+    "thumb": "crucifixion.jpg",
+    "category": "sacred",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Depiction of a Lad Riding In an Early Sidesaddle",
+    "contentId": "lady_riding.jpg",
+    "contentType": "image",
+    "thumb": "lady_riding.jpg",
+    "category": "historical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Girth With a pearl earring",
+    "contentId": "girl_with_a_pearl_earring.jpg",
+    "contentType": "image",
+    "thumb": "girl_with_a_pearl_earring.jpg",
+    "category": "classical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Mona Lisa",
+    "contentId": "mona_lisa.jpg",
+    "contentType": "image",
+    "thumb": "mona_lisa.jpg",
+    "category": "classical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Our Lady of Guadalupe",
+    "contentId": "our_lady_of_guadalupe.jpg",
+    "contentType": "image",
+    "thumb": "our_lady_of_guadalupe.jpg",
+    "category": "sacred",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Sacred Heart",
+    "contentId": "sacred_heart.jpg",
+    "contentType": "image",
+    "thumb": "sacred_heart.jpg",
+    "category": "sacred",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "The Battle of San Romano",
+    "contentId": "the_battle_of_san_romano.jpg",
+    "contentType": "image",
+    "thumb": "the_battle_of_san_romano.jpg",
+    "category": "historical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "The Birth of Venus",
+    "contentId": "the_birth_of_venus.jpg",
+    "contentType": "image",
+    "thumb": "the_birth_of_venus.jpg",
+    "category": "classical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "The Starry Night",
+    "contentId": "the_starry_night.jpg",
+    "contentType": "image",
+    "thumb": "the_starry_night.jpg",
+    "category": "classical",
+    "description": "",
+    "caption": "Art Interpreter"
+  },
+  {
+    "name": "Trés Riches heures du Duc de Berry",
+    "contentId": "tres_riches.jpg",
+    "contentType": "image",
+    "thumb": "tres_riches.jpg",
+    "category": "classical",
+    "description": "",
+    "caption": "Art Interpreter"
+  }
+]

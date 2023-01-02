@@ -1,7 +1,7 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
 import {
-    Caption, ContentItem, ContentItemTitle, ContentList, MiddleSection, Quote
+    Caption, ContentItem, ContentItemTitle, ContentList, MiddleSection, Quote, StopButton
 } from 'src/components/middle/elements';
 import { BizContentItem, BaseContentItem } from 'src/types';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
@@ -10,7 +10,7 @@ import { shuffleList } from 'src/utils';
 interface Props { }
 
 export const Middle: FC<Props> = () => {
-    const { siteMap, selectedSite, contentMap, loading, contentFilter } = useContext(SiteContext);
+    const { siteMap, selectedSite, contentMap, loading, contentFilter, setSelectedContentItem } = useContext(SiteContext);
     const site = siteMap[selectedSite];
     let contentList = contentMap[selectedSite];
     if (contentFilter !== '' && contentFilter !== 'all')
@@ -19,6 +19,14 @@ export const Middle: FC<Props> = () => {
         contentList = shuffleList(contentList);
 
     const [selectedContent, setSelectedContent] = useState<BaseContentItem | null>();
+
+    useEffect(() => {
+        if (selectedSite === 'art' && selectedContent) {
+            console.log('we have art', selectedContent);
+            setSelectedContentItem(selectedContent);
+        }
+
+    }, [selectedContent]);
 
     const videoClass = selectedContent?.contentId ? 'loaded' : '';
 
@@ -38,11 +46,13 @@ export const Middle: FC<Props> = () => {
                 ))}
             </ContentList>
 
-            <VideoPlayer
-                className={videoClass}
-                contentItem={selectedContent as BizContentItem}
-                deselect={() => setSelectedContent(null)}
-            />
+            { selectedContent && selectedSite !== 'art' && (
+                <VideoPlayer
+                    className={videoClass}
+                    contentItem={selectedContent as BizContentItem}
+                    deselect={() => setSelectedContent(null)}
+                />
+            ) }
 
         </MiddleSection>
     );

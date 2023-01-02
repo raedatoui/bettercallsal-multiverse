@@ -5,11 +5,11 @@ import { LeftNav } from 'src/components/leftNav';
 import { Middle } from 'src/components/middle';
 import Script from 'next/script';
 import {
-    Main,
     MainSection,
     Row,
 } from '../src/styles/sharedstyles';
 import { HeaderComponent } from '../src/components/header';
+import { MainContainer } from '../src/components/main';
 
 const Home = () => (
     <>
@@ -41,7 +41,7 @@ const Home = () => (
             <meta property="og:description" content="Better Call Sal For All Your Audio Needs" />
             <meta property="og:image" content="https://storage.googleapis.com/www.bettercallsal.biz/images/og.png" />
         </Head>
-        <Main id="main">
+        <MainContainer>
             <Script
                 id="youtube-iframe"
                 src="https://www.youtube.com/iframe_api"
@@ -57,7 +57,7 @@ const Home = () => (
                     <Middle />
                 </Row>
             </MainSection>
-        </Main>
+        </MainContainer>
     </>
 );
 
