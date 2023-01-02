@@ -68,4 +68,21 @@ const StickyContainer = styled.div`
   z-index: 1100;
 `;
 
-export { Main, MainSection, Row, NavButton, StickyContainer };
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(254, 161, 0, 0.95);
+  display: flex;
+  align-items: center;
+  z-index: 1200;
+  justify-content: space-between;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export { Main, MainSection, Row, NavButton, StickyContainer, Overlay };

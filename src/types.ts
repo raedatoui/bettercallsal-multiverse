@@ -116,7 +116,7 @@ export const FitContentListValidator = z.array(FitContentItemValidator);
 export type FitContentItem = z.infer<typeof FitContentItemValidator>;
 
 export const ArtContentItemValidator = BaseContentItemValidator.extend({
-    year: z.number()
+    year: z.number().optional()
 });
 
 export const ArtContentListValidator = z.array(ArtContentItemValidator);

@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useState, createContext, useEffect } from 'react';
 import axios from 'axios';
 import {
-    ArtContentListValidator,
+    ArtContentListValidator, BaseContentItem,
     BaseContentListValidator,
     BizContentListValidator,
     ContentMap,
@@ -21,6 +21,8 @@ type SiteProviderType = {
     loading: boolean,
     contentFilter: string,
     setContentFilter: (c: string) => void,
+    selectedContentItem: BaseContentItem | null,
+    setSelectedContentItem: (i: BaseContentItem | null) => void,
 };
 
 const siteMap = SiteMapValidator.parse(sitesData);
@@ -41,6 +43,8 @@ const SiteContext = createContext<SiteProviderType>({
     loading: true,
     contentFilter: '',
     setContentFilter: () => {},
+    selectedContentItem: null,
+    setSelectedContentItem: () => {},
 });
 
 interface ProviderProps {
@@ -53,6 +57,7 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     const [contentMap, setContentMap] = useState<ContentMap>(defaultContentMap);
     const [loading, setLoading] = useState<boolean>(true);
     const [contentFilter, setContentFilter] = useState<string>('');
+    const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | null>(null);
 
     const setSite = (s: SiteKey) => {
         setContentFilter('');
@@ -113,7 +118,9 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
         contentMap,
         contentFilter,
         setContentFilter,
-    }), [contentMap, loading, selectedSite, contentFilter]);
+        selectedContentItem,
+        setSelectedContentItem,
+    }), [selectedSite, loading, contentMap, contentFilter, selectedContentItem]);
 
     return (
         <SiteContext.Provider value={providedSites}>
