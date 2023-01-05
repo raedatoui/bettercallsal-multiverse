@@ -6,10 +6,7 @@ import {
     SiteKey,
     SiteMapValidator,
     BaseContentItem,
-    BizContentListValidator,
-    ArtContentListValidator,
-    RocksContentListValidator,
-    BaseContentListValidator, FitContentListValidator
+    BaseContentListValidator
 } from '../src/types';
 import { CsvRow, parseCsv } from './csv';
 
@@ -82,39 +79,7 @@ export const loadSites = async (): Promise<Record<SiteKey, Site>> => {
 
 export const loadContent = async (site: SiteKey): Promise<BaseContentItem[]> => {
     const rows = await loadSheet(`content-${site}.csv`);
-    let contentList: BaseContentItem[];
-    switch (site) {
-    /* eslint-disable indent */
-        case 'biz':
-            contentList = BizContentListValidator.parse(rows.map(r => ({
-                ...r,
-                views: parseInt(`${r.views}`.replace(/,/g, ''), 10)
-            })));
-            break;
-
-        case 'fit':
-            contentList = FitContentListValidator.parse(rows);
-            break;
-
-        case 'art':
-            contentList = ArtContentListValidator.parse(rows.map(r => ({
-                ...r,
-                year: r.year !== '' ? parseInt(`${r.year}`.replace(/,/g, ''), 10): undefined
-            })));
-            break;
-
-        case 'rocks':
-            contentList = RocksContentListValidator.parse(rows.map(r => ({
-                ...r,
-                views: parseInt(`${r.views}`.replace(/,/g, ''), 10)
-            })));
-            break;
-
-        default:
-            contentList = BaseContentListValidator.parse(rows);
-            break;
-    /* eslint-disable indent */
-    }
+    const contentList = BaseContentListValidator.parse(rows);
     console.log(JSON.stringify(contentList));
     return contentList;
 };

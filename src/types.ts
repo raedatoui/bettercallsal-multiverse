@@ -89,45 +89,19 @@ export const BaseContentItemValidator = z.object({
     thumb: z.string(),
     category: z.string(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
     description: z.string(),
-    caption: z.string()
+    caption: z.string(),
+    views: z.number().optional(),
+    year: z.number().optional(),
 });
 
 export type BaseContentItem = z.infer<typeof BaseContentItemValidator>;
-export const BizContentItemValidator = BaseContentItemValidator.extend({
-    views: z.number()
-});
-export const BizContentListValidator = z.array(BizContentItemValidator);
 export const BaseContentListValidator = z.array(BaseContentItemValidator);
 
-export type BizContentItem = z.infer<typeof BizContentItemValidator>;
-
-export const RocksContentItemValidator = BaseContentItemValidator.extend({
-    views: z.number()
-});
-export const RocksContentListValidator = z.array(RocksContentItemValidator);
-
-export type RocksContentItem = z.infer<typeof RocksContentItemValidator>;
-
-export const FitContentItemValidator = BaseContentItemValidator.extend({
-    time: z.string()
-});
-export const FitContentListValidator = z.array(FitContentItemValidator);
-
-export type FitContentItem = z.infer<typeof FitContentItemValidator>;
-
-export const ArtContentItemValidator = BaseContentItemValidator.extend({
-    year: z.number().optional()
-});
-
-export const ArtContentListValidator = z.array(ArtContentItemValidator);
-
-export type ArtContentItem = z.infer<typeof ArtContentItemValidator>;
-
 export const ContentMapValidator = z.object({
-    biz: BizContentListValidator,
-    fit: FitContentListValidator,
-    art: ArtContentListValidator,
-    rocks: RocksContentListValidator,
+    biz: BaseContentListValidator,
+    fit: BaseContentListValidator,
+    art: BaseContentListValidator,
+    rocks: BaseContentListValidator,
     games: BaseContentListValidator,
     construction: BaseContentListValidator,
 });

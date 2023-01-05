@@ -37,16 +37,8 @@ const NavButton = styled.div`
   cursor: pointer;
   background: -moz-linear-gradient(top, #eae41f 0%, #fea100);
   background: -webkit-gradient(linear, left top, left bottom, from(#eae41f), to(#fea100));
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
   border-radius: 7px;
   border: 1px solid #fff;
-  -moz-box-shadow:
-          0 1px 3px rgba(000, 000, 000, 0.5),
-          inset 0 0 1px rgba(255, 255, 255, 0.7);
-  -webkit-box-shadow:
-          0 1px 3px rgba(000, 000, 000, 0.5),
-          inset 0 0 1px rgba(255, 255, 255, 0.7);
   box-shadow:
           0 1px 3px rgba(000, 000, 000, 0.5),
           inset 0 0 1px rgba(255, 255, 255, 0.7);
@@ -71,17 +63,27 @@ const StickyContainer = styled.div`
 const Overlay = styled.div`
   position: fixed;
   top: 0;
-  height: 100%;
-  width: 100%;
+  right: 0;
+  left: 0;
+  bottom: 0;
   background-color: rgba(254, 161, 0, 0.95);
-  display: flex;
-  align-items: center;
   z-index: 1200;
-  justify-content: space-between;
+
+  //display: flex;
+  //align-items: center;
+  //flex-direction: column;
+  //justify-content: space-between;
+  
+  .img-container {
+    width: 100%;
+    height: 100%;
+  }
 
   img {
-    height: 100%;
-    object-fit: cover;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+    height: 90%;
   }
 `;
 

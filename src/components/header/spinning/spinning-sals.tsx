@@ -27,10 +27,9 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, site, play, pause, i
             element?.removeEventListener('mouseenter', play);
             element?.removeEventListener('mouseleave', pause);
             element?.removeEventListener('click', play);
-
         };
 
-    }, [site]);
+    }, [pause, play, site]);
 
     return (
         <SpinningWrapper className={wrapperStyle} ref={wrapperRef}>

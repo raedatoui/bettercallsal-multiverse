@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CDN } from 'src/constants';
 import { fadein, ltr, ltr2, rtl, rtl2 } from '../animations';
 
 export const SpinningSalsContainer = styled.div`
@@ -69,7 +70,7 @@ export const SpinningImg = styled.div<{ image: string }>`
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${props => props.image});
+  background-image: url(${props => `${CDN}${props.image}`});
 
   &.start {
     opacity: 0;

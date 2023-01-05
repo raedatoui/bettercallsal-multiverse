@@ -56,7 +56,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
         else
             setSliderClass('item');
 
-    }, [selectedSlide, selectedSite]);
+    }, [selectedSlide, selectedSite, start, index]);
     return (
         <SliderComponent
             onClick={(event) => { event.stopPropagation(); setSelectedSite(site.name); }}

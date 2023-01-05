@@ -14,13 +14,13 @@ export const LeftNavMenu = styled.div`
 
 export const LeftNavButton = styled(NavButton)`
   margin: 8px 6px 8px 0;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0 !important;
   text-align: left;
   padding: 0 6px;
   font-size: 24px;
   height: 38px;
   line-height: 38px;
-  text-align: left !important;
+  text-align: left  !important;
 
   a {
     color: inherit;
