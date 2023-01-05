@@ -27,7 +27,7 @@ const SoundProvider:FC<ProviderProps> = ({ children }) => {
 
     useEffect(() => {
         setLoaded(buffers.loaded);
-    }, [buffers.loaded]);
+    }, []);
 
     useEffect(() => {
         buffers.createContext();

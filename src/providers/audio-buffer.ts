@@ -1,3 +1,4 @@
+import { CDN } from 'src/constants';
 import { Site, SoundMap } from '../types';
 
 class AudioBuffers {
@@ -129,7 +130,7 @@ class AudioBuffers {
         request.onerror = () => {
             console.error('BufferLoader: XHR error');
         };
-        request.open('GET', sound, true);
+        request.open('GET', `${CDN}${sound}`, true);
         request.send();
     }
 }

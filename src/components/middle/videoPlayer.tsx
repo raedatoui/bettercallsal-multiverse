@@ -1,10 +1,10 @@
 import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
 import { Player, PlayerContainer, StopButton, Video, VideoText } from 'src/components/middle/elements';
-import { BizContentItem } from 'src/types';
+import { BaseContentItem } from 'src/types';
 import { SiteContext } from 'src/providers/site-provider';
 
 interface Props {
-    contentItem: BizContentItem | null;
+    contentItem: BaseContentItem | null;
     deselect: () => void;
     className: string;
 }
@@ -33,8 +33,7 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
     const vimeoPlayer = useMemo<VimeoPlayer | null>(() => vPlayer ?? null, [vPlayer]);
 
     const stopVideo = () => {
-        ytPlayer?.stopVideo();
-        ytPlayer?.stopVideo();
+        ytPlayer?.stopVideo?.();
         vimeoPlayer?.pause();
         deselect();
     };
@@ -78,7 +77,7 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                     }));
                 else
                     vimeoPlayer.loadVideo(contentItem.contentId);
-    }, [contentItem?.contentType]);
+    }, [contentItem]);
 
     return (
         <PlayerContainer className={className}>
@@ -95,10 +94,6 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                     <source src={`/videos/${selectedSite}/${contentItem?.contentId}`} type="video/mp4" />
                 </Video>
             ) }
-
-            { contentItem && selectedSite === 'art' && (
-                <img src={`images/${selectedSite}/${contentItem.contentId}`} />
-            )}
 
             <StopButton onClick={() => stopVideo()}>STOP</StopButton>
             {/* <VideoText>View: {contentItem?.views.toLocaleString('US') ?? ''}</VideoText> */}

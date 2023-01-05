@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
+import { CDN } from 'src/constants';
 import { glowShadow, neon1, scalemic, scalemic2 } from '../animations';
 
 export const BetterCall = styled.h1.attrs(props => ({ className: props.className }))`
@@ -13,14 +14,10 @@ export const BetterCall = styled.h1.attrs(props => ({ className: props.className
   text-shadow: rgb(255, 255, 255) -2px -2px 0px, rgb(255, 255, 255) -2px -1px 0px, rgb(255, 255, 255) -2px 0px 0px, rgb(255, 255, 255) -2px 1px 0px, rgb(255, 255, 255) -2px 2px 0px, rgb(255, 255, 255) -1px -2px 0px, rgb(255, 255, 255) -1px -1px 0px, rgb(255, 255, 255) -1px 0px 0px, rgb(255, 255, 255) -1px 1px 0px, rgb(255, 255, 255) -1px 2px 0px, rgb(255, 255, 255) 0px -2px 0px, rgb(255, 255, 255) 0px -1px 0px, rgb(255, 255, 255) 0px 0px 0px, rgb(255, 255, 255) 0px 1px 0px, rgb(255, 255, 255) 0px 2px 0px, rgb(255, 255, 255) 1px -2px 0px, rgb(255, 255, 255) 1px -1px 0px, rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 1px 1px 0px, rgb(255, 255, 255) 1px 2px 0px, rgb(255, 255, 255) 2px -2px 0px, rgb(255, 255, 255) 2px -1px 0px, rgb(255, 255, 255) 2px 0px 0px, rgb(255, 255, 255) 2px 1px 0px, rgb(255, 255, 255) 2px 2px 0px;
 
   &.better-call-anim {
-    -webkit-animation: ${neon1} 3s linear;
-    -moz-animation: ${neon1} 3s linear;
     animation: ${neon1} 3s linear;
   }
 
   &.better-call-anim-forever {
-    -webkit-animation: ${neon1} 3s linear infinite alternate;
-    -moz-animation: ${neon1} 3s linear infinite alternate;
     animation: ${neon1} 3s linear infinite alternate;
   }
 
@@ -89,13 +86,12 @@ export const BizerkImageContainer = styled.div`
   &.construction {
     margin-top: -12px;
   }
-
 `;
 
 export const BizerImage = styled.div<{ background: string }>`
   transition: all 0.5s linear;
   animation: ${glowShadow} 1.5s linear infinite alternate;
-  background-image:  url(${props => props.background});
+  background-image:  url(${props => `${CDN}${props.background}`});
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;

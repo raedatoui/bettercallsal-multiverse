@@ -1,12 +1,10 @@
 import React, { FC, useMemo, useState, createContext, useEffect } from 'react';
 import axios from 'axios';
+import { CDN } from 'src/constants';
 import {
-    ArtContentListValidator, BaseContentItem,
+    BaseContentItem,
     BaseContentListValidator,
-    BizContentListValidator,
     ContentMap,
-    FitContentListValidator,
-    RocksContentListValidator,
     SiteKey,
     SiteMap,
     SiteMapValidator
@@ -67,32 +65,9 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data: response } = await axios.get(`/content/content-${selectedSite}.json`);
-                let parsed;
-                switch (selectedSite) {
-                /* eslint-disable indent */
-                    case 'biz':
-                        parsed = BizContentListValidator.parse(response);
-                        break;
+                const { data: response } = await axios.get(`${CDN}/content/content-${selectedSite}.json`);
+                const parsed = BaseContentListValidator.parse(response);
 
-                    case 'fit':
-                        parsed = FitContentListValidator.parse(response);
-                        console.log(parsed);
-                        break;
-
-                    case 'art':
-                        parsed = ArtContentListValidator.parse(response);
-                        break;
-
-                    case 'rocks':
-                        parsed = RocksContentListValidator.parse(response);
-                        break;
-
-                    default:
-                        parsed = BaseContentListValidator.parse(response);
-                        break;
-                    /* eslint-disable indent */
-                }
                 setContentMap({
                     ...contentMap,
                     [selectedSite]: parsed

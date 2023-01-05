@@ -4,9 +4,7 @@ import axios from 'axios';
 export const useFetchData = (dataUrl: string) => {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
-    console.log('hook', dataUrl);
     useEffect(() => {
-        console.log('wtffff', dataUrl);
         const fetchData = async () => {
             setLoading(true);
             try {
@@ -17,9 +15,8 @@ export const useFetchData = (dataUrl: string) => {
             }
             setLoading(false);
         };
-
         fetchData();
-    }, []);
+    }, [dataUrl]);
 
     return {
         data,
