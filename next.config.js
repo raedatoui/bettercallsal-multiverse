@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  distDir: 'biz',
   env: {
     selectedSite: 'biz',
     cdn_url: 'https://storage.googleapis.com/bcs-assets',

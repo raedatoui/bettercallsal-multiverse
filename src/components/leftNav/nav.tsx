@@ -4,6 +4,8 @@ import { LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteContext } from 'src/providers/site-provider';
 import { SoundContext } from 'src/providers/audio-context';
+import { CDN } from 'src/constants';
+import Image from 'next/image';
 
 interface ButtonProps {
     navItem: LeftNavNavItem;
@@ -81,7 +83,11 @@ export const LeftNav: FC<Props> = () => {
             <LeftAdd1>
                 <LeftAdd2>
                     <LeftContent>
-                        <img src={site.leftNav.image} alt={site.leftNav.text} />
+                        <Image
+                            src={site.leftNav.image}
+                            alt={site.leftNav.text}
+                            fill
+                        />
                     </LeftContent>
                     <span>{site.leftNav.text}</span>
                 </LeftAdd2>
