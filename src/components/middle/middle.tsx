@@ -7,6 +7,7 @@ import { BaseContentItem } from 'src/types';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
 import { shuffleList } from 'src/utils';
 import { CDN } from 'src/constants';
+import Image from 'next/image';
 
 interface Props { }
 
@@ -43,7 +44,13 @@ export const Middle: FC<Props> = () => {
                 { loading && <div>loading</div> }
                 { !loading && contentList.map(i => (
                     <ContentItem key={i.contentId} onClick={() => setSelectedContent(i)}>
-                        <img alt={i.name} src={`${CDN}/images/${selectedSite}/thumbs/${i.thumb}`} />
+                        <Image
+                            alt={i.name}
+                            src={`/images/${selectedSite}/thumbs/${i.thumb}`}
+                            width="480"
+                            height="360"
+                            layout="responsive"
+                        />
                         <ContentItemTitle>
                             { i.name }
                         </ContentItemTitle>
