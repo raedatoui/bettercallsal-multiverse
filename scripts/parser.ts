@@ -48,7 +48,8 @@ export const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                 leftNav: {
                     image: `/images/${r.key}/${r.leftImage}`,
                     text: r.leftImageText,
-                    video: r.leftImageVideo,
+                    video: r.leftImageVideo === '' ? null : r.leftImageVideo,
+                    audio: r.leftImageAudio === '' ? null : r.leftImageAudio,
                     items: r.items.map(i => ({
                         name: i.name,
                         audio: i.audio === '' ? null : `/audio/${r.key}/${i.audio}`,
@@ -79,7 +80,13 @@ export const loadSites = async (): Promise<Record<SiteKey, Site>> => {
 
 export const loadContent = async (site: SiteKey): Promise<BaseContentItem[]> => {
     const rows = await loadSheet(`content-${site}.csv`);
-    const contentList = BaseContentListValidator.parse(rows);
+    const contentList = BaseContentListValidator.parse(rows.map(r => ({
+        ...r,
+        views: r.views === '' ? null : r.views,
+        year: r.year === '' ? null : parseInt(r.year.toString(), 10),
+        width: r.width === '' ? null : parseInt(r.width.toString(), 10),
+        height: r.height === '' ? null : parseInt(r.height.toString(), 10),
+    })));
     console.log(JSON.stringify(contentList));
     return contentList;
 };

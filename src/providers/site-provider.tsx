@@ -23,7 +23,24 @@ type SiteProviderType = {
     setSelectedContentItem: (i: BaseContentItem | null) => void,
 };
 
-const siteMap = SiteMapValidator.parse(sitesData);
+// TODO: backfill quotes
+// @ts-ignore
+
+const mapped = Object.fromEntries(Object.entries(sitesData).map(s => [
+    s[0],
+    {
+        ...s[1],
+        leftNav: {
+            ...s[1].leftNav,
+            items: s[1].leftNav.items.map(i => ({
+                ...i,
+                // @ts-ignore
+                quote: i.quote === undefined ? null : i.quote
+            })),
+        }
+    }]));
+const siteMap = SiteMapValidator.parse(mapped);
+
 const defaultContentMap = {
     biz: [],
     fit: [],

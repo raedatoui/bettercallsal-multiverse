@@ -3,7 +3,8 @@ import { loadSites, loadContent } from './parser';
 const run = async (content = true) => {
     if (!content)
         await loadSites();
-    await loadContent('art');
+    else
+        await loadContent('art');
     // const response = await axios({
     //     method: 'get',
     //     url: 'https://collectionapi.metmuseum.org/public/collection/v1/objects/82443',

@@ -69,21 +69,14 @@ const Overlay = styled.div`
   background-color: rgba(254, 161, 0, 0.95);
   z-index: 1200;
 
-  //display: flex;
-  //align-items: center;
-  //flex-direction: column;
-  //justify-content: space-between;
-  
-  .img-container {
-    width: 100%;
-    height: 100%;
-  }
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+
 
   img {
-    margin: auto;
-    display: block;
     object-fit: contain;
-    height: 90%;
   }
 `;
 

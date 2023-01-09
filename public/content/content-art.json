@@ -7,7 +7,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1934
+    "year": 1934,
+    "width": 1076,
+    "height": 594
   },
   {
     "name": "Debris of an Automobile Giving Birth to a Blind Horse Biting a Telephone",
@@ -17,7 +19,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1938
+    "year": 1938,
+    "width": 1536,
+    "height": 864
   },
   {
     "name": "Dionysus Spitting the Complete Image of Cadaqués on the Tip of the Tongue of a Three-Storied Gaudinian Woman",
@@ -27,7 +31,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1958
+    "year": 1958,
+    "width": 1919,
+    "height": 1075
   },
   {
     "name": "Double-sided Verso (Studio Scene)",
@@ -37,7 +43,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1925
+    "year": 1925,
+    "width": 1318,
+    "height": 734
   },
   {
     "name": "Hairdresser Depressed by the Persistent Good Weather",
@@ -47,7 +55,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1934
+    "year": 1934,
+    "width": 1744,
+    "height": 986
   },
   {
     "name": "Head of a Man with a Child",
@@ -57,7 +67,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1924
+    "year": 1924,
+    "width": 1632,
+    "height": 910
   },
   {
     "name": "Portrait of Gala with a Lobster",
@@ -67,7 +79,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1934
+    "year": 1934,
+    "width": 1250,
+    "height": 704
   },
   {
     "name": "Study of a Foot",
@@ -77,7 +91,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1922
+    "year": 1922,
+    "width": 1835,
+    "height": 1020
   },
   {
     "name": "Surrealist Warriors for a Four-part Screen, Centre Left",
@@ -87,7 +103,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1934
+    "year": 1934,
+    "width": 1808,
+    "height": 1018
   },
   {
     "name": "The Mysterious Sources of Harmony",
@@ -97,7 +115,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1932
+    "year": 1932,
+    "width": 1502,
+    "height": 856
   },
   {
     "name": "The Persistence of Memory",
@@ -107,7 +127,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1931
+    "year": 1931,
+    "width": 1690,
+    "height": 946
   },
   {
     "name": "The Sick Child",
@@ -117,7 +139,9 @@
     "category": "contemporary",
     "description": "",
     "caption": "Artist",
-    "year": 1923
+    "year": 1923,
+    "width": 1072,
+    "height": 600
   },
   {
     "name": "American Gothic",
@@ -126,7 +150,10 @@
     "thumb": "american_gothic.jpg",
     "category": "classical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 1034,
+    "height": 1256
   },
   {
     "name": "Campagne De France",
@@ -135,7 +162,10 @@
     "thumb": "campagne_de_france.jpg",
     "category": "historical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 1395,
+    "height": 661
   },
   {
     "name": "Crucifixion",
@@ -144,25 +174,34 @@
     "thumb": "crucifixion.jpg",
     "category": "sacred",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 844,
+    "height": 582
   },
   {
-    "name": "Depiction of a Lad Riding In an Early Sidesaddle",
+    "name": "Depiction of a Lady Riding In an Early Sidesaddle",
     "contentId": "lady_riding.jpg",
     "contentType": "image",
     "thumb": "lady_riding.jpg",
     "category": "historical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 800,
+    "height": 1068
   },
   {
-    "name": "Girth With a pearl earring",
+    "name": "Girl With a pearl earring",
     "contentId": "girl_with_a_pearl_earring.jpg",
     "contentType": "image",
     "thumb": "girl_with_a_pearl_earring.jpg",
     "category": "classical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 684,
+    "height": 820
   },
   {
     "name": "Mona Lisa",
@@ -171,7 +210,10 @@
     "thumb": "mona_lisa.jpg",
     "category": "classical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 848,
+    "height": 1262
   },
   {
     "name": "Our Lady of Guadalupe",
@@ -180,7 +222,10 @@
     "thumb": "our_lady_of_guadalupe.jpg",
     "category": "sacred",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 385,
+    "height": 583
   },
   {
     "name": "Sacred Heart",
@@ -189,7 +234,10 @@
     "thumb": "sacred_heart.jpg",
     "category": "sacred",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 688,
+    "height": 1038
   },
   {
     "name": "The Battle of San Romano",
@@ -198,7 +246,10 @@
     "thumb": "the_battle_of_san_romano.jpg",
     "category": "historical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 1718,
+    "height": 1062
   },
   {
     "name": "The Birth of Venus",
@@ -207,7 +258,10 @@
     "thumb": "the_birth_of_venus.jpg",
     "category": "classical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 3006,
+    "height": 1878
   },
   {
     "name": "The Starry Night",
@@ -216,7 +270,10 @@
     "thumb": "the_starry_night.jpg",
     "category": "classical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 1042,
+    "height": 812
   },
   {
     "name": "Trés Riches heures du Duc de Berry",
@@ -225,6 +282,9 @@
     "thumb": "tres_riches.jpg",
     "category": "classical",
     "description": "",
-    "caption": "Art Interpreter"
+    "caption": "Art Interpreter",
+    "year": null,
+    "width": 635,
+    "height": 1078
   }
 ]
