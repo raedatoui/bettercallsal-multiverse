@@ -4,7 +4,7 @@ import { CDN } from 'src/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,
-    ContentMap,
+    ContentMap, LeftNavNavItem,
     SiteKey,
     SiteMap,
     SiteMapValidator
@@ -13,19 +13,17 @@ import sitesData from '../../public/content/sites.json';
 
 type SiteProviderType = {
     siteMap: SiteMap,
-    selectedSite: SiteKey,
-    setSelectedSite: (s: SiteKey) => void,
     contentMap: ContentMap,
     loading: boolean,
-    contentFilter: string,
-    setContentFilter: (c: string) => void,
+    selectedSite: SiteKey,
+    setSelectedSite: (s: SiteKey) => void,
+    selectedNavItem: LeftNavNavItem | null,
+    setSelectedNavItem: (l: LeftNavNavItem) => void,
     selectedContentItem: BaseContentItem | null,
     setSelectedContentItem: (i: BaseContentItem | null) => void,
 };
 
 // TODO: backfill quotes
-// @ts-ignore
-
 const mapped = Object.fromEntries(Object.entries(sitesData).map(s => [
     s[0],
     {
@@ -56,8 +54,8 @@ const SiteContext = createContext<SiteProviderType>({
     setSelectedSite: () => {},
     contentMap: defaultContentMap,
     loading: true,
-    contentFilter: '',
-    setContentFilter: () => {},
+    selectedNavItem: null,
+    setSelectedNavItem: () => {},
     selectedContentItem: null,
     setSelectedContentItem: () => {},
 });
@@ -71,11 +69,12 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     const [selectedSite, setSelectedSite] = useState<SiteKey>(defaultSite);
     const [contentMap, setContentMap] = useState<ContentMap>(defaultContentMap);
     const [loading, setLoading] = useState<boolean>(true);
-    const [contentFilter, setContentFilter] = useState<string>('');
+    const [selectedNavItem, setSelectedNavItem] = useState<LeftNavNavItem | null>(null);
     const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | null>(null);
 
     const setSite = (s: SiteKey) => {
-        setContentFilter('');
+        setSelectedNavItem(null);
+        setSelectedContentItem(null);
         setSelectedSite(s);
     };
 
@@ -108,11 +107,11 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
         setSelectedSite: setSite,
         loading,
         contentMap,
-        contentFilter,
-        setContentFilter,
+        selectedNavItem,
+        setSelectedNavItem,
         selectedContentItem,
         setSelectedContentItem,
-    }), [selectedSite, loading, contentMap, contentFilter, selectedContentItem]);
+    }), [selectedSite, loading, contentMap, selectedNavItem, selectedContentItem]);
 
     return (
         <SiteContext.Provider value={providedSites}>

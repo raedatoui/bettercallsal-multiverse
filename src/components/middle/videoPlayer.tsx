@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { ButtonBar, ImageContainer, ImageOverlay, Player, PlayerContainer, StopButton, Video, VideoText } from 'src/components/middle/elements';
+import { ButtonBar, ImageContainer, ImageOverlay, Player, PlayerContainer, Quote, StopButton, Video, VideoText } from 'src/components/middle/elements';
 import { BaseContentItem, Size } from 'src/types';
 import { SiteContext } from 'src/providers/site-provider';
 import Image from 'next/image';
@@ -24,15 +24,17 @@ interface VimeoPlayer {
     loadVideo: (id: string) => void;
 }
 
+type ContentSize = Size & { left: number };
+
 export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => {
-    const { siteMap, selectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite, selectedNavItem} = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
     const [yPlayer, setYPlayer] = useState<YTPlayer>();
     const [vPlayer, setVPlayer] = useState<VimeoPlayer>();
-    const [imageSize, setImageSize] = useState<Size>({ width: 0, height: 0 });
-    const [videoSize, setVideoSize] = useState<Size>({ width: 0, height: 0 });
-    const [ytSize, setYtSize] = useState<Size>({ width: 640, height: 480 });
+    const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0 });
+    const [videoSize, setVideoSize] = useState<ContentSize>({ width: 0, height: 0, left: 0 });
+    const [ytSize, setYtSize] = useState<ContentSize>({ width: 640, height: 480, left: 0 });
     const windowSize = useWindowSize();
 
     const ytPlayer = useMemo<YTPlayer | null>(() => yPlayer ?? null, [yPlayer]);
@@ -48,7 +50,7 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
         deselect();
     };
 
-    const getContentSize = (wWise: Size, desiredSize: Size): Size => {
+    const getContentSize = (wWise: Size, desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
         const offset = (titleRef.current?.getBoundingClientRect().height ?? 0) + (viewsRef.current?.getBoundingClientRect().height ?? 0);
@@ -64,7 +66,7 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
             height = (width * desiredSize.height) / desiredSize.width;
         }
 
-        return { width, height };
+        return { width, height, left: (workingWidth - width) / 2 };
     };
 
     useEffect(() => {
@@ -123,7 +125,8 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
     return (
         <PlayerContainer className={className} ref={containerRef}>
             <VideoText ref={titleRef}>{`${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`}</VideoText>
-
+            { contentItem && contentItem.contentType === 'video'
+                && (<Quote ref={viewsRef}>{site.leftNav.items.filter(i => i.category === contentItem.category)[0].quote ?? ''}</Quote>)}
             <Player className={contentItem?.contentType !== 'youtube' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
                 <div id="yplayer" />
             </Player>
@@ -133,7 +136,7 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
             </Player>
 
             { contentItem && contentItem.contentType === 'video' && (
-                <Video controls autoPlay width={videoSize.width} height={videoSize.height}>
+                <Video controls autoPlay width={videoSize.width} height={videoSize.height} left={videoSize.left}>
                     <source src={`/videos/${selectedSite}/${contentItem?.contentId}`} type="video/mp4" />
                 </Video>
             ) }
@@ -152,10 +155,7 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                     <ImageOverlay
                         width={imageSize.width}
                         height={imageSize.height}
-                    >
-                        {/* <VideoText>{contentItem?.name}</VideoText> */}
-
-                    </ImageOverlay>
+                    />
                 </ImageContainer>
 
             )}
