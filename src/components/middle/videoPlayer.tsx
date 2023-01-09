@@ -122,9 +122,15 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
 
     }, [windowSize, contentItem]);
 
+    const getTile = () => {
+        if (selectedSite === 'biz' || selectedSite === 'rocks')
+            return `${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`;
+        return contentItem?.name ?? '';
+    };
+
     return (
         <PlayerContainer className={className} ref={containerRef}>
-            <VideoText ref={titleRef}>{`${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`}</VideoText>
+            <VideoText ref={titleRef}>{getTile()}</VideoText>
             { contentItem && contentItem.contentType === 'video'
                 && (<Quote ref={viewsRef}>{site.leftNav.items.filter(i => i.category === contentItem.category)[0].quote ?? ''}</Quote>)}
             <Player className={contentItem?.contentType !== 'youtube' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
