@@ -94,21 +94,58 @@ export const PlayerContainer = styled.div`
   z-index: 2;
   display: none;
   &.loaded {
-    display: flex;
-    flex-direction: column;
+    display: block;
+    //flex-direction: column;
+  }
+  
+  img {
+    object-fit: contain;
+    margin: 0 auto;
   }
 `;
 
-export const Player = styled.div`
-  max-width: 720px;
-  max-height: 576px;
+export const ImageContainer = styled.div<{ width: number, height: number }>`
+  position: relative;
+  width: ${props => `${props.width}px`};
+  height: ${props => `${props.height}px`};
+  margin: 0 auto;
+  cursor: pointer;
+  &:hover {
+    div {
+      display: flex;
+    }
+  }
+`;
+
+export const ImageOverlay = styled.div<{ width: number, height: number }>`
+  width: ${props => `${props.width}px`};
+  height: ${props => `${props.height}px`};
+  position: absolute;
+  top: 0;
+  left: 0;
+  //background-color: rgba(0,0,0,0.75);
+  display: none;
+  
+  img {
+    object-fit: contain;
+    max-width: 32px;
+    max-height: 32px;
+    position: absolute;
+    left: calc(50% - 32px);
+    top: calc(50% - 32px);
+  }
+`;
+
+export const Player = styled.div<{ width: number, height: number }>`
+  width: ${props => `${props.width}px`};
+  height: ${props => `${props.height}px`};
   margin: 0 auto;
   display: block;
-  width: 100%;
+
 
   iframe {
-    width: 100% !important;
-    height: 480px !important;
+    width: ${props => `${props.width}px`} !important;
+    height: ${props => `${props.height}px`} !important;
   }
   
   &.hide {
@@ -116,8 +153,9 @@ export const Player = styled.div`
   }
 `;
 
-export const Video = styled.video`
-  height: 500px;
+export const Video = styled.video<{ width: number, height: number }>`
+  width: ${props => `${props.width}px`};
+  height: ${props => `${props.height}px`};
   margin: 0 auto;
 `;
 
@@ -139,13 +177,22 @@ export const VideoText = styled.h5`
     2px -2px #F63361,
   -2px 2px #F63361;
   font-size: 30px;
+  margin: auto;
+`;
+
+export const ButtonBar = styled.div`
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  display: flex;
 `;
 
 export const StopButton = styled(NavButton)`
   height: 30px;
-  width: 100px;
   line-height: 32px;
-  top: 10px;
-  right: 10px;
-  position: absolute;
+  padding: 0 10px;
+  
+  img {
+     margin-top: 2px;
+  }
 `;

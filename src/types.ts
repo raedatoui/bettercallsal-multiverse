@@ -19,6 +19,7 @@ export const LeftNavItemValidator = z.object({
     audio: z.string().nullable(),
     video: z.string().nullable(),
     link: z.string().nullable(),
+    quote: z.string().nullable(),
     category: z.string().nullable(),
 });
 
@@ -36,6 +37,7 @@ export const SiteValidator = z.object({
         image: z.string(),
         text: z.string(),
         video: z.string().nullable(),
+        audio: z.string().nullable(),
         items: z.array(LeftNavItemValidator),
     }),
     rightNav: z.object({
@@ -78,8 +80,8 @@ export type SoundMap = Record<string, Sound>;
 export type CbFn = () => void;
 
 export type Size = {
-    width: number | undefined;
-    height: number | undefined;
+    width: number;
+    height: number;
 };
 
 export const BaseContentItemValidator = z.object({
@@ -90,8 +92,10 @@ export const BaseContentItemValidator = z.object({
     category: z.string(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
     description: z.string(),
     caption: z.string(),
-    views: z.number().optional(),
-    year: z.number().optional(),
+    views: z.number().optional().nullable(),
+    year: z.number().optional().nullable(),
+    width: z.number().optional().nullable(),
+    height: z.number().optional().nullable(),
 });
 
 export type BaseContentItem = z.infer<typeof BaseContentItemValidator>;

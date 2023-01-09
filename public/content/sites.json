@@ -17,6 +17,7 @@
       "image": "/images/biz/nav-sq.jpg",
       "text": "SAL WORKED FOR ME!!!!",
       "video": "01agkvzV7Jk",
+      "audio": null,
       "items": [
         {
           "name": "salutations",
@@ -72,7 +73,7 @@
       "spinningSalsRight": "/images/fit/shweaty-right.png",
       "spinningSalAudio": "/audio/fit/ready-for-this.wav",
       "bizerkIcon": "/images/fit/namaste-smoking.gif",
-      "ringAudio": "/audio/fit/phone-ring.wav",
+      "ringAudio": "/audio/fit/ring.fit.mp3",
       "name1": "Yogi",
       "name2": "Barra",
       "title": "Fitness Guru",
@@ -82,77 +83,88 @@
     "leftNav": {
       "image": "/images/fit/salwmeout.png",
       "text": "SAL WORKED ME OUT!!!!",
-      "video": "",
+      "video": null,
+      "audio": null,
       "items": [
         {
           "name": "Sound Bath",
           "audio": "/audio/fit/drone.mp3",
           "video": null,
           "link": "",
-          "category": "sound-bath"
+          "category": "sound-bath",
+          "quote": "You’ve got to be very mindful if you don’t know where you are going, because you might not get there"
         },
         {
           "name": "Yoga",
           "audio": "/audio/fit/yoga.mp3",
           "video": null,
           "link": "",
-          "category": "yoga"
+          "category": "yoga",
+          "quote": "Yoga is 90% mental and the other half is physical"
         },
         {
           "name": "Strength",
-          "audio": "/audio/fit/strength.wav",
+          "audio": "/audio/fit/Strength.mp3",
           "video": null,
           "link": "",
-          "category": "strength"
+          "category": "strength",
+          "quote": "One’s greatest weakness is not finding the strength in oneself"
         },
         {
           "name": "Meditation",
           "audio": "/audio/fit/meditation.mp3",
           "video": null,
           "link": "",
-          "category": "meditation"
+          "category": "meditation",
+          "quote": "When you come to a fork in the road, meditate"
         },
         {
           "name": "Stretch",
           "audio": "/audio/fit/stretch.mp3",
           "video": null,
           "link": "",
-          "category": "stretch"
+          "category": "stretch",
+          "quote": "How can you think and stretch at the same time?"
         },
         {
           "name": "Barre",
           "audio": "/audio/fit/barre.mp3",
           "video": null,
           "link": "",
-          "category": "barre"
+          "category": "barre",
+          "quote": "Grin and barre it"
         },
         {
           "name": "Boxing",
           "audio": "/audio/fit/boxing.mp3",
           "video": null,
           "link": "",
-          "category": "boxing"
+          "category": "boxing",
+          "quote": "You can observe a lot by just boxing"
         },
         {
           "name": "Pilates",
           "audio": "/audio/fit/pilates.mp3",
           "video": null,
           "link": "",
-          "category": "pilates"
+          "category": "pilates",
+          "quote": "In pilates, you don’t know nothing"
         },
         {
           "name": "Cycling",
-          "audio": "/audio/fit/cycling2.mp3",
+          "audio": "/audio/fit/cycling.mp3",
           "video": null,
           "link": "",
-          "category": "cycling"
+          "category": "cycling",
+          "quote": "All cyclists are liars or crybabies"
         },
         {
           "name": "All",
           "audio": "/audio/fit/holdmusic.mp3",
           "video": null,
           "link": "",
-          "category": "all"
+          "category": "all",
+          "quote": ""
         }
       ]
     },
@@ -182,8 +194,9 @@
     "contentHeader": "In  art  trouble?",
     "leftNav": {
       "image": "/images/art/left.art.jpg",
-      "text": "Sal Drew me!!!!",
-      "video": "",
+      "text": "ABOUT THE ARTIST!!!!",
+      "video": null,
+      "audio": "/audio/art/cummilker.mp3",
       "items": [
         {
           "name": "Salutations",
@@ -256,7 +269,8 @@
     "leftNav": {
       "image": "/images/rocks/hardcore.jpg",
       "text": "SAL ROCKED ME!!!!",
-      "video": "",
+      "video": null,
+      "audio": "/audio/rocks/pavane.mp3",
       "items": [
         {
           "name": "Nature Creeps Beneath",
@@ -322,7 +336,8 @@
     "leftNav": {
       "image": "/images/games/left.games.jpg",
       "text": "SAL PLAYED ME!!!!",
-      "video": "",
+      "video": null,
+      "audio": null,
       "items": [
         {
           "name": "Salutations",
@@ -368,6 +383,7 @@
       "image": "/images/construction/nav-sq.jpg",
       "text": "SAL WORKED FOR ME!!!!",
       "video": "01agkvzV7Jk",
+      "audio": null,
       "items": [
         {
           "name": "salutations",

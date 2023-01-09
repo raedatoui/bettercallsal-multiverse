@@ -95,6 +95,8 @@ class AudioBuffers {
                 this.selectedSite.header.spinningSalAudio,
                 ...navSounds
             ];
+            if (this.selectedSite.leftNav.audio)
+                sounds.push(this.selectedSite.leftNav.audio);
             await Promise.all(sounds.map(async (k) => this.loadBuffer(k)));
             this.loaded = true;
         }

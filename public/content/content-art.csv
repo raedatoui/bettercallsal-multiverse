@@ -1,25 +1,25 @@
-name,contentId,contentType,thumb,category,description,caption,year
-Allegory of an American Christmas ,allegory.jpg,quad,allegory.jpg,contemporary,,Artist,1934
-Debris of an Automobile Giving Birth to a Blind Horse Biting a Telephone,debris.jpg,quad,debris.jpg,contemporary,,Artist,1938
-Dionysus Spitting the Complete Image of Cadaqués on the Tip of the Tongue of a Three-Storied Gaudinian Woman,dionysus.jpg,quad,dionysus.jpg,contemporary,,Artist,1958
-Double-sided Verso (Studio Scene),double-sided.jpg,quad,double-sided.jpg,contemporary,,Artist,1925
-Hairdresser Depressed by the Persistent Good Weather,hairdresser.jpg,quad,hairdresser.jpg,contemporary,,Artist,1934
-Head of a Man with a Child,head-man.jpg,quad,head-man.jpg,contemporary,,Artist,1924
-Portrait of Gala with a Lobster,lobster-portrait.jpg,quad,lobster-portrait.jpg,contemporary,,Artist,1934
-Study of a Foot,food.jpg,quad,food.jpg,contemporary,,Artist,1922
-"Surrealist Warriors for a Four-part Screen, Centre Left",surrealist-warriors.jpg,quad,surrealist-warriors.jpg,contemporary,,Artist,1934
-The Mysterious Sources of Harmony,mysterious-harmony.jpg,quad,mysterious-harmony.jpg,contemporary,,Artist,1932
-The Persistence of Memory,memory.jpg,quad,memory.jpg,contemporary,,Artist,1931
-The Sick Child,sick.jpg,quad,sick.jpg,contemporary,,Artist,1923
-American Gothic,american_gothic.jpg,image,american_gothic.jpg,classical,,Art Interpreter,
-Campagne De France,campagne_de_france.jpg,image,campagne_de_france.jpg,historical,,Art Interpreter,
-Crucifixion,crucifixion.jpg,image,crucifixion.jpg,sacred,,Art Interpreter,
-Depiction of a Lad Riding In an Early Sidesaddle,lady_riding.jpg,image,lady_riding.jpg,historical,,Art Interpreter,
-Girth With a pearl earring,girl_with_a_pearl_earring.jpg,image,girl_with_a_pearl_earring.jpg,classical,,Art Interpreter,
-Mona Lisa,mona_lisa.jpg,image,mona_lisa.jpg,classical,,Art Interpreter,
-Our Lady of Guadalupe,our_lady_of_guadalupe.jpg,image,our_lady_of_guadalupe.jpg,sacred,,Art Interpreter,
-Sacred Heart,sacred_heart.jpg,image,sacred_heart.jpg,sacred,,Art Interpreter,
-The Battle of San Romano,the_battle_of_san_romano.jpg,image,the_battle_of_san_romano.jpg,historical,,Art Interpreter,
-The Birth of Venus,the_birth_of_venus.jpg,image,the_birth_of_venus.jpg,classical,,Art Interpreter,
-The Starry Night,the_starry_night.jpg,image,the_starry_night.jpg,classical,,Art Interpreter,
-Trés Riches heures du Duc de Berry,tres_riches.jpg,image,tres_riches.jpg,classical,,Art Interpreter,
+name,contentId,contentType,thumb,category,description,caption,year,width,height
+Allegory of an American Christmas ,allegory.jpg,quad,allegory.jpg,contemporary,,Artist,1934,1076,594
+Debris of an Automobile Giving Birth to a Blind Horse Biting a Telephone,debris.jpg,quad,debris.jpg,contemporary,,Artist,1938,1536,864
+Dionysus Spitting the Complete Image of Cadaqués on the Tip of the Tongue of a Three-Storied Gaudinian Woman,dionysus.jpg,quad,dionysus.jpg,contemporary,,Artist,1958,1919,1075
+Double-sided Verso (Studio Scene),double-sided.jpg,quad,double-sided.jpg,contemporary,,Artist,1925,1318,734
+Hairdresser Depressed by the Persistent Good Weather,hairdresser.jpg,quad,hairdresser.jpg,contemporary,,Artist,1934,1744,986
+Head of a Man with a Child,head-man.jpg,quad,head-man.jpg,contemporary,,Artist,1924,1632,910
+Portrait of Gala with a Lobster,lobster-portrait.jpg,quad,lobster-portrait.jpg,contemporary,,Artist,1934,1250,704
+Study of a Foot,food.jpg,quad,food.jpg,contemporary,,Artist,1922,1835,1020
+"Surrealist Warriors for a Four-part Screen, Centre Left",surrealist-warriors.jpg,quad,surrealist-warriors.jpg,contemporary,,Artist,1934,1808,1018
+The Mysterious Sources of Harmony,mysterious-harmony.jpg,quad,mysterious-harmony.jpg,contemporary,,Artist,1932,1502,856
+The Persistence of Memory,memory.jpg,quad,memory.jpg,contemporary,,Artist,1931,1690,946
+The Sick Child,sick.jpg,quad,sick.jpg,contemporary,,Artist,1923,1072,600
+American Gothic,american_gothic.jpg,image,american_gothic.jpg,classical,,Art Interpreter,,1034,1256
+Campagne De France,campagne_de_france.jpg,image,campagne_de_france.jpg,historical,,Art Interpreter,,1395,661
+Crucifixion,crucifixion.jpg,image,crucifixion.jpg,sacred,,Art Interpreter,,844,582
+Depiction of a Lad Riding In an Early Sidesaddle,lady_riding.jpg,image,lady_riding.jpg,historical,,Art Interpreter,,1536,864
+Girth With a pearl earring,girl_with_a_pearl_earring.jpg,image,girl_with_a_pearl_earring.jpg,classical,,Art Interpreter,,684,820
+Mona Lisa,mona_lisa.jpg,image,mona_lisa.jpg,classical,,Art Interpreter,,848,1262
+Our Lady of Guadalupe,our_lady_of_guadalupe.jpg,image,our_lady_of_guadalupe.jpg,sacred,,Art Interpreter,,385,583
+Sacred Heart,sacred_heart.jpg,image,sacred_heart.jpg,sacred,,Art Interpreter,,688,1038
+The Battle of San Romano,the_battle_of_san_romano.jpg,image,the_battle_of_san_romano.jpg,historical,,Art Interpreter,,1718,1062
+The Birth of Venus,the_birth_of_venus.jpg,image,the_birth_of_venus.jpg,classical,,Art Interpreter,,3006,1878
+The Starry Night,the_starry_night.jpg,image,the_starry_night.jpg,classical,,Art Interpreter,,1042,812
+Trés Riches heures du Duc de Berry,tres_riches.jpg,image,tres_riches.jpg,classical,,Art Interpreter,,635,1078

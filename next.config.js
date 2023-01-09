@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+  // images: {
+  //   loader: 'custom',
+  //   loaderFile: './image-loader.js',
+  // },
   env: {
     selectedSite: 'biz',
-    cdn_url: 'https://storage.googleapis.com/bcs-assets',
+    cdn_url: '',
   },
   reactStrictMode: true,
   compiler: {

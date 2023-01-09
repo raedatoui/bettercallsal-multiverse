@@ -4,7 +4,6 @@ import { LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteContext } from 'src/providers/site-provider';
 import { SoundContext } from 'src/providers/audio-context';
-import { CDN } from 'src/constants';
 import Image from 'next/image';
 
 interface ButtonProps {
@@ -51,7 +50,7 @@ interface Props {
 }
 
 export const LeftNav: FC<Props> = () => {
-    const { siteMap, selectedSite, setContentFilter } = useContext(SiteContext);
+    const { siteMap, selectedSite, setContentFilter, selectedContentItem } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -74,6 +73,18 @@ export const LeftNav: FC<Props> = () => {
             }
     };
 
+    const handleImageClick = () => {
+        if (site.leftNav.audio)
+            handleAudio(site.leftNav.audio);
+    };
+
+    useEffect(() => {
+        if (selectedContentItem && audioPlaying) {
+            buffers.stop(audioPlaying);
+            setAudioPlaying(null);
+        }
+    }, [selectedContentItem, audioPlaying]);
+
     return (
         <LeftNavContainer>
             <LeftNavMenu>
@@ -87,6 +98,7 @@ export const LeftNav: FC<Props> = () => {
                             src={site.leftNav.image}
                             alt={site.leftNav.text}
                             fill
+                            onClick={() => handleImageClick()}
                         />
                     </LeftContent>
                     <span>{site.leftNav.text}</span>
