@@ -153,10 +153,11 @@ export const Player = styled.div<{ width: number, height: number }>`
   }
 `;
 
-export const Video = styled.video<{ width: number, height: number }>`
+export const Video = styled.video<{ width: number, height: number, left: number }>`
   width: ${props => `${props.width}px`};
   height: ${props => `${props.height}px`};
-  margin: 0 auto;
+  left: ${props => `${props.left}px`};
+  position: absolute;
 `;
 
 export const Bar = styled.div`

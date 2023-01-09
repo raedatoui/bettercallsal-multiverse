@@ -9,9 +9,9 @@ import Image from 'next/image';
 interface ButtonProps {
     navItem: LeftNavNavItem;
     audioCb: (a: string) => void;
-    categoryCb: (c: string) => void;
+    navItemCb: (l: LeftNavNavItem) => void;
 }
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb, categoryCb }) => {
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb }) => {
     const { width } = useContext(WindowSizeContext);
 
     const ref = useRef<HTMLDivElement>(null);
@@ -32,7 +32,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, categoryCb }) => {
         if (navItem.audio)
             audioCb(navItem.audio);
         if (navItem.category && navItem.category !== '')
-            categoryCb(navItem.category);
+            navItemCb(navItem);
 
     };
 
@@ -50,7 +50,7 @@ interface Props {
 }
 
 export const LeftNav: FC<Props> = () => {
-    const { siteMap, selectedSite, setContentFilter, selectedContentItem } = useContext(SiteContext);
+    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -89,7 +89,7 @@ export const LeftNav: FC<Props> = () => {
         <LeftNavContainer>
             <LeftNavMenu>
                 { site.leftNav.items.map(i =>
-                    <NavButton key={i.name} navItem={i} audioCb={handleAudio} categoryCb={setContentFilter} />) }
+                    <NavButton key={i.name} navItem={i} audioCb={handleAudio} navItemCb={setSelectedNavItem} />) }
             </LeftNavMenu>
             <LeftAdd1>
                 <LeftAdd2>

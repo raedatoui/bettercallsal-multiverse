@@ -10,33 +10,16 @@ import Image from 'next/image';
 interface Props { }
 
 export const Middle: FC<Props> = () => {
-    const { siteMap, selectedSite, contentMap, loading, contentFilter, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
+    const { siteMap, selectedSite, contentMap, loading, selectedNavItem, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
     const site = siteMap[selectedSite];
     let contentList = contentMap[selectedSite];
     let quote = '';
-    if (contentFilter !== '' && contentFilter !== 'all') {
-        contentList = contentMap[selectedSite].filter(i => i.category === contentFilter);
-        quote = site.leftNav.items.filter(i => i.category === contentFilter)[0].quote ?? '';
+    if (selectedNavItem !== null && selectedNavItem.category !== 'all') {
+        contentList = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
+        quote = selectedNavItem.quote ?? '';
     }
     if (selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks')
         contentList = shuffleList(contentList);
-
-    // const [selectedContent, setSelectedContent] = useState<BaseContentItem | null>();
-
-    // useEffect(() => {
-    //     // this check was to enable the fullscreen viewer
-    //     // but we need to mark globally that content is selected
-    //     // if (selectedSite === 'art' && selectedContent)
-    //     if (selectedContent)
-    //         setSelectedContentItem(selectedContent);
-    //
-    // }, [selectedContent, setSelectedContentItem]);
-    //
-    // useEffect(() => {
-    //     if (selectedSite === 'art' && selectedContentItem === null)
-    //         setSelectedContent(null);
-    //
-    // }, [selectedContentItem, selectedSite]);
 
     useEffect(() => {
         document.body.style.overflowY = selectedContentItem ? 'hidden' : 'auto';
