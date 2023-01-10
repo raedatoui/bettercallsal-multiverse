@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 
 export const MiddleSection = styled.div`
     padding-top: 15px;
     position: relative;
     overflow: visible;
+    
     @media only screen and (min-width: 1024px) {
         width: calc(100% - 500px);
     }
@@ -86,11 +87,10 @@ export const ContentItemTitle = styled.div`
 
 export const PlayerContainer = styled.div`
   width: 100%;
-  height: 100%;
+
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(254, 161, 0, 0.95);
   z-index: 2;
   display: none;
   &.loaded {
@@ -195,5 +195,36 @@ export const StopButton = styled(NavButton)`
   
   img {
      margin-top: 2px;
+  }
+`;
+
+export const GameCanvas = styled.canvas<{ width: number, height: number, left: number }>`
+  width: ${props => `${props.width}px`};
+  height: ${props => `${props.height}px`};
+  margin-left: ${props => `${props.left}px`};
+  background: #231F20;
+`;
+
+const glowShadow = keyframes`
+  to {
+    -webkit-filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
+    filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
+  }
+`;
+
+export const GameImageContainer = styled.div<{ width: number, height: number }>`
+  width: ${props => `${props.width}px`};
+  height: ${props => `${props.height}px`};
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    &.glowy {
+      animation: ${glowShadow} 1.5s linear infinite alternate;
+    }
   }
 `;

@@ -6,7 +6,7 @@ const nextConfig = {
   //   loaderFile: './image-loader.js',
   // },
   env: {
-    selectedSite: 'fit',
+    selectedSite: 'games',
     cdn_url: '',
   },
   reactStrictMode: true,
