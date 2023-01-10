@@ -1,6 +1,16 @@
 import React, { FC, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { ButtonBar, ImageContainer, ImageOverlay, Player, PlayerContainer, Quote, StopButton, Video, VideoText } from 'src/components/middle/elements';
-import { BaseContentItem, Size } from 'src/types';
+import {
+    ButtonBar,
+    ImageContainer,
+    ImageOverlay,
+    Player,
+    PlayerContainer,
+    Quote,
+    StopButton,
+    Video,
+    VideoText
+} from 'src/components/middle/elements';
+import { BaseContentItem, Size, ContentSize } from 'src/types';
 import { SiteContext } from 'src/providers/site-provider';
 import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
@@ -24,10 +34,8 @@ interface VimeoPlayer {
     loadVideo: (id: string) => void;
 }
 
-type ContentSize = Size & { left: number };
-
 export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => {
-    const { siteMap, selectedSite, selectedNavItem} = useContext(SiteContext);
+    const { siteMap, selectedSite } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
     const [yPlayer, setYPlayer] = useState<YTPlayer>();
@@ -62,6 +70,10 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
             height = workingHeight;
             width = (height * desiredSize.width) / desiredSize.height;
         } else {
+            width = workingWidth;
+            height = (width * desiredSize.height) / desiredSize.width;
+        }
+        if (width > workingWidth) {
             width = workingWidth;
             height = (width * desiredSize.height) / desiredSize.width;
         }
@@ -163,7 +175,6 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                         height={imageSize.height}
                     />
                 </ImageContainer>
-
             )}
 
             { (selectedSite === 'biz' || selectedSite === 'rocks')

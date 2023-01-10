@@ -111,3 +111,11 @@ export const ContentMapValidator = z.object({
 });
 
 export type ContentMap = z.infer<typeof ContentMapValidator>;
+
+export type ContentSize = Size & { left: number };
+
+declare global {
+    interface Window {
+        createUnityInstance: (canvas: HTMLElement | null, config: Object) => void;
+    }
+}

@@ -93,7 +93,7 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
                 console.error(error);
             }
         };
-        if (contentMap[selectedSite].length === 0) {
+        if (contentMap[selectedSite].length === 0 && selectedSite !== 'games') {
             setLoading(true);
             fetchData();
         } else

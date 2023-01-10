@@ -22,7 +22,7 @@
     "jsx": "preserve",
     "paths": {
       "src/*": [
-        "./src/*"
+        "./src/*",
       ],
       "scripts/*": [
         "./scripts/*"

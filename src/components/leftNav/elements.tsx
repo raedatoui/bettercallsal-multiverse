@@ -3,7 +3,6 @@ import { NavButton } from 'src/styles/sharedstyles';
 
 export const LeftNavContainer = styled.div`
   min-width: 250px;
-  width: 250px;
 `;
 
 export const LeftNavMenu = styled.div`

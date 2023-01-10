@@ -8,8 +8,8 @@
     "description": "",
     "caption": "Artist",
     "year": 1934,
-    "width": 1076,
-    "height": 594
+    "width": 1061,
+    "height": 582
   },
   {
     "name": "Debris of an Automobile Giving Birth to a Blind Horse Biting a Telephone",
@@ -140,8 +140,8 @@
     "description": "",
     "caption": "Artist",
     "year": 1923,
-    "width": 1072,
-    "height": 600
+    "width": 1053,
+    "height": 587
   },
   {
     "name": "American Gothic",
@@ -212,7 +212,7 @@
     "description": "",
     "caption": "Art Interpreter",
     "year": null,
-    "width": 848,
+    "width": 847,
     "height": 1262
   },
   {
@@ -225,7 +225,7 @@
     "caption": "Art Interpreter",
     "year": null,
     "width": 385,
-    "height": 583
+    "height": 582
   },
   {
     "name": "Sacred Heart",
@@ -272,7 +272,7 @@
     "description": "",
     "caption": "Art Interpreter",
     "year": null,
-    "width": 1042,
+    "width": 1035,
     "height": 812
   },
   {
@@ -285,6 +285,6 @@
     "caption": "Art Interpreter",
     "year": null,
     "width": 635,
-    "height": 1078
+    "height": 1077
   }
 ]

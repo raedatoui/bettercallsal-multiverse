@@ -86,7 +86,7 @@ export const LeftNav: FC<Props> = () => {
     }, [selectedContentItem, audioPlaying]);
 
     return (
-        <LeftNavContainer>
+        <LeftNavContainer className="two columns">
             <LeftNavMenu>
                 { site.leftNav.items.map(i =>
                     <NavButton key={i.name} navItem={i} audioCb={handleAudio} navItemCb={setSelectedNavItem} />) }
