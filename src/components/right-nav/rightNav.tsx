@@ -1,14 +1,19 @@
 import React, { FC, useContext } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
+import styled from 'styled-components';
 
 interface Props {}
+
+const SpotifyContainer = styled.div`
+  min-height: 450px
+`;
 
 export const RightNav: FC<Props> = () => {
     const { siteMap, selectedSite } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
     return (
-        <div className="two columns">
+        <SpotifyContainer className="two columns">
             <iframe
                 title="spotify"
                 src={site.rightNav.objectId}
@@ -17,6 +22,6 @@ export const RightNav: FC<Props> = () => {
                 loading="lazy"
                 frameBorder="0"
             />
-        </div>
+        </SpotifyContainer>
     );
 };

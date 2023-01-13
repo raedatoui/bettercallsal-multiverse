@@ -5,6 +5,7 @@ import { SiteContext } from 'src/providers/site-provider';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { WindowSizeContext } from 'src/providers/window-size';
+import { BaseContentItem } from 'src/types';
 
 interface Props {
     children: JSX.Element[];
@@ -28,7 +29,8 @@ export const MainContainer: FC<Props> = ({ children }) => {
 
     const handleSlide = (inc: number) => {
         if (selectedContentItem) {
-            let idx = contentMap[selectedSite].indexOf(selectedContentItem);
+            // @ts-ignore
+            let idx = contentMap[selectedSite].indexOf(selectedContentItem as BaseContentItem);
             idx += inc;
             if (idx === contentMap[selectedSite].length)
                 idx = 0;

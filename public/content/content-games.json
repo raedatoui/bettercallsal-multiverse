@@ -1,0 +1,31 @@
+[
+  {
+    "dataUrl": "/unity/mario/SUPERSALBROS.data",
+    "frameworkUrl": "/unity/mario/SUPERSALBROS.framework.js",
+    "codeUrl": "/unity/mario/SUPERSALBROS.wasm",
+    "streamingAssetsUrl": "/unity/mario/StreamingAssets",
+    "companyName": "BetterCallSal.games",
+    "productName": "Super Sal Bros.",
+    "productVersion": "1.0",
+    "showBanner": false,
+    "devicePixelRatio": 1,
+    "thumb": "supersalbros.jpg",
+    "name": "Super Sal Bros",
+    "contentId": "supersalbros"
+  },
+
+  {
+    "dataUrl": "/unity/salitaire/export.data",
+    "frameworkUrl": "/unity/salitaire/export.framework.js",
+    "codeUrl": "/unity/salitaire/export.wasm",
+    "streamingAssetsUrl": "StreamingAssets",
+    "companyName": "BetterCallSal.games",
+    "productName": "Salitaire",
+    "productVersion": "0.1",
+    "showBanner": false,
+    "devicePixelRatio": 1,
+    "thumb": "salitaire.jpg",
+    "name": "Salitaire",
+    "contentId": "salitaire"
+  }
+]

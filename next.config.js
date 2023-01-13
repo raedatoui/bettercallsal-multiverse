@@ -2,15 +2,15 @@
 const CompressionPlugin = require("compression-webpack-plugin");
 
 const nextConfig = {
-  // images: {
-  //   loader: 'custom',
-  //   loaderFile: './image-loader.js',
-  // },
-  env: {
-    selectedSite: 'games',
-    cdn_url: '',
+  images: {
+    loader: 'custom',
+    loaderFile: './image-loader.js',
   },
-  reactStrictMode: true,
+  env: {
+    selectedSite: 'biz',
+    cdn_url: 'https://storage.googleapis.com/bcs-assets',
+  },
+  reactStrictMode: false,
   compiler: {
     styledComponents: true,
   },

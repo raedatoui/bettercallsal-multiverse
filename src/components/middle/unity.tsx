@@ -1,53 +1,47 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { GameButtonBar, GameCanvas, StopButton } from 'src/components/middle/elements';
-import Script from 'next/script';
-import { UnityInstance } from 'src/types';
+import { GameContentItem, UnityInstance } from 'src/types';
+import { CDN } from 'src/constants';
 
 interface Props {
     width: number;
     height: number;
     left: number;
     deselect: () => void;
-    scriptLoaded: boolean;
-    setScriptLoaded: (b: boolean) => void;
+    game: GameContentItem;
 }
 
-export const UnityGame: FC<Props> = ({ setScriptLoaded, scriptLoaded, width, height, left, deselect }) => {
-    const [unityInstance, setUnityInstance] = useState<UnityInstance>();
+export const UnityGame: FC<Props> = ({ width, height, left, deselect, game }) => {
+    const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
+
+    const instance = useMemo<UnityInstance | null>(() => unityInstance ?? null, [unityInstance]);
+
     useEffect(() => {
-        if (scriptLoaded && window && window.createUnityInstance !== undefined)
+        if (window && window.createUnityInstance !== undefined && instance === null)
             window.createUnityInstance(document.getElementById('unity-canvas'), {
-                dataUrl: '/unity/SUPERSALBROS.data',
-                frameworkUrl: '/unity/SUPERSALBROS.framework.js',
-                codeUrl: '/unity/SUPERSALBROS.wasm',
-                streamingAssetsUrl: '/unity//StreamingAssets',
-                companyName: 'BetterCallSal.games',
-                productName: 'Super Sal Bros.',
-                productVersion: '1.0',
-                // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+                ...game,
+                dataUrl: `${CDN}${game.dataUrl}`,
+                frameworkUrl: `${CDN}${game.frameworkUrl}`,
+                codeUrl: `${CDN}${game.codeUrl}`,
+                streamingAssetsUrl: `${CDN}${game.streamingAssetsUrl}`,
             }).then((c) => {
                 setUnityInstance(c);
             });
 
-    }, [scriptLoaded]);
+    }, []);
 
     const handleStop = () => {
-        if (unityInstance)
-            unityInstance.Quit().then(() => {
+        if (instance)
+            instance.Quit().then(() => {
                 deselect();
             });
     };
     return (
         <>
-            <Script
-                src="/unity/SUPERSALBROS.loader.js"
-                onLoad={() => setScriptLoaded(true)}
-            />
             <GameCanvas id="unity-canvas" height={height} width={width} left={left} />
-            <GameButtonBar left={width + left - 83 }>
+            <GameButtonBar left={width + left - 83}>
                 <StopButton onClick={() => handleStop()}>BACK</StopButton>
             </GameButtonBar>
-
         </>
     );
 };
