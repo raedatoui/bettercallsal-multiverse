@@ -49,13 +49,15 @@ export const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                     image: `/images/${r.key}/${r.leftImage}`,
                     text: r.leftImageText,
                     video: r.leftImageVideo === '' ? null : r.leftImageVideo,
-                    audio: r.leftImageAudio === '' ? null : r.leftImageAudio,
+                    audio: r.leftImageAudio === '' ? null : `audio/${r.key}/${r.leftImageAudio}`,
                     items: r.items.map(i => ({
                         name: i.name,
                         audio: i.audio === '' ? null : `/audio/${r.key}/${i.audio}`,
                         video: i.video === '' ? null : i.video,
                         link: i.audio === '' ? null : i.link,
                         category: i.category === '' ? null : i.category,
+                        quote: i.quote === '' ? null : i.quote,
+                        quoteLink: i.quoteLink === '' ? null : i.quoteLink,
                     })),
                 },
                 rightNav: {
@@ -65,6 +67,8 @@ export const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                 footer: {
                     text: r.footerText,
                     image: `/images/${r.key}/${r.footerImage}`,
+                    imageWidth: parseInt(r.footerImageWidth.toString(), 10),
+                    imageHeight: parseInt(r.footerImageHeight.toString(), 10),
                     ringAudio: `/audio/${r.key}/${r.footerAudio}`,
                 },
             }))

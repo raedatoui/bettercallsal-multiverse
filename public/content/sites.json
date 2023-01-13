@@ -24,35 +24,45 @@
           "audio": "/audio/biz/salutations.wav",
           "video": null,
           "link": "",
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "TESTIMONIALS",
           "audio": null,
           "video": null,
           "link": null,
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "as seen on tv",
           "audio": null,
           "video": null,
           "link": null,
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "e-cards",
           "audio": null,
           "video": null,
-          "link": "",
-          "category": "Biz card"
+          "link": null,
+          "category": "Biz card",
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "office webcam",
           "audio": null,
           "video": "_QLX3hugymI",
           "link": null,
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         }
       ]
     },
@@ -63,6 +73,8 @@
     "footer": {
       "text": "welcome producers",
       "image": "/images/biz/rca-mic.png",
+      "imageWidth": 148,
+      "imageHeight": 393,
       "ringAudio": "/audio/biz/phone-ring.wav"
     }
   },
@@ -92,7 +104,8 @@
           "video": null,
           "link": "",
           "category": "sound-bath",
-          "quote": "You’ve got to be very mindful if you don’t know where you are going, because you might not get there"
+          "quote": "You’ve got to be very mindful if you don’t know where you are going",
+          "quoteLink": null
         },
         {
           "name": "Yoga",
@@ -100,15 +113,17 @@
           "video": null,
           "link": "",
           "category": "yoga",
-          "quote": "Yoga is 90% mental and the other half is physical"
+          "quote": "Yoga is 90% mental and the other half is physical",
+          "quoteLink": null
         },
         {
           "name": "Strength",
-          "audio": "/audio/fit/Strength.mp3",
+          "audio": "/audio/fit/strength.mp3",
           "video": null,
           "link": "",
           "category": "strength",
-          "quote": "One’s greatest weakness is not finding the strength in oneself"
+          "quote": "One’s greatest weakness is not finding the strength in oneself",
+          "quoteLink": null
         },
         {
           "name": "Meditation",
@@ -116,7 +131,8 @@
           "video": null,
           "link": "",
           "category": "meditation",
-          "quote": "When you come to a fork in the road, meditate"
+          "quote": "When you come to a fork in the road, meditate",
+          "quoteLink": null
         },
         {
           "name": "Stretch",
@@ -124,7 +140,8 @@
           "video": null,
           "link": "",
           "category": "stretch",
-          "quote": "How can you think and stretch at the same time?"
+          "quote": "How can you think and stretch at the same time?",
+          "quoteLink": null
         },
         {
           "name": "Barre",
@@ -132,7 +149,8 @@
           "video": null,
           "link": "",
           "category": "barre",
-          "quote": "Grin and barre it"
+          "quote": "Grin and barre it",
+          "quoteLink": null
         },
         {
           "name": "Boxing",
@@ -140,7 +158,8 @@
           "video": null,
           "link": "",
           "category": "boxing",
-          "quote": "You can observe a lot by just boxing"
+          "quote": "You can observe a lot by just boxing",
+          "quoteLink": null
         },
         {
           "name": "Pilates",
@@ -148,7 +167,8 @@
           "video": null,
           "link": "",
           "category": "pilates",
-          "quote": "In pilates, you don’t know nothing"
+          "quote": "In pilates, you don’t know nothing",
+          "quoteLink": null
         },
         {
           "name": "Cycling",
@@ -156,7 +176,8 @@
           "video": null,
           "link": "",
           "category": "cycling",
-          "quote": "All cyclists are liars or crybabies"
+          "quote": "All cyclists are liars or crybabies",
+          "quoteLink": null
         },
         {
           "name": "All",
@@ -164,18 +185,21 @@
           "video": null,
           "link": "",
           "category": "all",
-          "quote": ""
+          "quote": null,
+          "quoteLink": null
         }
       ]
     },
     "rightNav": {
-      "type": "image",
-      "objectId": "stretch.jpg"
+      "type": "spotify",
+      "objectId": "https://open.spotify.com/playlist/5HD5kTdGYpkk0nyF8ifXtS?si=wSp4fy5GQTmvLI-Mi2e7sw"
     },
     "footer": {
       "text": "NAMASTE",
       "image": "/images/fit/om.png",
-      "ringAudio": "/audio/fit/phone-ring.wav"
+      "imageWidth": 500,
+      "imageHeight": 512,
+      "ringAudio": "/audio/fit/ring.fit.mp3"
     }
   },
   "art": {
@@ -196,59 +220,73 @@
       "image": "/images/art/left.art.jpg",
       "text": "ABOUT THE ARTIST!!!!",
       "video": null,
-      "audio": "/audio/art/cummilker.mp3",
+      "audio": "audio/art/cummilker.mp3",
       "items": [
         {
           "name": "Salutations",
           "audio": "/audio/art/Pavane.mp3",
           "video": null,
           "link": "",
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "Classical",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "classical"
+          "category": "classical",
+          "quote": "Classical",
+          "quoteLink": null
         },
         {
           "name": "Sacred",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "sacred"
+          "category": "sacred",
+          "quote": "Sacred",
+          "quoteLink": null
         },
         {
           "name": "Historical",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "historical"
+          "category": "historical",
+          "quote": "Historical",
+          "quoteLink": null
         },
         {
           "name": "Contemporary",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "contemporary"
+          "category": "contemporary",
+          "quote": "Contemporary",
+          "quoteLink": null
         },
         {
           "name": "All",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "all"
+          "category": "all",
+          "quote": null,
+          "quoteLink": null
         }
       ]
     },
     "rightNav": {
-      "type": "image",
-      "objectId": "spray.gif"
+      "type": "spotify",
+      "objectId": "https://open.spotify.com/playlist/67ve1iYuE8cmxXaHWkyNKN?si=pGGas6zPSeekAytsodz9fA"
     },
     "footer": {
       "text": "welcome artists",
       "image": "/images/art/dali.gif",
+      "imageWidth": 462,
+      "imageHeight": 432,
       "ringAudio": "/audio/art/ring.art.mp3"
     }
   },
@@ -270,42 +308,52 @@
       "image": "/images/rocks/hardcore.jpg",
       "text": "SAL ROCKED ME!!!!",
       "video": null,
-      "audio": "/audio/rocks/pavane.mp3",
+      "audio": "audio/rocks/Pavane.mp3",
       "items": [
         {
           "name": "Nature Creeps Beneath",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "nature-creeps"
+          "category": "nature-creeps",
+          "quote": "Nature Creeps Beneath",
+          "quoteLink": "https://naturecreepsbeneath.com/"
         },
         {
           "name": "Blind Archer",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "blind-archer"
+          "category": "blind-archer",
+          "quote": "Blind Archer",
+          "quoteLink": "https://youtube.com/playlist?list=OLAK5uy_lHoyOGbGk0Ib3jHsACMGFfUXPYyXUfuD0"
         },
         {
           "name": "Harjo",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "harjo"
+          "category": "harjo",
+          "quote": "all hail harjo!",
+          "quoteLink": "https://www.allhailharjo.com/"
         },
         {
           "name": "RBN",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "rbn"
+          "category": "rbn",
+          "quote": "River Bottom Nightmares",
+          "quoteLink": null
         },
         {
           "name": "All",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "all"
+          "category": "all",
+          "quote": null,
+          "quoteLink": null
         }
       ]
     },
@@ -316,6 +364,8 @@
     "footer": {
       "text": "welcome rockstars",
       "image": "/images/rocks/smashguitar.gif",
+      "imageWidth": 312,
+      "imageHeight": 276,
       "ringAudio": "/audio/rocks/ring.rocks.mp3"
     }
   },
@@ -344,14 +394,18 @@
           "audio": "/audio/games/salutations.games.mp3",
           "video": null,
           "link": "",
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "Super Sal Bros.",
           "audio": null,
           "video": null,
           "link": null,
-          "category": "game"
+          "category": "game",
+          "quote": null,
+          "quoteLink": null
         }
       ]
     },
@@ -362,6 +416,8 @@
     "footer": {
       "text": "welcome gamers",
       "image": "/images/games/goomba2.gif",
+      "imageWidth": 320,
+      "imageHeight": 320,
       "ringAudio": "/audio/games/ring.games.mp3"
     }
   },
@@ -390,35 +446,45 @@
           "audio": "/audio/construction/salutations.wav",
           "video": null,
           "link": "",
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "TESTIMONIALS",
           "audio": null,
           "video": null,
           "link": null,
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "as seen on tv",
           "audio": null,
           "video": null,
           "link": null,
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "e-cards",
           "audio": null,
           "video": null,
-          "link": "",
-          "category": "Biz card"
+          "link": null,
+          "category": "Biz card",
+          "quote": null,
+          "quoteLink": null
         },
         {
           "name": "office webcam",
           "audio": null,
           "video": "_QLX3hugymI",
           "link": null,
-          "category": null
+          "category": null,
+          "quote": null,
+          "quoteLink": null
         }
       ]
     },
@@ -429,6 +495,8 @@
     "footer": {
       "text": "under construction",
       "image": "/images/construction/footer.construction.png",
+      "imageWidth": 255,
+      "imageHeight": 393,
       "ringAudio": "/audio/construction/ring.construction.mp3"
     }
   }

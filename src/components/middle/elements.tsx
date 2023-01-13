@@ -2,9 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 
 export const MiddleSection = styled.div`
-    padding-top: 15px;
     position: relative;
-    overflow: visible;
     
     @media only screen and (min-width: 1024px) {
         width: calc(100% - 500px);
@@ -22,6 +20,7 @@ export const Caption = styled.h5`
   text-shadow: 2px 2px white, -2px -2px white, 2px -2px white, -2px 2px white;
   text-align: center;
   font-size: 30px;
+  padding-top: 15px;
 `;
 
 export const Quote = styled.h6`
@@ -87,8 +86,6 @@ export const ContentItemTitle = styled.div`
 
 export const PlayerContainer = styled.div`
   width: 100%;
-
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
@@ -196,6 +193,12 @@ export const StopButton = styled(NavButton)`
   img {
      margin-top: 2px;
   }
+`;
+
+export const GameButtonBar = styled(ButtonBar)<{ left: number }>`
+  top: calc(100% - 42px);
+  left: ${props => `${props.left}px`};
+  position: absolute;
 `;
 
 export const GameCanvas = styled.canvas<{ width: number, height: number, left: number }>`

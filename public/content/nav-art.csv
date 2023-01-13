@@ -1,7 +1,7 @@
-name,audio,link,video,category
-Salutations,Pavane.mp3,,,
-Classical,,,,classical
-Sacred,,,,sacred
-Historical,,,,historical
-Contemporary,,,,contemporary
-All,,,,all
+name,audio,link,video,category,quote,quote-link
+Salutations,Pavane.mp3,,,,,
+Classical,,,,classical,Classical,
+Sacred,,,,sacred,Sacred,
+Historical,,,,historical,Historical,
+Contemporary,,,,contemporary,Contemporary,
+All,,,,all,,

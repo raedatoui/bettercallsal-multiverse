@@ -1,7 +1,13 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
 import {
-    Caption, ContentItem, ContentItemTitle, ContentList, GameImageContainer, MiddleSection, Quote,
+    Caption,
+    ContentItem,
+    ContentItemTitle,
+    ContentList,
+    GameImageContainer,
+    MiddleSection,
+    Quote,
 } from 'src/components/middle/elements';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
 import { shuffleList, useWindowSize } from 'src/utils';
@@ -28,6 +34,8 @@ export const Middle: FC<Props> = () => {
 
     const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0 });
     const [gameLoaded, setGameLoaded] = useState<boolean>(false);
+    const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
+
     const windowSize = useWindowSize();
 
     const getContentSize = (wWise: Size, desiredSize: Size): ContentSize => {
@@ -60,20 +68,24 @@ export const Middle: FC<Props> = () => {
         setGamesPosterSize(getContentSize(windowSize, desired));
     }, [windowSize, gameLoaded]);
 
-    useEffect(() => {
-        document.body.style.overflowY = selectedContentItem ? 'hidden' : 'auto';
-    }, [selectedContentItem]);
-
-    useEffect(() => {
-        document.body.style.overflowY = selectedSite === 'games' ? 'hidden' : 'auto';
-    }, [selectedSite, gameLoaded]);
+    // useEffect(() => {
+    //     document.body.style.overflowY = selectedContentItem ? 'hidden' : 'auto';
+    // }, [selectedContentItem]);
+    //
+    // useEffect(() => {
+    //     document.body.style.overflowY = selectedSite === 'games' ? 'hidden' : 'auto';
+    // }, [selectedSite, gameLoaded]);
 
     const videoClass = selectedContentItem?.contentId ? 'loaded' : '';
 
     return (
         <MiddleSection ref={containerRef} className="eight columns">
-            { selectedContentItem === null && !gameLoaded && (<Caption ref={titleRef}>{site.contentHeader}</Caption>) }
-            { selectedContentItem === null && !gameLoaded && (<Quote>{quote}</Quote>) }
+            { selectedContentItem === null && !gameLoaded && (selectedNavItem?.quote ?? null) === null &&
+                (<Caption ref={titleRef}>{site.contentHeader}</Caption>) }
+            { selectedContentItem === null && !gameLoaded && selectedNavItem?.quote !== null &&
+                (<Caption ref={titleRef}>{selectedNavItem?.quote ?? ''}</Caption>) }
+
+            {/* { selectedContentItem === null && !gameLoaded && (<Quote>{quote}</Quote>) } */}
             { selectedContentItem === null && selectedSite !== 'games' && (
                 <ContentList>
                     { loading && <div>loading</div> }
@@ -121,7 +133,16 @@ export const Middle: FC<Props> = () => {
                 </GameImageContainer>
             )}
 
-            { gameLoaded && <UnityGame width={gamesPosterSize.width} height={gamesPosterSize.height} left={gamesPosterSize.left} />}
+            { gameLoaded && (
+                <UnityGame
+                    scriptLoaded={scriptLoaded}
+                    setScriptLoaded={setScriptLoaded}
+                    width={gamesPosterSize.width}
+                    height={gamesPosterSize.height}
+                    left={gamesPosterSize.left}
+                    deselect={() => setGameLoaded(false)}
+                />
+            )}
 
         </MiddleSection>
     );

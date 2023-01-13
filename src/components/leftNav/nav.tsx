@@ -10,20 +10,28 @@ interface ButtonProps {
     navItem: LeftNavNavItem;
     audioCb: (a: string) => void;
     navItemCb: (l: LeftNavNavItem) => void;
+    width: number;
+    prevWidth: number;
 }
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb }) => {
-    const { width } = useContext(WindowSizeContext);
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width, prevWidth }) => {
 
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (ref.current) {
             const elem = ref.current;
-            while (elem.scrollWidth > elem.offsetWidth || elem.scrollHeight > elem.offsetHeight) {
-                const currentFontSize = getComputedStyle(elem, null).getPropertyValue('font-size');
-                const elNewFontSize = `${parseInt(currentFontSize.slice(0, -2), 10) - 1}px`;
-                elem.style.fontSize = elNewFontSize;
-            }
+            if (prevWidth > width)
+                while (elem.scrollWidth > elem.offsetWidth || elem.scrollHeight > elem.offsetHeight) {
+                    const currentFontSize = getComputedStyle(elem, null).getPropertyValue('font-size');
+                    const elNewFontSize = `${parseInt(currentFontSize.slice(0, -2), 10) - 2}px`;
+                    elem.style.fontSize = elNewFontSize;
+                }
+            // else
+            //     while (elem.scrollWidth <= elem.offsetWidth && elem.scrollHeight < elem.offsetHeight) {
+            //         const currentFontSize = getComputedStyle(elem, null).getPropertyValue('font-size');
+            //         const elNewFontSize = `${parseInt(currentFontSize.slice(0, -2), 10) + 1}px`;
+            //         elem.style.fontSize = elNewFontSize;
+            //     }
         }
     }, [width, ref]);
 
@@ -57,6 +65,9 @@ export const LeftNav: FC<Props> = () => {
 
     const [audioPlaying, setAudioPlaying] = useState<string | null>(null);
 
+    const { width } = useContext(WindowSizeContext);
+    const [prevWidth, setPrevWith] = useState<number>(width);
+
     const handleAudio = (a: string) => {
         if (loaded)
             if (!audioPlaying) {
@@ -85,11 +96,23 @@ export const LeftNav: FC<Props> = () => {
         }
     }, [selectedContentItem, audioPlaying]);
 
+    useEffect(() => {
+        setPrevWith(width);
+    }, [width]);
+
     return (
         <LeftNavContainer className="two columns">
             <LeftNavMenu>
-                { site.leftNav.items.map(i =>
-                    <NavButton key={i.name} navItem={i} audioCb={handleAudio} navItemCb={setSelectedNavItem} />) }
+                { site.leftNav.items.map(i => (
+                    <NavButton
+                        key={i.name}
+                        navItem={i}
+                        audioCb={handleAudio}
+                        navItemCb={setSelectedNavItem}
+                        width={width}
+                        prevWidth={prevWidth}
+                    />
+                )) }
             </LeftNavMenu>
             <LeftAdd1>
                 <LeftAdd2>
