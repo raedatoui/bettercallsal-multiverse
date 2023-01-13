@@ -68,7 +68,7 @@
     },
     "rightNav": {
       "type": "spotify",
-      "objectId": "https://open.spotify.com/playlist/78pu7GaayYtdhTuSmIZz6X?si=BxmrcIffQ02fX9IInmlQIw"
+      "objectId": "https://open.spotify.com/embed/playlist/78pu7GaayYtdhTuSmIZz6X?utm_source=generator&theme=0"
     },
     "footer": {
       "text": "welcome producers",
@@ -192,7 +192,7 @@
     },
     "rightNav": {
       "type": "spotify",
-      "objectId": "https://open.spotify.com/playlist/5HD5kTdGYpkk0nyF8ifXtS?si=wSp4fy5GQTmvLI-Mi2e7sw"
+      "objectId": "https://open.spotify.com/embed/playlist/5HD5kTdGYpkk0nyF8ifXtS?utm_source=generator&theme=0"
     },
     "footer": {
       "text": "NAMASTE",
@@ -280,7 +280,7 @@
     },
     "rightNav": {
       "type": "spotify",
-      "objectId": "https://open.spotify.com/playlist/67ve1iYuE8cmxXaHWkyNKN?si=pGGas6zPSeekAytsodz9fA"
+      "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
     },
     "footer": {
       "text": "welcome artists",
@@ -359,7 +359,7 @@
     },
     "rightNav": {
       "type": "spotify",
-      "objectId": "https://open.spotify.com/playlist/78pu7GaayYtdhTuSmIZz6X?si=BxmrcIffQ02fX9IInmlQIw"
+      "objectId": "https://open.spotify.com/embed/playlist/78pu7GaayYtdhTuSmIZz6X?utm_source=generator&theme=0"
     },
     "footer": {
       "text": "welcome rockstars",
@@ -411,11 +411,11 @@
     },
     "rightNav": {
       "type": "spotify",
-      "objectId": "https://open.spotify.com/playlist/0YiVMTkk2hrl0ZT6qsP5BC?si=DLR9KAKeTAK7N0FIp7fyuQ"
+      "objectId": "https://open.spotify.com/embed/playlist/0YiVMTkk2hrl0ZT6qsP5BC?utm_source=generator"
     },
     "footer": {
       "text": "welcome gamers",
-      "image": "/images/games/goomba2.gif",
+      "image": "/images/games/coin.png",
       "imageWidth": 320,
       "imageHeight": 320,
       "ringAudio": "/audio/games/ring.games.mp3"
@@ -490,7 +490,7 @@
     },
     "rightNav": {
       "type": "spotify",
-      "objectId": "https://open.spotify.com/playlist/78pu7GaayYtdhTuSmIZz6X?si=BxmrcIffQ02fX9IInmlQIw"
+      "objectId": "https://open.spotify.com/embed/playlist/78pu7GaayYtdhTuSmIZz6X?utm_source=generator&theme=0"
     },
     "footer": {
       "text": "under construction",

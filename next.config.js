@@ -7,7 +7,7 @@ const nextConfig = {
   //   loaderFile: './image-loader.js',
   // },
   env: {
-    selectedSite: 'art',
+    selectedSite: 'games',
     cdn_url: '',
   },
   reactStrictMode: true,
