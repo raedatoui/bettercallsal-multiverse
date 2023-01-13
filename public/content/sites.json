@@ -220,7 +220,7 @@
       "image": "/images/art/left.art.jpg",
       "text": "ABOUT THE ARTIST!!!!",
       "video": null,
-      "audio": "audio/art/cummilker.mp3",
+      "audio": "/audio/art/cummilker.mp3",
       "items": [
         {
           "name": "Salutations",
@@ -415,9 +415,9 @@
     },
     "footer": {
       "text": "welcome gamers",
-      "image": "/images/games/coin.png",
-      "imageWidth": 320,
-      "imageHeight": 320,
+      "image": "/images/games/star.png",
+      "imageWidth": 300,
+      "imageHeight": 300,
       "ringAudio": "/audio/games/ring.games.mp3"
     }
   },

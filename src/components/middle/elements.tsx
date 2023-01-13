@@ -34,7 +34,6 @@ export const Quote = styled.h6`
 `;
 
 export const ContentList = styled.div`
-    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;

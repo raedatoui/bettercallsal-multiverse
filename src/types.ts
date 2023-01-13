@@ -104,12 +104,30 @@ export const BaseContentItemValidator = z.object({
 export type BaseContentItem = z.infer<typeof BaseContentItemValidator>;
 export const BaseContentListValidator = z.array(BaseContentItemValidator);
 
+export const GameContentItemValidator = z.object({
+    dataUrl: z.string(),
+    frameworkUrl: z.string(),
+    codeUrl: z.string(),
+    streamingAssetsUrl: z.string(),
+    companyName: z.string(),
+    productName: z.string(),
+    productVersion: z.string(),
+    showBanner: z.boolean(),
+    devicePixelRatio: z.number(),
+    thumb: z.string(),
+    name: z.string(),
+    contentId: z.string(),
+});
+
+export type GameContentItem = z.infer<typeof GameContentItemValidator>;
+export const GameContentListValidator = z.array(GameContentItemValidator);
+
 export const ContentMapValidator = z.object({
     biz: BaseContentListValidator,
     fit: BaseContentListValidator,
     art: BaseContentListValidator,
     rocks: BaseContentListValidator,
-    games: BaseContentListValidator,
+    games: GameContentListValidator,
     construction: BaseContentListValidator,
 });
 

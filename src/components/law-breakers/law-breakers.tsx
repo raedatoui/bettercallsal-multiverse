@@ -1,9 +1,9 @@
-import React, {FC, useContext, useEffect, useRef, useState} from 'react';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { LawBreakersContainer, LawBreakersP } from 'src/components/law-breakers/elements';
 import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
 import { Size } from 'src/types';
-import {SiteContext} from "src/providers/site-provider";
+import { SiteContext } from 'src/providers/site-provider';
 
 interface Props {}
 

@@ -4,7 +4,9 @@ import { CDN } from 'src/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,
-    ContentMap, LeftNavNavItem,
+    ContentMap, GameContentItem,
+    GameContentListValidator,
+    LeftNavNavItem,
     SiteKey,
     SiteMap,
     SiteMapValidator
@@ -19,8 +21,8 @@ type SiteProviderType = {
     setSelectedSite: (s: SiteKey) => void,
     selectedNavItem: LeftNavNavItem | null,
     setSelectedNavItem: (l: LeftNavNavItem) => void,
-    selectedContentItem: BaseContentItem | null,
-    setSelectedContentItem: (i: BaseContentItem | null) => void,
+    selectedContentItem: BaseContentItem | GameContentItem | null,
+    setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
 };
 
 // TODO: backfill quotes
@@ -70,7 +72,7 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     const [contentMap, setContentMap] = useState<ContentMap>(defaultContentMap);
     const [loading, setLoading] = useState<boolean>(true);
     const [selectedNavItem, setSelectedNavItem] = useState<LeftNavNavItem | null>(null);
-    const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | null>(null);
+    const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | GameContentItem | null>(null);
 
     const setSite = (s: SiteKey) => {
         setSelectedNavItem(null);
@@ -82,18 +84,23 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
         const fetchData = async () => {
             try {
                 const { data: response } = await axios.get(`${CDN}/content/content-${selectedSite}.json`);
-                const parsed = BaseContentListValidator.parse(response);
 
-                setContentMap({
-                    ...contentMap,
-                    [selectedSite]: parsed
-                });
+                if (selectedSite === 'games')
+                    setContentMap({
+                        ...contentMap,
+                        games: GameContentListValidator.parse(response)
+                    });
+                else
+                    setContentMap({
+                        ...contentMap,
+                        [selectedSite]: BaseContentListValidator.parse(response)
+                    });
                 setLoading(false);
             } catch (error) {
                 console.error(error);
             }
         };
-        if (contentMap[selectedSite].length === 0 && selectedSite !== 'games') {
+        if (contentMap[selectedSite].length === 0) {
             setLoading(true);
             fetchData();
         } else
