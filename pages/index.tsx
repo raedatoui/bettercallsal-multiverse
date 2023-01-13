@@ -1,16 +1,16 @@
 /* eslint-disable max-len */
 import React from 'react';
 import Head from 'next/head';
-import { LeftNav } from 'src/components/leftNav';
+import { LeftNav } from 'src/components/left-nav';
+import { RightNav } from 'src/components/right-nav';
 import { Middle } from 'src/components/middle';
 import Script from 'next/script';
+import { Footer, LawBreakers } from 'src/components/law-breakers';
 import {
-    MainSection,
     Row,
 } from '../src/styles/sharedstyles';
 import { HeaderComponent } from '../src/components/header';
 import { MainContainer } from '../src/components/main';
-import {Footer, LawBreakers} from "src/components/law-breakers";
 
 const Home = () => (
     <>
@@ -51,15 +51,16 @@ const Home = () => (
                 id="vimeo-player"
                 src="https://player.vimeo.com/api/player.js"
             />
-            <MainSection>
-                <HeaderComponent />
-                <Row>
-                    <LeftNav />
-                    <Middle />
-                </Row>
-                <LawBreakers />
-                <Footer />
-            </MainSection>
+
+            <HeaderComponent />
+            <Row>
+                <LeftNav />
+                <Middle />
+                <RightNav />
+            </Row>
+            <LawBreakers />
+            <Footer />
+
         </MainContainer>
     </>
 );

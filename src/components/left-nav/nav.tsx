@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { LeftAdd1, LeftAdd2, LeftContent, LeftNavButton, LeftNavContainer, LeftNavMenu } from 'src/components/leftNav/elements';
+import { LeftAdd1, LeftAdd2, LeftContent, LeftNavButton, LeftNavContainer, LeftNavMenu } from 'src/components/left-nav/elements';
 import { LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteContext } from 'src/providers/site-provider';
