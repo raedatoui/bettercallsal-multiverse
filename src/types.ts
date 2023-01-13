@@ -19,8 +19,9 @@ export const LeftNavItemValidator = z.object({
     audio: z.string().nullable(),
     video: z.string().nullable(),
     link: z.string().nullable(),
-    quote: z.string().nullable(),
     category: z.string().nullable(),
+    quote: z.string().nullable(),
+    quoteLink: z.string().nullable(),
 });
 
 export type LeftNavNavItem = z.infer<typeof LeftNavItemValidator>;
@@ -47,6 +48,8 @@ export const SiteValidator = z.object({
     footer: z.object({
         text: z.string(),
         image: z.string(),
+        imageWidth: z.number(),
+        imageHeight: z.number(),
         ringAudio: z.string(),
     }),
 });
@@ -114,8 +117,12 @@ export type ContentMap = z.infer<typeof ContentMapValidator>;
 
 export type ContentSize = Size & { left: number };
 
+export interface UnityInstance {
+    Quit: () => Promise<void>;
+}
+
 declare global {
     interface Window {
-        createUnityInstance: (canvas: HTMLElement | null, config: Object) => void;
+        createUnityInstance: (canvas: HTMLElement | null, config: Object) => Promise<UnityInstance>;
     }
 }

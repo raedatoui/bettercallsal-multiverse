@@ -33,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "file-loader": "^6.2.0",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "compression-webpack-plugin": "^10.0.0"
   }
 }

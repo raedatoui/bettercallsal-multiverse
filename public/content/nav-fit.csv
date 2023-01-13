@@ -1,11 +1,11 @@
-name,audio,link,video,category
-Sound Bath,drone.mp3,,,sound bath
-Yoga,yoga.mp3,,,yoga
-Strength,Strength.mp3,,,strength
-Meditation,meditation.mp3,,,meditation
-Stretch,stretch.mp3,,,stretch
-Barre,barre.mp3,,,barre
-Boxing,boxing.mp3,,,boxing
-Pilates,pilates.mp3,,,pilates
-Cycling,cycling.mp3,,,cycling
-All,all.mp3,,,all
+name,audio,link,video,category,quote,quote-link
+Sound Bath,drone.mp3,,,sound-bath,You’ve got to be very mindful if you don’t know where you are going,
+Yoga,yoga.mp3,,,yoga,Yoga is 90% mental and the other half is physical,
+Strength,strength.mp3,,,strength,One’s greatest weakness is not finding the strength in oneself,
+Meditation,meditation.mp3,,,meditation,"When you come to a fork in the road, meditate",
+Stretch,stretch.mp3,,,stretch,How can you think and stretch at the same time?,
+Barre,barre.mp3,,,barre,Grin and barre it,
+Boxing,boxing.mp3,,,boxing,You can observe a lot by just boxing,
+Pilates,pilates.mp3,,,pilates,"In pilates, you don’t know nothing",
+Cycling,cycling.mp3,,,cycling,All cyclists are liars or crybabies,
+All,holdmusic.mp3,,,all,,

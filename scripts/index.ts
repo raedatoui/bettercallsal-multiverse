@@ -1,6 +1,6 @@
 import { loadSites, loadContent } from './parser';
 
-const run = async (content = true) => {
+const run = async (content = false) => {
     if (!content)
         await loadSites();
     else

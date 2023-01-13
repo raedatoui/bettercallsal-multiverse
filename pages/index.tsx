@@ -10,6 +10,7 @@ import {
 } from '../src/styles/sharedstyles';
 import { HeaderComponent } from '../src/components/header';
 import { MainContainer } from '../src/components/main';
+import {Footer, LawBreakers} from "src/components/law-breakers";
 
 const Home = () => (
     <>
@@ -56,6 +57,8 @@ const Home = () => (
                     <LeftNav />
                     <Middle />
                 </Row>
+                <LawBreakers />
+                <Footer />
             </MainSection>
         </MainContainer>
     </>
