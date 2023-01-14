@@ -1,7 +1,7 @@
 [
   {
     "name": "Sound Bath",
-    "contentId": "sound_bath.mov",
+    "contentId": "sound_bath.mp4",
     "contentType": "video",
     "thumb": "sound_bath.jpg",
     "category": "sound-bath",
@@ -11,7 +11,7 @@
   },
   {
     "name": "Gentle Flow",
-    "contentId": "yoga_gentle_flow.mov",
+    "contentId": "yoga_gentle_flow.mp4",
     "contentType": "video",
     "thumb": "yoga_gentle_flow.jpg",
     "category": "yoga",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Vinyasa",
-    "contentId": "yoga_vinyasa.mov",
+    "contentId": "yoga_vinyasa.mp4",
     "contentType": "video",
     "thumb": "yoga_vinyasa.jpg",
     "category": "yoga",
@@ -31,7 +31,7 @@
   },
   {
     "name": "Strength",
-    "contentId": "strength.mov",
+    "contentId": "strength.mp4",
     "contentType": "video",
     "thumb": "strength.jpg",
     "category": "strength",
@@ -41,7 +41,7 @@
   },
   {
     "name": "Meditation",
-    "contentId": "meditation.mov",
+    "contentId": "meditation.mp4",
     "contentType": "video",
     "thumb": "meditation.jpg",
     "category": "meditation",
@@ -51,7 +51,7 @@
   },
   {
     "name": "Hip Opener",
-    "contentId": "stretch_hip_opener.mov",
+    "contentId": "stretch_hip_opener.mp4",
     "contentType": "video",
     "thumb": "stretch_hip_opener.jpg",
     "category": "stretch",
@@ -61,7 +61,7 @@
   },
   {
     "name": "Kinstretch",
-    "contentId": "stretch_kinstretch.mov",
+    "contentId": "stretch_kinstretch.mp4",
     "contentType": "video",
     "thumb": "stretch_kinstretch.jpg",
     "category": "stretch",
@@ -71,7 +71,7 @@
   },
   {
     "name": "Barre",
-    "contentId": "barre.mov",
+    "contentId": "barre.mp4",
     "contentType": "video",
     "thumb": "barre.jpg",
     "category": "barre",
@@ -81,7 +81,7 @@
   },
   {
     "name": "Pilates",
-    "contentId": "pilates.mov",
+    "contentId": "pilates.mp4",
     "contentType": "video",
     "thumb": "pilates.jpg",
     "category": "pilates",
@@ -101,7 +101,7 @@
   },
   {
     "name": "Boxing",
-    "contentId": "boxing.mov",
+    "contentId": "boxing.mp4",
     "contentType": "video",
     "thumb": "boxing.jpg",
     "category": "boxing",
@@ -111,7 +111,7 @@
   },
   {
     "name": "Prenatal Pilates",
-    "contentId": "prenatal-pilates.mp4",
+    "contentId": "prenatal_pilates.mp4",
     "contentType": "video",
     "thumb": "prenatal_pilates.jpg",
     "category": "pilates",

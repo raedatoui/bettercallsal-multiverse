@@ -308,7 +308,7 @@
       "image": "/images/rocks/hardcore.jpg",
       "text": "SAL ROCKED ME!!!!",
       "video": null,
-      "audio": "audio/rocks/Pavane.mp3",
+      "audio": "/audio/rocks/pavane.mp3",
       "items": [
         {
           "name": "Nature Creeps Beneath",
@@ -364,8 +364,8 @@
     "footer": {
       "text": "welcome rockstars",
       "image": "/images/rocks/smashguitar.gif",
-      "imageWidth": 312,
-      "imageHeight": 276,
+      "imageWidth": 225,
+      "imageHeight": 256,
       "ringAudio": "/audio/rocks/ring.rocks.mp3"
     }
   },
@@ -403,7 +403,16 @@
           "audio": null,
           "video": null,
           "link": null,
-          "category": "game",
+          "category": "supersalbros",
+          "quote": null,
+          "quoteLink": null
+        },
+        {
+          "name": "Salitaire",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "salitaire",
           "quote": null,
           "quoteLink": null
         }

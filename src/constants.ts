@@ -3,3 +3,5 @@ export const SiteOrder: readonly string [] = [
 ];
 
 export const CDN = process.env.cdn_url;
+
+export const KEYBOARD_SWITCHING = process.env.keyboardSwitching;

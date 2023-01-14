@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState, KeyboardEvent } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
 import {
     Caption,
@@ -11,21 +11,39 @@ import { VideoPlayer } from 'src/components/middle/videoPlayer';
 import { shuffleList, useWindowSize } from 'src/utils';
 import Image from 'next/image';
 import { UnityGame } from 'src/components/middle/unity';
-import { ContentSize, Size, BaseContentItem, GameContentItem } from 'src/types';
+import { ContentSize, Size, BaseContentItem, GameContentItem, SiteKey } from 'src/types';
 import Script from 'next/script';
-import { CDN } from 'src/constants';
+import { CDN, KEYBOARD_SWITCHING } from 'src/constants';
 
 interface Props { }
 
+const keyMap: Record<string, SiteKey> = {
+    a: 'art',
+    b: 'biz',
+    f: 'fit',
+    r: 'rocks',
+    g: 'games',
+    c: 'construction',
+};
+
 export const Middle: FC<Props> = () => {
-    const { siteMap, selectedSite, contentMap, loading, selectedNavItem, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
+    const {
+        siteMap,
+        contentMap,
+        selectedSite,
+        setSelectedSite,
+        loading,
+        selectedNavItem,
+        selectedContentItem,
+        setSelectedContentItem
+    } = useContext(SiteContext);
     const site = siteMap[selectedSite];
     let contentList = contentMap[selectedSite];
+
     // let quote = '';
-    // if (selectedNavItem !== null && selectedNavItem.category !== 'all') {
-    //     contentList = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
-    //     quote = selectedNavItem.quote ?? '';
-    // }
+    if (selectedNavItem !== null && selectedNavItem.category !== 'all' && selectedSite !== 'games')
+        contentList = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
+        // quote = selectedNavItem.quote ?? '';
 
     if (selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks')
         // @ts-ignore
@@ -80,9 +98,32 @@ export const Middle: FC<Props> = () => {
     if (selectedContentItem === null && selectedNavItem && selectedNavItem.quote)
         headerTxt = selectedNavItem.quote;
 
+    const handleKeyEvent = (keyEvent: KeyboardEvent<HTMLDivElement>) => {
+        if (keyMap[keyEvent.key] !== undefined)
+            setSelectedSite(keyMap[keyEvent.key]);
+    };
+
+    const handleImageSlide = (inc: number) => {
+        if (selectedContentItem && selectedSite === 'art') {
+            // @ts-ignore
+            let idx = contentMap[selectedSite].indexOf(selectedContentItem as BaseContentItem);
+            idx += inc;
+            if (idx === contentMap[selectedSite].length)
+                idx = 0;
+            if (idx === -1)
+                idx = contentMap[selectedSite].length - 1;
+            setSelectedContentItem(contentMap[selectedSite][idx]);
+        }
+    };
+
     return (
 
-        <MiddleSection ref={containerRef} className="eight columns">
+        <MiddleSection
+            ref={containerRef}
+            className="eight columns"
+            tabIndex={KEYBOARD_SWITCHING ? 0 : undefined}
+            onKeyPress={(event) => handleKeyEvent(event)}
+        >
             { selectedContentItem === null && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
 
             {/* { selectedContentItem === null && !gameLoaded && (<Quote>{quote}</Quote>) } */}
@@ -110,6 +151,7 @@ export const Middle: FC<Props> = () => {
                 <VideoPlayer
                     className={videoClass}
                     contentItem={selectedContentItem as BaseContentItem}
+                    handleImageSlide={handleImageSlide}
                     deselect={() => setSelectedContentItem(null)}
                 />
             ) }
@@ -140,12 +182,12 @@ export const Middle: FC<Props> = () => {
             {/*     </GameImageContainer> */}
             {/* )} */}
 
-            { selectedContentItem && scriptLoaded && (
+            { scriptLoaded && selectedSite === 'games' && (
                 <UnityGame
                     width={gamesPosterSize.width}
                     height={gamesPosterSize.height}
                     left={gamesPosterSize.left}
-                    game={selectedContentItem as GameContentItem}
+                    game={selectedSite === 'games' ? (selectedContentItem as GameContentItem) : null}
                     deselect={() => setSelectedContentItem(null)}
                 />
             )}

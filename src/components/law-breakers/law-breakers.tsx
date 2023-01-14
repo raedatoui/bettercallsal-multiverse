@@ -25,7 +25,12 @@ export const LawBreakers: FC<Props> = () => {
 
     useEffect(() => {
         setMicSize(getContentSize({ width: site.footer.imageWidth, height: site.footer.imageHeight }));
-    }, [windowSize]);
+    }, [windowSize, site]);
+
+    useEffect(() => {
+        setMicSize(getContentSize({ width: site.footer.imageWidth, height: site.footer.imageHeight }));
+    }, []);
+
     return (
         <LawBreakersContainer>
             <LawBreakersP ref={ref}>

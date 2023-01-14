@@ -2,7 +2,6 @@ import React, { FC, useContext, useEffect, useMemo, useRef, useState } from 'rea
 import {
     ButtonBar,
     ImageContainer,
-    ImageOverlay,
     Player,
     PlayerContainer,
     Quote,
@@ -14,9 +13,13 @@ import { BaseContentItem, Size, ContentSize } from 'src/types';
 import { SiteContext } from 'src/providers/site-provider';
 import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
+import styled from 'styled-components';
+import { NavButton } from 'src/styles/sharedstyles';
+import { CDN } from 'src/constants';
 
 interface Props {
     contentItem: BaseContentItem | null;
+    handleImageSlide: (inc: number) => void;
     deselect: () => void;
     className: string;
 }
@@ -34,7 +37,20 @@ interface VimeoPlayer {
     loadVideo: (id: string) => void;
 }
 
-export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => {
+const SlideItem = styled(NavButton)`
+  position: absolute;
+  padding: 4px 6px;
+  top: calc(50% - 32px);
+  &.left {
+    left: 5px;
+  }
+  
+  &.right {
+    right: 5px;
+  }
+`;
+
+export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className, handleImageSlide }) => {
     const { siteMap, selectedSite } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
@@ -155,14 +171,14 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
 
             { contentItem && contentItem.contentType === 'video' && (
                 <Video controls autoPlay width={videoSize.width} height={videoSize.height} left={videoSize.left}>
-                    <source src={`/videos/${selectedSite}/${contentItem?.contentId}`} type="video/mp4" />
+                    <source src={`${CDN}/videos/${selectedSite}/${contentItem?.contentId}`} type="video/mp4" />
                 </Video>
             ) }
 
             { contentItem && (contentItem.contentType === 'image' || contentItem.contentType === 'quad') && (
                 <ImageContainer
-                    width={imageSize.width}
                     height={imageSize.height}
+                    left={imageSize.left}
                 >
                     <Image
                         src={`/images/art/${contentItem.contentId}`}
@@ -170,10 +186,12 @@ export const VideoPlayer: FC<Props> = ({ contentItem, deselect, className }) => 
                         width={imageSize.width}
                         height={imageSize.height}
                     />
-                    <ImageOverlay
-                        width={imageSize.width}
-                        height={imageSize.height}
-                    />
+                    <SlideItem className="left" onClick={() => handleImageSlide(-1)}>&lt;&lt;</SlideItem>
+                    <SlideItem className="right" onClick={() => handleImageSlide(1)}>&gt;&gt;</SlideItem>
+                    {/* <ImageOverlay */}
+                    {/*     width={imageSize.width} */}
+                    {/*     height={imageSize.height} */}
+                    {/* /> */}
                 </ImageContainer>
             )}
 
