@@ -142,5 +142,6 @@ export interface UnityInstance {
 declare global {
     interface Window {
         createUnityInstance: (canvas: HTMLElement | null, config: Object) => Promise<UnityInstance>;
+        textFit: (el: HTMLElement) => void;
     }
 }

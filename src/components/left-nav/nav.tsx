@@ -5,35 +5,30 @@ import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteContext } from 'src/providers/site-provider';
 import { SoundContext } from 'src/providers/audio-context';
 import Image from 'next/image';
+import Script from 'next/script';
 
 interface ButtonProps {
     navItem: LeftNavNavItem;
     audioCb: (a: string) => void;
     navItemCb: (l: LeftNavNavItem) => void;
     width: number;
-    prevWidth: number;
 }
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width, prevWidth }) => {
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
 
     const ref = useRef<HTMLDivElement>(null);
 
+    const scaleText = () => {
+        if (window.textFit && ref.current)
+            window.textFit(ref.current);
+    };
+
     useEffect(() => {
-        if (ref.current) {
-            const elem = ref.current;
-            if (prevWidth > width)
-                while (elem.scrollWidth > elem.offsetWidth || elem.scrollHeight > elem.offsetHeight) {
-                    const currentFontSize = getComputedStyle(elem, null).getPropertyValue('font-size');
-                    const elNewFontSize = `${parseInt(currentFontSize.slice(0, -2), 10) - 2}px`;
-                    elem.style.fontSize = elNewFontSize;
-                }
-            // else
-            //     while (elem.scrollWidth <= elem.offsetWidth && elem.scrollHeight < elem.offsetHeight) {
-            //         const currentFontSize = getComputedStyle(elem, null).getPropertyValue('font-size');
-            //         const elNewFontSize = `${parseInt(currentFontSize.slice(0, -2), 10) + 1}px`;
-            //         elem.style.fontSize = elNewFontSize;
-            //     }
-        }
+        scaleText();
     }, [width, ref]);
+
+    useEffect(() => {
+        scaleText();
+    }, []);
 
     const handleClick = () => {
         // TODO move providers here and remove callback functions. do too many provider subscriber slow things down?
@@ -41,7 +36,6 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width, prevWi
             audioCb(navItem.audio);
         if (navItem.category && navItem.category !== '')
             navItemCb(navItem);
-
     };
 
     return (
@@ -53,9 +47,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width, prevWi
     );
 };
 
-interface Props {
-
-}
+interface Props {}
 
 export const LeftNav: FC<Props> = () => {
     const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem } = useContext(SiteContext);
@@ -66,7 +58,7 @@ export const LeftNav: FC<Props> = () => {
     const [audioPlaying, setAudioPlaying] = useState<string | null>(null);
 
     const { width } = useContext(WindowSizeContext);
-    const [prevWidth, setPrevWith] = useState<number>(width);
+    const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
     const handleAudio = (a: string) => {
         if (loaded)
@@ -96,37 +88,42 @@ export const LeftNav: FC<Props> = () => {
         }
     }, [selectedContentItem, audioPlaying]);
 
-    useEffect(() => {
-        setPrevWith(width);
-    }, [width]);
-
     return (
-        <LeftNavContainer className="two columns">
-            <LeftNavMenu>
-                { site.leftNav.items.map(i => (
-                    <NavButton
-                        key={i.name}
-                        navItem={i}
-                        audioCb={handleAudio}
-                        navItemCb={setSelectedNavItem}
-                        width={width}
-                        prevWidth={prevWidth}
-                    />
-                )) }
-            </LeftNavMenu>
-            <LeftAdd1>
-                <LeftAdd2>
-                    <LeftContent>
-                        <Image
-                            src={site.leftNav.image}
-                            alt={site.leftNav.text}
-                            fill
-                            onClick={() => handleImageClick()}
-                        />
-                    </LeftContent>
-                    <span>{site.leftNav.text}</span>
-                </LeftAdd2>
-            </LeftAdd1>
-        </LeftNavContainer>
+        <>
+            <Script
+                id="text-fit"
+                src="/textfit.js"
+                onLoad={() => setScriptLoaded(true)}
+            />
+            { scriptLoaded && (
+                <LeftNavContainer className="one columns">
+                    <LeftNavMenu>
+                        { site.leftNav.items.map(i => (
+                            <NavButton
+                                key={i.name}
+                                navItem={i}
+                                audioCb={handleAudio}
+                                navItemCb={setSelectedNavItem}
+                                width={width}
+                            />
+                        )) }
+                    </LeftNavMenu>
+                    <LeftAdd1>
+                        <LeftAdd2>
+                            <LeftContent>
+                                <Image
+                                    src={site.leftNav.image}
+                                    alt={site.leftNav.text}
+                                    fill
+                                    onClick={() => handleImageClick()}
+                                />
+                            </LeftContent>
+                            <span>{site.leftNav.text}</span>
+                        </LeftAdd2>
+                    </LeftAdd1>
+                </LeftNavContainer>
+            ) }
+        </>
+
     );
 };

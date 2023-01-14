@@ -51,7 +51,6 @@ const Home = () => (
                 id="vimeo-player"
                 src="https://player.vimeo.com/api/player.js"
             />
-
             <HeaderComponent />
             <Row>
                 <LeftNav />

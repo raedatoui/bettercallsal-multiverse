@@ -3,7 +3,7 @@ import { NavButton } from 'src/styles/sharedstyles';
 
 export const MiddleSection = styled.div`
     position: relative;
-    
+    outline: none;
     @media only screen and (min-width: 1024px) {
         width: calc(100% - 500px);
     }
@@ -100,16 +100,18 @@ export const PlayerContainer = styled.div`
   }
 `;
 
-export const ImageContainer = styled.div<{ width: number, height: number }>`
+export const ImageContainer = styled.div<{ height: number, left: number }>`
   position: relative;
-  width: ${props => `${props.width}px`};
+  width: 100%;
   height: ${props => `${props.height}px`};
-  margin: 0 auto;
   cursor: pointer;
   &:hover {
     div {
       display: flex;
     }
+  }
+  img {
+    margin-left: ${props => `${props.left}px`};;
   }
 `;
 
@@ -119,6 +121,7 @@ export const ImageOverlay = styled.div<{ width: number, height: number }>`
   position: absolute;
   top: 0;
   left: 0;
+
   //background-color: rgba(0,0,0,0.75);
   display: none;
   
@@ -194,8 +197,8 @@ export const StopButton = styled(NavButton)`
   }
 `;
 
-export const GameButtonBar = styled(ButtonBar)<{ left: number }>`
-  top: calc(100% - 42px);
+export const GameButtonBar = styled(ButtonBar)<{ left: number, top: number }>`
+  top: ${props => `${props.top - 32}px`};
   left: ${props => `${props.left}px`};
   position: absolute;
 `;

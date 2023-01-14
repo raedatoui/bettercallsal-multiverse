@@ -25,21 +25,7 @@ type SiteProviderType = {
     setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
 };
 
-// TODO: backfill quotes
-const mapped = Object.fromEntries(Object.entries(sitesData).map(s => [
-    s[0],
-    {
-        ...s[1],
-        leftNav: {
-            ...s[1].leftNav,
-            items: s[1].leftNav.items.map(i => ({
-                ...i,
-                // @ts-ignore
-                quote: i.quote === undefined ? null : i.quote
-            })),
-        }
-    }]));
-const siteMap = SiteMapValidator.parse(mapped);
+const siteMap = SiteMapValidator.parse(sitesData);
 
 const defaultContentMap = {
     biz: [],
@@ -107,6 +93,14 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
             setLoading(false);
 
     }, [contentMap, selectedSite]);
+
+    useEffect(() => {
+        if (selectedSite === 'games' && selectedNavItem !== null) {
+            const selectedGame = contentMap.games.filter(g => g.contentId === selectedNavItem.category);
+            if (selectedGame.length)
+                setSelectedContentItem(selectedGame[0]);
+        }
+    }, [selectedNavItem, selectedSite]);
 
     const providedSites = useMemo<SiteProviderType>(() => ({
         siteMap,

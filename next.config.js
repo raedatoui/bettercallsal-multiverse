@@ -8,7 +8,8 @@ const nextConfig = {
   },
   env: {
     selectedSite: 'biz',
-    cdn_url: 'https://storage.googleapis.com/bcs-assets',
+    keyboardSwitching: true,
+    cdn_url: 'https://storage.googleapis.com/bcs-assets'
   },
   reactStrictMode: false,
   compiler: {
