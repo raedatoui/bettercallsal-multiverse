@@ -1,8 +1,8 @@
 [
   {
-    "dataUrl": "/unity/mario/SUPERSALBROS.data",
-    "frameworkUrl": "/unity/mario/SUPERSALBROS.framework.js",
-    "codeUrl": "/unity/mario/SUPERSALBROS.wasm",
+    "dataUrl": "/unity/mario/SUPERSALBROS.data.gz",
+    "frameworkUrl": "/unity/mario/SUPERSALBROS.framework.js.gz",
+    "codeUrl": "/unity/mario/SUPERSALBROS.wasm.gz",
     "streamingAssetsUrl": "/unity/mario/StreamingAssets",
     "companyName": "BetterCallSal.games",
     "productName": "Super Sal Bros.",
@@ -11,13 +11,15 @@
     "devicePixelRatio": 1,
     "thumb": "supersalbros.jpg",
     "name": "Super Sal Bros",
-    "contentId": "supersalbros"
+    "contentId": "supersalbros",
+    "contentType": "game",
+    "category": "supersalbros"
   },
 
   {
-    "dataUrl": "/unity/salitaire/export.data",
-    "frameworkUrl": "/unity/salitaire/export.framework.js",
-    "codeUrl": "/unity/salitaire/export.wasm",
+    "dataUrl": "/unity/salitaire/export.data.gz",
+    "frameworkUrl": "/unity/salitaire/export.framework.js.gz",
+    "codeUrl": "/unity/salitaire/export.wasm.gz",
     "streamingAssetsUrl": "StreamingAssets",
     "companyName": "BetterCallSal.games",
     "productName": "Salitaire",
@@ -26,6 +28,8 @@
     "devicePixelRatio": 1,
     "thumb": "salitaire.jpg",
     "name": "Salitaire",
-    "contentId": "salitaire"
+    "contentId": "salitaire",
+    "contentType": "game",
+    "category": "cards"
   }
 ]
