@@ -62,7 +62,7 @@ export const MainContainer: FC<Props> = ({ children }) => {
                         src={`/images/art/${selectedContentItem?.contentId}`}
                         width={width}
                         height={height}
-                        alt="ok"
+                        alt={selectedContentItem?.contentId ?? 'artwork'}
                     />
                     {/* </div> */}
                     <SlideItem className="left" onClick={() => handleSlide(-1)}>&lt;&lt;</SlideItem>

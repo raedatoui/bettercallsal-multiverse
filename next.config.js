@@ -7,11 +7,11 @@ const nextConfig = {
     loaderFile: './image-loader.js',
   },
   env: {
-    selectedSite: 'biz',
+    selectedSite: 'games',
     keyboardSwitching: true,
     cdn_url: 'https://storage.googleapis.com/bcs-assets'
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },
@@ -19,7 +19,7 @@ const nextConfig = {
     const { isServer } = options;
     config.plugins.push(new CompressionPlugin({
       algorithm: "gzip",
-      test: /\.js(\?.*)?$/i,
+      test: /\.gz(\?.*)?$/i,
     })),
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g|mov)$/i,

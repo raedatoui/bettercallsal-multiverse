@@ -82,11 +82,11 @@ export const LeftNav: FC<Props> = () => {
     };
 
     useEffect(() => {
-        if (selectedContentItem && audioPlaying) {
+        if (selectedContentItem && audioPlaying && selectedSite !== 'art') {
             buffers.stop(audioPlaying);
             setAudioPlaying(null);
         }
-    }, [selectedContentItem, audioPlaying]);
+    }, [selectedContentItem, audioPlaying, selectedSite]);
 
     return (
         <>
@@ -96,7 +96,7 @@ export const LeftNav: FC<Props> = () => {
                 onLoad={() => setScriptLoaded(true)}
             />
             { scriptLoaded && (
-                <LeftNavContainer className="one columns">
+                <LeftNavContainer className="two columns">
                     <LeftNavMenu>
                         { site.leftNav.items.map(i => (
                             <NavButton

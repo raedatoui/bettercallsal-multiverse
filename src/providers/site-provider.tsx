@@ -20,7 +20,7 @@ type SiteProviderType = {
     selectedSite: SiteKey,
     setSelectedSite: (s: SiteKey) => void,
     selectedNavItem: LeftNavNavItem | null,
-    setSelectedNavItem: (l: LeftNavNavItem) => void,
+    setSelectedNavItem: (l: LeftNavNavItem | null) => void,
     selectedContentItem: BaseContentItem | GameContentItem | null,
     setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
 };

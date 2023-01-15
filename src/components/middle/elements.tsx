@@ -37,7 +37,9 @@ export const ContentList = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
-
+    &.off {
+      display: none;
+    }
     @media only screen and (max-width: 480px) {
         grid-template-columns: auto;
     }
@@ -63,6 +65,7 @@ export const ContentItem = styled.div`
   margin: 10px;
   display: flex;
   flex-direction: column;
+  max-width: 480px;
 
   &:hover {
     transition: all 0.1s ease-in;
@@ -111,7 +114,13 @@ export const ImageContainer = styled.div<{ height: number, left: number }>`
     }
   }
   img {
-    margin-left: ${props => `${props.left}px`};;
+    position: absolute;
+    left: ${props => `${props.left}px`};
+    transition: opacity 0.4s ease-in;
+    
+    &.slider-img2 {
+      display: none;
+    }
   }
 `;
 
@@ -208,6 +217,9 @@ export const GameCanvas = styled.canvas<{ width: number, height: number, left: n
   height: ${props => `${props.height}px`};
   margin-left: ${props => `${props.left}px`};
   background: #231F20;
+  &.off {
+    display: none;
+  }
 `;
 
 const glowShadow = keyframes`

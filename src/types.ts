@@ -93,8 +93,9 @@ export const BaseContentItemValidator = z.object({
     contentType: z.string(), // TODO: add an enum on this
     thumb: z.string(),
     category: z.string(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
-    description: z.string(),
-    caption: z.string(),
+
+    description: z.string().optional(),
+    caption: z.string().optional(),
     views: z.number().optional().nullable(),
     year: z.number().optional().nullable(),
     width: z.number().optional().nullable(),
@@ -104,7 +105,7 @@ export const BaseContentItemValidator = z.object({
 export type BaseContentItem = z.infer<typeof BaseContentItemValidator>;
 export const BaseContentListValidator = z.array(BaseContentItemValidator);
 
-export const GameContentItemValidator = z.object({
+export const GameContentItemValidator = BaseContentItemValidator.extend({
     dataUrl: z.string(),
     frameworkUrl: z.string(),
     codeUrl: z.string(),
@@ -114,9 +115,6 @@ export const GameContentItemValidator = z.object({
     productVersion: z.string(),
     showBanner: z.boolean(),
     devicePixelRatio: z.number(),
-    thumb: z.string(),
-    name: z.string(),
-    contentId: z.string(),
 });
 
 export type GameContentItem = z.infer<typeof GameContentItemValidator>;

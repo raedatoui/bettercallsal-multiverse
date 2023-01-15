@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 
 export const LeftNavContainer = styled.div`
-  min-width: 250px;
   width: 100%;
 `;
 
@@ -17,7 +16,6 @@ export const LeftNavButton = styled(NavButton)`
   border-radius: 0 4px 4px 0 !important;
   text-align: left;
   padding: 0 12px 0 6px;
-  font-size: 22px;
   height: 38px;
   line-height: 38px;
   text-align: left  !important;
