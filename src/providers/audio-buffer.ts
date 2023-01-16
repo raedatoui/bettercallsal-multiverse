@@ -23,6 +23,7 @@ class AudioBuffers {
         if (this.selectedSite !== site && typeof window !== 'undefined') {
             this.selectedSite = site;
             this.loaded = false;
+            this.stopAll();
             await this.loadSounds();
         }
     }
@@ -134,6 +135,10 @@ class AudioBuffers {
         };
         request.open('GET', `${CDN}${sound}`, true);
         request.send();
+    }
+
+    private stopAll() {
+        Object.keys(this.soundMap).forEach(s => this.stop(s));
     }
 }
 
