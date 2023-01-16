@@ -6,9 +6,11 @@ export const LawBreakersContainer = styled.div`
   padding: 8px 0;
   border-top: solid 2px #fda810;
   border-bottom: solid 2px gray;
-  cursor: pointer;
   display: flex;
   flex-flow: column;
+  //position: fixed;
+  //bottom: 35px;
+  //width: 100%;
 `;
 
 export const borderAnim = keyframes`
@@ -32,7 +34,6 @@ export const LawBreakersP = styled.div`
   color: #d61d00;
   text-shadow: #fff -4px -4px 0, #fff -4px -2px 0, #fff -4px 0 0, #fff -4px 2px 0, #fff -4px 4px 0, #fff -2px -4px 0, #fff -2px -2px 0, #fff -2px 0 0, #fff -2px 2px 0, #fff -2px 4px 0, #fff 0 -4px 0, #fff 0 -2px 0, #fff 0 0 0, #fff 0 2px 0, #fff 0 4px 0, #fff 2px -4px 0, #fff 2px -2px 0, #fff 2px 0 0, #fff 2px 2px 0, #fff 2px 4px 0, #fff 4px -4px 0, #fff 4px -2px 0, #fff 4px 0 0, #fff 4px 2px 0, #fff 4px 4px 0;
   animation: ${borderAnim} 1.5s linear infinite alternate;
-  cursor: pointer;
 
   img {
     height: 100%;
@@ -47,6 +48,7 @@ export const LawBreakersP = styled.div`
   
   span {
     vertical-align: middle;
+    cursor: pointer;
   }
 `;
 
@@ -55,7 +57,9 @@ export const FooterContainer = styled.footer`
   line-height: 35px;
   background-color: #F13400;
   font-size: 80px;
-
+  //position: fixed;
+  //bottom: 0;
+  //width: 100%;
   h2 {
     height: 35px;
     line-height: 35px;

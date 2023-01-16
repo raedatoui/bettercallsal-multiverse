@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { BaseContentItem } from 'src/types';
+import { CDN } from 'src/constants';
 
 interface Props {
     children: JSX.Element[];
@@ -50,8 +51,15 @@ export const MainContainer: FC<Props> = ({ children }) => {
     const { width } = useContext(WindowSizeContext);
     const height = ((width ?? 1) * 1878 * 0.85) / 3006;
 
+    const cursor = `${CDN}/images/${selectedSite}/cursor.png`;
     return (
         <Main id="main">
+            <style jsx global>{`
+                body {
+                  cursor: url("${cursor}"), auto;
+                }
+              `}
+            </style>
             {children}
             { showOverlay && (
                 <Overlay>

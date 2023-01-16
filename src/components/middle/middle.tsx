@@ -40,6 +40,8 @@ export const Middle: FC<Props> = () => {
     const site = siteMap[selectedSite];
     let contentList = contentMap[selectedSite];
 
+    const containerRef = useRef<HTMLDivElement>(null);
+
     // this is for constantly re-shuffling the grid on resize :D
     useWindowSize();
 
@@ -49,8 +51,6 @@ export const Middle: FC<Props> = () => {
     if (selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks')
         // @ts-ignore
         contentList = shuffleList(contentList);
-
-    const containerRef = useRef<HTMLDivElement>(null);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
