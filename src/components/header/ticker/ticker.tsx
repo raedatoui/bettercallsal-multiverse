@@ -2,8 +2,10 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
 import { SiteOrder } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
-import { LowerBanner, SiteUrl, SlidingItem } from 'src/components/header/ticker/elements';
+import { Baseline, LowerBanner, SiteUrl, SlidingItem } from 'src/components/header/ticker/elements';
 import { Site, SiteKey } from 'src/types';
+import { Keyframes } from 'styled-components';
+import { slideInFromLeft, slideOutFromLeft } from 'src/components/header/animations';
 
 interface Props {
     backgroundColor: string;
@@ -36,33 +38,68 @@ const sliderContent = {
 };
 
 const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide, site, index, start, sliderType, sw }) => {
-    const [sliderClass, setSliderClass] = useState<string>('item');
+    const [animation, setAnimation] = useState<Keyframes | null>(null);
+    const [animationDuration, setAnimationDuration] = useState<number>(2);
+    const [translateX, setTranslateX] = useState<number>(sw);
+    const [visibility, setVisibility] = useState<string>('hidden');
     const SliderComponent = sliders[sliderType];
+
+    const slideInDuration = 1.75;
+    const slideOutDuration = 2.75;
+
+    const selected = () => {
+        setTranslateX(0);
+        setAnimation(null);
+        setVisibility('visible');
+    };
+
+    const reset = () => {
+        setTranslateX(sw);
+        setAnimation(null);
+        setVisibility('hidden');
+    };
+
+    const slideIn = () => {
+        setTranslateX(0);
+        setAnimation(slideInFromLeft(`${sw / 2}px`));
+        setAnimationDuration(slideInDuration);
+        setVisibility('visible');
+    };
+
+    const slideOut = () => {
+        setTranslateX(-sw);
+        setAnimation(slideOutFromLeft(`-${sw}px`));
+        setVisibility('visible');
+        setAnimationDuration(slideOutDuration);
+    };
 
     useEffect(() => {
         if (!start)
-            if (SiteOrder[index] === selectedSite) setSliderClass('item initial visible');
-            else setSliderClass('item');
-
+            if (SiteOrder[index] === selectedSite)
+                selected();
+            else
+                reset();
         else
         if (selectedSlide === 0 && index === 0)
-            setSliderClass('item slideIn visible');
+            slideIn();
         else if (selectedSlide === 0 && index === 5)
-            setSliderClass('item slideOut visible');
+            slideOut();
         else if (selectedSlide === index)
-            setSliderClass('item slideIn visible');
+            slideIn();
         else if (selectedSlide - 1 === index)
-            setSliderClass('item slideOut visible');
+            slideOut();
         else
-            setSliderClass('item');
+            reset();
 
     }, [selectedSlide, selectedSite, start, index]);
     return (
         <SliderComponent
             onClick={(event) => { event.stopPropagation(); setSelectedSite(site.name); }}
             // href="https://bettercallsal.biz"
-            sw={sw}
-            className={sliderClass}
+            animation={animation}
+            animationDuration={animationDuration}
+            visibility={visibility}
+            translateX={translateX}
         >
             { sliderContent[sliderType](site)}
         </SliderComponent>
@@ -77,7 +114,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
             onMouseEnter={() => tickerCb(true)}
             onMouseLeave={() => tickerCb(false)}
         >
-            <SlidingItem sw={sw} className="baseline">{`bettercallsal.${siteMap.biz?.name}`}</SlidingItem>
+            <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
             <Slider
                 start={start}
                 selectedSlide={selectedSlide}
