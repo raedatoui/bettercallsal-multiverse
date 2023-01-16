@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useContext, useEffect, useState } from 'react';
+import React, { FC, RefObject, useContext, useEffect, useRef, useState } from 'react';
 import { GameButtonBar, GameCanvas, StopButton } from 'src/components/middle/elements';
 import { ContentSize, GameContentItem, Size, UnityInstance } from 'src/types';
 import { CDN } from 'src/constants';
@@ -19,6 +19,8 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
 
     const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
     const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
+
+    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const windowSize = useWindowSize();
 
@@ -54,25 +56,45 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
             });
     };
 
-    useEffect(() => {
-        if (selectedSite === 'games' && selectedContentItem && !unityInstance) {
-            const game = selectedContentItem as GameContentItem;
-            window.createUnityInstance(document.getElementById('unity-canvas'), {
-                ...game,
-                dataUrl: `${CDN}${game.dataUrl}`,
-                frameworkUrl: `${CDN}${game.frameworkUrl}`,
-                codeUrl: `${CDN}${game.codeUrl}`,
-                streamingAssetsUrl: `${CDN}${game.streamingAssetsUrl}`,
-            }).then((c) => {
+    const loadGame = () => {
+        const game = selectedContentItem as GameContentItem;
+        window.createUnityInstance(document.getElementById('unity-canvas'), {
+            ...game,
+            dataUrl: `${CDN}${game.dataUrl}`,
+            frameworkUrl: `${CDN}${game.frameworkUrl}`,
+            codeUrl: `${CDN}${game.codeUrl}`,
+            streamingAssetsUrl: `${CDN}${game.streamingAssetsUrl}`,
+        })
+            .then((c) => {
                 setUnityInstance(c);
             });
+    };
+
+    const clearCanvas = () => {
+        if (canvasRef.current) {
+            const context = canvasRef.current.getContext('webgl2');
+            context?.clear(0);
         }
+    };
+
+    useEffect(() => {
+        if (selectedSite === 'games' && selectedContentItem) {
+            clearCanvas();
+            if (unityInstance)
+                unityInstance.Quit()
+                    .then(() => {
+                        setUnityInstance(null);
+                        loadGame();
+                    });
+            else loadGame();
+        }
+
         if (selectedSite !== 'games' && unityInstance)
             unityInstance.Quit().then(() => {
                 setUnityInstance(null);
             });
 
-    }, [selectedSite, selectedContentItem, unityInstance]);
+    }, [selectedSite, selectedContentItem]);
 
     useEffect(() => {
         if (selectedContentItem && selectedSite === 'games')
@@ -82,6 +104,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     return (
         <>
             <GameCanvas
+                ref={canvasRef}
                 id="unity-canvas"
                 height={gamesPosterSize.height}
                 width={gamesPosterSize.width}
