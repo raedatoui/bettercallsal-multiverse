@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
 import { SiteOrder } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
-import { Baseline, LowerBanner, SiteUrl, SlidingItem } from 'src/components/header/ticker/elements';
+import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
 import { Site, SiteKey } from 'src/types';
 import { Keyframes } from 'styled-components';
 import { slideInFromLeft, slideOutFromLeft } from 'src/components/header/animations';
