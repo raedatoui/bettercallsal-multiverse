@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { Keyframes } from 'styled-components';
 import { slideOutFromLeft, slideInFromLeft } from '../animations';
 
-export const SlidingItem = styled.a<{ sw: number }>`
+const BaseSlidingItem = styled.a`
   font-size: 0.3635em;
   margin: auto;
   text-transform: uppercase;
@@ -12,34 +12,21 @@ export const SlidingItem = styled.a<{ sw: number }>`
   height: auto;
   display: inline-block;
   line-height: 37px;
-  visibility: hidden;
+`;
 
-  &.baseline {
-    opacity: 0;
-    visibility: visible;
-  }
+export const Baseline = styled(BaseSlidingItem)`
+  opacity: 0;
+  visibility: visible;
+`;
 
-  &.item {
-    position: absolute;
-    transform: translateX(${props => `${props.sw}px`});
-    &.initial {
-      transform: translateX(0);
-    }
-    &.visible {
-      visibility: visible;
-    }
-  }
+export const SlidingItem = styled(BaseSlidingItem)<
+{ visibility: string, translateX: number, animation: Keyframes | null, animationDuration: number }>`
+  position: absolute;
+  visibility: ${props => props.visibility};
+  transform: translateX(${props => `${props.translateX}px`});
+  animation: ${props => (props.animation ? props.animation : '')};
+  animation-duration: ${props => `${props.animationDuration}s`};
 
-  &.slideOut {
-    animation: ${props => slideOutFromLeft(`-${props.sw}px`)} 1.75s linear;
-    transform: translateX(${props => `-${props.sw}px`});
-  }
-
-  &.slideIn {
-    animation: ${props => slideInFromLeft(`${props.sw / 2}px`)} 1.25s linear;
-    transform: translateX(0);
-  }
-  
   &:hover {
     color: #DCDB00;
   }
@@ -49,6 +36,7 @@ export const SiteUrl = styled(SlidingItem)`
   color: #DCDB00;
   letter-spacing: 8px;
 
+  // TODO: this might need to move to the BaseSlidingItem
   @media only screen and (max-width : 567px) {
     padding-right: 60px;
     font-size: 0.4em;
