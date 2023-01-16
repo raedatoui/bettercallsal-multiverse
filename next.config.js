@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const CompressionPlugin = require("compression-webpack-plugin");
-
 const nextConfig = {
   images: {
     loader: 'custom',
@@ -17,10 +15,6 @@ const nextConfig = {
   },
   webpack(config, options) {
     const { isServer } = options;
-    config.plugins.push(new CompressionPlugin({
-      algorithm: "gzip",
-      test: /\.gz(\?.*)?$/i,
-    })),
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g|mov)$/i,
       exclude: config.exclude,
@@ -38,9 +32,8 @@ const nextConfig = {
         },
       ],
     });
-
     return config;
-  },
+  }
 }
 
 module.exports = nextConfig

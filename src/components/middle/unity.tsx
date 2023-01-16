@@ -18,7 +18,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     } = useContext(SiteContext);
 
     const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
-    const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0 });
+    const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
 
     const windowSize = useWindowSize();
 
@@ -42,7 +42,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
             height = (width * desiredSize.height) / desiredSize.width;
         }
 
-        return { width, height, left: (workingWidth - width) / 2 };
+        return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
     };
 
     const handleStop = () => {

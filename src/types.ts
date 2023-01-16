@@ -131,7 +131,7 @@ export const ContentMapValidator = z.object({
 
 export type ContentMap = z.infer<typeof ContentMapValidator>;
 
-export type ContentSize = Size & { left: number };
+export type ContentSize = Size & { left: number, top: number };
 
 export interface UnityInstance {
     Quit: () => Promise<void>;

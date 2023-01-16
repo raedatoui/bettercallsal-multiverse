@@ -4,7 +4,6 @@ import {
     ImageContainer,
     Player,
     PlayerContainer,
-    Quote,
     StopButton,
     Video,
     VideoText
@@ -51,9 +50,10 @@ export const VideoPlayer: FC<Props> = () => {
 
     const [yPlayer, setYPlayer] = useState<YTPlayer>();
     const [vPlayer, setVPlayer] = useState<VimeoPlayer>();
-    const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0 });
-    const [videoSize, setVideoSize] = useState<ContentSize>({ width: 0, height: 0, left: 0 });
-    const [ytSize, setYtSize] = useState<ContentSize>({ width: 640, height: 480, left: 0 });
+    const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
+    const [videoSize, setVideoSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
+    const [ytSize, setYtSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
+    const [sliderIndex, setSliderIndex] = useState<number>(0);
 
     const windowSize = useWindowSize();
 
@@ -80,7 +80,7 @@ export const VideoPlayer: FC<Props> = () => {
             if (idx === -1)
                 idx = contentMap[selectedSite].length - 1;
             setSelectedContentItem(contentMap[selectedSite][idx]);
-            console.log(idx % 2);
+            setSliderIndex(idx % 2);
         }
     };
 
@@ -104,8 +104,21 @@ export const VideoPlayer: FC<Props> = () => {
             height = (width * desiredSize.height) / desiredSize.width;
         }
 
-        return { width, height, left: (workingWidth - width) / 2 };
+        return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
     };
+
+    const scaleText = () => {
+        if (window.textFit && titleRef.current)
+            window.textFit(titleRef.current);
+    };
+
+    useEffect(() => {
+        scaleText();
+    }, [windowSize, titleRef, selectedContentItem]);
+
+    useEffect(() => {
+        scaleText();
+    }, []);
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -158,20 +171,25 @@ export const VideoPlayer: FC<Props> = () => {
                 setYtSize(getContentSize(windowSize, { width: 640, height: 480 }));
         }
 
-    }, [windowSize, selectedContentItem]);
+    }, [windowSize, selectedContentItem, titleRef]);
 
     const getTile = () => {
         if (selectedSite === 'biz' || selectedSite === 'rocks')
             return `${selectedContentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`;
+        if (selectedSite === 'fit')
+            return site.leftNav.items.filter(i => i.category === selectedContentItem?.category ?? '')[0].quote ?? '';
         return selectedContentItem?.name ?? '';
     };
 
     const videoClass = selectedContentItem?.contentId ? 'loaded' : '';
     return (
         <PlayerContainer className={videoClass} ref={containerRef}>
-            <VideoText ref={titleRef}>{getTile()}</VideoText>
-            { selectedContentItem && selectedContentItem.contentType === 'video'
-                && (<Quote ref={viewsRef}>{site.leftNav.items.filter(i => i.category === selectedContentItem.category)[0].quote ?? ''}</Quote>)}
+            { selectedSite !== 'art' && <VideoText ref={titleRef}>{getTile()}</VideoText> }
+            {/* { selectedContentItem && selectedContentItem.contentType === 'video' */}
+            {/*     && (<Quote ref={viewsRef}>
+                {site.leftNav.items.filter(i => i.category === selectedContentItem.category)[0].quote ?? ''}
+                </Quote>)}
+            */}
             <Player className={selectedContentItem?.contentType !== 'youtube' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
                 <div id="yplayer" />
             </Player>
@@ -190,16 +208,17 @@ export const VideoPlayer: FC<Props> = () => {
                 <ImageContainer
                     height={imageSize.height}
                     left={imageSize.left}
+                    top={imageSize.top}
                 >
                     <Image
-                        className="on"
+                        className={sliderIndex === 0 ? 'on' : 'off'}
                         src={`/images/art/${selectedContentItem.contentId}`}
                         alt={selectedContentItem.name}
                         width={imageSize.width}
                         height={imageSize.height}
                     />
                     <Image
-                        className="off"
+                        className={sliderIndex === 1 ? 'on' : 'off'}
                         src={`/images/art/${selectedContentItem.contentId}`}
                         alt={selectedContentItem.name}
                         width={imageSize.width}

@@ -20,7 +20,8 @@ export const Caption = styled.h5`
   text-shadow: 2px 2px white, -2px -2px white, 2px -2px white, -2px 2px white;
   text-align: center;
   font-size: 30px;
-  padding-top: 15px;
+  padding-top: 10px;
+  width: 100%;
 `;
 
 export const Quote = styled.h6`
@@ -28,9 +29,9 @@ export const Quote = styled.h6`
     text-transform: uppercase;
     font-size: 20px;
     text-decoration: none;
-    margin: 10px auto 0 auto;
-    padding: 0 5px;
+    padding-bottom: 10px;
     font-style: italic;
+    margin-bottom: 0;
 `;
 
 export const ContentList = styled.div`
@@ -103,11 +104,11 @@ export const PlayerContainer = styled.div`
   }
 `;
 
-export const ImageContainer = styled.div<{ height: number, left: number }>`
+export const ImageContainer = styled.div<{ height: number, left: number, top: number }>`
   position: relative;
   width: 100%;
+  margin: auto;
   height: ${props => `${props.height}px`};
-  cursor: pointer;
   &:hover {
     div {
       display: flex;
@@ -116,10 +117,15 @@ export const ImageContainer = styled.div<{ height: number, left: number }>`
   img {
     position: absolute;
     left: ${props => `${props.left}px`};
-    transition: opacity 0.4s ease-in;
-    
-    &.slider-img2 {
-      display: none;
+    top: ${props => `${props.top}px`};
+    transition: opacity 1s ease-in;
+    margin: auto;
+    &.on {
+      opacity: 1;
+    }
+
+    &.off {
+      opacity: 0;
     }
   }
 `;
@@ -178,7 +184,8 @@ export const Bar = styled.div`
 `;
 
 export const VideoText = styled.h5`
-  margin: 10px 0;
+  padding: 10px 70px;
+  margin-bottom: 0;
   color: white;
   text-transform: uppercase;
   text-shadow: 2px 2px #F63361,
@@ -186,7 +193,11 @@ export const VideoText = styled.h5`
     2px -2px #F63361,
   -2px 2px #F63361;
   font-size: 30px;
-  margin: auto;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  text-align: center;
+  overflow-wrap: break-word;
 `;
 
 export const ButtonBar = styled.div`
