@@ -44,8 +44,8 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
     const [visibility, setVisibility] = useState<string>('hidden');
     const SliderComponent = sliders[sliderType];
 
-    const slideInDuration = 1.75;
-    const slideOutDuration = 2.75;
+    const slideInDuration = 2;
+    const slideOutDuration = 3;
 
     const selected = () => {
         setTranslateX(0);
@@ -61,7 +61,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 
     const slideIn = () => {
         setTranslateX(0);
-        setAnimation(slideInFromLeft(`${sw / 2}px`));
+        setAnimation(slideInFromLeft(`${sw}px`));
         setAnimationDuration(slideInDuration);
         setVisibility('visible');
     };
