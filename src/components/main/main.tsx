@@ -1,12 +1,12 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, KeyboardEvent, useContext, useEffect } from 'react';
 import { Main, NavButton, Overlay } from 'src/styles/sharedstyles';
 import { Caption, StopButton } from 'src/components/middle/elements';
 import { SiteContext } from 'src/providers/site-provider';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { WindowSizeContext } from 'src/providers/window-size';
-import { BaseContentItem } from 'src/types';
-import { CDN } from 'src/constants';
+import { BaseContentItem, SiteKey } from 'src/types';
+import { CDN, KEYBOARD_SWITCHING } from 'src/constants';
 
 interface Props {
     children: JSX.Element[];
@@ -25,8 +25,17 @@ const SlideItem = styled(NavButton)`
   }
 `;
 
+const keyMap: Record<string, SiteKey> = {
+    a: 'art',
+    b: 'biz',
+    f: 'fit',
+    r: 'rocks',
+    g: 'games',
+    c: 'construction',
+};
+
 export const MainContainer: FC<Props> = ({ children }) => {
-    const { contentMap, selectedSite, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
+    const { contentMap, selectedSite, setSelectedSite, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
 
     const handleSlide = (inc: number) => {
         if (selectedContentItem) {
@@ -52,8 +61,17 @@ export const MainContainer: FC<Props> = ({ children }) => {
     const height = ((width ?? 1) * 1878 * 0.85) / 3006;
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.png`;
+
+    const handleKeyEvent = (keyEvent: KeyboardEvent<HTMLElement>) => {
+        if (keyMap[keyEvent.key] !== undefined)
+            setSelectedSite(keyMap[keyEvent.key]);
+    };
     return (
-        <Main id="main">
+        <Main
+            id="main"
+            tabIndex={KEYBOARD_SWITCHING ? 0 : undefined}
+            onKeyPress={(event) => handleKeyEvent(event)}
+        >
             <style jsx global>{`
                 body {
                   cursor: url("${cursor}"), auto;

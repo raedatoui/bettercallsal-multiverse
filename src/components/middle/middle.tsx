@@ -1,4 +1,4 @@
-import React, { FC, useContext, useRef, useState, KeyboardEvent } from 'react';
+import React, { FC, useContext, useRef, useState } from 'react';
 import { SiteContext } from 'src/providers/site-provider';
 import {
     Caption,
@@ -11,27 +11,16 @@ import { VideoPlayer } from 'src/components/middle/videoPlayer';
 import { shuffleList, useWindowSize } from 'src/utils';
 import Image from 'next/image';
 import { UnityGame } from 'src/components/middle/unity';
-import { SiteKey } from 'src/types';
 import Script from 'next/script';
-import { CDN, KEYBOARD_SWITCHING } from 'src/constants';
+import { CDN } from 'src/constants';
 
 interface Props { }
-
-const keyMap: Record<string, SiteKey> = {
-    a: 'art',
-    b: 'biz',
-    f: 'fit',
-    r: 'rocks',
-    g: 'games',
-    c: 'construction',
-};
 
 export const Middle: FC<Props> = () => {
     const {
         siteMap,
         contentMap,
         selectedSite,
-        setSelectedSite,
         loading,
         selectedNavItem,
         selectedContentItem,
@@ -58,18 +47,10 @@ export const Middle: FC<Props> = () => {
     if (selectedContentItem === null && selectedNavItem && selectedNavItem.quote)
         headerTxt = selectedNavItem.quote;
 
-    const handleKeyEvent = (keyEvent: KeyboardEvent<HTMLDivElement>) => {
-        if (keyMap[keyEvent.key] !== undefined)
-            setSelectedSite(keyMap[keyEvent.key]);
-    };
-
     return (
-
         <MiddleSection
             ref={containerRef}
             className="eight columns"
-            tabIndex={KEYBOARD_SWITCHING ? 0 : undefined}
-            onKeyPress={(event) => handleKeyEvent(event)}
         >
             { selectedContentItem === null && (<Caption>{headerTxt}</Caption>) }
 
