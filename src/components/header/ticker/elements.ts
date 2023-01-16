@@ -1,5 +1,4 @@
 import styled, { Keyframes } from 'styled-components';
-import { slideOutFromLeft, slideInFromLeft } from '../animations';
 
 const BaseSlidingItem = styled.a`
   font-size: 0.3635em;
