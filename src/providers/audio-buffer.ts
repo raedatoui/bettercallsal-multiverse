@@ -57,11 +57,7 @@ class AudioBuffers {
 
     public stop(sound: string) {
         const obj = this.soundMap[sound];
-        if (obj) {
-            if (!obj.source) {
-                console.warn('cant stop source!');
-                return;
-            }
+        if (obj && obj.source) {
             obj.source.disconnect();
             obj.source.stop(0);
             obj.startedAt = 0;

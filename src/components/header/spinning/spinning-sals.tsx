@@ -1,35 +1,42 @@
-import React, { FC, useEffect, useRef } from 'react';
-import { Site } from 'src/types';
+import React, { FC, useContext, useEffect, useRef } from 'react';
+import { AnimationContext } from 'src/providers/animations';
 import { SpinningImg, SpinningWrapper } from './elements';
 
 interface Props {
     wrapperStyle: string;
     imageStyle: string;
-
-    site: Site | null;
-
     play: () => void;
-
     pause: () => void;
-
     image: string;
 }
-const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, site, play, pause, image }) => {
+
+const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, play, pause, image }) => {
+    const { spinningSalsCounter, spinningSalsGridCounter, setSpinningSalsGridCounter } = useContext(AnimationContext);
+
     const ref = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
+    const playAndGrid = () => {
+        setSpinningSalsGridCounter(Math.round(Math.random() * 1000));
+        play();
+    };
+
     useEffect(() => {
         const element = ref.current;
-        element?.addEventListener('mouseenter', play);
+        element?.addEventListener('mouseenter', playAndGrid);
         element?.addEventListener('mouseleave', pause);
-        element?.addEventListener('click', play);
+        element?.addEventListener('click', playAndGrid);
         return () => {
-            element?.removeEventListener('mouseenter', play);
+            element?.removeEventListener('mouseenter', playAndGrid);
             element?.removeEventListener('mouseleave', pause);
-            element?.removeEventListener('click', play);
+            element?.removeEventListener('click', playAndGrid);
         };
 
-    }, [pause, play, site]);
+    });
+
+    useEffect(() => {
+        playAndGrid();
+    }, [spinningSalsCounter]);
 
     return (
         <SpinningWrapper className={wrapperStyle} ref={wrapperRef}>

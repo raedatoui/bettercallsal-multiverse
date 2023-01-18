@@ -1,5 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
+import { glowShadow } from 'src/utils/animations';
 
 export const MiddleSection = styled.div`
     position: relative;
@@ -230,13 +231,6 @@ export const GameCanvas = styled.canvas<{ width: number, height: number, left: n
   background: #231F20;
   &.off {
     display: none;
-  }
-`;
-
-const glowShadow = keyframes`
-  to {
-    -webkit-filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
-    filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
   }
 `;
 

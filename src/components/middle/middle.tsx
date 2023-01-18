@@ -1,5 +1,5 @@
 import React, { FC, useContext, useRef, useState } from 'react';
-import { SiteContext } from 'src/providers/site-provider';
+import { SiteContext } from 'src/providers/sites';
 import {
     Caption,
     ContentItem,
@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { UnityGame } from 'src/components/middle/unity';
 import Script from 'next/script';
 import { CDN } from 'src/constants';
+import { AnimationContext } from 'src/providers/animations';
 
 interface Props { }
 
@@ -33,6 +34,7 @@ export const Middle: FC<Props> = () => {
 
     // this is for constantly re-shuffling the grid on resize :D
     useWindowSize();
+    useContext(AnimationContext);
 
     if (selectedNavItem !== null && selectedNavItem.category !== 'all' && selectedSite !== 'games')
         contentList = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);

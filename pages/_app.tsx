@@ -3,8 +3,9 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { WindowSizeProvider } from 'src/providers/window-size';
 import { SiteKeyValidator } from 'src/types';
+import { SitesDataProvider } from 'src/providers/sites';
+import { AnimationsProvider } from 'src/providers/animations';
 import { SoundProvider } from '../src/providers/audio-context';
-import { SiteProvider } from '../src/providers/site-provider';
 import Normalize from '../src/styles/normalize';
 import Skeleton from '../src/styles/skeleton';
 import Fonts from '../src/styles/fonts';
@@ -23,13 +24,15 @@ const App = ({ Component, pageProps }: AppProps) => (
         <Skeleton />
         <GlobalStyle />
         <Fonts />
-        <SiteProvider defaultSite={SiteKeyValidator.parse(process.env.selectedSite)}>
-            <SoundProvider>
-                <WindowSizeProvider>
-                    <Component {...pageProps} />
-                </WindowSizeProvider>
-            </SoundProvider>
-        </SiteProvider>
+        <SitesDataProvider defaultSite={SiteKeyValidator.parse(process.env.selectedSite)}>
+            <AnimationsProvider>
+                <SoundProvider>
+                    <WindowSizeProvider>
+                        <Component {...pageProps} />
+                    </WindowSizeProvider>
+                </SoundProvider>
+            </AnimationsProvider>
+        </SitesDataProvider>
     </ThemeProvider>
 );
 

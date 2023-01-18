@@ -1,25 +1,29 @@
 import React, { FC, useContext, useState, useEffect } from 'react';
-import { SiteContext } from 'src/providers/site-provider';
+import { SiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import { useInterval } from 'src/utils';
 import { SiteOrder } from 'src/constants';
 import { Ticker } from 'src/components/header/ticker';
 import { WindowSizeContext } from 'src/providers/window-size';
+import { AnimationContext } from 'src/providers/animations';
 import {
     HeaderContainer,
     ContentContainer,
 } from './elements';
 import { SpinningSal, SpinningSalsContainer } from './spinning';
-import { BetterCall, BizerkIcon, BizerImage, BizerkImageContainer, SalName, SalCaption } from './middle';
+import { BetterCall, BizerkIcon, SalName, SalCaption, Bizerk } from './middle';
 
 export const HeaderComponent: FC = () => {
     const { siteMap, selectedSite } = useContext(SiteContext);
+    const { animateHeaderFooter, setAnimateHeaderFooter } = useContext(AnimationContext);
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
 
     const { width } = useContext(WindowSizeContext);
+
     const sw = width ?? 0;
+
     const play = () => {
         if (site)
             buffers.play(site.header.spinningSalAudio, false);
@@ -43,7 +47,7 @@ export const HeaderComponent: FC = () => {
     const [pauseTicker, setPauseTicker] = useState<boolean>(false);
     const [tickerCounter, setTickerCounter] = useState<number>(0);
 
-    const animate = (pauseAnim: boolean, delay: number = 250) => {
+    const animate = (pauseAnim: boolean, delay: number) => {
         setLeftSpinningState(`img0 fadein ${selectedSite}`);
         setRightSpinningState(`img1 fadein ${selectedSite}`);
         if (!pauseAnim)
@@ -66,10 +70,20 @@ export const HeaderComponent: FC = () => {
 
     useEffect(() => {
         if (loaded) {
-            animate(false);
+            animate(false, 250);
             setTickerCounter(0);
         }
     }, [loaded, selectedSite]);
+
+    const headerClick = () => {
+        buffers.play(site.header.ringAudio, false);
+        animate(true, 0);
+    };
+
+    useEffect(() => {
+        if (animateHeaderFooter)
+            headerClick();
+    }, [animateHeaderFooter]);
 
     useInterval(() => {
         if (loadAnimationDone && !pauseTicker) {
@@ -86,7 +100,6 @@ export const HeaderComponent: FC = () => {
                 <SpinningSal
                     wrapperStyle="left"
                     imageStyle={leftSpinningState}
-                    site={site}
                     play={play}
                     pause={pause}
                     image={site.header.spinningSalsLeft}
@@ -94,7 +107,6 @@ export const HeaderComponent: FC = () => {
                 <SpinningSal
                     wrapperStyle="right"
                     imageStyle={rightSpinningState}
-                    site={site}
                     play={play}
                     pause={stop}
                     image={site.header.spinningSalsRight}
@@ -111,15 +123,13 @@ export const HeaderComponent: FC = () => {
                 />
                 <BetterCall
                     className={betterCallState}
-                    onClick={() => buffers.play(site.header.ringAudio, false) && animate(true, 0)}
+                    onClick={() => { setAnimateHeaderFooter(animateHeaderFooter + 1); }}
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>
                 <BizerkIcon>
                     <SalName>{site.header.name1}</SalName>
-                    <BizerkImageContainer className={site.name}>
-                        <BizerImage background={site.header.bizerkIcon} className={site.name} />
-                    </BizerkImageContainer>
+                    <Bizerk site={site} />
                     <SalName>{site.header.name2}</SalName>
                 </BizerkIcon>
                 <SalCaption>{site.header.title}</SalCaption>
