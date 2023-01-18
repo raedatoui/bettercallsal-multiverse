@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const Main = styled.main``;
+const Main = styled.main`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
 
 const Section = styled.section`
     display: flex;
@@ -21,6 +25,8 @@ const Row = styled.div`
     background-image: linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     display: flex;
     position: relative;
+    flex: 1;
+    overflow: auto;
     @media only screen and (max-width: 1023px) {  
         flex-direction: column;
     }

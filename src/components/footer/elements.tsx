@@ -9,9 +9,9 @@ export const LawBreakersContainer = styled.div`
   border-bottom: solid 2px gray;
   display: flex;
   flex-flow: column;
-  position: fixed;
-  bottom: 35px;
   width: 100%;
+  //position: fixed;
+  //bottom: 35px;
 `;
 
 export const LawBreakersP = styled.div`
@@ -94,10 +94,9 @@ export const FooterContainer = styled.footer`
   line-height: 35px;
   background-color: #F13400;
   font-size: 80px;
-  position: fixed;
-  bottom: 0;
   width: 100%;
-
+  //position: fixed;
+  //bottom: 0;
   h2 {
     height: 35px;
     line-height: 35px;

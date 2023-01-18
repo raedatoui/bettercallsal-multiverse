@@ -51,12 +51,12 @@ export const MainContainer: FC<Props> = ({ children }) => {
     };
     const showOverlay = false; // TODO: selectedContentItem && selectedSite === 'art';
 
-    useEffect(() => {
-        if (showOverlay)
-            document.body.style.overflowY = 'hidden';
-        else
-            document.body.style.overflowY = 'auto';
-    }, [showOverlay]);
+    // useEffect(() => {
+    //     if (showOverlay)
+    //         document.body.style.overflowY = 'hidden';
+    //     else
+    //         document.body.style.overflowY = 'auto';
+    // }, [showOverlay]);
     const { width } = useContext(WindowSizeContext);
     const height = ((width ?? 1) * 1878 * 0.85) / 3006;
 

@@ -5,7 +5,7 @@ import { LeftNav } from 'src/components/left-nav';
 import { RightNav } from 'src/components/right-nav';
 import { Middle } from 'src/components/middle';
 import Script from 'next/script';
-import { Footer, LawBreakers } from 'src/components/footer';
+import { LawBreakers } from 'src/components/footer';
 import {
     Row,
 } from '../src/styles/sharedstyles';
@@ -52,14 +52,12 @@ const Home = () => (
                 src="https://player.vimeo.com/api/player.js"
             />
             <HeaderComponent />
-            <Row>
+            <Row id="content-row">
                 <LeftNav />
                 <Middle />
                 <RightNav />
             </Row>
             <LawBreakers />
-            <Footer />
-
         </MainContainer>
     </>
 );

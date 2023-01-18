@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { LawBreakersContainer, LawBreakersP, LawBreakersSpan } from 'src/components/footer/elements';
+import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from 'src/components/footer/elements';
 import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
 import { Size } from 'src/types';
@@ -69,31 +69,37 @@ export const LawBreakers: FC<Props> = () => {
             footerClick();
     }, [animateHeaderFooter]);
     return (
-        <LawBreakersContainer>
-            <LawBreakersP ref={ref} className={betterCallState}>
-                <Image
-                    className={leftSpinningState}
-                    src={site.footer.image}
-                    alt="rca-mic"
-                    width={micSize.width}
-                    height={micSize.height}
-                />
-                <LawBreakersSpan
-                    onClick={() => {
-                        // footerClick();
-                        setAnimateHeaderFooter(animateHeaderFooter + 1);
-                    }}
-                >
-                    {site.footer.text}
-                </LawBreakersSpan>
-                <Image
-                    className={rightSpinningState}
-                    src={site.footer.image}
-                    alt="rca-mic"
-                    width={micSize.width}
-                    height={micSize.height}
-                />
-            </LawBreakersP>
-        </LawBreakersContainer>
+        <>
+            <LawBreakersContainer>
+                <LawBreakersP ref={ref} className={betterCallState}>
+                    <Image
+                        className={leftSpinningState}
+                        src={site.footer.image}
+                        alt="rca-mic"
+                        width={micSize.width}
+                        height={micSize.height}
+                    />
+                    <LawBreakersSpan
+                        onClick={() => {
+                            // footerClick();
+                            setAnimateHeaderFooter(animateHeaderFooter + 1);
+                        }}
+                    >
+                        {site.footer.text}
+                    </LawBreakersSpan>
+                    <Image
+                        className={rightSpinningState}
+                        src={site.footer.image}
+                        alt="rca-mic"
+                        width={micSize.width}
+                        height={micSize.height}
+                    />
+                </LawBreakersP>
+            </LawBreakersContainer>
+            <FooterContainer>
+                <h2><a href="tel:+19173229246">• NOT TOLL FREE (917) 322-9246 •</a></h2>
+            </FooterContainer>
+        </>
+
     );
 };

@@ -5,6 +5,7 @@ import { glowShadow } from 'src/utils/animations';
 export const MiddleSection = styled.div`
     position: relative;
     outline: none;
+
     @media only screen and (min-width: 1024px) {
         width: calc(100% - 500px);
     }

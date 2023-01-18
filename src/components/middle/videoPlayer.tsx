@@ -90,7 +90,7 @@ export const VideoPlayer: FC<Props> = () => {
         const offset = (titleRef.current?.getBoundingClientRect().height ?? 0) + (viewsRef.current?.getBoundingClientRect().height ?? 0);
 
         const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = wWise.height - 135 - (document?.getElementsByTagName('header')[0]?.getBoundingClientRect().height ?? 0) - offset;
+        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0) - offset;
 
         if (workingWidth > workingHeight) {
             height = workingHeight;
@@ -230,7 +230,7 @@ export const VideoPlayer: FC<Props> = () => {
             )}
 
             { (selectedSite === 'biz' || selectedSite === 'rocks')
-                && (<VideoText ref={viewsRef}>View: {selectedContentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
+                && (<VideoText ref={viewsRef}>Views: {selectedContentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
 
             <ButtonBar>
                 <StopButton onClick={() => stopVideo()}>BACK</StopButton>

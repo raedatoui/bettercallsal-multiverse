@@ -20,7 +20,7 @@ const theme: DefaultTheme = {
 
 const App = ({ Component, pageProps }: AppProps) => (
     <ThemeProvider theme={theme}>
-        <Normalize />
+        {/* <Normalize /> */}
         <Skeleton />
         <GlobalStyle />
         <Fonts />
