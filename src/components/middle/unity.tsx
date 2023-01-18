@@ -2,7 +2,7 @@ import React, { FC, RefObject, useContext, useEffect, useRef, useState } from 'r
 import { GameButtonBar, GameCanvas, StopButton } from 'src/components/middle/elements';
 import { ContentSize, GameContentItem, Size, UnityInstance } from 'src/types';
 import { CDN } from 'src/constants';
-import { SiteContext } from 'src/providers/site-provider';
+import { SiteContext } from 'src/providers/sites';
 import { useWindowSize } from 'src/utils';
 
 interface Props {

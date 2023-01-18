@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { CDN } from 'src/constants';
-import { fadein, ltr, ltr2, rtl, rtl2 } from '../animations';
+import { fadein, ltr, ltr2, rtl, rtl2 } from '../../../utils/animations';
 
 export const SpinningSalsContainer = styled.div`
   -webkit-perspective: 1000px;

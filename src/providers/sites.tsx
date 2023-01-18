@@ -45,7 +45,7 @@ const SiteContext = createContext<SiteProviderType>({
     selectedNavItem: null,
     setSelectedNavItem: () => {},
     selectedContentItem: null,
-    setSelectedContentItem: () => {},
+    setSelectedContentItem: () => {}
 });
 
 interface ProviderProps {
@@ -53,7 +53,7 @@ interface ProviderProps {
     defaultSite: SiteKey;
 }
 
-const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
+const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     const [selectedSite, setSelectedSite] = useState<SiteKey>(defaultSite);
     const [contentMap, setContentMap] = useState<ContentMap>(defaultContentMap);
     const [loading, setLoading] = useState<boolean>(true);
@@ -121,4 +121,4 @@ const SiteProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
     );
 };
 
-export { SiteProvider, SiteContext };
+export { SitesDataProvider, SiteContext };

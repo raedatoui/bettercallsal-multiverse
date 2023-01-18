@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { SiteContext } from 'src/providers/site-provider';
+import { SiteContext } from 'src/providers/sites';
 import styled from 'styled-components';
 
 interface Props {}

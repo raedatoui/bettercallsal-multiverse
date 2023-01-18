@@ -53,10 +53,16 @@ export const neon1 = keyframes`
   }
 `;
 
-export const glowShadow = keyframes`
+export const neon2 = keyframes`
+  from {
+    color: #ffffff;
+    text-shadow: #a2b3a0 -4px -4px 0, #a2b3a0 -4px -2px 0, #a2b3a0 -4px 0 0, #a2b3a0 -4px 2px 0, #a2b3a0 -4px 4px 0, #a2b3a0 -2px -4px 0, #a2b3a0 -2px -2px 0, #a2b3a0 -2px 0 0, #a2b3a0 -2px 2px 0, #a2b3a0 -2px 4px 0, #a2b3a0 0 -4px 0, #a2b3a0 0 -2px 0, #a2b3a0 0 0 0, #a2b3a0 0 2px 0, #a2b3a0 0 4px 0, #a2b3a0 2px -4px 0, #a2b3a0 2px -2px 0, #a2b3a0 2px 0 0, #a2b3a0 2px 2px 0, #a2b3a0 2px 4px 0, #a2b3a0 4px -4px 0, #a2b3a0 4px -2px 0, #a2b3a0 4px 0 0, #a2b3a0 4px 2px 0, #a2b3a0 4px 4px 0;
+  }
+
   to {
-    -webkit-filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
-    filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
+    color: #d61d00;
+    text-shadow: #fff -4px -4px 0, #fff -4px -2px 0, #fff -4px 0 0, #fff -4px 2px 0, #fff -4px 4px 0, #fff -2px -4px 0, #fff -2px -2px 0, #fff -2px 0 0, #fff -2px 2px 0, #fff -2px 4px 0, #fff 0 -4px 0, #fff 0 -2px 0, #fff 0 0 0, #fff 0 2px 0, #fff 0 4px 0, #fff 2px -4px 0, #fff 2px -2px 0, #fff 2px 0 0, #fff 2px 2px 0, #fff 2px 4px 0, #fff 4px -4px 0, #fff 4px -2px 0, #fff 4px 0 0, #fff 4px 2px 0, #fff 4px 4px 0;
+
   }
 `;
 
@@ -86,4 +92,26 @@ export const slideOutFromLeft = (x:string) => keyframes`
   100% {
     transform: translateX(${x});
   }
+`;
+
+export const borderAnim = keyframes`
+    from {
+        text-shadow: #a2b3a0 -4px -4px 0, #a2b3a0 -4px -2px 0, #a2b3a0 -4px 0 0, #a2b3a0 -4px 2px 0, #a2b3a0 -4px 4px 0, #a2b3a0 -2px -4px 0, #a2b3a0 -2px -2px 0, #a2b3a0 -2px 0 0, #a2b3a0 -2px 2px 0, #a2b3a0 -2px 4px 0, #a2b3a0 0 -4px 0, #a2b3a0 0 -2px 0, #a2b3a0 0 0 0, #a2b3a0 0 2px 0, #a2b3a0 0 4px 0, #a2b3a0 2px -4px 0, #a2b3a0 2px -2px 0, #a2b3a0 2px 0 0, #a2b3a0 2px 2px 0, #a2b3a0 2px 4px 0, #a2b3a0 4px -4px 0, #a2b3a0 4px -2px 0, #a2b3a0 4px 0 0, #a2b3a0 4px 2px 0, #a2b3a0 4px 4px 0;
+    }
+
+    to {
+        text-shadow: #fff -4px -4px 0, #fff -4px -2px 0, #fff -4px 0 0, #fff -4px 2px 0, #fff -4px 4px 0, #fff -2px -4px 0, #fff -2px -2px 0, #fff -2px 0 0, #fff -2px 2px 0, #fff -2px 4px 0, #fff 0 -4px 0, #fff 0 -2px 0, #fff 0 0 0, #fff 0 2px 0, #fff 0 4px 0, #fff 2px -4px 0, #fff 2px -2px 0, #fff 2px 0 0, #fff 2px 2px 0, #fff 2px 4px 0, #fff 4px -4px 0, #fff 4px -2px 0, #fff 4px 0 0, #fff 4px 2px 0, #fff 4px 4px 0;
+    }
+`;
+
+export const glowShadow = keyframes`
+  to {
+    -webkit-filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
+    filter: brightness(2) drop-shadow(.5rem .5rem 0.5rem #f20);
+  }
+`;
+
+export const footerLtr = (rotate: number, scaleX: number, scaleY:number) => keyframes`
+    0% { transform: rotateY(0) scaleX(${scaleX}) scaleY(${scaleY}); }
+    100% { transform: rotateY(${rotate}deg)  scaleX(${scaleX}) scaleY(${scaleY}); }
 `;

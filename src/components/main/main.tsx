@@ -1,7 +1,7 @@
 import React, { FC, KeyboardEvent, useContext, useEffect } from 'react';
 import { Main, NavButton, Overlay } from 'src/styles/sharedstyles';
 import { Caption, StopButton } from 'src/components/middle/elements';
-import { SiteContext } from 'src/providers/site-provider';
+import { SiteContext } from 'src/providers/sites';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { WindowSizeContext } from 'src/providers/window-size';

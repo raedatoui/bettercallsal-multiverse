@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
 import { CDN } from 'src/constants';
-import { glowShadow, neon1, scalemic, scalemic2 } from '../animations';
+import {glowShadow, ltr2, neon1, scalemic, scalemic2} from 'src/utils/animations';
 
 export const BetterCall = styled.h1.attrs(props => ({ className: props.className }))`
   font-family: BrushScriptStd, serif;
@@ -87,6 +87,10 @@ export const BizerkImageContainer = styled.div`
   &.construction {
     margin-top: -12px;
   }
+
+  :hover {
+   
+  }
 `;
 
 export const BizerImage = styled.div<{ background: string }>`
@@ -96,6 +100,18 @@ export const BizerImage = styled.div<{ background: string }>`
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
+  box-sizing: border-box;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  backface-visibility: visible;
+  opacity: 1;
+  cursor: pointer;
+
+  &:hover {
+    animation: ${ltr2} .5s linear 3;
+  }
+
   &.biz {
     height: 66px;
     width: 50.65px;

@@ -1,5 +1,5 @@
 import React, { createContext, FC, useContext, useMemo, useEffect, useState } from 'react';
-import { SiteContext } from './site-provider';
+import { SiteContext } from './sites';
 import AudioBuffers from './audio-buffer';
 
 type SoundProviderType = {

@@ -5,7 +5,7 @@ const nextConfig = {
     loaderFile: './image-loader.js',
   },
   env: {
-    selectedSite: 'games',
+    selectedSite: 'art',
     keyboardSwitching: true,
     cdn_url: 'https://storage.googleapis.com/bcs-assets'
   },

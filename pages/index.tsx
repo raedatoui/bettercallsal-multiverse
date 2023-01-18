@@ -5,7 +5,7 @@ import { LeftNav } from 'src/components/left-nav';
 import { RightNav } from 'src/components/right-nav';
 import { Middle } from 'src/components/middle';
 import Script from 'next/script';
-import { Footer, LawBreakers } from 'src/components/law-breakers';
+import { Footer, LawBreakers } from 'src/components/footer';
 import {
     Row,
 } from '../src/styles/sharedstyles';

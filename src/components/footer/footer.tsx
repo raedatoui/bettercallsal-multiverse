@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { FooterContainer } from 'src/components/law-breakers/elements';
+import { FooterContainer } from 'src/components/footer/elements';
 
 interface Props {}
 

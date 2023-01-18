@@ -9,7 +9,7 @@ import {
     VideoText
 } from 'src/components/middle/elements';
 import { BaseContentItem, Size, ContentSize } from 'src/types';
-import { SiteContext } from 'src/providers/site-provider';
+import { SiteContext } from 'src/providers/sites';
 import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
 import styled from 'styled-components';
@@ -90,7 +90,7 @@ export const VideoPlayer: FC<Props> = () => {
         const offset = (titleRef.current?.getBoundingClientRect().height ?? 0) + (viewsRef.current?.getBoundingClientRect().height ?? 0);
 
         const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = wWise.height - (document?.getElementsByTagName('header')[0]?.getBoundingClientRect().height ?? 0) - offset;
+        const workingHeight = wWise.height - 135 - (document?.getElementsByTagName('header')[0]?.getBoundingClientRect().height ?? 0) - offset;
 
         if (workingWidth > workingHeight) {
             height = workingHeight;
