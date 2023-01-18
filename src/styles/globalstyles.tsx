@@ -5,19 +5,23 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-family: Pragmatica, Arial, Helvetica, sans-serif;
     height: 100%;
+    margin: 0;
   }
 
   body {
     background-color: #eae41f;
     -webkit-font-smoothing: antialiased;
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
-  a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
+  //a {
+  //  text-decoration: none;
+  //  color: #fff;
+  //  font-weight: bold;
+  //}
+  #__next {
+    height: 100%;
   }
 
   h1,

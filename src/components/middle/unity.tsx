@@ -30,7 +30,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
         const offset = 40; // (titleRef.current?.getBoundingClientRect().height ?? 0) + 40; // the 15px padding
 
         const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = wWise.height - (document?.getElementsByTagName('header')[0]?.getBoundingClientRect().height ?? 0) - offset;
+        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0) - offset;
 
         if (workingWidth > workingHeight) {
             height = workingHeight;
