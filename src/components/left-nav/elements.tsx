@@ -3,6 +3,12 @@ import { NavButton } from 'src/styles/sharedstyles';
 
 export const LeftNavContainer = styled.div`
   width: 100%;
+  width: 16.6666666667%;
+  
+  @media only screen and (max-width: 1023px) {
+    order: 1;
+    width: 100%;
+  }
 `;
 
 export const LeftNavMenu = styled.div`

@@ -27,6 +27,7 @@ const Row = styled.div`
     display: flex;
     flex: 1;
     overflow: auto;
+
     @media only screen and (max-width: 1023px) {  
         flex-direction: column;
     }
