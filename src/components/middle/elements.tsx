@@ -5,10 +5,10 @@ import { glowShadow } from 'src/utils/animations';
 export const MiddleSection = styled.div<{ cLeft: number }>`
     position: relative;
     outline: none;
-
-    @media only screen and (min-width: 1024px) {
-        width: calc(100% - 500px);
-    }
+    width: 66.6666666667%;
+    //@media only screen and (min-width: 1024px) {
+    //    width: calc(100% - 500px);
+    //}
     
     @media only screen and (max-width: 1023px) {
         width: 100%;
@@ -253,5 +253,15 @@ export const GameImageContainer = styled.div<{ width: number, height: number }>`
     &.glowy {
       animation: ${glowShadow} 1.5s linear infinite alternate;
     }
+  }
+`;
+
+export const EcardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  
+  img {
+    margin: 12px;
   }
 `;

@@ -5,7 +5,11 @@ import styled from 'styled-components';
 interface Props {}
 
 const SpotifyContainer = styled.div`
-  min-height: 450px
+  min-height: 450px;
+  width: 16.6666666667%;
+  @media only screen and (max-width: 1023px) {
+    width: 100%;
+  }
 `;
 
 export const RightNav: FC<Props> = () => {
@@ -13,7 +17,7 @@ export const RightNav: FC<Props> = () => {
     const site = siteMap[selectedSite];
 
     return (
-        <SpotifyContainer className="two columns">
+        <SpotifyContainer>
             <iframe
                 title="spotify"
                 src={site.rightNav.objectId}

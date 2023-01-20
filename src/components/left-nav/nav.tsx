@@ -96,7 +96,7 @@ export const LeftNav: FC<Props> = () => {
                 onLoad={() => setScriptLoaded(true)}
             />
             { scriptLoaded && (
-                <LeftNavContainer className="two columns">
+                <LeftNavContainer>
                     <LeftNavMenu>
                         { site.leftNav.items.map(i => (
                             <NavButton

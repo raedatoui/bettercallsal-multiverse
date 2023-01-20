@@ -15,6 +15,7 @@ import Script from 'next/script';
 import { CDN } from 'src/constants';
 import { AnimationContext } from 'src/providers/animations';
 import { ContentSize, Size } from 'src/types';
+import {Ecard} from "src/components/middle/e-card";
 
 interface Props { }
 
@@ -93,7 +94,6 @@ export const Middle: FC<Props> = () => {
     return (
         <MiddleSection
             ref={containerRef}
-            className="eight columns"
             cLeft={imageSize.left}
         >
             { selectedContentItem === null && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
@@ -140,7 +140,10 @@ export const Middle: FC<Props> = () => {
                         alt="construction"
                         className="construction"
                     />
-                )}
+                )
+            }
+
+            { selectedNavItem?.category === 'e-card' && <Ecard /> }
         </MiddleSection>
     );
 };
