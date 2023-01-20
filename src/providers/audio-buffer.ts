@@ -46,9 +46,10 @@ class AudioBuffers {
                 source.connect(this.analyzer);
                 source.loop = loop;
                 this.analyzer.connect(this.context.destination);
+                obj.source = source;
                 source.start(0, obj.pausedAt);
                 obj.startedAt = this.context.currentTime - obj.pausedAt;
-                obj.source = source;
+
                 return source;
             }
         }
@@ -58,6 +59,7 @@ class AudioBuffers {
     public stop(sound: string) {
         const obj = this.soundMap[sound];
         if (obj && obj.source) {
+            console.log(obj.file);
             obj.source.disconnect();
             obj.source.stop(0);
             obj.startedAt = 0;
@@ -94,7 +96,9 @@ class AudioBuffers {
             ];
             if (this.selectedSite.leftNav.audio)
                 sounds.push(this.selectedSite.leftNav.audio);
-            await Promise.all(sounds.map(async (k) => this.loadBuffer(k)));
+            const existing = Object.keys(this.soundMap);
+            const newSounds = sounds.filter(s => !existing.includes(s));
+            await Promise.all(newSounds.map(async (k) => this.loadBuffer(k)));
             this.loaded = true;
         }
     }
@@ -133,7 +137,8 @@ class AudioBuffers {
         request.send();
     }
 
-    private stopAll() {
+    stopAll() {
+        console.log('stop all');
         Object.keys(this.soundMap).forEach(s => this.stop(s));
     }
 }

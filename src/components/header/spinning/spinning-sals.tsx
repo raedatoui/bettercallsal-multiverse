@@ -11,7 +11,7 @@ interface Props {
 }
 
 const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, play, pause, image }) => {
-    const { spinningSalsCounter, spinningSalsGridCounter, setSpinningSalsGridCounter } = useContext(AnimationContext);
+    const { spinningSalsCounter, setSpinningSalsGridCounter } = useContext(AnimationContext);
 
     const ref = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -31,11 +31,11 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, play, pause, image }
             element?.removeEventListener('mouseleave', pause);
             element?.removeEventListener('click', playAndGrid);
         };
-
     });
 
     useEffect(() => {
-        playAndGrid();
+        if (spinningSalsCounter !== 0)
+            playAndGrid();
     }, [spinningSalsCounter]);
 
     return (

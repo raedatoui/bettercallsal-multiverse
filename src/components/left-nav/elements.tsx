@@ -6,7 +6,7 @@ export const LeftNavContainer = styled.div`
 `;
 
 export const LeftNavMenu = styled.div`
-  padding: 8px 0 30px 0;
+  padding: 8px 0 26px 0;
   width: 100%;
   background-color: #4b7aa3;
 `;

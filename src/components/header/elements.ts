@@ -34,9 +34,9 @@ export const ContentContainer = styled.div`
 `;
 
 export const TickerContainer = styled.div<{ background: string }>`{
-  width: 100%;
   display: flex;
   background-color: ${props => props.background};
+  position: relative;
 }`;
 
 export const SalHolder = styled.div`

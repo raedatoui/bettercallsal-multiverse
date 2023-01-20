@@ -86,7 +86,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
                 console.error(error);
             }
         };
-        if (contentMap[selectedSite].length === 0) {
+        if (contentMap[selectedSite].length === 0 && selectedSite !== 'construction') {
             setLoading(true);
             fetchData();
         } else
