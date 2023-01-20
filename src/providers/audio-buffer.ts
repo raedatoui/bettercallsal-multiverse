@@ -59,7 +59,6 @@ class AudioBuffers {
     public stop(sound: string) {
         const obj = this.soundMap[sound];
         if (obj && obj.source) {
-            console.log(obj.file);
             obj.source.disconnect();
             obj.source.stop(0);
             obj.startedAt = 0;
@@ -138,7 +137,6 @@ class AudioBuffers {
     }
 
     stopAll() {
-        console.log('stop all');
         Object.keys(this.soundMap).forEach(s => this.stop(s));
     }
 }

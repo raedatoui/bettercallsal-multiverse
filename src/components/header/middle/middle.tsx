@@ -28,6 +28,11 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
     const bizerkStop = () => {
         setPlaying(false);
         pause();
+        setTimeout(() => {
+            if (!playing && site.name === 'biz')
+                setSpinningSalsGridCounter(0);
+        }, 3000);
+
     };
 
     const bizerkRef = useRef<HTMLDivElement>(null);
@@ -45,15 +50,6 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
             setPlaying(false);
         };
     }, [animateHeaderFooter]);
-
-    useEffect(() => {
-        if (!playing) pause();
-    }, [playing]);
-
-    useTimeout(() => {
-        if (!playing && site.name === 'biz')
-            setSpinningSalsGridCounter(0);
-    }, 3000);
 
     return (
         <BizerkImageContainer onClick={bizerkAnim} className={site.name}>
