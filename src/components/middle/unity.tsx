@@ -27,10 +27,8 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     const getContentSize = (wWise: Size, desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
-        const offset = 40; // (titleRef.current?.getBoundingClientRect().height ?? 0) + 40; // the 15px padding
-
         const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0) - offset;
+        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0);
 
         if (workingWidth > workingHeight) {
             height = workingHeight;
@@ -44,7 +42,11 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
             height = (width * desiredSize.height) / desiredSize.width;
         }
 
-        return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
+        // return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
+
+        // this was an attempt at full bleeing the game
+        return { width, height: workingHeight, left: (workingWidth - width) / 2, top: 0 };
+        // return { width: workingWidth, height: workingHeight, left: 0, top: 0};
     };
 
     const handleStop = () => {
@@ -98,7 +100,10 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
 
     useEffect(() => {
         if (selectedContentItem && selectedSite === 'games')
-            setGamesPosterSize(getContentSize(windowSize, { width: 1000, height: 600 }));
+            setGamesPosterSize(getContentSize(
+                windowSize,
+                { width: selectedContentItem.category === 'supersalbros' ? 960 : 1000, height: 600 }
+            ));
     }, [windowSize, selectedContentItem]);
 
     return (

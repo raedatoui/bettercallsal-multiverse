@@ -18,7 +18,7 @@ const Home = () => (
             <title>Better Call Sal</title>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="keywords" content="Salvatore,Barra,Sound,Engineer,Recording" />
+            <meta name="keywords" content="Salvatore Barra,Sound,Engineer,Recording" />
             <link rel="apple-touch-icon" sizes="57x57" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-57x57.png" />
             <link rel="apple-touch-icon" sizes="60x60" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-60x60.png" />
             <link rel="apple-touch-icon" sizes="72x72" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-72x72.png" />

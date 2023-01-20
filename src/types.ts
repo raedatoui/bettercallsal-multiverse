@@ -76,6 +76,9 @@ export const SoundValidator = z.object({
 export type Sound = z.infer<typeof SoundValidator> & {
     source: AudioBufferSourceNode | null,
     buffer: AudioBuffer,
+    startedAt: number,
+    pausedAt: number,
+    file: string,
 };
 
 export type SoundMap = Record<string, Sound>;

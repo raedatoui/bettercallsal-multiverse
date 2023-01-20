@@ -5,21 +5,16 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-family: Pragmatica, Arial, Helvetica, sans-serif;
     height: 100%;
-    margin: 0;
   }
 
   body {
     background-color: #eae41f;
     -webkit-font-smoothing: antialiased;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 
-  //a {
-  //  text-decoration: none;
-  //  color: #fff;
-  //  font-weight: bold;
-  //}
   #__next {
     height: 100%;
   }

@@ -82,7 +82,7 @@ export const LeftNav: FC<Props> = () => {
     };
 
     useEffect(() => {
-        if (selectedContentItem && audioPlaying && selectedSite !== 'art') {
+        if (selectedContentItem && audioPlaying && selectedSite !== 'art' && selectedSite !== 'games') {
             buffers.stop(audioPlaying);
             setAudioPlaying(null);
         }

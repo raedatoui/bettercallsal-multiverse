@@ -23,8 +23,8 @@ const Row = styled.div`
     background-image: -webkit-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     background-image: -o-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
     background-image: linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
-    display: flex;
     position: relative;
+    display: flex;
     flex: 1;
     overflow: auto;
     @media only screen and (max-width: 1023px) {  

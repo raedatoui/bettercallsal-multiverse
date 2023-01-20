@@ -6,7 +6,6 @@ import { SiteKeyValidator } from 'src/types';
 import { SitesDataProvider } from 'src/providers/sites';
 import { AnimationsProvider } from 'src/providers/animations';
 import { SoundProvider } from '../src/providers/audio-context';
-import Normalize from '../src/styles/normalize';
 import Skeleton from '../src/styles/skeleton';
 import Fonts from '../src/styles/fonts';
 import GlobalStyle from '../src/styles/globalstyles';
@@ -20,7 +19,6 @@ const theme: DefaultTheme = {
 
 const App = ({ Component, pageProps }: AppProps) => (
     <ThemeProvider theme={theme}>
-        {/* <Normalize /> */}
         <Skeleton />
         <GlobalStyle />
         <Fonts />

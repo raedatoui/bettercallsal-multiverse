@@ -184,7 +184,7 @@ export const VideoPlayer: FC<Props> = () => {
     const videoClass = selectedContentItem?.contentId ? 'loaded' : '';
     return (
         <PlayerContainer className={videoClass} ref={containerRef}>
-            { selectedSite !== 'art' && <VideoText ref={titleRef}>{getTile()}</VideoText> }
+            { selectedSite !== 'art' && selectedSite !== 'fit' && <VideoText ref={titleRef}>{getTile()}</VideoText> }
             {/* { selectedContentItem && selectedContentItem.contentType === 'video' */}
             {/*     && (<Quote ref={viewsRef}>
                 {site.leftNav.items.filter(i => i.category === selectedContentItem.category)[0].quote ?? ''}

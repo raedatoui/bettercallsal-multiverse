@@ -15,7 +15,7 @@ import { BetterCall, BizerkIcon, SalName, SalCaption, Bizerk } from './middle';
 
 export const HeaderComponent: FC = () => {
     const { siteMap, selectedSite } = useContext(SiteContext);
-    const { animateHeaderFooter, setAnimateHeaderFooter } = useContext(AnimationContext);
+    const { animateHeaderFooter, setAnimateHeaderFooter, setSpinningSalsGridCounter } = useContext(AnimationContext);
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -30,13 +30,20 @@ export const HeaderComponent: FC = () => {
     };
 
     const pause = () => {
+        setSpinningSalsGridCounter(0);
         if (site)
             buffers.pause(site.header.spinningSalAudio);
     };
 
     const stop = () => {
+        setSpinningSalsGridCounter(0);
         if (site)
             buffers.stop(site.header.spinningSalAudio);
+    };
+
+    const stopBizerk = () => {
+        if (site)
+            buffers.stopAll();
     };
 
     const [leftSpinningState, setLeftSpinningState] = useState<string>(`img0 start ${selectedSite}`);
@@ -129,7 +136,7 @@ export const HeaderComponent: FC = () => {
                 </BetterCall>
                 <BizerkIcon>
                     <SalName>{site.header.name1}</SalName>
-                    <Bizerk site={site} />
+                    <Bizerk site={site} pause={stopBizerk} />
                     <SalName>{site.header.name2}</SalName>
                 </BizerkIcon>
                 <SalCaption>{site.header.title}</SalCaption>
