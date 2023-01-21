@@ -32,8 +32,11 @@ export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
 export const SiteValidator = z.object({
     name: SiteKeyValidator,
-    header: HeaderValidator,
     contentHeader: z.string(),
+    metaTitle: z.string(),
+    metaDescription: z.string(),
+    metaKeywords: z.string(),
+    header: HeaderValidator,
     leftNav: z.object({
         image: z.string(),
         text: z.string(),

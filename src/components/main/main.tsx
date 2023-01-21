@@ -1,29 +1,13 @@
-import React, {FC, KeyboardEvent, useContext, useEffect, useState} from 'react';
-import { Main, NavButton, Overlay } from 'src/styles/sharedstyles';
-import { Caption, StopButton } from 'src/components/middle/elements';
+import React, { FC, KeyboardEvent, useContext, useEffect } from 'react';
+import { Main } from 'src/styles/sharedstyles';
 import { SiteContext } from 'src/providers/sites';
-import styled from 'styled-components';
-import Image from 'next/image';
 import { WindowSizeContext } from 'src/providers/window-size';
-import { BaseContentItem, SiteKey } from 'src/types';
+import { SiteKey } from 'src/types';
 import { CDN, KEYBOARD_SWITCHING } from 'src/constants';
 
 interface Props {
     children: JSX.Element[];
 }
-
-const SlideItem = styled(NavButton)`
-  position: absolute;
-  padding: 4px 6px;
-  top: 50%;
-  &.left {
-    left: 5px;
-  }
-  
-  &.right {
-    right: 5px;
-  }
-`;
 
 const keyMap: Record<string, SiteKey> = {
     a: 'art',
@@ -42,7 +26,6 @@ export const MainContainer: FC<Props> = ({ children }) => {
         if (keyMap[keyEvent.key] !== undefined)
             setSelectedSite(keyMap[keyEvent.key]);
     };
-
 
     const { height } = useContext(WindowSizeContext);
 

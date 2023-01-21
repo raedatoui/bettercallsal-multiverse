@@ -1,4 +1,4 @@
-import { loadSites, loadContent } from './parser';
+import { loadSites, loadContent, convertNavToJson } from './parser';
 
 const run = async (content = false) => {
     if (!content)

@@ -1,3 +1,4 @@
-name,audio,link,video,category,quote,quote-link
-Salutations,salutations.games.mp3,,,,,
-Super Sal Bros.,,,,game,,
+name,audio,video,link,category,quote,quoteLink
+Salutations,/audio/games/salutations.games.mp3,,,,,
+Super Sal Bros.,,,,supersalbros,,
+Salitaire,,,,salitaire,,
