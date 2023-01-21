@@ -1,6 +1,10 @@
 {
   "biz": {
     "name": "biz",
+    "contentHeader": "In  sound  trouble?",
+    "metaTitle": "In Sound Trouble?",
+    "metaDescription": "Bettercallsal.biz | For All Your Sound Mixer Needs | What Are You Waiting For? Better Call Sal! Paul McCartney, Harry Styles, Sam Smith, VICE, HBO, CNN, NIKE, ESPN, Adidas",
+    "metaKeywords": "Salvatore Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
     "header": {
       "spinningSalsLeft": "/images/biz/sal-left.png",
       "spinningSalsRight": "/images/biz/sal-right.png",
@@ -12,7 +16,6 @@
       "title": "Sound Mixer",
       "lowerBanner": "Want Emails from Sal?"
     },
-    "contentHeader": "In  sound  trouble?",
     "leftNav": {
       "image": "/images/biz/nav-sq.jpg",
       "text": "SAL WORKED FOR ME!!!!",
@@ -80,6 +83,10 @@
   },
   "fit": {
     "name": "fit",
+    "contentHeader": "In  fitness  trouble?",
+    "metaTitle": "In Fitness Trouble?",
+    "metaDescription": "Bettercallsal.fit | For All Your Fitness Needs | What Are You Waiting For? Better Call Sal! Sound Bath, Yoga, Strength, Meditation, Stretch, Barre, Boxing, Pilates",
+    "metaKeywords": "Salvatore Barra, Salvatore, Barra, Yogi Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
     "header": {
       "spinningSalsLeft": "/images/fit/shweaty-left.png",
       "spinningSalsRight": "/images/fit/shweaty-right.png",
@@ -91,7 +98,6 @@
       "title": "Fitness Guru",
       "lowerBanner": "Want Workouts from Sal?"
     },
-    "contentHeader": "In  fitness  trouble?",
     "leftNav": {
       "image": "/images/fit/salwmeout.png",
       "text": "SAL WORKED ME OUT!!!!",
@@ -204,6 +210,10 @@
   },
   "art": {
     "name": "art",
+    "contentHeader": "In  art  trouble?",
+    "metaTitle": "In Art Trouble?",
+    "metaDescription": "Bettercallsal.art | For All Your Art Needs | What Are You Waiting For? Better Call Sal! Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
+    "metaKeywords": "Salvatore Barra, Salvatore, Barra, Salvatore Dali ",
     "header": {
       "spinningSalsLeft": "/images/art/spinning.art.left.png",
       "spinningSalsRight": "/images/art/spinning.art.right.png",
@@ -215,7 +225,6 @@
       "title": "The Great Masturbator",
       "lowerBanner": "Want Art from Sal?"
     },
-    "contentHeader": "In  art  trouble?",
     "leftNav": {
       "image": "/images/art/left.art.jpg",
       "text": "ABOUT THE ARTIST!!!!",
@@ -292,6 +301,10 @@
   },
   "rocks": {
     "name": "rocks",
+    "contentHeader": "In  music  trouble?",
+    "metaTitle": "In Music Trouble?",
+    "metaDescription": "Bettercallsal.rocks | For All Your Rock Music Needs | What Are You Waiting For? Better Call Sal!",
+    "metaKeywords": "Salvatore Barra, Salvatore, Barra, Sal Barratone ",
     "header": {
       "spinningSalsLeft": "/images/rocks/spinning.rocks.left.png",
       "spinningSalsRight": "/images/rocks/spinning.rocks.right.png",
@@ -303,7 +316,6 @@
       "title": "Rock Star",
       "lowerBanner": "Want Music from Sal?"
     },
-    "contentHeader": "In  music  trouble?",
     "leftNav": {
       "image": "/images/rocks/hardcore.jpg",
       "text": "SAL ROCKED ME!!!!",
@@ -371,6 +383,10 @@
   },
   "games": {
     "name": "games",
+    "contentHeader": "In  gaming  trouble?",
+    "metaTitle": "In Gaming Trouble?",
+    "metaDescription": "Bettercallsal.games | For All Your Gaming Needs | What Are You Waiting For? Better Call Sal!",
+    "metaKeywords": "Salvatore Barra, Salvatore, Barra, Super Sal Bros",
     "header": {
       "spinningSalsLeft": "/images/games/spinning.games.left.png",
       "spinningSalsRight": "/images/games/spinning.games.right.png",
@@ -382,7 +398,6 @@
       "title": "Hardcore Gamer",
       "lowerBanner": "Want Games from Sal?"
     },
-    "contentHeader": "In  gaming  trouble?",
     "leftNav": {
       "image": "/images/games/left.games.jpg",
       "text": "SAL PLAYED ME!!!!",
@@ -432,6 +447,10 @@
   },
   "construction": {
     "name": "construction",
+    "contentHeader": "In  construction  trouble?",
+    "metaTitle": "In Construction Trouble?",
+    "metaDescription": "Bettercallsal.construction | For All Your Construction Needs | What Are You Waiting For? Better Call Sal!",
+    "metaKeywords": "Salvatore Barra, Salvatore, Barra, Hard Hat Sal",
     "header": {
       "spinningSalsLeft": "/images/construction/spinning.construction.left.png",
       "spinningSalsRight": "/images/construction/spinning.construction.right.png",
@@ -443,7 +462,6 @@
       "title": "The Master Erecter",
       "lowerBanner": "Want Construction from Sal?"
     },
-    "contentHeader": "In  construction  trouble?",
     "leftNav": {
       "image": "/images/construction/nav-sq.jpg",
       "text": "SAL WORKED FOR ME!!!!",

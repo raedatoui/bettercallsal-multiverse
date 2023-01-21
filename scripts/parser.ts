@@ -6,9 +6,12 @@ import {
     SiteKey,
     SiteMapValidator,
     BaseContentItem,
-    BaseContentListValidator
+    BaseContentListValidator,
+    LeftNavItemValidator,
+    LeftNavNavItem,
 } from '../src/types';
-import { CsvRow, parseCsv } from './csv';
+import { convertObjectToCsvString, CsvRow, parseCsv } from './csv';
+import sitesData from '../public/content/sites-copy.json';
 
 const loadSheet = async (sheet: string): Promise<CsvRow[]> => {
     const csvData = await promises.readFile(join(__dirname, '../', 'public', 'content', sheet), 'utf-8');
@@ -33,6 +36,10 @@ export const loadSites = async (): Promise<Record<SiteKey, Site>> => {
         rowsWithNav
             .map(r => SiteValidator.parse({
                 name: r.key,
+                contentHeader: r.contentHeaderTxt,
+                metaTitle: r.metaTitle,
+                metaDescription: r.metaDescription,
+                metaKeywords: r.metaKeywords,
                 header: {
                     spinningSalsLeft: `/images/${r.key}/${r.spinningSalsLeft}`,
                     spinningSalsRight: `/images/${r.key}/${r.spinningSalsRight}`,
@@ -44,7 +51,6 @@ export const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                     title: r.title,
                     lowerBanner: r.lowerBannerTxt,
                 },
-                contentHeader: r.contentHeaderTxt,
                 leftNav: {
                     image: `/images/${r.key}/${r.leftImage}`,
                     text: r.leftImageText,
@@ -93,4 +99,14 @@ export const loadContent = async (site: SiteKey): Promise<BaseContentItem[]> => 
     })));
     console.log(JSON.stringify(contentList));
     return contentList;
+};
+
+export const convertNavToJson = async () => {
+    const siteMap = SiteMapValidator.parse(sitesData);
+    Object.entries(siteMap).map(([key, site]) => {
+        console.log(key);
+        console.log(convertObjectToCsvString<LeftNavNavItem>(site.leftNav.items));
+        console.log('-------');
+        return 1;
+    });
 };

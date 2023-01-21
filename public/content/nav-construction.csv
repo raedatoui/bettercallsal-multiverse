@@ -1,6 +1,6 @@
-name,audio,link,video,category,quote,quote-link
-salutations,salutations.wav,,,,,
-TESTIMONIALS,,https://www.linkedin.com/in/salvatorebarra,,,,
-as seen on tv,,https://www.imdb.com/name/nm5840016/?mode=desktop&ref_=m_ft_dsk,,,,
+name,audio,video,link,category,quote,quoteLink
+salutations,/audio/construction/salutations.wav,,,,,
+TESTIMONIALS,,,,,,
+as seen on tv,,,,,,
 e-cards,,,,Biz card,,
-office webcam,,,_QLX3hugymI,,,
+office webcam,,_QLX3hugymI,,,,

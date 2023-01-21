@@ -15,14 +15,14 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    //    "module": "esnext",
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
       "src/*": [
-        "./src/*",
+        "./src/*"
       ],
       "scripts/*": [
         "./scripts/*"
@@ -31,6 +31,7 @@
         "./pages/*"
       ]
     },
+    "module": "esnext"
   },
   "include": [
     "next-env.d.ts",
