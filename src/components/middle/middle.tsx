@@ -8,14 +8,15 @@ import {
     MiddleSection,
 } from 'src/components/middle/elements';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
-import { shuffleList, useInterval, useWindowSize } from 'src/utils';
+import { shuffleList, useWindowSize } from 'src/utils';
 import Image from 'next/image';
 import { UnityGame } from 'src/components/middle/unity';
 import Script from 'next/script';
 import { CDN } from 'src/constants';
 import { AnimationContext } from 'src/providers/animations';
-import { ContentSize, Size } from 'src/types';
-import {Ecard} from "src/components/middle/e-card";
+import { BaseContentItem, GameContentItem, ContentSize, Size } from 'src/types';
+import { Ecard } from 'src/components/middle/e-card';
+import { ArtSlider } from 'src/components/middle/art-slider';
 
 interface Props { }
 
@@ -30,7 +31,6 @@ export const Middle: FC<Props> = () => {
         setSelectedContentItem
     } = useContext(SiteContext);
     const site = siteMap[selectedSite];
-    let contentList = contentMap[selectedSite];
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -38,23 +38,14 @@ export const Middle: FC<Props> = () => {
     const windowSize = useWindowSize();
     const anim = useContext(AnimationContext);
 
-    if (selectedNavItem !== null && selectedNavItem.category !== 'all' && selectedSite !== 'games')
-        contentList = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
-
-    if (selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
-        || (selectedSite === 'biz' && anim.spinningSalsGridCounter !== 0))
-        contentList = shuffleList(contentList);
+    const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>([]);
+    const [prevShuffledList, setPrevShuffledList] = useState<(BaseContentItem | GameContentItem)[]>([]);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
     let headerTxt = site.contentHeader;
     if (selectedContentItem === null && selectedNavItem && selectedNavItem.quote)
         headerTxt = selectedNavItem.quote;
-
-    useInterval(() => {
-        if (anim.spinningSalsGridCounter === 0)
-            contentList = contentMap[selectedSite];
-    }, 1000);
 
     const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -91,6 +82,24 @@ export const Middle: FC<Props> = () => {
             document.getElementById('content-row')?.scrollTo(0, 0);
         }
     }, [selectedContentItem]);
+
+    useEffect(
+        () => {
+
+            let list = contentMap[selectedSite];
+
+            if (selectedNavItem !== null && selectedNavItem.category !== 'all' && selectedSite !== 'games')
+                list = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
+
+            if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
+                || (selectedSite === 'biz' && anim.spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
+                list = shuffleList(list);
+                setPrevShuffledList(list);
+            }
+            setContentList(list);
+        },
+        [contentMap, selectedSite, selectedContentItem, selectedNavItem, anim, windowSize]
+    );
     return (
         <MiddleSection
             ref={containerRef}
@@ -116,7 +125,7 @@ export const Middle: FC<Props> = () => {
                 ))}
             </ContentList>
 
-            { selectedContentItem && selectedSite !== 'games' && (
+            { selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType) && (
                 <VideoPlayer />
             ) }
 
@@ -126,6 +135,14 @@ export const Middle: FC<Props> = () => {
                     onLoad={() => setScriptLoaded(true)}
                 />
             ) }
+
+            { selectedContentItem && (selectedContentItem.contentType === 'image' || selectedContentItem.contentType === 'quad') && (
+                <ArtSlider
+                    containerRef={containerRef}
+                    images={prevShuffledList}
+                    start={prevShuffledList.indexOf(selectedContentItem)}
+                />
+            )}
 
             { scriptLoaded && (
                 <UnityGame containerRef={containerRef} />
@@ -140,8 +157,7 @@ export const Middle: FC<Props> = () => {
                         alt="construction"
                         className="construction"
                     />
-                )
-            }
+                )}
 
             { selectedNavItem?.category === 'e-card' && <Ecard /> }
         </MiddleSection>

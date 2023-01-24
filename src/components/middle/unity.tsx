@@ -24,7 +24,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
 
     const windowSize = useWindowSize();
 
-    const getContentSize = (wWise: Size, desiredSize: Size): ContentSize => {
+    const getContentSize = (desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
         const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
@@ -101,7 +101,6 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     useEffect(() => {
         if (selectedContentItem && selectedSite === 'games')
             setGamesPosterSize(getContentSize(
-                windowSize,
                 { width: selectedContentItem.category === 'supersalbros' ? 960 : 1000, height: 600 }
             ));
     }, [windowSize, selectedContentItem]);

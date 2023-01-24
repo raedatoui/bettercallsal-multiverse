@@ -1,16 +1,12 @@
-import React, {FC, useContext} from 'react';
-import {ButtonBar, EcardContainer, StopButton} from 'src/components/middle/elements';
+import React, { FC, useContext } from 'react';
+import { ButtonBar, EcardContainer, StopButton } from 'src/components/middle/elements';
 import Image from 'next/image';
-import {SiteContext} from "src/providers/sites";
+import { SiteContext } from 'src/providers/sites';
 
 interface Props {}
 
 export const Ecard:FC<Props> = () => {
-    const {
-
-        setSelectedNavItem,
-
-    } = useContext(SiteContext);
+    const { setSelectedNavItem } = useContext(SiteContext);
 
     return (
         <EcardContainer>
@@ -34,5 +30,4 @@ export const Ecard:FC<Props> = () => {
             </ButtonBar>
         </EcardContainer>
     );
-}
-
+};

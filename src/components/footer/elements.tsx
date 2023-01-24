@@ -60,10 +60,16 @@ export const LawBreakersP = styled.div`
       &.rocks {
         transform: scale(1.5);
       }
+      &.art {
+        transform: scale(1.25);
+      }
       &.hover {
         animation: ${footerLtr(-3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         &.rocks { 
           animation: ${footerLtr(3600, 1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+        }
+        &.art {
+          animation: ${footerLtr(3600, 1.25, 1.25)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
       }
     }
@@ -73,11 +79,17 @@ export const LawBreakersP = styled.div`
       &.rocks {
         transform: scaleX(-1.5) scaleY(1.5);
       }
+      &.art {
+        transform: scaleX(-1.25) scaleY(1.25);
+      }
       &.hover {
         animation: ${footerLtr(3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
 
         &.rocks {
           animation: ${footerLtr(3600, -1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+        }
+        &.art {
+          animation: ${footerLtr(3600, -1.25, 1.25)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
       }
     }

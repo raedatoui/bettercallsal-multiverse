@@ -110,29 +110,30 @@ export const PlayerContainer = styled.div`
   }
 `;
 
-export const ImageContainer = styled.div<{ height: number, left: number, top: number }>`
-  position: relative;
+export const ImageContainer = styled.div`
   width: 100%;
-  margin: auto;
-  height: ${props => `${props.height}px`};
+  height: 100%;
+  
   &:hover {
     div {
       display: flex;
     }
   }
-  img {
-    position: absolute;
-    left: ${props => `${props.left}px`};
-    top: ${props => `${props.top}px`};
-    transition: opacity 1s ease-in;
-    margin: auto;
-    &.on {
-      opacity: 1;
-    }
 
-    &.off {
-      opacity: 0;
-    }
+  .keen-slider__slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .keen-slider__slide img {
+    position: absolute;
+    transition: opacity 1s ease-in;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
   }
 `;
 

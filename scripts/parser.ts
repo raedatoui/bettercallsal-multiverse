@@ -7,11 +7,10 @@ import {
     SiteMapValidator,
     BaseContentItem,
     BaseContentListValidator,
-    LeftNavItemValidator,
     LeftNavNavItem,
 } from '../src/types';
 import { convertObjectToCsvString, CsvRow, parseCsv } from './csv';
-import sitesData from '../public/content/sites-copy.json';
+import sitesData from '../public/content/sites.json';
 
 const loadSheet = async (sheet: string): Promise<CsvRow[]> => {
     const csvData = await promises.readFile(join(__dirname, '../', 'public', 'content', sheet), 'utf-8');

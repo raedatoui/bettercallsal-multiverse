@@ -2,7 +2,6 @@ import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { BizerImage, BizerkImageContainer } from 'src/components/header/middle/elements';
 import { Site } from 'src/types';
 import { AnimationContext } from 'src/providers/animations';
-import { useInterval, useTimeout } from 'src/utils';
 
 interface Props {
     site: Site;
@@ -31,7 +30,7 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
         setTimeout(() => {
             if (!playing && site.name === 'biz')
                 setSpinningSalsGridCounter(0);
-        }, 3000);
+        }, 1500);
 
     };
 
