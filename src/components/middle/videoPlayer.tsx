@@ -1,19 +1,15 @@
 import React, { FC, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import {
     ButtonBar,
-    ImageContainer,
     Player,
     PlayerContainer,
     StopButton,
     Video,
     VideoText
 } from 'src/components/middle/elements';
-import { BaseContentItem, Size, ContentSize } from 'src/types';
+import { Size, ContentSize } from 'src/types';
 import { SiteContext } from 'src/providers/sites';
-import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
-import styled from 'styled-components';
-import { NavButton } from 'src/styles/sharedstyles';
 import { CDN } from 'src/constants';
 
 interface Props { }
@@ -31,29 +27,15 @@ interface VimeoPlayer {
     loadVideo: (id: string) => void;
 }
 
-const SlideItem = styled(NavButton)`
-  position: absolute;
-  padding: 4px 6px;
-  top: calc(50% - 32px);
-  &.left {
-    left: 5px;
-  }
-  
-  &.right {
-    right: 5px;
-  }
-`;
-
 export const VideoPlayer: FC<Props> = () => {
-    const { siteMap, contentMap, selectedSite, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
+    const { siteMap, selectedSite, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
     const [yPlayer, setYPlayer] = useState<YTPlayer>();
     const [vPlayer, setVPlayer] = useState<VimeoPlayer>();
-    const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
+
     const [videoSize, setVideoSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
     const [ytSize, setYtSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
-    const [sliderIndex, setSliderIndex] = useState<number>(0);
 
     const windowSize = useWindowSize();
 
@@ -70,21 +52,7 @@ export const VideoPlayer: FC<Props> = () => {
         setSelectedContentItem(null);
     };
 
-    const handleImageSlide = (inc: number) => {
-        if (selectedContentItem && selectedSite === 'art') {
-            // @ts-ignore
-            let idx = contentMap[selectedSite].indexOf(selectedContentItem as BaseContentItem);
-            idx += inc;
-            if (idx === contentMap[selectedSite].length)
-                idx = 0;
-            if (idx === -1)
-                idx = contentMap[selectedSite].length - 1;
-            setSelectedContentItem(contentMap[selectedSite][idx]);
-            setSliderIndex(idx % 2);
-        }
-    };
-
-    const getContentSize = (wWise: Size, desiredSize: Size): ContentSize => {
+    const getContentSize = (desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
         const offset = (titleRef.current?.getBoundingClientRect().height ?? 0) + (viewsRef.current?.getBoundingClientRect().height ?? 0);
@@ -163,12 +131,10 @@ export const VideoPlayer: FC<Props> = () => {
 
     useEffect(() => {
         if (selectedContentItem) {
-            if (selectedContentItem.contentType === 'image' || selectedContentItem.contentType === 'quad')
-                setImageSize(getContentSize(windowSize, { width: selectedContentItem.width ?? 0, height: selectedContentItem.height ?? 0 }));
             if (selectedContentItem.contentType === 'video')
-                setVideoSize(getContentSize(windowSize, { width: 1080, height: 1920 }));
+                setVideoSize(getContentSize({ width: 1080, height: 1920 }));
             if (selectedContentItem.contentType === 'youtube' || selectedContentItem.contentType === 'vimeo')
-                setYtSize(getContentSize(windowSize, { width: 640, height: 480 }));
+                setYtSize(getContentSize({ width: 640, height: 480 }));
         }
 
     }, [windowSize, selectedContentItem, titleRef]);
@@ -182,14 +148,11 @@ export const VideoPlayer: FC<Props> = () => {
     };
 
     const videoClass = selectedContentItem?.contentId ? 'loaded' : '';
+
     return (
         <PlayerContainer className={videoClass} ref={containerRef}>
             { selectedSite !== 'art' && selectedSite !== 'fit' && <VideoText ref={titleRef}>{getTile()}</VideoText> }
-            {/* { selectedContentItem && selectedContentItem.contentType === 'video' */}
-            {/*     && (<Quote ref={viewsRef}>
-                {site.leftNav.items.filter(i => i.category === selectedContentItem.category)[0].quote ?? ''}
-                </Quote>)}
-            */}
+
             <Player className={selectedContentItem?.contentType !== 'youtube' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
                 <div id="yplayer" />
             </Player>
@@ -203,31 +166,6 @@ export const VideoPlayer: FC<Props> = () => {
                     <source src={`${CDN}/videos/${selectedSite}/${selectedContentItem?.contentId}`} type="video/mp4" />
                 </Video>
             ) }
-
-            { selectedContentItem && (selectedContentItem.contentType === 'image' || selectedContentItem.contentType === 'quad') && (
-                <ImageContainer
-                    height={imageSize.height}
-                    left={imageSize.left}
-                    top={imageSize.top}
-                >
-                    <Image
-                        className={sliderIndex === 0 ? 'on' : 'off'}
-                        src={`/images/art/${selectedContentItem.contentId}`}
-                        alt={selectedContentItem.name}
-                        width={imageSize.width}
-                        height={imageSize.height}
-                    />
-                    <Image
-                        className={sliderIndex === 1 ? 'on' : 'off'}
-                        src={`/images/art/${selectedContentItem.contentId}`}
-                        alt={selectedContentItem.name}
-                        width={imageSize.width}
-                        height={imageSize.height}
-                    />
-                    <SlideItem className="left" onClick={() => handleImageSlide(-1)}>&lt;&lt;</SlideItem>
-                    <SlideItem className="right" onClick={() => handleImageSlide(1)}>&gt;&gt;</SlideItem>
-                </ImageContainer>
-            )}
 
             { (selectedSite === 'biz' || selectedSite === 'rocks')
                 && (<VideoText ref={viewsRef}>Views: {selectedContentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
