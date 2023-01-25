@@ -80,7 +80,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     };
 
     useEffect(() => {
-        if (selectedSite === 'games' && selectedContentItem) {
+        if (selectedContentItem && selectedContentItem.contentType === 'game') {
             clearCanvas();
             if (unityInstance)
                 unityInstance.Quit()
@@ -99,7 +99,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     }, [selectedSite, selectedContentItem]);
 
     useEffect(() => {
-        if (selectedContentItem && selectedSite === 'games')
+        if (selectedContentItem && selectedContentItem.contentType === 'game')
             setGamesPosterSize(getContentSize(
                 { width: selectedContentItem.category === 'supersalbros' ? 960 : 1000, height: 600 }
             ));
@@ -113,9 +113,9 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
                 height={gamesPosterSize.height}
                 width={gamesPosterSize.width}
                 left={gamesPosterSize.left}
-                className={selectedSite === 'games' && selectedContentItem ? 'on' : 'off'}
+                className={selectedContentItem && selectedContentItem.contentType === 'game' ? 'on' : 'off'}
             />
-            { selectedSite === 'games' && selectedContentItem && (
+            { selectedContentItem && selectedContentItem.contentType === 'game' && (
                 <GameButtonBar left={gamesPosterSize.width + gamesPosterSize.left - 83} top={gamesPosterSize.height}>
                     <StopButton onClick={() => handleStop()}>BACK</StopButton>
                 </GameButtonBar>

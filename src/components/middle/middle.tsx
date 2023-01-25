@@ -14,9 +14,10 @@ import { UnityGame } from 'src/components/middle/unity';
 import Script from 'next/script';
 import { CDN } from 'src/constants';
 import { AnimationContext } from 'src/providers/animations';
-import { BaseContentItem, GameContentItem, ContentSize, Size } from 'src/types';
+import { BaseContentItem, GameContentItem } from 'src/types';
 import { Ecard } from 'src/components/middle/e-card';
 import { ArtSlider } from 'src/components/middle/art-slider';
+import { Construction } from 'src/components/middle/construction';
 
 interface Props { }
 
@@ -32,9 +33,7 @@ export const Middle: FC<Props> = () => {
     } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    // these contexts are for causing a shu
+    // these contexts are for causing a shuffle
     const windowSize = useWindowSize();
     const anim = useContext(AnimationContext);
 
@@ -47,34 +46,8 @@ export const Middle: FC<Props> = () => {
     if (selectedContentItem === null && selectedNavItem && selectedNavItem.quote)
         headerTxt = selectedNavItem.quote;
 
-    const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
+    const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
-
-    const getContentSize = (wWise: Size, desiredSize: Size): ContentSize => {
-        let height: number;
-        let width: number;
-        const offset = (titleRef.current?.getBoundingClientRect().height ?? 0);
-
-        const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0) - offset;
-
-        if (workingWidth > workingHeight) {
-            height = workingHeight;
-            width = (height * desiredSize.width) / desiredSize.height;
-        } else {
-            width = workingWidth;
-            height = (width * desiredSize.height) / desiredSize.width;
-        }
-        if (width > workingWidth) {
-            width = workingWidth;
-            height = (width * desiredSize.height) / desiredSize.width;
-        }
-        return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
-    };
-
-    useEffect(() => {
-        setImageSize(getContentSize(windowSize, { width: 1920, height: 1080 }));
-    }, [windowSize]);
 
     useEffect(() => {
         if (selectedContentItem) {
@@ -103,7 +76,6 @@ export const Middle: FC<Props> = () => {
     return (
         <MiddleSection
             ref={containerRef}
-            cLeft={imageSize.left}
         >
             { selectedContentItem === null && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
 
@@ -116,6 +88,7 @@ export const Middle: FC<Props> = () => {
                             src={`/images/${selectedSite}/thumbs/${i.thumb}`}
                             width="480"
                             height="360"
+                            loading="lazy"
                             layout="responsive"
                         />
                         <ContentItemTitle>
@@ -129,13 +102,6 @@ export const Middle: FC<Props> = () => {
                 <VideoPlayer />
             ) }
 
-            { selectedSite === 'games' && (
-                <Script
-                    src={`${CDN}/unity/export.loader.js`}
-                    onLoad={() => setScriptLoaded(true)}
-                />
-            ) }
-
             { selectedContentItem && (selectedContentItem.contentType === 'image' || selectedContentItem.contentType === 'quad') && (
                 <ArtSlider
                     containerRef={containerRef}
@@ -144,20 +110,19 @@ export const Middle: FC<Props> = () => {
                 />
             )}
 
+            { selectedSite === 'games' && (
+                <Script
+                    src={`${CDN}/unity/export.loader.js`}
+                    onLoad={() => setScriptLoaded(true)}
+                />
+            ) }
+
             { scriptLoaded && (
                 <UnityGame containerRef={containerRef} />
             )}
 
             { selectedSite === 'construction'
-                && (
-                    <Image
-                        src="/images/construction/under-construction.png"
-                        width={imageSize.width}
-                        height={imageSize.height}
-                        alt="construction"
-                        className="construction"
-                    />
-                )}
+                && <Construction titleRef={titleRef} containerRef={containerRef} />}
 
             { selectedNavItem?.category === 'e-card' && <Ecard /> }
         </MiddleSection>

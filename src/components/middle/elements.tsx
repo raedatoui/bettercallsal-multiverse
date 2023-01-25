@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 import { glowShadow } from 'src/utils/animations';
 
-export const MiddleSection = styled.div<{ cLeft: number }>`
+export const MiddleSection = styled.div`
     position: relative;
     outline: none;
     width: 66.6666666667%;
@@ -12,10 +12,6 @@ export const MiddleSection = styled.div<{ cLeft: number }>`
     
     @media only screen and (max-width: 1023px) {
         width: 100%;
-    }
-  
-    .construction {
-      margin-left: ${props => `${props.cLeft}px`};
     }
 `;
 
