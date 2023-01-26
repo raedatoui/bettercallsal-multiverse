@@ -66,6 +66,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
             frameworkUrl: `${CDN}${game.frameworkUrl}`,
             codeUrl: `${CDN}${game.codeUrl}`,
             streamingAssetsUrl: `${CDN}${game.streamingAssetsUrl}`,
+            matchWebGLToCanvasSize: true
         })
             .then((c) => {
                 setUnityInstance(c);
@@ -99,10 +100,15 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     }, [selectedSite, selectedContentItem]);
 
     useEffect(() => {
-        if (selectedContentItem && selectedContentItem.contentType === 'game')
-            setGamesPosterSize(getContentSize(
-                { width: selectedContentItem.category === 'supersalbros' ? 960 : 1000, height: 600 }
-            ));
+        if (selectedContentItem && selectedContentItem.contentType === 'game') {
+            const desired = { width: 1000, height: 600 };
+            if (selectedContentItem.category === 'supersalbros')
+                desired.width = 960;
+            if (selectedContentItem.category === 'pacman')
+                desired.width = 600;
+            setGamesPosterSize(getContentSize(desired));
+        }
+
     }, [windowSize, selectedContentItem]);
 
     return (
