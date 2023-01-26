@@ -15,7 +15,6 @@
     "contentType": "game",
     "category": "supersalbros"
   },
-
   {
     "dataUrl": "/unity/salitaire/export.data.gz",
     "frameworkUrl": "/unity/salitaire/export.framework.js.gz",
@@ -31,5 +30,21 @@
     "contentId": "salitaire",
     "contentType": "game",
     "category": "cards"
+  },
+  {
+    "dataUrl": "/unity/salman/webgl.data.gz",
+    "frameworkUrl": "/unity/salman/webgl.framework.js.gz",
+    "codeUrl": "/unity/salman/webgl.wasm.gz",
+    "streamingAssetsUrl": "StreamingAssets",
+    "companyName": "BetterCallSal.games",
+    "productName": "Salman",
+    "productVersion": "0.1",
+    "showBanner": false,
+    "devicePixelRatio": 1,
+    "thumb": "salman.jpg",
+    "name": "Sal-man",
+    "contentId": "salman",
+    "contentType": "game",
+    "category": "pacman"
   }
 ]

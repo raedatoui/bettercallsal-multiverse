@@ -25,7 +25,6 @@ const Home = () => {
                 <meta name="keywords" content={site.metaKeywords} />
                 <meta name="description" content={site.metaDescription} />
 
-
                 {/* <link rel="apple-touch-icon" sizes="57x57" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-57x57.png" /> */}
                 {/* <link rel="apple-touch-icon" sizes="60x60" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-60x60.png" /> */}
                 {/* <link rel="apple-touch-icon" sizes="72x72" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-72x72.png" /> */}

@@ -6,8 +6,8 @@ import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import { SiteContext } from 'src/providers/sites';
 import { useWindowSize } from 'src/utils';
-import styled from 'styled-components';
-import { NavButton } from 'src/styles/sharedstyles';
+// import styled from 'styled-components';
+// import { NavButton } from 'src/styles/sharedstyles';
 import { DALI } from 'src/constants';
 
 interface Props {
@@ -16,18 +16,18 @@ interface Props {
     start: number
 }
 
-const SlideItem = styled(NavButton)`
-  position: absolute;
-  padding: 4px 6px;
-  top: calc(50% - 32px);
-  &.left {
-    left: 5px;
-  }
-
-  &.right {
-    right: 5px;
-  }
-`;
+// const SlideItem = styled(NavButton)`
+//   position: absolute;
+//   padding: 4px 6px;
+//   top: calc(50% - 32px);
+//   &.left {
+//     left: 5px;
+//   }
+//
+//   &.right {
+//     right: 5px;
+//   }
+// `;
 
 export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
     const { siteMap, setSelectedContentItem } = useContext(SiteContext);
