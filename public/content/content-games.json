@@ -1,8 +1,8 @@
 [
   {
-    "dataUrl": "/unity/mario/SUPERSALBROS.data.gz",
-    "frameworkUrl": "/unity/mario/SUPERSALBROS.framework.js.gz",
-    "codeUrl": "/unity/mario/SUPERSALBROS.wasm.gz",
+    "dataUrl": "/unity/mario/supersalbros.data.gz",
+    "frameworkUrl": "/unity/mario/supersalbros.framework.js.gz",
+    "codeUrl": "/unity/mario/supersalbros.wasm.gz",
     "streamingAssetsUrl": "/unity/mario/StreamingAssets",
     "companyName": "BetterCallSal.games",
     "productName": "Super Sal Bros.",
@@ -16,13 +16,13 @@
     "category": "supersalbros"
   },
   {
-    "dataUrl": "/unity/salitaire/export.data.gz",
-    "frameworkUrl": "/unity/salitaire/export.framework.js.gz",
-    "codeUrl": "/unity/salitaire/export.wasm.gz",
+    "dataUrl": "/unity/salitaire/salitaire.data.gz",
+    "frameworkUrl": "/unity/salitaire/salitaire.framework.js.gz",
+    "codeUrl": "/unity/salitaire/salitaire.wasm.gz",
     "streamingAssetsUrl": "StreamingAssets",
     "companyName": "BetterCallSal.games",
     "productName": "Salitaire",
-    "productVersion": "0.1",
+    "productVersion": "1.0",
     "showBanner": false,
     "devicePixelRatio": 1,
     "thumb": "salitaire.jpg",
@@ -32,13 +32,13 @@
     "category": "cards"
   },
   {
-    "dataUrl": "/unity/salman/webgl.data.gz",
-    "frameworkUrl": "/unity/salman/webgl.framework.js.gz",
-    "codeUrl": "/unity/salman/webgl.wasm.gz",
+    "dataUrl": "/unity/salman/salman.data.gz",
+    "frameworkUrl": "/unity/salman/salman.framework.js.gz",
+    "codeUrl": "/unity/salman/salman.wasm.gz",
     "streamingAssetsUrl": "StreamingAssets",
     "companyName": "BetterCallSal.games",
     "productName": "Salman",
-    "productVersion": "0.1",
+    "productVersion": "1.0",
     "showBanner": false,
     "devicePixelRatio": 1,
     "thumb": "salman.jpg",
