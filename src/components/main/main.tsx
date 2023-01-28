@@ -4,6 +4,7 @@ import { SiteContext } from 'src/providers/sites';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteKey } from 'src/types';
 import { CDN, KEYBOARD_SWITCHING } from 'src/constants';
+import { AnimationContext } from 'src/providers/animations';
 
 interface Props {
     children: JSX.Element[];
@@ -20,12 +21,9 @@ const keyMap: Record<string, SiteKey> = {
 
 export const MainContainer: FC<Props> = ({ children }) => {
     const { selectedSite, setSelectedSite } = useContext(SiteContext);
-    const cursor = `${CDN}/images/${selectedSite}/cursor.png`;
+    const { keyPressed } = useContext(AnimationContext);
 
-    const handleKeyEvent = (keyEvent: KeyboardEvent<HTMLElement>) => {
-        if (keyMap[keyEvent.key] !== undefined)
-            setSelectedSite(keyMap[keyEvent.key]);
-    };
+    const cursor = `${CDN}/images/${selectedSite}/cursor.png`;
 
     const { height } = useContext(WindowSizeContext);
 
@@ -43,11 +41,14 @@ export const MainContainer: FC<Props> = ({ children }) => {
         }
     }, [height]);
 
+    useEffect(() => {
+        if (keyPressed && keyMap[keyPressed] !== undefined)
+            setSelectedSite(keyMap[keyPressed]);
+    }, [keyPressed]);
+
     return (
         <Main
             id="main"
-            tabIndex={KEYBOARD_SWITCHING ? 0 : undefined}
-            onKeyPress={(event) => handleKeyEvent(event)}
         >
             <style jsx global>{`
                 body {
