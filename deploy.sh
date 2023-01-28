@@ -7,7 +7,7 @@ yarn static
 rm -rf ../firebase/art/out
 mv out ../firebase/art/
 cd ../firebase/art
-#firebase deploy
+firebase deploy
 
 # games
 cd ../../multiverse
