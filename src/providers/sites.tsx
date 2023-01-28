@@ -11,7 +11,7 @@ import {
     SiteMap,
     SiteMapValidator
 } from '../types';
-import sitesData from '../../public/content/sites.json';
+import sitesData from './sites.json';
 
 type SiteProviderType = {
     siteMap: SiteMap,
