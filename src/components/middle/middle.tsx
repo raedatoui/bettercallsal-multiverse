@@ -29,7 +29,8 @@ export const Middle: FC<Props> = () => {
         loading,
         selectedNavItem,
         selectedContentItem,
-        setSelectedContentItem
+        setSelectedContentItem,
+        setSelectedNavItem,
     } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
@@ -39,6 +40,7 @@ export const Middle: FC<Props> = () => {
 
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>([]);
     const [prevShuffledList, setPrevShuffledList] = useState<(BaseContentItem | GameContentItem)[]>([]);
+    const [isArt, setIsArt] = useState<boolean>(false);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
@@ -60,26 +62,42 @@ export const Middle: FC<Props> = () => {
         () => {
 
             let list = contentMap[selectedSite];
-
-            if (selectedNavItem !== null && selectedNavItem.category !== 'all' && selectedSite !== 'games')
+            if (selectedNavItem !== null
+                && selectedNavItem.category !== 'all'
+                && selectedSite !== 'games'
+                && selectedNavItem.category !== 'salutations')
                 list = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
 
-            if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
-                || (selectedSite === 'biz' && anim.spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
-                list = shuffleList(list);
-                setPrevShuffledList(list);
+            if (!isArt) {
+                if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
+                    || (selectedSite === 'biz' && anim.spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
+                    list = shuffleList(list);
+                    setPrevShuffledList(list);
+                }
+                if (selectedNavItem && selectedNavItem.category === 'salutations')
+                    setPrevShuffledList(list);
             }
+
             setContentList(list);
         },
-        [contentMap, selectedSite, selectedContentItem, selectedNavItem, anim, windowSize]
+        [contentMap, selectedSite, selectedContentItem, selectedNavItem, anim.spinningSalsGridCounter, windowSize, isArt]
     );
-    return (
-        <MiddleSection
-            ref={containerRef}
-        >
-            { selectedContentItem === null && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
 
-            <ContentList className={selectedContentItem === null ? 'on' : 'off'}>
+    useEffect(() => {
+        let art = false;
+        if (selectedContentItem && (selectedContentItem.contentType === 'image' || selectedContentItem.contentType === 'quad'))
+            art = true;
+        if (selectedNavItem && selectedNavItem.category === 'salutations')
+            art = true;
+        setIsArt(art);
+    }, [prevShuffledList, selectedContentItem, selectedNavItem]);
+    const isVideo = selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType);
+
+    return (
+        <MiddleSection ref={containerRef}>
+            { selectedContentItem === null && !isArt && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
+
+            <ContentList className={selectedContentItem === null && !isArt ? 'on' : 'off'}>
                 { loading && <div>loading</div> }
                 { !loading && contentList.map(i => (
                     <ContentItem key={i.contentId} onClick={() => setSelectedContentItem(i)}>
@@ -98,15 +116,15 @@ export const Middle: FC<Props> = () => {
                 ))}
             </ContentList>
 
-            { selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType) && (
+            { isVideo && (
                 <VideoPlayer />
             ) }
 
-            { selectedContentItem && (selectedContentItem.contentType === 'image' || selectedContentItem.contentType === 'quad') && (
+            { isArt && (
                 <ArtSlider
                     containerRef={containerRef}
                     images={prevShuffledList}
-                    start={prevShuffledList.indexOf(selectedContentItem)}
+                    start={selectedContentItem ? prevShuffledList.indexOf(selectedContentItem) : 0}
                 />
             )}
 

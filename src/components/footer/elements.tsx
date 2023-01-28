@@ -58,18 +58,18 @@ export const LawBreakersP = styled.div`
 
     &.img0 {
       &.rocks {
-        transform: scale(1.5);
+        transform: scale(1.75);
       }
       &.art {
-        transform: scale(1.25);
+        transform: scale(1.2);
       }
       &.hover {
         animation: ${footerLtr(-3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         &.rocks { 
-          animation: ${footerLtr(3600, 1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+          animation: ${footerLtr(3600, 1.75, 1.75)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
         &.art {
-          animation: ${footerLtr(3600, 1.25, 1.25)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+          animation: ${footerLtr(3600, 1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
       }
     }
@@ -77,19 +77,19 @@ export const LawBreakersP = styled.div`
     &.img1 {
       transform: scaleX(-1);
       &.rocks {
-        transform: scaleX(-1.5) scaleY(1.5);
+        transform: scaleX(-1.75) scaleY(1.75);
       }
       &.art {
-        transform: scaleX(-1.25) scaleY(1.25);
+        transform: scaleX(-1.2) scaleY(1.2);
       }
       &.hover {
         animation: ${footerLtr(3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
 
         &.rocks {
-          animation: ${footerLtr(3600, -1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+          animation: ${footerLtr(3600, -1.75, 1.75)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
         &.art {
-          animation: ${footerLtr(3600, -1.25, 1.25)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+          animation: ${footerLtr(3600, -1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
       }
     }

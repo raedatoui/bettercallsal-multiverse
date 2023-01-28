@@ -9,6 +9,8 @@ import { useWindowSize } from 'src/utils';
 // import styled from 'styled-components';
 // import { NavButton } from 'src/styles/sharedstyles';
 import { DALI } from 'src/constants';
+import { AnimationContext } from 'src/providers/animations';
+import { SliderInstance } from 'keen-slider';
 
 interface Props {
     containerRef: RefObject<HTMLDivElement>;
@@ -30,15 +32,15 @@ interface Props {
 // `;
 
 export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
-    const { siteMap, setSelectedContentItem } = useContext(SiteContext);
+    const { setSelectedContentItem, setSelectedNavItem } = useContext(SiteContext);
+    const { keyPressed } = useContext(AnimationContext);
     const windowSize = useWindowSize();
 
-    const [loaded, setLoaded] = useState<boolean[]>([]);
     const [sizes, setSizes] = useState<ContentSize[]>([]);
 
     const [currentSlide, setCurrentSlide] = useState(start);
 
-    const [sliderRef] = useKeenSlider<HTMLDivElement>({
+    const [sliderRef, sliderInstance] = useKeenSlider<HTMLDivElement>({
         animationEnded(s) {
             setCurrentSlide(s.track.details.rel);
         },
@@ -49,6 +51,7 @@ export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
         defaultAnimation: { duration: 1000, easing: (t: number) => 1 - (1 - t) ** 5 }
     }, [
         (slider) => {
+            // setSliderInstance(slider);
             let timeout: ReturnType<typeof setTimeout>;
             let mouseOver = false;
             function clearNextTimeout() {
@@ -100,20 +103,20 @@ export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
         return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
     };
 
-    useEffect(
-        () => {
-            const newLoaded = [...loaded];
-            newLoaded[currentSlide] = true;
-            setLoaded(newLoaded);
-        },
-        [currentSlide]
-    );
-
     useEffect(() => {
         setSizes(
             images.map(({ width, height }) => getContentSize({ width: width ?? 1, height: height ?? 1 }))
         );
     }, [windowSize]);
+
+    useEffect(() => {
+        if (sliderInstance.current) {
+            if (keyPressed === 'ArrowRight')
+                sliderInstance.current.next();
+            if (keyPressed === 'ArrowLeft')
+                sliderInstance.current.prev();
+        }
+    }, [keyPressed, sliderInstance]);
 
     return (
         <ImageContainer
@@ -127,15 +130,15 @@ export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
                         placeholder="blur"
                         blurDataURL={DALI}
                         alt={art.name}
-                        width={sizes[idx]?.width ?? siteMap.art.footer.imageWidth}
-                        height={sizes[idx]?.height ?? siteMap.art.footer.imageHeight}
+                        width={sizes[idx]?.width ?? 0}
+                        height={sizes[idx]?.height ?? 0}
                         loading="lazy"
                     />
                 </div>
             ))}
 
             <ButtonBar>
-                <StopButton onClick={() => setSelectedContentItem(null)}>BACK</StopButton>
+                <StopButton onClick={() => { setSelectedContentItem(null); setSelectedNavItem(null); }}>back</StopButton>
             </ButtonBar>
         </ImageContainer>
     );

@@ -109,7 +109,7 @@ export const PlayerContainer = styled.div`
 export const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
-  
+
   &:hover {
     div {
       display: flex;
