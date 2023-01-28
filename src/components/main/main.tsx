@@ -1,9 +1,9 @@
-import React, { FC, KeyboardEvent, useContext, useEffect } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { Main } from 'src/styles/sharedstyles';
 import { SiteContext } from 'src/providers/sites';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteKey } from 'src/types';
-import { CDN, KEYBOARD_SWITCHING } from 'src/constants';
+import { CDN } from 'src/constants';
 import { AnimationContext } from 'src/providers/animations';
 
 interface Props {

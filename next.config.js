@@ -1,14 +1,13 @@
 /** @type {import('next').NextConfig} */
+
+const env = require('./next.config.env.json');
+
 const nextConfig = {
   images: {
     loader: 'custom',
     loaderFile: './image-loader.js',
   },
-  env: {
-    selectedSite: 'biz',
-    keyboardSwitching: true,
-    cdn_url: 'https://storage.googleapis.com/bcs-assets'
-  },
+  env,
   reactStrictMode: true,
   compiler: {
     styledComponents: true,

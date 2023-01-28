@@ -30,7 +30,6 @@ export const Middle: FC<Props> = () => {
         selectedNavItem,
         selectedContentItem,
         setSelectedContentItem,
-        setSelectedNavItem,
     } = useContext(SiteContext);
     const site = siteMap[selectedSite];
 
@@ -80,7 +79,15 @@ export const Middle: FC<Props> = () => {
 
             setContentList(list);
         },
-        [contentMap, selectedSite, selectedContentItem, selectedNavItem, anim.spinningSalsGridCounter, windowSize, isArt]
+        [
+            contentMap,
+            selectedSite,
+            selectedContentItem,
+            selectedNavItem,
+            anim.spinningSalsGridCounter,
+            anim.animateHeaderFooter,
+            windowSize,
+            isArt]
     );
 
     useEffect(() => {
