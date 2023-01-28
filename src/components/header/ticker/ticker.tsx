@@ -1,6 +1,6 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState, MouseEvent } from 'react';
 import { SiteContext } from 'src/providers/sites';
-import { SiteOrder } from 'src/constants';
+import { EXTERNAL_LINK, SiteOrder } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
 import { Site, SiteKey } from 'src/types';
@@ -90,12 +90,19 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
             slideOut();
         else
             reset();
-
     }, [selectedSlide, selectedSite, start, index]);
+
+    const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+        if (!EXTERNAL_LINK) {
+            event.stopPropagation();
+            setSelectedSite(site.name);
+        }
+    };
+
     return (
         <SliderComponent
-            onClick={(event) => { event.stopPropagation(); setSelectedSite(site.name); }}
-            // href="https://bettercallsal.biz"
+            onClick={handleClick}
+            href={`https://bettercallsal.${site.name}`}
             animation={animation}
             animationDuration={animationDuration}
             visibility={visibility}

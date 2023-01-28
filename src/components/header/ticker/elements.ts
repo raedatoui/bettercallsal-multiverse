@@ -4,6 +4,7 @@ const BaseSlidingItem = styled.a`
   font-size: 0.3635em;
   margin: auto;
   text-transform: uppercase;
+  text-decoration: none;
   text-align: center;
   width: 100%;
   color: #DCDB00;
@@ -47,8 +48,7 @@ export const SiteUrl = styled(SlidingItem)`
 `;
 
 export const LowerBanner = styled(SlidingItem)`
-  letter-spacing: 4px;
-  text-decoration: none;
+  letter-spacing: 2px;
   
   span {
     margin-left: 10px;
