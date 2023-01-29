@@ -10,7 +10,7 @@ import {
     LeftNavNavItem,
 } from '../src/types';
 import { convertObjectToCsvString, CsvRow, parseCsv } from './csv';
-import sitesData from 'src/providers/sites.json';
+import sitesData from '../content/sites.json';
 
 const loadSheet = async (sheet: string): Promise<CsvRow[]> => {
     const csvData = await promises.readFile(join(__dirname, '../', 'public', 'content', sheet), 'utf-8');

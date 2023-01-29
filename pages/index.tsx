@@ -1,19 +1,52 @@
 /* eslint-disable max-len */
-import React, { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import Head from 'next/head';
 import { LeftNav } from 'src/components/left-nav';
 import { RightNav } from 'src/components/right-nav';
 import { Middle } from 'src/components/middle';
 import Script from 'next/script';
 import { LawBreakers } from 'src/components/footer';
-import { SiteContext } from 'src/providers/sites';
+import { SiteContext, SitesDataProvider } from 'src/providers/sites';
+import { AnimationsProvider } from 'src/providers/animations';
+import { SoundProvider } from 'src/providers/audio-context';
+import { WindowSizeProvider } from 'src/providers/window-size';
 import {
-    Row,
-} from '../src/styles/sharedstyles';
-import { HeaderComponent } from '../src/components/header';
-import { MainContainer } from '../src/components/main';
+    BaseContentItem,
+    BaseContentListValidator,
+    GameContentItem,
+    GameContentListValidator,
+    SiteKey,
+    SiteKeyValidator
+} from 'src/types';
+import { GetStaticPropsResult } from 'next';
+import { Row } from 'src/styles/sharedstyles';
+import { MainContainer } from 'src/components/main';
+import { HeaderComponent } from 'src/components/header';
 
-const Home = () => {
+interface PageProps {
+    defaultSite: SiteKey,
+    defaultContent: (BaseContentItem | GameContentItem)[]
+}
+
+export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>> {
+    const defaultSite = SiteKeyValidator.parse(process.env.selectedSite);
+    let defaultContent: (BaseContentItem | GameContentItem)[] = [];
+    if (defaultSite !== 'construction') {
+        const list = await import(`../content/content-${defaultSite}.json`);
+        if (defaultSite === 'games')
+            defaultContent = GameContentListValidator.parse(list.items);
+        else
+            defaultContent = BaseContentListValidator.parse(list.items);
+    }
+    return {
+        props: {
+            defaultSite,
+            defaultContent
+        },
+    };
+}
+
+const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
     const { siteMap, selectedSite } = useContext(SiteContext);
     const site = siteMap[selectedSite];
     return (
@@ -24,7 +57,7 @@ const Home = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="keywords" content={site.metaKeywords} />
                 <meta name="description" content={site.metaDescription} />
-
+                <meta name="theme-color" content="#eae41f" />
                 {/* <link rel="apple-touch-icon" sizes="57x57" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-57x57.png" /> */}
                 {/* <link rel="apple-touch-icon" sizes="60x60" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-60x60.png" /> */}
                 {/* <link rel="apple-touch-icon" sizes="72x72" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-72x72.png" /> */}
@@ -48,23 +81,31 @@ const Home = () => {
                 {/* <meta property="og:description" content="Better Call Sal For All Your Audio Needs" /> */}
                 {/* <meta property="og:image" content="https://storage.googleapis.com/www.bettercallsal.biz/images/og.png" /> */}
             </Head>
-            <MainContainer>
-                <Script
-                    id="youtube-iframe"
-                    src="https://www.youtube.com/iframe_api"
-                />
-                <Script
-                    id="vimeo-player"
-                    src="https://player.vimeo.com/api/player.js"
-                />
-                <HeaderComponent />
-                <Row id="content-row">
-                    <LeftNav />
-                    <Middle />
-                    <RightNav />
-                </Row>
-                <LawBreakers />
-            </MainContainer>
+            <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent}>
+                <AnimationsProvider>
+                    <SoundProvider>
+                        <WindowSizeProvider>
+                            <MainContainer>
+                                <Script
+                                    id="youtube-iframe"
+                                    src="https://www.youtube.com/iframe_api"
+                                />
+                                <Script
+                                    id="vimeo-player"
+                                    src="https://player.vimeo.com/api/player.js"
+                                />
+                                <HeaderComponent />
+                                <Row id="content-row">
+                                    <LeftNav />
+                                    <Middle />
+                                    <RightNav />
+                                </Row>
+                                <LawBreakers />
+                            </MainContainer>
+                        </WindowSizeProvider>
+                    </SoundProvider>
+                </AnimationsProvider>
+            </SitesDataProvider>
         </>
     );
 };
