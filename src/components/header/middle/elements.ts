@@ -168,7 +168,7 @@ export const BizerImage = styled.div<{ background: string }>`
   }
 `;
 
-export const SalName = styled.h3.attrs(props => ({ className: props.className }))`
+export const SalName = styled.h2.attrs(props => ({ className: props.className }))`
   color: white;
   text-transform: uppercase;
   font-size: 0.525em;
@@ -205,7 +205,7 @@ export const SalName = styled.h3.attrs(props => ({ className: props.className })
   }
 `;
 
-export const SalCaption = styled.h4`
+export const SalCaption = styled.h3`
   text-align: center;
   color: black;
   text-transform: uppercase;

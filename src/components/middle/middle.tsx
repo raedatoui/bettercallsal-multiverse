@@ -32,12 +32,11 @@ export const Middle: FC<Props> = () => {
         setSelectedContentItem,
     } = useContext(SiteContext);
     const site = siteMap[selectedSite];
-
     // these contexts are for causing a shuffle
     const windowSize = useWindowSize();
     const anim = useContext(AnimationContext);
 
-    const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>([]);
+    const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(contentMap[selectedSite]);
     const [prevShuffledList, setPrevShuffledList] = useState<(BaseContentItem | GameContentItem)[]>([]);
     const [isArt, setIsArt] = useState<boolean>(false);
 
@@ -57,38 +56,35 @@ export const Middle: FC<Props> = () => {
         }
     }, [selectedContentItem]);
 
-    useEffect(
-        () => {
+    useEffect(() => {
+        let list = contentMap[selectedSite];
+        if (selectedNavItem !== null
+            && selectedNavItem.category !== 'all'
+            && selectedNavItem.category !== 'e-card'
+            && selectedSite !== 'games'
+            && selectedNavItem.category !== 'salutations')
+            list = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
 
-            let list = contentMap[selectedSite];
-            if (selectedNavItem !== null
-                && selectedNavItem.category !== 'all'
-                && selectedSite !== 'games'
-                && selectedNavItem.category !== 'salutations')
-                list = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
-
-            if (!isArt) {
-                if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
-                    || (selectedSite === 'biz' && anim.spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
-                    list = shuffleList(list);
-                    setPrevShuffledList(list);
-                }
-                if (selectedNavItem && selectedNavItem.category === 'salutations')
-                    setPrevShuffledList(list);
+        if (!isArt) {
+            if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
+                || (selectedSite === 'biz' && anim.spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
+                list = shuffleList(list);
+                setPrevShuffledList(list);
             }
+            if (selectedNavItem && selectedNavItem.category === 'salutations')
+                setPrevShuffledList(list);
+        }
 
-            setContentList(list);
-        },
-        [
-            contentMap,
-            selectedSite,
-            selectedContentItem,
-            selectedNavItem,
-            anim.spinningSalsGridCounter,
-            anim.animateHeaderFooter,
-            windowSize,
-            isArt]
-    );
+        setContentList(list);
+    }, [
+        contentMap,
+        selectedSite,
+        selectedContentItem,
+        selectedNavItem,
+        anim.spinningSalsGridCounter,
+        anim.animateHeaderFooter,
+        windowSize,
+        isArt]);
 
     useEffect(() => {
         let art = false;
@@ -98,30 +94,33 @@ export const Middle: FC<Props> = () => {
             art = true;
         setIsArt(art);
     }, [prevShuffledList, selectedContentItem, selectedNavItem]);
+
     const isVideo = selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType);
 
     return (
         <MiddleSection ref={containerRef}>
             { selectedContentItem === null && !isArt && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
 
-            <ContentList className={selectedContentItem === null && !isArt ? 'on' : 'off'}>
-                { loading && <div>loading</div> }
-                { !loading && contentList.map(i => (
-                    <ContentItem key={i.contentId} onClick={() => setSelectedContentItem(i)}>
-                        <Image
-                            alt={i.name}
-                            src={`/images/${selectedSite}/thumbs/${i.thumb}`}
-                            width="480"
-                            height="360"
-                            loading="lazy"
-                            layout="responsive"
-                        />
-                        <ContentItemTitle>
-                            { i.name }
-                        </ContentItemTitle>
-                    </ContentItem>
-                ))}
-            </ContentList>
+            { selectedSite !== 'construction' && (
+                <ContentList className={selectedContentItem === null && !isArt && selectedNavItem?.category !== 'e-card' ? 'on' : 'off'}>
+                    { loading && <div>loading</div> }
+                    { !loading && contentList.map(i => (
+                        <ContentItem key={i.contentId} onClick={() => setSelectedContentItem(i)}>
+                            <Image
+                                alt={i.name}
+                                src={`/images/${selectedSite}/thumbs/${i.thumb}`}
+                                width="480"
+                                height="360"
+                                loading="lazy"
+                                layout="responsive"
+                            />
+                            <ContentItemTitle>
+                                { i.name }
+                            </ContentItemTitle>
+                        </ContentItem>
+                    ))}
+                </ContentList>
+            )}
 
             { isVideo && (
                 <VideoPlayer />

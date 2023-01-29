@@ -2,14 +2,14 @@
   "biz": {
     "name": "biz",
     "contentHeader": "In  sound  trouble?",
-    "metaTitle": "In Sound Trouble?",
+    "metaTitle": "In Sound Trouble? Better Call Sal",
     "metaDescription": "Bettercallsal.biz | For All Your Sound Mixer Needs | What Are You Waiting For? Better Call Sal! Paul McCartney, Harry Styles, Sam Smith, VICE, HBO, CNN, NIKE, ESPN, Adidas",
     "metaKeywords": "Salvatore Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
     "header": {
-      "spinningSalsLeft": "/images/biz/sal-left.png",
-      "spinningSalsRight": "/images/biz/sal-right.png",
+      "spinningSalsLeft": "/images/biz/sal-left.webp",
+      "spinningSalsRight": "/images/biz/sal-right.webp",
       "spinningSalAudio": "/audio/biz/airhorn.wav",
-      "bizerkIcon": "/images/biz/mic.png",
+      "bizerkIcon": "/images/biz/mic.webp",
       "ringAudio": "/audio/biz/phone-ring.wav",
       "name1": "Salvatore",
       "name2": "Barra",
@@ -17,7 +17,7 @@
       "lowerBanner": "Want Emails from Sal?"
     },
     "leftNav": {
-      "image": "/images/biz/nav-sq.jpg",
+      "image": "/images/biz/nav-sq.webp",
       "text": "SAL WORKED FOR ME!!!!",
       "video": "01agkvzV7Jk",
       "audio": null,
@@ -75,7 +75,7 @@
     },
     "footer": {
       "text": "welcome producers",
-      "image": "/images/biz/rca-mic.png",
+      "image": "/images/biz/rca-mic.webp",
       "imageWidth": 148,
       "imageHeight": 393,
       "ringAudio": "/audio/biz/phone-ring.wav"
@@ -83,13 +83,13 @@
   },
   "fit": {
     "name": "fit",
-    "contentHeader": "In  fitness  trouble?",
+    "contentHeader": "In  fitness  trouble? Better Call Sal",
     "metaTitle": "In Fitness Trouble?",
     "metaDescription": "Bettercallsal.fit | For All Your Fitness Needs | What Are You Waiting For? Better Call Sal! Sound Bath, Yoga, Strength, Meditation, Stretch, Barre, Boxing, Pilates",
     "metaKeywords": "Salvatore Barra, Salvatore, Barra, Yogi Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
     "header": {
-      "spinningSalsLeft": "/images/fit/shweaty-left.png",
-      "spinningSalsRight": "/images/fit/shweaty-right.png",
+      "spinningSalsLeft": "/images/fit/shweaty-left.webp",
+      "spinningSalsRight": "/images/fit/shweaty-right.webp",
       "spinningSalAudio": "/audio/fit/ready-for-this.wav",
       "bizerkIcon": "/images/fit/namaste-smoking.gif",
       "ringAudio": "/audio/fit/ring.fit.mp3",
@@ -99,7 +99,7 @@
       "lowerBanner": "Want Workouts from Sal?"
     },
     "leftNav": {
-      "image": "/images/fit/salwmeout.png",
+      "image": "/images/fit/salwmeout.webp",
       "text": "SAL WORKED ME OUT!!!!",
       "video": null,
       "audio": null,
@@ -202,7 +202,7 @@
     },
     "footer": {
       "text": "NAMASTE",
-      "image": "/images/fit/om.png",
+      "image": "/images/fit/om.webp",
       "imageWidth": 500,
       "imageHeight": 512,
       "ringAudio": "/audio/fit/ring.fit.mp3"
@@ -210,13 +210,13 @@
   },
   "art": {
     "name": "art",
-    "contentHeader": "In  art  trouble?",
+    "contentHeader": "In  art  trouble? Better Call Sal",
     "metaTitle": "In Art Trouble?",
     "metaDescription": "Bettercallsal.art | For All Your Art Needs | What Are You Waiting For? Better Call Sal! Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
     "metaKeywords": "Salvatore Barra, Salvatore, Barra, Salvatore Dali ",
     "header": {
-      "spinningSalsLeft": "/images/art/spinning.art.left.png",
-      "spinningSalsRight": "/images/art/spinning.art.right.png",
+      "spinningSalsLeft": "/images/art/spinning.art.left.webp",
+      "spinningSalsRight": "/images/art/spinning.art.right.webp",
       "spinningSalAudio": "/audio/art/spinning.art.mp3",
       "bizerkIcon": "/images/art/spray.gif",
       "ringAudio": "/audio/art/ring.art.mp3",
@@ -226,7 +226,7 @@
       "lowerBanner": "Want Art from Sal?"
     },
     "leftNav": {
-      "image": "/images/art/left.art.jpg",
+      "image": "/images/art/left.art.webp",
       "text": "ABOUT THE ARTIST!!!!",
       "video": null,
       "audio": "/audio/art/cummilker.mp3",
@@ -301,13 +301,13 @@
   },
   "rocks": {
     "name": "rocks",
-    "contentHeader": "In  music  trouble?",
+    "contentHeader": "In  music  trouble? Better Call Sal",
     "metaTitle": "In Music Trouble?",
     "metaDescription": "Bettercallsal.rocks | For All Your Rock Music Needs | What Are You Waiting For? Better Call Sal!",
     "metaKeywords": "Salvatore Barra, Salvatore, Barra, Sal Barratone ",
     "header": {
-      "spinningSalsLeft": "/images/rocks/spinning.rocks.left.png",
-      "spinningSalsRight": "/images/rocks/spinning.rocks.right.png",
+      "spinningSalsLeft": "/images/rocks/spinning.rocks.left.webp",
+      "spinningSalsRight": "/images/rocks/spinning.rocks.right.webp",
       "spinningSalAudio": "/audio/rocks/spinning.rocks.mp3",
       "bizerkIcon": "/images/rocks/spinning.rocks.cat.gif",
       "ringAudio": "/audio/rocks/ring.rocks.mp3",
@@ -317,7 +317,7 @@
       "lowerBanner": "Want Music from Sal?"
     },
     "leftNav": {
-      "image": "/images/rocks/hardcore.jpg",
+      "image": "/images/rocks/hardcore.webp",
       "text": "SAL ROCKED ME!!!!",
       "video": null,
       "audio": "/audio/rocks/pavane.mp3",
@@ -383,13 +383,13 @@
   },
   "games": {
     "name": "games",
-    "contentHeader": "In  gaming  trouble?",
+    "contentHeader": "In  gaming  trouble? Better Call Sal",
     "metaTitle": "In Gaming Trouble?",
     "metaDescription": "Bettercallsal.games | For All Your Gaming Needs | What Are You Waiting For? Better Call Sal!",
     "metaKeywords": "Salvatore Barra, Salvatore, Barra, Super Sal Bros",
     "header": {
-      "spinningSalsLeft": "/images/games/spinning.games.left.png",
-      "spinningSalsRight": "/images/games/spinning.games.right.png",
+      "spinningSalsLeft": "/images/games/spinning.games.left.webp",
+      "spinningSalsRight": "/images/games/spinning.games.right.webp",
       "spinningSalAudio": "/audio/games/spinning.games.mp3",
       "bizerkIcon": "/images/games/coin6.gif",
       "ringAudio": "/audio/games/ring.games.mp3",
@@ -399,7 +399,7 @@
       "lowerBanner": "Want Games from Sal?"
     },
     "leftNav": {
-      "image": "/images/games/left.games.jpg",
+      "image": "/images/games/left.games.webp",
       "text": "SAL PLAYED ME!!!!",
       "video": null,
       "audio": null,
@@ -423,20 +423,20 @@
           "quoteLink": null
         },
         {
-          "name": "Salitaire",
-          "audio": null,
-          "video": null,
-          "link": null,
-          "category": "salitaire",
-          "quote": null,
-          "quoteLink": null
-        },
-        {
           "name": "Sal-man",
           "audio": null,
           "video": null,
           "link": null,
           "category": "salman",
+          "quote": null,
+          "quoteLink": null
+        },
+        {
+          "name": "Salitaire",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "salitaire",
           "quote": null,
           "quoteLink": null
         }
@@ -448,7 +448,7 @@
     },
     "footer": {
       "text": "welcome gamers",
-      "image": "/images/games/star.png",
+      "image": "/images/games/star.webp",
       "imageWidth": 300,
       "imageHeight": 300,
       "ringAudio": "/audio/games/ring.games.mp3"
@@ -456,13 +456,13 @@
   },
   "construction": {
     "name": "construction",
-    "contentHeader": "In  construction  trouble?",
+    "contentHeader": "In  construction  trouble? Better Call Sal",
     "metaTitle": "In Construction Trouble?",
     "metaDescription": "Bettercallsal.construction | For All Your Construction Needs | What Are You Waiting For? Better Call Sal!",
     "metaKeywords": "Salvatore Barra, Salvatore, Barra, Hard Hat Sal",
     "header": {
-      "spinningSalsLeft": "/images/construction/spinning.construction.left.png",
-      "spinningSalsRight": "/images/construction/spinning.construction.right.png",
+      "spinningSalsLeft": "/images/construction/spinning.construction.left.webp",
+      "spinningSalsRight": "/images/construction/spinning.construction.right.webp",
       "spinningSalAudio": "/audio/construction/cat.call.loud.mp3",
       "bizerkIcon": "/images/construction/under.gif",
       "ringAudio": "/audio/construction/ring.construction.mp3",
@@ -472,7 +472,7 @@
       "lowerBanner": "Want Construction from Sal?"
     },
     "leftNav": {
-      "image": "/images/construction/nav-sq.jpg",
+      "image": "/images/construction/nav-sq.webp",
       "text": "SAL WORKED FOR ME!!!!",
       "video": "01agkvzV7Jk",
       "audio": null,
@@ -530,7 +530,7 @@
     },
     "footer": {
       "text": "under construction",
-      "image": "/images/construction/footer.construction.png",
+      "image": "/images/construction/footer.construction.webp",
       "imageWidth": 255,
       "imageHeight": 393,
       "ringAudio": "/audio/construction/ring.construction.mp3"

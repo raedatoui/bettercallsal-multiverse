@@ -38,3 +38,13 @@ rm -rf ../firebase/construction/out
 mv out ../firebase/construction/
 cd ../firebase/construction
 firebase deploy
+
+# fit
+cd ../../multiverse
+yarn clean
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' ts-node scripts/config.ts fit
+yarn static
+rm -rf ../firebase/fit/out
+mv out ../firebase/fit/
+cd ../firebase/fit
+firebase deploy

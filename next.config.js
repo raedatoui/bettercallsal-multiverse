@@ -8,7 +8,7 @@ const nextConfig = {
     loaderFile: './image-loader.js',
   },
   env,
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {
     styledComponents: true,
   },
@@ -31,6 +31,7 @@ const nextConfig = {
         },
       ],
     });
+    config.experiments = { ...config.experiments, topLevelAwait: true };
     return config;
   }
 }

@@ -11,7 +11,7 @@ import {
     SiteMap,
     SiteMapValidator
 } from '../types';
-import sitesData from './sites.json';
+import sitesData from '../../content/sites.json';
 
 type SiteProviderType = {
     siteMap: SiteMap,
@@ -51,12 +51,16 @@ const SiteContext = createContext<SiteProviderType>({
 interface ProviderProps {
     children: JSX.Element;
     defaultSite: SiteKey;
+    defaultContent: (BaseContentItem | GameContentItem)[]
 }
 
-const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
+const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultContent }) => {
     const [selectedSite, setSelectedSite] = useState<SiteKey>(defaultSite);
-    const [contentMap, setContentMap] = useState<ContentMap>(defaultContentMap);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [contentMap, setContentMap] = useState<ContentMap>({
+        ...defaultContentMap,
+        [defaultSite]: defaultContent
+    });
+    const [loading, setLoading] = useState<boolean>(false);
     const [selectedNavItem, setSelectedNavItem] = useState<LeftNavNavItem | null>(null);
     const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | GameContentItem | null>(null);
 
@@ -86,7 +90,8 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite }) => {
                 console.error(error);
             }
         };
-        if (contentMap[selectedSite].length === 0 && selectedSite !== 'construction') {
+
+        if (selectedSite !== 'construction' && contentMap[selectedSite].length === 0) {
             setLoading(true);
             fetchData();
         } else

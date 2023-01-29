@@ -23,7 +23,7 @@ export const MainContainer: FC<Props> = ({ children }) => {
     const { selectedSite, setSelectedSite } = useContext(SiteContext);
     const { keyPressed } = useContext(AnimationContext);
 
-    const cursor = `${CDN}/images/${selectedSite}/cursor.png`;
+    const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
     const { height } = useContext(WindowSizeContext);
 

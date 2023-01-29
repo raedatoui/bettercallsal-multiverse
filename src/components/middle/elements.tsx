@@ -15,7 +15,7 @@ export const MiddleSection = styled.div`
     }
 `;
 
-export const Caption = styled.h5`
+export const Caption = styled.h4`
   color: rgb(253, 0, 0);
   text-transform: uppercase;
   margin: auto;
