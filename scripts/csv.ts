@@ -1,5 +1,7 @@
 import { unparse, parse } from 'papaparse';
 import { camelCase } from 'lodash';
+import { promises } from 'fs';
+import { join } from 'path';
 
 export type CsvRow = Record<string, string | CsvRow[]>;
 export type RowError = {
@@ -49,3 +51,8 @@ export const convertObjectToCsvString = <T>(rows: T[], addHeaders = true): strin
     header: addHeaders,
     newline: '\n',
 });
+
+export const loadSheet = async (sheet: string): Promise<CsvRow[]> => {
+    const csvData = await promises.readFile(join(__dirname, '../', 'content', sheet), 'utf-8');
+    return parseCsv(csvData);
+};
