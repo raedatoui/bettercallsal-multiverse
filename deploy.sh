@@ -2,7 +2,7 @@
 
 # art
 yarn clean
-TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' ts-node scripts/config.ts art
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts art
 yarn static
 rm -rf ../firebase/art/out
 mv out ../firebase/art/
@@ -12,7 +12,7 @@ firebase deploy
 # games
 cd ../../multiverse
 yarn clean
-TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' ts-node scripts/config.ts games
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts games
 yarn static
 rm -rf ../firebase/games/out
 mv out ../firebase/games/
@@ -22,7 +22,7 @@ firebase deploy
 # rocks
 cd ../../multiverse
 yarn clean
-TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' ts-node scripts/config.ts rocks
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts rocks
 yarn static
 rm -rf ../firebase/rocks/out
 mv out ../firebase/rocks/
@@ -32,7 +32,7 @@ firebase deploy
 # construction
 cd ../../multiverse
 yarn clean
-TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' ts-node scripts/config.ts construction
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts construction
 yarn static
 rm -rf ../firebase/construction/out
 mv out ../firebase/construction/
@@ -42,7 +42,7 @@ firebase deploy
 # fit
 cd ../../multiverse
 yarn clean
-TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' ts-node scripts/config.ts fit
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts fit
 yarn static
 rm -rf ../firebase/fit/out
 mv out ../firebase/fit/

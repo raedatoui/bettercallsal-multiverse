@@ -93,13 +93,68 @@ export const BizerkImageContainer = styled.div`
   }
 `;
 
+export const BizerkVideo = styled.video`
+  transition: all 0.5s linear;
+  animation: ${glowShadow} 1.5s linear infinite alternate;
+  box-sizing: border-box;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  backface-visibility: visible;
+  opacity: 1;
+  cursor: pointer;
+
+  &:hover {
+    animation: ${ltr2} .5s linear 3;
+  }
+
+  &.biz {
+    height: 66px;
+    width: 50.65px;
+    margin: 0 2px 0 5px;
+  }
+
+  &.fit {
+    height: 66px;
+    width: 69px;
+    margin: 0 0;
+  }
+
+  &.art {
+    height: 66px;
+    width: 67px;
+    margin-right: -16px;
+    margin-left: 0px;
+  }
+
+  &.rocks {
+    height: 66px;
+    width: 46px;
+    margin: 0 2px 0 5px;
+  }
+
+  &.games {
+    height: 60px;
+    width: 60px;
+    margin: 0 -4px;
+  }
+
+  &.construction {
+    height: 50px;
+    width: 50px;
+    margin: 0 2px 0 4px;
+  }
+`;
+
 export const BizerImage = styled.div<{ background: string }>`
   transition: all 0.5s linear;
   animation: ${glowShadow} 1.5s linear infinite alternate;
+  
   background-image:  url(${props => `${CDN}${props.background}`});
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
+  
   box-sizing: border-box;
   perspective: 1000px;
   transform-style: preserve-3d;

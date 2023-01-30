@@ -10,6 +10,7 @@
       "spinningSalsRight": "/images/biz/sal-right.webp",
       "spinningSalAudio": "/audio/biz/airhorn.wav",
       "bizerkIcon": "/images/biz/mic.webp",
+      "bizerkIconType": "image",
       "ringAudio": "/audio/biz/phone-ring.wav",
       "name1": "Salvatore",
       "name2": "Barra",
@@ -75,9 +76,10 @@
     },
     "footer": {
       "text": "welcome producers",
-      "image": "/images/biz/rca-mic.webp",
-      "imageWidth": 148,
-      "imageHeight": 393,
+      "icon": "/images/biz/rca-mic.webp",
+      "iconType": "image",
+      "iconWidth": 148,
+      "iconHeight": 393,
       "ringAudio": "/audio/biz/phone-ring.wav"
     }
   },
@@ -92,6 +94,7 @@
       "spinningSalsRight": "/images/fit/shweaty-right.webp",
       "spinningSalAudio": "/audio/fit/ready-for-this.wav",
       "bizerkIcon": "/images/fit/namaste-smoking.gif",
+      "bizerkIconType": "image",
       "ringAudio": "/audio/fit/ring.fit.mp3",
       "name1": "Yogi",
       "name2": "Barra",
@@ -202,9 +205,10 @@
     },
     "footer": {
       "text": "NAMASTE",
-      "image": "/images/fit/om.webp",
-      "imageWidth": 500,
-      "imageHeight": 512,
+      "icon": "/images/fit/om.webp",
+      "iconType": "image",
+      "iconWidth": 500,
+      "iconHeight": 512,
       "ringAudio": "/audio/fit/ring.fit.mp3"
     }
   },
@@ -219,6 +223,7 @@
       "spinningSalsRight": "/images/art/spinning.art.right.webp",
       "spinningSalAudio": "/audio/art/spinning.art.mp3",
       "bizerkIcon": "/images/art/spray.gif",
+      "bizerkIconType": "image",
       "ringAudio": "/audio/art/ring.art.mp3",
       "name1": "Salvatore",
       "name2": "Dali",
@@ -293,9 +298,10 @@
     },
     "footer": {
       "text": "welcome artists",
-      "image": "/images/art/dali.gif",
-      "imageWidth": 462,
-      "imageHeight": 432,
+      "icon": "/images/art/dali.webm",
+      "iconType": "video",
+      "iconWidth": 462,
+      "iconHeight": 432,
       "ringAudio": "/audio/art/ring.art.mp3"
     }
   },
@@ -310,6 +316,7 @@
       "spinningSalsRight": "/images/rocks/spinning.rocks.right.webp",
       "spinningSalAudio": "/audio/rocks/spinning.rocks.mp3",
       "bizerkIcon": "/images/rocks/spinning.rocks.cat.gif",
+      "bizerkIconType": "image",
       "ringAudio": "/audio/rocks/ring.rocks.mp3",
       "name1": "Sal",
       "name2": "Barratone",
@@ -375,9 +382,10 @@
     },
     "footer": {
       "text": "welcome rockstars",
-      "image": "/images/rocks/smashguitar.gif",
-      "imageWidth": 225,
-      "imageHeight": 256,
+      "icon": "/images/rocks/smashguitar.webm",
+      "iconType": "video",
+      "iconWidth": 225,
+      "iconHeight": 256,
       "ringAudio": "/audio/rocks/ring.rocks.mp3"
     }
   },
@@ -392,6 +400,7 @@
       "spinningSalsRight": "/images/games/spinning.games.right.webp",
       "spinningSalAudio": "/audio/games/spinning.games.mp3",
       "bizerkIcon": "/images/games/coin6.gif",
+      "bizerkIconType": "image",
       "ringAudio": "/audio/games/ring.games.mp3",
       "name1": "Super",
       "name2": "Sal Bros.",
@@ -448,9 +457,10 @@
     },
     "footer": {
       "text": "welcome gamers",
-      "image": "/images/games/star.webp",
-      "imageWidth": 300,
-      "imageHeight": 300,
+      "icon": "/images/games/star.webp",
+      "iconType": "image",
+      "iconWidth": 300,
+      "iconHeight": 300,
       "ringAudio": "/audio/games/ring.games.mp3"
     }
   },
@@ -465,6 +475,7 @@
       "spinningSalsRight": "/images/construction/spinning.construction.right.webp",
       "spinningSalAudio": "/audio/construction/cat.call.loud.mp3",
       "bizerkIcon": "/images/construction/under.gif",
+      "bizerkIconType": "image",
       "ringAudio": "/audio/construction/ring.construction.mp3",
       "name1": "Hard Hat",
       "name2": "Sal",
@@ -530,9 +541,10 @@
     },
     "footer": {
       "text": "under construction",
-      "image": "/images/construction/footer.construction.webp",
-      "imageWidth": 255,
-      "imageHeight": 393,
+      "icon": "/images/construction/footer.construction.webp",
+      "iconType": "image",
+      "iconWidth": 255,
+      "iconHeight": 393,
       "ringAudio": "/audio/construction/ring.construction.mp3"
     }
   }
