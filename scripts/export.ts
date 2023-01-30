@@ -1,4 +1,4 @@
-import { LeftNavNavItem, SiteMapValidator } from 'src/types';
+import { LeftNavNavItem, SiteMapValidator } from '../src/types';
 import { convertObjectToCsvString } from './csv';
 import sitesData from '../content/sites.json';
 
