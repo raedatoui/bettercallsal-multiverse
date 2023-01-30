@@ -6,6 +6,7 @@ import { Size } from 'src/types';
 import { SiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import { AnimationContext } from 'src/providers/animations';
+import { CDN } from 'src/constants';
 
 interface Props {}
 
@@ -23,7 +24,8 @@ export const LawBreakers: FC<Props> = () => {
     const [betterCallState, setBetterCallSalState] = useState<string>('');
 
     const ref = useRef<HTMLParagraphElement>(null);
-
+    const video1Ref = useRef<HTMLVideoElement>(null);
+    const video2Ref = useRef<HTMLVideoElement>(null);
     const getContentSize = (desiredSize: Size): Size => {
         const height = ref.current?.getBoundingClientRect().height ?? 0;
         const width = (height * desiredSize.width) / desiredSize.height;
@@ -52,11 +54,11 @@ export const LawBreakers: FC<Props> = () => {
     };
 
     useEffect(() => {
-        setMicSize(getContentSize({ width: site.footer.imageWidth, height: site.footer.imageHeight }));
+        setMicSize(getContentSize({ width: site.footer.iconWidth, height: site.footer.iconHeight }));
     }, [windowSize, site]);
 
     useEffect(() => {
-        setMicSize(getContentSize({ width: site.footer.imageWidth, height: site.footer.imageHeight }));
+        setMicSize(getContentSize({ width: site.footer.iconWidth, height: site.footer.iconHeight }));
     }, []);
 
     useEffect(() => {
@@ -68,17 +70,44 @@ export const LawBreakers: FC<Props> = () => {
         if (animateHeaderFooter)
             footerClick();
     }, [animateHeaderFooter]);
+
+    useEffect(() => {
+        if (site.footer.iconType === 'video') {
+            video1Ref.current?.load();
+            video2Ref.current?.load();
+        }
+
+    }, [site.footer.icon, site.footer.iconType]);
     return (
         <>
             <LawBreakersContainer>
                 <LawBreakersP ref={ref} className={betterCallState}>
-                    <Image
-                        className={leftSpinningState}
-                        src={site.footer.image}
-                        alt="rca-mic"
-                        width={micSize.width}
-                        height={micSize.height}
-                    />
+                    { site.footer.iconType === 'image'
+                        && (
+                            <Image
+                                className={leftSpinningState}
+                                src={site.footer.icon}
+                                alt="rca-mic"
+                                width={micSize.width}
+                                height={micSize.height}
+                                loading="lazy"
+                            />
+                        )}
+                    { site.footer.iconType === 'video'
+                        && (
+                            <video
+                                ref={video1Ref}
+                                className={leftSpinningState}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                width={micSize.width}
+                                height={micSize.height}
+                            >
+                                <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
+                            </video>
+                        )}
                     <LawBreakersSpan
                         onClick={() => {
                             // footerClick();
@@ -87,13 +116,32 @@ export const LawBreakers: FC<Props> = () => {
                     >
                         {site.footer.text}
                     </LawBreakersSpan>
-                    <Image
-                        className={rightSpinningState}
-                        src={site.footer.image}
-                        alt="rca-mic"
-                        width={micSize.width}
-                        height={micSize.height}
-                    />
+                    { site.footer.iconType === 'image'
+                        && (
+                            <Image
+                                className={rightSpinningState}
+                                src={site.footer.icon}
+                                alt="rca-mic"
+                                width={micSize.width}
+                                height={micSize.height}
+                                loading="lazy"
+                            />
+                        )}
+                    { site.footer.iconType === 'video'
+                        && (
+                            <video
+                                ref={video2Ref}
+                                className={rightSpinningState}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                width={micSize.width}
+                                height={micSize.height}
+                            >
+                                <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
+                            </video>
+                        )}
                 </LawBreakersP>
             </LawBreakersContainer>
             <FooterContainer>

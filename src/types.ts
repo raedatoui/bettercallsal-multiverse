@@ -5,6 +5,7 @@ export const HeaderValidator = z.object({
     spinningSalsRight: z.string(),
     spinningSalAudio: z.string(),
     bizerkIcon: z.string(),
+    bizerkIconType: z.enum(['image', 'video']),
     ringAudio: z.string(),
     name1: z.string(),
     name2: z.string(),
@@ -50,9 +51,10 @@ export const SiteValidator = z.object({
     }),
     footer: z.object({
         text: z.string(),
-        image: z.string(),
-        imageWidth: z.number(),
-        imageHeight: z.number(),
+        icon: z.string(),
+        iconType: z.enum(['image', 'video']),
+        iconWidth: z.number(),
+        iconHeight: z.number(),
         ringAudio: z.string(),
     }),
 });

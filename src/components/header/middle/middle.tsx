@@ -1,7 +1,8 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { BizerImage, BizerkImageContainer } from 'src/components/header/middle/elements';
+import { BizerImage, BizerkImageContainer, BizerkVideo } from 'src/components/header/middle/elements';
 import { Site } from 'src/types';
 import { AnimationContext } from 'src/providers/animations';
+import { CDN } from 'src/constants';
 
 interface Props {
     site: Site;
@@ -52,7 +53,14 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
 
     return (
         <BizerkImageContainer onClick={bizerkAnim} className={site.name}>
-            <BizerImage ref={bizerkRef} background={site.header.bizerkIcon} className={site.name} />
+            { site.header.bizerkIconType === 'image'
+                && <BizerImage ref={bizerkRef} background={site.header.bizerkIcon} className={site.name} />}
+            { site.header.bizerkIconType === 'video'
+                && (
+                    <BizerkVideo className={site.name}>
+                        <source src={`${CDN}${site.header.bizerkIcon}`} type="video/webm" />
+                    </BizerkVideo>
+                )}
         </BizerkImageContainer>
     );
 };
