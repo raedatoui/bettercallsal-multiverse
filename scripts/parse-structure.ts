@@ -1,4 +1,6 @@
-import { CsvRow, loadSheet } from 'scripts/csv';
+import { join } from 'path';
+import { writeFileSync } from 'fs';
+import { CsvRow, loadSheet } from './csv';
 import { Site, SiteKey, SiteMapValidator, SiteValidator } from '../src/types';
 
 type RowWithNav = CsvRow & {
@@ -28,6 +30,7 @@ const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                     spinningSalsRight: `/images/${r.key}/${r.spinningSalsRight}`,
                     spinningSalAudio: `/audio/${r.key}/${r.spinningSalAudio}`,
                     bizerkIcon: `/images/${r.key}/${r.bizerkIcon}`,
+                    bizerkIconType: r.bizerkIconType,
                     ringAudio: `/audio/${r.key}/${r.ringAudio}`,
                     name1: r.name1,
                     name2: r.name2,
@@ -38,7 +41,7 @@ const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                     image: `/images/${r.key}/${r.leftImage}`,
                     text: r.leftImageText,
                     video: r.leftImageVideo === '' ? null : r.leftImageVideo,
-                    audio: r.leftImageAudio === '' ? null : `audio/${r.key}/${r.leftImageAudio}`,
+                    audio: r.leftImageAudio === '' ? null : `/audio/${r.key}/${r.leftImageAudio}`,
                     items: r.items.map(i => ({
                         name: i.name,
                         audio: i.audio === '' ? null : `/audio/${r.key}/${i.audio}`,
@@ -55,9 +58,10 @@ const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                 },
                 footer: {
                     text: r.footerText,
-                    image: `/images/${r.key}/${r.footerImage}`,
-                    imageWidth: parseInt(r.footerImageWidth.toString(), 10),
-                    imageHeight: parseInt(r.footerImageHeight.toString(), 10),
+                    icon: `/images/${r.key}/${r.footerIcon}`,
+                    iconType: r.footerIconType,
+                    iconWidth: parseInt(r.footerIconWidth.toString(), 10),
+                    iconHeight: parseInt(r.footerIconHeight.toString(), 10),
                     ringAudio: `/audio/${r.key}/${r.footerAudio}`,
                 },
             }))
@@ -67,7 +71,9 @@ const loadSites = async (): Promise<Record<SiteKey, Site>> => {
             }), {})
     );
 
-    console.log(JSON.stringify(sites));
+    writeFileSync(join(__dirname, '../', 'content', 'sites.json'), JSON.stringify(sites), {
+        flag: 'w',
+    });
     return sites;
 };
 

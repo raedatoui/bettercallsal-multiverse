@@ -7,7 +7,7 @@ import {
     ContentMap, GameContentItem,
     GameContentListValidator,
     LeftNavNavItem,
-    SiteKey,
+    SiteKey, SiteKeyValidator,
     SiteMap,
     SiteMapValidator
 } from '../types';
@@ -38,7 +38,7 @@ const defaultContentMap = {
 
 const SiteContext = createContext<SiteProviderType>({
     siteMap,
-    selectedSite: 'biz',
+    selectedSite: SiteKeyValidator.parse(process.env.selectedSite),
     setSelectedSite: () => {},
     contentMap: defaultContentMap,
     loading: true,
@@ -78,12 +78,12 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
                 if (selectedSite === 'games')
                     setContentMap({
                         ...contentMap,
-                        games: GameContentListValidator.parse(response)
+                        games: GameContentListValidator.parse(response.items)
                     });
                 else
                     setContentMap({
                         ...contentMap,
-                        [selectedSite]: BaseContentListValidator.parse(response)
+                        [selectedSite]: BaseContentListValidator.parse(response.items)
                     });
                 setLoading(false);
             } catch (error) {
