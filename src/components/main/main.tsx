@@ -7,7 +7,7 @@ import { CDN } from 'src/constants';
 import { AnimationContext } from 'src/providers/animations';
 
 interface Props {
-    children: JSX.Element[];
+    children: JSX.Element | JSX.Element[];
 }
 
 const keyMap: Record<string, SiteKey> = {
@@ -32,12 +32,12 @@ export const MainContainer: FC<Props> = ({ children }) => {
             document.body.style.overflowY = 'auto';
             document.body.style.height = 'auto';
             // @ts-ignore
-            document.getElementById('content-row').style.overflowY = 'hidden';
+            // document.getElementById('content-row').style.overflowY = 'hidden';
         } else {
             document.body.style.height = '100%';
             document.body.style.overflowY = 'hidden';
             // @ts-ignore
-            document.getElementById('content-row').style.overflowY = 'auto';
+            // document.getElementById('content-row').style.overflowY = 'auto';
         }
     }, [height]);
 
