@@ -1,5 +1,5 @@
-import React, { createContext, FC, useContext, useMemo, useEffect, useState } from 'react';
-import { SiteContext } from './sites';
+import React, { createContext, FC, useMemo, useEffect, useState } from 'react';
+import { useSiteContext } from './sites';
 import AudioBuffers from './audio-buffer';
 
 type SoundProviderType = {
@@ -15,7 +15,7 @@ interface ProviderProps {
     children: JSX.Element;
 }
 const SoundProvider:FC<ProviderProps> = ({ children }) => {
-    const { siteMap, selectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
     const [loaded, setLoaded] = useState<boolean>(false);
 

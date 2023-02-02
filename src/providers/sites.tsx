@@ -4,14 +4,13 @@ import { CDN } from 'src/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,
-    ContentMap, GameContentItem,
+    ContentMap,
+    GameContentItem,
     GameContentListValidator,
     LeftNavNavItem,
-    SiteKey, SiteKeyValidator,
+    SiteKey,
     SiteMap,
-    SiteMapValidator
 } from '../types';
-import sitesData from '../../content/sites.json';
 
 type SiteProviderType = {
     siteMap: SiteMap,
@@ -25,8 +24,6 @@ type SiteProviderType = {
     setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
 };
 
-const siteMap = SiteMapValidator.parse(sitesData);
-
 const defaultContentMap = {
     biz: [],
     fit: [],
@@ -36,25 +33,28 @@ const defaultContentMap = {
     construction: [],
 };
 
-const SiteContext = createContext<SiteProviderType>({
-    siteMap,
-    selectedSite: SiteKeyValidator.parse(process.env.selectedSite),
-    setSelectedSite: () => {},
-    contentMap: defaultContentMap,
-    loading: true,
-    selectedNavItem: null,
-    setSelectedNavItem: () => {},
-    selectedContentItem: null,
-    setSelectedContentItem: () => {}
-});
+const SiteContext = createContext<SiteProviderType | undefined>(undefined);
+
+// {
+//     siteMap: defaultSiteMap,
+//         selectedSite: SiteKeyValidator.parse(process.env.selectedSite),
+//     setSelectedSite: () => {},
+//     contentMap: defaultContentMap,
+//     loading: true,
+//     selectedNavItem: null,
+//     setSelectedNavItem: () => {},
+//     selectedContentItem: null,
+//     setSelectedContentItem: () => {}
+// }
 
 interface ProviderProps {
     children: JSX.Element;
     defaultSite: SiteKey;
+    defaultSiteMap: SiteMap;
     defaultContent: (BaseContentItem | GameContentItem)[]
 }
 
-const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultContent }) => {
+const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultContent, defaultSiteMap }) => {
     const [selectedSite, setSelectedSite] = useState<SiteKey>(defaultSite);
     const [contentMap, setContentMap] = useState<ContentMap>({
         ...defaultContentMap,
@@ -108,7 +108,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     }, [selectedNavItem, selectedSite]);
 
     const providedSites = useMemo<SiteProviderType>(() => ({
-        siteMap,
+        siteMap: defaultSiteMap,
         selectedSite,
         setSelectedSite: setSite,
         loading,
@@ -126,4 +126,12 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     );
 };
 
-export { SitesDataProvider, SiteContext };
+function useSiteContext() {
+    const context = React.useContext(SiteContext);
+    if (context === undefined)
+        throw new Error('useCount must be used within a SiteProvider');
+
+    return context;
+}
+
+export { SitesDataProvider, SiteContext, useSiteContext };

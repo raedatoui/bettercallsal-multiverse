@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import {
     Caption,
     ContentItem,
@@ -30,7 +30,7 @@ export const Middle: FC<Props> = () => {
         selectedNavItem,
         selectedContentItem,
         setSelectedContentItem,
-    } = useContext(SiteContext);
+    } = useSiteContext();
     const site = siteMap[selectedSite];
     // these contexts are for causing a shuffle
     const windowSize = useWindowSize();

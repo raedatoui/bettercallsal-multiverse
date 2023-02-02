@@ -1,5 +1,5 @@
-import React, { FC, useContext, useEffect, useState, MouseEvent } from 'react';
-import { SiteContext } from 'src/providers/sites';
+import React, { FC, useEffect, useState, MouseEvent } from 'react';
+import { useSiteContext } from 'src/providers/sites';
 import { EXTERNAL_LINK, SiteOrder } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
@@ -114,7 +114,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 };
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
-    const { siteMap, selectedSite, setSelectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
     return (
         <TickerContainer
             background={backgroundColor}

@@ -1,5 +1,5 @@
-import React, { FC, useContext } from 'react';
-import { SiteContext } from 'src/providers/sites';
+import React, { FC } from 'react';
+import { useSiteContext } from 'src/providers/sites';
 import styled from 'styled-components';
 
 interface Props {}
@@ -13,7 +13,7 @@ const SpotifyContainer = styled.div`
 `;
 
 export const RightNav: FC<Props> = () => {
-    const { siteMap, selectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
 
     return (

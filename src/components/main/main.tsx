@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect } from 'react';
 import { Main } from 'src/styles/sharedstyles';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteKey } from 'src/types';
 import { CDN } from 'src/constants';
@@ -20,7 +20,7 @@ const keyMap: Record<string, SiteKey> = {
 };
 
 export const MainContainer: FC<Props> = ({ children }) => {
-    const { selectedSite, setSelectedSite } = useContext(SiteContext);
+    const { selectedSite, setSelectedSite } = useSiteContext();
     const { keyPressed } = useContext(AnimationContext);
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;

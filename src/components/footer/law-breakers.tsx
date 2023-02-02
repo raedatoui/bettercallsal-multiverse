@@ -3,7 +3,7 @@ import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } 
 import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
 import { Size } from 'src/types';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import { AnimationContext } from 'src/providers/animations';
 import { CDN } from 'src/constants';
@@ -11,7 +11,7 @@ import { CDN } from 'src/constants';
 interface Props {}
 
 export const LawBreakers: FC<Props> = () => {
-    const { siteMap, selectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter } = useContext(AnimationContext);
     const site = siteMap[selectedSite];
 

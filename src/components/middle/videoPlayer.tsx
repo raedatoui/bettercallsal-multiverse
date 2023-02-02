@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import {
     ButtonBar,
     Player,
@@ -8,7 +8,7 @@ import {
     VideoText
 } from 'src/components/middle/elements';
 import { Size, ContentSize } from 'src/types';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import { useWindowSize } from 'src/utils';
 import { CDN } from 'src/constants';
 
@@ -28,7 +28,7 @@ interface VimeoPlayer {
 }
 
 export const VideoPlayer: FC<Props> = () => {
-    const { siteMap, selectedSite, selectedContentItem, setSelectedContentItem } = useContext(SiteContext);
+    const { siteMap, selectedSite, selectedContentItem, setSelectedContentItem } = useSiteContext();
     const site = siteMap[selectedSite];
 
     const [yPlayer, setYPlayer] = useState<YTPlayer>();

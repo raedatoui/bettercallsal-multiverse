@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { LeftAdd1, LeftAdd2, LeftContent, LeftNavButton, LeftNavContainer, LeftNavMenu } from 'src/components/left-nav/elements';
 import { LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import Image from 'next/image';
 import Script from 'next/script';
@@ -50,7 +50,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
 interface Props {}
 
 export const LeftNav: FC<Props> = () => {
-    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem } = useContext(SiteContext);
+    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem } = useSiteContext();
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);

@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import Head from 'next/head';
 import { LeftNav } from 'src/components/left-nav';
 import { RightNav } from 'src/components/right-nav';
 import { Middle } from 'src/components/middle';
 import Script from 'next/script';
 import { LawBreakers } from 'src/components/footer';
-import { SiteContext, SitesDataProvider } from 'src/providers/sites';
+import { SitesDataProvider } from 'src/providers/sites';
 import { AnimationsProvider } from 'src/providers/animations';
 import { SoundProvider } from 'src/providers/audio-context';
 import { WindowSizeProvider } from 'src/providers/window-size';
@@ -22,6 +22,7 @@ import { GetStaticPropsResult } from 'next';
 import { Row } from 'src/styles/sharedstyles';
 import { MainContainer } from 'src/components/main';
 import { HeaderComponent } from 'src/components/header';
+import { defaultSiteMap } from 'src/constants';
 
 interface PageProps {
     defaultSite: SiteKey,
@@ -47,8 +48,9 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
 }
 
 const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
-    const { siteMap, selectedSite } = useContext(SiteContext);
-    const site = siteMap[selectedSite];
+    const selectedSite = SiteKeyValidator.parse(process.env.selectedSite);
+    const site = defaultSiteMap[selectedSite];
+
     return (
         <>
             <Head>
@@ -81,7 +83,7 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                 {/* <meta property="og:description" content="Better Call Sal For All Your Audio Needs" /> */}
                 {/* <meta property="og:image" content="https://storage.googleapis.com/www.bettercallsal.biz/images/og.png" /> */}
             </Head>
-            <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent}>
+            <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent} defaultSiteMap={defaultSiteMap}>
                 <AnimationsProvider>
                     <SoundProvider>
                         <WindowSizeProvider>
