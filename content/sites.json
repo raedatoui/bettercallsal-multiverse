@@ -298,8 +298,8 @@
     },
     "footer": {
       "text": "welcome artists",
-      "icon": "/images/art/dali.webm",
-      "iconType": "video",
+      "icon": "/images/art/dali.gif",
+      "iconType": "image",
       "iconWidth": 462,
       "iconHeight": 432,
       "ringAudio": "/audio/art/ring.art.mp3"
@@ -382,8 +382,8 @@
     },
     "footer": {
       "text": "welcome rockstars",
-      "icon": "/images/rocks/smashguitar.webm",
-      "iconType": "video",
+      "icon": "/images/rocks/smashguitar.gif",
+      "iconType": "image",
       "iconWidth": 225,
       "iconHeight": 256,
       "ringAudio": "/audio/rocks/ring.rocks.mp3"

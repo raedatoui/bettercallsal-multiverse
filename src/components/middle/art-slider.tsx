@@ -4,7 +4,7 @@ import { BaseContentItem, ContentSize, Size } from 'src/types';
 import { ButtonBar, ImageContainer, StopButton } from 'src/components/middle/elements';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import { useWindowSize } from 'src/utils';
 import { DALI } from 'src/constants';
 import { AnimationContext } from 'src/providers/animations';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
-    const { setSelectedContentItem, setSelectedNavItem } = useContext(SiteContext);
+    const { setSelectedContentItem, setSelectedNavItem } = useSiteContext();
     const { keyPressed } = useContext(AnimationContext);
     const windowSize = useWindowSize();
 

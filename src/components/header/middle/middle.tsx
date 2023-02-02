@@ -32,7 +32,6 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
             if (!playing && site.name === 'biz')
                 setSpinningSalsGridCounter(0);
         }, 1500);
-
     };
 
     const bizerkRef = useRef<HTMLDivElement>(null);

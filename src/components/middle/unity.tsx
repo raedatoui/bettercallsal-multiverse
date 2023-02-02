@@ -1,8 +1,8 @@
-import React, { FC, RefObject, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 import { GameButtonBar, GameCanvas, StopButton } from 'src/components/middle/elements';
 import { ContentSize, GameContentItem, Size, UnityInstance } from 'src/types';
 import { CDN } from 'src/constants';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import { useWindowSize } from 'src/utils';
 
 interface Props {
@@ -15,7 +15,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
         setSelectedNavItem,
         selectedContentItem,
         setSelectedContentItem
-    } = useContext(SiteContext);
+    } = useSiteContext();
 
     const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
     const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });

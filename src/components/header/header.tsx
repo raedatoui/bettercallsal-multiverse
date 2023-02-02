@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState, useEffect } from 'react';
-import { SiteContext } from 'src/providers/sites';
+import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import { useInterval } from 'src/utils';
 import { SiteOrder } from 'src/constants';
@@ -14,7 +14,7 @@ import { SpinningSal, SpinningSalsContainer } from './spinning';
 import { BetterCall, BizerkIcon, SalName, SalCaption, Bizerk } from './middle';
 
 export const HeaderComponent: FC = () => {
-    const { siteMap, selectedSite } = useContext(SiteContext);
+    const { siteMap, selectedSite } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter, setSpinningSalsGridCounter } = useContext(AnimationContext);
     const site = siteMap[selectedSite];
 
