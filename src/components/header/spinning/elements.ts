@@ -25,7 +25,7 @@ export const SpinningSalsContainer = styled.div`
 export const SpinningWrapper = styled.div`
   z-index: 5;
   transition: 0.25s;
-  height: 240px;
+  height: 241px;
   width: 258px;
 
   &.left {
