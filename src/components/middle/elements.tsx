@@ -43,12 +43,9 @@ export const ContentList = styled.div`
     &.off {
       display: none;
     }
-    @media only screen and (max-width: 480px) {
-        grid-template-columns: auto;
-    }
-    
+
     @media only screen and (max-width: 399px) {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     @media only screen and (min-width: 400px) and (max-width: 620px) {
@@ -59,8 +56,8 @@ export const ContentList = styled.div`
         grid-template-columns: repeat(3, 1fr);
     }
 
-    @media only screen and (min-width: 1024px) and (max-width: 1199px) {
-        grid-template-columns: repeat(2, 1fr);
+    @media only screen and (min-width: 1024px) and (max-width: 1240px) {
+        grid-template-columns: repeat(3, 1fr);
     }
 `;
 

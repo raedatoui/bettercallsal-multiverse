@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import styled from 'styled-components';
+import { SPOTIFY_ENABLED } from 'src/constants';
 
 interface Props {}
 
@@ -18,14 +19,16 @@ export const RightNav: FC<Props> = () => {
 
     return (
         <SpotifyContainer>
-            <iframe
-                title="spotify"
-                src={site.rightNav.objectId}
-                width="100%"
-                height="100%"
-                loading="lazy"
-                frameBorder="0"
-            />
+            { SPOTIFY_ENABLED && (
+                <iframe
+                    title="spotify"
+                    src={site.rightNav.objectId}
+                    width="100%"
+                    height="100%"
+                    loading="lazy"
+                    frameBorder="0"
+                />
+            ) }
         </SpotifyContainer>
     );
 };

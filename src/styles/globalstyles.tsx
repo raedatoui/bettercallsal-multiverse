@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-family: Pragmatica, Arial, Helvetica, sans-serif;
     height: 100%;
+    width: 100%;
   }
 
   body {

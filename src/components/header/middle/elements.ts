@@ -1,13 +1,12 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
-import { CDN } from 'src/constants';
+import { CDN, breakPoints } from 'src/constants';
 import { glowShadow, ltr2, neon1, scalemic, scalemic2 } from 'src/utils/animations';
 
 export const BetterCall = styled.h1.attrs(props => ({ className: props.className }))`
   font-family: BrushScriptStd, serif;
   user-select: none;
   font-size: 1em;
-  margin: 16px auto 0 auto;
   text-decoration: none;
   color: #353521;
   text-align: center;
@@ -26,25 +25,23 @@ export const BetterCall = styled.h1.attrs(props => ({ className: props.className
     animation: ${neon1} 1s linear infinite alternate;
   }
 
-  @media only screen and (max-width : 567px) {
+  @media only screen and (max-width : ${breakPoints.md.max}px) {
     padding-right: 50px;
     white-space: nowrap;
   }
 
-  @media only screen and (max-width : 1020px) and (min-width : 568px) {
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
     font-size: 1.1em;
+    margin-top: 12px;
   }
-  @media only screen and (max-width : 1273px) and (min-width : 1021px) {
+  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
     font-size: 1.2em;
   }
+
+  margin: 19px auto 0 auto;
 `;
 
-export const BizerkIcon = styled.div.attrs(props => ({ className: props.className }))`
-  //height: 66px;
-  //left: 25px;
-  //top: 106px;
-  //position: absolute;
-  //margin: auto 50%;
+export const BizerkContainer = styled.div.attrs(props => ({ className: props.className }))`
   margin-top: -15px;
   display: flex;
   flex-direction: row;
@@ -55,44 +52,157 @@ export const BizerkIcon = styled.div.attrs(props => ({ className: props.classNam
   &.bizerk {
     animation: ${scalemic2} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
   }
-  @media only screen and (max-width : 567px) {
-    margin-top: -17px;
+  
+  height: 52px;
+
+  @media only screen and (max-width: ${breakPoints.lg1.max}px) and (min-width: ${breakPoints.lg1.min}px) {
+    height: 38px;
   }
-  @media only screen and (max-width : 1020px) and (min-width : 568px) {
-    margin-top: -22px;
+
+  @media only screen and (max-width: ${breakPoints.lg2.max}px) and (min-width: ${breakPoints.lg2.min}px) {
+    height: 44px;
   }
 `;
 
 export const BizerkImageContainer = styled.div`
-  &.biz {
-    margin-top: -25px;
-  }
-
-  &.fit {
-    margin-top: -22px;
-  }
-
   &.art {
-    margin-top: -25px;
+    margin-top: -18px;
+  }
+  
+  &.biz {
+    margin-top: -10px;
   }
 
+  &.construction {
+    margin-top: -16px;
+  }
+  
+  &.fit {
+    margin-top: -16px;
+  }
+
+  &.games {
+    margin-top: -5px;
+  }
+  
   &.rocks {
     margin-top: -10px;
   }
 
-  &.games {
-    margin-top: -15px;
-  }
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+    &.art {
+      margin-top: -10px;
+    }
+    &.biz {
+      margin-top: -4px;
+    }
+    &.fit {
+      margin-top: -2px;
+    }
 
-  &.construction {
-    margin-top: -12px;
+    &.construction {
+      margin-top: -10px;
+    }
   }
-
-  :hover {
-   
+  
+  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
+    &.fit {
+      margin-top: -2px;
+    }
+    
+    &.construction {
+      margin-top: -10px;
+    }
   }
 `;
 
+export const BizerImage = styled.img<{ background: string }>`
+  transition: all 0.5s linear;
+  animation: ${glowShadow} 1.5s linear infinite alternate;
+  object-fit: contain;
+  // background-image:  url(${props => `${CDN}${props.background}`});
+  // background-size: 100% 100%;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  
+  box-sizing: border-box;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  backface-visibility: visible;
+  opacity: 1;
+  cursor: pointer;
+  height: 66px;
+  width: auto;
+
+  &:hover {
+    animation: ${ltr2} .5s linear 3;
+  }
+
+  &.art {
+    margin-right: -14px;
+  }
+
+  &.biz {
+    margin: 0 2px 0 5px;
+  }
+
+  &.construction {
+    height: 50px;
+    margin: 0 6px;
+  }
+
+  &.fit {
+    width: 69px;
+  }
+  
+  &.games {
+    margin-right: -4px;
+    margin-left: -4px;
+  }
+  
+  @media only screen and (max-width : ${breakPoints.md.max}px) {
+      height: 32px;
+  }
+
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+    height: 44px;
+    &.construction {
+      height: 34px;
+      margin: 0 4px;
+    }
+
+    &.fit {
+      height: 48px;
+      margin-right: -4px;
+      margin-left: -4px;
+    }
+
+    &.rocks {
+      height: 42px;
+      margin: 0 2px 0 5px;
+    }
+  }
+
+  @media only screen and (max-width : ${breakPoints.lg2.max}px ) and (min-width : ${breakPoints.lg2.min}px) {
+    height: 52px;
+    &.construction {
+      height: 46px;
+      margin: 0 6px;
+    }
+
+    &.fit {
+      height: 60px;
+    }
+
+    &.rocks {
+      height: 56px;
+      margin: 0 2px 0 5px;
+    }
+  }
+`;
+
+// previously attempted in lieu of gif
 export const BizerkVideo = styled.video`
   transition: all 0.5s linear;
   animation: ${glowShadow} 1.5s linear infinite alternate;
@@ -103,124 +213,6 @@ export const BizerkVideo = styled.video`
   backface-visibility: visible;
   opacity: 1;
   cursor: pointer;
-
-  &:hover {
-    animation: ${ltr2} .5s linear 3;
-  }
-
-  &.biz {
-    height: 66px;
-    width: 50.65px;
-    margin: 0 2px 0 5px;
-  }
-
-  &.fit {
-    height: 66px;
-    width: 69px;
-    margin: 0 0;
-  }
-
-  &.art {
-    height: 66px;
-    width: 67px;
-    margin-right: -16px;
-    margin-left: 0px;
-  }
-
-  &.rocks {
-    height: 66px;
-    width: 46px;
-    margin: 0 2px 0 5px;
-  }
-
-  &.games {
-    height: 60px;
-    width: 60px;
-    margin: 0 -4px;
-  }
-
-  &.construction {
-    height: 50px;
-    width: 50px;
-    margin: 0 2px 0 4px;
-  }
-`;
-
-export const BizerImage = styled.div<{ background: string }>`
-  transition: all 0.5s linear;
-  animation: ${glowShadow} 1.5s linear infinite alternate;
-  
-  background-image:  url(${props => `${CDN}${props.background}`});
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  
-  box-sizing: border-box;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  transform-origin: 50% 50%;
-  backface-visibility: visible;
-  opacity: 1;
-  cursor: pointer;
-
-  &:hover {
-    animation: ${ltr2} .5s linear 3;
-  }
-
-  &.biz {
-    height: 66px;
-    width: 50.65px;
-    margin: 0 2px 0 5px;
-  }
-
-  &.fit {
-    height: 66px;
-    width: 69px;
-    margin: 0 0;
-  }
-
-  &.art {
-    height: 66px;
-    width: 67px;
-    margin-right: -16px;
-    margin-left: 0px;
-  }
-
-  &.rocks {
-    height: 66px;
-    width: 46px;
-    margin: 0 2px 0 5px;
-  }
-  
-  &.games {
-    height: 60px;
-    width: 60px;
-    margin: 0 -4px;
-  }
-
-  &.construction {
-    height: 50px;
-    width: 50px;
-    margin: 0 2px 0 4px;
-  }
-
-  
-  @media only screen and (max-width : 567px) {
-      height: 32px;
-      //top: 45px;
-      //left: -12px;
-  }
-  @media only screen and (max-width : 1020px) and (min-width : 568px) {
-    height: 42px;
-    //left: 15px;
-    //top: 63px;
-  }
-
-  @media only screen and (max-width : 1273px) and (min-width : 1021px) {
-      height: 48px;
-      //left: 20px;
-      //top: 77px;
-  }
 `;
 
 export const SalName = styled.h2.attrs(props => ({ className: props.className }))`
@@ -267,15 +259,15 @@ export const SalCaption = styled.h3`
   letter-spacing: 4px;
   font-size: 0.225em;
   margin: -10px auto 0 auto;
-  @media only screen and (max-width : 567px) {
+  @media only screen and (max-width : ${breakPoints.md.max}px) {
     padding-right: 50px;
     white-space: nowrap;
     margin-top: -4px;
   }
-  @media only screen and (max-width : 1020px) and (min-width : 568px) {
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
     margin: -6.2px auto 0 auto;
   }
-  @media only screen and (max-width : 1273px) and (min-width : 1021px) {
+  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
     margin: -7px auto 0 auto;
   }
 `;
