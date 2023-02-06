@@ -34,7 +34,7 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
         }, 1500);
     };
 
-    const bizerkRef = useRef<HTMLDivElement>(null);
+    const bizerkRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         const element = bizerkRef.current;
@@ -53,13 +53,13 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
     return (
         <BizerkImageContainer onClick={bizerkAnim} className={site.name}>
             { site.header.bizerkIconType === 'image'
-                && <BizerImage ref={bizerkRef} background={site.header.bizerkIcon} className={site.name} />}
-            { site.header.bizerkIconType === 'video'
-                && (
-                    <BizerkVideo className={site.name}>
-                        <source src={`${CDN}${site.header.bizerkIcon}`} type="video/webm" />
-                    </BizerkVideo>
-                )}
+                && <BizerImage ref={bizerkRef} src={`${CDN}${site.header.bizerkIcon}`} background={site.header.bizerkIcon} className={site.name} />}
+            {/* { site.header.bizerkIconType === 'video' */}
+            {/*     && ( */}
+            {/*         <BizerkVideo className={site.name}> */}
+            {/*             <source src={`${CDN}${site.header.bizerkIcon}`} type="video/webm" /> */}
+            {/*         </BizerkVideo> */}
+            {/*     )} */}
         </BizerkImageContainer>
     );
 };

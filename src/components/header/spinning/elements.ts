@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CDN } from 'src/constants';
+import { CDN, breakPoints } from 'src/constants';
 import { fadein, ltr, ltr2, rtl, rtl2 } from '../../../utils/animations';
 
 export const SpinningSalsContainer = styled.div`
@@ -8,25 +8,25 @@ export const SpinningSalsContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 0;
-  top: 1px;
-  z-index: 5;
+  z-index: 1;
 
-  @media only screen and (max-width : 1273px) and (min-width : 1021px) {
-    top: 0;
-  }
-  @media only screen and (max-width : 1020px) and (min-width : 669px) {
-    top: 11px;
-  }
-  @media only screen and (max-width : 668px) and (min-width : 568px) {
-    top: 27px;
-  }
+  //@media only screen and (max-width : 1273px) and (min-width : 1021px) {
+  //  top: 0;
+  //}
+  //@media only screen and (max-width : 1020px) and (min-width : 669px) {
+  //  top: 11px;
+  //}
+  //@media only screen and (max-width : 668px) and (min-width : 568px) {
+  //  top: 27px;
+  //}
+
+  // @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+  //   top: 11px;
+  // }
 `;
 
 export const SpinningWrapper = styled.div`
-  z-index: 5;
   transition: 0.25s;
-  height: 241px;
-  width: 258px;
 
   &.left {
     float: left;
@@ -36,25 +36,27 @@ export const SpinningWrapper = styled.div`
     float: right;
   }
   
-  @media only screen and (max-width: 567px) {
+  @media only screen and (max-width: ${breakPoints.sm.max}px) {
     height: 120px;
     width: 129px;
   }
 
-  @media only screen and (max-width : 668px) and (min-width : 568px) {
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
     height: 114px !important;
     width: 122.55px !important;
   }
 
-  @media only screen and (max-width : 1020px) and (min-width : 669px) {
-    height: 152px;
-    width: 164.4px;
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+    height: 184px;
+    width: 198px;
   }
 
-  @media only screen and (max-width : 1273px) and (min-width : 1021px) {
-    height: 188.5px;
-    width: 203px;
+  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
+    height: 219px;
+    width: 237px;
   }
+  height: 240px;
+  width: 258px;
 `;
 
 export const SpinningImg = styled.div<{ image: string }>`

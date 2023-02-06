@@ -4,7 +4,8 @@ import { z } from 'zod';
 
 const envValidator = z.object({
     selectedSite: z.string(),
-    cdn_url: z.string()
+    cdnUrl: z.string(),
+    spotifyEnabled: z.boolean(),
 });
 
 const run = async () => {
@@ -19,6 +20,7 @@ const run = async () => {
     const config = await promises.readFile(join(__dirname, '../', 'next.config.env.json'), 'utf-8');
     const env = envValidator.parse(JSON.parse(config));
     env.selectedSite = site;
+    env.spotifyEnabled = true;
     writeFileSync(join(__dirname, '../', 'next.config.env.json'), JSON.stringify(env), {
         flag: 'w',
     });

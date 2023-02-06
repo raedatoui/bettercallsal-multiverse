@@ -43,6 +43,7 @@ export const LeftNavButton = styled(NavButton)`
 export const LeftAdd = styled.div`
   box-sizing: border-box;
   max-width: 600px;
+  margin: 0 auto;
 `;
 
 export const LeftAdd1 = styled(LeftAdd)`
@@ -67,36 +68,37 @@ export const LeftAdd2 = styled(LeftAdd)`
     left: 0;
     margin: 0 auto;
     text-transform: uppercase;
-    font-size: 1.6em;
+    font-size: 1.3em;
     color: #eae41f;
     width: 100%;
     text-align: center;
+    letter-spacing: 2px;
     text-shadow:
-      rgb(228, 0, 196) -4px -4px 0,
-      rgb(228, 0, 196) -4px -2px 0,
-      rgb(228, 0, 196) -4px 0 0,
-      rgb(228, 0, 196) -4px 2px 0,
-      rgb(228, 0, 196) -4px 4px 0,
-      rgb(228, 0, 196) -2px -4px 0,
-      rgb(228, 0, 196) -2px -2px 0,
-      rgb(228, 0, 196) -2px 0 0,
-      rgb(228, 0, 196) -2px 2px 0,
-      rgb(228, 0, 196) -2px 4px 0,
-      rgb(228, 0, 196) 0 -4px 0,
-      rgb(228, 0, 196) 0 -2px 0,
-      rgb(228, 0, 196) 0 0 0,
-      rgb(228, 0, 196) 0 2px 0,
-      rgb(228, 0, 196) 0 4px 0,
-      rgb(228, 0, 196) 2px -4px 0,
-      rgb(228, 0, 196) 2px -2px 0,
-      rgb(228, 0, 196) 2px 0 0,
-      rgb(228, 0, 196) 2px 2px 0,
-      rgb(228, 0, 196) 2px 4px 0,
-      rgb(228, 0, 196) 4px -4px 0,
-      rgb(228, 0, 196) 4px -2px 0,
-      rgb(228, 0, 196) 4px 0 0,
-      rgb(228, 0, 196) 4px 2px 0,
-      rgb(228, 0, 196) 4px 4px 0;
+        rgb(228, 0, 196) -3px -3px 0,
+        rgb(228, 0, 196) -3px -1px 0,
+        rgb(228, 0, 196) -3px 0 0,
+        rgb(228, 0, 196) -3px 1px 0,
+        rgb(228, 0, 196) -3px 3px 0,
+        rgb(228, 0, 196) -1px -3px 0,
+        rgb(228, 0, 196) -1px -1px 0,
+        rgb(228, 0, 196) -1px 0 0,
+        rgb(228, 0, 196) -1px 1px 0,
+        rgb(228, 0, 196) -1px 3px 0,
+        rgb(228, 0, 196) 0 -3px 0,
+        rgb(228, 0, 196) 0 -1px 0,
+        rgb(228, 0, 196) 0 0 0,
+        rgb(228, 0, 196) 0 1px 0,
+        rgb(228, 0, 196) 0 3px 0,
+        rgb(228, 0, 196) 1px -3px 0,
+        rgb(228, 0, 196) 1px -1px 0,
+        rgb(228, 0, 196) 1px 0 0,
+        rgb(228, 0, 196) 1px 1px 0,
+        rgb(228, 0, 196) 1px 3px 0,
+        rgb(228, 0, 196) 3px -3px 0,
+        rgb(228, 0, 196) 3px -1px 0,
+        rgb(228, 0, 196) 3px 0 0,
+        rgb(228, 0, 196) 3px 1px 0,
+        rgb(228, 0, 196) 3px 3px 0;
   }
 `;
 

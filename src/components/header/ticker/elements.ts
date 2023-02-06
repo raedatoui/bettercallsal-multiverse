@@ -21,7 +21,7 @@ export const Baseline = styled(BaseSlidingItem)`
 
 export const SlidingItem = styled(BaseSlidingItem)<
 { visibility: string, translateX: number, animation: Keyframes | null, animationDuration: number }>`
-  position: absolute;
+  position: fixed;
   visibility: ${props => props.visibility};
   transform: translateX(${props => `${props.translateX}px`});
   animation: ${props => (props.animation ? props.animation : '')};

@@ -11,7 +11,7 @@ import {
     ContentContainer,
 } from './elements';
 import { SpinningSal, SpinningSalsContainer } from './spinning';
-import { BetterCall, BizerkIcon, SalName, SalCaption, Bizerk } from './middle';
+import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './middle';
 
 export const HeaderComponent: FC = () => {
     const { siteMap, selectedSite } = useSiteContext();
@@ -134,11 +134,11 @@ export const HeaderComponent: FC = () => {
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>
-                <BizerkIcon>
+                <BizerkContainer>
                     <SalName>{site.header.name1}</SalName>
                     <Bizerk site={site} pause={stopBizerk} />
                     <SalName>{site.header.name2}</SalName>
-                </BizerkIcon>
+                </BizerkContainer>
                 <SalCaption>{site.header.title}</SalCaption>
                 <Ticker
                     backgroundColor="#FE0000"
