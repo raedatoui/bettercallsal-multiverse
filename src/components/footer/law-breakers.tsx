@@ -145,7 +145,7 @@ export const LawBreakers: FC<Props> = () => {
                 </LawBreakersP>
             </LawBreakersContainer>
             <FooterContainer>
-                <h2><a href="tel:+19173229246">• NOT TOLL FREE (917) 322-9246 •</a></h2>
+                <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
             </FooterContainer>
         </>
 

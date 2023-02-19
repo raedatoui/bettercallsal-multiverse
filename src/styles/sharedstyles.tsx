@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Main = styled.main`
-  height: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -13,7 +12,6 @@ const Section = styled.section`
 
 const MainSection = styled(Section)`
   box-sizing: border-box;
-  height: 100%;
   @media only screen and (max-width: 1024px) {
       height: initial;
   }

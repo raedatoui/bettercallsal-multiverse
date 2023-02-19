@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
 import { borderAnim, neon2, fadein, footerLtr } from 'src/utils/animations';
+import { breakPoints } from 'src/constants';
 
 export const LawBreakersContainer = styled.div`
   background-image: linear-gradient(#fda810, #eae41f);
@@ -10,8 +11,20 @@ export const LawBreakersContainer = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
-  //position: fixed;
-  //bottom: 35px;
+  font-size: 45px;
+  
+  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+    font-size: 20px;
+  }
+  @media only screen and (max-width : ${breakPoints.md.max}px) {
+    font-size: 28px;
+  }
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+    font-size: 35px;
+  }
+  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
+    font-size: 45px;
+  }
 `;
 
 export const LawBreakersP = styled.div`
@@ -21,7 +34,7 @@ export const LawBreakersP = styled.div`
   text-align: center;
   font-family: Impact, Arial, Helvetica, sans-serif;
   letter-spacing: 4px;
-  font-size: 45px;
+  font-size: 1em;
   height: 60px;
   margin: 0 auto;
   color: #d61d00;
@@ -112,6 +125,17 @@ export const FooterContainer = styled.footer`
   width: 100%;
   //position: fixed;
   //bottom: 0;
+
+  @media only screen and (max-width : ${breakPoints.md.max}px) {
+    font-size: 40px;
+  }
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+    font-size: 50px;
+  }
+  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
+    font-size: 60px;
+  }
+
   h2 {
     height: 35px;
     line-height: 35px;
@@ -121,6 +145,16 @@ export const FooterContainer = styled.footer`
     font-size: 0.3635em;
     margin: 0 auto;
     letter-spacing: 8px;
+
+    @media only screen and (max-width : ${breakPoints.sm.max}px) {
+      letter-spacing: 2px;
+    }
+    @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width: ${breakPoints.md.min}px) {
+      letter-spacing: 4px;
+    }
+    @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+      letter-spacing: 6px;
+    }
     
     a {
       text-decoration: none;
