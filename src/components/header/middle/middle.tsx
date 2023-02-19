@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { BizerImage, BizerkImageContainer, BizerkVideo } from 'src/components/header/middle/elements';
+import { BizerImage, BizerkImageContainer } from 'src/components/header/middle/elements';
 import { Site } from 'src/types';
 import { AnimationContext } from 'src/providers/animations';
 import { CDN } from 'src/constants';

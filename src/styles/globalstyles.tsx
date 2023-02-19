@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { breakPoints } from 'src/constants';
 
 const GlobalStyle = createGlobalStyle`
   body,
@@ -14,6 +15,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+
+    @media only screen and (max-width: ${breakPoints.sm.max}px) {
+      overflow-y: auto;
+      height: auto;
+    }
   }
 
   #__next {

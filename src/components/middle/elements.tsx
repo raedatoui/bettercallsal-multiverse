@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 import { glowShadow } from 'src/utils/animations';
+import {breakPoints} from "src/constants";
 
 export const MiddleSection = styled.div`
     position: relative;
@@ -9,7 +10,10 @@ export const MiddleSection = styled.div`
     //@media only screen and (min-width: 1024px) {
     //    width: calc(100% - 500px);
     //}
-    
+    // @media only screen and (max-width: ${breakPoints.sm.max}px) {
+    //   min-height: 500px;
+    // }
+
     @media only screen and (max-width: 1023px) {
         width: 100%;
     }

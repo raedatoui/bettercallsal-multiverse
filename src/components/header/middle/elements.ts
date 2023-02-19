@@ -25,9 +25,14 @@ export const BetterCall = styled.h1.attrs(props => ({ className: props.className
     animation: ${neon1} 1s linear infinite alternate;
   }
 
-  @media only screen and (max-width : ${breakPoints.md.max}px) {
-    padding-right: 50px;
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
+    margin: 10px 0;
+    text-align: left;
     white-space: nowrap;
+  }
+
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
+    margin: 10px 0;
   }
 
   @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
@@ -54,6 +59,16 @@ export const BizerkContainer = styled.div.attrs(props => ({ className: props.cla
   }
   
   height: 52px;
+
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
+    height: 32px;
+    justify-content: left;
+    margin-left: 8px;
+  }
+
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
+    height: 32px;
+  }
 
   @media only screen and (max-width: ${breakPoints.lg1.max}px) and (min-width: ${breakPoints.lg1.min}px) {
     height: 38px;
@@ -87,6 +102,57 @@ export const BizerkImageContainer = styled.div`
   
   &.rocks {
     margin-top: -10px;
+  }
+
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
+    height: 38px;
+
+    &.art {
+      margin-top: -24px;
+    }
+
+    &.biz {
+      margin-top: -18px;
+    }
+
+    &.construction {
+      margin-top: -22px;
+    }
+
+    &.fit {
+      height: 44px;
+      margin-top: -12px;
+    }
+
+    &.games {
+      margin-top: -22px;
+    }
+    
+    &.rocks {
+      margin-top: -16px;
+    }
+  }
+  
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
+    &.art {
+      margin-top: -10px;
+    }
+
+    &.biz {
+      margin-top: -10px;
+    }
+
+    &.construction {
+      margin-top: -6px;
+    }
+
+    &.fit {
+      margin-top: -10px;
+    }
+
+    &.games {
+      margin-top: -5px;
+    }
   }
 
   @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
@@ -161,8 +227,46 @@ export const BizerImage = styled.img<{ background: string }>`
     margin-left: -4px;
   }
   
-  @media only screen and (max-width : ${breakPoints.md.max}px) {
-      height: 32px;
+
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
+    height: 38px;
+
+    &.art {
+      margin-left: 4px;
+      margin-right: -8px;
+    }
+    
+    &.biz {
+      
+    }
+
+    &.construction {
+      height: 30px;
+      margin-right: 4px;
+      margin-left: 6px;
+    }
+
+    &.fit {
+      width: 42px;
+    }
+    
+    &.games {
+      margin: -2px;
+    }
+
+
+  }
+    
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
+      height: 38px;
+      &.fit {
+        height: 42px;
+        margin: 0
+      }
+
+      &.construction {
+        height: 32px;
+      }
   }
 
   @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
@@ -259,7 +363,13 @@ export const SalCaption = styled.h3`
   letter-spacing: 4px;
   font-size: 0.225em;
   margin: -10px auto 0 auto;
-  @media only screen and (max-width : ${breakPoints.md.max}px) {
+
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
+    text-align: left;
+    margin: -6px 0 0 16px  ;
+  }
+
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width:  ${breakPoints.md.min}px) {
     padding-right: 50px;
     white-space: nowrap;
     margin-top: -4px;

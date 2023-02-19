@@ -35,7 +35,8 @@ export const defaultSiteMap = SiteMapValidator.parse(sitesData);
  */
 export const breakPoints = {
     lg2: { min: 1024, max: 1260 },
-    lg1: { min: 669, max: 1023 },
-    md: { min: 568, max: 668 },
+    lg1: { min: 700, max: 1023 },
+    lg1a: { min: 700, max: 800 },
+    md: { min: 568, max: 699 },
     sm: { max: 567 }
 };

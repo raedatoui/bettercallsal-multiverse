@@ -25,21 +25,24 @@ export const MainContainer: FC<Props> = ({ children }) => {
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
-    const { height } = useContext(WindowSizeContext);
+    const { height, width } = useContext(WindowSizeContext);
 
-    useEffect(() => {
-        if (height < 600) {
-            document.body.style.overflowY = 'auto';
-            document.body.style.height = 'auto';
-            // @ts-ignore
-            // document.getElementById('content-row').style.overflowY = 'hidden';
-        } else {
-            document.body.style.height = '100%';
-            document.body.style.overflowY = 'hidden';
-            // @ts-ignore
-            // document.getElementById('content-row').style.overflowY = 'auto';
-        }
-    }, [height]);
+    // useEffect(() => {
+    //     if (height < 600 && width > 1024) {
+    //         document.body.style.overflowY = 'auto';
+    //         document.body.style.height = 'auto';
+    //         // @ts-ignore
+    //         // document.getElementById('content-row').style.overflowY = 'hidden';
+    //     } else if (width < 460) {
+    //         document.body.style.overflowY = 'auto';
+    //         document.body.style.height = 'auto';
+    //     } else {
+    //         document.body.style.height = '100%';
+    //         document.body.style.overflowY = 'hidden';
+    //         // @ts-ignore
+    //         // document.getElementById('content-row').style.overflowY = 'auto';
+    //     }
+    // }, [height, width]);
 
     useEffect(() => {
         if (keyPressed && keyMap[keyPressed] !== undefined)

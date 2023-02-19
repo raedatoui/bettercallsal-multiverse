@@ -1,4 +1,5 @@
 import styled, { Keyframes } from 'styled-components';
+import { breakPoints } from 'src/constants';
 
 const BaseSlidingItem = styled.a`
   font-size: 0.3635em;
@@ -12,6 +13,21 @@ const BaseSlidingItem = styled.a`
   height: auto;
   display: inline-block;
   line-height: 37px;
+
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
+    line-height: 22px;
+    font-size: 0.3em;
+    min-height: 20px;
+    letter-spacing: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    padding-left: 8px;
+  }
+
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
+    line-height: 30px;
+  }
 `;
 
 export const Baseline = styled(BaseSlidingItem)`
@@ -21,7 +37,7 @@ export const Baseline = styled(BaseSlidingItem)`
 
 export const SlidingItem = styled(BaseSlidingItem)<
 { visibility: string, translateX: number, animation: Keyframes | null, animationDuration: number }>`
-  position: fixed;
+  position: absolute;
   visibility: ${props => props.visibility};
   transform: translateX(${props => `${props.translateX}px`});
   animation: ${props => (props.animation ? props.animation : '')};
@@ -35,15 +51,8 @@ export const SlidingItem = styled(BaseSlidingItem)<
 export const SiteUrl = styled(SlidingItem)`
   color: #DCDB00;
   letter-spacing: 8px;
-
-  // TODO: this might need to move to the BaseSlidingItem
-  @media only screen and (max-width : 567px) {
-    padding-right: 60px;
-    font-size: 0.4em;
-    min-height: 20px;
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
     letter-spacing: 2px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 `;
 
@@ -52,5 +61,11 @@ export const LowerBanner = styled(SlidingItem)`
   
   span {
     margin-left: 10px;
+  }
+
+  @media only screen and (max-width : 880px) {
+    span {
+      display: none;
+    }
   }
 `;
