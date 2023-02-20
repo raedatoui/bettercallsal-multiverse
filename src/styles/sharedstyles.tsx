@@ -1,8 +1,13 @@
 import styled from 'styled-components';
+import { breakPoints } from 'src/constants';
 
 const Main = styled.main`
   display: flex;
   flex-direction: column;
+  height: 100%;
+  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+    height: auto;
+  }
 `;
 
 const Section = styled.section`
@@ -18,17 +23,20 @@ const MainSection = styled(Section)`
 `;
 
 const Row = styled.div`
-    background-image: -webkit-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
-    background-image: -o-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
-    background-image: linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
-    position: relative;
-    display: flex;
+  background-image: -webkit-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
+  background-image: -o-linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
+  background-image: linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
+  position: relative;
+  display: flex;
+
+  @media only screen and (min-width: ${breakPoints.sm.max}px) {
     flex: 1;
     overflow: auto;
+  }
 
-    @media only screen and (max-width: 1023px) {  
-        flex-direction: column;
-    }
+  @media only screen and (max-width: 1023px) {  
+    flex-direction: column;
+  }
 `;
 
 const NavButton = styled.div`

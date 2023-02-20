@@ -19,6 +19,7 @@ export const HeaderContainer = styled.header`
   
   @media only screen and (max-width: ${breakPoints.sm.max}px) {
     position: sticky;
+    top: 0;
   }
   @media only screen and (max-width : ${breakPoints.md.max}px) {
     font-size: 40px;

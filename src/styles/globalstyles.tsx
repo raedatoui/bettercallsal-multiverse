@@ -5,17 +5,17 @@ const GlobalStyle = createGlobalStyle`
   body,
   html {
     font-family: Pragmatica, Arial, Helvetica, sans-serif;
-    height: 100%;
     width: 100%;
+    height: 100%;
   }
 
   body {
     background-color: #eae41f;
     -webkit-font-smoothing: antialiased;
     margin: 0;
+
     overflow-x: hidden;
     overflow-y: hidden;
-
     @media only screen and (max-width: ${breakPoints.sm.max}px) {
       overflow-y: auto;
       height: auto;
