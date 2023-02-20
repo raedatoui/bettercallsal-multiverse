@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect } from 'react';
 import { Main } from 'src/styles/sharedstyles';
 import { useSiteContext } from 'src/providers/sites';
-import { WindowSizeContext } from 'src/providers/window-size';
+// import { WindowSizeContext } from 'src/providers/window-size';
 import { SiteKey } from 'src/types';
 import { CDN } from 'src/constants';
 import { AnimationContext } from 'src/providers/animations';
@@ -25,7 +25,7 @@ export const MainContainer: FC<Props> = ({ children }) => {
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
-    const { height, width } = useContext(WindowSizeContext);
+    // const { height, width } = useContext(WindowSizeContext);
 
     // useEffect(() => {
     //     if (height < 600 && width > 1024) {

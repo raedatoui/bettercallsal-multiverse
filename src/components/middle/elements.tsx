@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 import { glowShadow } from 'src/utils/animations';
-import {breakPoints} from "src/constants";
+import { breakPoints } from 'src/constants';
 
 export const MiddleSection = styled.div`
     position: relative;

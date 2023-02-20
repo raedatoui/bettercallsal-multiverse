@@ -147,7 +147,7 @@ export const BizerkImageContainer = styled.div`
     }
 
     &.fit {
-      margin-top: -10px;
+      margin-top: -2px;
     }
 
     &.games {
@@ -232,8 +232,8 @@ export const BizerImage = styled.img<{ background: string }>`
     height: 38px;
 
     &.art {
-      margin-left: 4px;
-      margin-right: -8px;
+      margin-left: 2px;
+      margin-right: -10px;
     }
     
     &.biz {
@@ -259,8 +259,12 @@ export const BizerImage = styled.img<{ background: string }>`
     
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
       height: 38px;
+      &.art {
+        margin-left: 2px;
+        margin-right: -10px;
+      }
       &.fit {
-        height: 42px;
+        width: 44px;
         margin: 0
       }
 

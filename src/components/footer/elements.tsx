@@ -14,9 +14,9 @@ export const LawBreakersContainer = styled.div`
   font-size: 45px;
   
   @media only screen and (max-width: ${breakPoints.sm.max}px) {
-    font-size: 20px;
+    font-size: 24px;
   }
-  @media only screen and (max-width : ${breakPoints.md.max}px) {
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width: ${breakPoints.md.min}px) {
     font-size: 28px;
   }
   @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
@@ -55,7 +55,7 @@ export const LawBreakersP = styled.div`
 
   img, video {
     height: 100%;
-    margin: 0 40px;
+    margin: 0 20px;
     transition: 0.25s;
     box-sizing: border-box;
     perspective: 1000px;
@@ -74,7 +74,7 @@ export const LawBreakersP = styled.div`
 
     &.img0 {
       &.rocks {
-        transform: scale(1.25);
+        transform: scale(1.5);
       }
       &.art {
         transform: scale(1.2);
@@ -82,7 +82,7 @@ export const LawBreakersP = styled.div`
       &.hover {
         animation: ${footerLtr(-3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         &.rocks { 
-          animation: ${footerLtr(3600, 1.25, 1.25)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+          animation: ${footerLtr(3600, 1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
         &.art {
           animation: ${footerLtr(3600, 1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
@@ -93,7 +93,7 @@ export const LawBreakersP = styled.div`
     &.img1 {
       transform: scaleX(-1);
       &.rocks {
-        transform: scaleX(-1.25) scaleY(1.25);
+        transform: scaleX(-1.5) scaleY(1.5);
       }
       &.art {
         transform: scaleX(-1.2) scaleY(1.2);
@@ -102,13 +102,28 @@ export const LawBreakersP = styled.div`
         animation: ${footerLtr(3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
 
         &.rocks {
-          animation: ${footerLtr(3600, -1.25, 1.25)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+          animation: ${footerLtr(3600, -1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
         &.art {
           animation: ${footerLtr(3600, -1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         }
       }
     }
+  }
+
+  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+    height: 35px;
+    width: 100%;
+    justify-content: space-around;
+  }
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
+    height: 40px;
+  }
+  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
+    height: 50px;
+  }
+  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
+    height: 60px;
   }
 `;
 
