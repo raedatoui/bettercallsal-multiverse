@@ -24,15 +24,10 @@ export const HeaderContainer = styled.header`
     top: 0;
   }
 
-  @media (min-height: 415px) {
+  @media (min-height: 440px) {
     position: sticky;
     top: 0;
   }
-
-  //@media (max-height: 600px) {
-  //  position: sticky;
-  //  top: 0;
-  //}
 
   @media only screen and (max-width : ${breakPoints.md.max}px) {
     font-size: 40px;

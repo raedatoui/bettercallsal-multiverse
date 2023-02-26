@@ -40,12 +40,13 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
 
     return (
         <LeftNavButton
-            ref={ref}
             onClick={handleClick}
         >
-            <LeftNavItemCuck dangerouslySetInnerHTML={{
-                __html: navItem.name
-            }}
+            <LeftNavItemCuck
+                ref={ref}
+                dangerouslySetInnerHTML={{
+                    __html: navItem.name
+                }}
             />
 
         </LeftNavButton>
