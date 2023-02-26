@@ -7,14 +7,8 @@ export const MiddleSection = styled.div`
     position: relative;
     outline: none;
     width: 66.6666666667%;
-    //@media only screen and (min-width: 1024px) {
-    //    width: calc(100% - 500px);
-    //}
-    // @media only screen and (max-width: ${breakPoints.sm.max}px) {
-    //   min-height: 500px;
-    // }
 
-    @media only screen and (max-width: 1023px) {
+    @media only screen and (max-width: ${breakPoints.lg1.max}px) {
         width: 100%;
     }
 `;
@@ -41,28 +35,36 @@ export const Quote = styled.h6`
 `;
 
 export const ContentList = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: 100%;
-    &.off {
-      display: none;
-    }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  &.off {
+    display: none;
+  }
 
-    @media only screen and (max-width: 399px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media only screen and (min-width: 400px) and (max-width: 620px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  @media only screen and (max-width: 420px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
     
-    @media only screen and (min-width: 621px) and (max-width: 1023px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media only screen and (min-width: 1024px) and (max-width: 1240px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  @media only screen and (min-width: 421px) and (max-width: 620px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+    
+  @media only screen and (min-width: 621px) and (max-width: ${breakPoints.lg1.max}px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+    
+  @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 849px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+    
+  @media only screen and (min-width: 850px) and (max-width: 1023px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+    
+  @media only screen and (min-width: 1024px) and (max-width: ${breakPoints.lg2.max}px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 export const ContentItem = styled.div`
@@ -261,6 +263,7 @@ export const GameImageContainer = styled.div<{ width: number, height: number }>`
 export const EcardContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   
   img {

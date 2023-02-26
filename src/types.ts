@@ -145,9 +145,21 @@ export interface UnityInstance {
     Quit: () => Promise<void>;
 }
 
+type TextFitOptions = {
+    alignVert?: boolean,
+    alignHoriz?: boolean,
+    multiLine?: boolean,
+    detectMultiLine?: boolean,
+    minFontSize?: number,
+    maxFontSize?: number,
+    reProcess?: boolean,
+    widthOnly?: boolean,
+    alignVertWithFlexbox?: boolean
+};
+
 declare global {
     interface Window {
         createUnityInstance: (canvas: HTMLElement | null, config: Object) => Promise<UnityInstance>;
-        textFit: (el: HTMLElement) => void;
+        textFit: (el: HTMLElement, options?: TextFitOptions) => void;
     }
 }

@@ -1,5 +1,5 @@
 import styled, { Keyframes } from 'styled-components';
-import { breakPoints } from 'src/constants';
+import { headerBreakPoints as breakPoints } from 'src/constants';
 
 const BaseSlidingItem = styled.a`
   font-size: 0.3635em;
@@ -37,12 +37,13 @@ export const Baseline = styled(BaseSlidingItem)`
 
 export const SlidingItem = styled(BaseSlidingItem)<
 { visibility: string, translateX: number, animation: Keyframes | null, animationDuration: number }>`
-  position: absolute;
   visibility: ${props => props.visibility};
   transform: translateX(${props => `${props.translateX}px`});
   animation: ${props => (props.animation ? props.animation : '')};
   animation-duration: ${props => `${props.animationDuration}s`};
-
+  width: 100%;
+  position: absolute;
+  
   &:hover {
     color: #DCDB00;
   }

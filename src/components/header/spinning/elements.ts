@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CDN, breakPoints } from 'src/constants';
+import { CDN, headerBreakPoints as breakPoints } from 'src/constants';
 import { fadein, ltr, ltr2, rtl, rtl2 } from 'src/utils/animations';
 
 export const SpinningSalsContainer = styled.div`

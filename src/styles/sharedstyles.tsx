@@ -5,7 +5,12 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   height: 100%;
-  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+
+  @media (max-width: ${breakPoints.sm.max}px) {
+    height: auto;
+  }
+
+  @media (max-height: 600px) {
     height: auto;
   }
 `;
@@ -28,13 +33,15 @@ const Row = styled.div`
   background-image: linear-gradient(#fea100, #eae41f, #eae41f, #eae41f);
   position: relative;
   display: flex;
-
-  @media only screen and (min-width: ${breakPoints.sm.max}px) {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  
+  @media (min-height: 601px) and (min-width: ${breakPoints.sm.max}px)  {
     flex: 1;
-    overflow: auto;
+    overflow-y: auto;
   }
 
-  @media only screen and (max-width: 1023px) {  
+  @media (max-width: ${breakPoints.lg1.max}px) {  
     flex-direction: column;
   }
 `;
