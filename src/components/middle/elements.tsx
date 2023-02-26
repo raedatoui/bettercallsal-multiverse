@@ -51,11 +51,11 @@ export const ContentList = styled.div`
   }
     
   @media only screen and (min-width: 621px) and (max-width: ${breakPoints.lg1.max}px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
     
   @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 849px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
     
   @media only screen and (min-width: 850px) and (max-width: 1023px) {

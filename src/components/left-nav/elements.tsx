@@ -24,6 +24,7 @@ export const LeftNavButton = styled(NavButton)`
   height: 38px;
   line-height: 38px;
   text-align: left  !important;
+  padding: 0 6px;
 
   a {
     color: inherit;
@@ -37,11 +38,15 @@ export const LeftNavButton = styled(NavButton)`
   &:last-of-type {
     margin-bottom: 0;
   }
+
+  @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 900px) {
+    padding: 0 3px;
+  }
 `;
 
 export const LeftNavItemCuck = styled.div`
-  padding: 0 6px;
   width: 100%;
+  height: 100%;
 `;
 
 export const LeftAdd = styled.div`
@@ -53,6 +58,14 @@ export const LeftAdd = styled.div`
 export const LeftAdd1 = styled(LeftAdd)`
   border: solid 8px rgb(255, 111, 0);
   cursor: pointer;
+
+  @media only screen and (max-width: ${breakPoints.lg1.max}px) {
+    border: solid 14px rgb(255, 111, 0);
+  }
+
+  @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 1009px) {
+    border: solid 6px rgb(255, 111, 0);
+  }
 `;
 
 export const LeftAdd2 = styled(LeftAdd)`
@@ -78,60 +91,60 @@ export const LeftAdd2 = styled(LeftAdd)`
     text-align: center;
     letter-spacing: 2px;
     text-shadow:
-        rgb(228, 0, 196) -3px -3px 0,
-        rgb(228, 0, 196) -3px -1px 0,
-        rgb(228, 0, 196) -3px 0 0,
-        rgb(228, 0, 196) -3px 1px 0,
-        rgb(228, 0, 196) -3px 3px 0,
-        rgb(228, 0, 196) -1px -3px 0,
-        rgb(228, 0, 196) -1px -1px 0,
-        rgb(228, 0, 196) -1px 0 0,
-        rgb(228, 0, 196) -1px 1px 0,
-        rgb(228, 0, 196) -1px 3px 0,
-        rgb(228, 0, 196) 0 -3px 0,
-        rgb(228, 0, 196) 0 -1px 0,
-        rgb(228, 0, 196) 0 0 0,
-        rgb(228, 0, 196) 0 1px 0,
-        rgb(228, 0, 196) 0 3px 0,
-        rgb(228, 0, 196) 1px -3px 0,
-        rgb(228, 0, 196) 1px -1px 0,
-        rgb(228, 0, 196) 1px 0 0,
-        rgb(228, 0, 196) 1px 1px 0,
-        rgb(228, 0, 196) 1px 3px 0,
-        rgb(228, 0, 196) 3px -3px 0,
-        rgb(228, 0, 196) 3px -1px 0,
-        rgb(228, 0, 196) 3px 0 0,
-        rgb(228, 0, 196) 3px 1px 0,
-        rgb(228, 0, 196) 3px 3px 0;
+              rgb(228, 0, 196) -3px -3px 0,
+              rgb(228, 0, 196) -3px -1px 0,
+              rgb(228, 0, 196) -3px 0 0,
+              rgb(228, 0, 196) -3px 1px 0,
+              rgb(228, 0, 196) -3px 3px 0,
+              rgb(228, 0, 196) -1px -3px 0,
+              rgb(228, 0, 196) -1px -1px 0,
+              rgb(228, 0, 196) -1px 0 0,
+              rgb(228, 0, 196) -1px 1px 0,
+              rgb(228, 0, 196) -1px 3px 0,
+              rgb(228, 0, 196) 0 -3px 0,
+              rgb(228, 0, 196) 0 -1px 0,
+              rgb(228, 0, 196) 0 0 0,
+              rgb(228, 0, 196) 0 1px 0,
+              rgb(228, 0, 196) 0 3px 0,
+              rgb(228, 0, 196) 1px -3px 0,
+              rgb(228, 0, 196) 1px -1px 0,
+              rgb(228, 0, 196) 1px 0 0,
+              rgb(228, 0, 196) 1px 1px 0,
+              rgb(228, 0, 196) 1px 3px 0,
+              rgb(228, 0, 196) 3px -3px 0,
+              rgb(228, 0, 196) 3px -1px 0,
+              rgb(228, 0, 196) 3px 0 0,
+              rgb(228, 0, 196) 3px 1px 0,
+              rgb(228, 0, 196) 3px 3px 0;
 
     @media only screen and (max-width: 800px) and (min-width: 768px) {
       font-size: 0.6em;
       text-shadow:
+                rgb(228, 0, 196) -2px -2px 0,
+                rgb(228, 0, 196) -2px -1px 0,
+                rgb(228, 0, 196) -2px 0 0,
+                rgb(228, 0, 196) -2px 1px 0,
+                rgb(228, 0, 196) -2px 2px 0,
+                rgb(228, 0, 196) -1px -2px 0,
                 rgb(228, 0, 196) -1px -1px 0,
-                rgb(228, 0, 196) -1px -0.8px 0,
                 rgb(228, 0, 196) -1px 0 0,
-                rgb(228, 0, 196) -1px 0.8px 0,
                 rgb(228, 0, 196) -1px 1px 0,
-                rgb(228, 0, 196) -0.8px -1px 0,
-                rgb(228, 0, 196) -0.8px -0.8px 0,
-                rgb(228, 0, 196) -0.8px 0 0,
-                rgb(228, 0, 196) -0.8px 0.8px 0,
-                rgb(228, 0, 196) -0.8px 1px 0,
-              rgb(228, 0, 196) 0 -1px 0,
-              rgb(228, 0, 196) 0 -0.8px 0,
-              rgb(228, 0, 196) 0 0 0,
-              rgb(228, 0, 196) 0 0.8px 0,
-              rgb(228, 0, 196) 0 1px 0,
-              rgb(228, 0, 196) 0.8px -1px 0,
-              rgb(228, 0, 196) 0.8px -0.8px 0,
-              rgb(228, 0, 196) 0.8px 0 0,
-              rgb(228, 0, 196) 0.8px 0.8px 0,
-              rgb(228, 0, 196) 0.8px 1px 0,
-              rgb(228, 0, 196) 1px -1px 0,
-              rgb(228, 0, 196) 1px -0.8px 0,
-              rgb(228, 0, 196) 1px 0 0,
-              rgb(228, 0, 196) 1px 0.8px 0,
-              rgb(228, 0, 196) 1px 1px 0;
+                rgb(228, 0, 196) -1px 2px 0,
+                rgb(228, 0, 196) 0 -2px 0,
+                rgb(228, 0, 196) 0 -1px 0,
+                rgb(228, 0, 196) 0 0 0,
+                rgb(228, 0, 196) 0 1px 0,
+                rgb(228, 0, 196) 0 2px 0,
+                rgb(228, 0, 196) 1px -2px 0,
+                rgb(228, 0, 196) 1px -1px 0,
+                rgb(228, 0, 196) 1px 0 0,
+                rgb(228, 0, 196) 1px 1px 0,
+                rgb(228, 0, 196) 1px 2px 0,
+                rgb(228, 0, 196) 2px -2px 0,
+                rgb(228, 0, 196) 2px -1px 0,
+                rgb(228, 0, 196) 2px 0 0,
+                rgb(228, 0, 196) 2px 1px 0,
+                rgb(228, 0, 196) 2px 2px 0;
     }
     @media only screen and (max-width: 1009px) and (min-width: 801px) {
       font-size: 0.7em;
@@ -140,6 +153,13 @@ export const LeftAdd2 = styled(LeftAdd)`
     @media only screen and (max-width: ${breakPoints.lg2.max}px) and (min-width: 1010px) {
       font-size: 1em;
     }
+  }
+
+  @media only screen and (max-width: ${breakPoints.lg1.max}px) {
+    border: solid 14px rgb(228, 0, 196);
+  }
+  @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 1009px) {
+    border: solid 6px rgb(228, 0, 196);
   }
 `;
 

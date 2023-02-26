@@ -34,7 +34,10 @@ export const Middle: FC<Props> = () => {
     const site = siteMap[selectedSite];
     // these contexts are for causing a shuffle
     const windowSize = useWindowSize();
-    const anim = useContext(AnimationContext);
+    const {
+        animateHeaderFooter,
+        spinningSalsGridCounter
+    } = useContext(AnimationContext);
 
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(contentMap[selectedSite]);
     const [prevShuffledList, setPrevShuffledList] = useState<(BaseContentItem | GameContentItem)[]>([]);
@@ -67,7 +70,7 @@ export const Middle: FC<Props> = () => {
 
         if (!isArt) {
             if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
-                || (selectedSite === 'biz' && anim.spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
+                || (selectedSite === 'biz' && spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
                 list = shuffleList(list);
                 setPrevShuffledList(list);
             }
@@ -81,8 +84,8 @@ export const Middle: FC<Props> = () => {
         selectedSite,
         selectedContentItem,
         selectedNavItem,
-        anim.spinningSalsGridCounter,
-        anim.animateHeaderFooter,
+        spinningSalsGridCounter,
+        animateHeaderFooter,
         windowSize,
         isArt]);
 
