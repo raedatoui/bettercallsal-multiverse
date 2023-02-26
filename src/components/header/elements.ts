@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
-import { breakPoints } from 'src/constants';
+import { headerBreakPoints as breakPoints } from 'src/constants';
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -12,15 +12,28 @@ export const HeaderContainer = styled.header`
   background-image: linear-gradient(#FD9F00, #FBFA00);
   box-shadow: inset 0 0 100px hsla(0, 0%, 0%, .3);
   z-index: 1;
+  position: relative;
 
   .content {
     width: 100%;
   }
-  
-  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+
+
+  @media (max-width: ${breakPoints.sm.max}px) {
     position: sticky;
     top: 0;
   }
+
+  @media (min-height: 415px) {
+    position: sticky;
+    top: 0;
+  }
+
+  //@media (max-height: 600px) {
+  //  position: sticky;
+  //  top: 0;
+  //}
+
   @media only screen and (max-width : ${breakPoints.md.max}px) {
     font-size: 40px;
   }
@@ -41,6 +54,7 @@ export const TickerContainer = styled.div<{ background: string }>`{
   display: flex;
   background-color: ${props => props.background};
   position: relative;
+  width: 100%;
 }`;
 
 export const SalHolder = styled.div`

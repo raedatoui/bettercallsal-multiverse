@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
 import { borderAnim, neon2, fadein, footerLtr } from 'src/utils/animations';
-import { breakPoints } from 'src/constants';
+import { headerBreakPoints as breakPoints } from 'src/constants';
 
 export const LawBreakersContainer = styled.div`
   background-image: linear-gradient(#fda810, #eae41f);
@@ -115,6 +115,14 @@ export const LawBreakersP = styled.div`
     height: 35px;
     width: 100%;
     justify-content: space-around;
+    img {
+      &.img0 {
+        margin: 0 10px 0 0;
+      }
+      &.img1 {
+        margin: 0 0 0 10px;
+      }
+    }
   }
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
     height: 40px;
@@ -138,8 +146,6 @@ export const FooterContainer = styled.footer`
   background-color: #F13400;
   font-size: 80px;
   width: 100%;
-  //position: fixed;
-  //bottom: 0;
 
   @media only screen and (max-width : ${breakPoints.md.max}px) {
     font-size: 40px;

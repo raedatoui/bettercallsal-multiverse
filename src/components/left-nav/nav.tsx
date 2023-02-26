@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { LeftAdd1, LeftAdd2, LeftContent, LeftNavButton, LeftNavContainer, LeftNavMenu } from 'src/components/left-nav/elements';
+import { LeftAdd1, LeftAdd2, LeftContent, LeftNavButton, LeftNavContainer, LeftNavMenu, LeftNavItemCuck } from 'src/components/left-nav/elements';
 import { LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { useSiteContext } from 'src/providers/sites';
@@ -19,7 +19,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
 
     const scaleText = () => {
         if (window.textFit && ref.current)
-            window.textFit(ref.current);
+            window.textFit(ref.current, { alignVert: true, alignHoriz: false, detectMultiLine: false, widthOnly: false, maxFontSize: 34 });
     };
 
     useEffect(() => {
@@ -42,7 +42,12 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
         <LeftNavButton
             ref={ref}
             onClick={handleClick}
-        >{ navItem.name }
+        >
+            <LeftNavItemCuck dangerouslySetInnerHTML={{
+                __html: navItem.name
+            }}
+            />
+
         </LeftNavButton>
     );
 };
@@ -118,7 +123,10 @@ export const LeftNav: FC<Props> = () => {
                                     onClick={() => handleImageClick()}
                                 />
                             </LeftContent>
-                            <span>{site.leftNav.text}</span>
+                            <span dangerouslySetInnerHTML={{
+                                __html: site.leftNav.text
+                            }}
+                            />
                         </LeftAdd2>
                     </LeftAdd1>
                 </LeftNavContainer>

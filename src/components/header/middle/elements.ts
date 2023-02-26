@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
-import { CDN, breakPoints } from 'src/constants';
+import { CDN, headerBreakPoints as breakPoints } from 'src/constants';
 import { glowShadow, ltr2, neon1, scalemic, scalemic2 } from 'src/utils/animations';
 
 export const BetterCall = styled.h1.attrs(props => ({ className: props.className }))`

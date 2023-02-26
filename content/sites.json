@@ -19,7 +19,7 @@
     },
     "leftNav": {
       "image": "/images/biz/nav-sq.webp",
-      "text": "SAL WORKED FOR ME!!!!",
+      "text": "SAL WORKED<br />FOR ME!!!!",
       "video": "01agkvzV7Jk",
       "audio": null,
       "items": [
@@ -51,7 +51,7 @@
           "quoteLink": null
         },
         {
-          "name": "e-cards",
+          "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
           "audio": null,
           "video": null,
           "link": null,
@@ -103,7 +103,7 @@
     },
     "leftNav": {
       "image": "/images/fit/salwmeout.webp",
-      "text": "SAL WORKED ME OUT!!!!",
+      "text": "SAL WORKED<br />ME OUT!!!!",
       "video": null,
       "audio": null,
       "items": [
@@ -232,7 +232,7 @@
     },
     "leftNav": {
       "image": "/images/art/left.art.webp",
-      "text": "ABOUT THE ARTIST!!!!",
+      "text": "ABOUT THE<br />ARTIST!!!!",
       "video": null,
       "audio": "/audio/art/cummilker.mp3",
       "items": [
@@ -325,7 +325,7 @@
     },
     "leftNav": {
       "image": "/images/rocks/hardcore.webp",
-      "text": "SAL ROCKED ME!!!!",
+      "text": "SAL ROCKED<br />ME!!!!",
       "video": null,
       "audio": "/audio/rocks/pavane.mp3",
       "items": [
@@ -409,7 +409,7 @@
     },
     "leftNav": {
       "image": "/images/games/left.games.webp",
-      "text": "SAL PLAYED ME!!!!",
+      "text": "SAL PLAYED<br />ME!!!!",
       "video": null,
       "audio": null,
       "items": [
@@ -484,7 +484,7 @@
     },
     "leftNav": {
       "image": "/images/construction/nav-sq.webp",
-      "text": "SAL WORKED FOR ME!!!!",
+      "text": "SAL WORKED<br FOR ME!!!!",
       "video": "01agkvzV7Jk",
       "audio": null,
       "items": [
@@ -516,7 +516,7 @@
           "quoteLink": null
         },
         {
-          "name": "e-cards",
+          "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
           "audio": null,
           "video": null,
           "link": null,

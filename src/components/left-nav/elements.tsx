@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
+import { breakPoints } from 'src/constants';
 
 export const LeftNavContainer = styled.div`
-  width: 100%;
   width: 16.6666666667%;
   
-  @media only screen and (max-width: 1023px) {
+  @media only screen and (max-width: ${breakPoints.lg1.max}px) {
     order: 1;
     width: 100%;
   }
@@ -21,7 +21,6 @@ export const LeftNavButton = styled(NavButton)`
   margin: 8px 6px 8px 0;
   border-radius: 0 4px 4px 0 !important;
   text-align: left;
-  padding: 0 12px 0 6px;
   height: 38px;
   line-height: 38px;
   text-align: left  !important;
@@ -38,6 +37,11 @@ export const LeftNavButton = styled(NavButton)`
   &:last-of-type {
     margin-bottom: 0;
   }
+`;
+
+export const LeftNavItemCuck = styled.div`
+  padding: 0 6px;
+  width: 100%;
 `;
 
 export const LeftAdd = styled.div`
@@ -99,6 +103,43 @@ export const LeftAdd2 = styled(LeftAdd)`
         rgb(228, 0, 196) 3px 0 0,
         rgb(228, 0, 196) 3px 1px 0,
         rgb(228, 0, 196) 3px 3px 0;
+
+    @media only screen and (max-width: 800px) and (min-width: 768px) {
+      font-size: 0.6em;
+      text-shadow:
+                rgb(228, 0, 196) -1px -1px 0,
+                rgb(228, 0, 196) -1px -0.8px 0,
+                rgb(228, 0, 196) -1px 0 0,
+                rgb(228, 0, 196) -1px 0.8px 0,
+                rgb(228, 0, 196) -1px 1px 0,
+                rgb(228, 0, 196) -0.8px -1px 0,
+                rgb(228, 0, 196) -0.8px -0.8px 0,
+                rgb(228, 0, 196) -0.8px 0 0,
+                rgb(228, 0, 196) -0.8px 0.8px 0,
+                rgb(228, 0, 196) -0.8px 1px 0,
+              rgb(228, 0, 196) 0 -1px 0,
+              rgb(228, 0, 196) 0 -0.8px 0,
+              rgb(228, 0, 196) 0 0 0,
+              rgb(228, 0, 196) 0 0.8px 0,
+              rgb(228, 0, 196) 0 1px 0,
+              rgb(228, 0, 196) 0.8px -1px 0,
+              rgb(228, 0, 196) 0.8px -0.8px 0,
+              rgb(228, 0, 196) 0.8px 0 0,
+              rgb(228, 0, 196) 0.8px 0.8px 0,
+              rgb(228, 0, 196) 0.8px 1px 0,
+              rgb(228, 0, 196) 1px -1px 0,
+              rgb(228, 0, 196) 1px -0.8px 0,
+              rgb(228, 0, 196) 1px 0 0,
+              rgb(228, 0, 196) 1px 0.8px 0,
+              rgb(228, 0, 196) 1px 1px 0;
+    }
+    @media only screen and (max-width: 1009px) and (min-width: 801px) {
+      font-size: 0.7em;
+    }
+    
+    @media only screen and (max-width: ${breakPoints.lg2.max}px) and (min-width: 1010px) {
+      font-size: 1em;
+    }
   }
 `;
 

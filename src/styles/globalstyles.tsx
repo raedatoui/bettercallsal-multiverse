@@ -7,18 +7,22 @@ const GlobalStyle = createGlobalStyle`
     font-family: Pragmatica, Arial, Helvetica, sans-serif;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
   }
 
   body {
     background-color: #eae41f;
     -webkit-font-smoothing: antialiased;
     margin: 0;
-
     overflow-x: hidden;
     overflow-y: hidden;
-    @media only screen and (max-width: ${breakPoints.sm.max}px) {
+
+    @media (max-width: ${breakPoints.sm.max}px){
       overflow-y: auto;
-      height: auto;
+    }
+
+    @media (max-height: 600px) {
+      overflow-y: auto;
     }
   }
 
