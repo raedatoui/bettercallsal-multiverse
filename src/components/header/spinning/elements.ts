@@ -25,13 +25,19 @@ export const SpinningWrapper = styled.div`
   width: 258px;
   
   @media only screen and (max-width: ${breakPoints.sm.max}px) {
-    height: 135px;
-    width: 145px;
+    height: 93px;
+    width: 100px;
+    padding-top: 20px;
+
 
 
       &.left {
-        display: none;
+        margin-left: -16px;
       }
+
+     &.right {
+       margin-right: -16px;
+     }
 
       &.img0.fadein, &.img0.hover {
         display: block;
