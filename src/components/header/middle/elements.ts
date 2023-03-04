@@ -27,8 +27,8 @@ export const BetterCall = styled.h1.attrs(props => ({ className: props.className
 
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     margin: 10px 0;
-    text-align: left;
-    white-space: nowrap;
+    //text-align: left;
+    //white-space: nowrap;
   }
 
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
@@ -62,8 +62,8 @@ export const BizerkContainer = styled.div.attrs(props => ({ className: props.cla
 
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     height: 32px;
-    justify-content: left;
-    margin-left: 8px;
+    //justify-content: left;
+    //margin-left: 8px;
   }
 
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
@@ -369,7 +369,7 @@ export const SalCaption = styled.h3`
   margin: -10px auto 0 auto;
 
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
-    text-align: left;
+    //text-align: left;
     margin: -6px 0 0 16px  ;
   }
 

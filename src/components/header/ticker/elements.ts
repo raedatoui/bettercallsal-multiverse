@@ -21,7 +21,7 @@ const BaseSlidingItem = styled.a`
     letter-spacing: 2px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    text-align: left;
+    //text-align: left;
     padding-left: 8px;
   }
 
