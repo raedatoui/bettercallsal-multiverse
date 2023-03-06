@@ -25,26 +25,23 @@ export const SpinningWrapper = styled.div`
   width: 258px;
   
   @media only screen and (max-width: ${breakPoints.sm.max}px) {
-    height: 93px;
-    width: 100px;
+    height: 94px;
+    width: 102px;
     padding-top: 20px;
-
-
-
-      &.left {
-        margin-left: -16px;
-      }
-
-     &.right {
-       margin-right: -16px;
-     }
-
-      &.img0.fadein, &.img0.hover {
-        display: block;
-      }
+    
+    &.left {
+      margin-left: -16px;
     }
+    
+    &.right {
+      margin-right: -16px;
+    }
+    
+    &.img0.fadein, &.img0.hover {
+      display: block;
+    }
+  }
   
-
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
     height: 140px !important;
     width: 150.5px !important;
@@ -54,11 +51,11 @@ export const SpinningWrapper = styled.div`
   @media only screen and (max-width : ${breakPoints.lg1a.max}px) and (min-width : ${breakPoints.lg1a.min}px) {
     height: 163.5px;
     width: 176px;
-    margin-top: 20px;
+    margin-top: 19px;
   }
   
   @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min + 101}px) {
-    height: 183.5px;
+    height: 183px;
     width: 198px;
   }
 

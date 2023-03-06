@@ -10,23 +10,14 @@ const BaseSlidingItem = styled.a`
   width: 100%;
   color: #DCDB00;
   cursor: pointer;
-  height: auto;
-  display: inline-block;
-  line-height: 37px;
+  height: 37px;
 
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
-    line-height: 22px;
-    font-size: 0.3em;
-    min-height: 20px;
-    letter-spacing: 2px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    //text-align: left;
-    padding-left: 8px;
+    height: 24px;
   }
 
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
-    line-height: 30px;
+    height: 30px;
   }
 `;
 
@@ -43,7 +34,18 @@ export const SlidingItem = styled(BaseSlidingItem)<
   animation-duration: ${props => `${props.animationDuration}s`};
   width: 100%;
   position: absolute;
-  
+  line-height: 37px;
+
+  @media only screen and (max-width : ${breakPoints.sm.max}px) {
+    line-height: 26px;
+    font-size: 0.38em;
+    letter-spacing: 2px;
+  }
+
+  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
+    line-height: 30px;
+  }
+
   &:hover {
     color: #DCDB00;
   }

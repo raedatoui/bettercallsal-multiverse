@@ -14,7 +14,7 @@ interface ButtonProps {
     width: number;
 }
 const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
-
+    const [clicked, setClicked] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null);
 
     const scaleText = () => {
@@ -31,12 +31,30 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
     }, []);
 
     const handleClick = () => {
+        setClicked(true);
         // TODO move providers here and remove callback functions. do too many provider subscriber slow things down?
         if (navItem.audio)
             audioCb(navItem.audio);
         if (navItem.category && navItem.category !== '')
             navItemCb(navItem);
     };
+
+    useEffect(() => {
+        if (clicked) {
+            setTimeout(() => {
+                document.body.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                document.getElementById('content-row')?.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 50);
+
+            setClicked(false);
+        }
+    }, [clicked]);
 
     return (
         <LeftNavButton
@@ -67,6 +85,7 @@ export const LeftNav: FC<Props> = () => {
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
     const handleAudio = (a: string) => {
+
         if (loaded)
             if (!audioPlaying) {
                 buffers.play(a);

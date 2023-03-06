@@ -139,7 +139,7 @@ export const Middle: FC<Props> = () => {
 
             { selectedSite === 'games' && (
                 <Script
-                    src={`${CDN}/unity/export.loader.js`}
+                    src={`${CDN}/unity/game.loader.js`}
                     onLoad={() => setScriptLoaded(true)}
                 />
             ) }
