@@ -19,7 +19,7 @@ export const Caption = styled.h4`
   margin: auto;
   text-shadow: 2px 2px white, -2px -2px white, 2px -2px white, -2px 2px white;
   text-align: center;
-  font-size: 30px;
+  font-size: 1.4em;
   padding-top: 10px;
   width: 100%;
 `;

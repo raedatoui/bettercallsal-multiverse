@@ -374,7 +374,6 @@ export const SalCaption = styled.h3`
   }
 
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width:  ${breakPoints.md.min}px) {
-    padding-right: 50px;
     white-space: nowrap;
     margin-top: -4px;
   }
