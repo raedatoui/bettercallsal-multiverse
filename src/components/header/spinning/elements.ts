@@ -45,7 +45,7 @@ export const SpinningWrapper = styled.div`
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
     height: 140px !important;
     width: 150.5px !important;
-    margin-top: 13px;
+    margin-top: 12px;
   }
 
   @media only screen and (max-width : ${breakPoints.lg1a.max}px) and (min-width : ${breakPoints.lg1a.min}px) {

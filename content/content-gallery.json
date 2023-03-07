@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "dataUrl": "/unity/gallery/GALLERYv1.data.gz",
+      "frameworkUrl": "/unity/gallery/GALLERYv1.framework.js.gz",
+      "codeUrl": "/unity/gallery/GALLERYv1.wasm.gz",
+      "streamingAssetsUrl": "StreamingAssets",
+      "companyName": "BetterCallSal.games",
+      "productName": "Bettercallsal.gallery",
+      "productVersion": "1.0",
+      "showBanner": false,
+      "devicePixelRatio": 1,
+      "thumb": "salitaire.jpg",
+      "name": "gallery",
+      "contentId": "gallery",
+      "contentType": "gallery",
+      "category": "gallery"
+    }
+  ]
+}

@@ -34,7 +34,7 @@ export const SlidingItem = styled(BaseSlidingItem)<
   animation-duration: ${props => `${props.animationDuration}s`};
   width: 100%;
   position: absolute;
-  line-height: 37px;
+  line-height: 39px;
 
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     line-height: 26px;

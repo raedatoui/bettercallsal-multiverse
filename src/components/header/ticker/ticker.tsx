@@ -82,7 +82,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
         else
         if (selectedSlide === 0 && index === 0)
             slideIn();
-        else if (selectedSlide === 0 && index === 5)
+        else if (selectedSlide === 0 && index === 6)
             slideOut();
         else if (selectedSlide === index)
             slideIn();
@@ -180,6 +180,16 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                 site={siteMap.construction}
                 sw={sw}
                 index={5}
+                sliderType={sliderType}
+            />
+            <Slider
+                start={start}
+                selectedSlide={selectedSlide}
+                selectedSite={selectedSite}
+                setSelectedSite={setSelectedSite}
+                site={siteMap.gallery}
+                sw={sw}
+                index={6}
                 sliderType={sliderType}
             />
         </TickerContainer>

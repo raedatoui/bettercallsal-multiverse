@@ -11,6 +11,7 @@ interface Props {
 
 export const UnityGame: FC<Props> = ({ containerRef }) => {
     const {
+        contentMap,
         selectedSite,
         setSelectedNavItem,
         selectedContentItem,
@@ -81,7 +82,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     };
 
     useEffect(() => {
-        if (selectedContentItem && selectedContentItem.contentType === 'game') {
+        if (selectedContentItem && (selectedContentItem.contentType === 'game' || selectedContentItem.contentType === 'gallery')) {
             clearCanvas();
             if (unityInstance)
                 unityInstance.Quit()
@@ -108,8 +109,20 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
                 desired.width = 600;
             setGamesPosterSize(getContentSize(desired));
         }
+        if (selectedContentItem && selectedContentItem.contentType === 'gallery') {
+            const r = document.getElementById('content-row');
+            if (r) {
+                const rect = r.getBoundingClientRect();
+                setGamesPosterSize({ top: 0, left: 0, width: rect.width, height: rect.height });
+            }
+        }
 
     }, [windowSize, selectedContentItem]);
+
+    useEffect(() => {
+        if (selectedSite === 'gallery')
+            setSelectedContentItem(contentMap.gallery[0]);
+    }, [selectedSite]);
 
     return (
         <>
@@ -119,7 +132,8 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
                 height={gamesPosterSize.height}
                 width={gamesPosterSize.width}
                 left={gamesPosterSize.left}
-                className={selectedContentItem && selectedContentItem.contentType === 'game' ? 'on' : 'off'}
+                className={selectedContentItem
+                && (selectedContentItem.contentType === 'game' || selectedContentItem.contentType === 'gallery') ? 'on' : 'off'}
             />
             { selectedContentItem && selectedContentItem.contentType === 'game' && (
                 <GameButtonBar left={gamesPosterSize.width + gamesPosterSize.left - 83} top={gamesPosterSize.height}>

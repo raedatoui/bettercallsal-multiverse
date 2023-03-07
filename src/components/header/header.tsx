@@ -95,7 +95,7 @@ export const HeaderComponent: FC = () => {
     useInterval(() => {
         if (loadAnimationDone && !pauseTicker) {
             setTickerCounter(tickerCounter + 1);
-            if (selectedSlide === 5)
+            if (selectedSlide === 6)
                 setSelectedSlide(0);
             else setSelectedSlide(selectedSlide + 1);
         }

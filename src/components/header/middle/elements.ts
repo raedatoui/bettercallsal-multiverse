@@ -80,7 +80,7 @@ export const BizerkContainer = styled.div.attrs(props => ({ className: props.cla
 `;
 
 export const BizerkImageContainer = styled.div`
-  &.art {
+  &.art, &.gallery {
     margin-top: -18px;
   }
   
@@ -107,7 +107,7 @@ export const BizerkImageContainer = styled.div`
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     height: 38px;
 
-    &.art {
+    &.art, &.gallery {
       margin-top: -24px;
     }
 
@@ -134,7 +134,7 @@ export const BizerkImageContainer = styled.div`
   }
   
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
-    &.art {
+    &.art, &.gallery {
       margin-top: -10px;
     }
 
@@ -156,7 +156,7 @@ export const BizerkImageContainer = styled.div`
   }
 
   @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min}px) {
-    &.art {
+    &.art, &.gallery {
       margin-top: -10px;
     }
     &.biz {
@@ -205,7 +205,7 @@ export const BizerImage = styled.img<{ background: string }>`
     animation: ${ltr2} .5s linear 3;
   }
 
-  &.art {
+  &.art, &.gallery {
     margin-right: -14px;
   }
 
@@ -231,7 +231,7 @@ export const BizerImage = styled.img<{ background: string }>`
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     height: 38px;
 
-    &.art {
+    &.art, &.gallery {
       margin-left: 2px;
       margin-right: -10px;
     }
@@ -259,7 +259,7 @@ export const BizerImage = styled.img<{ background: string }>`
     
   @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
       height: 38px;
-      &.art {
+      &.art, &.gallery {
         margin-left: 2px;
         margin-right: -10px;
       }
