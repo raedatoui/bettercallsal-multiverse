@@ -48,3 +48,13 @@ rm -rf ../firebase/fit/out
 mv out ../firebase/fit/
 cd ../firebase/fit
 firebase deploy
+
+# gallery
+cd ../../multiverse
+yarn clean
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts gallery
+yarn static
+rm -rf ../firebase/gallery/out
+mv out ../firebase/gallery/
+cd ../firebase/gallery
+firebase deploy

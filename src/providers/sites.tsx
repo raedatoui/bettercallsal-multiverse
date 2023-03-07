@@ -31,6 +31,7 @@ const defaultContentMap = {
     rocks: [],
     games: [],
     construction: [],
+    gallery: [],
 };
 
 const SiteContext = createContext<SiteProviderType | undefined>(undefined);

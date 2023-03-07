@@ -27,7 +27,7 @@ export const LeftNavItemValidator = z.object({
 
 export type LeftNavNavItem = z.infer<typeof LeftNavItemValidator>;
 
-export const SiteKeyValidator = z.enum(['biz', 'fit', 'art', 'rocks', 'games', 'construction']);
+export const SiteKeyValidator = z.enum(['biz', 'fit', 'art', 'rocks', 'games', 'construction', 'gallery']);
 
 export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
@@ -68,6 +68,7 @@ export const SiteMapValidator = z.object({
     rocks: SiteValidator,
     games: SiteValidator,
     construction: SiteValidator,
+    gallery: SiteValidator,
 });
 
 export type SiteMap = z.infer<typeof SiteMapValidator>;
@@ -135,6 +136,7 @@ export const ContentMapValidator = z.object({
     rocks: BaseContentListValidator,
     games: GameContentListValidator,
     construction: BaseContentListValidator,
+    gallery: GameContentListValidator,
 });
 
 export type ContentMap = z.infer<typeof ContentMapValidator>;

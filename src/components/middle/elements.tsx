@@ -7,7 +7,9 @@ export const MiddleSection = styled.div`
     position: relative;
     outline: none;
     width: 66.6666666667%;
-
+    &.gallery {
+      width: 100%;
+    }
     @media only screen and (max-width: ${breakPoints.lg1.max}px) {
         width: 100%;
     }

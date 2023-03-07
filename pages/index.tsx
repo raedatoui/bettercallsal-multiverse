@@ -34,7 +34,8 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
     let defaultContent: (BaseContentItem | GameContentItem)[] = [];
     if (defaultSite !== 'construction') {
         const list = await import(`../content/content-${defaultSite}.json`);
-        if (defaultSite === 'games')
+
+        if (defaultSite === 'games' || defaultSite === 'gallery')
             defaultContent = GameContentListValidator.parse(list.items);
         else
             defaultContent = BaseContentListValidator.parse(list.items);
@@ -98,11 +99,14 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                                 />
                                 <HeaderComponent />
                                 <Row id="content-row">
-                                    <LeftNav />
+                                    { defaultSite !== 'gallery' && <LeftNav /> }
                                     <Middle />
-                                    <RightNav />
+                                    { defaultSite !== 'gallery' && <RightNav /> }
                                 </Row>
-                                <LawBreakers />
+                                {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+                                <>
+                                    { defaultSite !== 'gallery' && <LawBreakers /> }
+                                </>
                             </MainContainer>
                         </WindowSizeProvider>
                     </SoundProvider>

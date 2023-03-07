@@ -95,16 +95,18 @@ export const Middle: FC<Props> = () => {
             art = true;
         if (selectedNavItem && selectedNavItem.category === 'salutations')
             art = true;
+        if (selectedSite === 'gallery')
+            art = true;
         setIsArt(art);
-    }, [prevShuffledList, selectedContentItem, selectedNavItem]);
+    }, [prevShuffledList, selectedContentItem, selectedNavItem, selectedSite]);
 
     const isVideo = selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType);
 
     return (
-        <MiddleSection ref={containerRef}>
+        <MiddleSection ref={containerRef} className={selectedSite}>
             { selectedContentItem === null && !isArt && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
 
-            { selectedSite !== 'construction' && (
+            { selectedSite !== 'construction' && selectedSite !== 'gallery' && (
                 <ContentList className={selectedContentItem === null && !isArt && selectedNavItem?.category !== 'e-card' ? 'on' : 'off'}>
                     { loading && <div>loading</div> }
                     { !loading && contentList.map(i => (
@@ -129,7 +131,7 @@ export const Middle: FC<Props> = () => {
                 <VideoPlayer />
             ) }
 
-            { isArt && (
+            { isArt && selectedSite !== 'gallery' && (
                 <ArtSlider
                     containerRef={containerRef}
                     images={prevShuffledList}
@@ -140,6 +142,13 @@ export const Middle: FC<Props> = () => {
             { selectedSite === 'games' && (
                 <Script
                     src={`${CDN}/unity/game.loader.js`}
+                    onLoad={() => setScriptLoaded(true)}
+                />
+            ) }
+
+            { selectedSite === 'gallery' && (
+                <Script
+                    src={`${CDN}/unity/gallery.loader.js`}
                     onLoad={() => setScriptLoaded(true)}
                 />
             ) }

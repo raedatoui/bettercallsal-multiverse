@@ -547,5 +547,98 @@
       "iconHeight": 393,
       "ringAudio": "/audio/construction/ring.construction.mp3"
     }
+  },
+  "gallery": {
+    "name": "gallery",
+    "contentHeader": "In  gallery  trouble?",
+    "metaTitle": "Better Call Sal",
+    "metaDescription": "Bettercallsal.gallery | In Gallery Trouble? Better Call Sal! For All Your Gallery Needs | Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
+    "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Salvatore Dali, Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+    "header": {
+      "spinningSalsLeft": "/images/art/spinning.art.left.webp",
+      "spinningSalsRight": "/images/art/spinning.art.right.webp",
+      "spinningSalAudio": "/audio/art/spinning.art.mp3",
+      "bizerkIcon": "/images/art/spray.gif",
+      "bizerkIconType": "image",
+      "ringAudio": "/audio/art/ring.art.mp3",
+      "name1": "Salvatore",
+      "name2": "Dali",
+      "title": "The Great Masturbator",
+      "lowerBanner": "Want Art from Sal?"
+    },
+    "leftNav": {
+      "image": "/images/art/left.art.webp",
+      "text": "ABOUT THE<br />ARTIST!!!!",
+      "video": null,
+      "audio": "/audio/art/cummilker.mp3",
+      "items": [
+        {
+          "name": "Salutations",
+          "audio": "/audio/art/pavane.mp3",
+          "video": null,
+          "link": "",
+          "category": "salutations",
+          "quote": null,
+          "quoteLink": null
+        },
+        {
+          "name": "Classical",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "classical",
+          "quote": "Classical",
+          "quoteLink": null
+        },
+        {
+          "name": "Sacred",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "sacred",
+          "quote": "Sacred",
+          "quoteLink": null
+        },
+        {
+          "name": "Historical",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "historical",
+          "quote": "Historical",
+          "quoteLink": null
+        },
+        {
+          "name": "Contemporary",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "contemporary",
+          "quote": "Contemporary",
+          "quoteLink": null
+        },
+        {
+          "name": "All",
+          "audio": null,
+          "video": null,
+          "link": null,
+          "category": "all",
+          "quote": null,
+          "quoteLink": null
+        }
+      ]
+    },
+    "rightNav": {
+      "type": "spotify",
+      "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
+    },
+    "footer": {
+      "text": "welcome artists",
+      "icon": "/images/art/dali.gif",
+      "iconType": "image",
+      "iconWidth": 462,
+      "iconHeight": 432,
+      "ringAudio": "/audio/art/ring.art.mp3"
+    }
   }
 }
