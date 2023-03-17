@@ -4,7 +4,7 @@ import { LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Script from 'next/script';
 
 interface ButtonProps {

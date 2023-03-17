@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useContext, RefObject } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { BaseContentItem, ContentSize, Size } from 'src/types';
 import { ButtonBar, ImageContainer, StopButton } from 'src/components/middle/elements';
 import 'keen-slider/keen-slider.min.css';

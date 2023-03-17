@@ -9,7 +9,7 @@ import {
 } from 'src/components/middle/elements';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
 import { shuffleList, useWindowSize } from 'src/utils';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { UnityGame } from 'src/components/middle/unity';
 import Script from 'next/script';
 import { CDN } from 'src/constants';
