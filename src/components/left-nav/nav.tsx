@@ -4,7 +4,7 @@ import { LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Script from 'next/script';
 
 interface ButtonProps {
@@ -113,45 +113,44 @@ export const LeftNav: FC<Props> = () => {
         }
     }, [selectedContentItem, audioPlaying, selectedSite]);
 
-    return (
-        <>
-            <Script
-                id="text-fit"
-                src="/textfit.js"
-                onLoad={() => setScriptLoaded(true)}
-            />
-            { scriptLoaded && (
-                <LeftNavContainer>
-                    <LeftNavMenu>
-                        { site.leftNav.items.map(i => (
-                            <NavButton
-                                key={i.name}
-                                navItem={i}
-                                audioCb={handleAudio}
-                                navItemCb={setSelectedNavItem}
-                                width={width}
-                            />
-                        )) }
-                    </LeftNavMenu>
-                    <LeftAdd1>
-                        <LeftAdd2>
-                            <LeftContent>
-                                <Image
-                                    src={site.leftNav.image}
-                                    alt={site.leftNav.text}
-                                    fill
-                                    onClick={() => handleImageClick()}
-                                />
-                            </LeftContent>
-                            <span dangerouslySetInnerHTML={{
-                                __html: site.leftNav.text
-                            }}
-                            />
-                        </LeftAdd2>
-                    </LeftAdd1>
-                </LeftNavContainer>
-            ) }
-        </>
-
-    );
+    return <>
+        <Script
+            id="text-fit"
+            src="/textfit.js"
+            onLoad={() => setScriptLoaded(true)}
+        />
+        { scriptLoaded && (
+            <LeftNavContainer>
+                <LeftNavMenu>
+                    { site.leftNav.items.map(i => (
+                        <NavButton
+                            key={i.name}
+                            navItem={i}
+                            audioCb={handleAudio}
+                            navItemCb={setSelectedNavItem}
+                            width={width}
+                        />
+                    )) }
+                </LeftNavMenu>
+                <LeftAdd1>
+                    <LeftAdd2>
+                        <LeftContent>
+                            <Image
+                                src={site.leftNav.image}
+                                alt={site.leftNav.text}
+                                fill
+                                onClick={() => handleImageClick()}
+                                style={{
+                                    maxWidth: "100%",
+                                }} />
+                        </LeftContent>
+                        <span dangerouslySetInnerHTML={{
+                            __html: site.leftNav.text
+                        }}
+                        />
+                    </LeftAdd2>
+                </LeftAdd1>
+            </LeftNavContainer>
+        ) }
+    </>;
 };

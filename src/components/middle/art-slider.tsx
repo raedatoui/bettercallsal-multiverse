@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useContext, RefObject } from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { BaseContentItem, ContentSize, Size } from 'src/types';
 import { ButtonBar, ImageContainer, StopButton } from 'src/components/middle/elements';
 import 'keen-slider/keen-slider.min.css';
@@ -117,7 +117,10 @@ export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
                         width={sizes[idx]?.width ?? 0}
                         height={sizes[idx]?.height ?? 0}
                         loading="lazy"
-                    />
+                        style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                        }} />
                 </div>
             ))}
 

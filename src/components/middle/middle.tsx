@@ -9,7 +9,7 @@ import {
 } from 'src/components/middle/elements';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
 import { shuffleList, useWindowSize } from 'src/utils';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { UnityGame } from 'src/components/middle/unity';
 import Script from 'next/script';
 import { CDN } from 'src/constants';
@@ -117,8 +117,11 @@ export const Middle: FC<Props> = () => {
                                 width="480"
                                 height="360"
                                 loading="lazy"
-                                layout="responsive"
-                            />
+                                sizes="100vw"
+                                style={{
+                                    width: "100%",
+                                    height: "auto"
+                                }} />
                             <ContentItemTitle>
                                 { i.name }
                             </ContentItemTitle>
