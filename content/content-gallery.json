@@ -1,9 +1,9 @@
 {
   "items": [
     {
-      "dataUrl": "/unity/gallery/GALLERYv1.data.gz",
-      "frameworkUrl": "/unity/gallery/GALLERYv1.framework.js.gz",
-      "codeUrl": "/unity/gallery/GALLERYv1.wasm.gz",
+      "dataUrl": "/unity/gallery/GALLERYv2.data.br",
+      "frameworkUrl": "/unity/gallery/GALLERYv2.framework.js.br",
+      "codeUrl": "/unity/gallery/GALLERYv2.wasm.br",
       "streamingAssetsUrl": "StreamingAssets",
       "companyName": "BetterCallSal.games",
       "productName": "Bettercallsal.gallery",

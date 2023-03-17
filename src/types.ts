@@ -145,6 +145,7 @@ export type ContentSize = Size & { left: number, top: number };
 
 export interface UnityInstance {
     Quit: () => Promise<void>;
+    SetFullscreen: () => Promise<void>;
 }
 
 type TextFitOptions = {
@@ -161,7 +162,7 @@ type TextFitOptions = {
 
 declare global {
     interface Window {
-        createUnityInstance: (canvas: HTMLElement | null, config: Object) => Promise<UnityInstance>;
+        createUnityInstance: (canvas: HTMLElement | null, config: Object, cb: (progress: number) => void) => Promise<UnityInstance>;
         textFit: (el: HTMLElement, options?: TextFitOptions) => void;
     }
 }

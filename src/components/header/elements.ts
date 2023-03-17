@@ -18,7 +18,6 @@ export const HeaderContainer = styled.header`
     width: 100%;
   }
 
-
   @media (max-width: ${breakPoints.sm.max}px) {
     position: sticky;
     top: 0;

@@ -102,7 +102,7 @@ export const HeaderComponent: FC = () => {
     }, tickerCounter === 0 ? 0 : 5000);
 
     return (
-        <HeaderContainer>
+        <HeaderContainer id="main-header">
             <SpinningSalsContainer>
                 <SpinningSal
                     wrapperStyle="left"

@@ -1,9 +1,9 @@
 {
   "items": [
     {
-      "dataUrl": "/unity/mario/supersalbros.data.gz",
-      "frameworkUrl": "/unity/mario/supersalbros.framework.js.gz",
-      "codeUrl": "/unity/mario/supersalbros.wasm.gz",
+      "dataUrl": "/unity/mario/supersalbros-v7.data.br",
+      "frameworkUrl": "/unity/mario/supersalbros-v7.framework.js.br",
+      "codeUrl": "/unity/mario/supersalbros-v7.wasm.br",
       "streamingAssetsUrl": "/unity/mario/StreamingAssets",
       "companyName": "BetterCallSal.games",
       "productName": "Super Sal Bros.",
@@ -17,9 +17,9 @@
       "category": "supersalbros"
     },
     {
-      "dataUrl": "/unity/salman/salman.data.gz",
-      "frameworkUrl": "/unity/salman/salman.framework.js.gz",
-      "codeUrl": "/unity/salman/salman.wasm.gz",
+      "dataUrl": "/unity/salman/salman.data.br",
+      "frameworkUrl": "/unity/salman/salman.framework.js.br",
+      "codeUrl": "/unity/salman/salman.wasm.br",
       "streamingAssetsUrl": "StreamingAssets",
       "companyName": "BetterCallSal.games",
       "productName": "Salman",
@@ -33,9 +33,9 @@
       "category": "pacman"
     },
     {
-      "dataUrl": "/unity/salitaire/salitaire.data.gz",
-      "frameworkUrl": "/unity/salitaire/salitaire.framework.js.gz",
-      "codeUrl": "/unity/salitaire/salitaire.wasm.gz",
+      "dataUrl": "/unity/salitaire/salitaire_v7.data.br",
+      "frameworkUrl": "/unity/salitaire/salitaire_v7.framework.js.br",
+      "codeUrl": "/unity/salitaire/salitaire_v7.wasm.br",
       "streamingAssetsUrl": "StreamingAssets",
       "companyName": "BetterCallSal.games",
       "productName": "Salitaire",

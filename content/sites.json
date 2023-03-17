@@ -353,7 +353,7 @@
           "video": null,
           "link": null,
           "category": "harjo",
-          "quote": "all hail harjo!",
+          "quote": "all hail harjo",
           "quoteLink": "https://www.allhailharjo.com/"
         },
         {
@@ -555,8 +555,8 @@
     "metaDescription": "Bettercallsal.gallery | In Gallery Trouble? Better Call Sal! For All Your Gallery Needs | Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
     "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Salvatore Dali, Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
     "header": {
-      "spinningSalsLeft": "/images/art/spinning.art.left.webp",
-      "spinningSalsRight": "/images/art/spinning.art.right.webp",
+      "spinningSalsLeft": "/images/gallery/gallery-right.png",
+      "spinningSalsRight": "/images/gallery/gallery-left.png",
       "spinningSalAudio": "/audio/art/spinning.art.mp3",
       "bizerkIcon": "/images/art/spray.gif",
       "bizerkIconType": "image",
@@ -564,7 +564,7 @@
       "name1": "Salvatore",
       "name2": "Dali",
       "title": "The Great Masturbator",
-      "lowerBanner": "Want Art from Sal?"
+      "lowerBanner": "Want Gallery from Sal?"
     },
     "leftNav": {
       "image": "/images/art/left.art.webp",

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 import { glowShadow } from 'src/utils/animations';
-import { breakPoints } from 'src/constants';
+import { breakPoints, CDN } from 'src/constants';
 
 export const MiddleSection = styled.div`
     position: relative;
@@ -21,9 +21,13 @@ export const Caption = styled.h4`
   margin: auto;
   text-shadow: 2px 2px white, -2px -2px white, 2px -2px white, -2px 2px white;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1.8em;
   padding-top: 10px;
   width: 100%;
+
+  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+    font-size: 1.8em;
+  }
 `;
 
 export const Quote = styled.h6`
@@ -271,4 +275,25 @@ export const EcardContainer = styled.div`
   img {
     margin: 12px;
   }
+`;
+
+export const LoadingBar = styled.div`
+  position: absolute; 
+  left: 50%; 
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const LoadingBarProgressEmpty = styled.div`
+  width: 141px; 
+  height: 18px; 
+  margin-top: 10px; 
+  background: url(${() => `${CDN}/unity/progress-bar-empty-dark.png`}) no-repeat center
+`;
+
+export const LoadingBarProgressFull = styled.div<{ width: number }>`
+  width: ${props => `${props.width}%`};
+  height: 18px; 
+  margin-top: 10px;
+  background: url(${() => `${CDN}/unity/progress-bar-full-dark.png`}) no-repeat center
 `;
