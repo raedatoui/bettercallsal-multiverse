@@ -17,6 +17,7 @@ const keyMap: Record<string, SiteKey> = {
     r: 'rocks',
     g: 'games',
     c: 'construction',
+    y: 'gallery',
 };
 
 export const MainContainer: FC<Props> = ({ children }) => {
@@ -26,6 +27,12 @@ export const MainContainer: FC<Props> = ({ children }) => {
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
     useEffect(() => {
+        if (keyPressed === 'Escape' && selectedSite === 'gallery') {
+            const l = document.getElementById('main-header');
+            // @ts-ignore
+            l.style.display = 'block';
+
+        }
         if (keyPressed && keyMap[keyPressed] !== undefined && selectedSite !== 'gallery')
             setSelectedSite(keyMap[keyPressed]);
     }, [keyPressed, selectedSite]);
