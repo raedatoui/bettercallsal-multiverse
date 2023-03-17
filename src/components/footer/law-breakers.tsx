@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from 'src/components/footer/elements';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useWindowSize } from 'src/utils';
 import { Size } from 'src/types';
 import { useSiteContext } from 'src/providers/sites';

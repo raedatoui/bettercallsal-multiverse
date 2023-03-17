@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ButtonBar, EcardContainer, StopButton } from 'src/components/middle/elements';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useSiteContext } from 'src/providers/sites';
 
 interface Props {}
