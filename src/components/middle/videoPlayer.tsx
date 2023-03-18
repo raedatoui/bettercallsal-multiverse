@@ -151,7 +151,7 @@ export const VideoPlayer: FC<Props> = () => {
 
     return (
         <PlayerContainer className={videoClass} ref={containerRef}>
-            { selectedSite !== 'art' && selectedSite !== 'fit' && <VideoText ref={titleRef}>{getTile()}</VideoText> }
+            { selectedSite !== 'art' && selectedSite !== 'fit' && selectedContentItem?.caption !== undefined && <VideoText ref={titleRef}>{getTile()}</VideoText> }
 
             <Player className={selectedContentItem?.contentType !== 'youtube' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
                 <div id="yplayer" />
@@ -167,7 +167,7 @@ export const VideoPlayer: FC<Props> = () => {
                 </Video>
             ) }
 
-            { (selectedSite === 'biz' || selectedSite === 'rocks')
+            { (selectedSite === 'biz' || selectedSite === 'rocks') && selectedContentItem?.views !== undefined
                 && (<VideoText className="lower" ref={viewsRef}>Views: {selectedContentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
 
             <ButtonBar>
