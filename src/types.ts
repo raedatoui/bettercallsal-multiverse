@@ -27,7 +27,7 @@ export const LeftNavItemValidator = z.object({
 
 export type LeftNavNavItem = z.infer<typeof LeftNavItemValidator>;
 
-export const SiteKeyValidator = z.enum(['biz', 'fit', 'art', 'rocks', 'games', 'construction', 'gallery']);
+export const SiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery']);
 
 export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
@@ -61,17 +61,9 @@ export const SiteValidator = z.object({
 
 export type Site = z.infer<typeof SiteValidator>;
 
-export const SiteMapValidator = z.object({
-    biz: SiteValidator,
-    fit: SiteValidator,
-    art: SiteValidator,
-    rocks: SiteValidator,
-    games: SiteValidator,
-    construction: SiteValidator,
-    gallery: SiteValidator,
-});
+export const SiteMapValidator = z.record(SiteKeyValidator, SiteValidator);
 
-export type SiteMap = z.infer<typeof SiteMapValidator>;
+export type SiteMap = Record<SiteKey, Site>;
 
 export const SoundValidator = z.object({
     file: z.string(),

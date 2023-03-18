@@ -1,10 +1,6 @@
 import { SiteMapValidator } from 'src/types';
 import sitesData from '../content/sites.json';
 
-export const SiteOrder: readonly string [] = [
-    'biz', 'fit', 'art', 'rocks', 'games', 'construction', 'gallery'
-];
-
 export const CDN = process.env.cdnUrl;
 
 export const SPOTIFY_ENABLED = process.env.spotifyEnabled;

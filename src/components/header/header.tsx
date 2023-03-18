@@ -2,10 +2,10 @@ import React, { FC, useContext, useState, useEffect } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import { useInterval } from 'src/utils';
-import { SiteOrder } from 'src/constants';
 import { Ticker } from 'src/components/header/ticker';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { AnimationContext } from 'src/providers/animations';
+import { SiteKeyValidator } from 'src/types';
 import {
     HeaderContainer,
     ContentContainer,
@@ -50,7 +50,7 @@ export const HeaderComponent: FC = () => {
     const [rightSpinningState, setRightSpinningState] = useState<string>(`img1 start ${selectedSite}`);
     const [betterCallState, setBetterCallSalState] = useState<string>('');
     const [loadAnimationDone, setLoadAnimationStart] = useState<boolean>(false);
-    const [selectedSlide, setSelectedSlide] = useState<number>(SiteOrder.indexOf(selectedSite));
+    const [selectedSlide, setSelectedSlide] = useState<number>(SiteKeyValidator.options.indexOf(selectedSite));
     const [pauseTicker, setPauseTicker] = useState<boolean>(false);
     const [tickerCounter, setTickerCounter] = useState<number>(0);
 

@@ -68,6 +68,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     const setSite = (s: SiteKey) => {
         setSelectedNavItem(null);
         setSelectedContentItem(null);
+        setLoading(true);
         setSelectedSite(s);
     };
 
@@ -75,7 +76,6 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         const fetchData = async () => {
             try {
                 const { data: response } = await axios.get(`${CDN}/content/content-${selectedSite}.json`);
-
                 if (selectedSite === 'games')
                     setContentMap({
                         ...contentMap,
@@ -86,19 +86,17 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
                         ...contentMap,
                         [selectedSite]: BaseContentListValidator.parse(response.items)
                     });
-                setLoading(false);
             } catch (error) {
                 console.error(error);
             }
         };
 
-        if (selectedSite !== 'construction' && contentMap[selectedSite].length === 0) {
-            setLoading(true);
-            fetchData();
-        } else
+        if (selectedSite !== 'construction' && contentMap[selectedSite].length === 0)
+            fetchData().then(() => setLoading(false));
+        else
             setLoading(false);
 
-    }, [contentMap, selectedSite]);
+    }, [selectedSite]);
 
     useEffect(() => {
         if (selectedSite === 'games' && selectedNavItem !== null) {

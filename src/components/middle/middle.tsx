@@ -9,7 +9,7 @@ import {
 } from 'src/components/middle/elements';
 import { VideoPlayer } from 'src/components/middle/videoPlayer';
 import { shuffleList, useWindowSize } from 'src/utils';
-import Image from "next/image";
+import Image from 'next/image';
 import { UnityGame } from 'src/components/middle/unity';
 import Script from 'next/script';
 import { CDN } from 'src/constants';
@@ -106,10 +106,11 @@ export const Middle: FC<Props> = () => {
         <MiddleSection ref={containerRef} className={selectedSite}>
             { selectedContentItem === null && !isArt && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
 
-            { selectedSite !== 'construction' && selectedSite !== 'gallery' && (
+            { loading && <div>loading</div> }
+
+            { selectedSite !== 'construction' && selectedSite !== 'gallery' && loading === false && (
                 <ContentList className={selectedContentItem === null && !isArt && selectedNavItem?.category !== 'e-card' ? 'on' : 'off'}>
-                    { loading && <div>loading</div> }
-                    { !loading && contentList.map(i => (
+                    { contentList.map(i => (
                         <ContentItem key={i.contentId} onClick={() => setSelectedContentItem(i)}>
                             <Image
                                 alt={i.name}
@@ -119,9 +120,10 @@ export const Middle: FC<Props> = () => {
                                 loading="lazy"
                                 sizes="100vw"
                                 style={{
-                                    width: "100%",
-                                    height: "auto"
-                                }} />
+                                    width: '100%',
+                                    height: 'auto'
+                                }}
+                            />
                             <ContentItemTitle>
                                 { i.name }
                             </ContentItemTitle>

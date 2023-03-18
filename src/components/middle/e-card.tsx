@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ButtonBar, EcardContainer, StopButton } from 'src/components/middle/elements';
-import Image from "next/image";
+import Image from 'next/image';
 import { useSiteContext } from 'src/providers/sites';
 
 interface Props {}
@@ -17,9 +17,10 @@ export const Ecard:FC<Props> = () => {
                 alt="front-biz-card"
                 sizes="100vw"
                 style={{
-                    width: "100%",
-                    height: "auto"
-                }} />
+                    width: '100%',
+                    height: 'auto'
+                }}
+            />
             <Image
                 width={1050}
                 height={600}
@@ -27,9 +28,10 @@ export const Ecard:FC<Props> = () => {
                 alt="front-biz-card"
                 sizes="100vw"
                 style={{
-                    width: "100%",
-                    height: "auto"
-                }} />
+                    width: '100%',
+                    height: 'auto'
+                }}
+            />
 
             <ButtonBar>
                 <StopButton onClick={() => setSelectedNavItem(null)}>BACK</StopButton>

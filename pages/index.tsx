@@ -55,11 +55,11 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
     return (
         <>
             <Head>
-                <title>{site.metaTitle}</title>
+                <title>{site?.metaTitle}</title>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="keywords" content={site.metaKeywords} />
-                <meta name="description" content={site.metaDescription} />
+                <meta name="keywords" content={site?.metaKeywords} />
+                <meta name="description" content={site?.metaDescription} />
                 <meta name="theme-color" content="#F13400" />
                 {/* <link rel="apple-touch-icon" sizes="57x57" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-57x57.png" /> */}
                 {/* <link rel="apple-touch-icon" sizes="60x60" href="https://storage.googleapis.com/www.bettercallsal.biz/favicons/apple-icon-60x60.png" /> */}
