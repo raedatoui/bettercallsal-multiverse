@@ -120,7 +120,7 @@ export const LeftNav: FC<Props> = () => {
                 src="/textfit.js"
                 onLoad={() => setScriptLoaded(true)}
             />
-            { scriptLoaded && (
+            { scriptLoaded && selectedSite !== 'gallery' && (
                 <LeftNavContainer>
                     <LeftNavMenu>
                         { site.leftNav.items.map(i => (

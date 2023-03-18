@@ -61,7 +61,15 @@ export const SiteValidator = z.object({
 
 export type Site = z.infer<typeof SiteValidator>;
 
-export const SiteMapValidator = z.record(SiteKeyValidator, SiteValidator);
+export const SiteMapValidator = z.object({
+    biz: SiteValidator,
+    fit: SiteValidator,
+    art: SiteValidator,
+    rocks: SiteValidator,
+    games: SiteValidator,
+    construction: SiteValidator,
+    gallery: SiteValidator,
+});
 
 export type SiteMap = Record<SiteKey, Site>;
 
