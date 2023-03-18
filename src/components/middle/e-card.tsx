@@ -17,7 +17,6 @@ export const Ecard:FC<Props> = () => {
                 alt="front-biz-card"
                 sizes="100vw"
                 style={{
-                    width: '100%',
                     height: 'auto'
                 }}
             />
@@ -28,7 +27,6 @@ export const Ecard:FC<Props> = () => {
                 alt="front-biz-card"
                 sizes="100vw"
                 style={{
-                    width: '100%',
                     height: 'auto'
                 }}
             />

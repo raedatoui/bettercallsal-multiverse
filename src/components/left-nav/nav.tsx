@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { LeftAdd1, LeftAdd2, LeftContent, LeftNavButton, LeftNavContainer, LeftNavMenu, LeftNavItemCuck } from 'src/components/left-nav/elements';
-import { LeftNavNavItem } from 'src/types';
+import { BaseContentItem, LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
@@ -11,9 +11,10 @@ interface ButtonProps {
     navItem: LeftNavNavItem;
     audioCb: (a: string) => void;
     navItemCb: (l: LeftNavNavItem) => void;
+    videoCb: (c: BaseContentItem) => void;
     width: number;
 }
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width }) => {
     const [clicked, setClicked] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -37,6 +38,14 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
             audioCb(navItem.audio);
         if (navItem.category && navItem.category !== '')
             navItemCb(navItem);
+        if (navItem.video)
+            videoCb({
+                name: navItem.name,
+                contentId: navItem.video,
+                contentType: 'youtube',
+                thumb: '',
+                category: ''
+            });
     };
 
     useEffect(() => {
@@ -74,7 +83,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, width }) => {
 interface Props {}
 
 export const LeftNav: FC<Props> = () => {
-    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem } = useSiteContext();
+    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem, setSelectedContentItem } = useSiteContext();
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -104,6 +113,16 @@ export const LeftNav: FC<Props> = () => {
     const handleImageClick = () => {
         if (site.leftNav.audio)
             handleAudio(site.leftNav.audio);
+        if (site.leftNav.video)
+            setSelectedContentItem(
+                {
+                    name: site.leftNav.text,
+                    contentId: site.leftNav.video,
+                    contentType: 'youtube',
+                    thumb: '',
+                    category: ''
+                }
+            )
     };
 
     useEffect(() => {
@@ -129,6 +148,7 @@ export const LeftNav: FC<Props> = () => {
                                 navItem={i}
                                 audioCb={handleAudio}
                                 navItemCb={setSelectedNavItem}
+                                videoCb={setSelectedContentItem}
                                 width={width}
                             />
                         )) }

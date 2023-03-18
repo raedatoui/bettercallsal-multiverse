@@ -282,6 +282,12 @@ export const EcardContainer = styled.div`
   
   img {
     margin: 12px;
+    width: calc(50% - 24px);
+  }
+  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+    img {
+      width: 100%;
+    }
   }
 `;
 
