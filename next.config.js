@@ -8,7 +8,7 @@ const nextConfig = {
     loaderFile: './image-loader.js',
   },
   env,
-  reactStrictMode: false,
+  reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },

@@ -21,12 +21,12 @@ export const Caption = styled.h4`
   margin: auto;
   text-shadow: 2px 2px white, -2px -2px white, 2px -2px white, -2px 2px white;
   text-align: center;
-  font-size: 1.8em;
+  font-size: 2em;
   padding-top: 10px;
   width: 100%;
 
   @media only screen and (max-width: ${breakPoints.sm.max}px) {
-    font-size: 1.8em;
+    font-size: 2em;
   }
 `;
 
@@ -208,12 +208,20 @@ export const VideoText = styled.h5`
     -2px -2px #F63361,
     2px -2px #F63361,
   -2px 2px #F63361;
-  font-size: 30px;
+  font-size: 2em;
   width: 100%;
   text-align: center;
   box-sizing: border-box;
   text-align: center;
   overflow-wrap: break-word;
+
+  @media only screen and (max-width: ${breakPoints.sm.max}px) {
+    padding: 34px 0 0 0;
+    
+    &.lower {
+      padding: 0;
+    }
+  }
 `;
 
 export const ButtonBar = styled.div`

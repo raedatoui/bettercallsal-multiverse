@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from 'src/components/footer/elements';
-import Image from "next/image";
+import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
 import { Size } from 'src/types';
 import { useSiteContext } from 'src/providers/sites';
@@ -78,10 +78,11 @@ export const LawBreakers: FC<Props> = () => {
         }
 
     }, [site.footer.icon, site.footer.iconType]);
-    return <>
-        <LawBreakersContainer>
-            <LawBreakersP ref={ref} className={betterCallState}>
-                { site.footer.iconType === 'image'
+    return (
+        <>
+            <LawBreakersContainer>
+                <LawBreakersP ref={ref} className={betterCallState}>
+                    { site.footer.iconType === 'image'
                     && (
                         <Image
                             className={leftSpinningState}
@@ -91,11 +92,12 @@ export const LawBreakers: FC<Props> = () => {
                             height={micSize.height}
                             loading="lazy"
                             style={{
-                                maxWidth: "100%",
-                                height: "auto"
-                            }} />
+                                maxWidth: '100%',
+                                height: 'auto'
+                            }}
+                        />
                     )}
-                { site.footer.iconType === 'video'
+                    { site.footer.iconType === 'video'
                     && (
                         <video
                             ref={video1Ref}
@@ -110,15 +112,15 @@ export const LawBreakers: FC<Props> = () => {
                             <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
                         </video>
                     )}
-                <LawBreakersSpan
-                    onClick={() => {
+                    <LawBreakersSpan
+                        onClick={() => {
                         // footerClick();
-                        setAnimateHeaderFooter(animateHeaderFooter + 1);
-                    }}
-                >
-                    {site.footer.text}
-                </LawBreakersSpan>
-                { site.footer.iconType === 'image'
+                            setAnimateHeaderFooter(animateHeaderFooter + 1);
+                        }}
+                    >
+                        {site.footer.text}
+                    </LawBreakersSpan>
+                    { site.footer.iconType === 'image'
                     && (
                         <Image
                             className={rightSpinningState}
@@ -128,11 +130,12 @@ export const LawBreakers: FC<Props> = () => {
                             height={micSize.height}
                             loading="lazy"
                             style={{
-                                maxWidth: "100%",
-                                height: "auto"
-                            }} />
+                                maxWidth: '100%',
+                                height: 'auto'
+                            }}
+                        />
                     )}
-                { site.footer.iconType === 'video'
+                    { site.footer.iconType === 'video'
                     && (
                         <video
                             ref={video2Ref}
@@ -147,10 +150,11 @@ export const LawBreakers: FC<Props> = () => {
                             <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
                         </video>
                     )}
-            </LawBreakersP>
-        </LawBreakersContainer>
-        <FooterContainer>
-            <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
-        </FooterContainer>
-    </>;
+                </LawBreakersP>
+            </LawBreakersContainer>
+            <FooterContainer>
+                <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
+            </FooterContainer>
+        </>
+    );
 };

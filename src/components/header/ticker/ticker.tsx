@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState, MouseEvent } from 'react';
 import { useSiteContext } from 'src/providers/sites';
-import { EXTERNAL_LINK, SiteOrder } from 'src/constants';
+import { EXTERNAL_LINK } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
-import { Site, SiteKey } from 'src/types';
+import {Site, SiteKey, SiteKeyValidator } from 'src/types';
 import { Keyframes } from 'styled-components';
 import { slideInFromLeft, slideOutFromLeft } from 'src/utils/animations';
 
@@ -75,7 +75,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 
     useEffect(() => {
         if (!start)
-            if (SiteOrder[index] === selectedSite)
+            if (SiteKeyValidator.options[index] === selectedSite)
                 selected();
             else
                 reset();
@@ -115,6 +115,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
     const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
+
     return (
         <TickerContainer
             background={backgroundColor}
@@ -122,76 +123,19 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
             onMouseLeave={() => tickerCb(false)}
         >
             <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
-            <Slider
-                start={start}
-                selectedSlide={selectedSlide}
-                selectedSite={selectedSite}
-                setSelectedSite={setSelectedSite}
-                site={siteMap.biz}
-                sw={sw}
-                index={0}
-                sliderType={sliderType}
-            />
-            <Slider
-                start={start}
-                selectedSlide={selectedSlide}
-                selectedSite={selectedSite}
-                setSelectedSite={setSelectedSite}
-                site={siteMap.fit}
-                sw={sw}
-                index={1}
-                sliderType={sliderType}
-            />
-            <Slider
-                start={start}
-                selectedSlide={selectedSlide}
-                selectedSite={selectedSite}
-                setSelectedSite={setSelectedSite}
-                site={siteMap.art}
-                sw={sw}
-                index={2}
-                sliderType={sliderType}
-            />
-            <Slider
-                start={start}
-                selectedSlide={selectedSlide}
-                selectedSite={selectedSite}
-                setSelectedSite={setSelectedSite}
-                site={siteMap.rocks}
-                sw={sw}
-                index={3}
-                sliderType={sliderType}
-            />
-            <Slider
-                start={start}
-                selectedSlide={selectedSlide}
-                selectedSite={selectedSite}
-                setSelectedSite={setSelectedSite}
-                site={siteMap.games}
-                sw={sw}
-                index={4}
-                sliderType={sliderType}
-            />
-            <Slider
-                start={start}
-                selectedSlide={selectedSlide}
-                selectedSite={selectedSite}
-                setSelectedSite={setSelectedSite}
-                site={siteMap.construction}
-                sw={sw}
-                index={5}
-                sliderType={sliderType}
-            />
-            <Slider
-                start={start}
-                selectedSlide={selectedSlide}
-                selectedSite={selectedSite}
-                setSelectedSite={setSelectedSite}
-                site={siteMap.gallery}
-                sw={sw}
-                index={6}
-                sliderType={sliderType}
-            />
+            { SiteKeyValidator.options.map((s, i) => (
+                <Slider
+                    key={s}
+                    start={start}
+                    selectedSlide={selectedSlide}
+                    selectedSite={selectedSite}
+                    setSelectedSite={setSelectedSite}
+                    site={siteMap[s]}
+                    sw={sw}
+                    index={i}
+                    sliderType={sliderType}
+                />
+            ))}
         </TickerContainer>
     );
 };

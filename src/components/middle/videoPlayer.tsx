@@ -76,8 +76,8 @@ export const VideoPlayer: FC<Props> = () => {
     };
 
     const scaleText = () => {
-        if (window.textFit && titleRef.current)
-            window.textFit(titleRef.current);
+        // if (window.textFit && titleRef.current)
+        //     window.textFit(titleRef.current);
     };
 
     useEffect(() => {
@@ -168,7 +168,7 @@ export const VideoPlayer: FC<Props> = () => {
             ) }
 
             { (selectedSite === 'biz' || selectedSite === 'rocks')
-                && (<VideoText ref={viewsRef}>Views: {selectedContentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
+                && (<VideoText className="lower" ref={viewsRef}>Views: {selectedContentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
 
             <ButtonBar>
                 <StopButton onClick={() => stopVideo()}>BACK</StopButton>
