@@ -1,5 +1,5 @@
 import React, { FC, RefObject, useEffect, useState } from 'react';
-import Image from "next/image";
+import Image from 'next/image';
 import { ContentSize, Size } from 'src/types';
 import { useWindowSize } from 'src/utils';
 import styled from 'styled-components';

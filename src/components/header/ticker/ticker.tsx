@@ -3,7 +3,7 @@ import { useSiteContext } from 'src/providers/sites';
 import { EXTERNAL_LINK } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
-import {Site, SiteKey, SiteKeyValidator } from 'src/types';
+import { Site, SiteKey, SiteKeyValidator } from 'src/types';
 import { Keyframes } from 'styled-components';
 import { slideInFromLeft, slideOutFromLeft } from 'src/utils/animations';
 

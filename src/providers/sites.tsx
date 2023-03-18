@@ -36,18 +36,6 @@ const defaultContentMap = {
 
 const SiteContext = createContext<SiteProviderType | undefined>(undefined);
 
-// {
-//     siteMap: defaultSiteMap,
-//         selectedSite: SiteKeyValidator.parse(process.env.selectedSite),
-//     setSelectedSite: () => {},
-//     contentMap: defaultContentMap,
-//     loading: true,
-//     selectedNavItem: null,
-//     setSelectedNavItem: () => {},
-//     selectedContentItem: null,
-//     setSelectedContentItem: () => {}
-// }
-
 interface ProviderProps {
     children: JSX.Element;
     defaultSite: SiteKey;
@@ -66,10 +54,12 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | GameContentItem | null>(null);
 
     const setSite = (s: SiteKey) => {
-        setSelectedNavItem(null);
-        setSelectedContentItem(null);
-        setLoading(true);
-        setSelectedSite(s);
+        if(s !== selectedSite) {
+            setSelectedNavItem(null);
+            setSelectedContentItem(null);
+            setLoading(true);
+            setSelectedSite(s);
+        }
     };
 
     useEffect(() => {
@@ -80,6 +70,11 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
                     setContentMap({
                         ...contentMap,
                         games: GameContentListValidator.parse(response.items)
+                    });
+                else if (selectedSite === 'gallery')
+                    setContentMap({
+                        ...contentMap,
+                        gallery: GameContentListValidator.parse(response.items)
                     });
                 else
                     setContentMap({

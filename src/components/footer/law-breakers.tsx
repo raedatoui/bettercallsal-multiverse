@@ -80,9 +80,10 @@ export const LawBreakers: FC<Props> = () => {
     }, [site.footer.icon, site.footer.iconType]);
     return (
         <>
-            <LawBreakersContainer>
-                <LawBreakersP ref={ref} className={betterCallState}>
-                    { site.footer.iconType === 'image'
+            { selectedSite !== 'gallery' && (
+                <LawBreakersContainer>
+                    <LawBreakersP ref={ref} className={betterCallState}>
+                        { site.footer.iconType === 'image'
                     && (
                         <Image
                             className={leftSpinningState}
@@ -97,7 +98,7 @@ export const LawBreakers: FC<Props> = () => {
                             }}
                         />
                     )}
-                    { site.footer.iconType === 'video'
+                        { site.footer.iconType === 'video'
                     && (
                         <video
                             ref={video1Ref}
@@ -112,15 +113,15 @@ export const LawBreakers: FC<Props> = () => {
                             <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
                         </video>
                     )}
-                    <LawBreakersSpan
-                        onClick={() => {
-                        // footerClick();
-                            setAnimateHeaderFooter(animateHeaderFooter + 1);
-                        }}
-                    >
-                        {site.footer.text}
-                    </LawBreakersSpan>
-                    { site.footer.iconType === 'image'
+                        <LawBreakersSpan
+                            onClick={() => {
+                                // footerClick();
+                                setAnimateHeaderFooter(animateHeaderFooter + 1);
+                            }}
+                        >
+                            {site.footer.text}
+                        </LawBreakersSpan>
+                        { site.footer.iconType === 'image'
                     && (
                         <Image
                             className={rightSpinningState}
@@ -135,7 +136,7 @@ export const LawBreakers: FC<Props> = () => {
                             }}
                         />
                     )}
-                    { site.footer.iconType === 'video'
+                        { site.footer.iconType === 'video'
                     && (
                         <video
                             ref={video2Ref}
@@ -150,11 +151,14 @@ export const LawBreakers: FC<Props> = () => {
                             <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
                         </video>
                     )}
-                </LawBreakersP>
-            </LawBreakersContainer>
-            <FooterContainer>
-                <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
-            </FooterContainer>
+                    </LawBreakersP>
+                </LawBreakersContainer>
+            ) }
+            { selectedSite !== 'gallery' && (
+                <FooterContainer>
+                    <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
+                </FooterContainer>
+            ) }
         </>
     );
 };

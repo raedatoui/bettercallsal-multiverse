@@ -22,17 +22,22 @@ export const RightNav: FC<Props> = () => {
     const site = siteMap[selectedSite];
 
     return (
-        <SpotifyContainer>
-            { SPOTIFY_ENABLED && (
-                <iframe
-                    title="spotify"
-                    src={site.rightNav.objectId}
-                    width="100%"
-                    height="100%"
-                    loading="lazy"
-                    frameBorder="0"
-                />
+        <>
+            <div>&nbsp;</div>
+            { selectedSite !== 'gallery' && (
+                <SpotifyContainer>
+                    { SPOTIFY_ENABLED && (
+                        <iframe
+                            title="spotify"
+                            src={site.rightNav.objectId}
+                            width="100%"
+                            height="100%"
+                            loading="lazy"
+                            frameBorder="0"
+                        />
+                    ) }
+                </SpotifyContainer>
             ) }
-        </SpotifyContainer>
+        </>
     );
 };

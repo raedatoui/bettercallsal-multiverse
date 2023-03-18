@@ -15,7 +15,8 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
         selectedSite,
         setSelectedNavItem,
         selectedContentItem,
-        setSelectedContentItem
+        setSelectedContentItem,
+        loading
     } = useSiteContext();
 
     const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
@@ -30,7 +31,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     const getContentSize = (desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
-        console.log(desiredSize);
+
         const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
         const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0);
 
@@ -66,7 +67,6 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
         const game = selectedContentItem as GameContentItem;
         setGameProgress(0);
         setGameProgressVisible(true);
-
         window.createUnityInstance(document.getElementById('unity-canvas'), {
             companyName: game.companyName,
             productName: game.productName,
@@ -147,9 +147,9 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     };
 
     useEffect(() => {
-        if (selectedSite === 'gallery')
+        if (selectedSite === 'gallery' && !loading)
             setSelectedContentItem(contentMap.gallery[0]);
-    }, [selectedSite]);
+    }, [selectedSite, loading]);
 
     return (
         <>
