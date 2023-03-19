@@ -53,13 +53,53 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     const [selectedNavItem, setSelectedNavItem] = useState<LeftNavNavItem | null>(null);
     const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | GameContentItem | null>(null);
 
+    const [contentRowScroll, setContentRowScroll] = useState<number>(0);
+
     const setSite = (s: SiteKey) => {
-        if(s !== selectedSite) {
+        if (s !== selectedSite) {
             setSelectedNavItem(null);
             setSelectedContentItem(null);
             setLoading(true);
             setSelectedSite(s);
         }
+    };
+
+    const setContentItem = (c: BaseContentItem | GameContentItem | null) => {
+        const contentRow = document.getElementById('content-row');
+        const contentList = document.getElementById('content-list');
+        const header = document.getElementById('main-header');
+        if (contentList && contentRow && header && selectedSite === 'biz')
+            if (c === null)
+                setTimeout(() => {
+                    contentRow.scrollTo({
+                        top: contentRowScroll,
+                        behavior: 'auto'
+                    });
+                    if (contentRow.getBoundingClientRect().top > 0)
+                        document.body.scrollTo({
+                            top: contentRowScroll,
+                            behavior: 'auto'
+                        });
+                }, 50);
+            else {
+                // salopping
+                let s = 0;
+                const cl = contentList.getBoundingClientRect().top;
+                const co = contentRow.getBoundingClientRect().top;
+                const h = header.getBoundingClientRect().height;
+                const delta = Math.abs(co - h);
+                if (delta < 5)
+                    if (cl > 0)
+                        s += contentRow.getBoundingClientRect().top - cl - 53; // TODO height of caption
+                    else s += Math.abs(cl - co - 53);
+                else
+                if (cl > 0)
+                    s += contentRow.getBoundingClientRect().top - cl - 53;
+                else s += Math.abs(cl - 53 - h);
+                setContentRowScroll(s);
+            }
+
+        setSelectedContentItem(c);
     };
 
     useEffect(() => {
@@ -110,7 +150,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         selectedNavItem,
         setSelectedNavItem,
         selectedContentItem,
-        setSelectedContentItem,
+        setSelectedContentItem: setContentItem,
     }), [selectedSite, loading, contentMap, selectedNavItem, selectedContentItem]);
 
     return (

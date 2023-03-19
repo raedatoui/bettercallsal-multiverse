@@ -109,7 +109,10 @@ export const Middle: FC<Props> = () => {
             { loading && <div>loading</div> }
 
             { selectedSite !== 'construction' && selectedSite !== 'gallery' && loading === false && (
-                <ContentList className={selectedContentItem === null && !isArt && selectedNavItem?.category !== 'e-card' ? 'on' : 'off'}>
+                <ContentList
+                    id="content-list"
+                    className={selectedContentItem === null && selectedNavItem?.category !== 'e-card' ? 'on' : 'off'}
+                >
                     { contentList.map(i => (
                         <ContentItem key={i.contentId} onClick={() => setSelectedContentItem(i)}>
                             <Image

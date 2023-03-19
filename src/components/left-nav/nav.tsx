@@ -122,7 +122,7 @@ export const LeftNav: FC<Props> = () => {
                     thumb: '',
                     category: ''
                 }
-            )
+            );
     };
 
     useEffect(() => {
