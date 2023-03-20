@@ -132,6 +132,7 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     }, [windowSize, selectedContentItem]);
 
     const handleClick = async () => {
+        // TODO this kind of sucks and useEffect sucks balls for this.
         if (selectedSite === 'gallery') {
             const l = document.getElementById('main-header');
             // @ts-ignore
