@@ -53,13 +53,6 @@ export const Middle: FC<Props> = () => {
     const titleRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
-        if (selectedContentItem) {
-            document.body.scrollTo(0, 0);
-            document.getElementById('content-row')?.scrollTo(0, 0);
-        }
-    }, [selectedContentItem]);
-
-    useEffect(() => {
         let list = contentMap[selectedSite];
         if (selectedNavItem !== null
             && selectedNavItem.category !== 'all'
