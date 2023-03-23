@@ -16,7 +16,9 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
         setSelectedNavItem,
         selectedContentItem,
         setSelectedContentItem,
-        loading
+        loading,
+        fullScreen,
+        setFullScreen
     } = useSiteContext();
 
     const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
@@ -132,25 +134,22 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
     }, [windowSize, selectedContentItem]);
 
     const handleClick = async () => {
-        // TODO this kind of sucks and useEffect sucks balls for this.
-        if (selectedSite === 'gallery') {
-            const l = document.getElementById('main-header');
-            // @ts-ignore
-            l.style.display = 'none';
-
-            const r = document.getElementById('content-row');
-            if (r) {
-                const rect = r.getBoundingClientRect();
-                setGamesPosterSize({ top: 0, left: 0, width: rect.width, height: rect.height });
-            }
-        }
-
+        if (selectedSite === 'gallery')
+            setFullScreen(true);
     };
 
     useEffect(() => {
         if (selectedSite === 'gallery' && !loading)
             setSelectedContentItem(contentMap.gallery[0]);
     }, [selectedSite, loading]);
+
+    useEffect(() => {
+        const r = document.getElementById('content-row');
+        if (r) {
+            const rect = r.getBoundingClientRect();
+            setGamesPosterSize({ top: 0, left: 0, width: rect.width, height: rect.height });
+        }
+    }, [fullScreen]);
 
     return (
         <>

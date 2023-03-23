@@ -11,7 +11,7 @@ import { CDN } from 'src/constants';
 interface Props {}
 
 export const LawBreakers: FC<Props> = () => {
-    const { siteMap, selectedSite } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter } = useContext(AnimationContext);
     const site = siteMap[selectedSite];
 
@@ -80,7 +80,7 @@ export const LawBreakers: FC<Props> = () => {
     }, [site.footer.icon, site.footer.iconType]);
     return (
         <>
-            { selectedSite !== 'gallery' && (
+            { selectedSite !== 'gallery' && !fullScreen && (
                 <LawBreakersContainer>
                     <LawBreakersP ref={ref} className={betterCallState}>
                         { site.footer.iconType === 'image'
@@ -154,7 +154,7 @@ export const LawBreakers: FC<Props> = () => {
                     </LawBreakersP>
                 </LawBreakersContainer>
             ) }
-            { selectedSite !== 'gallery' && (
+            { selectedSite !== 'gallery' && !fullScreen && (
                 <FooterContainer>
                     <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
                 </FooterContainer>

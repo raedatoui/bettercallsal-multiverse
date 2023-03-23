@@ -65,31 +65,35 @@ export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
         },
     ]);
 
-    const getContentSize = (desiredSize: Size): ContentSize => {
+    const getContentSize = (desiredSize: Size, containerSize: Size): ContentSize => {
         let height: number;
         let width: number;
 
-        const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0);
-
-        if (workingWidth > workingHeight) {
-            height = workingHeight;
+        if (containerSize.width > containerSize.height) {
+            height = containerSize.height;
             width = (height * desiredSize.width) / desiredSize.height;
         } else {
-            width = workingWidth;
+            width = containerSize.width;
             height = (width * desiredSize.height) / desiredSize.width;
         }
-        if (width > workingWidth) {
-            width = workingWidth;
+        if (width > containerSize.width) {
+            width = containerSize.width;
             height = (width * desiredSize.height) / desiredSize.width;
         }
 
-        return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
+        return { width, height, left: (containerSize.width - width) / 2, top: (containerSize.height - height) / 2 };
     };
 
     useEffect(() => {
+        const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
+        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0);
+
         setSizes(
-            images.map(({ width, height }) => getContentSize({ width: width ?? 1, height: height ?? 1 }))
+            images.map(({ width, height }) =>
+                getContentSize(
+                    { width: width ?? 1, height: height ?? 1 },
+                    { width: workingWidth, height: workingHeight }
+                ))
         );
     }, [windowSize]);
 

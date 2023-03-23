@@ -8,10 +8,16 @@ const Main = styled.main`
 
   @media (max-width: ${breakPoints.sm.max}px) {
     height: auto;
+    &.fullScreen {
+      height: 100%;
+    }
   }
 
   @media (max-height: 600px) {
     height: auto;
+    &.fullScreen {
+      height: 100%;
+    }
   }
 `;
 
@@ -35,7 +41,9 @@ const Row = styled.div`
   display: flex;
   overflow-x: hidden;
   overflow-y: hidden;
-  
+
+  height: 100%;
+
   @media (min-height: 601px) and (min-width: ${breakPoints.sm.max}px)  {
     flex: 1;
     overflow-y: auto;

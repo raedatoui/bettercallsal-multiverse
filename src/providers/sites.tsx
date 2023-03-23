@@ -22,6 +22,8 @@ type SiteProviderType = {
     setSelectedNavItem: (l: LeftNavNavItem | null) => void,
     selectedContentItem: BaseContentItem | GameContentItem | null,
     setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
+    fullScreen: boolean,
+    setFullScreen: (b: boolean) => void,
 };
 
 const defaultContentMap = {
@@ -54,6 +56,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | GameContentItem | null>(null);
 
     const [contentRowScroll, setContentRowScroll] = useState<number>(0);
+    const [fullScreen, setFullScreen] = useState<boolean>(false);
 
     const setSite = (s: SiteKey) => {
         if (s !== selectedSite) {
@@ -109,6 +112,8 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
             }
 
         setSelectedContentItem(c);
+        if (c === null)
+            setFullScreen(false);
     };
 
     useEffect(() => {
@@ -160,7 +165,9 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         setSelectedNavItem,
         selectedContentItem,
         setSelectedContentItem: setContentItem,
-    }), [selectedSite, loading, contentMap, selectedNavItem, selectedContentItem]);
+        setFullScreen,
+        fullScreen,
+    }), [selectedSite, loading, contentMap, selectedNavItem, selectedContentItem, fullScreen]);
 
     return (
         <SiteContext.Provider value={providedSites}>

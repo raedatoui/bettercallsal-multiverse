@@ -17,14 +17,18 @@ const SpotifyContainer = styled.div`
   }
 `;
 
+const Gap = styled.div`
+  height: 0;
+`;
+
 export const RightNav: FC<Props> = () => {
-    const { siteMap, selectedSite } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const site = siteMap[selectedSite];
 
     return (
         <>
-            <div>&nbsp;</div>
-            { selectedSite !== 'gallery' && (
+            <Gap />
+            { selectedSite !== 'gallery' && !fullScreen && (
                 <SpotifyContainer>
                     { SPOTIFY_ENABLED && (
                         <iframe

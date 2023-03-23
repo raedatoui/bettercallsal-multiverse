@@ -13,13 +13,14 @@ interface ButtonProps {
     navItemCb: (l: LeftNavNavItem) => void;
     videoCb: (c: BaseContentItem) => void;
     width: number;
+    fullScreen: boolean;
 }
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width }) => {
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width, fullScreen }) => {
     const [clicked, setClicked] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null);
 
     const scaleText = () => {
-        if (window.textFit && ref.current)
+        if (window.textFit && ref.current && !fullScreen)
             window.textFit(ref.current, { alignVert: true, alignHoriz: false, detectMultiLine: false, widthOnly: false, maxFontSize: 34 });
     };
 
@@ -83,7 +84,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
 interface Props {}
 
 export const LeftNav: FC<Props> = () => {
-    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem, setSelectedContentItem } = useSiteContext();
+    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem, setSelectedContentItem, fullScreen } = useSiteContext();
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -140,7 +141,7 @@ export const LeftNav: FC<Props> = () => {
                 onLoad={() => setScriptLoaded(true)}
             />
             { scriptLoaded && selectedSite !== 'gallery' && (
-                <LeftNavContainer>
+                <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
                     <LeftNavMenu>
                         { site.leftNav.items.map(i => (
                             <NavButton
@@ -150,6 +151,7 @@ export const LeftNav: FC<Props> = () => {
                                 navItemCb={setSelectedNavItem}
                                 videoCb={setSelectedContentItem}
                                 width={width}
+                                fullScreen={fullScreen}
                             />
                         )) }
                     </LeftNavMenu>

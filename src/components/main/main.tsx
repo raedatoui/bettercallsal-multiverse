@@ -21,18 +21,18 @@ const keyMap: Record<string, SiteKey> = {
 };
 
 export const MainContainer: FC<Props> = ({ children }) => {
-    const { selectedSite, setSelectedSite } = useSiteContext();
+    const { selectedSite, setSelectedSite, setFullScreen, fullScreen } = useSiteContext();
     const { keyPressed } = useContext(AnimationContext);
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
     useEffect(() => {
-        if (keyPressed === 'Escape' && selectedSite === 'gallery') {
-            const l = document.getElementById('main-header');
-            // @ts-ignore
-            l.style.display = 'block';
+        if (keyPressed === 'Escape' && fullScreen)
+            // const l = document.getElementById('main-header');
+            // // @ts-ignore
+            // l.style.display = 'block';
+            setFullScreen(false);
 
-        }
         if (keyPressed && keyMap[keyPressed] !== undefined && selectedSite !== 'gallery')
             setSelectedSite(keyMap[keyPressed]);
     }, [keyPressed, selectedSite]);
@@ -40,6 +40,7 @@ export const MainContainer: FC<Props> = ({ children }) => {
     return (
         <Main
             id="main"
+            className={fullScreen ? 'fullScreen' : ''}
         >
             <style jsx global>{`
                 body {

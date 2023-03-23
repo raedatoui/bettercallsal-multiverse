@@ -7,11 +7,21 @@ export const MiddleSection = styled.div`
     position: relative;
     outline: none;
     width: 66.6666666667%;
-    &.gallery {
+    
+    &.gallery, &.fullScreen {
       width: 100%;
     }
-    @media only screen and (max-width: ${breakPoints.lg1.max}px) {
+    &.fullScreen {
+      height: 100%;
+    }
+    
+  @media only screen and (max-width: ${breakPoints.lg1.max}px) {
         width: 100%;
+        height: 100%;
+        &.fullScreen {
+          width: 100%;
+          height: 100%;
+        }
     }
 `;
 
