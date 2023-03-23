@@ -14,7 +14,7 @@ import { SpinningSal, SpinningSalsContainer } from './spinning';
 import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './middle';
 
 export const HeaderComponent: FC = () => {
-    const { siteMap, selectedSite } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter, setSpinningSalsGridCounter } = useContext(AnimationContext);
     const site = siteMap[selectedSite];
 
@@ -102,7 +102,7 @@ export const HeaderComponent: FC = () => {
     }, tickerCounter === 0 ? 0 : 5000);
 
     return (
-        <HeaderContainer id="main-header">
+        <HeaderContainer id="main-header" className={fullScreen ? 'off' : 'on'}>
             <SpinningSalsContainer>
                 <SpinningSal
                     wrapperStyle="left"

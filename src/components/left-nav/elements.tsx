@@ -4,6 +4,13 @@ import { breakPoints } from 'src/constants';
 
 export const LeftNavContainer = styled.div`
   width: 16.6666666667%;
+  &.on {
+    display: block;
+  }
+
+  &.off {
+    display: none;
+  }
   
   @media only screen and (max-width: ${breakPoints.lg1.max}px) {
     order: 1;

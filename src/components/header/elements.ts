@@ -13,6 +13,13 @@ export const HeaderContainer = styled.header`
   box-shadow: inset 0 0 100px hsla(0, 0%, 0%, .3);
   z-index: 1;
   position: relative;
+  
+  &.off {
+    display: none;
+  }
+  &.on {
+    display: block;
+  }
 
   .content {
     width: 100%;

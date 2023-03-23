@@ -30,6 +30,8 @@ export const Middle: FC<Props> = () => {
         selectedNavItem,
         selectedContentItem,
         setSelectedContentItem,
+        setFullScreen,
+        fullScreen
     } = useSiteContext();
     const site = siteMap[selectedSite];
     // these contexts are for causing a shuffle
@@ -95,8 +97,14 @@ export const Middle: FC<Props> = () => {
 
     const isVideo = selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType);
 
+    const handleSelect = (i: BaseContentItem | GameContentItem) => {
+        setSelectedContentItem(i);
+        if (document.body.clientWidth < 768)
+            setFullScreen(true);
+    };
+
     return (
-        <MiddleSection ref={containerRef} className={selectedSite}>
+        <MiddleSection ref={containerRef} className={fullScreen ? `${selectedSite} fullScreen` : selectedSite}>
             { selectedContentItem === null && !isArt && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
 
             { loading && <div>loading</div> }
@@ -107,7 +115,7 @@ export const Middle: FC<Props> = () => {
                     className={selectedContentItem === null && selectedNavItem?.category !== 'e-card' ? 'on' : 'off'}
                 >
                     { contentList.map(i => (
-                        <ContentItem key={i.contentId} onClick={() => setSelectedContentItem(i)}>
+                        <ContentItem key={i.contentId} onClick={() => handleSelect(i)}>
                             <Image
                                 alt={i.name}
                                 src={`/images/${selectedSite}/thumbs/${i.thumb}`}
