@@ -22,6 +22,7 @@ const SoundProvider:FC<ProviderProps> = ({ children }) => {
     const audioBuffers = useMemo<SoundProviderType>(() => {
         if (site)
             buffers.updateSite(site).then(() => {});
+        else console.log('fuck2');
         return { buffers, loaded };
     }, [site, loaded]);
 
@@ -33,6 +34,7 @@ const SoundProvider:FC<ProviderProps> = ({ children }) => {
         buffers.createContext();
         if (site)
             buffers.updateSite(site).then(() => {});
+        else console.log('fuck1');
     }, [site]);
 
     return (

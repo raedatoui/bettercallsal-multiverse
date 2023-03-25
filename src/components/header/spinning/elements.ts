@@ -79,6 +79,7 @@ export const SpinningImg = styled.div<{ image: string }>`
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(${props => `${CDN}${props.image}`});
+  cursor: pointer;
 
   &.start {
     opacity: 0;

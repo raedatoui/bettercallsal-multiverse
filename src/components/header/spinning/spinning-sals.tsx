@@ -31,7 +31,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, play, pause, image }
             element?.removeEventListener('mouseleave', pause);
             element?.removeEventListener('click', playAndGrid);
         };
-    });
+    }, [ref.current]);
 
     useEffect(() => {
         if (spinningSalsCounter !== 0)
