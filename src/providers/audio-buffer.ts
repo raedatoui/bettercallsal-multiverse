@@ -95,21 +95,23 @@ class AudioBuffers {
             ];
             if (this.selectedSite.leftNav.audio)
                 sounds.push(this.selectedSite.leftNav.audio);
+
             const existing = Object.keys(this.soundMap);
             const newSounds = sounds.filter(s => !existing.includes(s));
-            await Promise.all(newSounds.map(async (k) => this.loadBuffer(k)));
+            // eslint-disable-next-line no-restricted-syntax
+            for await (const k of newSounds)
+                await this.loadBuffer(k);
+
             this.loaded = true;
         }
     }
 
     private async loadBuffer(sound: string) {
-        const request = new XMLHttpRequest();
-        request.responseType = 'arraybuffer';
-        // request.async = false;
-        request.onload = () => {
-            // Asynchronously decode the audio file data in request.response
+        const audioRequest = new Request(`${CDN}${sound}`);
+
+        fetch(audioRequest).then((response) => response.arrayBuffer()).then((arrayBuffer) => {
             this.context?.decodeAudioData(
-                request.response,
+                arrayBuffer,
                 buffer => {
                     if (!buffer) {
                         console.error(`error decoding file data: ${sound}`);
@@ -127,13 +129,56 @@ class AudioBuffers {
                 error => {
                     console.error('decodeAudioData error', error);
                 }
-            );
-        };
-        request.onerror = () => {
-            console.error('BufferLoader: XHR error');
-        };
-        request.open('GET', `${CDN}${sound}`, true);
-        request.send();
+            ).then((buffer) => {
+                console.log('done decoding', sound);
+                this.soundMap[sound] = {
+                    file: sound,
+                    startedAt: 0,
+                    pausedAt: 0,
+                    buffer,
+                    source: null
+                };
+            }).catch((err) => console.log('err', err));
+        }).catch((error) => {
+            throw Error(`Asset failed to load: ${error.message}`);
+        });
+
+        // const request = new XMLHttpRequest();
+        // // request.responseType = 'arraybuffer';
+        // // request.async = false;
+        // request.onload = async () => {
+        //     // Asynchronously decode the audio file data in request.response
+        //     console.log('loadings', sound);
+        //     await this.context?.decodeAudioData(
+        //         request.response,
+        //         buffer => {
+        //             console.log('decoding', sound);
+        //             if (!buffer) {
+        //                 console.error(`error decoding file data: ${sound}`);
+        //                 return;
+        //             }
+        //
+        //             this.soundMap[sound] = {
+        //                 file: sound,
+        //                 startedAt: 0,
+        //                 pausedAt: 0,
+        //                 buffer,
+        //                 source: null
+        //             };
+        //         },
+        //         error => {
+        //             console.error('decodeAudioData error', error);
+        //         }
+        //     ).then((a) => {
+        //         console.log('done decoding', sound, a);
+        //     }).catch((err) => console.log('err', err));
+        // };
+        // request.onerror = () => {
+        //     console.error('BufferLoader: XHR error');
+        // };
+        //
+        // request.open('GET', `${CDN}${sound}`, false);
+        // request.send();
     }
 
     stopAll() {
