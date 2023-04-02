@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState, createContext, useEffect } from 'react';
+import React, { FC, useMemo, useState, createContext, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { CDN } from 'src/constants';
 import {
@@ -81,7 +81,6 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
                             top: contentRowScroll,
                             behavior: 'auto'
                         });
-
                         document.body.scrollTo({
                             top: contentRowScroll,
                             behavior: 'auto'
@@ -177,9 +176,9 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
 };
 
 function useSiteContext() {
-    const context = React.useContext(SiteContext);
+    const context = useContext(SiteContext);
     if (context === undefined)
-        throw new Error('useCount must be used within a SiteProvider');
+        throw new Error('useContext must be used within a SiteProvider');
 
     return context;
 }

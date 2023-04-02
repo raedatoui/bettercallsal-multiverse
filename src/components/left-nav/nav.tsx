@@ -6,6 +6,8 @@ import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import Image from 'next/image';
 import Script from 'next/script';
+import { AnimationContext } from 'src/providers/animations';
+import { shuffleList } from 'src/utils';
 
 interface ButtonProps {
     navItem: LeftNavNavItem;
@@ -92,8 +94,9 @@ export const LeftNav: FC<Props> = () => {
     const [audioPlaying, setAudioPlaying] = useState<string | null>(null);
 
     const { width } = useContext(WindowSizeContext);
+    const { bizerkCounter, bizerkOn } = useContext(AnimationContext);
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
-
+    const [navItems, setNavItems] = useState<LeftNavNavItem[]>(site.leftNav.items);
     const handleAudio = (a: string) => {
 
         if (loaded)
@@ -133,6 +136,11 @@ export const LeftNav: FC<Props> = () => {
         }
     }, [selectedContentItem, audioPlaying, selectedSite]);
 
+    useEffect(() => {
+        if (bizerkCounter > 1)
+            setNavItems(shuffleList(site.leftNav.items));
+    }, [bizerkCounter, site.leftNav.items]);
+
     return (
         <>
             <Script
@@ -143,7 +151,7 @@ export const LeftNav: FC<Props> = () => {
             { scriptLoaded && selectedSite !== 'gallery' && (
                 <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
                     <LeftNavMenu>
-                        { site.leftNav.items.map(i => (
+                        { navItems.map(i => (
                             <NavButton
                                 key={i.name}
                                 navItem={i}
@@ -155,8 +163,8 @@ export const LeftNav: FC<Props> = () => {
                             />
                         )) }
                     </LeftNavMenu>
-                    <LeftAdd1>
-                        <LeftAdd2>
+                    <LeftAdd1 className={bizerkOn ? 'bizerk' : ''}>
+                        <LeftAdd2 className={bizerkOn ? 'bizerk' : ''}>
                             <LeftContent>
                                 <Image
                                     src={site.leftNav.image}

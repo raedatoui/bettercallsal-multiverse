@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
 import { CDN, headerBreakPoints as breakPoints } from 'src/constants';
-import { glowShadow, ltr2, neon1, scalemic, scalemic2 } from 'src/utils/animations';
+import { glowShadow, ltr2, neon1, scalemic, scalingYoyo } from 'src/utils/animations';
 
 export const BetterCall = styled.h1.attrs(props => ({ className: props.className }))`
   font-family: BrushScriptStd, serif;
@@ -12,6 +12,10 @@ export const BetterCall = styled.h1.attrs(props => ({ className: props.className
   text-align: center;
   cursor: pointer;
   text-shadow: rgb(255, 255, 255) -2px -2px 0px, rgb(255, 255, 255) -2px -1px 0px, rgb(255, 255, 255) -2px 0px 0px, rgb(255, 255, 255) -2px 1px 0px, rgb(255, 255, 255) -2px 2px 0px, rgb(255, 255, 255) -1px -2px 0px, rgb(255, 255, 255) -1px -1px 0px, rgb(255, 255, 255) -1px 0px 0px, rgb(255, 255, 255) -1px 1px 0px, rgb(255, 255, 255) -1px 2px 0px, rgb(255, 255, 255) 0px -2px 0px, rgb(255, 255, 255) 0px -1px 0px, rgb(255, 255, 255) 0px 0px 0px, rgb(255, 255, 255) 0px 1px 0px, rgb(255, 255, 255) 0px 2px 0px, rgb(255, 255, 255) 1px -2px 0px, rgb(255, 255, 255) 1px -1px 0px, rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 1px 1px 0px, rgb(255, 255, 255) 1px 2px 0px, rgb(255, 255, 255) 2px -2px 0px, rgb(255, 255, 255) 2px -1px 0px, rgb(255, 255, 255) 2px 0px 0px, rgb(255, 255, 255) 2px 1px 0px, rgb(255, 255, 255) 2px 2px 0px;
+  
+  &.bizerk {
+    animation: ${neon1} 3s linear infinite alternate;
+  }
 
   &.better-call-anim {
     animation: ${neon1} 3s linear;
@@ -46,7 +50,7 @@ export const BetterCall = styled.h1.attrs(props => ({ className: props.className
   margin: 19px auto 0 auto;
 `;
 
-export const BizerkContainer = styled.div.attrs(props => ({ className: props.className }))`
+export const BizerkContainer = styled.div`
   margin-top: -15px;
   display: flex;
   flex-direction: row;
@@ -55,11 +59,11 @@ export const BizerkContainer = styled.div.attrs(props => ({ className: props.cla
   width: 100%;
 
   &.bizerk {
-    animation: ${scalemic2} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+    animation: ${scalingYoyo} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
   }
-  
-  height: 52px;
 
+  height: 52px;
+  
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     height: 32px;
     //justify-content: left;
@@ -368,6 +372,9 @@ export const SalCaption = styled.h3`
   font-size: 0.225em;
   margin: -10px auto 0 auto;
 
+  &.bizerk {
+    animation: ${scalingYoyo} 1.05s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+  }
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     //text-align: left;
     margin: -6px 0 0 16px  ;

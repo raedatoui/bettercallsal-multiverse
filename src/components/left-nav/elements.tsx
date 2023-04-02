@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 import { breakPoints } from 'src/constants';
+import { borderYoyo } from 'src/utils/animations';
 
 export const LeftNavContainer = styled.div`
   width: 16.6666666667%;
@@ -72,6 +73,10 @@ export const LeftAdd1 = styled(LeftAdd)`
 
   @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 1009px) {
     border: solid 6px rgb(255, 111, 0);
+  }
+  
+  &.bizerk {
+    animation: ${borderYoyo} 1.6s infinite alternate;
   }
 `;
 
@@ -167,6 +172,10 @@ export const LeftAdd2 = styled(LeftAdd)`
   }
   @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 1009px) {
     border: solid 6px rgb(228, 0, 196);
+  }
+
+  &.bizerk {
+    animation: ${borderYoyo} 1s infinite alternate;
   }
 `;
 

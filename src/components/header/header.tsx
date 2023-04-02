@@ -15,7 +15,8 @@ import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './midd
 
 export const HeaderComponent: FC = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
-    const { animateHeaderFooter, setAnimateHeaderFooter, setSpinningSalsGridCounter } = useContext(AnimationContext);
+    const { animateHeaderFooter, setAnimateHeaderFooter, setSpinningSalsGridCounter, bizerkOn, bizerkCounter } = useContext(AnimationContext);
+
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -129,17 +130,17 @@ export const HeaderComponent: FC = () => {
                     tickerCb={setPauseTicker}
                 />
                 <BetterCall
-                    className={betterCallState}
+                    className={`${betterCallState} ${bizerkOn? 'bizerk' : ''}`}
                     onClick={() => { setAnimateHeaderFooter(animateHeaderFooter + 1); }}
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>
-                <BizerkContainer>
+                <BizerkContainer className={bizerkOn ? 'bizerk' : ''}>
                     <SalName>{site.header.name1}</SalName>
                     <Bizerk site={site} pause={stopBizerk} />
                     <SalName>{site.header.name2}</SalName>
                 </BizerkContainer>
-                <SalCaption>{site.header.title}</SalCaption>
+                <SalCaption className={bizerkOn ? 'bizerk' : ''}>{site.header.title}</SalCaption>
                 <Ticker
                     backgroundColor="#FE0000"
                     sliderType="bottom"

@@ -38,7 +38,8 @@ export const Middle: FC<Props> = () => {
     const windowSize = useWindowSize();
     const {
         animateHeaderFooter,
-        spinningSalsGridCounter
+        spinningSalsGridCounter,
+        bizerkCounter
     } = useContext(AnimationContext);
 
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(contentMap[selectedSite]);
@@ -63,7 +64,7 @@ export const Middle: FC<Props> = () => {
             && selectedNavItem.category !== 'salutations')
             list = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
 
-        if (!isArt) {
+        if (!isArt) { // TODO why this?
             if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
                 || (selectedSite === 'biz' && spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
                 list = shuffleList(list);
@@ -71,6 +72,10 @@ export const Middle: FC<Props> = () => {
             }
             if (selectedNavItem && selectedNavItem.category === 'salutations')
                 setPrevShuffledList(list);
+        }
+        if (bizerkCounter > 1) {
+            list = shuffleList(list);
+            setPrevShuffledList(list);
         }
 
         setContentList(list);
@@ -82,7 +87,8 @@ export const Middle: FC<Props> = () => {
         spinningSalsGridCounter,
         animateHeaderFooter,
         windowSize,
-        isArt]);
+        isArt,
+        bizerkCounter]);
 
     useEffect(() => {
         let art = false;

@@ -31,13 +31,13 @@ export const rtl2 = keyframes`
     100% { transform: rotateY(-360deg); }
 `;
 
-export const scalemic2 = keyframes`
+export const scalingYoyo = keyframes`
   0% {
-    transform: scale(1) translateX(0) translateY(0);
+    transform: scale(1);
   }
 
   100% {
-    transform: scale(2) translateX(50%) translateY(-25%);
+    transform: scale(2);
   }
 `;
 
@@ -63,6 +63,15 @@ export const neon2 = keyframes`
     color: #d61d00;
     text-shadow: #fff -4px -4px 0, #fff -4px -2px 0, #fff -4px 0 0, #fff -4px 2px 0, #fff -4px 4px 0, #fff -2px -4px 0, #fff -2px -2px 0, #fff -2px 0 0, #fff -2px 2px 0, #fff -2px 4px 0, #fff 0 -4px 0, #fff 0 -2px 0, #fff 0 0 0, #fff 0 2px 0, #fff 0 4px 0, #fff 2px -4px 0, #fff 2px -2px 0, #fff 2px 0 0, #fff 2px 2px 0, #fff 2px 4px 0, #fff 4px -4px 0, #fff 4px -2px 0, #fff 4px 0 0, #fff 4px 2px 0, #fff 4px 4px 0;
 
+  }
+`;
+
+export const borderYoyo = keyframes`
+  0% {
+    border-width: 8px
+  }
+  100% {
+    border-width: 16px
   }
 `;
 
