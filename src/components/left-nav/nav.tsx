@@ -137,7 +137,7 @@ export const LeftNav: FC<Props> = () => {
         <>
             <Script
                 id="text-fit"
-                src="/textfit.js"
+                src="/scripts/textfit.js"
                 onLoad={() => setScriptLoaded(true)}
             />
             { scriptLoaded && selectedSite !== 'gallery' && (

@@ -164,5 +164,15 @@ declare global {
     interface Window {
         createUnityInstance: (canvas: HTMLElement | null, config: Object, cb: (progress: number) => void) => Promise<UnityInstance>;
         textFit: (el: HTMLElement, options?: TextFitOptions) => void;
+        domtoimage: {
+            toPng: (el: HTMLElement) => Promise<string>;
+            toBlob: (el: HTMLElement) => Promise<Blob>;
+        };
+        htmlToImage: {
+            toPng: (el: HTMLElement) => Promise<string>;
+            toBlob: (el: HTMLElement) => Promise<Blob>;
+        };
+
+        html2canvas: (el: HTMLElement, options?: Object) => Promise<HTMLCanvasElement>;
     }
 }

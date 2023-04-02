@@ -2,11 +2,10 @@
 
 const env = require('./next.config.env.json');
 
+const images = env.localImages ? { loader: 'default' } : { loader: 'custom', loaderFile: './image-loader.js' };
+
 const nextConfig = {
-  images: {
-    loader: 'custom',
-    loaderFile: './image-loader.js',
-  },
+  images,
   env,
   reactStrictMode: true,
   compiler: {
