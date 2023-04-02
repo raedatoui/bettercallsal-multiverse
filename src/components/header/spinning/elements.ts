@@ -85,6 +85,14 @@ export const SpinningImg = styled.div<{ image: string }>`
     opacity: 0;
   }
   
+  &.img0.bizerk {
+    animation: ${rtl} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+  }
+
+  &.img1.bizerk {
+    animation: ${ltr} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+  }
+
   &.fadein {
     animation: ${fadein} 0.5s linear;
   }

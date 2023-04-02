@@ -12,7 +12,7 @@ interface Props {}
 
 export const LawBreakers: FC<Props> = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
-    const { animateHeaderFooter, setAnimateHeaderFooter } = useContext(AnimationContext);
+    const { animateHeaderFooter, setAnimateHeaderFooter, bizerkOn } = useContext(AnimationContext);
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -82,11 +82,11 @@ export const LawBreakers: FC<Props> = () => {
         <>
             { selectedSite !== 'gallery' && !fullScreen && (
                 <LawBreakersContainer>
-                    <LawBreakersP ref={ref} className={betterCallState}>
+                    <LawBreakersP ref={ref} className={`${betterCallState} ${bizerkOn ? 'bizerk' : ''}`}>
                         { site.footer.iconType === 'image'
                     && (
                         <Image
-                            className={leftSpinningState}
+                            className={`${leftSpinningState} ${bizerkOn ? 'bizerk' : ''}`}
                             src={site.footer.icon}
                             alt="rca-mic"
                             width={micSize.width}
@@ -97,21 +97,6 @@ export const LawBreakers: FC<Props> = () => {
                                 height: 'auto'
                             }}
                         />
-                    )}
-                        { site.footer.iconType === 'video'
-                    && (
-                        <video
-                            ref={video1Ref}
-                            className={leftSpinningState}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            width={micSize.width}
-                            height={micSize.height}
-                        >
-                            <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
-                        </video>
                     )}
                         <LawBreakersSpan
                             onClick={() => {
@@ -124,7 +109,7 @@ export const LawBreakers: FC<Props> = () => {
                         { site.footer.iconType === 'image'
                     && (
                         <Image
-                            className={rightSpinningState}
+                            className={`${rightSpinningState} ${bizerkOn ? 'bizerk' : ''}`}
                             src={site.footer.icon}
                             alt="rca-mic"
                             width={micSize.width}
@@ -135,21 +120,6 @@ export const LawBreakers: FC<Props> = () => {
                                 height: 'auto'
                             }}
                         />
-                    )}
-                        { site.footer.iconType === 'video'
-                    && (
-                        <video
-                            ref={video2Ref}
-                            className={rightSpinningState}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            width={micSize.width}
-                            height={micSize.height}
-                        >
-                            <source src={`${CDN}${site.footer.icon}`} type="video/webm" />
-                        </video>
                     )}
                     </LawBreakersP>
                 </LawBreakersContainer>

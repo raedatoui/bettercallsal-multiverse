@@ -11,7 +11,7 @@ interface Props {
 }
 
 const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, play, pause, image }) => {
-    const { spinningSalsCounter, setSpinningSalsGridCounter } = useContext(AnimationContext);
+    const { spinningSalsCounter, setSpinningSalsGridCounter, bizerkOn } = useContext(AnimationContext);
 
     const ref = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -33,6 +33,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, play, pause, image }
         };
     }, [ref.current]);
 
+    // fix this warning breaks the animation
     useEffect(() => {
         if (spinningSalsCounter !== 0)
             playAndGrid();
@@ -40,7 +41,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, play, pause, image }
 
     return (
         <SpinningWrapper className={wrapperStyle} ref={wrapperRef}>
-            <SpinningImg ref={ref} className={imageStyle} image={image} />
+            <SpinningImg ref={ref} className={`${imageStyle} ${bizerkOn ? ' bizerk' : ''}`} image={image} />
         </SpinningWrapper>
     );
 };

@@ -23,7 +23,7 @@ const keyMap: Record<string, SiteKey> = {
 
 export const MainContainer: FC<Props> = ({ children }) => {
     const { selectedSite, setSelectedSite, setFullScreen, fullScreen } = useSiteContext();
-    const { keyPressed } = useContext(AnimationContext);
+    const { keyPressed, setBizerkOn } = useContext(AnimationContext);
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
@@ -60,10 +60,10 @@ export const MainContainer: FC<Props> = ({ children }) => {
         if (scriptLoaded && mainRef.current)
             mainRef.current.addEventListener('click', () => {
                 if (mainRef.current) {
-                    // @ts-ignore
-                    const r = document.getElementById('content-row');
-                    if (r)
-                        r.style.overflow = 'hidden';
+                    setBizerkOn(true);
+                    // const r = document.getElementById('content-row');
+                    // if (r)
+                    //     r.style.overflow = 'hidden';
                     window.htmlToImage.toPng(mainRef.current)
                         .then((dataUrl) => {
                             setBizerk(dataUrl);
@@ -74,13 +74,14 @@ export const MainContainer: FC<Props> = ({ children }) => {
                 }
             });
 
-    }, [scriptLoaded, mainRef]);
+    }, [scriptLoaded, mainRef, setBizerkOn]);
 
     useEffect(() => {
         if (bizerk) {
             const img = new Image();
+            img.className = 'screencap';
             img.src = bizerk;
-            mainRef.current?.appendChild(img);
+            document.body.appendChild(img);
         }
     }, [bizerk]);
 
@@ -103,7 +104,7 @@ export const MainContainer: FC<Props> = ({ children }) => {
                     setScriptLoaded(true)}
             />
 
-            { !bizerk && children}
+            { children }
         </Main>
     );
 };

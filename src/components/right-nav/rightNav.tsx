@@ -1,9 +1,19 @@
 import React, { FC } from 'react';
 import { useSiteContext } from 'src/providers/sites';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { breakPoints, SPOTIFY_ENABLED } from 'src/constants';
+import { useAnimationContext } from 'src/providers/animations';
 
 interface Props {}
+
+const blockScroll = keyframes`
+  0% {filter:  blur(0px) contrast(1)  saturate(0)}
+  //24.99% {filter:  blur(3px) contrast(1.5) saturate(10)}
+  //25% {filter:  blur(5px) contrast(2)  saturate(15)}
+  //49.99% {filter:  blur(7px) contrast(2.5)  saturate(20)}
+  //50% {filter:  blur(9px) contrast(3)  saturate(25)}
+  100% {filter:  blur(11px) contrast(3.5) saturate(20)}
+`;
 
 const SpotifyContainer = styled.div`
   min-height: 450px;
@@ -15,6 +25,10 @@ const SpotifyContainer = styled.div`
   @media only screen and (max-width: ${breakPoints.lg1.max}px) {
     width: 100%;
   }
+  
+  &.bizerk {
+    animation: ${blockScroll} 2s linear infinite alternate;
+  }
 `;
 
 const Gap = styled.div`
@@ -23,13 +37,14 @@ const Gap = styled.div`
 
 export const RightNav: FC<Props> = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
+    const { bizerkOn } = useAnimationContext();
     const site = siteMap[selectedSite];
 
     return (
         <>
             <Gap />
             { selectedSite !== 'gallery' && !fullScreen && (
-                <SpotifyContainer>
+                <SpotifyContainer className={bizerkOn ? 'bizerk' : ''}>
                     { SPOTIFY_ENABLED && (
                         <iframe
                             title="spotify"

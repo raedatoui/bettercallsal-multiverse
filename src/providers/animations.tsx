@@ -1,4 +1,4 @@
-import React, { createContext, FC, useMemo, useState, useEffect } from 'react';
+import React, { createContext, FC, useMemo, useState, useEffect, useContext } from 'react';
 
 type AnimationProviderType = {
     animateHeaderFooter: number,
@@ -8,6 +8,10 @@ type AnimationProviderType = {
     spinningSalsGridCounter: number,
     setSpinningSalsGridCounter: (a: number) => void,
     keyPressed: string | null,
+    bizerkOn: boolean,
+    setBizerkOn: (a: boolean) => void,
+    bizerkCounter: number,
+    setBizerkCounter: (a: number) => void,
 };
 
 interface ProviderProps {
@@ -22,6 +26,10 @@ const AnimationContext = createContext<AnimationProviderType>({
     spinningSalsGridCounter: 0,
     setSpinningSalsGridCounter: () => {},
     keyPressed: null,
+    bizerkOn: false,
+    setBizerkOn: () => {},
+    bizerkCounter: 0,
+    setBizerkCounter: () => {}
 });
 
 const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
@@ -29,16 +37,8 @@ const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
     const [spinningSalsCounter, setSpinningSalsCounter] = useState<number>(0);
     const [spinningSalsGridCounter, setSpinningSalsGridCounter] = useState<number>(0);
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
-
-    const animationCounters = useMemo<AnimationProviderType>(() => ({
-        animateHeaderFooter,
-        setAnimateHeaderFooter,
-        spinningSalsCounter,
-        setSpinningSalsCounter,
-        spinningSalsGridCounter,
-        setSpinningSalsGridCounter,
-        keyPressed,
-    }), [animateHeaderFooter, spinningSalsCounter, spinningSalsGridCounter, keyPressed]);
+    const [bizerkOn, setBizerkOn] = useState<boolean>(false);
+    const [bizerkCounter, setBizerkCounter] = useState<number>(0);
 
     useEffect(() => {
         const downHandler = (ev:KeyboardEvent) => {
@@ -60,6 +60,27 @@ const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
         };
     }, []);
 
+    useEffect(() => {
+        if (bizerkOn)
+            setInterval(() => {
+                setBizerkCounter((prevCounter) => prevCounter + 1);
+            }, 25);
+    }, [bizerkOn]);
+
+    const animationCounters = useMemo<AnimationProviderType>(() => ({
+        animateHeaderFooter,
+        setAnimateHeaderFooter,
+        spinningSalsCounter,
+        setSpinningSalsCounter,
+        spinningSalsGridCounter,
+        setSpinningSalsGridCounter,
+        keyPressed,
+        bizerkCounter,
+        setBizerkCounter,
+        bizerkOn,
+        setBizerkOn
+    }), [animateHeaderFooter, spinningSalsCounter, spinningSalsGridCounter, keyPressed, bizerkCounter]);
+
     return (
         <AnimationContext.Provider value={animationCounters}>
             {children}
@@ -67,4 +88,12 @@ const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
     );
 };
 
-export { AnimationsProvider, AnimationContext };
+function useAnimationContext() {
+    const context = useContext(AnimationContext);
+    if (context === undefined)
+        throw new Error('useAnimationContext must be used within a AnimationProvider');
+
+    return context;
+}
+
+export { AnimationsProvider, AnimationContext, useAnimationContext };

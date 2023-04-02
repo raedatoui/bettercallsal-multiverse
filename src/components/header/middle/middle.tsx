@@ -15,7 +15,7 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
         setAnimateHeaderFooter,
         spinningSalsCounter,
         setSpinningSalsCounter,
-        setSpinningSalsGridCounter
+        setSpinningSalsGridCounter,
     } = useContext(AnimationContext);
 
     const [playing, setPlaying] = useState<boolean>(false);
@@ -53,13 +53,14 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
     return (
         <BizerkImageContainer onClick={bizerkAnim} className={site.name}>
             { site.header.bizerkIconType === 'image'
-                && <BizerImage ref={bizerkRef} src={`${CDN}${site.header.bizerkIcon}`} background={site.header.bizerkIcon} className={site.name} />}
-            {/* { site.header.bizerkIconType === 'video' */}
-            {/*     && ( */}
-            {/*         <BizerkVideo className={site.name}> */}
-            {/*             <source src={`${CDN}${site.header.bizerkIcon}`} type="video/webm" /> */}
-            {/*         </BizerkVideo> */}
-            {/*     )} */}
+                && (
+                    <BizerImage
+                        ref={bizerkRef}
+                        src={`${CDN}${site.header.bizerkIcon}`}
+                        background={site.header.bizerkIcon}
+                        className={site.name}
+                    />
+                )}
         </BizerkImageContainer>
     );
 };

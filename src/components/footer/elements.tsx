@@ -39,6 +39,7 @@ export const LawBreakersP = styled.div`
   margin: 0 auto;
   color: #d61d00;
   text-shadow: #fff -4px -4px 0, #fff -4px -2px 0, #fff -4px 0 0, #fff -4px 2px 0, #fff -4px 4px 0, #fff -2px -4px 0, #fff -2px -2px 0, #fff -2px 0 0, #fff -2px 2px 0, #fff -2px 4px 0, #fff 0 -4px 0, #fff 0 -2px 0, #fff 0 0 0, #fff 0 2px 0, #fff 0 4px 0, #fff 2px -4px 0, #fff 2px -2px 0, #fff 2px 0 0, #fff 2px 2px 0, #fff 2px 4px 0, #fff 4px -4px 0, #fff 4px -2px 0, #fff 4px 0 0, #fff 4px 2px 0, #fff 4px 4px 0;
+  
 
   &.better-call-anim {
     animation: ${neon2} 3s linear;
@@ -46,8 +47,13 @@ export const LawBreakersP = styled.div`
   
   &.init {
     animation: ${borderAnim} 1.5s linear infinite alternate;
+    &.bizerk {
+      animation: ${neon2} 1s infinite alternate;
+    }
   }
-  
+
+
+
   img {
     vertical-align: middle;
     object-fit: contain;
@@ -79,6 +85,7 @@ export const LawBreakersP = styled.div`
       &.art {
         transform: scale(1.2);
       }
+
       &.hover {
         animation: ${footerLtr(-3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
         &.rocks { 
@@ -86,6 +93,16 @@ export const LawBreakersP = styled.div`
         }
         &.art {
           animation: ${footerLtr(3600, 1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+        }
+      }
+
+      &.bizerk {
+        animation: ${footerLtr(-3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850) alternate infinite; 
+        &.rocks {
+          animation: ${footerLtr(3600, 1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850)  alternate infinite;
+        }
+        &.art {
+          animation: ${footerLtr(3600, 1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850)  alternate infinite;
         }
       }
     }
@@ -98,6 +115,7 @@ export const LawBreakersP = styled.div`
       &.art {
         transform: scaleX(-1.2) scaleY(1.2);
       }
+
       &.hover {
         animation: ${footerLtr(3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
 
@@ -106,6 +124,17 @@ export const LawBreakersP = styled.div`
         }
         &.art {
           animation: ${footerLtr(3600, -1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
+        }
+      }
+
+      &.bizerk {
+        animation: ${footerLtr(3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850) alternate infinite;
+
+        &.rocks {
+          animation: ${footerLtr(3600, -1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850) alternate infinite;
+        }
+        &.art {
+          animation: ${footerLtr(3600, -1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850) alternate infinite;
         }
       }
     }
