@@ -5,7 +5,8 @@ import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
 import { Site, SiteKey, SiteKeyValidator } from 'src/types';
 import { Keyframes } from 'styled-components';
-import { slideInFromLeft, slideOutFromLeft } from 'src/utils/animations';
+import {slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText} from 'src/utils/animations';
+import { useAnimationContext } from 'src/providers/animations';
 
 interface Props {
     backgroundColor: string;
@@ -25,6 +26,7 @@ interface SliderProps {
     index: number;
     selectedSite: SiteKey;
     setSelectedSite: (s: SiteKey) => void
+    bizerkOn: boolean;
 }
 
 const sliders = {
@@ -37,9 +39,21 @@ const sliderContent = {
     bottom: (s: Site | undefined) => (<>{s?.header.lowerBanner}<span>Click Here!!!</span></>)
 };
 
-const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide, site, index, start, sliderType, sw }) => {
+const Slider: FC<SliderProps> = (
+    {
+        setSelectedSite,
+        selectedSite,
+        selectedSlide,
+        site,
+        index,
+        start,
+        sliderType,
+        sw,
+        bizerkOn
+    }
+) => {
     const [animation, setAnimation] = useState<Keyframes | null>(null);
-    const [animationDuration, setAnimationDuration] = useState<number>(2);
+    const [animationDuration, setAnimationDuration] = useState<string>('2s');
     const [translateX, setTranslateX] = useState<number>(sw);
     const [visibility, setVisibility] = useState<string>('hidden');
     const SliderComponent = sliders[sliderType];
@@ -49,28 +63,30 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 
     const selected = () => {
         setTranslateX(0);
-        setAnimation(null);
+        setAnimation(bizerkOn ? squigglyText : null);
+        setAnimationDuration(bizerkOn ? '5s linear infinite' : '');
         setVisibility('visible');
     };
 
     const reset = () => {
         setTranslateX(sw);
-        setAnimation(null);
+        setAnimation(bizerkOn ? squigglyText : null);
+        setAnimationDuration(bizerkOn ? '5s linear infinite' : '');
         setVisibility('hidden');
     };
 
     const slideIn = () => {
         setTranslateX(0);
-        setAnimation(slideInFromLeft(`${sw}px`));
-        setAnimationDuration(slideInDuration);
+        setAnimation(!bizerkOn ? slideInFromLeft(`${sw}px`) : squigglySlideInFromLeft(`${sw}px`));
+        setAnimationDuration(`${slideInDuration}s`);
         setVisibility('visible');
     };
 
     const slideOut = () => {
         setTranslateX(-sw);
-        setAnimation(slideOutFromLeft(`-${sw}px`));
+        setAnimation(!bizerkOn ? slideOutFromLeft(`-${sw}px`) : squigglySlideOutFromLeft(`-${sw}px`));
         setVisibility('visible');
-        setAnimationDuration(slideOutDuration);
+        setAnimationDuration(`${slideOutDuration}s`);
     };
 
     useEffect(() => {
@@ -99,6 +115,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
         }
     };
 
+    // console.log(animation, animationDuration);
     return (
         <SliderComponent
             onClick={handleClick}
@@ -115,7 +132,8 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
     const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
-
+    const { bizerkOn } = useAnimationContext();
+    // console.log('re-render');
     return (
         <TickerContainer
             background={backgroundColor}
@@ -134,6 +152,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                     sw={sw}
                     index={i}
                     sliderType={sliderType}
+                    bizerkOn={bizerkOn}
                 />
             ))}
         </TickerContainer>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
 import { breakPoints } from 'src/constants';
-import { borderYoyo } from 'src/utils/animations';
+import {borderYoyo, scalingYoyo} from 'src/utils/animations';
 
 export const LeftNavContainer = styled.div`
   width: 16.6666666667%;
@@ -176,6 +176,9 @@ export const LeftAdd2 = styled(LeftAdd)`
 
   &.bizerk {
     animation: ${borderYoyo} 1s infinite alternate;
+    span {
+      animation: ${scalingYoyo(0.5, 1.75)} 1.57s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+    }
   }
 `;
 

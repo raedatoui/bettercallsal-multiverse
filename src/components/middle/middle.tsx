@@ -39,7 +39,8 @@ export const Middle: FC<Props> = () => {
     const {
         animateHeaderFooter,
         spinningSalsGridCounter,
-        bizerkCounter
+        bizerkCounter,
+        bizerkOn
     } = useContext(AnimationContext);
 
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(contentMap[selectedSite]);
@@ -111,7 +112,7 @@ export const Middle: FC<Props> = () => {
 
     return (
         <MiddleSection ref={containerRef} className={fullScreen ? `${selectedSite} fullScreen` : selectedSite}>
-            { selectedContentItem === null && !isArt && (<Caption ref={titleRef}>{headerTxt}</Caption>) }
+            { selectedContentItem === null && !isArt && (<Caption className={bizerkOn ? 'bizerk' : ''} ref={titleRef}>{headerTxt}</Caption>) }
 
             { loading && <div>loading</div> }
 

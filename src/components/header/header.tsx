@@ -15,7 +15,7 @@ import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './midd
 
 export const HeaderComponent: FC = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
-    const { animateHeaderFooter, setAnimateHeaderFooter, setSpinningSalsGridCounter, bizerkOn, bizerkCounter } = useContext(AnimationContext);
+    const { animateHeaderFooter, setAnimateHeaderFooter, bizerkOn, bizerkCounter } = useContext(AnimationContext);
 
     const site = siteMap[selectedSite];
 
@@ -24,23 +24,6 @@ export const HeaderComponent: FC = () => {
     const { width } = useContext(WindowSizeContext);
 
     const sw = width ?? 0;
-
-    const play = () => {
-        if (site)
-            buffers.play(site.header.spinningSalAudio, false);
-    };
-
-    const pause = () => {
-        setSpinningSalsGridCounter(0);
-        if (site)
-            buffers.pause(site.header.spinningSalAudio);
-    };
-
-    const stop = () => {
-        setSpinningSalsGridCounter(0);
-        if (site)
-            buffers.stop(site.header.spinningSalAudio);
-    };
 
     const stopBizerk = () => {
         if (site)
@@ -100,7 +83,7 @@ export const HeaderComponent: FC = () => {
                 setSelectedSlide(0);
             else setSelectedSlide(selectedSlide + 1);
         }
-    }, tickerCounter === 0 ? 0 : 5000);
+    }, tickerCounter === 0 ? 0 : (bizerkOn ? 2000 : 5000));
 
     return (
         <HeaderContainer id="main-header" className={fullScreen ? 'off' : 'on'}>
@@ -108,15 +91,11 @@ export const HeaderComponent: FC = () => {
                 <SpinningSal
                     wrapperStyle="left"
                     imageStyle={leftSpinningState}
-                    play={play}
-                    pause={pause}
                     image={site.header.spinningSalsLeft}
                 />
                 <SpinningSal
                     wrapperStyle="right"
                     imageStyle={rightSpinningState}
-                    play={play}
-                    pause={stop}
                     image={site.header.spinningSalsRight}
                 />
             </SpinningSalsContainer>
@@ -130,7 +109,7 @@ export const HeaderComponent: FC = () => {
                     tickerCb={setPauseTicker}
                 />
                 <BetterCall
-                    className={`${betterCallState} ${bizerkOn? 'bizerk' : ''}`}
+                    className={`${betterCallState} ${bizerkOn ? 'bizerk' : ''}`}
                     onClick={() => { setAnimateHeaderFooter(animateHeaderFooter + 1); }}
                 >
                     &ldquo;Better Call Sal!&rdquo;
