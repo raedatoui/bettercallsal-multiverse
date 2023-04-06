@@ -59,7 +59,7 @@ export const BizerkContainer = styled.div`
   width: 100%;
 
   &.bizerk {
-    animation: ${scalingYoyo} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+    animation: ${scalingYoyo(1, 2)} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
   }
 
   height: 52px;
@@ -373,7 +373,7 @@ export const SalCaption = styled.h3`
   margin: -10px auto 0 auto;
 
   &.bizerk {
-    animation: ${scalingYoyo} 1.05s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+    animation: ${scalingYoyo(1, 2.5)} 1.05s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
   }
   @media only screen and (max-width : ${breakPoints.sm.max}px) {
     //text-align: left;

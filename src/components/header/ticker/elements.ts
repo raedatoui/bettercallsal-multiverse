@@ -1,5 +1,7 @@
 import styled, { Keyframes } from 'styled-components';
 import { headerBreakPoints as breakPoints } from 'src/constants';
+import { keyframes } from 'styled-components';
+import {squigglyText} from "src/utils/animations";
 
 const BaseSlidingItem = styled.a`
   font-size: 0.3635em;
@@ -27,11 +29,11 @@ export const Baseline = styled(BaseSlidingItem)`
 `;
 
 export const SlidingItem = styled(BaseSlidingItem)<
-{ visibility: string, translateX: number, animation: Keyframes | null, animationDuration: number }>`
+{ visibility: string, translateX: number, animation: Keyframes | null, animationDuration: string }>`
   visibility: ${props => props.visibility};
   transform: translateX(${props => `${props.translateX}px`});
   animation: ${props => (props.animation ? props.animation : '')};
-  animation-duration: ${props => `${props.animationDuration}s`};
+  animation-duration: ${props => `${props.animationDuration}`};
   width: 100%;
   position: absolute;
   line-height: 39px;

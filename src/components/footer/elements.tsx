@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
-import { borderAnim, neon2, fadein, footerLtr } from 'src/utils/animations';
+import {borderAnim, neon2, fadein, footerLtr, squigglyText} from 'src/utils/animations';
 import { headerBreakPoints as breakPoints } from 'src/constants';
 
 export const LawBreakersContainer = styled.div`
@@ -213,6 +213,11 @@ export const FooterContainer = styled.footer`
       &:hover {
         color: inherit;
       }
+    }
+  }
+  &.bizerk {
+    h2 {
+      animation: ${squigglyText} 3s linear alternate infinite
     }
   }
 `;

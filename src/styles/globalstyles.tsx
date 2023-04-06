@@ -35,6 +35,10 @@ const GlobalStyle = createGlobalStyle`
       z-index: 2;
       display: none;
     }
+    
+    #text-effect {
+      display: none;
+    }
   }
 
   #__next {

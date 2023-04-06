@@ -1,6 +1,6 @@
 export const shuffleList = <T>(array: T[]): T[] => {
     let currentIndex = array.length; let temporaryValue; let randomIndex;
-    const clone = [...array];
+    const clone = Array.from(array);
     // While there remain elements to shuffle...
     while (currentIndex !== 0) {
         // Pick a remaining element...

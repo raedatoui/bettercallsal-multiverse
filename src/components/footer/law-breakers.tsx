@@ -125,7 +125,7 @@ export const LawBreakers: FC<Props> = () => {
                 </LawBreakersContainer>
             ) }
             { selectedSite !== 'gallery' && !fullScreen && (
-                <FooterContainer>
+                <FooterContainer className={bizerkOn ? 'bizerk' : ''}>
                     <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
                 </FooterContainer>
             ) }

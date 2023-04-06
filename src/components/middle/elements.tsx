@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
-import { glowShadow } from 'src/utils/animations';
+import {glowShadow, scalingYoyo} from 'src/utils/animations';
 import { breakPoints, CDN } from 'src/constants';
 
 export const MiddleSection = styled.div`
@@ -37,6 +37,10 @@ export const Caption = styled.h4`
 
   @media only screen and (max-width: ${breakPoints.sm.max}px) {
     font-size: 2em;
+  }
+  
+  &.bizerk {
+    animation: ${scalingYoyo(0.5, 2.5)} 2.1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
   }
 `;
 

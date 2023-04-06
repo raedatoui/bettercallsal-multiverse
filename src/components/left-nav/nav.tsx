@@ -139,6 +139,8 @@ export const LeftNav: FC<Props> = () => {
     useEffect(() => {
         if (bizerkCounter > 1)
             setNavItems(shuffleList(site.leftNav.items));
+        else
+            setNavItems(site.leftNav.items);
     }, [bizerkCounter, site.leftNav.items]);
 
     return (

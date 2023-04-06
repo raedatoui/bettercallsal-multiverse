@@ -31,13 +31,13 @@ export const rtl2 = keyframes`
     100% { transform: rotateY(-360deg); }
 `;
 
-export const scalingYoyo = keyframes`
+export const scalingYoyo = (min = 1, max = 2) => keyframes`
   0% {
-    transform: scale(1);
+    transform: scale(${min});
   }
 
   100% {
-    transform: scale(2);
+    transform: scale(${max});
   }
 `;
 
@@ -100,6 +100,64 @@ export const slideOutFromLeft = (x:string) => keyframes`
   }
   100% {
     transform: translateX(${x});
+  }
+`;
+
+export const squigglySlideInFromLeft = (x:string) => keyframes`
+    0% { 
+      filter: url('#squiggly-0');
+      transform: translateX(${x});
+    }
+    25% {
+      filter: url('#squiggly-1');
+    }    
+    50% {
+      filter: url('#squiggly-2');
+    }    
+    75% {
+      filter: url('#squiggly-3');
+    }
+    100% {
+      filter: url('#squiggly-4');
+      transform: translateX(0);
+    }
+`;
+
+export const squigglySlideOutFromLeft = (x:string) => keyframes`
+    0% { 
+      filter: url('#squiggly-0');
+      transform: translateX(0);
+    }
+    25% {
+      filter: url('#squiggly-1');
+    }    
+    50% {
+      filter: url('#squiggly-2');
+    }    
+    75% {
+      filter: url('#squiggly-3');
+    }
+    100% {
+      filter: url('#squiggly-4');
+      transform: translateX(${x});
+    }
+`;
+
+export const squigglyText = keyframes`
+  0% {
+    filter: url('#squiggly-0');
+  }
+  25% {
+    filter: url('#squiggly-1');
+  }
+  50% {
+    filter: url('#squiggly-2');
+  }
+  75% {
+    filter: url('#squiggly-3');
+  }
+  100% {
+    filter: url('#squiggly-4');
   }
 `;
 
