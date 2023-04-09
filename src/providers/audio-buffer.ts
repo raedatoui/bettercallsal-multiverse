@@ -7,7 +7,7 @@ class AudioBuffers {
     private listCount: number;
     private selectedSite: Site | null = null;
     private context: AudioContext | null = null;
-    private analyzer: AnalyserNode | null = null;
+    public analyzer: AnalyserNode | null = null;
     public loaded: boolean;
     public contextLoaded: boolean;
 

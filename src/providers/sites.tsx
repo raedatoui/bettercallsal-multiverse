@@ -24,6 +24,9 @@ type SiteProviderType = {
     setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
     fullScreen: boolean,
     setFullScreen: (b: boolean) => void,
+    bizerkOn: boolean,
+    setBizerkOn: (a: boolean) => void,
+    keyPressed: string | null,
 };
 
 const defaultContentMap = {
@@ -57,6 +60,8 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
 
     const [contentRowScroll, setContentRowScroll] = useState<number>(0);
     const [fullScreen, setFullScreen] = useState<boolean>(false);
+    const [bizerkOn, setBizerkOn] = useState<boolean>(false);
+    const [keyPressed, setKeyPressed] = useState<string | null>(null);
 
     const setSite = (s: SiteKey) => {
         if (s !== selectedSite) {
@@ -154,6 +159,26 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         }
     }, [selectedNavItem, selectedSite]);
 
+    useEffect(() => {
+        const downHandler = (ev:KeyboardEvent) => {
+            setKeyPressed(ev.key);
+        };
+
+        const upHandler = () => {
+            setTimeout(() => {
+                setKeyPressed(null);
+            }, 100);
+        };
+
+        window.addEventListener('keydown', downHandler);
+        window.addEventListener('keyup', upHandler);
+
+        return () => {
+            window.removeEventListener('keydown', downHandler);
+            window.removeEventListener('keyup', upHandler);
+        };
+    });
+
     const providedSites = useMemo<SiteProviderType>(() => ({
         siteMap: defaultSiteMap,
         selectedSite,
@@ -166,7 +191,20 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         setSelectedContentItem: setContentItem,
         setFullScreen,
         fullScreen,
-    }), [selectedSite, loading, contentMap, selectedNavItem, selectedContentItem, fullScreen]);
+        bizerkOn,
+        setBizerkOn,
+        keyPressed,
+    }), [
+        defaultSiteMap,
+        selectedSite,
+        setSite,
+        loading,
+        contentMap,
+        selectedNavItem,
+        selectedContentItem,
+        setContentItem,
+        keyPressed,
+        fullScreen, bizerkOn]);
 
     return (
         <SiteContext.Provider value={providedSites}>

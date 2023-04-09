@@ -6,7 +6,7 @@ import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import Image from 'next/image';
 import Script from 'next/script';
-import { AnimationContext } from 'src/providers/animations';
+import { useAnimationContext } from 'src/providers/animations';
 import { shuffleList } from 'src/utils';
 
 interface ButtonProps {
@@ -32,7 +32,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
 
     useEffect(() => {
         scaleText();
-    }, []);
+    });
 
     const handleClick = () => {
         setClicked(true);
@@ -86,19 +86,27 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
 interface Props {}
 
 export const LeftNav: FC<Props> = () => {
-    const { siteMap, selectedSite, setSelectedNavItem, selectedContentItem, setSelectedContentItem, fullScreen } = useSiteContext();
+    const {
+        siteMap,
+        selectedSite,
+        setSelectedNavItem,
+        selectedContentItem,
+        setSelectedContentItem,
+        fullScreen,
+        bizerkOn
+    } = useSiteContext();
     const site = siteMap[selectedSite];
-
+    const { bizerkCounter } = useAnimationContext();
     const { buffers, loaded } = useContext(SoundContext);
+    const { width } = useContext(WindowSizeContext);
 
     const [audioPlaying, setAudioPlaying] = useState<string | null>(null);
 
-    const { width } = useContext(WindowSizeContext);
-    const { bizerkCounter, bizerkOn } = useContext(AnimationContext);
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
-    const [navItems, setNavItems] = useState<LeftNavNavItem[]>(site.leftNav.items);
-    const handleAudio = (a: string) => {
 
+    const clonedNavItems = bizerkCounter > 1 && bizerkOn ? shuffleList(site.leftNav.items) : site.leftNav.items;
+
+    const handleAudio = (a: string) => {
         if (loaded)
             if (!audioPlaying) {
                 buffers.play(a);
@@ -136,13 +144,6 @@ export const LeftNav: FC<Props> = () => {
         }
     }, [selectedContentItem, audioPlaying, selectedSite]);
 
-    useEffect(() => {
-        if (bizerkCounter > 1)
-            setNavItems(shuffleList(site.leftNav.items));
-        else
-            setNavItems(site.leftNav.items);
-    }, [bizerkCounter, site.leftNav.items]);
-
     return (
         <>
             <Script
@@ -153,7 +154,7 @@ export const LeftNav: FC<Props> = () => {
             { scriptLoaded && selectedSite !== 'gallery' && (
                 <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
                     <LeftNavMenu>
-                        { navItems.map(i => (
+                        { clonedNavItems.map(i => (
                             <NavButton
                                 key={i.name}
                                 navItem={i}
