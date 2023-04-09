@@ -5,8 +5,7 @@ import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
 import { Site, SiteKey, SiteKeyValidator } from 'src/types';
 import { Keyframes } from 'styled-components';
-import {slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText} from 'src/utils/animations';
-import { useAnimationContext } from 'src/providers/animations';
+import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from 'src/utils/animations';
 
 interface Props {
     backgroundColor: string;
@@ -131,8 +130,7 @@ const Slider: FC<SliderProps> = (
 };
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
-    const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
-    const { bizerkOn } = useAnimationContext();
+    const { siteMap, selectedSite, setSelectedSite, bizerkOn } = useSiteContext();
     // console.log('re-render');
     return (
         <TickerContainer

@@ -11,8 +11,8 @@ interface Props {
 }
 
 const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
-    const { selectedSite, siteMap } = useSiteContext();
-    const { spinningSalsCounter, setSpinningSalsGridCounter, bizerkOn } = useAnimationContext();
+    const { selectedSite, siteMap, bizerkOn } = useSiteContext();
+    const { spinningSalsCounter, setSpinningSalsGridCounter } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
     const ref = useRef<HTMLDivElement>(null);

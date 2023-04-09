@@ -4,7 +4,7 @@ import { SoundContext } from 'src/providers/audio-context';
 import { useInterval } from 'src/utils';
 import { Ticker } from 'src/components/header/ticker';
 import { WindowSizeContext } from 'src/providers/window-size';
-import { AnimationContext } from 'src/providers/animations';
+import { useAnimationContext } from 'src/providers/animations';
 import { SiteKeyValidator } from 'src/types';
 import {
     HeaderContainer,
@@ -14,8 +14,8 @@ import { SpinningSal, SpinningSalsContainer } from './spinning';
 import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './middle';
 
 export const HeaderComponent: FC = () => {
-    const { siteMap, selectedSite, fullScreen } = useSiteContext();
-    const { animateHeaderFooter, setAnimateHeaderFooter, bizerkOn, bizerkCounter } = useContext(AnimationContext);
+    const { siteMap, selectedSite, fullScreen, bizerkOn } = useSiteContext();
+    const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
 
     const site = siteMap[selectedSite];
 

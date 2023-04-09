@@ -5,14 +5,13 @@ import { useWindowSize } from 'src/utils';
 import { Size } from 'src/types';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
-import { AnimationContext } from 'src/providers/animations';
-import { CDN } from 'src/constants';
+import { useAnimationContext } from 'src/providers/animations';
 
 interface Props {}
 
 export const LawBreakers: FC<Props> = () => {
-    const { siteMap, selectedSite, fullScreen } = useSiteContext();
-    const { animateHeaderFooter, setAnimateHeaderFooter, bizerkOn } = useContext(AnimationContext);
+    const { siteMap, selectedSite, fullScreen, bizerkOn } = useSiteContext();
+    const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);

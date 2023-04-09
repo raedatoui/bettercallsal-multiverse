@@ -1,4 +1,5 @@
 import React, { createContext, FC, useMemo, useState, useEffect, useContext } from 'react';
+import { useSiteContext } from 'src/providers/sites';
 
 type AnimationProviderType = {
     animateHeaderFooter: number,
@@ -7,9 +8,6 @@ type AnimationProviderType = {
     setSpinningSalsCounter: (a: number) => void,
     spinningSalsGridCounter: number,
     setSpinningSalsGridCounter: (a: number) => void,
-    keyPressed: string | null,
-    bizerkOn: boolean,
-    setBizerkOn: (a: boolean) => void,
     bizerkCounter: number,
     setBizerkCounter: (a: number) => void,
 };
@@ -25,40 +23,17 @@ const AnimationContext = createContext<AnimationProviderType>({
     setSpinningSalsCounter: () => {},
     spinningSalsGridCounter: 0,
     setSpinningSalsGridCounter: () => {},
-    keyPressed: null,
-    bizerkOn: false,
-    setBizerkOn: () => {},
     bizerkCounter: 0,
     setBizerkCounter: () => {}
 });
 
 const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
+    const { bizerkOn } = useSiteContext();
+
     const [animateHeaderFooter, setAnimateHeaderFooter] = useState<number>(0);
     const [spinningSalsCounter, setSpinningSalsCounter] = useState<number>(0);
     const [spinningSalsGridCounter, setSpinningSalsGridCounter] = useState<number>(0);
-    const [keyPressed, setKeyPressed] = useState<string | null>(null);
-    const [bizerkOn, setBizerkOn] = useState<boolean>(false);
     const [bizerkCounter, setBizerkCounter] = useState<number>(0);
-
-    useEffect(() => {
-        const downHandler = (ev:KeyboardEvent) => {
-            setKeyPressed(ev.key);
-        };
-
-        const upHandler = () => {
-            setTimeout(() => {
-                setKeyPressed(null);
-            }, 100);
-        };
-
-        window.addEventListener('keydown', downHandler);
-        window.addEventListener('keyup', upHandler);
-
-        return () => {
-            window.removeEventListener('keydown', downHandler);
-            window.removeEventListener('keyup', upHandler);
-        };
-    }, []);
 
     useEffect(() => {
         if (bizerkOn)
@@ -74,12 +49,9 @@ const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
         setSpinningSalsCounter,
         spinningSalsGridCounter,
         setSpinningSalsGridCounter,
-        keyPressed,
         bizerkCounter,
         setBizerkCounter,
-        bizerkOn,
-        setBizerkOn
-    }), [animateHeaderFooter, spinningSalsCounter, spinningSalsGridCounter, keyPressed, bizerkCounter]);
+    }), [animateHeaderFooter, spinningSalsCounter, spinningSalsGridCounter, bizerkCounter]);
 
     return (
         <AnimationContext.Provider value={animationCounters}>

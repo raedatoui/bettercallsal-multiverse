@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import {
     Caption,
@@ -13,7 +13,7 @@ import Image from 'next/image';
 import { UnityGame } from 'src/components/middle/unity';
 import Script from 'next/script';
 import { CDN } from 'src/constants';
-import { AnimationContext } from 'src/providers/animations';
+import { useAnimationContext } from 'src/providers/animations';
 import { BaseContentItem, GameContentItem } from 'src/types';
 import { Ecard } from 'src/components/middle/e-card';
 import { ArtSlider } from 'src/components/middle/art-slider';
@@ -31,7 +31,8 @@ export const Middle: FC<Props> = () => {
         selectedContentItem,
         setSelectedContentItem,
         setFullScreen,
-        fullScreen
+        fullScreen,
+        bizerkOn
     } = useSiteContext();
     const site = siteMap[selectedSite];
     // these contexts are for causing a shuffle
@@ -40,8 +41,7 @@ export const Middle: FC<Props> = () => {
         animateHeaderFooter,
         spinningSalsGridCounter,
         bizerkCounter,
-        bizerkOn
-    } = useContext(AnimationContext);
+    } = useAnimationContext();
 
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(contentMap[selectedSite]);
     const [prevShuffledList, setPrevShuffledList] = useState<(BaseContentItem | GameContentItem)[]>([]);
@@ -100,7 +100,7 @@ export const Middle: FC<Props> = () => {
         if (selectedSite === 'gallery')
             art = true;
         setIsArt(art);
-    }, [prevShuffledList, selectedContentItem, selectedNavItem, selectedSite]);
+    }, [selectedContentItem, selectedNavItem, selectedSite]);
 
     const isVideo = selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType);
 
