@@ -176,3 +176,7 @@ declare global {
         html2canvas: (el: HTMLElement, options?: Object) => Promise<HTMLCanvasElement>;
     }
 }
+
+export const BizerkModeValidator = z.enum(['off', 'doubleClick', 'construction']);
+
+export type BizerkMode = z.infer<typeof BizerkModeValidator>;

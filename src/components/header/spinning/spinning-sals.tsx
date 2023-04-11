@@ -11,7 +11,7 @@ interface Props {
 }
 
 const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
-    const { selectedSite, siteMap, bizerkOn } = useSiteContext();
+    const { selectedSite, siteMap, bizerkMode } = useSiteContext();
     const { spinningSalsCounter, setSpinningSalsGridCounter } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
@@ -54,7 +54,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
 
     return (
         <SpinningWrapper className={wrapperStyle} ref={wrapperRef}>
-            <SpinningImg ref={ref} className={`${imageStyle} ${bizerkOn ? ' bizerk' : ''}`} image={image} />
+            <SpinningImg ref={ref} className={`${imageStyle} ${bizerkMode !== 'off' ? ' bizerk' : ''}`} image={image} />
         </SpinningWrapper>
     );
 };

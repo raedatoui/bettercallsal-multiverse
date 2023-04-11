@@ -4,6 +4,7 @@ import { CDN } from 'src/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,
+    BizerkMode,
     ContentMap,
     GameContentItem,
     GameContentListValidator,
@@ -24,8 +25,8 @@ type SiteProviderType = {
     setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
     fullScreen: boolean,
     setFullScreen: (b: boolean) => void,
-    bizerkOn: boolean,
-    setBizerkOn: (a: boolean) => void,
+    bizerkMode: BizerkMode,
+    setBizerkMode: (a: BizerkMode) => void,
     keyPressed: string | null,
 };
 
@@ -60,7 +61,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
 
     const [contentRowScroll, setContentRowScroll] = useState<number>(0);
     const [fullScreen, setFullScreen] = useState<boolean>(false);
-    const [bizerkOn, setBizerkOn] = useState<boolean>(false);
+    const [bizerkMode, setBizerkMode] = useState<BizerkMode>('off');
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
 
     const setSite = (s: SiteKey) => {
@@ -191,10 +192,11 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         setSelectedContentItem: setContentItem,
         setFullScreen,
         fullScreen,
-        bizerkOn,
-        setBizerkOn,
+        bizerkMode,
+        setBizerkMode,
         keyPressed,
     }), [
+        bizerkMode,
         defaultSiteMap,
         selectedSite,
         setSite,
@@ -204,7 +206,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         selectedContentItem,
         setContentItem,
         keyPressed,
-        fullScreen, bizerkOn]);
+        fullScreen]);
 
     return (
         <SiteContext.Provider value={providedSites}>

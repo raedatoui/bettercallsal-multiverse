@@ -10,7 +10,7 @@ import { useAnimationContext } from 'src/providers/animations';
 interface Props {}
 
 export const LawBreakers: FC<Props> = () => {
-    const { siteMap, selectedSite, fullScreen, bizerkOn } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen, bizerkMode } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
     const site = siteMap[selectedSite];
 
@@ -81,11 +81,11 @@ export const LawBreakers: FC<Props> = () => {
         <>
             { selectedSite !== 'gallery' && !fullScreen && (
                 <LawBreakersContainer>
-                    <LawBreakersP ref={ref} className={`${betterCallState} ${bizerkOn ? 'bizerk' : ''}`}>
+                    <LawBreakersP ref={ref} className={`${betterCallState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                         { site.footer.iconType === 'image'
                     && (
                         <Image
-                            className={`${leftSpinningState} ${bizerkOn ? 'bizerk' : ''}`}
+                            className={`${leftSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                             src={site.footer.icon}
                             alt="rca-mic"
                             width={micSize.width}
@@ -108,7 +108,7 @@ export const LawBreakers: FC<Props> = () => {
                         { site.footer.iconType === 'image'
                     && (
                         <Image
-                            className={`${rightSpinningState} ${bizerkOn ? 'bizerk' : ''}`}
+                            className={`${rightSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                             src={site.footer.icon}
                             alt="rca-mic"
                             width={micSize.width}
@@ -124,7 +124,7 @@ export const LawBreakers: FC<Props> = () => {
                 </LawBreakersContainer>
             ) }
             { selectedSite !== 'gallery' && !fullScreen && (
-                <FooterContainer className={bizerkOn ? 'bizerk' : ''}>
+                <FooterContainer className={bizerkMode !== 'off' ? 'bizerk' : ''}>
                     <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
                 </FooterContainer>
             ) }

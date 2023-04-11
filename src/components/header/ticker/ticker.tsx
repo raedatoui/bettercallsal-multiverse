@@ -3,7 +3,7 @@ import { useSiteContext } from 'src/providers/sites';
 import { EXTERNAL_LINK } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
-import { Site, SiteKey, SiteKeyValidator } from 'src/types';
+import { Site, SiteKey, SiteKeyValidator, BizerkMode } from 'src/types';
 import { Keyframes } from 'styled-components';
 import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from 'src/utils/animations';
 
@@ -25,7 +25,7 @@ interface SliderProps {
     index: number;
     selectedSite: SiteKey;
     setSelectedSite: (s: SiteKey) => void
-    bizerkOn: boolean;
+    bizerkMode: BizerkMode;
 }
 
 const sliders = {
@@ -48,7 +48,7 @@ const Slider: FC<SliderProps> = (
         start,
         sliderType,
         sw,
-        bizerkOn
+        bizerkMode
     }
 ) => {
     const [animation, setAnimation] = useState<Keyframes | null>(null);
@@ -61,6 +61,7 @@ const Slider: FC<SliderProps> = (
     const slideOutDuration = 3;
 
     const selected = () => {
+        const bizerkOn = bizerkMode !== 'off';
         setTranslateX(0);
         setAnimation(bizerkOn ? squigglyText : null);
         setAnimationDuration(bizerkOn ? '5s linear infinite' : '');
@@ -68,6 +69,7 @@ const Slider: FC<SliderProps> = (
     };
 
     const reset = () => {
+        const bizerkOn = bizerkMode !== 'off';
         setTranslateX(sw);
         setAnimation(bizerkOn ? squigglyText : null);
         setAnimationDuration(bizerkOn ? '5s linear infinite' : '');
@@ -75,15 +77,17 @@ const Slider: FC<SliderProps> = (
     };
 
     const slideIn = () => {
+        const bizerkOn = bizerkMode !== 'off';
         setTranslateX(0);
-        setAnimation(!bizerkOn ? slideInFromLeft(`${sw}px`) : squigglySlideInFromLeft(`${sw}px`));
+        setAnimation(bizerkOn ? squigglySlideInFromLeft(`${sw}px`) : slideInFromLeft(`${sw}px`));
         setAnimationDuration(`${slideInDuration}s`);
         setVisibility('visible');
     };
 
     const slideOut = () => {
+        const bizerkOn = bizerkMode !== 'off';
         setTranslateX(-sw);
-        setAnimation(!bizerkOn ? slideOutFromLeft(`-${sw}px`) : squigglySlideOutFromLeft(`-${sw}px`));
+        setAnimation(bizerkOn ? squigglySlideOutFromLeft(`-${sw}px`) : slideOutFromLeft(`-${sw}px`));
         setVisibility('visible');
         setAnimationDuration(`${slideOutDuration}s`);
     };
@@ -130,7 +134,7 @@ const Slider: FC<SliderProps> = (
 };
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
-    const { siteMap, selectedSite, setSelectedSite, bizerkOn } = useSiteContext();
+    const { siteMap, selectedSite, setSelectedSite, bizerkMode } = useSiteContext();
     // console.log('re-render');
     return (
         <TickerContainer
@@ -150,7 +154,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                     sw={sw}
                     index={i}
                     sliderType={sliderType}
-                    bizerkOn={bizerkOn}
+                    bizerkMode={bizerkMode}
                 />
             ))}
         </TickerContainer>

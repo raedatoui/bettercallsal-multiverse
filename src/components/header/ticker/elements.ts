@@ -1,7 +1,5 @@
 import styled, { Keyframes } from 'styled-components';
 import { headerBreakPoints as breakPoints } from 'src/constants';
-import { keyframes } from 'styled-components';
-import {squigglyText} from "src/utils/animations";
 
 const BaseSlidingItem = styled.a`
   font-size: 0.3635em;

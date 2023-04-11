@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useContext, RefObject } from 'react';
+import React, { FC, useState, useEffect, RefObject } from 'react';
 import Image from 'next/image';
 import { BaseContentItem, ContentSize, Size } from 'src/types';
 import { ButtonBar, ImageContainer, StopButton } from 'src/components/middle/elements';
@@ -7,7 +7,6 @@ import { useKeenSlider } from 'keen-slider/react';
 import { useSiteContext } from 'src/providers/sites';
 import { useWindowSize } from 'src/utils';
 import { DALI } from 'src/constants';
-import { AnimationContext } from 'src/providers/animations';
 
 interface Props {
     containerRef: RefObject<HTMLDivElement>;
@@ -16,8 +15,7 @@ interface Props {
 }
 
 export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
-    const { setSelectedContentItem, setSelectedNavItem } = useSiteContext();
-    const { keyPressed } = useContext(AnimationContext);
+    const { setSelectedContentItem, setSelectedNavItem, keyPressed } = useSiteContext();
     const windowSize = useWindowSize();
 
     const [sizes, setSizes] = useState<ContentSize[]>([]);

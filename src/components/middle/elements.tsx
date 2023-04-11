@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavButton } from 'src/styles/sharedstyles';
-import {glowShadow, scalingYoyo} from 'src/utils/animations';
+import { glowShadow, scalingYoyo } from 'src/utils/animations';
 import { breakPoints, CDN } from 'src/constants';
 
 export const MiddleSection = styled.div`

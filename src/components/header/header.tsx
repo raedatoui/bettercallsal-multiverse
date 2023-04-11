@@ -14,7 +14,7 @@ import { SpinningSal, SpinningSalsContainer } from './spinning';
 import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './middle';
 
 export const HeaderComponent: FC = () => {
-    const { siteMap, selectedSite, fullScreen, bizerkOn } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen, bizerkMode } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
 
     const site = siteMap[selectedSite];
@@ -66,15 +66,16 @@ export const HeaderComponent: FC = () => {
         }
     }, [loaded, selectedSite]);
 
-    const headerClick = () => {
-        buffers.play(site.header.ringAudio, false);
-        animate(true, 0);
-    };
-
     useEffect(() => {
-        if (animateHeaderFooter)
-            headerClick();
+        if (animateHeaderFooter) {
+            buffers.play(site.header.ringAudio, false);
+            animate(true, 0);
+        }
     }, [animateHeaderFooter]);
+
+    let ticketInterval = 5000;
+    if (bizerkMode) ticketInterval = 2000;
+    if (tickerCounter === 0) ticketInterval = 0;
 
     useInterval(() => {
         if (loadAnimationDone && !pauseTicker) {
@@ -83,7 +84,7 @@ export const HeaderComponent: FC = () => {
                 setSelectedSlide(0);
             else setSelectedSlide(selectedSlide + 1);
         }
-    }, tickerCounter === 0 ? 0 : (bizerkOn ? 2000 : 5000));
+    }, ticketInterval);
 
     return (
         <HeaderContainer id="main-header" className={fullScreen ? 'off' : 'on'}>
@@ -109,17 +110,17 @@ export const HeaderComponent: FC = () => {
                     tickerCb={setPauseTicker}
                 />
                 <BetterCall
-                    className={`${betterCallState} ${bizerkOn ? 'bizerk' : ''}`}
+                    className={`${betterCallState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                     onClick={() => { setAnimateHeaderFooter(animateHeaderFooter + 1); }}
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>
-                <BizerkContainer className={bizerkOn ? 'bizerk' : ''}>
+                <BizerkContainer className={bizerkMode !== 'off' ? 'bizerk' : ''}>
                     <SalName>{site.header.name1}</SalName>
                     <Bizerk site={site} pause={stopBizerk} />
                     <SalName>{site.header.name2}</SalName>
                 </BizerkContainer>
-                <SalCaption className={bizerkOn ? 'bizerk' : ''}>{site.header.title}</SalCaption>
+                <SalCaption className={bizerkMode !== 'off' ? 'bizerk' : ''}>{site.header.title}</SalCaption>
                 <Ticker
                     backgroundColor="#FE0000"
                     sliderType="bottom"

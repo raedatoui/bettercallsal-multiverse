@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import styled, { keyframes } from 'styled-components';
 import { breakPoints, SPOTIFY_ENABLED } from 'src/constants';
-import { useAnimationContext } from 'src/providers/animations';
 
 interface Props {}
 
@@ -36,15 +35,14 @@ const Gap = styled.div`
 `;
 
 export const RightNav: FC<Props> = () => {
-    const { siteMap, selectedSite, fullScreen } = useSiteContext();
-    const { bizerkOn } = useAnimationContext();
+    const { siteMap, selectedSite, fullScreen, bizerkMode } = useSiteContext();
     const site = siteMap[selectedSite];
 
     return (
         <>
             <Gap />
             { selectedSite !== 'gallery' && !fullScreen && (
-                <SpotifyContainer className={bizerkOn ? 'bizerk' : ''}>
+                <SpotifyContainer className={bizerkMode !== 'off' ? 'bizerk' : ''}>
                     { SPOTIFY_ENABLED && (
                         <iframe
                             title="spotify"

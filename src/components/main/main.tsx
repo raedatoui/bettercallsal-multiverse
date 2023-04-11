@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { Main } from 'src/styles/sharedstyles';
 import { useSiteContext } from 'src/providers/sites';
 import { SiteKey } from 'src/types';
 import { CDN } from 'src/constants';
 import Script from 'next/script';
-import Scene from 'src/components/main/particles';
+import ParticleSystem from 'src/components/glfx/particles';
+import { SoundContext } from 'src/providers/audio-context';
 
 interface Props {
     children: JSX.Element | JSX.Element[];
@@ -21,14 +22,16 @@ const keyMap: Record<string, SiteKey> = {
 };
 
 const MainContainerInner: FC<Props> = ({ children }) => {
-    const { keyPressed, selectedSite, setSelectedSite, setFullScreen, fullScreen, setBizerkOn } = useSiteContext();
+    const { keyPressed, selectedSite, setSelectedSite, setFullScreen, fullScreen, bizerkMode, setBizerkMode } = useSiteContext();
+    const { buffers } = useContext(SoundContext);
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
-    const [bizerk, setBizerk] = useState<string | null >(null);
+    const [screenCapture, setScreeCapture] = useState<string | null >(null);
 
     const mainRef = useRef<HTMLDivElement | null>(null);
+    const particleRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         if (keyPressed === 'Escape' && fullScreen)
@@ -37,26 +40,46 @@ const MainContainerInner: FC<Props> = ({ children }) => {
             setSelectedSite(keyMap[keyPressed]);
     }, [keyPressed, selectedSite]);
 
-    useEffect(() => {
-        if (bizerk) {
-            const img = new Image();
-            img.className = 'screencap';
-            img.src = bizerk;
-            document.body.appendChild(img);
-        }
-    }, [bizerk]);
+    // useEffect(() => {
+    //     if (screenCapture) {
+    //         const img = new Image();
+    //         img.className = 'screencap';
+    //         img.src = screenCapture;
+    //         document.body.appendChild(img);
+    //     }
+    // }, [screenCapture]);
 
     const handleClick = () => {
-        if (mainRef.current && bizerk === null && scriptLoaded)
+        if (mainRef.current && screenCapture === null && scriptLoaded && selectedSite === 'construction')
             window.htmlToImage.toPng(mainRef.current)
                 .then((dataUrl) => {
-                    setBizerk(dataUrl);
-                    setBizerkOn(true);
+                    setScreeCapture(dataUrl);
+                    setBizerkMode('construction');
+                    if (buffers.analyzer && particleRef.current)
+                        // eslint-disable-next-line no-new
+                        new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
+
                 })
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);
                 });
     };
+
+    useEffect(() => {
+        if (mainRef.current && screenCapture === null && bizerkMode === 'doubleClick')
+            window.htmlToImage.toPng(mainRef.current)
+                .then((dataUrl) => {
+                    setScreeCapture(dataUrl);
+                    if (buffers.analyzer && particleRef.current)
+                        // eslint-disable-next-line no-new
+                        new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
+
+                })
+                .catch((error) => {
+                    console.error('oops, something went wrong!', error);
+                });
+
+    }, [bizerkMode]);
 
     return (
         <Main
@@ -79,7 +102,7 @@ const MainContainerInner: FC<Props> = ({ children }) => {
             />
 
             { children }
-            { bizerk && <Scene image={bizerk} /> }
+            <div id="particles" ref={particleRef} />
         </Main>
     );
 };
