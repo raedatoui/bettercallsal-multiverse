@@ -53,6 +53,18 @@ const GlobalStyle = createGlobalStyle`
   h6 {
     text-align: center;
   }
+
+  #particles {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    display: none;
+    z-index: 3;
+  }
 `;
 
 export default GlobalStyle;

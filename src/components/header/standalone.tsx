@@ -10,22 +10,7 @@ export const StandaloneHeaderComponent: FC = () => {
     const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
 
-    const { buffers, loaded } = useContext(SoundContext);
-
-    const play = () => {
-        if (site)
-            buffers.play(site.header.spinningSalAudio, false);
-    };
-
-    const pause = () => {
-        if (site)
-            buffers.pause(site.header.spinningSalAudio);
-    };
-
-    const stop = () => {
-        if (site)
-            buffers.stop(site.header.spinningSalAudio);
-    };
+    const { loaded } = useContext(SoundContext);
 
     const [leftSpinningState, setLeftSpinningState] = useState<string>(`img0 start ${selectedSite}`);
     const [rightSpinningState, setRightSpinningState] = useState<string>(`img1 start ${selectedSite}`);
@@ -57,15 +42,11 @@ export const StandaloneHeaderComponent: FC = () => {
                 <SpinningSal
                     wrapperStyle="left"
                     imageStyle={leftSpinningState}
-                    play={play}
-                    pause={pause}
                     image={site.header.spinningSalsLeft}
                 />
                 <SpinningSal
                     wrapperStyle="right"
                     imageStyle={rightSpinningState}
-                    play={play}
-                    pause={stop}
                     image={site.header.spinningSalsRight}
                 />
             </SpinningSalsContainer>

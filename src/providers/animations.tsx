@@ -28,7 +28,7 @@ const AnimationContext = createContext<AnimationProviderType>({
 });
 
 const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
-    const { bizerkOn } = useSiteContext();
+    const { bizerkMode } = useSiteContext();
 
     const [animateHeaderFooter, setAnimateHeaderFooter] = useState<number>(0);
     const [spinningSalsCounter, setSpinningSalsCounter] = useState<number>(0);
@@ -36,11 +36,11 @@ const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
     const [bizerkCounter, setBizerkCounter] = useState<number>(0);
 
     useEffect(() => {
-        if (bizerkOn)
+        if (bizerkMode !== 'off')
             setInterval(() => {
                 setBizerkCounter((prevCounter) => prevCounter + 1);
             }, 25);
-    }, [bizerkOn]);
+    }, [bizerkMode]);
 
     const animationCounters = useMemo<AnimationProviderType>(() => ({
         animateHeaderFooter,

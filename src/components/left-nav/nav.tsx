@@ -93,7 +93,7 @@ export const LeftNav: FC<Props> = () => {
         selectedContentItem,
         setSelectedContentItem,
         fullScreen,
-        bizerkOn
+        bizerkMode
     } = useSiteContext();
     const site = siteMap[selectedSite];
     const { bizerkCounter } = useAnimationContext();
@@ -104,7 +104,7 @@ export const LeftNav: FC<Props> = () => {
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
-    const clonedNavItems = bizerkCounter > 1 && bizerkOn ? shuffleList(site.leftNav.items) : site.leftNav.items;
+    const clonedNavItems = bizerkCounter > 1 && bizerkMode !== 'off' ? shuffleList(site.leftNav.items) : site.leftNav.items;
 
     const handleAudio = (a: string) => {
         if (loaded)
@@ -166,8 +166,8 @@ export const LeftNav: FC<Props> = () => {
                             />
                         )) }
                     </LeftNavMenu>
-                    <LeftAdd1 className={bizerkOn ? 'bizerk' : ''}>
-                        <LeftAdd2 className={bizerkOn ? 'bizerk' : ''}>
+                    <LeftAdd1 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
+                        <LeftAdd2 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
                             <LeftContent>
                                 <Image
                                     src={site.leftNav.image}

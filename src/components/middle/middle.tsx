@@ -32,7 +32,7 @@ export const Middle: FC<Props> = () => {
         setSelectedContentItem,
         setFullScreen,
         fullScreen,
-        bizerkOn
+        bizerkMode
     } = useSiteContext();
     const site = siteMap[selectedSite];
     // these contexts are for causing a shuffle
@@ -46,6 +46,7 @@ export const Middle: FC<Props> = () => {
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(contentMap[selectedSite]);
     const [prevShuffledList, setPrevShuffledList] = useState<(BaseContentItem | GameContentItem)[]>([]);
     const [isArt, setIsArt] = useState<boolean>(false);
+    const [showContentList, setShowContentList] = useState<boolean>(true);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
@@ -95,11 +96,16 @@ export const Middle: FC<Props> = () => {
         let art = false;
         if (selectedContentItem && (selectedContentItem.contentType === 'image' || selectedContentItem.contentType === 'quad'))
             art = true;
-        if (selectedNavItem && selectedNavItem.category === 'salutations')
+        if (selectedNavItem && selectedNavItem.category === 'salutations' && selectedSite === 'art')
             art = true;
         if (selectedSite === 'gallery')
             art = true;
         setIsArt(art);
+
+        if (selectedContentItem === null && selectedNavItem?.category !== 'e-card' && !art)
+            setShowContentList(true);
+        else
+            setShowContentList(false);
     }, [selectedContentItem, selectedNavItem, selectedSite]);
 
     const isVideo = selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType);
@@ -112,14 +118,20 @@ export const Middle: FC<Props> = () => {
 
     return (
         <MiddleSection ref={containerRef} className={fullScreen ? `${selectedSite} fullScreen` : selectedSite}>
-            { selectedContentItem === null && !isArt && (<Caption className={bizerkOn ? 'bizerk' : ''} ref={titleRef}>{headerTxt}</Caption>) }
+            { selectedContentItem === null && !isArt && (
+                <Caption
+                    className={bizerkMode !== 'off' ? 'bizerk' : ''}
+                    ref={titleRef}
+                >{headerTxt}
+                </Caption>
+            ) }
 
             { loading && <div>loading</div> }
 
             { selectedSite !== 'construction' && selectedSite !== 'gallery' && loading === false && (
                 <ContentList
                     id="content-list"
-                    className={selectedContentItem === null && selectedNavItem?.category !== 'e-card' ? 'on' : 'off'}
+                    className={showContentList ? 'on' : 'off'}
                 >
                     { contentList.map(i => (
                         <ContentItem key={i.contentId} onClick={() => handleSelect(i)}>

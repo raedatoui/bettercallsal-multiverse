@@ -1,8 +1,9 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { BizerImage, BizerkImageContainer } from 'src/components/header/middle/elements';
 import { Site } from 'src/types';
-import { AnimationContext } from 'src/providers/animations';
+import { useAnimationContext } from 'src/providers/animations';
 import { CDN } from 'src/constants';
+import { useSiteContext } from 'src/providers/sites';
 
 interface Props {
     site: Site;
@@ -10,13 +11,14 @@ interface Props {
 }
 
 export const Bizerk:FC<Props> = ({ site, pause }) => {
+    const { setBizerkMode } = useSiteContext();
     const {
         animateHeaderFooter,
         setAnimateHeaderFooter,
         spinningSalsCounter,
         setSpinningSalsCounter,
         setSpinningSalsGridCounter,
-    } = useContext(AnimationContext);
+    } = useAnimationContext();
 
     const [playing, setPlaying] = useState<boolean>(false);
 
@@ -51,7 +53,7 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
     }, [animateHeaderFooter]);
 
     return (
-        <BizerkImageContainer onClick={bizerkAnim} className={site.name}>
+        <BizerkImageContainer onClick={bizerkAnim} className={site.name} onDoubleClick={() => setBizerkMode('doubleClick')}>
             { site.header.bizerkIconType === 'image'
                 && (
                     <BizerImage
