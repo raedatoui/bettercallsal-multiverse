@@ -6,16 +6,52 @@ import horizontalBlurShader from 'src/components/glfx/horizontalBlurShader';
 import verticalBlurShader from 'src/components/glfx/verticalBlurShader';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import { BufferAttribute } from 'three';
+import { vertexShader2 } from 'src/components/glfx/vertex';
 
 const mapRange = (value: number, inputMin: number, inputMax: number, outputMin: number, outputMax: number): number =>
     outputMin + ((value - inputMin) / (inputMax - inputMin)) * (outputMax - outputMin);
+
+const downSampled = (poly: number = 512) => {
+    const amount = poly; // 100000;
+
+    const positions = new Float32Array(amount * amount * 3);
+    const texels = new Float32Array(amount * amount * 2);
+    const sizes = new Float32Array(amount * amount);
+
+    const vertex = new THREE.Vector3();
+    const texel = new THREE.Vector2();
+
+    const stepW = (1 / amount) * window.innerWidth;
+    const stepH = (1 / amount) * window.innerHeight;
+
+    for (let i = 0; i < amount; i++)
+        for (let j = 0; j < amount; j++) {
+            vertex.x = j * stepW - window.innerWidth / 2;
+            vertex.y = i * stepH - window.innerHeight / 2;
+            vertex.z = 0;
+            const ind = i * amount + j;
+            vertex.toArray(positions, ind * 3);
+            texel.x = j / amount;
+            texel.y = i / amount;
+            texel.toArray(texels, ind * 2);
+            sizes[ind] = 1;
+        }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('texel', new THREE.BufferAttribute(texels, 2));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    return geometry;
+};
 
 class ParticleSystem {
     private readonly renderer: THREE.WebGLRenderer;
     private readonly scene: THREE.Scene;
     private readonly camera: THREE.OrthographicCamera;
     private readonly sphere: THREE.Points;
+    private readonly sphere2: THREE.Points;
     private readonly material: THREE.ShaderMaterial;
+    private readonly material2: THREE.ShaderMaterial;
     private composer: EffectComposer;
     private readonly startTime: number;
     private readonly imageDataUrl: string;
@@ -27,6 +63,7 @@ class ParticleSystem {
     private analyser: AnalyserNode;
     private readonly resizeCbWrapper: () => void;
     private geometry: THREE.BufferGeometry | undefined;
+    private geometry2: THREE.BufferGeometry | undefined;
     private readonly defaultMousePos = new THREE.Vector2(0, 0);
 
     constructor(imageDataUrl: string, container: HTMLElement, analyser: AnalyserNode) {
@@ -55,7 +92,8 @@ class ParticleSystem {
 
         this.scene = new THREE.Scene();
 
-        this.downSampled();
+        this.geometry = downSampled(512);
+        this.geometry2 = downSampled(512);
         this.material = new THREE.ShaderMaterial({
             uniforms: {
                 uTime: { value: 0.0 },
@@ -71,8 +109,26 @@ class ParticleSystem {
             transparent: true,
         });
 
+        this.material2 = new THREE.ShaderMaterial({
+            uniforms: {
+                uTime: { value: 0.0 },
+                limit: { value: 0.0 },
+                uZoomMultiplier: { value: this.zoomDivider / new THREE.Vector3().distanceTo(this.camera.position) },
+                screenCapture: { value: new THREE.TextureLoader().load(this.imageDataUrl) },
+                mouse: { value: new THREE.Vector2(0, 0) },
+            },
+            vertexShader: vertexShader2,
+            fragmentShader: particlesShader.fragmentShader,
+            blending: THREE.AdditiveBlending,
+            depthTest: false,
+            transparent: true,
+        });
+
         this.sphere = new THREE.Points(this.geometry, this.material);
         this.scene.add(this.sphere);
+
+        this.sphere2 = new THREE.Points(this.geometry, this.material2);
+        this.scene.add(this.sphere2);
 
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -100,38 +156,6 @@ class ParticleSystem {
 
         this.container.style.display = 'block';
         this.animate();
-    }
-
-    downSampled() {
-        const amount = 1024; // 100000;
-
-        const positions = new Float32Array(amount * amount * 3);
-        const texels = new Float32Array(amount * amount * 2);
-        const sizes = new Float32Array(amount * amount);
-
-        const vertex = new THREE.Vector3();
-        const texel = new THREE.Vector2();
-
-        const stepW = (1 / amount) * window.innerWidth;
-        const stepH = (1 / amount) * window.innerHeight;
-
-        for (let i = 0; i < amount; i++)
-            for (let j = 0; j < amount; j++) {
-                vertex.x = j * stepW - window.innerWidth / 2;
-                vertex.y = i * stepH - window.innerHeight / 2;
-                vertex.z = 0;
-                const ind = i * amount + j;
-                vertex.toArray(positions, ind * 3);
-                texel.x = j / amount;
-                texel.y = i / amount;
-                texel.toArray(texels, ind * 2);
-                sizes[ind] = 1;
-            }
-
-        this.geometry = new THREE.BufferGeometry();
-        this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        this.geometry.setAttribute('texel', new THREE.BufferAttribute(texels, 2));
-        this.geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
     }
 
     addMouseHandler() {
@@ -168,26 +192,29 @@ class ParticleSystem {
     render() {
         const time = new Date().getTime() - this.startTime;
         this.material.uniforms.uTime.value = time * 0.000001;
+        this.material2.uniforms.uTime.value = time * 0.000001;
 
         const data = new Uint8Array(this.analyser.fftSize);
         this.analyser.getByteFrequencyData(data);
 
-        if (this.mouseDown) {
-            this.material.uniforms.mouse.value = this.mousePos;
-            if (this.limit > 2)
-                this.limit -= 10;
-            if (this.limit < 2) this.limit = 2;
-        } else {
-            this.material.uniforms.mouse.value = this.defaultMousePos;
-            if (this.limit < 1000)
-                this.limit += 10;
-        }
-
-        this.material.uniforms.limit.value = this.limit;
+        // if (!this.mouseDown) {
+        //     this.material.uniforms.mouse.value = this.mousePos;
+        //     if (this.limit > 2)
+        //         this.limit -= 100;
+        //     if (this.limit < 2) this.limit = 2;
+        // } else {
+        //     this.material.uniforms.mouse.value = this.defaultMousePos;
+        //     if (this.limit < 500)
+        //         this.limit += 100;
+        //     if (this.limit >= 500) this.limit = 500;
+        // }
+        this.material.uniforms.mouse.value = this.mousePos;
+        this.material.uniforms.limit.value = 2;
+        this.material2.uniforms.limit.value = 500;
 
         const {
             geometry: { attributes },
-        } = this.sphere;
+        } = this.sphere2;
         const size = attributes.size as BufferAttribute;
         for (let i = 0; i < data.length; i++) {
             const v = data[i] / 255.0;
@@ -197,6 +224,18 @@ class ParticleSystem {
         }
         attributes.size.needsUpdate = true;
 
+        // const {
+        //     geometry: { attributes: attributes2 },
+        // } = this.sphere2;
+        // const size2 = attributes2.size as BufferAttribute;
+        // for (let i = 0; i < data.length; i++) {
+        //     const v = data[i] / 255.0;
+        //     for (let j = 0; j < data.length; j++)
+        //         size2.setX(i * data.length + j, v);
+        //
+        // }
+        // attributes2.size.needsUpdate = true;
+
         this.composer.render();
         this.renderer.render(this.scene, this.camera);
     }
@@ -204,8 +243,8 @@ class ParticleSystem {
     onMouseMove(evt:MouseEvent) {
         // const deltaX = evt.clientX - this.mouseX;
         // const deltaY = evt.clientY - this.mouseY;
-        this.mousePos.x = mapRange(evt.clientX, 0, window.innerWidth, -1, 1);
-        this.mousePos.y = mapRange(evt.clientY, 0, window.innerHeight, -1, 1);
+        this.mousePos.x = mapRange(evt.clientX, 0, window.innerWidth, -2, 2);
+        this.mousePos.y = mapRange(evt.clientY, 0, window.innerHeight, 2, -2);
     }
 
     onMouseDown(evt:MouseEvent) {
