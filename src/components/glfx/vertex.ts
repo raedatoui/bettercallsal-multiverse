@@ -1,4 +1,4 @@
-const vertexShader = `
+export const vertexShader2 = `
 uniform float uTime;
 uniform sampler2D screenCapture;
 uniform float limit;
@@ -145,31 +145,7 @@ void main() {
   vec4 normalPosition = projectionMatrix *  vec4( position, 1.0 );
   // float normalPointSize = size * ( 1.0 / -normalPosition.z );
 
-  gl_PointSize = 3.0 * noisyPointSize * (size + 0.5);
-  gl_Position =  noisyPosition / limit + normalPosition; //noisyPosition;
+  gl_PointSize = 3.5 * noisyPointSize * (size + 0.75);
+  gl_Position = normalPosition; //noisyPosition;  noisyPosition / limit + 
 }
 `;
-
-const fragmentShader = `
-varying vec3 vColor;
-
-void main() {
-  gl_FragColor = vec4(vColor, 0.45);
-}
-`;
-
-const uniforms = {
-    uTime: { value: 0 },
-    screenCapture: { value: null },
-    limit: { value: 0 },
-    uZoomMultiplier: { value: 0 },
-    mouse: { value: null }
-};
-
-const shader = {
-    uniforms,
-    vertexShader,
-    fragmentShader,
-};
-
-export default shader;

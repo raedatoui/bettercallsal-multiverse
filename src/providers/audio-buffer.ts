@@ -142,47 +142,32 @@ class AudioBuffers {
         }).catch((error) => {
             throw Error(`Asset failed to load: ${error.message}`);
         });
-
-        // const request = new XMLHttpRequest();
-        // // request.responseType = 'arraybuffer';
-        // // request.async = false;
-        // request.onload = async () => {
-        //     // Asynchronously decode the audio file data in request.response
-        //     console.log('loadings', sound);
-        //     await this.context?.decodeAudioData(
-        //         request.response,
-        //         buffer => {
-        //             console.log('decoding', sound);
-        //             if (!buffer) {
-        //                 console.error(`error decoding file data: ${sound}`);
-        //                 return;
-        //             }
-        //
-        //             this.soundMap[sound] = {
-        //                 file: sound,
-        //                 startedAt: 0,
-        //                 pausedAt: 0,
-        //                 buffer,
-        //                 source: null
-        //             };
-        //         },
-        //         error => {
-        //             console.error('decodeAudioData error', error);
-        //         }
-        //     ).then((a) => {
-        //         console.log('done decoding', sound, a);
-        //     }).catch((err) => console.log('err', err));
-        // };
-        // request.onerror = () => {
-        //     console.error('BufferLoader: XHR error');
-        // };
-        //
-        // request.open('GET', `${CDN}${sound}`, false);
-        // request.send();
     }
 
     stopAll() {
         Object.keys(this.soundMap).forEach(s => this.stop(s));
+    }
+
+    public bizerk() {
+        const keys = Object.keys(this.soundMap);
+        this.listCount = keys.length;
+        keys.forEach(key => {
+            const source = this.play(key);
+            if (!source) return;
+            source.onended = () => {
+                this.soundEnded(key);
+            };
+        });
+    }
+
+    soundEnded(key:string) {
+        setTimeout(() => {
+            const source = this.play(key);
+            if (!source) return;
+            source.onended = () => {
+                this.soundEnded(key);
+            };
+        }, Math.random() * 500);
     }
 }
 

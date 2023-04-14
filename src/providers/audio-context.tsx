@@ -15,7 +15,7 @@ interface ProviderProps {
     children: JSX.Element;
 }
 const SoundProvider:FC<ProviderProps> = ({ children }) => {
-    const { siteMap, selectedSite } = useSiteContext();
+    const { siteMap, selectedSite, bizerkMode } = useSiteContext();
     const site = siteMap[selectedSite];
     const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -36,6 +36,11 @@ const SoundProvider:FC<ProviderProps> = ({ children }) => {
             buffers.updateSite(site).then(() => {});
         else console.log('fuck1');
     }, [site]);
+
+    useEffect(() => {
+        if (bizerkMode !== 'off')
+            buffers.bizerk();
+    }, [bizerkMode]);
 
     return (
         <SoundContext.Provider value={audioBuffers}>

@@ -74,9 +74,8 @@ export const HeaderComponent: FC = () => {
     }, [animateHeaderFooter]);
 
     let ticketInterval = 5000;
-    if (bizerkMode) ticketInterval = 2000;
+    if (bizerkMode !== 'off') ticketInterval = 2000;
     if (tickerCounter === 0) ticketInterval = 0;
-
     useInterval(() => {
         if (loadAnimationDone && !pauseTicker) {
             setTickerCounter(tickerCounter + 1);

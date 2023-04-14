@@ -42,18 +42,18 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
         const element = bizerkRef.current;
         element?.addEventListener('mouseenter', bizerkAnim);
         element?.addEventListener('mouseleave', bizerkStop);
-        element?.addEventListener('click', bizerkAnim);
+        // element?.addEventListener('click', bizerkAnim);
 
         return () => {
             element?.removeEventListener('mouseenter', bizerkAnim);
             element?.removeEventListener('mouseleave', bizerkStop);
-            element?.removeEventListener('click', bizerkAnim);
+            // element?.removeEventListener('click', bizerkAnim);
             setPlaying(false);
         };
     }, [animateHeaderFooter]);
 
     return (
-        <BizerkImageContainer onClick={bizerkAnim} className={site.name} onDoubleClick={() => setBizerkMode('doubleClick')}>
+        <BizerkImageContainer onClick={() => setBizerkMode('doubleClick')} className={site.name}>
             { site.header.bizerkIconType === 'image'
                 && (
                     <BizerImage
