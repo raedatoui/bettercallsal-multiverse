@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+import fsPromises from 'fs/promises';
+import path from 'path';
 import React, { FC } from 'react';
 import Head from 'next/head';
 import { LeftNav } from 'src/components/left-nav';
@@ -33,8 +35,9 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
     const defaultSite = SiteKeyValidator.parse(process.env.selectedSite);
     let defaultContent: (BaseContentItem | GameContentItem)[] = [];
     if (defaultSite !== 'construction') {
-        const list = await import(`../content/content-${defaultSite}.json`);
-
+        const filePath = path.join(process.cwd(), `content/content-${defaultSite}.json`);
+        const jsonData = await fsPromises.readFile(filePath);
+        const list = JSON.parse(jsonData.toString());
         if (defaultSite === 'games' || defaultSite === 'gallery')
             defaultContent = GameContentListValidator.parse(list.items);
         else

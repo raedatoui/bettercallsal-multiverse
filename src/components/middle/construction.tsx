@@ -15,7 +15,7 @@ const ConstructionImage = styled(Image)<{ left: number, top: number }>`
   margin-top: ${props => `${props.top}px`};
 `;
 
-export const Construction:FC<Props> = ({ titleRef, containerRef }) => {
+const Construction:FC<Props> = ({ titleRef, containerRef }) => {
     const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
 
     const windowSize = useWindowSize();
@@ -59,3 +59,5 @@ export const Construction:FC<Props> = ({ titleRef, containerRef }) => {
         />
     );
 };
+
+export default Construction;

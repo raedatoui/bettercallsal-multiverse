@@ -9,7 +9,7 @@ interface Props {
     containerRef: RefObject<HTMLDivElement>
 }
 
-export const UnityGame: FC<Props> = ({ containerRef }) => {
+const UnityGame: FC<Props> = ({ containerRef }) => {
     const {
         contentMap,
         selectedSite,
@@ -179,3 +179,5 @@ export const UnityGame: FC<Props> = ({ containerRef }) => {
         </>
     );
 };
+
+export default UnityGame;

@@ -7,17 +7,20 @@ import {
     ContentList,
     MiddleSection,
 } from 'src/components/middle/elements';
-import { VideoPlayer } from 'src/components/middle/videoPlayer';
+import {
+    DynamicArtSlider,
+    DynamicConstruction,
+    DynamicEcard,
+    DynamicVideoPlayer,
+    DynamicUnityGame
+} from 'src/components/middle/dynamic';
 import { shuffleList, useWindowSize } from 'src/utils';
 import Image from 'next/image';
-import { UnityGame } from 'src/components/middle/unity';
+
 import Script from 'next/script';
 import { CDN } from 'src/constants';
 import { useAnimationContext } from 'src/providers/animations';
 import { BaseContentItem, GameContentItem } from 'src/types';
-import { Ecard } from 'src/components/middle/e-card';
-import { ArtSlider } from 'src/components/middle/art-slider';
-import { Construction } from 'src/components/middle/construction';
 
 interface Props { }
 
@@ -156,11 +159,11 @@ export const Middle: FC<Props> = () => {
             )}
 
             { isVideo && (
-                <VideoPlayer />
+                <DynamicVideoPlayer />
             ) }
 
             { isArt && selectedSite !== 'gallery' && (
-                <ArtSlider
+                <DynamicArtSlider
                     containerRef={containerRef}
                     images={prevShuffledList}
                     start={selectedContentItem ? prevShuffledList.indexOf(selectedContentItem) : 0}
@@ -182,13 +185,13 @@ export const Middle: FC<Props> = () => {
             ) }
 
             { scriptLoaded && (
-                <UnityGame containerRef={containerRef} />
+                <DynamicUnityGame containerRef={containerRef} />
             )}
 
             { selectedSite === 'construction'
-                && <Construction titleRef={titleRef} containerRef={containerRef} />}
+                && <DynamicConstruction titleRef={titleRef} containerRef={containerRef} />}
 
-            { selectedNavItem?.category === 'e-card' && <Ecard /> }
+            { selectedNavItem?.category === 'e-card' && <DynamicEcard /> }
         </MiddleSection>
     );
 };
