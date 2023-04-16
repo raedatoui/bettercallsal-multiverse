@@ -151,6 +151,7 @@ class AudioBuffers {
     public bizerk() {
         const keys = Object.keys(this.soundMap);
         this.listCount = keys.length;
+
         keys.forEach(key => {
             const source = this.play(key);
             if (!source) return;

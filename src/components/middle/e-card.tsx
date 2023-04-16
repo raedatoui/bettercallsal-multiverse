@@ -5,7 +5,7 @@ import { useSiteContext } from 'src/providers/sites';
 
 interface Props {}
 
-export const Ecard:FC<Props> = () => {
+const Ecard:FC<Props> = () => {
     const { setSelectedNavItem } = useSiteContext();
 
     return (
@@ -37,3 +37,5 @@ export const Ecard:FC<Props> = () => {
         </EcardContainer>
     );
 };
+
+export default Ecard;

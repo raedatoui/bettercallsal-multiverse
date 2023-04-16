@@ -27,7 +27,7 @@ interface VimeoPlayer {
     loadVideo: (id: string) => void;
 }
 
-export const VideoPlayer: FC<Props> = () => {
+const VideoPlayer: FC<Props> = () => {
     const { siteMap, selectedSite, selectedContentItem, setSelectedContentItem } = useSiteContext();
     const site = siteMap[selectedSite];
 
@@ -178,3 +178,5 @@ export const VideoPlayer: FC<Props> = () => {
         </PlayerContainer>
     );
 };
+
+export default VideoPlayer;

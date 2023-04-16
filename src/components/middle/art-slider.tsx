@@ -14,7 +14,7 @@ interface Props {
     start: number
 }
 
-export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
+const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
     const { setSelectedContentItem, setSelectedNavItem, keyPressed } = useSiteContext();
     const windowSize = useWindowSize();
 
@@ -133,3 +133,5 @@ export const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
         </ImageContainer>
     );
 };
+
+export default ArtSlider;
