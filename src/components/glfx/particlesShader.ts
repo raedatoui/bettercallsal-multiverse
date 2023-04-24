@@ -127,10 +127,12 @@ void main() {
   
   vec3 texelZ = vec3(texel,1);
   float no = cnoise( -( uTime * 12. ) + abs( texelZ ) * 1000. );
-
-  float nx = cnoise(texelZ + no + (uTime * 235. + 3000.));
-  float ny = cnoise(texelZ + no + (uTime * 735. + 1000.));
-  float nz = cnoise(texelZ + no + (uTime * 435. + 2000.));
+  
+  // if (limit < 2.)
+  float coeff = (size - 200.) / 400. + 235.;
+  float nx = cnoise(texelZ + no + (uTime * coeff + 3000.));
+  float ny = cnoise(texelZ + no + (uTime * (coeff + 300.) + 1000.));
+  float nz = cnoise(texelZ + no + (uTime * coeff + 2000.));
 
   vec3 noise = vec3(nz, ny, nz);
 
@@ -146,6 +148,7 @@ void main() {
   // float normalPointSize = size * ( 1.0 / -normalPosition.z );
 
   gl_PointSize = 3.0 * noisyPointSize * (size + 0.5);
+
   gl_Position =  noisyPosition / limit + normalPosition; //noisyPosition;
 }
 `;

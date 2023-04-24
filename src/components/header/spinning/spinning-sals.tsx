@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useRef } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { useAnimationContext } from 'src/providers/animations';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
@@ -14,9 +14,6 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
     const { selectedSite, siteMap, bizerkMode } = useSiteContext();
     const { spinningSalsCounter, setSpinningSalsGridCounter } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
-
-    const ref = useRef<HTMLDivElement>(null);
-    const wrapperRef = useRef<HTMLDivElement>(null);
 
     const site = siteMap[selectedSite];
 
@@ -34,27 +31,21 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
             else buffers.stop(site.header.spinningSalAudio);
     };
 
-    useEffect(() => {
-        const element = ref.current;
-        element?.addEventListener('mouseenter', playAndGrid);
-        element?.addEventListener('mouseleave', pause);
-        element?.addEventListener('click', playAndGrid);
-        return () => {
-            element?.removeEventListener('mouseenter', playAndGrid);
-            element?.removeEventListener('mouseleave', pause);
-            element?.removeEventListener('click', playAndGrid);
-        };
-    }, [ref.current, selectedSite]);
-
-    // fix this warning breaks the animation
+    // fixing this warning breaks the animation
     useEffect(() => {
         if (spinningSalsCounter !== 0)
             playAndGrid();
     }, [spinningSalsCounter]);
 
     return (
-        <SpinningWrapper className={wrapperStyle} ref={wrapperRef}>
-            <SpinningImg ref={ref} className={`${imageStyle} ${bizerkMode !== 'off' ? ' bizerk' : ''}`} image={image} />
+        <SpinningWrapper className={wrapperStyle}>
+            <SpinningImg
+                onClick={() => playAndGrid()}
+                onMouseEnter={() => playAndGrid()}
+                onMouseLeave={() => pause()}
+                className={`${imageStyle} ${bizerkMode !== 'off' ? ' bizerk' : ''}`}
+                image={image}
+            />
         </SpinningWrapper>
     );
 };

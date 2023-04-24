@@ -85,9 +85,9 @@ export type Sound = z.infer<typeof SoundValidator> & {
     startedAt: number,
     pausedAt: number,
     file: string,
+    playing: boolean,
+    id: string,
 };
-
-export type SoundMap = Record<string, Sound>;
 
 export type CbFn = () => void;
 
@@ -180,3 +180,16 @@ declare global {
 export const BizerkModeValidator = z.enum(['off', 'doubleClick', 'construction']);
 
 export type BizerkMode = z.infer<typeof BizerkModeValidator>;
+
+export const AudioElementValidator = z.enum([
+    'headerRing',
+    'spinningLeft',
+    'spinningRight',
+    'leftNavAudio',
+    'leftNavItemAudio',
+    'footerRing']);
+export type AudioElement = z.infer<typeof AudioElementValidator>;
+
+export type PlayAudioFn = (el:AudioElement, filter?: string) => void;
+
+export const isNotNull = <T>(x: T): x is NonNullable<T> => !!x;
