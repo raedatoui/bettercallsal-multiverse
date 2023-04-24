@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
+import React, { FC, RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { GameButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from 'src/components/middle/elements';
 import { ContentSize, GameContentItem, Size, UnityInstance } from 'src/types';
 import { CDN } from 'src/constants';
@@ -30,7 +30,7 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
 
     const windowSize = useWindowSize();
 
-    const getContentSize = (desiredSize: Size): ContentSize => {
+    const getContentSize = useCallback((desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
 
@@ -54,18 +54,18 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
         // this was an attempt at full bleeing the game
         return { width: Math.floor(width), height: Math.floor(workingHeight), left: (workingWidth - width) / 2, top: 0 };
         // return { width: 900, height: 600, left: 0, top: 0};
-    };
+    }, [containerRef]);
 
-    const handleStop = () => {
+    const handleStop = useCallback(() => {
         if (unityInstance)
             unityInstance.Quit().then(() => {
                 setSelectedContentItem(null);
                 setSelectedNavItem(null);
                 setUnityInstance(null);
             });
-    };
+    }, [setSelectedContentItem, setSelectedNavItem, unityInstance]);
 
-    const loadGame = () => {
+    const loadGame = useCallback(() => {
         const game = selectedContentItem as GameContentItem;
         setGameProgress(0);
         setGameProgressVisible(true);
@@ -85,13 +85,18 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
                 setUnityInstance(c);
                 setGameProgressVisible(false);
             });
-    };
+    }, [selectedContentItem]);
 
-    const clearCanvas = () => {
+    const clearCanvas = useCallback(() => {
         if (canvasRef.current) {
             const context = canvasRef.current.getContext('webgl2');
             context?.clear(0);
         }
+    }, []);
+
+    const handleClick = async () => {
+        if (selectedSite === 'gallery')
+            setFullScreen(true);
     };
 
     useEffect(() => {
@@ -110,8 +115,8 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
             unityInstance.Quit().then(() => {
                 setUnityInstance(null);
             });
-
-    }, [selectedSite, selectedContentItem]);
+        return () => {};
+    }, [selectedSite, selectedContentItem, clearCanvas, loadGame]);
 
     useEffect(() => {
         if (selectedContentItem && selectedContentItem.contentType === 'game') {
@@ -130,18 +135,14 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
                 setGamesPosterSize({ top: 0, left: 0, width: rect.width, height: rect.height });
             }
         }
-
-    }, [windowSize, selectedContentItem]);
-
-    const handleClick = async () => {
-        if (selectedSite === 'gallery')
-            setFullScreen(true);
-    };
+        return () => {};
+    }, [windowSize, selectedContentItem, getContentSize]);
 
     useEffect(() => {
         if (selectedSite === 'gallery' && !loading)
             setSelectedContentItem(contentMap.gallery[0]);
-    }, [selectedSite, loading]);
+        return () => {};
+    }, [selectedSite, loading, setSelectedContentItem, contentMap.gallery]);
 
     useEffect(() => {
         const r = document.getElementById('content-row');
@@ -149,6 +150,7 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
             const rect = r.getBoundingClientRect();
             setGamesPosterSize({ top: 0, left: 0, width: rect.width, height: rect.height });
         }
+        return () => {};
     }, [fullScreen]);
 
     return (

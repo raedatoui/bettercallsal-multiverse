@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from 'src/components/footer/elements';
 import Image from 'next/image';
 import { useWindowSize } from 'src/utils';
@@ -32,7 +32,7 @@ export const LawBreakers: FC<Props> = () => {
         return { width, height };
     };
 
-    const animate = (delay: number) => {
+    const animate = useCallback((delay: number) => {
         setLeftSpinningState(`img0 fadein ${selectedSite}`);
         setRightSpinningState(`img1 fadein ${selectedSite}`);
         setTimeout(() => {
@@ -45,37 +45,38 @@ export const LawBreakers: FC<Props> = () => {
                 setBetterCallSalState('init');
             }, 3000);
         }, delay);
-    };
-
-    const footerClick = () => {
-        buffers.play(site.header.ringAudio, false);
-        animate(0);
-    };
+    }, [selectedSite]);
 
     useEffect(() => {
         setMicSize(getContentSize({ width: site.footer.iconWidth, height: site.footer.iconHeight }));
+        return () => {};
     }, [windowSize, site]);
 
-    useEffect(() => {
-        setMicSize(getContentSize({ width: site.footer.iconWidth, height: site.footer.iconHeight }));
-    }, []);
+    // useEffect(() => {
+    //     setMicSize(getContentSize({ width: site.footer.iconWidth, height: site.footer.iconHeight }));
+    //     return () => {};
+    // }, []);
 
     useEffect(() => {
         if (loaded)
             animate(250);
-    }, [loaded, selectedSite]);
+        return () => {};
+    }, [animate, loaded, selectedSite]);
 
     useEffect(() => {
-        if (animateHeaderFooter)
-            footerClick();
-    }, [animateHeaderFooter]);
+        if (animateHeaderFooter) {
+            buffers.play(site.header.ringAudio, false);
+            animate(0);
+        }
+        return () => {};
+    }, [animate, animateHeaderFooter, buffers, site.header.ringAudio]);
 
     useEffect(() => {
         if (site.footer.iconType === 'video') {
             video1Ref.current?.load();
             video2Ref.current?.load();
         }
-
+        return () => {};
     }, [site.footer.icon, site.footer.iconType]);
     return (
         <>

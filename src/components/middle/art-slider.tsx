@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, RefObject } from 'react';
+import React, { FC, useState, useEffect, RefObject, useCallback } from 'react';
 import Image from 'next/image';
 import { BaseContentItem, ContentSize, Size } from 'src/types';
 import { ButtonBar, ImageContainer, StopButton } from 'src/components/middle/elements';
@@ -63,7 +63,7 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
         },
     ]);
 
-    const getContentSize = (desiredSize: Size, containerSize: Size): ContentSize => {
+    const getContentSize = useCallback((desiredSize: Size, containerSize: Size): ContentSize => {
         let height: number;
         let width: number;
 
@@ -80,7 +80,7 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
         }
 
         return { width, height, left: (containerSize.width - width) / 2, top: (containerSize.height - height) / 2 };
-    };
+    }, []);
 
     useEffect(() => {
         const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
@@ -93,7 +93,8 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
                     { width: workingWidth, height: workingHeight }
                 ))
         );
-    }, [windowSize]);
+        return () => {};
+    }, [containerRef, getContentSize, images, windowSize]);
 
     useEffect(() => {
         if (sliderInstance.current) {
@@ -102,6 +103,7 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
             if (keyPressed === 'ArrowLeft')
                 sliderInstance.current.prev();
         }
+        return () => {};
     }, [keyPressed, sliderInstance]);
 
     return (

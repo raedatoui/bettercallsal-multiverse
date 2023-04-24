@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useContext } from 'react';
+import React, { FC, useState, useEffect, useContext, useCallback } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import { StandaloneFiller, StandaloneHeaderContainer, StandaloneTickerContainer } from 'src/components/header/standalone-elements';
 import { Baseline } from 'src/components/header/ticker/elements';
@@ -15,7 +15,7 @@ export const StandaloneHeaderComponent: FC = () => {
     const [leftSpinningState, setLeftSpinningState] = useState<string>(`img0 start ${selectedSite}`);
     const [rightSpinningState, setRightSpinningState] = useState<string>(`img1 start ${selectedSite}`);
 
-    const animate = (pauseAnim: boolean, delay: number) => {
+    const animate = useCallback((pauseAnim: boolean, delay: number) => {
         setLeftSpinningState(`img0 fadein ${selectedSite}`);
         setRightSpinningState(`img1 fadein ${selectedSite}`);
 
@@ -28,13 +28,13 @@ export const StandaloneHeaderComponent: FC = () => {
                 setRightSpinningState(`img1 ${selectedSite}`);
             }, 3000);
         }, delay);
-    };
+    }, [selectedSite]);
 
     useEffect(() => {
         if (loaded)
             animate(false, 250);
 
-    }, [loaded, selectedSite]);
+    }, [animate, loaded, selectedSite]);
 
     return (
         <StandaloneHeaderContainer>

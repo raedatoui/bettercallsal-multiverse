@@ -33,22 +33,6 @@ const MainContainerInner: FC<Props> = ({ children }) => {
     const mainRef = useRef<HTMLDivElement | null>(null);
     const particleRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        if (keyPressed === 'Escape' && fullScreen)
-            setFullScreen(false);
-        if (keyPressed && keyMap[keyPressed] !== undefined && selectedSite !== 'gallery')
-            setSelectedSite(keyMap[keyPressed]);
-    }, [keyPressed, selectedSite]);
-
-    // useEffect(() => {
-    //     if (screenCapture) {
-    //         const img = new Image();
-    //         img.className = 'screencap';
-    //         img.src = screenCapture;
-    //         document.body.appendChild(img);
-    //     }
-    // }, [screenCapture]);
-
     const handleClick = () => {
         if (mainRef.current && screenCapture === null && scriptLoaded && selectedSite === 'construction')
             window.htmlToImage.toPng(mainRef.current)
@@ -66,6 +50,14 @@ const MainContainerInner: FC<Props> = ({ children }) => {
     };
 
     useEffect(() => {
+        if (keyPressed === 'Escape' && fullScreen)
+            setFullScreen(false);
+        if (keyPressed && keyMap[keyPressed] !== undefined && selectedSite !== 'gallery')
+            setSelectedSite(keyMap[keyPressed]);
+        return () => {};
+    }, [fullScreen, keyPressed, selectedSite, setFullScreen, setSelectedSite]);
+
+    useEffect(() => {
         if (mainRef.current && screenCapture === null && bizerkMode === 'doubleClick')
             window.htmlToImage.toPng(mainRef.current)
                 .then((dataUrl) => {
@@ -78,8 +70,8 @@ const MainContainerInner: FC<Props> = ({ children }) => {
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);
                 });
-
-    }, [bizerkMode]);
+        return () => {};
+    }, [bizerkMode, buffers.analyzer, screenCapture]);
 
     return (
         <Main

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, MouseEvent } from 'react';
+import React, { FC, useEffect, useState, MouseEvent, useCallback } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import { EXTERNAL_LINK } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
@@ -60,37 +60,37 @@ const Slider: FC<SliderProps> = (
     const slideInDuration = 2;
     const slideOutDuration = 3;
 
-    const selected = () => {
+    const selected = useCallback(() => {
         const bizerkOn = bizerkMode !== 'off';
         setTranslateX(0);
         setAnimation(bizerkOn ? squigglyText : null);
         setAnimationDuration(bizerkOn ? '5s linear infinite' : '');
         setVisibility('visible');
-    };
+    }, [bizerkMode]);
 
-    const reset = () => {
+    const reset = useCallback(() => {
         const bizerkOn = bizerkMode !== 'off';
         setTranslateX(sw);
         setAnimation(bizerkOn ? squigglyText : null);
         setAnimationDuration(bizerkOn ? '5s linear infinite' : '');
         setVisibility('hidden');
-    };
+    }, [bizerkMode, sw]);
 
-    const slideIn = () => {
+    const slideIn = useCallback(() => {
         const bizerkOn = bizerkMode !== 'off';
         setTranslateX(0);
         setAnimation(bizerkOn ? squigglySlideInFromLeft(`${sw}px`) : slideInFromLeft(`${sw}px`));
         setAnimationDuration(`${slideInDuration}s`);
         setVisibility('visible');
-    };
+    }, [bizerkMode, sw]);
 
-    const slideOut = () => {
+    const slideOut = useCallback(() => {
         const bizerkOn = bizerkMode !== 'off';
         setTranslateX(-sw);
         setAnimation(bizerkOn ? squigglySlideOutFromLeft(`-${sw}px`) : slideOutFromLeft(`-${sw}px`));
         setVisibility('visible');
         setAnimationDuration(`${slideOutDuration}s`);
-    };
+    }, [bizerkMode, sw]);
 
     useEffect(() => {
         if (!start)
@@ -109,7 +109,7 @@ const Slider: FC<SliderProps> = (
             slideOut();
         else
             reset();
-    }, [selectedSlide, selectedSite, start, index]);
+    }, [selectedSlide, selectedSite, start, index, selected, reset, slideIn, slideOut]);
 
     const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
         if (!EXTERNAL_LINK) {
