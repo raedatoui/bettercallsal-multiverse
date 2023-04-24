@@ -39,7 +39,7 @@ const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
         if (bizerkMode !== 'off')
             setInterval(() => {
                 setBizerkCounter((prevCounter) => prevCounter + 1);
-            }, 25);
+            }, 100);
     }, [bizerkMode]);
 
     const animationCounters = useMemo<AnimationProviderType>(() => ({

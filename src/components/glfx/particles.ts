@@ -4,6 +4,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import particlesShader from 'src/components/glfx/particlesShader';
 import horizontalBlurShader from 'src/components/glfx/horizontalBlurShader';
 import verticalBlurShader from 'src/components/glfx/verticalBlurShader';
+import { RenderPixelatedPass } from 'three/examples/jsm/postprocessing/RenderPixelatedPass';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import { BufferAttribute } from 'three';
 import { vertexShader2 } from 'src/components/glfx/vertex';
@@ -141,12 +142,15 @@ class ParticleSystem {
         // mainPass.renderToScreen = true;
         this.composer.addPass(mainPass);
 
-        const hblur = new ShaderPass(horizontalBlurShader);
-        this.composer.addPass(hblur);
+        // const hblur = new ShaderPass(horizontalBlurShader);
+        // this.composer.addPass(hblur);
+        //
+        // const vblur = new ShaderPass(verticalBlurShader);
+        // vblur.renderToScreen = true;
+        // this.composer.addPass(vblur);
 
-        const vblur = new ShaderPass(verticalBlurShader);
-        vblur.renderToScreen = true;
-        this.composer.addPass(vblur);
+        // const renderPixelatedPass = new RenderPixelatedPass( 6, this.scene, this.camera );
+        // this.composer.addPass(renderPixelatedPass);
 
         this.resizeCbWrapper = this.onWindowResize.bind(this);
         window.addEventListener('resize', this.resizeCbWrapper, false);
@@ -217,7 +221,7 @@ class ParticleSystem {
         } = this.sphere2;
         const size = attributes.size as BufferAttribute;
         for (let i = 0; i < data.length; i++) {
-            const v = data[i] / 255.0;
+            const v = data[i] / 300.0;
             for (let j = 0; j < data.length; j++)
                 size.setX(i * data.length + j, v);
 

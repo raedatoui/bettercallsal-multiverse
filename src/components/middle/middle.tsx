@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import {
     Caption,
@@ -21,6 +21,7 @@ import Script from 'next/script';
 import { CDN } from 'src/constants';
 import { useAnimationContext } from 'src/providers/animations';
 import { BaseContentItem, GameContentItem } from 'src/types';
+import { SoundContext } from 'src/providers/audio-context';
 
 interface Props { }
 
@@ -45,6 +46,8 @@ export const Middle: FC<Props> = () => {
         spinningSalsGridCounter,
         bizerkCounter,
     } = useAnimationContext();
+
+    const { buffers } = useContext(SoundContext);
 
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(contentMap[selectedSite]);
     const [prevShuffledList, setPrevShuffledList] = useState<(BaseContentItem | GameContentItem)[]>([]);
@@ -78,10 +81,9 @@ export const Middle: FC<Props> = () => {
             if (selectedNavItem && selectedNavItem.category === 'salutations')
                 setPrevShuffledList(list);
         }
-        if (bizerkCounter > 1) {
+        if (bizerkCounter % 2 === 0)
             list = shuffleList(list);
-            setPrevShuffledList(list);
-        }
+            // setPrevShuffledList(list);
 
         setContentList(list);
     }, [
@@ -117,6 +119,8 @@ export const Middle: FC<Props> = () => {
         setSelectedContentItem(i);
         if (document.body.clientWidth < 768)
             setFullScreen(true);
+        if (selectedSite === 'art' && site.leftNav.items[0].audio)
+            buffers.play(site.leftNav.items[0].audio);
     };
 
     return (
