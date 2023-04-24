@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState, createContext, useEffect, useContext } from 'react';
+import React, { FC, useMemo, useState, createContext, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 import { CDN } from 'src/constants';
 import {
@@ -64,16 +64,16 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     const [bizerkMode, setBizerkMode] = useState<BizerkMode>('off');
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
 
-    const setSite = (s: SiteKey) => {
+    const setSite = useCallback((s: SiteKey) => {
         if (s !== selectedSite) {
             setSelectedNavItem(null);
             setSelectedContentItem(null);
             setLoading(true);
             setSelectedSite(s);
         }
-    };
+    }, [selectedSite]);
 
-    const setContentItem = (c: BaseContentItem | GameContentItem | null) => {
+    const setContentItem = useCallback((c: BaseContentItem | GameContentItem | null) => {
         // TODO this kind of sucks and useEffect sucks balls for this.
         const contentRow = document.getElementById('content-row');
         const contentList = document.getElementById('content-list');
@@ -119,7 +119,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         setSelectedContentItem(c);
         if (c === null)
             setFullScreen(false);
-    };
+    }, [contentRowScroll, selectedSite]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -140,17 +140,18 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
                         ...contentMap,
                         [selectedSite]: BaseContentListValidator.parse(response.items)
                     });
+                setLoading(false);
             } catch (error) {
                 console.error(error);
             }
         };
 
         if (selectedSite !== 'construction' && contentMap[selectedSite].length === 0)
-            fetchData().then(() => setLoading(false));
+            fetchData();
         else
             setLoading(false);
-
-    }, [selectedSite]);
+        return () => {};
+    }, [contentMap, selectedSite]);
 
     useEffect(() => {
         if (selectedSite === 'games' && selectedNavItem !== null) {
@@ -158,7 +159,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
             if (selectedGame.length)
                 setSelectedContentItem(selectedGame[0]);
         }
-    }, [selectedNavItem, selectedSite]);
+    }, [contentMap.games, selectedNavItem, selectedSite]);
 
     useEffect(() => {
         const downHandler = (ev:KeyboardEvent) => {

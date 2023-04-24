@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState, useEffect } from 'react';
+import React, { FC, useContext, useState, useEffect, useCallback } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import { useInterval } from 'src/utils';
@@ -38,7 +38,7 @@ export const HeaderComponent: FC = () => {
     const [pauseTicker, setPauseTicker] = useState<boolean>(false);
     const [tickerCounter, setTickerCounter] = useState<number>(0);
 
-    const animate = (pauseAnim: boolean, delay: number) => {
+    const animate = useCallback((pauseAnim: boolean, delay: number) => {
         setLeftSpinningState(`img0 fadein ${selectedSite}`);
         setRightSpinningState(`img1 fadein ${selectedSite}`);
         if (!pauseAnim)
@@ -57,21 +57,23 @@ export const HeaderComponent: FC = () => {
                 }, 2000);
             }, 3000);
         }, delay);
-    };
+    }, [selectedSite]);
 
     useEffect(() => {
         if (loaded) {
             animate(false, 250);
             setTickerCounter(0);
         }
-    }, [loaded, selectedSite]);
+        return () => {};
+    }, [animate, loaded, selectedSite]);
 
     useEffect(() => {
         if (animateHeaderFooter) {
             buffers.play(site.header.ringAudio, false);
             animate(true, 0);
         }
-    }, [animateHeaderFooter]);
+        return () => {};
+    }, [animate, animateHeaderFooter, buffers, site.header.ringAudio]);
 
     let ticketInterval = 5000;
     if (bizerkMode !== 'off') ticketInterval = 2000;

@@ -98,7 +98,7 @@ const SoundProvider:FC<ProviderProps> = ({ children }) => {
     useEffect(() => {
         if (bizerkMode !== 'off')
             buffers.bizerk(selectedSite);
-    }, [bizerkMode]);
+    }, [bizerkMode, selectedSite]);
 
     return (
         <SoundContext.Provider value={audioBuffers}>

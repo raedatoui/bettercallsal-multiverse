@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect, useState } from 'react';
+import React, { FC, RefObject, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ContentSize, Size } from 'src/types';
 import { useWindowSize } from 'src/utils';
@@ -20,7 +20,7 @@ const Construction:FC<Props> = ({ titleRef, containerRef }) => {
 
     const windowSize = useWindowSize();
 
-    const getContentSize = (desiredSize: Size): ContentSize => {
+    const getContentSize = useCallback((desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
         const offset = (titleRef.current?.getBoundingClientRect().height ?? 0);
@@ -40,11 +40,12 @@ const Construction:FC<Props> = ({ titleRef, containerRef }) => {
             height = (width * desiredSize.height) / desiredSize.width;
         }
         return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
-    };
+    }, [containerRef, titleRef]);
 
     useEffect(() => {
         setImageSize(getContentSize({ width: 1612, height: 975 }));
-    }, [windowSize]);
+        return () => {};
+    }, [getContentSize, windowSize]);
 
     return (
         <ConstructionImage

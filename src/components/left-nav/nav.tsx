@@ -1,5 +1,13 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { LeftAdd1, LeftAdd2, LeftContent, LeftNavButton, LeftNavContainer, LeftNavMenu, LeftNavItemCuck } from 'src/components/left-nav/elements';
+import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import {
+    LeftAdd1,
+    LeftAdd2,
+    LeftContent,
+    LeftNavButton,
+    LeftNavContainer,
+    LeftNavMenu,
+    LeftNavItemCuck
+} from 'src/components/left-nav/elements';
 import { BaseContentItem, LeftNavNavItem } from 'src/types';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { useSiteContext } from 'src/providers/sites';
@@ -21,17 +29,19 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
     const [clicked, setClicked] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null);
 
-    const scaleText = () => {
+    const scaleText = useCallback(() => {
         if (window.textFit && ref.current && !fullScreen)
             window.textFit(ref.current, { alignVert: true, alignHoriz: false, detectMultiLine: false, widthOnly: false, maxFontSize: 34 });
-    };
+    }, [fullScreen]);
 
     useEffect(() => {
         scaleText();
-    }, [width, ref]);
+        return () => {};
+    }, [width, ref, scaleText]);
 
     useEffect(() => {
         scaleText();
+        return () => {};
     });
 
     const handleClick = () => {
@@ -66,6 +76,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
 
             setClicked(false);
         }
+        return () => {};
     }, [clicked]);
 
     return (
@@ -142,7 +153,8 @@ export const LeftNav: FC<Props> = () => {
             buffers.stop(audioPlaying);
             setAudioPlaying(null);
         }
-    }, [selectedContentItem, audioPlaying, selectedSite]);
+        return () => {};
+    }, [selectedContentItem, audioPlaying, selectedSite, buffers]);
 
     return (
         <>

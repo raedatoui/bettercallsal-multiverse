@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import {
     ButtonBar,
     Player,
@@ -39,20 +39,21 @@ const VideoPlayer: FC<Props> = () => {
 
     const windowSize = useWindowSize();
 
-    const ytPlayer = useMemo<YTPlayer | null>(() => yPlayer ?? null, [yPlayer]);
-    const vimeoPlayer = useMemo<VimeoPlayer | null>(() => vPlayer ?? null, [vPlayer]);
+    // TODO: these memos are gone, we are unmounting the player when we stop the video
+    // const ytPlayer = useMemo<YTPlayer | null>(() => yPlayer ?? null, [yPlayer]);
+    // const vimeoPlayer = useMemo<VimeoPlayer | null>(() => vPlayer ?? null, [vPlayer]);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLDivElement>(null);
     const viewsRef = useRef<HTMLDivElement>(null);
 
-    const stopVideo = () => {
-        ytPlayer?.stopVideo?.();
-        vimeoPlayer?.pause();
+    const stopVideo = useCallback(() => {
+        yPlayer?.stopVideo?.();
+        vPlayer?.pause();
         setSelectedContentItem(null);
-    };
+    }, [setSelectedContentItem, vPlayer, yPlayer]);
 
-    const getContentSize = (desiredSize: Size): ContentSize => {
+    const getContentSize = useCallback((desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
         const offset = (titleRef.current?.getBoundingClientRect().height ?? 0) + (viewsRef.current?.getBoundingClientRect().height ?? 0);
@@ -73,61 +74,60 @@ const VideoPlayer: FC<Props> = () => {
         }
 
         return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
-    };
-
-    const scaleText = () => {
-        // if (window.textFit && titleRef.current)
-        //     window.textFit(titleRef.current);
-    };
-
-    useEffect(() => {
-        scaleText();
-    }, [windowSize, titleRef, selectedContentItem]);
-
-    useEffect(() => {
-        scaleText();
     }, []);
+
+    // TODO: revisit text scaling
+    // const scaleText = () => {
+    //     if (window.textFit && titleRef.current)
+    //         window.textFit(titleRef.current);
+    // };
+
+    // useEffect(() => {
+    //     scaleText();
+    // }, [windowSize, titleRef, selectedContentItem]);
+    //
+    // useEffect(() => {
+    //     scaleText();
+    // }, []);
 
     useEffect(() => {
         window.scroll(0, 0);
+
         if (selectedContentItem)
             if (selectedContentItem.contentType === 'youtube')
-                if (!ytPlayer)
-                    // @ts-ignore
-                    setYPlayer(new YT.Player('yplayer', {
-                        height: ytSize.height,
-                        width: ytSize.width,
-                        loop: 1,
-                        color: 'red',
-                        theme: 'light',
-                        videoId: selectedContentItem.contentId,
-                        startSeconds: 0,
-                        events: {
-                            /* eslint-disable @typescript-eslint/no-explicit-any */
-                            onReady: (event: any) => {
-                                event.target.playVideo();
-                            },
-                            onStateChange: (event: any) => {
-                                // @ts-ignore
-                                if (event.data === YT.PlayerState.ENDED)
-                                    stopVideo();
-                            },
-                            /* eslint-disable @typescript-eslint/no-explicit-any */
+                // @ts-ignore
+                setYPlayer(new YT.Player('yplayer', {
+                    height: ytSize.height,
+                    width: ytSize.width,
+                    loop: 1,
+                    color: 'red',
+                    theme: 'light',
+                    videoId: selectedContentItem.contentId,
+                    startSeconds: 0,
+                    events: {
+                        /* eslint-disable @typescript-eslint/no-explicit-any */
+                        onReady: (event: any) => {
+                            event.target.playVideo();
                         },
-                    }));
-                else ytPlayer.loadVideoById(selectedContentItem.contentId);
+                        onStateChange: (event: any) => {
+                            // @ts-ignore
+                            if (event.data === YT.PlayerState.ENDED)
+                                stopVideo();
+                        },
+                        /* eslint-disable @typescript-eslint/no-explicit-any */
+                    },
+                }));
             else if (selectedContentItem.contentType === 'vimeo')
-                if (!vimeoPlayer)
-                    // @ts-ignore
-                    setVPlayer(new Vimeo.Player('vplayer', {
-                        id: selectedContentItem.contentId,
-                        width: ytSize.width,
-                        autoplay: true,
-                        loop: true,
-                    }));
-                else
-                    vimeoPlayer.loadVideo(selectedContentItem.contentId);
-    }, [selectedContentItem]);
+                // @ts-ignore
+                setVPlayer(new Vimeo.Player('vplayer', {
+                    id: selectedContentItem.contentId,
+                    width: ytSize.width,
+                    autoplay: true,
+                    loop: true,
+                }));
+
+        return () => {};
+    }, [selectedContentItem, ytSize.height, ytSize.width]);
 
     useEffect(() => {
         if (selectedContentItem) {
@@ -136,8 +136,8 @@ const VideoPlayer: FC<Props> = () => {
             if (selectedContentItem.contentType === 'youtube' || selectedContentItem.contentType === 'vimeo')
                 setYtSize(getContentSize({ width: 640, height: 480 }));
         }
-
-    }, [windowSize, selectedContentItem, titleRef]);
+        return () => {};
+    }, [windowSize, selectedContentItem, titleRef, getContentSize]);
 
     const getTile = () => {
         if (selectedSite === 'biz' || selectedSite === 'rocks')

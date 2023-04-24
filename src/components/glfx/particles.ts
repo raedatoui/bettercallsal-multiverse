@@ -4,7 +4,6 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import particlesShader from 'src/components/glfx/particlesShader';
 import horizontalBlurShader from 'src/components/glfx/horizontalBlurShader';
 import verticalBlurShader from 'src/components/glfx/verticalBlurShader';
-import { RenderPixelatedPass } from 'three/examples/jsm/postprocessing/RenderPixelatedPass';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import { BufferAttribute } from 'three';
 import { vertexShader2 } from 'src/components/glfx/vertex';
@@ -142,12 +141,12 @@ class ParticleSystem {
         // mainPass.renderToScreen = true;
         this.composer.addPass(mainPass);
 
-        // const hblur = new ShaderPass(horizontalBlurShader);
-        // this.composer.addPass(hblur);
-        //
-        // const vblur = new ShaderPass(verticalBlurShader);
-        // vblur.renderToScreen = true;
-        // this.composer.addPass(vblur);
+        const hblur = new ShaderPass(horizontalBlurShader);
+        this.composer.addPass(hblur);
+
+        const vblur = new ShaderPass(verticalBlurShader);
+        vblur.renderToScreen = true;
+        this.composer.addPass(vblur);
 
         // const renderPixelatedPass = new RenderPixelatedPass( 6, this.scene, this.camera );
         // this.composer.addPass(renderPixelatedPass);

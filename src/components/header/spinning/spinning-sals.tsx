@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, useCallback, useContext, useEffect } from 'react';
 import { useAnimationContext } from 'src/providers/animations';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
@@ -17,11 +17,11 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
 
     const site = siteMap[selectedSite];
 
-    const playAndGrid = () => {
+    const playAndGrid = useCallback(() => {
         setSpinningSalsGridCounter(Math.round(Math.random() * 1000));
         if (site)
             buffers.play(site.header.spinningSalAudio, false);
-    };
+    }, [buffers, setSpinningSalsGridCounter, site]);
 
     const pause = () => {
         setSpinningSalsGridCounter(0);
@@ -31,11 +31,11 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
             else buffers.stop(site.header.spinningSalAudio);
     };
 
-    // fixing this warning breaks the animation
     useEffect(() => {
         if (spinningSalsCounter !== 0)
             playAndGrid();
-    }, [spinningSalsCounter]);
+        return () => {};
+    }, [playAndGrid, spinningSalsCounter]);
 
     return (
         <SpinningWrapper className={wrapperStyle}>
