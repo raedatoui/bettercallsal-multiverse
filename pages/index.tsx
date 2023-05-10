@@ -118,14 +118,6 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                 <SoundProvider>
                     <WindowSizeProvider>
                         <MainContainer>
-                            <Script
-                                id="youtube-iframe"
-                                src="https://www.youtube.com/iframe_api"
-                            />
-                            <Script
-                                id="vimeo-player"
-                                src="https://player.vimeo.com/api/player.js"
-                            />
                             <AnimationsProvider>
                                 <>
                                     <HeaderComponent />

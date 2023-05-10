@@ -55,6 +55,8 @@ export const Middle: FC<Props> = () => {
     const [showContentList, setShowContentList] = useState<boolean>(true);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
+    const [ytScriptLoaded, setYtScriptLoaded] = useState<boolean>(false);
+    const [vmScriptLoaded, setVmScriptLoaded] = useState<boolean>(false);
 
     let headerTxt = site.contentHeader;
     if (selectedContentItem === null && selectedNavItem && selectedNavItem.quote)
@@ -164,7 +166,19 @@ export const Middle: FC<Props> = () => {
             )}
 
             { isVideo && (
-                <DynamicVideoPlayer />
+                <>
+                    <Script
+                        id="youtube-iframe"
+                        src="https://www.youtube.com/iframe_api"
+                        onLoad={() => setYtScriptLoaded(true)}
+                    />
+                    <Script
+                        id="vimeo-player"
+                        src="https://player.vimeo.com/api/player.js"
+                        onLoad={() => setVmScriptLoaded(true)}
+                    />
+                    { ytScriptLoaded && vmScriptLoaded && <DynamicVideoPlayer /> }
+                </>
             ) }
 
             { isArt && selectedSite !== 'gallery' && (
