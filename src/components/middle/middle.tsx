@@ -72,7 +72,7 @@ export const Middle: FC<Props> = () => {
             && selectedNavItem.category !== 'salutations')
             list = contentMap[selectedSite].filter(i => i.category === selectedNavItem.category);
 
-        if (!isArt) { // TODO why this?
+        if (!isArt) { // TODO: why this?
             if ((selectedSite === 'art' || selectedSite === 'fit' || selectedSite === 'rocks' || selectedSite === 'games'
                 || (selectedSite === 'biz' && spinningSalsGridCounter !== 0)) && selectedContentItem === null) {
                 list = shuffleList(list);
@@ -81,11 +81,11 @@ export const Middle: FC<Props> = () => {
             if (selectedNavItem && selectedNavItem.category === 'salutations')
                 setPrevShuffledList(list);
         }
-        if (bizerkCounter % 2 === 0)
+        if (bizerkCounter % 2 === 0 && bizerkCounter > 0) // biz resets when counter is 0
             list = shuffleList(list);
-            // setPrevShuffledList(list);
 
         setContentList(list);
+        return () => {};
     }, [
         contentMap,
         selectedSite,
@@ -111,6 +111,7 @@ export const Middle: FC<Props> = () => {
             setShowContentList(true);
         else
             setShowContentList(false);
+        return () => {};
     }, [selectedContentItem, selectedNavItem, selectedSite]);
 
     const isVideo = selectedContentItem && ['video', 'youtube', 'vimeo'].includes(selectedContentItem.contentType);
@@ -135,7 +136,7 @@ export const Middle: FC<Props> = () => {
 
             { loading && <div>loading</div> }
 
-            { selectedSite !== 'construction' && selectedSite !== 'gallery' && loading === false && (
+            { selectedSite !== 'construction' && selectedSite !== 'gallery' && !loading && (
                 <ContentList
                     id="content-list"
                     className={showContentList ? 'on' : 'off'}

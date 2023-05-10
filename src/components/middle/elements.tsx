@@ -17,7 +17,6 @@ export const MiddleSection = styled.div`
     
   @media only screen and (max-width: ${breakPoints.lg1.max}px) {
         width: 100%;
-        height: 100%;
         &.fullScreen {
           width: 100%;
           height: 100%;
