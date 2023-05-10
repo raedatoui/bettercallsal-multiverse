@@ -39,11 +39,13 @@ const Construction:FC<Props> = ({ titleRef, containerRef }) => {
             width = workingWidth;
             height = (width * desiredSize.height) / desiredSize.width;
         }
-        return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
+        let top = (workingHeight - height) / 2;
+        if (workingWidth < 768) top = 0;
+        return { width, height, left: (workingWidth - width) / 2, top };
     }, [containerRef, titleRef]);
 
     useEffect(() => {
-        setImageSize(getContentSize({ width: 1612, height: 975 }));
+        setImageSize(getContentSize({ width: 1610, height: 968 }));
         return () => {};
     }, [getContentSize, windowSize]);
 
