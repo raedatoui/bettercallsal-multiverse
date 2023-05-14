@@ -41,8 +41,10 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
         <SpinningWrapper className={wrapperStyle}>
             <SpinningImg
                 onClick={() => playAndGrid()}
-                onMouseEnter={() => playAndGrid()}
-                onMouseLeave={() => pause()}
+                // onMouseEnter={() => playAndGrid()}
+                onMouseOver={() => playAndGrid()}
+                // onMouseLeave={() => pause()}
+                onMouseOut={() => pause()}
                 className={`${imageStyle} ${bizerkMode !== 'off' ? ' bizerk' : ''}`}
                 image={image}
             />
