@@ -57,6 +57,7 @@ export const SiteValidator = z.object({
         iconHeight: z.number(),
         ringAudio: z.string(),
     }),
+    gaTag: z.string(),
 });
 
 export type Site = z.infer<typeof SiteValidator>;

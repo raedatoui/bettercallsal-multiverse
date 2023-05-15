@@ -81,7 +81,8 @@
       "iconWidth": 148,
       "iconHeight": 393,
       "ringAudio": "/audio/biz/phone-ring.wav"
-    }
+    },
+    "gaTag": "G-BQZKS9QQG8"
   },
   "fit": {
     "name": "fit",
@@ -210,7 +211,8 @@
       "iconWidth": 500,
       "iconHeight": 512,
       "ringAudio": "/audio/fit/ring.fit.mp3"
-    }
+    },
+    "gaTag": "G-NZSHWYRKKF"
   },
   "art": {
     "name": "art",
@@ -303,7 +305,8 @@
       "iconWidth": 462,
       "iconHeight": 432,
       "ringAudio": "/audio/art/ring.art.mp3"
-    }
+    },
+    "gaTag": "G-DMT1EKGNWP"
   },
   "rocks": {
     "name": "rocks",
@@ -387,7 +390,8 @@
       "iconWidth": 225,
       "iconHeight": 256,
       "ringAudio": "/audio/rocks/ring.rocks.mp3"
-    }
+    },
+    "gaTag": "G-BCGHB6Z0WX"
   },
   "games": {
     "name": "games",
@@ -462,7 +466,8 @@
       "iconWidth": 300,
       "iconHeight": 300,
       "ringAudio": "/audio/games/ring.games.mp3"
-    }
+    },
+    "gaTag": "G-M1N65RK3KR"
   },
   "construction": {
     "name": "construction",
@@ -546,7 +551,8 @@
       "iconWidth": 255,
       "iconHeight": 393,
       "ringAudio": "/audio/construction/ring.construction.mp3"
-    }
+    },
+    "gaTag": "G-0F52SEFQX4"
   },
   "gallery": {
     "name": "gallery",
@@ -639,6 +645,7 @@
       "iconWidth": 462,
       "iconHeight": 432,
       "ringAudio": "/audio/art/ring.art.mp3"
-    }
+    },
+    "gaTag": "G-K60R3CHS4L"
   }
 }
