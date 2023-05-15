@@ -3,6 +3,7 @@ import fsPromises from 'fs/promises';
 import path from 'path';
 import React, { FC } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import { LeftNav } from 'src/components/left-nav';
 import { RightNav } from 'src/components/right-nav';
 import { Middle } from 'src/components/middle';
@@ -60,8 +61,8 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                 <title>{site?.metaTitle}</title>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="keywords" content={site?.metaKeywords} />
-                <meta name="description" content={site?.metaDescription} />
+                <meta name="keywords" content={site.metaKeywords} />
+                <meta name="description" content={site.metaDescription} />
                 <meta name="theme-color" content="#F13400" />
                 <link rel="manifest" href={`${process.env.cdnUrl}/favicons/${process.env.selectedSite}/manifest.webmanifest`} />
 
@@ -81,9 +82,10 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                 <meta property="og:url" content={`https://bettercallsal.${process.env.selectedSite}`} />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="Better Call Sal" />
-                <meta property="og:description" content={site?.metaDescription} />
+                <meta property="og:description" content={site.metaDescription} />
                 <meta property="og:image" content={`${process.env.cdnUrl}/favicons/${process.env.selectedSite}/512x512.jpg`} />
             </Head>
+
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="text-effect">
                 <defs>
                     <filter id="squiggly-0">
@@ -130,6 +132,22 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                     </WindowSizeProvider>
                 </SoundProvider>
             </SitesDataProvider>
+
+            <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${site.gaTag}`} />
+            <Script
+                id="google-analytics"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', '${site.gaTag}', {
+                      page_path: window.location.pathname,
+                      });
+                    `,
+                }}
+            />
         </>
     );
 };
