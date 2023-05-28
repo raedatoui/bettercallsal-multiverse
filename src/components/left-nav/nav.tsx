@@ -83,12 +83,26 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
         <LeftNavButton
             onClick={handleClick}
         >
-            <LeftNavItemCuck
-                ref={ref}
-                dangerouslySetInnerHTML={{
-                    __html: navItem.name
-                }}
-            />
+            { !navItem.link && (
+                <LeftNavItemCuck
+                    ref={ref}
+                    dangerouslySetInnerHTML={{
+                        __html: navItem.name
+                    }}
+                />
+            ) }
+            { navItem.link && (
+                <LeftNavItemCuck ref={ref}>
+                    <a
+                        href={navItem.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        dangerouslySetInnerHTML={{
+                            __html: navItem.name
+                        }}
+                    />
+                </LeftNavItemCuck>
+            ) }
 
         </LeftNavButton>
     );
