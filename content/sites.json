@@ -334,7 +334,7 @@
       "items": [
         {
           "name": "Nature Creeps Beneath",
-          "audio": null,
+          "audio": "/audio/rocks/nature.mp3",
           "video": null,
           "link": null,
           "category": "nature-creeps",
@@ -343,7 +343,7 @@
         },
         {
           "name": "Blind Archer",
-          "audio": null,
+          "audio": "/audio/rocks/blind.mp3",
           "video": null,
           "link": null,
           "category": "blind-archer",
@@ -352,7 +352,7 @@
         },
         {
           "name": "Harjo",
-          "audio": null,
+          "audio": "/audio/rocks/harjo.mp3",
           "video": null,
           "link": null,
           "category": "harjo",
@@ -361,7 +361,7 @@
         },
         {
           "name": "RBN",
-          "audio": null,
+          "audio": "/audio/rocks/rbn.mp3",
           "video": null,
           "link": null,
           "category": "rbn",
@@ -370,7 +370,7 @@
         },
         {
           "name": "All",
-          "audio": null,
+          "audio": "/audio/rocks/all.mp3",
           "video": null,
           "link": null,
           "category": "all",

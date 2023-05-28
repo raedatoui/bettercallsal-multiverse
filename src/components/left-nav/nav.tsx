@@ -120,7 +120,7 @@ export const LeftNav: FC<Props> = () => {
     const handleAudio = (a: string) => {
         if (loaded)
             if (!audioPlaying) {
-                buffers.play(a);
+                buffers.play(a, false);
                 setAudioPlaying(a);
             } else
             if (a === audioPlaying) {
@@ -128,7 +128,7 @@ export const LeftNav: FC<Props> = () => {
                 setAudioPlaying(null);
             } else {
                 buffers.stop(audioPlaying);
-                buffers.play(a);
+                buffers.play(a, false);
                 setAudioPlaying(a);
             }
     };
