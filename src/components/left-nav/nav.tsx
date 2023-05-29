@@ -16,6 +16,7 @@ import Image from 'next/image';
 import Script from 'next/script';
 import { useAnimationContext } from 'src/providers/animations';
 import { shuffleList } from 'src/utils';
+import Link from 'next/link';
 
 interface ButtonProps {
     navItem: LeftNavNavItem;
@@ -93,7 +94,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
             ) }
             { navItem.link && (
                 <LeftNavItemCuck ref={ref}>
-                    <a
+                    <Link
                         href={navItem.link}
                         target="_blank"
                         rel="noreferrer"
