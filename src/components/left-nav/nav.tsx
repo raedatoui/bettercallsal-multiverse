@@ -178,43 +178,46 @@ export const LeftNav: FC<Props> = () => {
                 src="/scripts/textfit.js"
                 onLoad={() => setScriptLoaded(true)}
             />
-            { scriptLoaded && selectedSite !== 'gallery' && (
-                <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
-                    <LeftNavMenu>
-                        { clonedNavItems.map(i => (
-                            <NavButton
-                                key={i.name}
-                                navItem={i}
-                                audioCb={handleAudio}
-                                navItemCb={setSelectedNavItem}
-                                videoCb={setSelectedContentItem}
-                                width={width}
-                                fullScreen={fullScreen}
-                            />
-                        )) }
-                    </LeftNavMenu>
-                    <LeftAdd1 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
-                        <LeftAdd2 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
-                            <LeftContent>
-                                <Image
-                                    src={site.leftNav.image}
-                                    alt={site.leftNav.text}
-                                    fill
-                                    sizes="100vw"
-                                    onClick={() => handleImageClick()}
-                                    style={{
-                                        maxWidth: '100%',
-                                    }}
+
+            <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
+                { scriptLoaded && selectedSite !== 'gallery' && (
+                    <>
+                        <LeftNavMenu>
+                            { clonedNavItems.map(i => (
+                                <NavButton
+                                    key={i.name}
+                                    navItem={i}
+                                    audioCb={handleAudio}
+                                    navItemCb={setSelectedNavItem}
+                                    videoCb={setSelectedContentItem}
+                                    width={width}
+                                    fullScreen={fullScreen}
                                 />
-                            </LeftContent>
-                            <span dangerouslySetInnerHTML={{
-                                __html: site.leftNav.text
-                            }}
-                            />
-                        </LeftAdd2>
-                    </LeftAdd1>
-                </LeftNavContainer>
-            ) }
+                            )) }
+                        </LeftNavMenu>
+                        <LeftAdd1 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
+                            <LeftAdd2 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
+                                <LeftContent>
+                                    <Image
+                                        src={site.leftNav.image}
+                                        alt={site.leftNav.text}
+                                        fill
+                                        sizes="100vw"
+                                        onClick={() => handleImageClick()}
+                                        style={{
+                                            maxWidth: '100%',
+                                        }}
+                                    />
+                                </LeftContent>
+                                <span dangerouslySetInnerHTML={{
+                                    __html: site.leftNav.text
+                                }}
+                                />
+                            </LeftAdd2>
+                        </LeftAdd1>
+                    </>
+                ) }
+            </LeftNavContainer>
         </>
     );
 };

@@ -134,7 +134,7 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
             </SitesDataProvider>
 
             <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${site.gaTag}`} />
-            <Script
+            { process.env.gtagEnabled && (<Script
                 id="google-analytics"
                 strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
@@ -147,7 +147,7 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                       });
                     `,
                 }}
-            />
+            />) }
         </>
     );
 };
