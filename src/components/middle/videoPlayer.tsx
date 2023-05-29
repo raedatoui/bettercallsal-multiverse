@@ -19,6 +19,7 @@ interface YTPlayer {
     playVideo: () => void;
     destroy: () => void;
     loadVideoById: (v: string) => void;
+    cueVideoById: (v: string) => void;
     seekTo: (x: number) => void;
 }
 
@@ -92,31 +93,40 @@ const VideoPlayer: FC<Props> = () => {
 
     useEffect(() => {
         window.scroll(0, 0);
-
+        console.log(yPlayer);
         if (selectedContentItem)
             if (selectedContentItem.contentType === 'youtube')
-                // @ts-ignore
-                setYPlayer(new YT.Player('yplayer', {
-                    height: ytSize.height,
-                    width: ytSize.width,
-                    loop: 1,
-                    color: 'red',
-                    theme: 'light',
-                    videoId: selectedContentItem.contentId,
-                    startSeconds: 0,
-                    events: {
-                        /* eslint-disable @typescript-eslint/no-explicit-any */
-                        onReady: (event: any) => {
-                            event.target.playVideo();
+                if (!yPlayer)
+                    // @ts-ignore
+                    new YT.Player('yplayer', {
+                        height: ytSize.height,
+                        width: ytSize.width,
+                        loop: 1,
+                        color: 'red',
+                        theme: 'light',
+                        videoId: selectedContentItem.contentId,
+                        enablejsapi: 1,
+                        startSeconds: 0,
+                        events: {
+                            /* eslint-disable @typescript-eslint/no-explicit-any */
+                            onReady: (event: any) => {
+                                setYPlayer(event.target);
+                                event.target.playVideo();
+                                console.log('video ready', event.target);
+                            },
+                            onStateChange: (event: any) => {
+                                // @ts-ignore
+                                if (event.data === YT.PlayerState.ENDED) {
+                                    stopVideo();
+                                    console.log('video ended');
+                                }
+                            },
+                            /* eslint-disable @typescript-eslint/no-explicit-any */
                         },
-                        onStateChange: (event: any) => {
-                            // @ts-ignore
-                            if (event.data === YT.PlayerState.ENDED)
-                                stopVideo();
-                        },
-                        /* eslint-disable @typescript-eslint/no-explicit-any */
-                    },
-                }));
+                    });
+                else
+                    yPlayer.loadVideoById(selectedContentItem.contentId);
+
             else if (selectedContentItem.contentType === 'vimeo')
                 // @ts-ignore
                 setVPlayer(new Vimeo.Player('vplayer', {
