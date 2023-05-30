@@ -21,7 +21,7 @@ const run = async () => {
 
     const config = await promises.readFile(join(__dirname, '../', 'next.config.env.json'), 'utf-8');
     const env = envValidator.parse(JSON.parse(config));
-    env.selectedSite = site;
+    env.selectedSite = site === 'fans' ? 'biz' : site;
     env.spotifyEnabled = true;
     env.localImages = false;
     env.gTagEnabled = true;
