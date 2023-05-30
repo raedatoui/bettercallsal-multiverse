@@ -188,7 +188,10 @@ export const LeftNav: FC<Props> = () => {
                                     key={i.name}
                                     navItem={i}
                                     audioCb={handleAudio}
-                                    navItemCb={setSelectedNavItem}
+                                    navItemCb={(l: LeftNavNavItem | null) => {
+                                        setSelectedNavItem(l);
+                                        setSelectedContentItem(null);
+                                    }}
                                     videoCb={setSelectedContentItem}
                                     width={width}
                                     fullScreen={fullScreen}

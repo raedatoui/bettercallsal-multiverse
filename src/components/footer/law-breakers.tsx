@@ -126,7 +126,7 @@ export const LawBreakers: FC<Props> = () => {
             ) }
             { selectedSite !== 'gallery' && !fullScreen && (
                 <FooterContainer className={bizerkMode !== 'off' ? 'bizerk' : ''}>
-                    <h2><a href="tel:+19173229246">• NOT TOLL FREE 1-(800)-CALL-SAL •</a></h2>
+                    <h2><a href="tel:+19173229246">• NOT TOLL FREE (800) CALL-SAL •</a></h2>
                 </FooterContainer>
             ) }
         </>

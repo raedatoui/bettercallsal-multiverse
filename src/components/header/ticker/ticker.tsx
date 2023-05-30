@@ -13,7 +13,6 @@ interface Props {
     start: boolean;
     sw: number;
     selectedSlide: number;
-    tickerCb: (a: boolean) => void;
 }
 
 interface SliderProps {
@@ -133,14 +132,13 @@ const Slider: FC<SliderProps> = (
     );
 };
 
-const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide, tickerCb }) => {
+const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide }) => {
     const { siteMap, selectedSite, setSelectedSite, bizerkMode } = useSiteContext();
-    // console.log('re-render');
     return (
         <TickerContainer
             background={backgroundColor}
-            onMouseEnter={() => tickerCb(true)}
-            onMouseLeave={() => tickerCb(false)}
+            // onMouseEnter={() => tickerCb(true)}
+            // onMouseLeave={() => tickerCb(false)}
         >
             <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
             { SiteKeyValidator.options.map((s, i) => (

@@ -177,9 +177,10 @@ export const Middle: FC<Props> = () => {
                         src="https://player.vimeo.com/api/player.js"
                         onLoad={() => setVmScriptLoaded(true)}
                     />
-                    { ytScriptLoaded && vmScriptLoaded && <DynamicVideoPlayer /> }
                 </>
             ) }
+
+            { isVideo && ytScriptLoaded && vmScriptLoaded && <DynamicVideoPlayer /> }
 
             { isArt && selectedSite !== 'gallery' && (
                 <DynamicArtSlider
