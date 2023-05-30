@@ -35,7 +35,6 @@ export const HeaderComponent: FC = () => {
     const [betterCallState, setBetterCallSalState] = useState<string>('');
     const [loadAnimationDone, setLoadAnimationStart] = useState<boolean>(false);
     const [selectedSlide, setSelectedSlide] = useState<number>(SiteKeyValidator.options.indexOf(selectedSite));
-    const [pauseTicker, setPauseTicker] = useState<boolean>(false);
     const [tickerCounter, setTickerCounter] = useState<number>(0);
 
     const animate = useCallback((pauseAnim: boolean, delay: number) => {
@@ -79,7 +78,7 @@ export const HeaderComponent: FC = () => {
     if (bizerkMode !== 'off') ticketInterval = 2000;
     if (tickerCounter === 0) ticketInterval = 0;
     useInterval(() => {
-        if (loadAnimationDone && !pauseTicker) {
+        if (loadAnimationDone) {
             setTickerCounter(tickerCounter + 1);
             if (selectedSlide === 6)
                 setSelectedSlide(0);

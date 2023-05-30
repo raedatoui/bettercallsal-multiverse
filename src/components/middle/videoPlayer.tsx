@@ -98,6 +98,7 @@ const VideoPlayer: FC<Props> = () => {
             if (selectedContentItem.contentType === 'youtube')
                 if (!yPlayer)
                     // @ts-ignore
+                    // eslint-disable-next-line no-new
                     new YT.Player('yplayer', {
                         height: ytSize.height,
                         width: ytSize.width,
@@ -112,14 +113,11 @@ const VideoPlayer: FC<Props> = () => {
                             onReady: (event: any) => {
                                 setYPlayer(event.target);
                                 event.target.playVideo();
-                                console.log('video ready', event.target);
                             },
                             onStateChange: (event: any) => {
                                 // @ts-ignore
-                                if (event.data === YT.PlayerState.ENDED) {
+                                if (event.data === YT.PlayerState.ENDED)
                                     stopVideo();
-                                    console.log('video ended');
-                                }
                             },
                             /* eslint-disable @typescript-eslint/no-explicit-any */
                         },
