@@ -108,7 +108,6 @@ export const HeaderComponent: FC = () => {
                     start={loadAnimationDone}
                     sw={sw}
                     selectedSlide={selectedSlide}
-                    tickerCb={setPauseTicker}
                 />
                 <BetterCall
                     className={`${betterCallState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
@@ -128,7 +127,6 @@ export const HeaderComponent: FC = () => {
                     start={loadAnimationDone}
                     sw={sw}
                     selectedSlide={selectedSlide}
-                    tickerCb={setPauseTicker}
                 />
             </ContentContainer>
         </HeaderContainer>

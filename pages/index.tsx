@@ -134,11 +134,12 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
             </SitesDataProvider>
 
             <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${site.gaTag}`} />
-            { process.env.gtagEnabled && (<Script
-                id="google-analytics"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: `
+            { process.env.gtagEnabled && (
+                <Script
+                    id="google-analytics"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `
                       window.dataLayer = window.dataLayer || [];
                       function gtag(){dataLayer.push(arguments);}
                       gtag('js', new Date());
@@ -146,8 +147,9 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                       page_path: window.location.pathname,
                       });
                     `,
-                }}
-            />) }
+                    }}
+                />
+            ) }
         </>
     );
 };
