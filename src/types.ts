@@ -29,6 +29,8 @@ export type LeftNavNavItem = z.infer<typeof LeftNavItemValidator>;
 
 export const SiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery']);
 
+export const tickerList = SiteKeyValidator.options.filter(s => s !== 'gallery');
+
 export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
 export const SiteValidator = z.object({
@@ -175,6 +177,9 @@ declare global {
         };
 
         html2canvas: (el: HTMLElement, options?: Object) => Promise<HTMLCanvasElement>;
+
+        AudioContext: typeof AudioContext;
+        webkitAudioContext: typeof AudioContext;
     }
 }
 

@@ -57,7 +57,7 @@ class AudioBuffers {
 
     public createContext() {
         if (!this.context) {
-            this.context = new AudioContext();
+            this.context = new (window.AudioContext || window.webkitAudioContext)();
             this.analyzer = this.context.createAnalyser();
             this.analyzer.fftSize = 1024;
             this.analyzer.connect(this.context.destination);
