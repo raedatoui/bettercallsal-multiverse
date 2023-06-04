@@ -3,7 +3,7 @@ import { useSiteContext } from 'src/providers/sites';
 import { EXTERNAL_LINK } from 'src/constants';
 import { TickerContainer } from 'src/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
-import { Site, SiteKey, SiteKeyValidator, BizerkMode } from 'src/types';
+import { Site, SiteKey, BizerkMode, tickerList } from 'src/types';
 import { Keyframes } from 'styled-components';
 import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from 'src/utils/animations';
 
@@ -93,14 +93,14 @@ const Slider: FC<SliderProps> = (
 
     useEffect(() => {
         if (!start)
-            if (SiteKeyValidator.options[index] === selectedSite)
+            if (tickerList[index] === selectedSite)
                 selected();
             else
                 reset();
         else
         if (selectedSlide === 0 && index === 0)
             slideIn();
-        else if (selectedSlide === 0 && index === 6)
+        else if (selectedSlide === 0 && index === tickerList.length - 1)
             slideOut();
         else if (selectedSlide === index)
             slideIn();
@@ -134,6 +134,7 @@ const Slider: FC<SliderProps> = (
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide }) => {
     const { siteMap, selectedSite, setSelectedSite, bizerkMode } = useSiteContext();
+
     return (
         <TickerContainer
             background={backgroundColor}
@@ -141,7 +142,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
             // onMouseLeave={() => tickerCb(false)}
         >
             <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
-            { SiteKeyValidator.options.map((s, i) => (
+            { tickerList.map((s, i) => (
                 <Slider
                     key={s}
                     start={start}

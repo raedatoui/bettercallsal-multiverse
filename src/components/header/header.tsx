@@ -5,7 +5,7 @@ import { useInterval } from 'src/utils';
 import { Ticker } from 'src/components/header/ticker';
 import { WindowSizeContext } from 'src/providers/window-size';
 import { useAnimationContext } from 'src/providers/animations';
-import { SiteKeyValidator } from 'src/types';
+import { SiteKeyValidator, tickerList } from 'src/types';
 import {
     HeaderContainer,
     ContentContainer,
@@ -80,7 +80,7 @@ export const HeaderComponent: FC = () => {
     useInterval(() => {
         if (loadAnimationDone) {
             setTickerCounter(tickerCounter + 1);
-            if (selectedSlide === 6)
+            if (selectedSlide === tickerList.length - 1)
                 setSelectedSlide(0);
             else setSelectedSlide(selectedSlide + 1);
         }
