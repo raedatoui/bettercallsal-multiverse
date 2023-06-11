@@ -119,7 +119,9 @@ export const LeftNav: FC<Props> = () => {
         selectedContentItem,
         setSelectedContentItem,
         fullScreen,
-        bizerkMode
+        bizerkMode,
+        setArtAudioPlaying,
+        artAudioPlaying
     } = useSiteContext();
     const site = siteMap[selectedSite];
     const { bizerkCounter } = useAnimationContext();
@@ -137,8 +139,7 @@ export const LeftNav: FC<Props> = () => {
             if (!audioPlaying) {
                 buffers.play(a, false);
                 setAudioPlaying(a);
-            } else
-            if (a === audioPlaying) {
+            } else if (a === audioPlaying) {
                 buffers.stop(a);
                 setAudioPlaying(null);
             } else {
@@ -146,6 +147,7 @@ export const LeftNav: FC<Props> = () => {
                 buffers.play(a, false);
                 setAudioPlaying(a);
             }
+        setArtAudioPlaying(false);
     };
 
     const handleImageClick = () => {
@@ -170,6 +172,14 @@ export const LeftNav: FC<Props> = () => {
         }
         return () => {};
     }, [selectedContentItem, audioPlaying, selectedSite, buffers]);
+
+    useEffect(() => {
+        if (artAudioPlaying) {
+            if (audioPlaying) buffers.stop(audioPlaying);
+            buffers.play('/audio/art/pavane.mp3', false);
+            setAudioPlaying('/audio/art/pavane.mp3');
+        }
+    }, [artAudioPlaying, buffers, audioPlaying]);
 
     return (
         <>

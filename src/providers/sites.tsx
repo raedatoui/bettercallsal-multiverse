@@ -28,6 +28,8 @@ type SiteProviderType = {
     bizerkMode: BizerkMode,
     setBizerkMode: (a: BizerkMode) => void,
     keyPressed: string | null,
+    artAudioPlaying: boolean,
+    setArtAudioPlaying: (b: boolean) => void,
 };
 
 const defaultContentMap = {
@@ -63,6 +65,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     const [fullScreen, setFullScreen] = useState<boolean>(false);
     const [bizerkMode, setBizerkMode] = useState<BizerkMode>('off');
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
+    const [artAudioPlaying, setArtAudioPlaying] = useState<boolean>(false);
 
     const setSite = useCallback((s: SiteKey) => {
         if (s !== selectedSite) {
@@ -196,6 +199,8 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         bizerkMode,
         setBizerkMode,
         keyPressed,
+        artAudioPlaying,
+        setArtAudioPlaying
     }), [
         bizerkMode,
         defaultSiteMap,
@@ -207,7 +212,9 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         selectedContentItem,
         setContentItem,
         keyPressed,
-        fullScreen]);
+        fullScreen,
+        artAudioPlaying
+    ]);
 
     return (
         <SiteContext.Provider value={providedSites}>
