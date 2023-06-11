@@ -95,7 +95,11 @@ const VideoPlayer: FC<Props> = () => {
         window.scroll(0, 0);
         console.log(yPlayer);
         if (selectedContentItem)
-            if (selectedContentItem.contentType === 'youtube')
+            // @ts-ignore
+            if (selectedContentItem.contentType === 'youtube' && YT.Player) {
+                // kill vimeo player if playing from left nav
+                if (vPlayer)
+                    vPlayer.pause();
                 if (!yPlayer)
                     // @ts-ignore
                     // eslint-disable-next-line no-new
@@ -124,8 +128,7 @@ const VideoPlayer: FC<Props> = () => {
                     });
                 else
                     yPlayer.loadVideoById(selectedContentItem.contentId);
-
-            else if (selectedContentItem.contentType === 'vimeo')
+            } else if (selectedContentItem.contentType === 'vimeo')
                 // @ts-ignore
                 setVPlayer(new Vimeo.Player('vplayer', {
                     id: selectedContentItem.contentId,
