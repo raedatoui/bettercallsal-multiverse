@@ -34,8 +34,16 @@ export const Caption = styled.h4`
   padding-top: 10px;
   width: 100%;
 
-  @media only screen and (max-width: ${breakPoints.sm.max}px) {
-    font-size: 2em;
+  // @media only screen and (max-width: ${breakPoints.sm.max}px) {
+  //   font-size: 2em;
+  // }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1440px) {
+    font-size: 2.5em;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    font-size: 3em;
   }
   
   &.bizerk {
