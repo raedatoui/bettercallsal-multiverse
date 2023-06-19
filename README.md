@@ -6,6 +6,12 @@
 | <img src="https://storage.googleapis.com/bcs-assets/images/biz/sal-left.webp" alt="biz" style="zoom:50%;" /> | <img src="https://storage.googleapis.com/bcs-assets/images/rocks/spinning.rocks.left.webp" alt="rocks" style="zoom:50%;" /> | <img src="https://storage.googleapis.com/bcs-assets/images/fit/shweaty-left.webp" alt="fit" style="zoom:50%;" /> | <img src="https://storage.googleapis.com/bcs-assets/images/art/spinning.art.left.webp" alt="art" style="zoom:50%;" /> | <img src="https://storage.googleapis.com/bcs-assets/images/games/spinning.games.left.webp" alt="games" style="zoom:50%;" /> | <img src="https://storage.googleapis.com/bcs-assets/images/construction/spinning.construction.left-aspect.png" alt="construction" style="width:129px" /> | <img src="https://storage.googleapis.com/bcs-assets/images/gallery/gallery-left-sm.png" alt="gallery" style="zoom:50%;" /> |
 
 
+<div align="center">
+   <img src="https://storage.googleapis.com/bcs-assets/images/phone-homescreen.png" alt="phone-homescreen" style="width:500px" />
+</div>
+
+<br />
+<br />
 
 Inspired by this [website](http://bettercallsaul.amc.com), the BetterCallSal Multiverse runs on the SalStack
 
