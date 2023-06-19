@@ -18,4 +18,4 @@ The BetterCallSal Multiverse runs on the SalStack
 * three.js / glsl
 * zod
 * keen-slider
-* unity
+* unity / wasm / webgl
