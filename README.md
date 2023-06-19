@@ -1,7 +1,5 @@
 # Better Call Sal
-The BetterCallSal Multiverse runs on the SalStack
-
-Based on [the show](http://bettercallsaul.amc.com)
+Inspired by this [website](http://bettercallsaul.amc.com), the BetterCallSal Multiverse runs on the SalStack
 
 <div style="display: flex"><!-- .element: style="display: flex; flex-direction: column; justfiy-content:space-around" -->
 
