@@ -7,7 +7,7 @@ const envValidator = z.object({
     cdnUrl: z.string(),
     spotifyEnabled: z.boolean(),
     localImages: z.boolean(),
-    gTagEnabled: z.boolean(),
+    gtagEnabled: z.boolean(),
 });
 
 const run = async () => {
@@ -24,7 +24,7 @@ const run = async () => {
     env.selectedSite = site === 'fans' ? 'biz' : site;
     env.spotifyEnabled = true;
     env.localImages = false;
-    env.gTagEnabled = true;
+    env.gtagEnabled = true;
     writeFileSync(join(__dirname, '../', 'next.config.env.json'), JSON.stringify(env), {
         flag: 'w',
     });
