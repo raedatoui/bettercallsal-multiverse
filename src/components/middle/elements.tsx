@@ -38,12 +38,12 @@ export const Caption = styled.h4`
   //   font-size: 2em;
   // }
 
-  @media only screen and (min-width: 1024px) and (max-width: 1440px) {
-    font-size: 2.5em;
+  @media only screen and (min-width: 1024px) and (max-width: 1600px) {
+    font-size: 2.35em;
   }
 
-  @media only screen and (min-width: 1440px) {
-    font-size: 3em;
+  @media only screen and (min-width: 1600px) {
+    font-size: 2.85em;
   }
   
   &.bizerk {

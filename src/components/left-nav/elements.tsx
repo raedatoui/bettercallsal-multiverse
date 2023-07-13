@@ -64,7 +64,7 @@ export const LeftAdd = styled.div`
 `;
 
 export const LeftAdd1 = styled(LeftAdd)`
-  border: solid 8px rgb(255, 111, 0);
+  border: solid 12px rgb(255, 111, 0);
   cursor: pointer;
 
   @media only screen and (max-width: ${breakPoints.lg1.max}px) {
@@ -72,7 +72,7 @@ export const LeftAdd1 = styled(LeftAdd)`
   }
 
   @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 1009px) {
-    border: solid 6px rgb(255, 111, 0);
+    border: solid 8px rgb(255, 111, 0);
   }
   
   &.bizerk {
@@ -81,7 +81,7 @@ export const LeftAdd1 = styled(LeftAdd)`
 `;
 
 export const LeftAdd2 = styled(LeftAdd)`
-  border: solid 8px rgb(228, 0, 196);
+  border: solid 4px rgb(228, 0, 196);
   width: 100%;
   position: relative;
 
@@ -93,7 +93,7 @@ export const LeftAdd2 = styled(LeftAdd)`
 
   span {
     position: absolute;
-    bottom: -22px;
+    bottom: -12px;
     left: 0;
     margin: 0 auto;
     text-transform: uppercase;
@@ -168,10 +168,10 @@ export const LeftAdd2 = styled(LeftAdd)`
   }
 
   @media only screen and (max-width: ${breakPoints.lg1.max}px) {
-    border: solid 14px rgb(228, 0, 196);
+    border: solid 8px rgb(228, 0, 196);
   }
   @media only screen and (min-width: ${breakPoints.lg2.min}px) and (max-width: 1009px) {
-    border: solid 6px rgb(228, 0, 196);
+    border: solid 4px rgb(228, 0, 196);
   }
 
   &.bizerk {
