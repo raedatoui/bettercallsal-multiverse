@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, FC } from 'react';
 import { useWindowSize } from 'src/utils/resize';
 import { Size } from 'src/types';

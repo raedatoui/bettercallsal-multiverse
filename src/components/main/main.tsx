@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { Main } from 'src/styles/sharedstyles';
 import { useSiteContext } from 'src/providers/sites';

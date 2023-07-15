@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from 'src/components/footer/elements';
 import Image from 'next/image';

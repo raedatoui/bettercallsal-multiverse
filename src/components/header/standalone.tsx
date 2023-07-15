@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useState, useEffect, useContext, useCallback } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import { StandaloneFiller, StandaloneHeaderContainer, StandaloneTickerContainer } from 'src/components/header/standalone-elements';

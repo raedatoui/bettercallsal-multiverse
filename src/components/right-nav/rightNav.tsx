@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import styled, { keyframes } from 'styled-components';

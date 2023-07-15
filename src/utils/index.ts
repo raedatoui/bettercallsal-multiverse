@@ -3,3 +3,4 @@ export { useWindowSize } from './resize';
 export { useTimeout } from './timeout';
 export { useFetchData } from './fetch';
 export { shuffleList } from './shuffle-list';
+export { slugify } from './slugify';

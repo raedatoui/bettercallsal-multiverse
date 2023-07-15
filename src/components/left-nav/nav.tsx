@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import {
     LeftAdd1,
@@ -14,7 +16,7 @@ import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';
 import Image from 'next/image';
 import Script from 'next/script';
-import { useAnimationContext } from 'src/providers/animations';
+import { useBizerkContext } from 'src/providers/animations';
 import { shuffleList } from 'src/utils';
 import Link from 'next/link';
 
@@ -124,7 +126,8 @@ export const LeftNav: FC<Props> = () => {
         artAudioPlaying
     } = useSiteContext();
     const site = siteMap[selectedSite];
-    const { bizerkCounter } = useAnimationContext();
+    const { bizerkCounter } = useBizerkContext();
+
     const { buffers, loaded } = useContext(SoundContext);
     const { width } = useContext(WindowSizeContext);
 
@@ -186,7 +189,7 @@ export const LeftNav: FC<Props> = () => {
             <Script
                 id="text-fit"
                 src="/scripts/textfit.js"
-                onLoad={() => setScriptLoaded(true)}
+                onReady={() => setScriptLoaded(true)}
             />
 
             <LeftNavContainer className={fullScreen ? 'off' : 'on'}>

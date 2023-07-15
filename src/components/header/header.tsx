@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useContext, useState, useEffect, useCallback } from 'react';
 import { useSiteContext } from 'src/providers/sites';
 import { SoundContext } from 'src/providers/audio-context';

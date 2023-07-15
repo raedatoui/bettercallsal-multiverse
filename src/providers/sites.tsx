@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useMemo, useState, createContext, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 import { CDN } from 'src/constants';
@@ -45,7 +47,7 @@ const defaultContentMap = {
 const SiteContext = createContext<SiteProviderType | undefined>(undefined);
 
 interface ProviderProps {
-    children: JSX.Element;
+    children: React.ReactNode;
     defaultSite: SiteKey;
     defaultSiteMap: SiteMap;
     defaultContent: (BaseContentItem | GameContentItem)[]

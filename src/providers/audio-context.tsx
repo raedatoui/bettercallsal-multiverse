@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, FC, useMemo, useEffect, useState } from 'react';
 import { AudioElement, AudioElementValidator, isNotNull, Site } from 'src/types';
 import { useSiteContext } from './sites';

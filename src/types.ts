@@ -180,6 +180,7 @@ declare global {
 
         AudioContext: typeof AudioContext;
         webkitAudioContext: typeof AudioContext;
+        onYouTubeIframeAPIReady: () => void;
     }
 }
 

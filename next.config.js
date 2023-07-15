@@ -11,6 +11,10 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  experimental: {
+    appDir: true,
+  },
+  output: 'export',
   webpack(config, options) {
     const { isServer } = options;
     config.module.rules.push({
