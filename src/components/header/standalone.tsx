@@ -1,12 +1,12 @@
 import React, { FC, useState, useEffect, useContext, useCallback } from 'react';
-import { useSiteContext } from 'src/providers/sites';
-import { StandaloneFiller, StandaloneHeaderContainer, StandaloneTickerContainer } from 'src/components/header/standalone-elements';
-import { Baseline } from 'src/components/header/ticker/elements';
-import { SoundContext } from 'src/providers/audio-context';
+import { StandaloneFiller, StandaloneHeaderContainer, StandaloneTickerContainer } from '@/components/header/standalone-elements';
+import { Baseline } from '@/components/header/ticker/elements';
+import { SoundContext } from '@/providers/audio-context';
+import { useSiteContext } from '@/providers/sites';
 import { ContentContainer } from './elements';
 import { SpinningSal, SpinningSalsContainer } from './spinning';
 
-export const StandaloneHeaderComponent: FC = () => {
+const StandaloneHeaderComponent: FC = () => {
     const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
 
@@ -72,3 +72,5 @@ export const StandaloneHeaderComponent: FC = () => {
         </StandaloneHeaderContainer>
     );
 };
+
+export default StandaloneHeaderComponent;

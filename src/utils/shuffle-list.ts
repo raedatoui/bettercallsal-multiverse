@@ -1,4 +1,4 @@
-export const shuffleList = <T>(array: T[]): T[] => {
+const shuffleList = <T>(array: T[]): T[] => {
     let currentIndex = array.length; let temporaryValue; let randomIndex;
     const clone = Array.from(array);
     // While there remain elements to shuffle...
@@ -13,3 +13,5 @@ export const shuffleList = <T>(array: T[]): T[] => {
     }
     return clone;
 };
+
+export default shuffleList;

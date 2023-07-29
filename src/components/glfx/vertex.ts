@@ -1,4 +1,4 @@
-export const vertexShader2 = `
+const vertexShader2 = `
 uniform float uTime;
 uniform sampler2D screenCapture;
 uniform float limit;
@@ -149,3 +149,4 @@ void main() {
   gl_Position = normalPosition; //noisyPosition;  noisyPosition / limit + 
 }
 `;
+export default vertexShader2;

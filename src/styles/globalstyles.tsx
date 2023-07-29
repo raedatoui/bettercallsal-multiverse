@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { breakPoints } from 'src/constants';
+import { breakPoints } from '@/constants';
 
 const GlobalStyle = createGlobalStyle`
   body,
@@ -41,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  #__next {
+  #__next, .root {
     height: 100%;
   }
 
@@ -64,6 +64,13 @@ const GlobalStyle = createGlobalStyle`
     pointer-events: none;
     display: none;
     z-index: 3;
+  }
+  
+  .EmbedAudioWidget_backgroundColorContainer__ApKWU {
+    background-color: #F13400 !important;
+  }
+  .TrackList_backgroundColorContainer__jrWKP.EmbedAudioWidget_trackListContainer__ETJy2 {
+    background-color: #F13400 !important;
   }
 `;
 

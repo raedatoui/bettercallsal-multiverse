@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "es2022",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext",
-      "es2021"
+      "es2022"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,23 +20,28 @@
     "moduleResolution": "node",
     "isolatedModules": true,
     "jsx": "preserve",
+
     "paths": {
+      "@/*": ["./src/*"],
       "src/*": [
         "./src/*"
       ],
       "scripts/*": [
         "./scripts/*"
-      ],
-      "pages/*": [
-        "./pages/*"
       ]
     },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "src/**/*",
+    "pages/**/*",
     "scripts/**/*",
-    "pages/**/*"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

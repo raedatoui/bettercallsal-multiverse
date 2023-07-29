@@ -1,12 +1,12 @@
 import * as THREE from 'three';
+import { BufferAttribute } from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import particlesShader from 'src/components/glfx/particlesShader';
-import horizontalBlurShader from 'src/components/glfx/horizontalBlurShader';
-import verticalBlurShader from 'src/components/glfx/verticalBlurShader';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
-import { BufferAttribute } from 'three';
-import { vertexShader2 } from 'src/components/glfx/vertex';
+import horizontalBlurShader from './horizontalBlurShader';
+import particlesShader from './particlesShader';
+import vertexShader2 from './vertex';
+import verticalBlurShader from './verticalBlurShader';
 
 const mapRange = (value: number, inputMin: number, inputMax: number, outputMin: number, outputMax: number): number =>
     outputMin + ((value - inputMin) / (inputMax - inputMin)) * (outputMax - outputMin);

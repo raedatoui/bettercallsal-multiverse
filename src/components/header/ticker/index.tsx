@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState, MouseEvent, useCallback } from 'react';
-import { useSiteContext } from 'src/providers/sites';
-import { EXTERNAL_LINK } from 'src/constants';
-import { TickerContainer } from 'src/components/header/elements';
-import { Baseline, LowerBanner, SiteUrl } from 'src/components/header/ticker/elements';
-import { Site, SiteKey, BizerkMode, tickerList } from 'src/types';
 import { Keyframes } from 'styled-components';
-import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from 'src/utils/animations';
+import { TickerContainer } from '@/components/header/elements';
+import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/elements';
+import { EXTERNAL_LINK } from '@/constants';
+import { useSiteContext } from '@/providers/sites';
+import { Site, SiteKey, BizerkMode, tickerList } from '@/types';
+import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
 
 interface Props {
     backgroundColor: string;
@@ -117,7 +117,6 @@ const Slider: FC<SliderProps> = (
         }
     };
 
-    // console.log(animation, animationDuration);
     return (
         <SliderComponent
             onClick={handleClick}

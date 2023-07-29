@@ -1,35 +1,33 @@
 /* eslint-disable max-len */
 import fsPromises from 'fs/promises';
 import path from 'path';
-import React, { FC } from 'react';
+import { GetStaticPropsResult } from 'next';
 import Head from 'next/head';
 import Script from 'next/script';
-import { LeftNav } from 'src/components/left-nav';
-import { RightNav } from 'src/components/right-nav';
-import { Middle } from 'src/components/middle';
-import { LawBreakers } from 'src/components/footer';
-import { SitesDataProvider } from 'src/providers/sites';
-import { AnimationsProvider } from 'src/providers/animations';
-import { SoundProvider } from 'src/providers/audio-context';
-import { WindowSizeProvider } from 'src/providers/window-size';
-import {
-    BaseContentItem,
-    BaseContentListValidator,
-    GameContentItem,
-    GameContentListValidator,
-    SiteKey,
-    SiteKeyValidator
-} from 'src/types';
-import { GetStaticPropsResult } from 'next';
-import { Row } from 'src/styles/sharedstyles';
-import { MainContainer } from 'src/components/main';
-import { HeaderComponent } from 'src/components/header';
-import { defaultSiteMap } from 'src/constants';
+import React, { FC } from 'react';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
+import MainContainer from '@/components/main';
+import { defaultSiteMap } from '@/constants';
+import { AnimationsProvider } from '@/providers/animations';
+import { SoundProvider } from '@/providers/audio-context';
+import { SitesDataProvider } from '@/providers/sites';
+import { WindowSizeProvider } from '@/providers/window-size';
+import Fonts from '@/styles/fonts';
+import GlobalStyle from '@/styles/globalstyles';
+import Skeleton from '@/styles/skeleton';
+import { BaseContentItem, BaseContentListValidator, GameContentItem, GameContentListValidator, SiteKey, SiteKeyValidator, } from '@/types';
 
 interface PageProps {
     defaultSite: SiteKey,
-    defaultContent: (BaseContentItem | GameContentItem)[]
+    defaultContent: (BaseContentItem | GameContentItem)[],
 }
+
+const theme: DefaultTheme = {
+    colors: {
+        primary: '#eae41f',
+        secondary: '#0070f3',
+    },
+};
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>> {
     const defaultSite = SiteKeyValidator.parse(process.env.selectedSite);
@@ -43,18 +41,39 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
         else
             defaultContent = BaseContentListValidator.parse(list.items);
     }
+    const site = defaultSiteMap[defaultSite];
+    if (site.leftNav.video)
+        defaultContent.push({
+            name: site.leftNav.text,
+            contentId: site.leftNav.video,
+            contentType: 'youtube',
+            thumb: '',
+            category: '',
+            display: false
+        });
+
+    site.leftNav.items.forEach(i => {
+        if (i.video)
+            defaultContent.push({
+                name: i.name,
+                contentId: i.video,
+                contentType: 'youtube',
+                thumb: '',
+                category: '',
+                display: false
+            });
+    });
+
     return {
         props: {
             defaultSite,
-            defaultContent
+            defaultContent,
         },
     };
 }
 
 const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
-    const selectedSite = SiteKeyValidator.parse(process.env.selectedSite);
-    const site = defaultSiteMap[selectedSite];
-
+    const site = defaultSiteMap[defaultSite];
     return (
         <>
             <Head>
@@ -112,26 +131,20 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                     </filter>
                 </defs>
             </svg>
-
-            <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent} defaultSiteMap={defaultSiteMap}>
-                <SoundProvider>
-                    <WindowSizeProvider>
-                        <MainContainer>
+            <ThemeProvider theme={theme}>
+                <Skeleton />
+                <GlobalStyle />
+                <Fonts />
+                <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent} defaultSiteMap={defaultSiteMap}>
+                    <SoundProvider>
+                        <WindowSizeProvider>
                             <AnimationsProvider>
-                                <>
-                                    <HeaderComponent />
-                                    <Row id="content-row">
-                                        { defaultSite !== 'gallery' && <LeftNav /> }
-                                        <Middle />
-                                        { defaultSite !== 'gallery' && <RightNav /> }
-                                    </Row>
-                                    { defaultSite !== 'gallery' && <LawBreakers /> }
-                                </>
+                                <MainContainer />
                             </AnimationsProvider>
-                        </MainContainer>
-                    </WindowSizeProvider>
-                </SoundProvider>
-            </SitesDataProvider>
+                        </WindowSizeProvider>
+                    </SoundProvider>
+                </SitesDataProvider>
+            </ThemeProvider>
 
             <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${site.gaTag}`} />
             { process.env.gtagEnabled && (

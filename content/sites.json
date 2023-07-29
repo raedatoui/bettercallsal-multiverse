@@ -55,7 +55,7 @@
           "audio": null,
           "video": null,
           "link": null,
-          "category": "e-card",
+          "category": "e-cards",
           "quote": null,
           "quoteLink": null
         },
@@ -431,7 +431,7 @@
           "audio": null,
           "video": null,
           "link": null,
-          "category": "supersalbros",
+          "category": "games",
           "quote": null,
           "quoteLink": null
         },
@@ -440,7 +440,7 @@
           "audio": null,
           "video": null,
           "link": null,
-          "category": "salman",
+          "category": "games",
           "quote": null,
           "quoteLink": null
         },
@@ -449,7 +449,7 @@
           "audio": null,
           "video": null,
           "link": null,
-          "category": "salitaire",
+          "category": "games",
           "quote": null,
           "quoteLink": null
         }

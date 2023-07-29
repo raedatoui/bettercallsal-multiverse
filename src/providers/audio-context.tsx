@@ -1,7 +1,7 @@
 import React, { createContext, FC, useMemo, useEffect, useState } from 'react';
-import { AudioElement, AudioElementValidator, isNotNull, Site } from 'src/types';
-import { useSiteContext } from './sites';
+import { AudioElement, AudioElementValidator, isNotNull, Site } from '@/types';
 import AudioBuffers from './audio-buffer';
+import { useSiteContext } from './sites';
 
 type SoundProviderType = {
     buffers: AudioBuffers,

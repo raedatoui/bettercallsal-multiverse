@@ -1,10 +1,20 @@
 /* eslint-disable max-len */
-import React, { FC } from 'react';
+import fsPromises from 'fs/promises';
+import path from 'path';
+import { GetStaticPropsResult } from 'next';
 import Head from 'next/head';
-import { SitesDataProvider } from 'src/providers/sites';
-import { AnimationsProvider } from 'src/providers/animations';
-import { SoundProvider } from 'src/providers/audio-context';
-import { WindowSizeProvider } from 'src/providers/window-size';
+import React, { FC } from 'react';
+import LawBreakers from '@/components/footer';
+import { StandaloneHeaderComponent } from '@/components/header';
+import MainContainer from '@/components/main';
+import { defaultSiteMap } from '@/constants';
+import { AnimationsProvider } from '@/providers/animations';
+import { SoundProvider } from '@/providers/audio-context';
+import { SitesDataProvider } from '@/providers/sites';
+import { WindowSizeProvider } from '@/providers/window-size';
+import Fonts from '@/styles/fonts';
+import GlobalStyle from '@/styles/globalstyles';
+import Skeleton from '@/styles/skeleton';
 import {
     BaseContentItem,
     BaseContentListValidator,
@@ -12,12 +22,7 @@ import {
     GameContentListValidator,
     SiteKey,
     SiteKeyValidator
-} from 'src/types';
-import { GetStaticPropsResult } from 'next';
-import { MainContainer } from 'src/components/main';
-import { StandaloneHeaderComponent } from 'src/components/header';
-import { defaultSiteMap } from 'src/constants';
-import { LawBreakers } from 'src/components/footer';
+} from '@/types';
 
 interface PageProps {
     defaultSite: SiteKey,
@@ -28,7 +33,9 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
     const defaultSite = SiteKeyValidator.parse(process.env.selectedSite);
     let defaultContent: (BaseContentItem | GameContentItem)[] = [];
     if (defaultSite !== 'construction') {
-        const list = await import(`../content/content-${defaultSite}.json`);
+        const filePath = path.join(process.cwd(), `content/content-${defaultSite}.json`);
+        const jsonData = await fsPromises.readFile(filePath);
+        const list = JSON.parse(jsonData.toString());
         if (defaultSite === 'games')
             defaultContent = GameContentListValidator.parse(list.items);
         else
@@ -56,6 +63,9 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                 <meta name="description" content={site?.metaDescription} />
                 <meta name="theme-color" content="#eae41f" />
             </Head>
+            <Skeleton />
+            <GlobalStyle />
+            <Fonts />
             <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent} defaultSiteMap={defaultSiteMap}>
                 <WindowSizeProvider>
                     <AnimationsProvider>

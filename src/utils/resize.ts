@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Size } from 'src/types';
+import { Size } from '@/types';
 // Define general type for useWindowSize hook, which includes width and height
 
 // Hook
-export const useWindowSize = (): Size => {
+const useWindowSize = (): Size => {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = useState<Size>({
@@ -28,3 +28,5 @@ export const useWindowSize = (): Size => {
     }, []); // Empty array ensures that effect is only run on mount
     return windowSize;
 };
+
+export default useWindowSize;

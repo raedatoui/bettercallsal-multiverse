@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { CDN } from 'src/constants';
+import { CDN } from '@/constants';
 
 const Fonts = createGlobalStyle`
     @font-face {

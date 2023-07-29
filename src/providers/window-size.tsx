@@ -1,6 +1,6 @@
 import React, { createContext, FC } from 'react';
-import { useWindowSize } from 'src/utils/resize';
-import { Size } from 'src/types';
+import { Size } from '@/types';
+import { useWindowSize } from '@/utils';
 
 const WindowSizeContext = createContext<Size>({
     width: 0,

@@ -1,2 +1,4 @@
-export { HeaderComponent } from './header';
-export { StandaloneHeaderComponent } from './standalone';
+import HeaderComponent from './header';
+import StandaloneHeaderComponent from './standalone';
+
+export { HeaderComponent, StandaloneHeaderComponent };

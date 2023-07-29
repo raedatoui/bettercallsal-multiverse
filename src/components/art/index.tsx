@@ -1,26 +1,33 @@
-import React, { FC, useState, useEffect, RefObject, useCallback } from 'react';
-import Image from 'next/image';
-import { BaseContentItem, ContentSize, Size } from 'src/types';
-import { ButtonBar, ImageContainer, StopButton } from 'src/components/middle/elements';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
-import { useSiteContext } from 'src/providers/sites';
-import { useWindowSize } from 'src/utils';
-import { DALI } from 'src/constants';
+import Image from 'next/image';
+import React, { FC, useState, useEffect, useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { DALI } from '@/constants';
+import { useSiteContext } from '@/providers/sites';
+import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
+import { ContentSize, isContent, Size } from '@/types';
+import { findContent, useWindowSize } from '@/utils';
 
-interface Props {
-    containerRef: RefObject<HTMLDivElement>;
-    images: BaseContentItem[];
-    start: number
-}
+interface Props {}
 
-const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
-    const { setSelectedContentItem, setSelectedNavItem, keyPressed } = useSiteContext();
+const ArtSlider:FC<Props> = () => {
+    const { artId } = useParams<{ artId: string }>();
+    const navigate = useNavigate();
+
+    const { keyPressed } = useSiteContext();
+    const {
+        contentMap,
+        selectedSite,
+    } = useSiteContext();
+    const images = contentMap[selectedSite].filter(isContent);
+    const artImage = findContent(images, artId ?? '');
+    const start = artImage ? images.indexOf(artImage) : 0;
     const windowSize = useWindowSize();
 
     const [sizes, setSizes] = useState<ContentSize[]>([]);
 
-    const [currentSlide, setCurrentSlide] = useState(start);
+    const [currentSlide, setCurrentSlide] = useState(start); // start
 
     const [sliderRef, sliderInstance] = useKeenSlider<HTMLDivElement>({
         animationEnded(s) {
@@ -83,8 +90,8 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
     }, []);
 
     useEffect(() => {
-        const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0);
+        const workingWidth = document?.getElementById('middle')?.getBoundingClientRect().width ?? 0;
+        const workingHeight = document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0;
 
         setSizes(
             images.map(({ width, height }) =>
@@ -94,7 +101,7 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
                 ))
         );
         return () => {};
-    }, [containerRef, getContentSize, images, windowSize]);
+    }, [getContentSize, windowSize]); // dont add images as a dep!
 
     useEffect(() => {
         if (sliderInstance.current) {
@@ -105,6 +112,9 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
         }
         return () => {};
     }, [keyPressed, sliderInstance]);
+
+    if (artId && !artImage)
+        navigate('/');
 
     return (
         <ImageContainer
@@ -130,7 +140,7 @@ const ArtSlider:FC<Props> = ({ start, containerRef, images }) => {
             ))}
 
             <ButtonBar>
-                <StopButton onClick={() => { setSelectedContentItem(null); setSelectedNavItem(null); }}>back</StopButton>
+                <StopButton onClick={() => { navigate('/'); }}>[x]</StopButton>
             </ButtonBar>
         </ImageContainer>
     );

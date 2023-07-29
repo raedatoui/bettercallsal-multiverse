@@ -1,3 +1,4 @@
+import { createBrowserRouter } from 'react-router-dom';
 import { z } from 'zod';
 
 export const HeaderValidator = z.object({
@@ -102,7 +103,7 @@ export type Size = {
 export const BaseContentItemValidator = z.object({
     name: z.string(),
     contentId: z.string(),
-    contentType: z.string(), // TODO: add an enum on this
+    contentType: z.string(), // TODO: add an enum on this and build predicates for each type
     thumb: z.string(),
     category: z.string(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
 
@@ -112,6 +113,7 @@ export const BaseContentItemValidator = z.object({
     year: z.number().optional().nullable(),
     width: z.number().optional().nullable(),
     height: z.number().optional().nullable(),
+    display: z.boolean().default(true),
 });
 
 export type BaseContentItem = z.infer<typeof BaseContentItemValidator>;
@@ -180,6 +182,7 @@ declare global {
 
         AudioContext: typeof AudioContext;
         webkitAudioContext: typeof AudioContext;
+        onYouTubeIframeAPIReady: () => void;
     }
 }
 
@@ -199,3 +202,18 @@ export type AudioElement = z.infer<typeof AudioElementValidator>;
 export type PlayAudioFn = (el:AudioElement, filter?: string) => void;
 
 export const isNotNull = <T>(x: T): x is NonNullable<T> => !!x;
+
+export interface VideoContentItem {
+    video: string;
+}
+
+export const isGame = (item: BaseContentItem): item is GameContentItem => item.contentType === 'game' || item.contentType === 'gallery';
+
+export const isContent = (item: BaseContentItem | GameContentItem): item is BaseContentItem =>
+    item.contentType !== 'game' && item.contentType !== 'gallery';
+
+export type Router = ReturnType<typeof createBrowserRouter>;
+
+export type VisibleProps = {
+    visible: boolean;
+};

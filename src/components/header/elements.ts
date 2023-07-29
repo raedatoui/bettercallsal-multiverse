@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
-import { headerBreakPoints as breakPoints } from 'src/constants';
+import { headerBreakPoints as breakPoints } from '@/constants';
 
 export const HeaderContainer = styled.header`
   width: 100%;

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
-import { CbFn } from '../types';
+import { CbFn } from '@/types';
 
-export const useInterval = (callback: CbFn, delay: number) => {
+const useInterval = (callback: CbFn, delay: number) => {
     const savedCallback = useRef<CbFn>();
 
     useEffect(() => {
@@ -14,3 +14,5 @@ export const useInterval = (callback: CbFn, delay: number) => {
         return () => clearInterval(id);
     }, [delay]);
 };
+
+export default useInterval;

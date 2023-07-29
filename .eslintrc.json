@@ -14,10 +14,26 @@
     "comma-dangle": "off",
     "curly": ["error", "multi"],
     "implicit-arrow-linebreak": "off",
-    "import/no-extraneous-dependencies": "off",
-    "import/no-unresolved": "off",
-    "import/prefer-default-export": "off",
     "indent": ["error", 4],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object"
+        ],
+        "newlines-between": "never",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
     "lines-between-class-members": "off",
     "max-classes-per-file": "off",
     "max-len": ["error", { "code": 150 }],

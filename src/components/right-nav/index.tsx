@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { useSiteContext } from 'src/providers/sites';
 import styled, { keyframes } from 'styled-components';
-import { breakPoints, SPOTIFY_ENABLED } from 'src/constants';
+import { breakPoints, SPOTIFY_ENABLED } from '@/constants';
+import { useSiteContext } from '@/providers/sites';
 
 interface Props {}
 
@@ -34,8 +34,8 @@ const Gap = styled.div`
   height: 0;
 `;
 
-export const RightNav: FC<Props> = () => {
-    const { siteMap, selectedSite, fullScreen, bizerkMode } = useSiteContext();
+const RightNav: FC<Props> = () => {
+    const { siteMap, selectedSite, bizerkMode, fullScreen } = useSiteContext();
     const site = siteMap[selectedSite];
 
     return (
@@ -58,3 +58,5 @@ export const RightNav: FC<Props> = () => {
         </>
     );
 };
+
+export default RightNav;
