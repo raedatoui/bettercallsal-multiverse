@@ -1,1 +1,1 @@
-export { LeftNav } from './nav';
+export { ClientLeftNav, ServerLeftNav } from './nav';

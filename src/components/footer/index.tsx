@@ -1,16 +1,16 @@
-import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from 'src/components/footer/elements';
 import Image from 'next/image';
-import { useWindowSize } from 'src/utils';
-import { Size } from 'src/types';
-import { useSiteContext } from 'src/providers/sites';
-import { SoundContext } from 'src/providers/audio-context';
-import { useAnimationContext } from 'src/providers/animations';
+import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from '@/components/footer/elements';
+import { useAnimationContext } from '@/providers/animations';
+import { SoundContext } from '@/providers/audio-context';
+import { useSiteContext } from '@/providers/sites';
+import { Size } from '@/types';
+import { useWindowSize } from '@/utils';
 
 interface Props {}
 
-export const LawBreakers: FC<Props> = () => {
-    const { siteMap, selectedSite, fullScreen, bizerkMode } = useSiteContext();
+const LawBreakers: FC<Props> = () => {
+    const { siteMap, selectedSite, bizerkMode, fullScreen } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
     const site = siteMap[selectedSite];
 
@@ -84,20 +84,20 @@ export const LawBreakers: FC<Props> = () => {
                 <LawBreakersContainer>
                     <LawBreakersP ref={ref} className={`${betterCallState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                         { site.footer.iconType === 'image'
-                    && (
-                        <Image
-                            className={`${leftSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
-                            src={site.footer.icon}
-                            alt="rca-mic"
-                            width={micSize.width}
-                            height={micSize.height}
-                            loading="lazy"
-                            style={{
-                                maxWidth: '100%',
-                                height: 'auto'
-                            }}
-                        />
-                    )}
+    && (
+        <Image
+            className={`${leftSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+            src={site.footer.icon}
+            alt="rca-mic"
+            width={micSize.width}
+            height={micSize.height}
+            loading="lazy"
+            style={{
+                maxWidth: '100%',
+                height: 'auto'
+            }}
+        />
+    )}
                         <LawBreakersSpan
                             onClick={() => {
                                 // footerClick();
@@ -107,20 +107,20 @@ export const LawBreakers: FC<Props> = () => {
                             {site.footer.text}
                         </LawBreakersSpan>
                         { site.footer.iconType === 'image'
-                    && (
-                        <Image
-                            className={`${rightSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
-                            src={site.footer.icon}
-                            alt="rca-mic"
-                            width={micSize.width}
-                            height={micSize.height}
-                            loading="lazy"
-                            style={{
-                                maxWidth: '100%',
-                                height: 'auto'
-                            }}
-                        />
-                    )}
+    && (
+        <Image
+            className={`${rightSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+            src={site.footer.icon}
+            alt="rca-mic"
+            width={micSize.width}
+            height={micSize.height}
+            loading="lazy"
+            style={{
+                maxWidth: '100%',
+                height: 'auto'
+            }}
+        />
+    )}
                     </LawBreakersP>
                 </LawBreakersContainer>
             ) }
@@ -132,3 +132,5 @@ export const LawBreakers: FC<Props> = () => {
         </>
     );
 };
+
+export default LawBreakers;

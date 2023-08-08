@@ -1,4 +1,4 @@
-import { SiteMapValidator } from 'src/types';
+import { SiteMapValidator } from '@/types';
 import sitesData from '../content/sites.json';
 
 export const CDN = process.env.cdnUrl;

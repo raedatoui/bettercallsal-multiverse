@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { NavButton } from 'src/styles/sharedstyles';
-import { breakPoints } from 'src/constants';
-import { borderYoyo, scalingYoyo } from 'src/utils/animations';
+import { breakPoints } from '@/constants';
+import { NavButton } from '@/styles/sharedstyles';
+import { borderYoyo, scalingYoyo } from '@/utils/animations';
 
 export const LeftNavContainer = styled.div`
   width: 16.6666666667%;

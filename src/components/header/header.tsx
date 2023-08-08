@@ -1,20 +1,20 @@
 import React, { FC, useContext, useState, useEffect, useCallback } from 'react';
-import { useSiteContext } from 'src/providers/sites';
-import { SoundContext } from 'src/providers/audio-context';
-import { useInterval } from 'src/utils';
-import { Ticker } from 'src/components/header/ticker';
-import { WindowSizeContext } from 'src/providers/window-size';
-import { useAnimationContext } from 'src/providers/animations';
-import { SiteKeyValidator, tickerList } from 'src/types';
+import Ticker from '@/components/header/ticker';
+import { useAnimationContext } from '@/providers/animations';
+import { SoundContext } from '@/providers/audio-context';
+import { useSiteContext } from '@/providers/sites';
+import { WindowSizeContext } from '@/providers/window-size';
+import { SiteKeyValidator, tickerList } from '@/types';
+import { useInterval } from '@/utils';
 import {
     HeaderContainer,
     ContentContainer,
 } from './elements';
-import { SpinningSal, SpinningSalsContainer } from './spinning';
 import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './middle';
+import { SpinningSal, SpinningSalsContainer } from './spinning';
 
-export const HeaderComponent: FC = () => {
-    const { siteMap, selectedSite, fullScreen, bizerkMode } = useSiteContext();
+const HeaderComponent: FC = () => {
+    const { siteMap, selectedSite, bizerkMode, fullScreen } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
 
     const site = siteMap[selectedSite];
@@ -131,3 +131,5 @@ export const HeaderComponent: FC = () => {
         </HeaderContainer>
     );
 };
+
+export default HeaderComponent;

@@ -1,4 +1,8 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import Script from 'next/script';
 import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
     LeftAdd1,
     LeftAdd2,
@@ -7,27 +11,24 @@ import {
     LeftNavContainer,
     LeftNavMenu,
     LeftNavItemCuck
-} from 'src/components/left-nav/elements';
-import { BaseContentItem, LeftNavNavItem } from 'src/types';
-import { WindowSizeContext } from 'src/providers/window-size';
-import { useSiteContext } from 'src/providers/sites';
-import { SoundContext } from 'src/providers/audio-context';
-import Image from 'next/image';
-import Script from 'next/script';
-import { useAnimationContext } from 'src/providers/animations';
-import { shuffleList } from 'src/utils';
-import Link from 'next/link';
+} from '@/components/left-nav/elements';
+import { useBizerkContext } from '@/providers/animations';
+import { SoundContext } from '@/providers/audio-context';
+import { useSiteContext } from '@/providers/sites';
+import { WindowSizeContext } from '@/providers/window-size';
+import { LeftNavNavItem } from '@/types';
+import { shuffleList, slugify } from '@/utils';
 
 interface ButtonProps {
     navItem: LeftNavNavItem;
     audioCb: (a: string) => void;
     navItemCb: (l: LeftNavNavItem) => void;
-    videoCb: (c: BaseContentItem) => void;
+    videoCb: (v: LeftNavNavItem) => void;
     width: number;
     fullScreen: boolean;
 }
+
 const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width, fullScreen }) => {
-    const [clicked, setClicked] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null);
 
     const scaleText = useCallback(() => {
@@ -46,39 +47,14 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
     });
 
     const handleClick = () => {
-        setClicked(true);
         // TODO move providers here and remove callback functions. do too many provider subscriber slow things down?
         if (navItem.audio)
             audioCb(navItem.audio);
-        if (navItem.category && navItem.category !== '')
+        if (navItem.category)
             navItemCb(navItem);
         if (navItem.video)
-            videoCb({
-                name: navItem.name,
-                contentId: navItem.video,
-                contentType: 'youtube',
-                thumb: '',
-                category: ''
-            });
+            videoCb(navItem);
     };
-
-    useEffect(() => {
-        if (clicked) {
-            setTimeout(() => {
-                document.body.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                document.getElementById('content-row')?.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }, 50);
-
-            setClicked(false);
-        }
-        return () => {};
-    }, [clicked]);
 
     return (
         <LeftNavButton
@@ -111,26 +87,26 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
 
 interface Props {}
 
-export const LeftNav: FC<Props> = () => {
+export const ClientLeftNav: FC<Props> = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const {
         siteMap,
         selectedSite,
-        setSelectedNavItem,
-        selectedContentItem,
-        setSelectedContentItem,
-        fullScreen,
         bizerkMode,
         setArtAudioPlaying,
-        artAudioPlaying
+        artAudioPlaying,
+        fullScreen
     } = useSiteContext();
+
     const site = siteMap[selectedSite];
-    const { bizerkCounter } = useAnimationContext();
+
+    const { bizerkCounter } = useBizerkContext();
     const { buffers, loaded } = useContext(SoundContext);
     const { width } = useContext(WindowSizeContext);
 
     const [audioPlaying, setAudioPlaying] = useState<string | null>(null);
-
-    const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
 
     const clonedNavItems = bizerkCounter > 1 && bizerkMode !== 'off' ? shuffleList(site.leftNav.items) : site.leftNav.items;
 
@@ -154,24 +130,17 @@ export const LeftNav: FC<Props> = () => {
         if (site.leftNav.audio)
             handleAudio(site.leftNav.audio);
         if (site.leftNav.video)
-            setSelectedContentItem(
-                {
-                    name: site.leftNav.text,
-                    contentId: site.leftNav.video,
-                    contentType: 'youtube',
-                    thumb: '',
-                    category: ''
-                }
-            );
+            navigate(`/video/${slugify(site.leftNav.text)}`);
     };
 
     useEffect(() => {
-        if (selectedContentItem && audioPlaying && selectedSite !== 'art' && selectedSite !== 'games') {
-            buffers.stop(audioPlaying);
+        if (location.pathname !== '/' && !location.pathname.startsWith('/category')) {
+            if (audioPlaying)
+                buffers.stop(audioPlaying);
             setAudioPlaying(null);
         }
         return () => {};
-    }, [selectedContentItem, audioPlaying, selectedSite, buffers]);
+    }, [audioPlaying, buffers, location]);
 
     useEffect(() => {
         if (artAudioPlaying) {
@@ -186,11 +155,10 @@ export const LeftNav: FC<Props> = () => {
             <Script
                 id="text-fit"
                 src="/scripts/textfit.js"
-                onLoad={() => setScriptLoaded(true)}
             />
 
             <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
-                { scriptLoaded && selectedSite !== 'gallery' && (
+                { selectedSite !== 'gallery' && (
                     <>
                         <LeftNavMenu>
                             { clonedNavItems.map(i => (
@@ -198,11 +166,19 @@ export const LeftNav: FC<Props> = () => {
                                     key={i.name}
                                     navItem={i}
                                     audioCb={handleAudio}
-                                    navItemCb={(l: LeftNavNavItem | null) => {
-                                        setSelectedNavItem(l);
-                                        setSelectedContentItem(null);
+                                    navItemCb={(l: LeftNavNavItem) => {
+                                        if (l.category === '' || l.category === 'all')
+                                            navigate('/');
+                                        else if (l.category === 'games')
+                                            navigate(`/game/${slugify(l.name)}`); // nav names slugs to match content slugs
+                                        else {
+                                            const u = l.category === 'e-cards' ? '/e-cards' : `/category/${l.category}`;
+                                            navigate(u);
+                                        }
                                     }}
-                                    videoCb={setSelectedContentItem}
+                                    videoCb={(l: LeftNavNavItem) => {
+                                        navigate(`/video/${slugify(l.name)}`);
+                                    }}
                                     width={width}
                                     fullScreen={fullScreen}
                                 />
@@ -232,5 +208,60 @@ export const LeftNav: FC<Props> = () => {
                 ) }
             </LeftNavContainer>
         </>
+    );
+};
+
+export const ServerLeftNav: FC<Props> = () => {
+    const {
+        siteMap,
+        selectedSite,
+        bizerkMode,
+        fullScreen
+    } = useSiteContext();
+
+    const site = siteMap[selectedSite];
+
+    const { width } = useContext(WindowSizeContext);
+    const clonedNavItems = site.leftNav.items;
+
+    return (
+        <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
+            { selectedSite !== 'gallery' && (
+                <>
+                    <LeftNavMenu>
+                        { clonedNavItems.map(i => (
+                            <NavButton
+                                key={i.name}
+                                navItem={i}
+                                audioCb={() => {}}
+                                navItemCb={(l: LeftNavNavItem) => l}
+                                videoCb={(l: LeftNavNavItem) => l}
+                                width={width}
+                                fullScreen={fullScreen}
+                            />
+                        )) }
+                    </LeftNavMenu>
+                    <LeftAdd1 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
+                        <LeftAdd2 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
+                            <LeftContent>
+                                <Image
+                                    src={site.leftNav.image}
+                                    alt={site.leftNav.text}
+                                    fill
+                                    sizes="100vw"
+                                    style={{
+                                        maxWidth: '100%',
+                                    }}
+                                />
+                            </LeftContent>
+                            <span dangerouslySetInnerHTML={{
+                                __html: site.leftNav.text
+                            }}
+                            />
+                        </LeftAdd2>
+                    </LeftAdd1>
+                </>
+            ) }
+        </LeftNavContainer>
     );
 };

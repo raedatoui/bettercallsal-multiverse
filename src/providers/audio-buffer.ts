@@ -1,6 +1,6 @@
-import { CDN } from 'src/constants';
 import { generateUUID } from 'three/src/math/MathUtils';
-import { AudioElementValidator, SiteKey, Sound } from '../types';
+import { CDN } from '@/constants';
+import { AudioElementValidator, SiteKey, Sound } from '@/types';
 
 const copyBuffer = (buffer: AudioBuffer, context: AudioContext): AudioBuffer => {
     const copy = context.createBuffer(buffer.numberOfChannels, buffer.length, buffer.sampleRate);

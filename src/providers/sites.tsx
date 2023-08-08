@@ -1,6 +1,6 @@
-import React, { FC, useMemo, useState, createContext, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
-import { CDN } from 'src/constants';
+import React, { FC, useMemo, useState, createContext, useEffect, useContext, useCallback } from 'react';
+import { CDN } from '@/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,
@@ -8,10 +8,9 @@ import {
     ContentMap,
     GameContentItem,
     GameContentListValidator,
-    LeftNavNavItem,
     SiteKey,
     SiteMap,
-} from '../types';
+} from '@/types';
 
 type SiteProviderType = {
     siteMap: SiteMap,
@@ -19,17 +18,13 @@ type SiteProviderType = {
     loading: boolean,
     selectedSite: SiteKey,
     setSelectedSite: (s: SiteKey) => void,
-    selectedNavItem: LeftNavNavItem | null,
-    setSelectedNavItem: (l: LeftNavNavItem | null) => void,
-    selectedContentItem: BaseContentItem | GameContentItem | null,
-    setSelectedContentItem: (i: BaseContentItem | GameContentItem | null) => void,
-    fullScreen: boolean,
-    setFullScreen: (b: boolean) => void,
     bizerkMode: BizerkMode,
     setBizerkMode: (a: BizerkMode) => void,
     keyPressed: string | null,
     artAudioPlaying: boolean,
     setArtAudioPlaying: (b: boolean) => void,
+    fullScreen: boolean,
+    setFullScreen: (b: boolean) => void,
 };
 
 const defaultContentMap = {
@@ -58,71 +53,18 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         [defaultSite]: defaultContent
     });
     const [loading, setLoading] = useState<boolean>(false);
-    const [selectedNavItem, setSelectedNavItem] = useState<LeftNavNavItem | null>(null);
-    const [selectedContentItem, setSelectedContentItem] = useState<BaseContentItem | GameContentItem | null>(null);
 
-    const [contentRowScroll, setContentRowScroll] = useState<number>(0);
-    const [fullScreen, setFullScreen] = useState<boolean>(false);
     const [bizerkMode, setBizerkMode] = useState<BizerkMode>('off');
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
     const [artAudioPlaying, setArtAudioPlaying] = useState<boolean>(false);
+    const [fullScreen, setFullScreen] = useState<boolean>(false);
 
     const setSite = useCallback((s: SiteKey) => {
         if (s !== selectedSite) {
-            setSelectedNavItem(null);
-            setSelectedContentItem(null);
             setLoading(true);
             setSelectedSite(s);
         }
     }, [selectedSite]);
-
-    const setContentItem = useCallback((c: BaseContentItem | GameContentItem | null) => {
-        // TODO this kind of sucks and useEffect sucks balls for this.
-        const contentRow = document.getElementById('content-row');
-        const contentList = document.getElementById('content-list');
-        const header = document.getElementById('main-header');
-
-        if (contentList && contentRow && header)
-            if (c === null) {
-                if (selectedSite === 'biz')
-                    setTimeout(() => {
-                        contentRow.scrollTo({
-                            top: contentRowScroll,
-                            behavior: 'auto'
-                        });
-                        document.body.scrollTo({
-                            top: contentRowScroll,
-                            behavior: 'auto'
-                        });
-                    }, 50);
-
-            } else {
-                let s = 0;
-                const cl = contentList.getBoundingClientRect().top;
-                const co = contentRow.getBoundingClientRect().top;
-                const h = header.getBoundingClientRect().height;
-                const delta = Math.abs(co - h);
-
-                if (delta < 5)
-                    if (cl > 0)
-                        s += co - cl - 53; // TODO height of caption
-                    else s += Math.abs(cl - co - 53);
-
-                else
-                if (cl > 0)
-                    s += co - cl - 53;
-                else s += Math.abs(cl - 53 - h);
-
-                setContentRowScroll(s);
-
-                document.body.scrollTo(0, 0);
-                document.getElementById('content-row')?.scrollTo(0, 0);
-            }
-
-        setSelectedContentItem(c);
-        if (c === null)
-            setFullScreen(false);
-    }, [contentRowScroll, selectedSite]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -138,11 +80,35 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
                         ...contentMap,
                         gallery: GameContentListValidator.parse(response.items)
                     });
-                else
+                else {
+                    const site = defaultSiteMap[selectedSite];
+                    const list = BaseContentListValidator.parse(response.items);
+                    if (site.leftNav.video)
+                        list.push({
+                            name: site.leftNav.text,
+                            contentId: site.leftNav.video,
+                            contentType: 'youtube',
+                            thumb: '',
+                            category: '',
+                            display: false
+                        });
+
+                    site.leftNav.items.forEach(i => {
+                        if (i.video)
+                            list.push({
+                                name: i.name,
+                                contentId: i.video,
+                                contentType: 'youtube',
+                                thumb: '',
+                                category: '',
+                                display: false
+                            });
+                    });
                     setContentMap({
                         ...contentMap,
-                        [selectedSite]: BaseContentListValidator.parse(response.items)
+                        [selectedSite]: list
                     });
+                }
                 setLoading(false);
             } catch (error) {
                 console.error(error);
@@ -154,15 +120,7 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         else
             setLoading(false);
         return () => {};
-    }, [contentMap, selectedSite]);
-
-    useEffect(() => {
-        if (selectedSite === 'games' && selectedNavItem !== null) {
-            const selectedGame = contentMap.games.filter(g => g.contentId === selectedNavItem.category);
-            if (selectedGame.length)
-                setSelectedContentItem(selectedGame[0]);
-        }
-    }, [contentMap.games, selectedNavItem, selectedSite]);
+    }, [contentMap, selectedSite, defaultSiteMap]);
 
     useEffect(() => {
         const downHandler = (ev:KeyboardEvent) => {
@@ -190,17 +148,13 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         setSelectedSite: setSite,
         loading,
         contentMap,
-        selectedNavItem,
-        setSelectedNavItem,
-        selectedContentItem,
-        setSelectedContentItem: setContentItem,
-        setFullScreen,
-        fullScreen,
         bizerkMode,
         setBizerkMode,
         keyPressed,
         artAudioPlaying,
-        setArtAudioPlaying
+        setArtAudioPlaying,
+        fullScreen,
+        setFullScreen,
     }), [
         bizerkMode,
         defaultSiteMap,
@@ -208,12 +162,9 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         setSite,
         loading,
         contentMap,
-        selectedNavItem,
-        selectedContentItem,
-        setContentItem,
         keyPressed,
+        artAudioPlaying,
         fullScreen,
-        artAudioPlaying
     ]);
 
     return (

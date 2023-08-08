@@ -1,37 +1,32 @@
 import React, { FC } from 'react';
-import { BizerImage, BizerkImageContainer } from 'src/components/header/middle/elements';
-import { Site } from 'src/types';
-import { useAnimationContext } from 'src/providers/animations';
-import { CDN } from 'src/constants';
-import { useSiteContext } from 'src/providers/sites';
+import { CDN } from '@/constants';
+import { useAnimationContext } from '@/providers/animations';
+import { useSiteContext } from '@/providers/sites';
+import { Site } from '@/types';
+import { BizerImage, BizerkImageContainer } from './elements';
 
 interface Props {
     site: Site;
     pause: () => void;
 }
 
-export const Bizerk:FC<Props> = ({ site, pause }) => {
+const Bizerk:FC<Props> = ({ site, pause }) => {
     const { setBizerkMode, bizerkMode } = useSiteContext();
     const {
         animateHeaderFooter,
         setAnimateHeaderFooter,
-        spinningSalsCounter,
-        setSpinningSalsCounter,
         setSpinningSalsGridCounter,
     } = useAnimationContext();
 
     const bizerkAnim = () => {
         setAnimateHeaderFooter(animateHeaderFooter + 1);
-        setSpinningSalsCounter(spinningSalsCounter + 1);
+        setSpinningSalsGridCounter(Math.round(Math.random() * 1000));
     };
 
     const bizerkStop = () => {
         if (bizerkMode === 'off') {
             pause();
-            setTimeout(() => {
-                if (site.name === 'biz')
-                    setSpinningSalsGridCounter(0);
-            }, 1500);
+            setSpinningSalsGridCounter(0);
         }
     };
 
@@ -53,3 +48,5 @@ export const Bizerk:FC<Props> = ({ site, pause }) => {
         </BizerkImageContainer>
     );
 };
+
+export default Bizerk;

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
-import { CDN, headerBreakPoints as breakPoints } from 'src/constants';
-import { glowShadow, ltr2, neon1, scalemic, scalingYoyo } from 'src/utils/animations';
+import { CDN, headerBreakPoints as breakPoints } from '@/constants';
+import { glowShadow, ltr2, neon1, scalemic, scalingYoyo } from '@/utils/animations';
 
 export const BetterCall = styled.h1.attrs(props => ({ className: props.className }))`
   font-family: BrushScriptStd, serif;

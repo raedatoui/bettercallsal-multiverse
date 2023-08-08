@@ -1,5 +1,5 @@
 import styled, { Keyframes } from 'styled-components';
-import { headerBreakPoints as breakPoints } from 'src/constants';
+import { headerBreakPoints as breakPoints } from '@/constants';
 
 const BaseSlidingItem = styled.a`
   font-size: 0.3635em;

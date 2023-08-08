@@ -1,26 +1,26 @@
-import React, { FC, RefObject, useCallback, useEffect, useRef, useState } from 'react';
-import { GameButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from 'src/components/middle/elements';
-import { ContentSize, GameContentItem, Size, UnityInstance } from 'src/types';
-import { CDN } from 'src/constants';
-import { useSiteContext } from 'src/providers/sites';
-import { useWindowSize } from 'src/utils';
+import Script from 'next/script';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { CDN } from '@/constants';
+import { useSiteContext } from '@/providers/sites';
+import { ButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
+import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, UnityInstance, VisibleProps, } from '@/types';
+import { findGame, useWindowSize } from '@/utils';
 
-interface Props {
-    containerRef: RefObject<HTMLDivElement>
-}
+const Unity:FC<VisibleProps> = () => {
+    const navigate = useNavigate();
+    const { gameId } = useParams<{ gameId: string }>();
 
-const UnityGame: FC<Props> = ({ containerRef }) => {
     const {
         contentMap,
         selectedSite,
-        setSelectedNavItem,
-        selectedContentItem,
-        setSelectedContentItem,
         loading,
-        fullScreen,
-        setFullScreen
+        fullScreen, setFullScreen
     } = useSiteContext();
+    const contentList = contentMap[selectedSite];
 
+    const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
+    const [game, setGame] = useState<GameContentItem | null>(null);
     const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
     const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
     const [gameProgress, setGameProgress] = useState<number>(0);
@@ -34,8 +34,8 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
         let height: number;
         let width: number;
 
-        const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
-        const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0);
+        const workingWidth = document?.getElementById('middle')?.getBoundingClientRect().width ?? 0;
+        const workingHeight = document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0;
 
         if (workingWidth > workingHeight) {
             height = workingHeight;
@@ -54,38 +54,36 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
         // this was an attempt at full bleeing the game
         return { width: Math.floor(width), height: Math.floor(workingHeight), left: (workingWidth - width) / 2, top: 0 };
         // return { width: 900, height: 600, left: 0, top: 0};
-    }, [containerRef]);
+    }, []);
 
     const handleStop = useCallback(() => {
         if (unityInstance)
             unityInstance.Quit().then(() => {
-                setSelectedContentItem(null);
-                setSelectedNavItem(null);
                 setUnityInstance(null);
+                navigate('/');
             });
-    }, [setSelectedContentItem, setSelectedNavItem, unityInstance]);
+    }, [unityInstance]);
 
     const loadGame = useCallback(() => {
-        const game = selectedContentItem as GameContentItem;
         setGameProgress(0);
         setGameProgressVisible(true);
-        window.createUnityInstance(document.getElementById('unity-canvas'), {
-            companyName: game.companyName,
-            productName: game.productName,
-            productVersion: game.productVersion,
-            showBanner: false,
-            dataUrl: `${CDN}${game.dataUrl}`,
-            frameworkUrl: `${CDN}${game.frameworkUrl}`,
-            codeUrl: `${CDN}${game.codeUrl}`,
-            streamingAssetsUrl: `${CDN}${game.streamingAssetsUrl}`,
-        }, (progress) => {
-            setGameProgress(progress * 100);
-        })
-            .then((c) => {
+        if (game)
+            window.createUnityInstance(document.getElementById('unity-canvas'), {
+                companyName: game.companyName,
+                productName: game.productName,
+                productVersion: game.productVersion,
+                showBanner: false,
+                dataUrl: `${CDN}${game.dataUrl}`,
+                frameworkUrl: `${CDN}${game.frameworkUrl}`,
+                codeUrl: `${CDN}${game.codeUrl}`,
+                streamingAssetsUrl: `${CDN}${game.streamingAssetsUrl}`,
+            }, (progress) => {
+                setGameProgress(progress * 100);
+            }).then((c) => {
                 setUnityInstance(c);
                 setGameProgressVisible(false);
             });
-    }, [selectedContentItem]);
+    }, [game]);
 
     const clearCanvas = useCallback(() => {
         if (canvasRef.current) {
@@ -94,13 +92,20 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
         }
     }, []);
 
-    const handleClick = async () => {
-        if (selectedSite === 'gallery')
-            setFullScreen(true);
+    const getGame = (l: (BaseContentItem | GameContentItem)[]) => {
+        if (selectedSite === 'gallery') {
+            const g: readonly GameContentItem[] = l.filter(isGame);
+            if (g.length > 0)
+                return g[0];
+            return null;
+        }
+        return findGame(contentList, gameId ?? '');
     };
 
+    const getGameCb = useCallback(():GameContentItem | null => getGame(contentList), [selectedSite, contentList, gameId]);
+
     useEffect(() => {
-        if (selectedContentItem && (selectedContentItem.contentType === 'game' || selectedContentItem.contentType === 'gallery')) {
+        if (game) {
             clearCanvas();
             if (unityInstance)
                 unityInstance.Quit()
@@ -116,18 +121,18 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
                 setUnityInstance(null);
             });
         return () => {};
-    }, [selectedSite, selectedContentItem, clearCanvas, loadGame]);
+    }, [selectedSite, game, clearCanvas, loadGame]);
 
     useEffect(() => {
-        if (selectedContentItem && selectedContentItem.contentType === 'game') {
+        if (game) {
             const desired = { width: 1000, height: 600 };
-            if (selectedContentItem.category === 'supersalbros')
+            if (game.category === 'supersalbros')
                 desired.width = 900;
-            if (selectedContentItem.category === 'pacman')
+            if (game.category === 'pacman')
                 desired.width = 600;
             setGamesPosterSize(getContentSize(desired));
         }
-        if (selectedContentItem && selectedContentItem.contentType === 'gallery') {
+        if (game && game.contentType === 'gallery') {
             const r = document.getElementById('content-row');
             if (r) {
                 r.style.overflow = 'hidden';
@@ -136,13 +141,7 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
             }
         }
         return () => {};
-    }, [windowSize, selectedContentItem, getContentSize]);
-
-    useEffect(() => {
-        if (selectedSite === 'gallery' && !loading)
-            setSelectedContentItem(contentMap.gallery[0]);
-        return () => {};
-    }, [selectedSite, loading, setSelectedContentItem, contentMap.gallery]);
+    }, [windowSize, game, getContentSize]);
 
     useEffect(() => {
         const r = document.getElementById('content-row');
@@ -153,8 +152,35 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
         return () => {};
     }, [fullScreen]);
 
+    useEffect(() => {
+        if (scriptLoaded) {
+            const g = getGameCb();
+            if (!g) navigate('/');
+            setGame(g);
+        }
+    }, [gameId, contentList, scriptLoaded]);
+
+    const handleClick = async () => {
+        if (selectedSite === 'gallery')
+            setFullScreen(true);
+    };
+
+    const loader = selectedSite === 'gallery' ? 'gallery' : 'game';
+
     return (
         <>
+            { !loading && contentList.length && (
+                <Script
+                    src={`${CDN}/unity/${loader}.loader.js`}
+                    onReady={() => {
+                        const g = getGame(contentList);
+                        if (!g) navigate('/');
+                        else setGame(g);
+                        setScriptLoaded(true);
+                    }}
+                />
+            ) }
+
             { gameProgressVisible && (
                 <LoadingBar>
                     <LoadingBarProgressEmpty>
@@ -170,16 +196,15 @@ const UnityGame: FC<Props> = ({ containerRef }) => {
                 width={gamesPosterSize.width}
                 left={gamesPosterSize.left}
                 onClick={handleClick}
-                className={selectedContentItem
-                && (selectedContentItem.contentType === 'game' || selectedContentItem.contentType === 'gallery') ? 'on' : 'off'}
+                className={scriptLoaded && game ? 'on' : 'off'}
             />
-            { selectedContentItem && selectedContentItem.contentType === 'game' && (
-                <GameButtonBar left={gamesPosterSize.width + gamesPosterSize.left - 83} top={gamesPosterSize.height - 2}>
-                    <StopButton onClick={() => handleStop()}>BACK</StopButton>
-                </GameButtonBar>
+            { game && game.contentType !== 'gallery' && (
+                <ButtonBar>
+                    <StopButton onClick={() => handleStop()}>[x]</StopButton>
+                </ButtonBar>
             ) }
         </>
     );
 };
 
-export default UnityGame;
+export default Unity;

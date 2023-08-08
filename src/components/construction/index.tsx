@@ -1,13 +1,10 @@
-import React, { FC, RefObject, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ContentSize, Size } from 'src/types';
-import { useWindowSize } from 'src/utils';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-
-interface Props {
-    titleRef: RefObject<HTMLHeadingElement>;
-    containerRef: RefObject<HTMLDivElement>;
-}
+import { useSiteContext } from '@/providers/sites';
+import { Caption } from '@/styles/sharedstyles';
+import { ContentSize, Size } from '@/types';
+import { useWindowSize } from '@/utils';
 
 // TODO: do this for other images that rely on the parent props for margins
 const ConstructionImage = styled(Image)<{ left: number, top: number }>`
@@ -15,17 +12,26 @@ const ConstructionImage = styled(Image)<{ left: number, top: number }>`
   margin-top: ${props => `${props.top}px`};
 `;
 
-const Construction:FC<Props> = ({ titleRef, containerRef }) => {
+const Construction:FC<{}> = () => {
+    const {
+        siteMap,
+        selectedSite,
+        bizerkMode,
+    } = useSiteContext();
+    const site = siteMap[selectedSite];
+
     const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
 
     const windowSize = useWindowSize();
+
+    const titleRef = useRef<HTMLHeadingElement>(null);
 
     const getContentSize = useCallback((desiredSize: Size): ContentSize => {
         let height: number;
         let width: number;
         const offset = (titleRef.current?.getBoundingClientRect().height ?? 0);
 
-        const workingWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
+        const workingWidth = document?.getElementById('middle')?.getBoundingClientRect().width ?? 0;
         const workingHeight = (document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0) - offset;
 
         if (workingWidth > workingHeight) {
@@ -42,24 +48,32 @@ const Construction:FC<Props> = ({ titleRef, containerRef }) => {
         let top = (workingHeight - height) / 2;
         if (workingWidth < 768) top = 0;
         return { width, height, left: (workingWidth - width) / 2, top };
-    }, [containerRef, titleRef]);
+    }, [titleRef]);
 
     useEffect(() => {
         setImageSize(getContentSize({ width: 1610, height: 968 }));
         return () => {};
     }, [getContentSize, windowSize]);
 
+    const headerTxt = site.contentHeader;
     return (
-        <ConstructionImage
-            src="/images/construction/under-construction.png"
-            width={imageSize.width}
-            height={imageSize.height}
-            left={imageSize.left}
-            top={imageSize.top}
-            alt="construction"
-            className="construction"
-            loading="eager"
-        />
+        <>
+            <Caption
+                ref={titleRef}
+                className={bizerkMode !== 'off' ? 'bizerk' : ''}
+            >{headerTxt}
+            </Caption>
+            <ConstructionImage
+                src="/images/construction/under-construction.png"
+                width={imageSize.width}
+                height={imageSize.height}
+                left={imageSize.left}
+                top={imageSize.top}
+                alt="construction"
+                className="construction"
+                loading="eager"
+            />
+        </>
     );
 };
 
