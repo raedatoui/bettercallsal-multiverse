@@ -37,30 +37,31 @@ const HeaderComponent: FC = () => {
     const [selectedSlide, setSelectedSlide] = useState<number>(SiteKeyValidator.options.indexOf(selectedSite));
     const [tickerCounter, setTickerCounter] = useState<number>(0);
 
-    const animate = useCallback((pauseAnim: boolean, delay: number) => {
-        setLeftSpinningState(`img0 fadein ${selectedSite}`);
-        setRightSpinningState(`img1 fadein ${selectedSite}`);
+    const animate = useCallback((pauseAnim: boolean) => {
+        // this was the fadein animation
+        // setLeftSpinningState(`img0 fadein ${selectedSite}`);
+        // setRightSpinningState(`img1 fadein ${selectedSite}`);
         if (!pauseAnim)
             setLoadAnimationStart(false);
+        // setTimeout(() => {
+        setBetterCallSalState('better-call-anim');
+        setLeftSpinningState(`img0 hover ${selectedSite}`);
+        setRightSpinningState(`img1 hover ${selectedSite}`);
         setTimeout(() => {
-            setBetterCallSalState('better-call-anim');
-            setLeftSpinningState(`img0 hover ${selectedSite}`);
-            setRightSpinningState(`img1 hover ${selectedSite}`);
+            setLeftSpinningState(`img0 ${selectedSite}`);
+            setRightSpinningState(`img1 ${selectedSite}`);
+            setBetterCallSalState('');
             setTimeout(() => {
-                setLeftSpinningState(`img0 ${selectedSite}`);
-                setRightSpinningState(`img1 ${selectedSite}`);
-                setBetterCallSalState('');
-                setTimeout(() => {
-                    if (!pauseAnim)
-                        setLoadAnimationStart(true);
-                }, 2000);
-            }, 3000);
-        }, delay);
+                if (!pauseAnim)
+                    setLoadAnimationStart(true);
+            }, 2000);
+        }, 3000);
+        // }, delay);
     }, [selectedSite]);
 
     useEffect(() => {
         if (loaded) {
-            animate(false, 250);
+            animate(false);
             setTickerCounter(0);
         }
         return () => {};
@@ -69,7 +70,7 @@ const HeaderComponent: FC = () => {
     useEffect(() => {
         if (animateHeaderFooter) {
             buffers.play(site.header.ringAudio, false);
-            animate(true, 0);
+            animate(true);
         }
         return () => {};
     }, [animate, animateHeaderFooter, buffers, site.header.ringAudio]);

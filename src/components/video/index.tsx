@@ -11,6 +11,9 @@ interface Props {
     contentItem: BaseContentItem;
     selectedSite: SiteKey;
     site: Site;
+    containerRef: React.RefObject<HTMLDivElement>;
+    titleRef: React.RefObject<HTMLDivElement>;
+    viewsRef: React.RefObject<HTMLDivElement>;
 }
 
 interface YTPlayer {
@@ -53,8 +56,7 @@ const getContentSize = (
     return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
 };
 
-const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, site }) => {
-    const navigate = useNavigate();
+const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, viewsRef, titleRef }) => {
     const [yPlayer, setYPlayer] = useState<YTPlayer>();
     const [vPlayer, setVPlayer] = useState<VimeoPlayer>();
 
@@ -62,17 +64,14 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, site }) => {
     const [ytSize, setYtSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
 
     const windowSize = useWindowSize();
-    const containerRef = useRef<HTMLDivElement>(null);
-    const titleRef = useRef<HTMLDivElement>(null);
-    const viewsRef = useRef<HTMLDivElement>(null);
+
     const vPlayerRef = useRef<HTMLDivElement>(null);
     const yPlayerRef = useRef<HTMLDivElement>(null);
 
     const stopVideo = useCallback(() => {
         yPlayer?.stopVideo?.();
         vPlayer?.pause();
-        navigate('/');
-    }, [navigate, vPlayer, yPlayer]);
+    }, [vPlayer, yPlayer]);
 
     // TODO: revisit text scaling
     // const scaleText = () => {
@@ -88,14 +87,6 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, site }) => {
     //     scaleText();
     // }, []);
 
-    const getTile = () => {
-        if (selectedSite === 'biz' || selectedSite === 'rocks')
-            return `${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`;
-        if (selectedSite === 'fit')
-            return site.leftNav.items.filter(i => i.category === contentItem?.category ?? '')[0].quote ?? '';
-        return contentItem?.name ?? '';
-    };
-
     const getSize = useCallback(() => {
         if (containerRef.current) {
             if (contentItem.contentType === 'video')
@@ -103,9 +94,7 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, site }) => {
             if (contentItem.contentType === 'youtube' || contentItem.contentType === 'vimeo')
                 setYtSize(getContentSize({ width: 640, height: 480 }, containerRef.current, titleRef.current, viewsRef.current));
         }
-    }, [contentItem.contentType]);
-
-    const videoClass = contentItem?.contentId ? 'loaded' : '';
+    }, [containerRef, contentItem.contentType, titleRef, viewsRef]);
 
     useEffect(() => {
         getSize();
@@ -163,10 +152,7 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, site }) => {
     }, [contentItem, vPlayerRef]);
 
     return (
-        <PlayerContainer className={videoClass} ref={containerRef}>
-            { selectedSite !== 'fit' && contentItem.caption !== undefined
-                && <VideoText ref={titleRef}>{getTile()}</VideoText> }
-
+        <>
             <Player className={contentItem.contentType !== 'youtube' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
                 <div id="yplayer" ref={yPlayerRef} />
             </Player>
@@ -180,15 +166,7 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, site }) => {
                     <source src={`${CDN}/videos/${selectedSite}/${contentItem.contentId}`} type="video/mp4" />
                 </VideoElement>
             ) }
-
-            { (selectedSite === 'biz' || selectedSite === 'rocks') && contentItem.views !== undefined
-                && (<VideoText className="lower" ref={viewsRef}>Views: {contentItem.views?.toLocaleString('US') ?? ''}</VideoText>)}
-
-            <ButtonBar>
-                <StopButton onClick={() => stopVideo()}>[x]</StopButton>
-            </ButtonBar>
-
-        </PlayerContainer>
+        </>
     );
 };
 
@@ -209,6 +187,24 @@ const Video:FC<VideoWrapperProps> = () => {
     const contentList = contentMap[selectedSite];
     const contentItem = findContent(contentList, videoId ?? '');
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLDivElement>(null);
+    const viewsRef = useRef<HTMLDivElement>(null);
+
+    const getTile = () => {
+        if (selectedSite === 'biz' || selectedSite === 'rocks')
+            return `${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`;
+        if (selectedSite === 'fit')
+            return site.leftNav.items.filter(i => i.category === contentItem?.category ?? '')[0].quote ?? '';
+        return contentItem?.name ?? '';
+    };
+
+    const stopVideo = useCallback(() => {
+        // yPlayer?.stopVideo?.();
+        // vPlayer?.pause();
+        navigate('/');
+    }, [navigate]);
+
     useEffect(() => {
         window.onYouTubeIframeAPIReady = () => {
             setYtScriptLoaded(true);
@@ -218,8 +214,9 @@ const Video:FC<VideoWrapperProps> = () => {
     if (!contentItem)
         navigate('/');
 
+    const videoClass = contentItem?.contentId ? 'loaded' : '';
     return (
-        <>
+        <PlayerContainer className={videoClass} ref={containerRef}>
             <Script
                 id="youtube-iframe"
                 src="https://www.youtube.com/iframe_api"
@@ -234,15 +231,29 @@ const Video:FC<VideoWrapperProps> = () => {
                 src="https://player.vimeo.com/api/player.js"
                 onReady={() => setVmScriptLoaded(true)}
             />
+
+            { selectedSite !== 'fit' && contentItem?.caption !== undefined
+                && <VideoText ref={titleRef}>{getTile()}</VideoText> }
+
             { ytScriptLoaded && vmScriptLoaded && contentItem && (
                 <VideoPlayer
                     contentItem={contentItem}
                     selectedSite={selectedSite}
                     site={site}
+                    containerRef={containerRef}
+                    titleRef={titleRef}
+                    viewsRef={viewsRef}
                 />
             )}
-            { (!ytScriptLoaded || !vmScriptLoaded) && <p>Loading ...</p> }
-        </>
+
+            { (selectedSite === 'biz' || selectedSite === 'rocks') && contentItem?.views !== undefined
+                && (<VideoText className="lower" ref={viewsRef}>Views: {contentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
+
+            <ButtonBar>
+                <StopButton onClick={() => stopVideo()}>[x]</StopButton>
+            </ButtonBar>
+
+        </PlayerContainer>
     );
 };
 

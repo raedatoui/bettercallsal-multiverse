@@ -8,10 +8,10 @@
     "header": {
       "spinningSalsLeft": "/images/biz/sal-left.webp",
       "spinningSalsRight": "/images/biz/sal-right.webp",
-      "spinningSalAudio": "/audio/biz/airhorn.wav",
+      "spinningSalAudio": "/audio/biz/airhorn.m4a",
       "bizerkIcon": "/images/biz/mic.webp",
       "bizerkIconType": "image",
-      "ringAudio": "/audio/biz/phone-ring.wav",
+      "ringAudio": "/audio/biz/phone-ring.m4a",
       "name1": "Salvatore",
       "name2": "Barra",
       "title": "Sound Mixer",
@@ -25,7 +25,7 @@
       "items": [
         {
           "name": "salutations",
-          "audio": "/audio/biz/salutations.wav",
+          "audio": "/audio/biz/salutations.m4a",
           "video": null,
           "link": "",
           "category": null,
@@ -80,7 +80,7 @@
       "iconType": "image",
       "iconWidth": 148,
       "iconHeight": 393,
-      "ringAudio": "/audio/biz/phone-ring.wav"
+      "ringAudio": "/audio/biz/phone-ring.m4a"
     },
     "gaTag": "G-BQZKS9QQG8"
   },
@@ -93,7 +93,7 @@
     "header": {
       "spinningSalsLeft": "/images/fit/shweaty-left.webp",
       "spinningSalsRight": "/images/fit/shweaty-right.webp",
-      "spinningSalAudio": "/audio/fit/ready-for-this.wav",
+      "spinningSalAudio": "/audio/fit/ready-for-this.m4a",
       "bizerkIcon": "/images/fit/namaste-smoking.gif",
       "bizerkIconType": "image",
       "ringAudio": "/audio/fit/ring.fit.mp3",
@@ -495,7 +495,7 @@
       "items": [
         {
           "name": "salutations",
-          "audio": "/audio/construction/salutations.wav",
+          "audio": "/audio/construction/salutations.m4a",
           "video": null,
           "link": "",
           "category": null,

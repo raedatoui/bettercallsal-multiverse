@@ -35,7 +35,6 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
         siteMap,
         contentMap,
         selectedSite,
-        loading,
         bizerkMode,
     } = useSiteContext();
     const site = siteMap[selectedSite];
@@ -91,8 +90,6 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
             <Caption className={cc}>
                 {headerTxt}
             </Caption>
-
-            { loading && <div>loading</div> }
 
             { selectedSite !== 'construction' && selectedSite !== 'gallery' && (
                 <ContentList
@@ -189,7 +186,6 @@ const ServerList = () => {
                         </Link>
                     ))}
             </ContentList>
-            )
         </>
     );
 };

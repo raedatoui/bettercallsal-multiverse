@@ -7,7 +7,7 @@ import Ecard from '@/components/e-cards';
 import LawBreakers from '@/components/footer';
 import GalleryLanding from '@/components/gallery';
 import ParticleSystem from '@/components/glfx';
-import { HeaderComponent } from '@/components/header';
+import HeaderComponent from '@/components/header';
 import { ServerLeftNav } from '@/components/left-nav';
 import { ClientList, ServerList } from '@/components/list';
 import Layout from '@/components/main/layout';

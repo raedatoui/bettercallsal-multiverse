@@ -15,7 +15,8 @@ const Unity:FC<VisibleProps> = () => {
         contentMap,
         selectedSite,
         loading,
-        fullScreen, setFullScreen
+        fullScreen,
+        setFullScreen
     } = useSiteContext();
     const contentList = contentMap[selectedSite];
 

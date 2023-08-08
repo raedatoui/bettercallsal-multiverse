@@ -81,8 +81,9 @@ export const SpinningImg = styled.div<{ image: string }>`
   background-image: url(${props => `${CDN}${props.image}`});
   //cursor: pointer;
 
+  /* this used to allow a fadein animation, class was added in header.tsx component */
   &.start {
-    opacity: 0;
+    opacity: 1;
   }
   
   &.img0.bizerk {
