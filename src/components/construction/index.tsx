@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useBizerkContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Caption } from '@/styles/sharedstyles';
 import { ContentSize, Size } from '@/types';
@@ -16,9 +17,10 @@ const Construction:FC<{}> = () => {
     const {
         siteMap,
         selectedSite,
-        bizerkMode,
     } = useSiteContext();
     const site = siteMap[selectedSite];
+
+    const { bizerkMode } = useBizerkContext();
 
     const [imageSize, setImageSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
 

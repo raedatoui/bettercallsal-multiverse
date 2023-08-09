@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { breakPoints, SPOTIFY_ENABLED } from '@/constants';
+import { useBizerkContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 
 interface Props {}
@@ -35,7 +36,8 @@ const Gap = styled.div`
 `;
 
 const RightNav: FC<Props> = () => {
-    const { siteMap, selectedSite, bizerkMode, fullScreen } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen } = useSiteContext();
+    const { bizerkMode } = useBizerkContext();
     const site = siteMap[selectedSite];
 
     return (

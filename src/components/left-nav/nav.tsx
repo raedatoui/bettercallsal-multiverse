@@ -94,7 +94,6 @@ export const ClientLeftNav: FC<Props> = () => {
     const {
         siteMap,
         selectedSite,
-        bizerkMode,
         setArtAudioPlaying,
         artAudioPlaying,
         fullScreen
@@ -102,7 +101,7 @@ export const ClientLeftNav: FC<Props> = () => {
 
     const site = siteMap[selectedSite];
 
-    const { bizerkCounter } = useBizerkContext();
+    const { bizerkCounter, bizerkMode } = useBizerkContext();
     const { buffers, loaded } = useContext(SoundContext);
     const { width } = useContext(WindowSizeContext);
 
@@ -215,7 +214,6 @@ export const ServerLeftNav: FC<Props> = () => {
     const {
         siteMap,
         selectedSite,
-        bizerkMode,
         fullScreen
     } = useSiteContext();
 
@@ -241,8 +239,8 @@ export const ServerLeftNav: FC<Props> = () => {
                             />
                         )) }
                     </LeftNavMenu>
-                    <LeftAdd1 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
-                        <LeftAdd2 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
+                    <LeftAdd1>
+                        <LeftAdd2>
                             <LeftContent>
                                 <Image
                                     src={site.leftNav.image}

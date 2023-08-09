@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { CDN } from '@/constants';
-import { useAnimationContext } from '@/providers/animations';
-import { useSiteContext } from '@/providers/sites';
+import { useAnimationContext, useBizerkContext } from '@/providers/animations';
 import { Site } from '@/types';
 import { BizerImage, BizerkImageContainer } from './elements';
 
@@ -11,22 +10,24 @@ interface Props {
 }
 
 const Bizerk:FC<Props> = ({ site, pause }) => {
-    const { setBizerkMode, bizerkMode } = useSiteContext();
+    const { setBizerkMode, bizerkMode } = useBizerkContext();
     const {
         animateHeaderFooter,
         setAnimateHeaderFooter,
-        setSpinningSalsGridCounter,
+        setAnimateGrid,
+        setAnimateBizerk,
     } = useAnimationContext();
 
     const bizerkAnim = () => {
         setAnimateHeaderFooter(animateHeaderFooter + 1);
-        setSpinningSalsGridCounter(Math.round(Math.random() * 1000));
+        setAnimateGrid(Math.round(Math.random() * 1000));
+        setAnimateBizerk(Math.round(Math.random() * 1000));
     };
 
     const bizerkStop = () => {
         if (bizerkMode === 'off') {
             pause();
-            setSpinningSalsGridCounter(0);
+            setAnimateGrid(0);
         }
     };
 

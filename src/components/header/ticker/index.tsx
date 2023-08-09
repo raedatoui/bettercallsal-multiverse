@@ -3,9 +3,16 @@ import { Keyframes } from 'styled-components';
 import { TickerContainer } from '@/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/elements';
 import { EXTERNAL_LINK } from '@/constants';
+import { useBizerkContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Site, SiteKey, BizerkMode, tickerList } from '@/types';
-import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
+import {
+    slideInFromLeft,
+    slideOutFromLeft,
+    squigglySlideInFromLeft,
+    squigglySlideOutFromLeft,
+    squigglyText
+} from '@/utils/animations';
 
 interface Props {
     backgroundColor: string;
@@ -132,8 +139,8 @@ const Slider: FC<SliderProps> = (
 };
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide }) => {
-    const { siteMap, selectedSite, setSelectedSite, bizerkMode } = useSiteContext();
-
+    const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
+    const { bizerkMode } = useBizerkContext();
     return (
         <TickerContainer
             background={backgroundColor}

@@ -1,14 +1,18 @@
 import React, { createContext, FC, useMemo, useState, useEffect, useContext } from 'react';
-import { useSiteContext } from '@/providers/sites';
+import { BizerkMode } from '@/types';
 
 type AnimationProviderType = {
     animateHeaderFooter: number,
     setAnimateHeaderFooter: (a: number) => void,
-    spinningSalsGridCounter: number,
-    setSpinningSalsGridCounter: (a: number) => void,
+    animateGrid: number,
+    setAnimateGrid: (a: number) => void,
+    animateBizerk: number,
+    setAnimateBizerk: (a: number) => void,
 };
 
 type BizerProviderType = {
+    bizerkMode: BizerkMode,
+    setBizerkMode: (a: BizerkMode) => void,
     bizerkCounter: number,
     setBizerkCounter: (a: number) => void,
 };
@@ -20,25 +24,32 @@ interface ProviderProps {
 const AnimationContext = createContext<AnimationProviderType>({
     animateHeaderFooter: 0,
     setAnimateHeaderFooter: () => {},
-    spinningSalsGridCounter: 0,
-    setSpinningSalsGridCounter: () => {},
+    animateGrid: 0,
+    setAnimateGrid: () => {},
+    animateBizerk: 0,
+    setAnimateBizerk: () => {},
 });
 
 const BizerContext = createContext<BizerProviderType>({
     bizerkCounter: 0,
-    setBizerkCounter: () => {}
+    setBizerkCounter: () => {},
+    bizerkMode: 'off',
+    setBizerkMode: () => {},
 });
 
 const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
     const [animateHeaderFooter, setAnimateHeaderFooter] = useState<number>(0);
-    const [spinningSalsGridCounter, setSpinningSalsGridCounter] = useState<number>(0);
+    const [animateGrid, setAnimateGrid] = useState<number>(0);
+    const [animateBizerk, setAnimateBizerk] = useState<number>(0);
 
     const animationCounters = useMemo<AnimationProviderType>(() => ({
         animateHeaderFooter,
         setAnimateHeaderFooter,
-        spinningSalsGridCounter,
-        setSpinningSalsGridCounter,
-    }), [animateHeaderFooter, spinningSalsGridCounter]);
+        animateGrid,
+        setAnimateGrid,
+        animateBizerk,
+        setAnimateBizerk
+    }), [animateHeaderFooter, animateGrid, animateBizerk]);
 
     return (
         <AnimationContext.Provider value={animationCounters}>
@@ -48,8 +59,7 @@ const AnimationsProvider:FC<ProviderProps> = ({ children }) => {
 };
 
 const BizerkProvider:FC<ProviderProps> = ({ children }) => {
-    const { bizerkMode } = useSiteContext();
-
+    const [bizerkMode, setBizerkMode] = useState<BizerkMode>('off');
     const [bizerkCounter, setBizerkCounter] = useState<number>(0);
     useEffect(() => {
         if (bizerkMode !== 'off')
@@ -61,7 +71,9 @@ const BizerkProvider:FC<ProviderProps> = ({ children }) => {
     const animationCounters = useMemo<BizerProviderType>(() => ({
         bizerkCounter,
         setBizerkCounter,
-    }), [bizerkCounter]);
+        bizerkMode,
+        setBizerkMode
+    }), [bizerkCounter, bizerkMode]);
     return (
         <BizerContext.Provider value={animationCounters}>
             {children}

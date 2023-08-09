@@ -4,7 +4,6 @@ import { CDN } from '@/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,
-    BizerkMode,
     ContentMap,
     GameContentItem,
     GameContentListValidator,
@@ -18,8 +17,6 @@ type SiteProviderType = {
     loading: boolean,
     selectedSite: SiteKey,
     setSelectedSite: (s: SiteKey) => void,
-    bizerkMode: BizerkMode,
-    setBizerkMode: (a: BizerkMode) => void,
     keyPressed: string | null,
     artAudioPlaying: boolean,
     setArtAudioPlaying: (b: boolean) => void,
@@ -54,7 +51,6 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     });
     const [loading, setLoading] = useState<boolean>(false);
 
-    const [bizerkMode, setBizerkMode] = useState<BizerkMode>('off');
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
     const [artAudioPlaying, setArtAudioPlaying] = useState<boolean>(false);
     const [fullScreen, setFullScreen] = useState<boolean>(false);
@@ -148,15 +144,12 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         setSelectedSite: setSite,
         loading,
         contentMap,
-        bizerkMode,
-        setBizerkMode,
         keyPressed,
         artAudioPlaying,
         setArtAudioPlaying,
         fullScreen,
         setFullScreen,
     }), [
-        bizerkMode,
         defaultSiteMap,
         selectedSite,
         setSite,

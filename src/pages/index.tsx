@@ -8,7 +8,7 @@ import React, { FC } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import MainContainer from '@/components/main';
 import { defaultSiteMap } from '@/constants';
-import { AnimationsProvider } from '@/providers/animations';
+import { AnimationsProvider, BizerkProvider } from '@/providers/animations';
 import { SoundProvider } from '@/providers/audio-context';
 import { SitesDataProvider } from '@/providers/sites';
 import { WindowSizeProvider } from '@/providers/window-size';
@@ -136,13 +136,15 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                 <GlobalStyle />
                 <Fonts />
                 <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent} defaultSiteMap={defaultSiteMap}>
-                    <SoundProvider>
-                        <WindowSizeProvider>
-                            <AnimationsProvider>
-                                <MainContainer />
-                            </AnimationsProvider>
-                        </WindowSizeProvider>
-                    </SoundProvider>
+                    <BizerkProvider>
+                        <SoundProvider>
+                            <WindowSizeProvider>
+                                <AnimationsProvider>
+                                    <MainContainer />
+                                </AnimationsProvider>
+                            </WindowSizeProvider>
+                        </SoundProvider>
+                    </BizerkProvider>
                 </SitesDataProvider>
             </ThemeProvider>
 

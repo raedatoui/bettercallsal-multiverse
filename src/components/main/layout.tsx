@@ -73,6 +73,12 @@ const Layout: FC<Props> = () => {
 
         setPrevPath(location.pathname);
     }, [location, prevPath, selectedSite, setFullScreen, setPrevPath]);
+    //
+    // if (location.pathname.includes('art') && selectedSite !== 'art')
+    //     return <Navigate to="/" replace={false} />;
+    //
+    // if (location.pathname.includes('video') && !['biz', 'rocks', 'fit'].includes(selectedSite))
+    //     return <Navigate to="/" replace={false} />;
 
     return (
         <Row id="content-row">

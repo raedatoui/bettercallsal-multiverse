@@ -15,6 +15,7 @@ import RightNav from '@/components/right-nav';
 import Unity from '@/components/unity';
 import Video from '@/components/video';
 import { CDN } from '@/constants';
+import { useBizerkContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { PathProvider } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
@@ -56,7 +57,8 @@ const RouterLessRow: FC<{ selectedSite: SiteKey, fullScreen: boolean }> = ({ sel
 );
 
 const MainContainerInner: FC<Props> = () => {
-    const { selectedSite, bizerkMode, setBizerkMode, fullScreen } = useSiteContext();
+    const { selectedSite, fullScreen } = useSiteContext();
+    const { bizerkMode, setBizerkMode } = useBizerkContext();
     const { buffers } = useContext(SoundContext);
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;

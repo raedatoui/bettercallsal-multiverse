@@ -1,6 +1,6 @@
 import React, { FC, useContext, useState, useEffect, useCallback } from 'react';
 import Ticker from '@/components/header/ticker';
-import { useAnimationContext } from '@/providers/animations';
+import { useAnimationContext, useBizerkContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { WindowSizeContext } from '@/providers/window-size';
@@ -14,9 +14,13 @@ import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './midd
 import { SpinningSal, SpinningSalsContainer } from './spinning';
 
 const HeaderComponent: FC = () => {
-    const { siteMap, selectedSite, bizerkMode, fullScreen } = useSiteContext();
-    const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
-
+    const { siteMap, selectedSite, fullScreen } = useSiteContext();
+    const {
+        animateHeaderFooter,
+        setAnimateHeaderFooter,
+        animateBizerk,
+    } = useAnimationContext();
+    const { bizerkMode } = useBizerkContext();
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);
@@ -74,6 +78,12 @@ const HeaderComponent: FC = () => {
         }
         return () => {};
     }, [animate, animateHeaderFooter, buffers, site.header.ringAudio]);
+
+    useEffect(() => {
+        if (animateBizerk)
+            buffers.play(site.header.spinningSalAudio, false);
+        return () => {};
+    }, [animate, animateBizerk, buffers, site.header.spinningSalAudio]);
 
     let ticketInterval = 5000;
     if (bizerkMode !== 'off') ticketInterval = 2000;

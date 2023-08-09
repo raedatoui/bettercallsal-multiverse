@@ -35,9 +35,9 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
         siteMap,
         contentMap,
         selectedSite,
-        bizerkMode,
     } = useSiteContext();
     const site = siteMap[selectedSite];
+    const { bizerkMode } = useBizerkContext();
 
     const defaultList = contentMap[selectedSite]
         .filter(i => i.display)
@@ -48,7 +48,7 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
     const windowSize = useWindowSize();
     const {
         animateHeaderFooter,
-        spinningSalsGridCounter,
+        animateGrid,
     } = useAnimationContext();
     const { bizerkCounter } = useBizerkContext();
 
@@ -58,7 +58,7 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
         let list = contentMap[selectedSite];
 
         // shuffle list based on spinning counter, or on re-render for all sites but biz
-        if (spinningSalsGridCounter > 0 || bizerkCounter > 0 || selectedSite !== 'biz')
+        if (animateGrid > 0 || bizerkCounter > 0 || selectedSite !== 'biz')
             list = shuffleList(list);
 
         setContentList(list);
@@ -66,7 +66,7 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
     }, [
         contentMap,
         selectedSite,
-        spinningSalsGridCounter,
+        animateGrid,
         animateHeaderFooter,
         windowSize,
         bizerkCounter]);

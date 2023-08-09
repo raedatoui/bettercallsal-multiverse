@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from '@/components/footer/elements';
-import { useAnimationContext } from '@/providers/animations';
+import { useAnimationContext, useBizerkContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Size } from '@/types';
@@ -10,8 +10,9 @@ import { useWindowSize } from '@/utils';
 interface Props {}
 
 const LawBreakers: FC<Props> = () => {
-    const { siteMap, selectedSite, bizerkMode, fullScreen } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const { animateHeaderFooter, setAnimateHeaderFooter } = useAnimationContext();
+    const { bizerkMode } = useBizerkContext();
     const site = siteMap[selectedSite];
 
     const { buffers, loaded } = useContext(SoundContext);

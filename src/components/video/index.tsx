@@ -4,13 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, Player, PlayerContainer, StopButton, VideoElement, VideoText } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, Site, SiteKey, Size } from '@/types';
+import { BaseContentItem, ContentSize, SiteKey, Size } from '@/types';
 import { useWindowSize, findContent } from '@/utils';
 
 interface Props {
     contentItem: BaseContentItem;
     selectedSite: SiteKey;
-    site: Site;
     containerRef: React.RefObject<HTMLDivElement>;
     titleRef: React.RefObject<HTMLDivElement>;
     viewsRef: React.RefObject<HTMLDivElement>;
@@ -65,8 +64,7 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, views
 
     const windowSize = useWindowSize();
 
-    const vPlayerRef = useRef<HTMLDivElement>(null);
-    const yPlayerRef = useRef<HTMLDivElement>(null);
+    const playerRef = useRef<HTMLDivElement>(null);
 
     const stopVideo = useCallback(() => {
         yPlayer?.stopVideo?.();
@@ -113,7 +111,7 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, views
             } else
                 // @ts-ignore
                 // eslint-disable-next-line no-new
-                new YT.Player('yplayer', {
+                new YT.Player('player', {
                     height: ytSize.height,
                     width: ytSize.width,
                     loop: 1,
@@ -138,28 +136,26 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, views
                 });
         }
 
-    }, [contentItem, yPlayerRef]);
+    }, [contentItem, getSize, playerRef, stopVideo, vPlayer, yPlayer, ytSize.height, ytSize.width]);
 
     useEffect(() => {
-        if (contentItem.contentType === 'vimeo' && vPlayerRef.current)
+        if (contentItem.contentType === 'vimeo' && playerRef.current)
             // @ts-ignore
-            setVPlayer(new Vimeo.Player('vplayer', {
+            setVPlayer(new Vimeo.Player('player', {
                 id: contentItem.contentId,
                 width: ytSize.width,
                 autoplay: true,
                 loop: true,
             }));
-    }, [contentItem, vPlayerRef]);
+    }, [contentItem, playerRef, ytSize.width]);
 
     return (
         <>
-            <Player className={contentItem.contentType !== 'youtube' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
-                <div id="yplayer" ref={yPlayerRef} />
-            </Player>
-
-            <Player className={contentItem.contentType !== 'vimeo' ? 'hide' : ''} width={ytSize.width} height={ytSize.height}>
-                <div id="vplayer" ref={vPlayerRef} />
-            </Player>
+            { (contentItem.contentType === 'youtube' || contentItem.contentType === 'vimeo') && (
+                <Player width={ytSize.width} height={ytSize.height}>
+                    <div id="player" ref={playerRef} />
+                </Player>
+            )}
 
             { contentItem.contentType === 'video' && (
                 <VideoElement controls autoPlay width={videoSize.width} height={videoSize.height} left={videoSize.left}>
@@ -239,7 +235,6 @@ const Video:FC<VideoWrapperProps> = () => {
                 <VideoPlayer
                     contentItem={contentItem}
                     selectedSite={selectedSite}
-                    site={site}
                     containerRef={containerRef}
                     titleRef={titleRef}
                     viewsRef={viewsRef}

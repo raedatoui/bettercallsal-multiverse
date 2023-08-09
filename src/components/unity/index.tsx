@@ -63,7 +63,7 @@ const Unity:FC<VisibleProps> = () => {
                 setUnityInstance(null);
                 navigate('/');
             });
-    }, [unityInstance]);
+    }, [navigate, unityInstance]);
 
     const loadGame = useCallback(() => {
         setGameProgress(0);
