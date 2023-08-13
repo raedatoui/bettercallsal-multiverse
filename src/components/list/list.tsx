@@ -6,6 +6,7 @@ import {
     useParams,
     useNavigate
 } from 'react-router-dom';
+import { URL_MAP } from '@/constants';
 import { useAnimationContext, useBizerkContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import {
@@ -14,18 +15,8 @@ import {
     ContentItemTitle,
     ContentList,
 } from '@/styles/sharedstyles';
-import { BaseContentItem, GameContentItem, SiteKey, VisibleProps } from '@/types';
+import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
 import { shuffleList, slugify, useWindowSize, findCategory } from '@/utils';
-
-const URL_MAP: Record<SiteKey, string> = {
-    biz: 'video',
-    games: 'game',
-    rocks: 'video',
-    fit: 'video',
-    art: 'art',
-    construction: '',
-    gallery: ''
-};
 
 const ClientList:FC<VisibleProps> = ({ visible }) => {
     const { category } = useParams<{ category: string }>();
@@ -35,6 +26,7 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
         siteMap,
         contentMap,
         selectedSite,
+        loading,
     } = useSiteContext();
     const site = siteMap[selectedSite];
     const { bizerkMode } = useBizerkContext();
@@ -91,7 +83,7 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
                 {headerTxt}
             </Caption>
 
-            { selectedSite !== 'construction' && selectedSite !== 'gallery' && (
+            { !loading && selectedSite !== 'construction' && selectedSite !== 'gallery' && (
                 <ContentList
                     id="content-list"
                     className={visible ? '' : 'off'}

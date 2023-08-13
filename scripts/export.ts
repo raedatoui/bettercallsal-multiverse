@@ -1,8 +1,8 @@
+import sitesData from '../content/sites.json';
 import { LeftNavNavItem, SiteMapValidator } from '../src/types';
 import { convertObjectToCsvString } from './csv';
-import sitesData from '../content/sites.json';
 
-export const run = async () => {
+const run = async () => {
     const siteMap = SiteMapValidator.parse(sitesData);
     Object.entries(siteMap).map(([key, site]) => {
         console.log(key);

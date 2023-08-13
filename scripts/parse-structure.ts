@@ -1,7 +1,7 @@
-import { join } from 'path';
 import { writeFileSync } from 'fs';
-import { CsvRow, loadSheet } from './csv';
+import { join } from 'path';
 import { Site, SiteKey, SiteMapValidator, SiteValidator } from '../src/types';
+import { CsvRow, loadSheet } from './csv';
 
 type RowWithNav = CsvRow & {
     items: CsvRow[];

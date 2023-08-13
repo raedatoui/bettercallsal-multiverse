@@ -1,3 +1,5 @@
+import { promises } from 'fs';
+import { join } from 'path';
 import { BaseContentListValidator } from '../src/types';
 import { loadSheet } from './csv';
 
@@ -6,12 +8,9 @@ const run = async () => {
     const contentList = BaseContentListValidator.parse(rows.map(r => ({
         ...r,
         views: r.views === '' ? null : parseInt(r.views.toString(), 10),
-        // year: r.year === '' ? null : parseInt(r.year.toString(), 10),
-        // width: r.width === '' ? null : parseInt(r.width.toString(), 10),
-        // height: r.height === '' ? null : parseInt(r.height.toString(), 10),
     })));
-    console.log(JSON.stringify(contentList));
-    return contentList;
+    const content = JSON.stringify({ items: contentList }, null, 2);
+    await promises.writeFile(join(__dirname, '../', 'content', 'content-biz.json'), content);
 };
 
 run()

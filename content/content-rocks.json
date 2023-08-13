@@ -8,7 +8,8 @@
       "category": "nature-creeps",
       "description": "My Cerebellum",
       "caption": "Bass",
-      "views": 65
+      "views": 80,
+      "display": true
     },
     {
       "name": "Switch",
@@ -16,9 +17,10 @@
       "contentType": "youtube",
       "thumb": "blind.jpg",
       "category": "blind-archer",
-      "description": "Switch",
+      "description": "Blind Archer - Switch",
       "caption": "Guitar",
-      "views": 245
+      "views": 278,
+      "display": true
     },
     {
       "name": "Nocturnus: Dreaming",
@@ -28,7 +30,8 @@
       "category": "harjo",
       "description": "HARJO - Nocturnus: Dreaming",
       "caption": "Guitar",
-      "views": 24
+      "views": 35,
+      "display": true
     },
     {
       "name": "Portrait of a Lady",
@@ -38,7 +41,8 @@
       "category": "harjo",
       "description": "VIMMXX - Skylar Brandt",
       "caption": "Guitar",
-      "views": 222
+      "views": 222,
+      "display": true
     },
     {
       "name": "Surrounded By Scorpions",
@@ -48,7 +52,8 @@
       "category": "nature-creeps",
       "description": "Surrounded By Scorpions",
       "caption": "Bass",
-      "views": 166
+      "views": 198,
+      "display": true
     },
     {
       "name": "Smoke",
@@ -56,9 +61,10 @@
       "contentType": "youtube",
       "thumb": "smoke.jpg",
       "category": "blind-archer",
-      "description": "Smoke - Blind Archer",
+      "description": "Blind Archer - Smoke",
       "caption": "Guitar",
-      "views": 171
+      "views": 180,
+      "display": true
     },
     {
       "name": "A Contagious Absence",
@@ -68,7 +74,8 @@
       "category": "harjo",
       "description": "HARJO - A Contagious Absence (Official Video)",
       "caption": "Guitar",
-      "views": 72
+      "views": 90,
+      "display": true
     },
     {
       "name": "Capsized and Fathoms Deep",
@@ -78,7 +85,8 @@
       "category": "harjo",
       "description": "Capsized and Fathoms Deep Promo 1",
       "caption": "Guitar",
-      "views": 24
+      "views": 29,
+      "display": true
     },
     {
       "name": "Raptures of the Deep",
@@ -88,7 +96,8 @@
       "category": "harjo",
       "description": "Raptures of the Deep",
       "caption": "Guitar",
-      "views": 19
+      "views": 22,
+      "display": true
     },
     {
       "name": "New Fire Ceremony",
@@ -98,7 +107,8 @@
       "category": "harjo",
       "description": "HARJO - New Fire Ceremony (Official Video)",
       "caption": "Guitar",
-      "views": 44
+      "views": 54,
+      "display": true
     },
     {
       "name": "Milton (Live)",
@@ -108,7 +118,8 @@
       "category": "harjo",
       "description": "HARJO - Milton LIVE at C4NM 7-12-19",
       "caption": "Guitar",
-      "views": 17
+      "views": 24,
+      "display": true
     },
     {
       "name": "RBN (Live)",
@@ -118,7 +129,8 @@
       "category": "rbn",
       "description": "River Bottom Nightmares",
       "caption": "Guitar",
-      "views": 3660
+      "views": 3,
+      "display": true
     }
   ]
 }

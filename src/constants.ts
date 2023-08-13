@@ -1,4 +1,4 @@
-import { SiteMapValidator } from '@/types';
+import { SiteKey, SiteMapValidator } from '@/types';
 import sitesData from '../content/sites.json';
 
 export const CDN = process.env.cdnUrl;
@@ -26,4 +26,14 @@ export const headerBreakPoints = {
     lg1a: { min: 700, max: 800 },
     md: { min: 568, max: 699 },
     sm: { max: 567 }
+};
+
+export const URL_MAP: Record<SiteKey, string> = {
+    biz: 'video',
+    games: 'game',
+    rocks: 'video',
+    fit: 'video',
+    art: 'art',
+    construction: '',
+    gallery: ''
 };

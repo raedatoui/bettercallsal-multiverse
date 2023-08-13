@@ -41,7 +41,6 @@ const Layout: FC<Props> = () => {
             setFullScreen(false);
         if (keyPressed && keyMap[keyPressed] !== undefined && selectedSite !== 'gallery') {
             setSelectedSite(keyMap[keyPressed]);
-            navigate('/');
             setFullScreen(false);
             window.scrollTo(0, 0);
             document.body.scrollTo(0, 0);

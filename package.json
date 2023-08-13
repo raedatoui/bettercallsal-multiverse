@@ -18,11 +18,11 @@
     "keen-slider": "^6.8.5",
     "three": "^0.154.0",
     "react-router": "^6.14.2",
-    "react-router-dom": "^6.14.2"
+    "react-router-dom": "^6.14.2",
+    "lodash": "^4.17.21",
+    "papaparse": "^5.4.1"
   },
   "devDependencies": {
-    "lodash": "^4.17.21",
-    "papaparse": "^5.4.1",
     "@types/lodash": "^4.14.194",
     "@types/node": "~18.15.11",
     "@types/papaparse": "5.3.7",
