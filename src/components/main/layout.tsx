@@ -60,15 +60,16 @@ const Layout: FC<Props> = () => {
                         inline: 'nearest',
                     });
                 }, 100);
-        }
-
-        if (location.pathname !== '/') {
+        } else {
             window.scrollTo(0, 0);
             document.body.scrollTo(0, 0);
             document.getElementById('content-row')?.scrollTo(0, 0);
-            if (document.body.clientWidth < 768)
-                setFullScreen(true);
         }
+
+        if (location.pathname !== '/' && document.body.clientWidth < 768 && !location.pathname.startsWith('/category/'))
+            setFullScreen(true);
+        else if (document.body.clientWidth < 768)
+            setFullScreen(false);
 
         setPrevPath(location.pathname);
     }, [location, prevPath, selectedSite, setFullScreen, setPrevPath]);

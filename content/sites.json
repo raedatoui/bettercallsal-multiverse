@@ -249,7 +249,7 @@
         },
         {
           "name": "Classical",
-          "audio": null,
+          "audio": "/audio/art/classical.mp3",
           "video": null,
           "link": null,
           "category": "classical",
@@ -258,7 +258,7 @@
         },
         {
           "name": "Sacred",
-          "audio": null,
+          "audio": "/audio/art/sacred.mp3",
           "video": null,
           "link": null,
           "category": "sacred",
@@ -266,17 +266,17 @@
           "quoteLink": null
         },
         {
-          "name": "Historical",
-          "audio": null,
+          "name": "Equestrian",
+          "audio": "/audio/art/equestrian.mp3",
           "video": null,
           "link": null,
-          "category": "historical",
-          "quote": "Historical",
+          "category": "equestrian",
+          "quote": "Equestrian",
           "quoteLink": null
         },
         {
           "name": "Contemporary",
-          "audio": null,
+          "audio": "/audio/art/contemporary.mp3",
           "video": null,
           "link": null,
           "category": "contemporary",
@@ -285,7 +285,7 @@
         },
         {
           "name": "All",
-          "audio": null,
+          "audio": "/audio/art/allart.mp3",
           "video": null,
           "link": null,
           "category": "all",
@@ -428,7 +428,7 @@
         },
         {
           "name": "Super Sal Bros.",
-          "audio": null,
+          "audio": "/audio/games/supersal.mp3",
           "video": null,
           "link": null,
           "category": "games",
@@ -437,7 +437,7 @@
         },
         {
           "name": "Sal-man",
-          "audio": null,
+          "audio": "/audio/games/salman.mp3",
           "video": null,
           "link": null,
           "category": "games",
@@ -446,7 +446,7 @@
         },
         {
           "name": "Salitaire",
-          "audio": null,
+          "audio": "/audio/games/salitaire.mp3",
           "video": null,
           "link": null,
           "category": "games",
