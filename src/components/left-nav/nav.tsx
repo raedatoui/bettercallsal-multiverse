@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
-import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     LeftAdd1,
     LeftAdd2,
@@ -31,15 +31,15 @@ interface ButtonProps {
 const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width, fullScreen }) => {
     const ref = useRef<HTMLDivElement>(null);
 
-    const scaleText = useCallback(() => {
+    const scaleText = () => {
         if (window.textFit && ref.current && !fullScreen)
             window.textFit(ref.current, { alignVert: true, alignHoriz: false, detectMultiLine: false, widthOnly: false, maxFontSize: 34 });
-    }, [fullScreen]);
+    };
 
     useEffect(() => {
         scaleText();
         return () => {};
-    }, [width, ref, scaleText]);
+    }, [width, ref]);
 
     useEffect(() => {
         scaleText();
@@ -88,15 +88,14 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
 interface Props {}
 
 export const ClientLeftNav: FC<Props> = () => {
-    const location = useLocation();
     const navigate = useNavigate();
 
     const {
         siteMap,
         selectedSite,
-        setArtAudioPlaying,
-        artAudioPlaying,
-        fullScreen
+        fullScreen,
+        unityInstance,
+        setUnityInstance
     } = useSiteContext();
 
     const site = siteMap[selectedSite];
@@ -110,6 +109,9 @@ export const ClientLeftNav: FC<Props> = () => {
     const clonedNavItems = bizerkCounter > 1 && bizerkMode !== 'off' ? shuffleList(site.leftNav.items) : site.leftNav.items;
 
     const handleAudio = (a: string) => {
+        // TODO: if art is playing, and click on any nav, stop pavane
+        if (selectedSite === 'art')
+            buffers.stop('/audio/art/pavane.mp3');
         if (loaded)
             if (!audioPlaying) {
                 buffers.play(a, false);
@@ -122,7 +124,36 @@ export const ClientLeftNav: FC<Props> = () => {
                 buffers.play(a, false);
                 setAudioPlaying(a);
             }
-        setArtAudioPlaying(false);
+
+    };
+
+    const handleCategory = (l: LeftNavNavItem) => {
+        // TODO: if unity is playing, and click on any nav, stop unity
+        if (unityInstance && l.category === 'all') {
+            unityInstance.Quit()
+                .then(() => {
+                    setUnityInstance(null);
+                    navigate('/');
+                });
+            return;
+        }
+        // TODO: if all is clicked, navigate home
+        if (l.category === '' || l.category === 'all')
+            navigate('/');
+        else if (l.category === 'games')
+            navigate(`/game/${slugify(l.name)}`); // nav names slugs to match content slugs
+        else {
+            const u = l.category === 'e-cards' ? '/e-cards' : `/category/${l.category}`;
+            navigate(u);
+        }
+    };
+
+    const handleVideo = (l: LeftNavNavItem) => {
+        // TODO: this stops all audio when playing VIDEO content from left nav
+        // for art content: audio is stopped by list
+        // for games content: audio is allowed
+        buffers.stopAll();
+        navigate(`/video/${slugify(l.name)}`);
     };
 
     const handleImageClick = () => {
@@ -131,23 +162,6 @@ export const ClientLeftNav: FC<Props> = () => {
         if (site.leftNav.video)
             navigate(`/video/${slugify(site.leftNav.text)}`);
     };
-
-    useEffect(() => {
-        if (location.pathname !== '/' && !location.pathname.startsWith('/category')) {
-            if (audioPlaying)
-                buffers.stop(audioPlaying);
-            setAudioPlaying(null);
-        }
-        return () => {};
-    }, [audioPlaying, buffers, location]);
-
-    useEffect(() => {
-        if (artAudioPlaying) {
-            if (audioPlaying) buffers.stop(audioPlaying);
-            buffers.play('/audio/art/pavane.mp3', false);
-            setAudioPlaying('/audio/art/pavane.mp3');
-        }
-    }, [artAudioPlaying, buffers, audioPlaying]);
 
     return (
         <>
@@ -160,24 +174,13 @@ export const ClientLeftNav: FC<Props> = () => {
                 { selectedSite !== 'gallery' && (
                     <>
                         <LeftNavMenu>
-                            { clonedNavItems.map(i => (
+                            { clonedNavItems.filter(i => i.category !== 'load').map(i => (
                                 <NavButton
                                     key={i.name}
                                     navItem={i}
                                     audioCb={handleAudio}
-                                    navItemCb={(l: LeftNavNavItem) => {
-                                        if (l.category === '' || l.category === 'all')
-                                            navigate('/');
-                                        else if (l.category === 'games')
-                                            navigate(`/game/${slugify(l.name)}`); // nav names slugs to match content slugs
-                                        else {
-                                            const u = l.category === 'e-cards' ? '/e-cards' : `/category/${l.category}`;
-                                            navigate(u);
-                                        }
-                                    }}
-                                    videoCb={(l: LeftNavNavItem) => {
-                                        navigate(`/video/${slugify(l.name)}`);
-                                    }}
+                                    navItemCb={handleCategory}
+                                    videoCb={handleVideo}
                                     width={width}
                                     fullScreen={fullScreen}
                                 />
@@ -223,43 +226,49 @@ export const ServerLeftNav: FC<Props> = () => {
     const clonedNavItems = site.leftNav.items;
 
     return (
-        <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
-            { selectedSite !== 'gallery' && (
-                <>
-                    <LeftNavMenu>
-                        { clonedNavItems.map(i => (
-                            <NavButton
-                                key={i.name}
-                                navItem={i}
-                                audioCb={() => {}}
-                                navItemCb={(l: LeftNavNavItem) => l}
-                                videoCb={(l: LeftNavNavItem) => l}
-                                width={width}
-                                fullScreen={fullScreen}
-                            />
-                        )) }
-                    </LeftNavMenu>
-                    <LeftAdd1>
-                        <LeftAdd2>
-                            <LeftContent>
-                                <Image
-                                    src={site.leftNav.image}
-                                    alt={site.leftNav.text}
-                                    fill
-                                    sizes="100vw"
-                                    style={{
-                                        maxWidth: '100%',
-                                    }}
+        <>
+            <Script
+                id="text-fit"
+                src="/scripts/textfit.js"
+            />
+            <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
+                { selectedSite !== 'gallery' && (
+                    <>
+                        <LeftNavMenu>
+                            { clonedNavItems.map(i => (
+                                <NavButton
+                                    key={i.name}
+                                    navItem={i}
+                                    audioCb={() => {}}
+                                    navItemCb={(l: LeftNavNavItem) => l}
+                                    videoCb={(l: LeftNavNavItem) => l}
+                                    width={width}
+                                    fullScreen={fullScreen}
                                 />
-                            </LeftContent>
-                            <span dangerouslySetInnerHTML={{
-                                __html: site.leftNav.text
-                            }}
-                            />
-                        </LeftAdd2>
-                    </LeftAdd1>
-                </>
-            ) }
-        </LeftNavContainer>
+                            )) }
+                        </LeftNavMenu>
+                        <LeftAdd1>
+                            <LeftAdd2>
+                                <LeftContent>
+                                    <Image
+                                        src={site.leftNav.image}
+                                        alt={site.leftNav.text}
+                                        fill
+                                        sizes="100vw"
+                                        style={{
+                                            maxWidth: '100%',
+                                        }}
+                                    />
+                                </LeftContent>
+                                <span dangerouslySetInnerHTML={{
+                                    __html: site.leftNav.text
+                                }}
+                                />
+                            </LeftAdd2>
+                        </LeftAdd1>
+                    </>
+                ) }
+            </LeftNavContainer>
+        </>
     );
 };

@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
@@ -13,6 +13,10 @@ interface Props {
     containerRef: React.RefObject<HTMLDivElement>;
     titleRef: React.RefObject<HTMLDivElement>;
     viewsRef: React.RefObject<HTMLDivElement>;
+}
+
+interface VideoPlayerType {
+    stop: () => void
 }
 
 interface YTPlayer {
@@ -55,7 +59,7 @@ const getContentSize = (
     return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
 };
 
-const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, viewsRef, titleRef }) => {
+const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, selectedSite, containerRef, viewsRef, titleRef }, ref) => {
     const [yPlayer, setYPlayer] = useState<YTPlayer>();
     const [vPlayer, setVPlayer] = useState<VimeoPlayer>();
 
@@ -65,11 +69,6 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, views
     const windowSize = useWindowSize();
 
     const playerRef = useRef<HTMLDivElement>(null);
-
-    const stopVideo = useCallback(() => {
-        yPlayer?.stopVideo?.();
-        vPlayer?.pause();
-    }, [vPlayer, yPlayer]);
 
     // TODO: revisit text scaling
     // const scaleText = () => {
@@ -123,20 +122,21 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, views
                     events: {
                         /* eslint-disable @typescript-eslint/no-explicit-any */
                         onReady: (event: any) => {
+                            console.log('ready', event.target);
                             setYPlayer(event.target);
                             event.target.playVideo();
                         },
-                        onStateChange: (event: any) => {
-                            // @ts-ignore
-                            if (event.data === YT.PlayerState.ENDED)
-                                stopVideo();
-                        },
+                        // onStateChange: (event: any) => {
+                        //     // @ts-ignore
+                        //     if (event.data === YT.PlayerState.ENDED)
+                        //         stopVideo();
+                        // },
                         /* eslint-disable @typescript-eslint/no-explicit-any */
                     },
                 });
         }
 
-    }, [contentItem, getSize, playerRef, stopVideo, vPlayer, yPlayer, ytSize.height, ytSize.width]);
+    }, [contentItem, getSize, playerRef, vPlayer, yPlayer, ytSize.height, ytSize.width]);
 
     useEffect(() => {
         if (contentItem.contentType === 'vimeo' && playerRef.current)
@@ -148,6 +148,14 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, views
                 loop: true,
             }));
     }, [contentItem, playerRef, ytSize.width]);
+
+    useImperativeHandle(ref, () => ({
+        stop() {
+            console.log('stop video', yPlayer, vPlayer);
+            yPlayer?.stopVideo?.();
+            vPlayer?.pause();
+        }
+    }));
 
     return (
         <>
@@ -164,7 +172,7 @@ const VideoPlayer: FC<Props> = ({ contentItem, selectedSite, containerRef, views
             ) }
         </>
     );
-};
+});
 
 interface VideoWrapperProps {}
 
@@ -183,6 +191,7 @@ const Video:FC<VideoWrapperProps> = () => {
     const contentList = contentMap[selectedSite];
     const contentItem = findContent(contentList, videoId ?? '');
 
+    const videoPlayerRef = useRef<VideoPlayerType>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLDivElement>(null);
     const viewsRef = useRef<HTMLDivElement>(null);
@@ -196,9 +205,11 @@ const Video:FC<VideoWrapperProps> = () => {
     };
 
     const stopVideo = useCallback(() => {
-        // yPlayer?.stopVideo?.();
-        // vPlayer?.pause();
-        navigate('/');
+        videoPlayerRef.current?.stop();
+        // TODO: this goes back to category
+        if (selectedSite === 'biz')
+            navigate('/');
+        else navigate(-1);
     }, [navigate]);
 
     useEffect(() => {
@@ -238,6 +249,7 @@ const Video:FC<VideoWrapperProps> = () => {
                     containerRef={containerRef}
                     titleRef={titleRef}
                     viewsRef={viewsRef}
+                    ref={videoPlayerRef}
                 />
             )}
 

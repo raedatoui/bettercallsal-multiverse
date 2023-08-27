@@ -8,7 +8,7 @@ import {
     GameContentItem,
     GameContentListValidator,
     SiteKey,
-    SiteMap,
+    SiteMap, UnityInstance,
 } from '@/types';
 
 type SiteProviderType = {
@@ -18,10 +18,10 @@ type SiteProviderType = {
     selectedSite: SiteKey,
     setSelectedSite: (s: SiteKey) => void,
     keyPressed: string | null,
-    artAudioPlaying: boolean,
-    setArtAudioPlaying: (b: boolean) => void,
     fullScreen: boolean,
     setFullScreen: (b: boolean) => void,
+    unityInstance: UnityInstance | null,
+    setUnityInstance: (i: UnityInstance | null) => void,
 };
 
 const defaultContentMap = {
@@ -52,8 +52,8 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
     const [loading, setLoading] = useState<boolean>(false);
 
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
-    const [artAudioPlaying, setArtAudioPlaying] = useState<boolean>(false);
     const [fullScreen, setFullScreen] = useState<boolean>(false);
+    const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
 
     const setSite = useCallback((s: SiteKey) => {
         if (s !== selectedSite) {
@@ -145,10 +145,10 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         loading,
         contentMap,
         keyPressed,
-        artAudioPlaying,
-        setArtAudioPlaying,
         fullScreen,
         setFullScreen,
+        unityInstance,
+        setUnityInstance
     }), [
         defaultSiteMap,
         selectedSite,
@@ -156,8 +156,8 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         loading,
         contentMap,
         keyPressed,
-        artAudioPlaying,
         fullScreen,
+        unityInstance,
     ]);
 
     return (

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, UnityInstance, VisibleProps, } from '@/types';
+import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, VisibleProps, } from '@/types';
 import { findGame, useWindowSize } from '@/utils';
 
 const Unity:FC<VisibleProps> = () => {
@@ -16,13 +16,14 @@ const Unity:FC<VisibleProps> = () => {
         selectedSite,
         loading,
         fullScreen,
-        setFullScreen
+        setFullScreen,
+        unityInstance,
+        setUnityInstance
     } = useSiteContext();
     const contentList = contentMap[selectedSite];
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
     const [game, setGame] = useState<GameContentItem | null>(null);
-    const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
     const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
     const [gameProgress, setGameProgress] = useState<number>(0);
     const [gameProgressVisible, setGameProgressVisible] = useState<boolean>(false);

@@ -1,9 +1,10 @@
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
-import React, { FC, useState, useEffect, useCallback } from 'react';
+import React, { FC, useState, useEffect, useCallback, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DALI } from '@/constants';
+import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
 import { ContentSize, isContent, Size } from '@/types';
@@ -24,6 +25,7 @@ const ArtSlider:FC<Props> = () => {
     const artImage = findContent(images, artId ?? '');
     const start = artImage ? images.indexOf(artImage) : 0;
     const windowSize = useWindowSize();
+    const { buffers } = useContext(SoundContext);
 
     const [sizes, setSizes] = useState<ContentSize[]>([]);
 
@@ -140,7 +142,13 @@ const ArtSlider:FC<Props> = () => {
             ))}
 
             <ButtonBar>
-                <StopButton onClick={() => { navigate('/'); }}>[x]</StopButton>
+                <StopButton onClick={() => {
+                    // TODO: this stops the pavane just like salutations
+                    buffers.stop('/audio/art/pavane.mp3');
+                    navigate(-1);
+                }}
+                >[x]
+                </StopButton>
             </ButtonBar>
         </ImageContainer>
     );

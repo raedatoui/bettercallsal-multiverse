@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { FC, useEffect, useState, } from 'react';
+import React, { FC, useContext, useEffect, useState, } from 'react';
 import {
     Link as RouterLink,
     useParams,
@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { URL_MAP } from '@/constants';
 import { useAnimationContext, useBizerkContext } from '@/providers/animations';
+import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import {
     Caption,
@@ -30,6 +31,8 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
     } = useSiteContext();
     const site = siteMap[selectedSite];
     const { bizerkMode } = useBizerkContext();
+
+    const { buffers } = useContext(SoundContext);
 
     const defaultList = contentMap[selectedSite]
         .filter(i => i.display)
@@ -93,6 +96,13 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
                         .filter(i => i.category === category || category === undefined)
                         .map(i => (
                             <RouterLink
+                                onClick={() => {
+                                    // TODO: this stops all audio when loading content from the list
+                                    // and loads the pavane audio for art
+                                    buffers.stopAll();
+                                    if (selectedSite === 'art')
+                                        buffers.play('/audio/art/pavane.mp3', true);
+                                }}
                                 key={i.contentId}
                                 to={`/${URL_MAP[selectedSite]}/${slugify(i.name)}`}
                                 id={slugify(i.name)}

@@ -28,7 +28,7 @@
           "audio": "/audio/biz/salutations.m4a",
           "video": null,
           "link": "",
-          "category": null,
+          "category": "all",
           "quote": null,
           "quoteLink": null
         },
@@ -109,6 +109,15 @@
       "audio": null,
       "items": [
         {
+          "name": "salutations",
+          "audio": "/audio/fit/holdmusic.mp3",
+          "video": null,
+          "link": "",
+          "category": "all",
+          "quote": null,
+          "quoteLink": null
+        },
+        {
           "name": "Sound Bath",
           "audio": "/audio/fit/drone.mp3",
           "video": null,
@@ -188,15 +197,6 @@
           "category": "cycling",
           "quote": "All cyclists are liars or crybabies",
           "quoteLink": null
-        },
-        {
-          "name": "All",
-          "audio": "/audio/fit/holdmusic.mp3",
-          "video": null,
-          "link": "",
-          "category": "all",
-          "quote": null,
-          "quoteLink": null
         }
       ]
     },
@@ -240,10 +240,10 @@
       "items": [
         {
           "name": "Salutations",
-          "audio": "/audio/art/pavane.mp3",
+          "audio": "/audio/art/allart.mp3",
           "video": null,
-          "link": "",
-          "category": "salutations",
+          "link": null,
+          "category": "all",
           "quote": null,
           "quoteLink": null
         },
@@ -284,11 +284,11 @@
           "quoteLink": null
         },
         {
-          "name": "All",
-          "audio": "/audio/art/allart.mp3",
+          "name": "load",
+          "audio": "/audio/art/pavane.mp3",
           "video": null,
           "link": null,
-          "category": "all",
+          "category": "load",
           "quote": null,
           "quoteLink": null
         }
@@ -333,6 +333,15 @@
       "audio": "/audio/rocks/pavane.mp3",
       "items": [
         {
+          "name": "salutations",
+          "audio": "/audio/rocks/all.mp3",
+          "video": null,
+          "link": "",
+          "category": "all",
+          "quote": null,
+          "quoteLink": null
+        },
+        {
           "name": "Nature Creeps Beneath",
           "audio": "/audio/rocks/nature.mp3",
           "video": null,
@@ -366,15 +375,6 @@
           "link": null,
           "category": "rbn",
           "quote": "River Bottom Nightmares",
-          "quoteLink": null
-        },
-        {
-          "name": "All",
-          "audio": "/audio/rocks/all.mp3",
-          "video": null,
-          "link": null,
-          "category": "all",
-          "quote": null,
           "quoteLink": null
         }
       ]
@@ -422,7 +422,7 @@
           "audio": "/audio/games/salutations.games.mp3",
           "video": null,
           "link": "",
-          "category": null,
+          "category": "all",
           "quote": null,
           "quoteLink": null
         },
