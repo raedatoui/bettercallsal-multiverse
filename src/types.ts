@@ -183,6 +183,7 @@ declare global {
         AudioContext: typeof AudioContext;
         webkitAudioContext: typeof AudioContext;
         onYouTubeIframeAPIReady: () => void;
+        gtag: (a: string, b: string, c: { page_location: string, page_title: string }) => void;
     }
 }
 

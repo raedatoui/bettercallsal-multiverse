@@ -122,7 +122,6 @@ const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, selectedS
                     events: {
                         /* eslint-disable @typescript-eslint/no-explicit-any */
                         onReady: (event: any) => {
-                            console.log('ready', event.target);
                             setYPlayer(event.target);
                             event.target.playVideo();
                         },
@@ -151,7 +150,6 @@ const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, selectedS
 
     useImperativeHandle(ref, () => ({
         stop() {
-            console.log('stop video', yPlayer, vPlayer);
             yPlayer?.stopVideo?.();
             vPlayer?.pause();
         }

@@ -21,22 +21,9 @@ import { PathProvider } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Main, MiddleSection, Row } from '@/styles/sharedstyles';
 import { Router, SiteKey } from '@/types';
+import { findCategory, findContentFomStore } from '@/utils/find';
 
 interface Props {}
-
-const createRouter = (): Router => createBrowserRouter([
-    {
-        path: '/',
-        element: <Layout />,
-        children: [
-            { path: 'e-cards', element: <Ecard /> },
-            { path: 'game/:gameId', element: <Unity visible /> },
-            { path: 'video/:videoId', element: <Video /> },
-            { path: 'art/:artId', element: <ArtSlider /> },
-            { path: 'category/:category', element: <ClientList visible /> },
-        ]
-    }
-]);
 
 const homeComponent = (site: SiteKey) => {
     if (site === 'construction')
@@ -57,9 +44,80 @@ const RouterLessRow: FC<{ selectedSite: SiteKey, fullScreen: boolean }> = ({ sel
 );
 
 const MainContainerInner: FC<Props> = () => {
-    const { selectedSite, fullScreen } = useSiteContext();
+    const { selectedSite, fullScreen, contentMap, siteMap } = useSiteContext();
+    const site = siteMap[selectedSite];
     const { bizerkMode, setBizerkMode } = useBizerkContext();
     const { buffers } = useContext(SoundContext);
+
+    const trackContent = (url: string, seg: string) => {
+        const pathName = url.split(window.location.origin)[1];
+        const contentId = pathName.split(`/${seg}/`)[1];
+        const content = findContentFomStore(contentMap, contentId);
+        if (content)
+            window.gtag?.('event', 'page_view', {
+                page_title: content?.name,
+                page_location: pathName,
+            });
+    };
+
+    const createRouter = (): Router => createBrowserRouter([
+        {
+            path: '/',
+            element: <Layout />,
+            children: [
+                {
+                    path: 'e-cards',
+                    element: <Ecard />,
+                    loader: () => {
+                        window.gtag?.('event', 'page_view', {
+                            page_title: 'E-Cards',
+                            page_location: '/e-cards',
+                        });
+                        return true;
+                    }
+                },
+                {
+                    path: 'game/:gameId',
+                    element: <Unity visible />,
+                    loader: ({ request }) => {
+                        trackContent(request.url, 'game');
+                        return true;
+                    }
+                },
+                {
+                    path: 'video/:videoId',
+                    element: <Video />,
+                    loader: ({ request }) => {
+                        trackContent(request.url, 'video');
+                        return true;
+                    }
+                },
+                {
+                    path: 'art/:artId',
+                    element: <ArtSlider />,
+                    loader: ({ request }) => {
+                        trackContent(request.url, 'art');
+                        return true;
+                    }
+                },
+                {
+                    path: 'category/:category',
+                    element: <ClientList visible />,
+                    loader: ({ request }) => {
+                        const pathName = request.url.split(window.location.origin)[1];
+                        const categoryId = pathName.split('/category/')[1];
+                        const category = findCategory(site, categoryId);
+                        if (category)
+                            window.gtag?.('event', 'page_view', {
+                                page_title: category.name,
+                                page_location: pathName,
+                            });
+                        return true;
+                    }
+                },
+            ]
+        }
+    ]);
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
@@ -106,7 +164,7 @@ const MainContainerInner: FC<Props> = () => {
     useEffect(() => {
         if (typeof window !== 'undefined')
             setRouter(createRouter());
-    }, []);
+    }, [contentMap, selectedSite]);
 
     return (
         <>
@@ -141,6 +199,6 @@ const MainContainerInner: FC<Props> = () => {
     );
 };
 
-const MainContainer = React.memo(MainContainerInner);
+// const MainContainer = React.memo(MainContainerInner);
 
-export default MainContainer;
+export default MainContainerInner;

@@ -66,15 +66,10 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         const fetchData = async () => {
             try {
                 const { data: response } = await axios.get(`${CDN}/content/content-${selectedSite}.json`);
-                if (selectedSite === 'games')
+                if (selectedSite === 'games' || selectedSite === 'gallery')
                     setContentMap({
                         ...contentMap,
                         games: GameContentListValidator.parse(response.items)
-                    });
-                else if (selectedSite === 'gallery')
-                    setContentMap({
-                        ...contentMap,
-                        gallery: GameContentListValidator.parse(response.items)
                     });
                 else {
                     const site = defaultSiteMap[selectedSite];
@@ -99,6 +94,10 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
                                 category: '',
                                 display: false
                             });
+                    });
+                    console.log({
+                        ...contentMap,
+                        [selectedSite]: list
                     });
                     setContentMap({
                         ...contentMap,
