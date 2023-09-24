@@ -74,14 +74,10 @@ const Unity:FC<VisibleProps> = () => {
         setGameProgressVisible(true);
         if (game)
             window.createUnityInstance(document.getElementById('unity-canvas'), {
-                companyName: game.companyName,
-                productName: game.productName,
-                productVersion: game.productVersion,
                 showBanner: false,
                 dataUrl: `${CDN}${game.dataUrl}`,
                 frameworkUrl: `${CDN}${game.frameworkUrl}`,
                 codeUrl: `${CDN}${game.codeUrl}`,
-                streamingAssetsUrl: `${CDN}${game.streamingAssetsUrl}`,
             }, (progress) => {
                 setGameProgress(progress * 100);
             }).then((c) => {
@@ -137,13 +133,13 @@ const Unity:FC<VisibleProps> = () => {
     useEffect(() => {
         if (game) {
             const desired = { width: 1000, height: 600 };
-            if (game.category === 'supersalbros')
+            if (game.contentId === 'supersalbros')
                 desired.width = 900;
-            if (game.category === 'pacman')
+            if (game.contentId === 'pacman')
                 desired.width = 600;
             setGamesPosterSize(getContentSize(desired));
         }
-        if (game && game.contentType === 'gallery') {
+        if (game && game.contentId === 'gallery') {
             const r = document.getElementById('content-row');
             if (r) {
                 r.style.overflow = 'hidden';
@@ -209,7 +205,7 @@ const Unity:FC<VisibleProps> = () => {
                 onClick={handleClick}
                 className={scriptLoaded && game ? 'on' : 'off'}
             />
-            { game && game.contentType !== 'gallery' && (
+            { game && game.contentId !== 'gallery' && (
                 <ButtonBar>
                     <StopButton onClick={() => handleStop()}>[x]</StopButton>
                 </ButtonBar>

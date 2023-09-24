@@ -30,7 +30,6 @@ const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                     spinningSalsRight: `/images/${r.key}/${r.spinningSalsRight}`,
                     spinningSalAudio: `/audio/${r.key}/${r.spinningSalAudio}`,
                     bizerkIcon: `/images/${r.key}/${r.bizerkIcon}`,
-                    bizerkIconType: r.bizerkIconType,
                     ringAudio: `/audio/${r.key}/${r.ringAudio}`,
                     name1: r.name1,
                     name2: r.name2,
@@ -58,10 +57,11 @@ const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                 },
                 footer: {
                     text: r.footerText,
-                    icon: `/images/${r.key}/${r.footerIcon}`,
-                    iconType: r.footerIconType,
-                    iconWidth: parseInt(r.footerIconWidth.toString(), 10),
-                    iconHeight: parseInt(r.footerIconHeight.toString(), 10),
+                    icon: {
+                        image: `/images/${r.key}/${r.footerIcon}`,
+                        width: parseInt(r.footerIconWidth.toString(), 10),
+                        height: parseInt(r.footerIconHeight.toString(), 10),
+                    },
                     ringAudio: `/audio/${r.key}/${r.footerAudio}`,
                 },
             }))

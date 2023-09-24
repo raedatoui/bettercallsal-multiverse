@@ -1,52 +1,37 @@
 {
-  "items": [
-    {
-      "dataUrl": "/unity/mario/supersalbros-v7.data.br",
-      "frameworkUrl": "/unity/mario/supersalbros-v7.framework.js.br",
-      "codeUrl": "/unity/mario/supersalbros-v7.wasm.br",
-      "streamingAssetsUrl": "/unity/mario/StreamingAssets",
-      "companyName": "BetterCallSal.games",
-      "productName": "Super Sal Bros.",
-      "productVersion": "1.0",
-      "showBanner": false,
-      "devicePixelRatio": 1,
-      "thumb": "supersalbros.jpg",
-      "name": "Super Sal Bros",
-      "contentId": "supersalbros",
-      "contentType": "game",
-      "category": "supersalbros"
-    },
-    {
-      "dataUrl": "/unity/salman/salman.data.br",
-      "frameworkUrl": "/unity/salman/salman.framework.js.br",
-      "codeUrl": "/unity/salman/salman.wasm.br",
-      "streamingAssetsUrl": "StreamingAssets",
-      "companyName": "BetterCallSal.games",
-      "productName": "Salman",
-      "productVersion": "1.0",
-      "showBanner": false,
-      "devicePixelRatio": 1,
-      "thumb": "salman.jpg",
-      "name": "Sal-man",
-      "contentId": "salman",
-      "contentType": "game",
-      "category": "pacman"
-    },
-    {
-      "dataUrl": "/unity/salitaire/salitaire_v7.data.br",
-      "frameworkUrl": "/unity/salitaire/salitaire_v7.framework.js.br",
-      "codeUrl": "/unity/salitaire/salitaire_v7.wasm.br",
-      "streamingAssetsUrl": "StreamingAssets",
-      "companyName": "BetterCallSal.games",
-      "productName": "Salitaire",
-      "productVersion": "1.0",
-      "showBanner": false,
-      "devicePixelRatio": 1,
-      "thumb": "salitaire.jpg",
-      "name": "Salitaire",
-      "contentId": "salitaire",
-      "contentType": "game",
-      "category": "cards"
-    }
-  ]
+    "items": [
+        {
+            "dataUrl": "/unity/mario/supersalbros-v7.data.br",
+            "frameworkUrl": "/unity/mario/supersalbros-v7.framework.js.br",
+            "codeUrl": "/unity/mario/supersalbros-v7.wasm.br",
+            "showBanner": false,
+            "thumb": "supersalbros.jpg",
+            "name": "Super Sal Bros",
+            "contentId": "supersalbros",
+            "contentType": "game",
+            "site": "games"
+        },
+        {
+            "dataUrl": "/unity/salman/salman.data.br",
+            "frameworkUrl": "/unity/salman/salman.framework.js.br",
+            "codeUrl": "/unity/salman/salman.wasm.br",
+            "showBanner": false,
+            "thumb": "salman.jpg",
+            "name": "Sal-man",
+            "contentId": "salman",
+            "contentType": "game",
+            "site": "games"
+        },
+        {
+            "dataUrl": "/unity/salitaire/salitaire_v7.data.br",
+            "frameworkUrl": "/unity/salitaire/salitaire_v7.framework.js.br",
+            "codeUrl": "/unity/salitaire/salitaire_v7.wasm.br",
+            "showBanner": false,
+            "thumb": "salitaire.jpg",
+            "name": "Salitaire",
+            "contentId": "salitaire",
+            "contentType": "game",
+            "site": "games"
+        }
+    ]
 }

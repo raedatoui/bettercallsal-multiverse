@@ -10,6 +10,10 @@ const copyBuffer = (buffer: AudioBuffer, context: AudioContext): AudioBuffer => 
     return copy;
 };
 
+// TODO: next ideas for audio map
+// const audioMapValidator = z.map(z.string().uuid(), SoundValidator);
+// type AudioMap = z.infer<typeof audioMapValidator>;
+
 class AudioBuffers {
     private readonly soundMap: Record<string, Sound>;
     private context: AudioContext | null = null;
@@ -46,7 +50,6 @@ class AudioBuffers {
                 memo[k] = true;
             } else
             if (this.context)
-
                 this.audioMap[k] = {
                     ...sound,
                     buffer: copyBuffer(sound.buffer, this.context),

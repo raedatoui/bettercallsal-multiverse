@@ -50,7 +50,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
             thumb: '',
             category: '',
             display: false
-        });
+        } as BaseContentItem);
 
     site.leftNav.items.forEach(i => {
         if (i.video)
@@ -61,7 +61,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
                 thumb: '',
                 category: '',
                 display: false
-            });
+            } as BaseContentItem);
     });
 
     return {
@@ -74,6 +74,8 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
 
 const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
     const site = defaultSiteMap[defaultSite];
+    // TODO: wtf site struct can be generated here
+
     return (
         <>
             <Head>

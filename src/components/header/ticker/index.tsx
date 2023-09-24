@@ -2,10 +2,10 @@ import React, { FC, useEffect, useState, MouseEvent, useCallback } from 'react';
 import { Keyframes } from 'styled-components';
 import { TickerContainer } from '@/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/elements';
-import { EXTERNAL_LINK } from '@/constants';
+import { EXTERNAL_LINK, tickerList } from '@/constants';
 import { useBizerkContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
-import { Site, SiteKey, BizerkMode, tickerList } from '@/types';
+import { Site, SiteKey, BizerkMode } from '@/types';
 import {
     slideInFromLeft,
     slideOutFromLeft,
@@ -27,7 +27,8 @@ interface SliderProps {
     start: boolean;
     sw: number;
     selectedSlide: number;
-    site: Site;
+    site: Site | null;
+    siteKey: string;
     index: number;
     selectedSite: SiteKey;
     setSelectedSite: (s: SiteKey) => void
@@ -50,6 +51,7 @@ const Slider: FC<SliderProps> = (
         selectedSite,
         selectedSlide,
         site,
+        siteKey,
         index,
         start,
         sliderType,
@@ -100,7 +102,7 @@ const Slider: FC<SliderProps> = (
 
     useEffect(() => {
         if (!start)
-            if (tickerList[index] === selectedSite)
+            if (siteKey === selectedSite)
                 selected();
             else
                 reset();
@@ -120,20 +122,20 @@ const Slider: FC<SliderProps> = (
     const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
         if (!EXTERNAL_LINK) {
             event.stopPropagation();
-            setSelectedSite(site.name);
+            if (site) setSelectedSite(site.name);
         }
     };
 
     return (
         <SliderComponent
             onClick={handleClick}
-            href={`https://bettercallsal.${site.name}`}
+            href={`https://bettercallsal.${site?.name}`}
             animation={animation}
             animationDuration={animationDuration}
             visibility={visibility}
             translateX={translateX}
         >
-            { sliderContent[sliderType](site)}
+            { sliderContent[sliderType](site || undefined)}
         </SliderComponent>
     );
 };
@@ -148,15 +150,18 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
             // onMouseLeave={() => tickerCb(false)}
         >
             <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
-            { tickerList.map((s, i) => (
+            { tickerList.map(([s, site], i) => (
                 <Slider
                     key={s}
                     start={start}
                     selectedSlide={selectedSlide}
-                    selectedSite={selectedSite}
+                    selectedSite={
+                        Object.keys(tickerList).indexOf(selectedSite) === -1 ? 'biz' : selectedSite
+                    } // // TODO: this is a gallery ticker hack
                     setSelectedSite={setSelectedSite}
-                    site={siteMap[s]}
+                    site={site}
                     sw={sw}
+                    siteKey={s}
                     index={i}
                     sliderType={sliderType}
                     bizerkMode={bizerkMode}

@@ -32,6 +32,7 @@ const defaultContentMap = {
     games: [],
     construction: [],
     gallery: [],
+    wtf: [],
 };
 
 const SiteContext = createContext<SiteProviderType | undefined>(undefined);
@@ -42,6 +43,21 @@ interface ProviderProps {
     defaultSiteMap: SiteMap;
     defaultContent: (BaseContentItem | GameContentItem)[]
 }
+
+const fetchData = async (siteKey: SiteKey): Promise<(BaseContentItem | GameContentItem)[]> => {
+    let list;
+    try {
+        const { data: response } = await axios.get(`${CDN}/content/content-${siteKey}.json`);
+        if (siteKey === 'games' || siteKey === 'gallery')
+            list = GameContentListValidator.parse(response.items);
+        else
+            list = BaseContentListValidator.parse(response.items);
+        return list;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
 
 const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultContent, defaultSiteMap }) => {
     const [selectedSite, setSelectedSite] = useState<SiteKey>(defaultSite);
@@ -59,63 +75,44 @@ const SitesDataProvider:FC<ProviderProps> = ({ children, defaultSite, defaultCon
         if (s !== selectedSite) {
             setLoading(true);
             setSelectedSite(s);
-        }
-    }, [selectedSite]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data: response } = await axios.get(`${CDN}/content/content-${selectedSite}.json`);
-                if (selectedSite === 'games' || selectedSite === 'gallery')
-                    setContentMap({
-                        ...contentMap,
-                        games: GameContentListValidator.parse(response.items)
-                    });
-                else {
-                    const site = defaultSiteMap[selectedSite];
-                    const list = BaseContentListValidator.parse(response.items);
-                    if (site.leftNav.video)
-                        list.push({
+            if (s !== 'construction' && contentMap[s].length === 0)
+                fetchData(s).then(list => {
+                    const site = defaultSiteMap[s];
+                    if (site?.leftNav.video)
+                        list?.push({
                             name: site.leftNav.text,
                             contentId: site.leftNav.video,
                             contentType: 'youtube',
                             thumb: '',
                             category: '',
-                            display: false
-                        });
+                            display: false,
+                            site: selectedSite,
+                        } as BaseContentItem);
 
-                    site.leftNav.items.forEach(i => {
+                    site?.leftNav.items.forEach(i => {
                         if (i.video)
-                            list.push({
+                            list?.push({
                                 name: i.name,
                                 contentId: i.video,
                                 contentType: 'youtube',
                                 thumb: '',
                                 category: '',
-                                display: false
+                                display: false,
+                                site: selectedSite,
                             });
                     });
-                    console.log({
-                        ...contentMap,
-                        [selectedSite]: list
-                    });
+
                     setContentMap({
                         ...contentMap,
-                        [selectedSite]: list
+                        [s]: list
                     });
-                }
-                setLoading(false);
-            } catch (error) {
-                console.error(error);
-            }
-        };
 
-        if (selectedSite !== 'construction' && contentMap[selectedSite].length === 0)
-            fetchData();
-        else
-            setLoading(false);
-        return () => {};
-    }, [contentMap, selectedSite, defaultSiteMap]);
+                    setLoading(false);
+                });
+            else
+                setLoading(false);
+        }
+    }, [contentMap, defaultSiteMap, selectedSite]);
 
     useEffect(() => {
         const downHandler = (ev:KeyboardEvent) => {

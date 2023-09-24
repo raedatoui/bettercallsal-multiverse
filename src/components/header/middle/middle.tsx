@@ -36,16 +36,13 @@ const Bizerk:FC<Props> = ({ site, pause }) => {
             onClick={() => setBizerkMode('doubleClick')}
             className={site.name}
         >
-            { site.header.bizerkIconType === 'image'
-                && (
-                    <BizerImage
-                        src={`${CDN}${site.header.bizerkIcon}`}
-                        background={site.header.bizerkIcon}
-                        className={site.name}
-                        onMouseEnter={() => bizerkAnim()}
-                        onMouseLeave={() => bizerkStop()}
-                    />
-                )}
+            <BizerImage
+                src={`${CDN}${site.header.bizerkIcon}`}
+                background={site.header.bizerkIcon}
+                className={site.name}
+                onMouseEnter={() => bizerkAnim()}
+                onMouseLeave={() => bizerkStop()}
+            />
         </BizerkImageContainer>
     );
 };

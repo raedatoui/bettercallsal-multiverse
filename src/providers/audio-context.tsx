@@ -32,7 +32,8 @@ const getSiteSoundFiles = (site: Site): string[] => {
     const navSounds = site.leftNav.items.map(i => i.audio).filter(isNotNull);
     const sounds = [
         site.header.ringAudio,
-        site.header.spinningSalAudio,
+        site.header.spinningSalAudio1,
+        site.header.spinningSalAudio2,
         ...navSounds
     ];
     if (site.leftNav.audio)
@@ -44,8 +45,8 @@ const getSiteSoundMap = (site: Site): Record<string, string> => {
     const map: Record<string, string> = {
         [AudioElementValidator.enum.headerRing]: site.header.ringAudio,
         [AudioElementValidator.enum.footerRing]: site.footer.ringAudio,
-        [AudioElementValidator.enum.spinningRight]: site.header.spinningSalAudio,
-        [AudioElementValidator.enum.spinningLeft]: site.header.spinningSalAudio,
+        [AudioElementValidator.enum.spinningRight]: site.header.spinningSalAudio1,
+        [AudioElementValidator.enum.spinningLeft]: site.header.spinningSalAudio2,
     };
     if (site.leftNav.audio)
         map[AudioElementValidator.enum.leftNavAudio] = site.leftNav.audio;
@@ -61,6 +62,7 @@ const SoundProvider:FC<ProviderProps> = ({ children }) => {
     const site = siteMap[selectedSite];
     const [loaded, setLoaded] = useState<boolean>(false);
     const { bizerkMode } = useBizerkContext();
+
     const play = (audioElement: AudioElement, filter?: string) => {
         const k = `${audioElement}${filter ? `-${filter}` : ''}`;
         buffers.playFromMap(k, false);

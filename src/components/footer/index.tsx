@@ -18,14 +18,13 @@ const LawBreakers: FC<Props> = () => {
     const { buffers, loaded } = useContext(SoundContext);
 
     const windowSize = useWindowSize();
-    const [micSize, setMicSize] = useState<Size>({ width: 148, height: 393 });
+    const [iconSize, setIconSize] = useState<Size>({ width: 148, height: 393 });
     const [leftSpinningState, setLeftSpinningState] = useState<string>(`img0 start ${selectedSite}`);
     const [rightSpinningState, setRightSpinningState] = useState<string>(`img1 start ${selectedSite}`);
     const [betterCallState, setBetterCallSalState] = useState<string>('');
 
     const ref = useRef<HTMLParagraphElement>(null);
-    const video1Ref = useRef<HTMLVideoElement>(null);
-    const video2Ref = useRef<HTMLVideoElement>(null);
+
     const getContentSize = (desiredSize: Size): Size => {
         const height = ref.current?.getBoundingClientRect().height ?? 0;
         const width = (height * desiredSize.width) / desiredSize.height;
@@ -49,7 +48,7 @@ const LawBreakers: FC<Props> = () => {
     }, [selectedSite]);
 
     useEffect(() => {
-        setMicSize(getContentSize({ width: site.footer.iconWidth, height: site.footer.iconHeight }));
+        setIconSize(getContentSize({ width: site.footer.icon.width, height: site.footer.icon.height }));
         return () => {};
     }, [windowSize, site]);
 
@@ -66,39 +65,32 @@ const LawBreakers: FC<Props> = () => {
 
     useEffect(() => {
         if (animateHeaderFooter) {
-            buffers.play(site.header.ringAudio, false);
+            console.log('animateHeaderFooter', site.footer.ringAudio);
+            buffers.play(site.footer.ringAudio, false);
             animate(0);
         }
         return () => {};
-    }, [animate, animateHeaderFooter, buffers, site.header.ringAudio]);
+    }, [animate, animateHeaderFooter, buffers, site.footer.ringAudio]);
 
-    useEffect(() => {
-        if (site.footer.iconType === 'video') {
-            video1Ref.current?.load();
-            video2Ref.current?.load();
-        }
-        return () => {};
-    }, [site.footer.icon, site.footer.iconType]);
     return (
         <>
             { selectedSite !== 'gallery' && !fullScreen && (
                 <LawBreakersContainer>
                     <LawBreakersP ref={ref} className={`${betterCallState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
-                        { site.footer.iconType === 'image'
-    && (
-        <Image
-            className={`${leftSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
-            src={site.footer.icon}
-            alt="rca-mic"
-            width={micSize.width}
-            height={micSize.height}
-            loading="lazy"
-            style={{
-                maxWidth: '100%',
-                height: 'auto'
-            }}
-        />
-    )}
+
+                        <Image
+                            className={`${leftSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+                            src={site.footer.icon.image}
+                            alt="rca-mic"
+                            width={iconSize.width}
+                            height={iconSize.height}
+                            loading="lazy"
+                            style={{
+                                maxWidth: '100%',
+                                height: 'auto'
+                            }}
+                        />
+
                         <LawBreakersSpan
                             onClick={() => {
                                 // footerClick();
@@ -107,21 +99,20 @@ const LawBreakers: FC<Props> = () => {
                         >
                             {site.footer.text}
                         </LawBreakersSpan>
-                        { site.footer.iconType === 'image'
-    && (
-        <Image
-            className={`${rightSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
-            src={site.footer.icon}
-            alt="rca-mic"
-            width={micSize.width}
-            height={micSize.height}
-            loading="lazy"
-            style={{
-                maxWidth: '100%',
-                height: 'auto'
-            }}
-        />
-    )}
+
+                        <Image
+                            className={`${rightSpinningState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+                            src={site.footer.icon.image}
+                            alt="rca-mic"
+                            width={iconSize.width}
+                            height={iconSize.height}
+                            loading="lazy"
+                            style={{
+                                maxWidth: '100%',
+                                height: 'auto'
+                            }}
+                        />
+
                     </LawBreakersP>
                 </LawBreakersContainer>
             ) }

@@ -106,7 +106,9 @@ export const ClientLeftNav: FC<Props> = () => {
 
     const [audioPlaying, setAudioPlaying] = useState<string | null>(null);
 
-    const clonedNavItems = bizerkCounter > 1 && bizerkMode !== 'off' ? shuffleList(site.leftNav.items) : site.leftNav.items;
+    let clonedNavItems = bizerkCounter > 1 && bizerkMode !== 'off' ? shuffleList(site.leftNav.items) : site.leftNav.items;
+    if (selectedSite === 'wtf')
+        clonedNavItems = shuffleList(clonedNavItems).slice(0, 12);
 
     const handleAudio = (a: string) => {
         // TODO: if art is playing, and click on any nav, stop pavane
@@ -178,7 +180,7 @@ export const ClientLeftNav: FC<Props> = () => {
                         <LeftNavMenu>
                             { clonedNavItems.filter(i => i.category !== 'load').map(i => (
                                 <NavButton
-                                    key={i.name}
+                                    key={i.id}
                                     navItem={i}
                                     audioCb={handleAudio}
                                     navItemCb={handleCategory}
@@ -239,7 +241,7 @@ export const ServerLeftNav: FC<Props> = () => {
                         <LeftNavMenu>
                             { clonedNavItems.map(i => (
                                 <NavButton
-                                    key={i.name}
+                                    key={i.id}
                                     navItem={i}
                                     audioCb={() => {}}
                                     navItemCb={(l: LeftNavNavItem) => l}

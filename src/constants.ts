@@ -1,5 +1,5 @@
 import { SiteKey, SiteMapValidator } from '@/types';
-import sitesData from '../content/sites.json';
+import sitesData from '../content/sites.next.json';
 
 export const CDN = process.env.cdnUrl;
 
@@ -11,6 +11,8 @@ export const EXTERNAL_LINK = true;
 export const DALI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
 export const defaultSiteMap = SiteMapValidator.parse(sitesData);
+
+export const tickerList = Object.entries(defaultSiteMap).filter(([, v]) => v?.header.showTicker);
 
 export const breakPoints = {
     lg2: { min: 768, max: 1260 },
@@ -35,5 +37,6 @@ export const URL_MAP: Record<SiteKey, string> = {
     fit: 'video',
     art: 'art',
     construction: '',
-    gallery: ''
+    gallery: '',
+    wtf: ''
 };

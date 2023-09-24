@@ -29,6 +29,7 @@ const segMap: Record<SiteKey, string> = {
     games: 'game',
     gallery: 'gallery',
     construction: 'construction',
+    wtf: 'wtf',
 };
 
 type Row = {
@@ -55,8 +56,13 @@ const Post = z.object({
 
 type PostType = z.infer<typeof Post>;
 
-const pickRandomPost = (arr: PostType[]) =>
-    arr[Math.floor(Math.random() * arr.length)];
+const pickRandomPost = (arr: PostType[], queue: PostType[]) => {
+    const random = arr[Math.floor(Math.random() * arr.length)];
+    const lastPick = queue.length > 0 ? queue[queue.length - 1] : null;
+
+    queue.push(random);
+    return random;
+}
 
 const transformImage = (src: string) => {
     const f = path.parse(src);
@@ -98,6 +104,10 @@ const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typ
     );
 
     await conn.query(
+        'DROP TABLE `current_set`'
+    );
+
+    await conn.query(
         'CREATE TABLE `posts` ('
             + '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,'
             + '`domain` varchar(15) NOT NULL,'
@@ -117,6 +127,14 @@ const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typ
             + 'PRIMARY KEY (`id`), '
             + 'KEY `post_id` (`post_id`),'
             + 'CONSTRAINT `post_desc_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE'
+            + ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
+    );
+
+    await conn.query(
+        'CREATE TABLE `current_set` ('
+            + '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,'
+            + '`variation` int(11) NOT NULL,'
+            + 'PRIMARY KEY (`id`)'
             + ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
     );
 
@@ -142,9 +160,25 @@ const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typ
         descValues
     );
     await conn.commit();
+
+    await conn.query('INSERT INTO current_set (variation) VALUES(0)');
 };
 
-const selectPosts = async (conn: mariadb.Connection) => {
+const postCountInVariation = async (conn: mariadb.Connection, variation: number) => {
+    const res = await conn.query<{ count : number }[]>({
+        sql: `
+    SELECT 
+        COUNT(*) as count
+    FROM 
+        post_desc pd
+    WHERE pd.variation = ${variation} AND pd.queued = 1;
+    `,
+        bigIntAsNumber: true
+    });
+    return res[0].count;
+};
+
+const selectPosts = async (conn: mariadb.Connection, variation: number) => {
     const rows = await conn.query<Row[]>(`
     SELECT 
         p.id, p.domain, p.slug, p.thumb, pd.queued, pd.description, pd.variation
@@ -153,10 +187,11 @@ const selectPosts = async (conn: mariadb.Connection) => {
     INNER JOIN 
         posts p ON p.id = pd.post_id
     WHERE pd.queued = 1
+    AND pd.variation = ${variation}
     ORDER BY 
         p.id;
     `);
-    await conn.commit();
+    // await conn.commit();
 
     const fmt = rows.map((row) => {
         const domain = SiteKeyValidator.parse(row.domain);
@@ -221,18 +256,33 @@ const run = async () => {
             await seedDatabase(conn, generateContentMap());
 
         if (command === 'pick') {
+            const queue: PostType[] = [];
             let hasQueued = true;
+            const res = await conn.query<{ id: number, variation: number }[]>(
+                'SELECT * from current_set;'
+            );
+            let { variation } = res[0];
             do {
-                const posts = await selectPosts(conn);
+                const posts = await selectPosts(conn, variation);
                 if (posts.length === 0) {
                     hasQueued = false;
                     break;
                 }
-                const post = pickRandomPost(posts);
-                const variation = post.variations[0];
-                console.log(`Picked: ${post.domain} - ${post.slug} - ${variation.variation}`);
-                await conn.query('UPDATE post_desc SET queued = 0 WHERE post_id = ? AND variation = ?', [post.id, variation.variation]);
+                const post = pickRandomPost(posts, queue);
+                const postVariation = post.variations[0].variation;
+                console.log(`Picked: ${post.domain} - ${post.slug} - ${postVariation}`);
+                await conn.query('UPDATE post_desc SET queued = 0 WHERE post_id = ? AND variation = ?', [post.id, postVariation]);
                 await conn.commit();
+
+                const count = await postCountInVariation(conn, variation);
+                if (count === 0) {
+                    variation += 1;
+                    console.log(`Bucket: moving to ${variation}`);
+                    console.log('------');
+                    await conn.query(`UPDATE current_set SET variation = ${variation};`);
+                    await conn.commit();
+                }
+
             } while (hasQueued);
         }
     } else {

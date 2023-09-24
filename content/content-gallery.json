@@ -1,20 +1,15 @@
 {
-  "items": [
-    {
-      "dataUrl": "/unity/gallery/GALLERYv2.data.br",
-      "frameworkUrl": "/unity/gallery/GALLERYv2.framework.js.br",
-      "codeUrl": "/unity/gallery/GALLERYv2.wasm.br",
-      "streamingAssetsUrl": "StreamingAssets",
-      "companyName": "BetterCallSal.games",
-      "productName": "Bettercallsal.gallery",
-      "productVersion": "1.0",
-      "showBanner": false,
-      "devicePixelRatio": 1,
-      "thumb": "salitaire.jpg",
-      "name": "gallery",
-      "contentId": "gallery",
-      "contentType": "gallery",
-      "category": "gallery"
-    }
-  ]
+    "items": [
+        {
+            "dataUrl": "/unity/gallery/GALLERYv2.data.br",
+            "frameworkUrl": "/unity/gallery/GALLERYv2.framework.js.br",
+            "codeUrl": "/unity/gallery/GALLERYv2.wasm.br",
+            "showBanner": false,
+            "thumb": "gallery-left.png",
+            "name": "gallery",
+            "contentId": "gallery",
+            "contentType": "gallery",
+            "site": "gallery"
+        }
+    ]
 }

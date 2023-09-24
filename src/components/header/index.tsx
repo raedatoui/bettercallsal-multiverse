@@ -1,10 +1,11 @@
 import React, { FC, useContext, useState, useEffect, useCallback } from 'react';
 import Ticker from '@/components/header/ticker';
+import { tickerList } from '@/constants';
 import { useAnimationContext, useBizerkContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { WindowSizeContext } from '@/providers/window-size';
-import { SiteKeyValidator, tickerList } from '@/types';
+import { SiteKeyValidator } from '@/types';
 import { useInterval } from '@/utils';
 import {
     HeaderContainer,
@@ -15,6 +16,7 @@ import { SpinningSal, SpinningSalsContainer } from './spinning';
 
 const HeaderComponent: FC = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
+
     const {
         animateHeaderFooter,
         setAnimateHeaderFooter,
@@ -38,7 +40,10 @@ const HeaderComponent: FC = () => {
     const [rightSpinningState, setRightSpinningState] = useState<string>(`img1 start ${selectedSite}`);
     const [betterCallState, setBetterCallSalState] = useState<string>('');
     const [loadAnimationDone, setLoadAnimationStart] = useState<boolean>(false);
-    const [selectedSlide, setSelectedSlide] = useState<number>(SiteKeyValidator.options.indexOf(selectedSite));
+    const [selectedSlide, setSelectedSlide] = useState<number>(
+        // TODO: sites with showBizerk = false removed from tickerList and default to biz, 0
+        Object.keys(tickerList).indexOf(selectedSite) === -1 ? 0 : SiteKeyValidator.options.indexOf(selectedSite)
+    );
     const [tickerCounter, setTickerCounter] = useState<number>(0);
 
     const animate = useCallback((pauseAnim: boolean) => {
@@ -80,10 +85,12 @@ const HeaderComponent: FC = () => {
     }, [animate, animateHeaderFooter, buffers, site.header.ringAudio]);
 
     useEffect(() => {
-        if (animateBizerk)
-            buffers.play(site.header.spinningSalAudio, false);
+        if (animateBizerk) {
+            buffers.play(site.header.spinningSalAudio1, false);
+            buffers.play(site.header.spinningSalAudio2, false);
+        }
         return () => {};
-    }, [animate, animateBizerk, buffers, site.header.spinningSalAudio]);
+    }, [animate, animateBizerk, buffers, site.header.spinningSalAudio1, site.header.spinningSalAudio2]);
 
     let ticketInterval = 5000;
     if (bizerkMode !== 'off') ticketInterval = 2000;
@@ -130,7 +137,7 @@ const HeaderComponent: FC = () => {
                     <Bizerk site={site} pause={stopBizerk} />
                     <SalName>{site.header.name2}</SalName>
                 </BizerkContainer>
-                <SalCaption className={bizerkMode !== 'off' ? 'bizerk' : ''}>{site.header.title}</SalCaption>
+                <SalCaption className={bizerkMode !== 'off' ? 'bizerk' : ''}>{site.header.title1} {site.header.title2}</SalCaption>
                 <Ticker
                     backgroundColor="#FE0000"
                     sliderType="bottom"

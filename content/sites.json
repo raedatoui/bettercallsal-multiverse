@@ -10,12 +10,13 @@
       "spinningSalsRight": "/images/biz/sal-right.webp",
       "spinningSalAudio": "/audio/biz/airhorn.m4a",
       "bizerkIcon": "/images/biz/mic.webp",
-      "bizerkIconType": "image",
       "ringAudio": "/audio/biz/phone-ring.m4a",
       "name1": "Salvatore",
       "name2": "Barra",
-      "title": "Sound Mixer",
-      "lowerBanner": "Want Emails from Sal?"
+      "title1": "Sound",
+      "title2": "Mixer",
+      "lowerBanner": "Want Emails from Sal?",
+      "showTicker": true
     },
     "leftNav": {
       "image": "/images/biz/nav-sq.webp",
@@ -76,10 +77,11 @@
     },
     "footer": {
       "text": "welcome producers",
-      "icon": "/images/biz/rca-mic.webp",
-      "iconType": "image",
-      "iconWidth": 148,
-      "iconHeight": 393,
+      "icon": {
+        "image": "/images/biz/rca-mic.webp",
+        "width": 148,
+        "height": 393
+      },
       "ringAudio": "/audio/biz/phone-ring.m4a"
     },
     "gaTag": "G-BQZKS9QQG8"
@@ -95,12 +97,13 @@
       "spinningSalsRight": "/images/fit/shweaty-right.webp",
       "spinningSalAudio": "/audio/fit/ready-for-this.m4a",
       "bizerkIcon": "/images/fit/namaste-smoking.gif",
-      "bizerkIconType": "image",
       "ringAudio": "/audio/fit/ring.fit.mp3",
       "name1": "Yogi",
       "name2": "Barra",
-      "title": "Fitness Guru",
-      "lowerBanner": "Want Workouts from Sal?"
+      "title1": "Fitness",
+      "title2": "Guru",
+      "lowerBanner": "Want Workouts from Sal?",
+      "showTicker": true
     },
     "leftNav": {
       "image": "/images/fit/salwmeout.webp",
@@ -206,10 +209,11 @@
     },
     "footer": {
       "text": "NAMASTE",
-      "icon": "/images/fit/om.webp",
-      "iconType": "image",
-      "iconWidth": 500,
-      "iconHeight": 512,
+      "icon": {
+        "image": "/images/fit/om.webp",
+        "width": 500,
+        "height": 512
+      },
       "ringAudio": "/audio/fit/ring.fit.mp3"
     },
     "gaTag": "G-NZSHWYRKKF"
@@ -225,12 +229,13 @@
       "spinningSalsRight": "/images/art/spinning.art.right.webp",
       "spinningSalAudio": "/audio/art/spinning.art.mp3",
       "bizerkIcon": "/images/art/spray.gif",
-      "bizerkIconType": "image",
       "ringAudio": "/audio/art/ring.art.mp3",
       "name1": "Salvatore",
       "name2": "Dali",
-      "title": "The Great Masturbator",
-      "lowerBanner": "Want Art from Sal?"
+      "title1": "The Great",
+      "title2": "Masturbator",
+      "lowerBanner": "Want Art from Sal?",
+      "showTicker": true
     },
     "leftNav": {
       "image": "/images/art/left.art.webp",
@@ -300,10 +305,11 @@
     },
     "footer": {
       "text": "welcome artists",
-      "icon": "/images/art/dali.gif",
-      "iconType": "image",
-      "iconWidth": 462,
-      "iconHeight": 432,
+      "icon": {
+        "image": "/images/art/dali.gif",
+        "width": 462,
+        "height": 432
+      },
       "ringAudio": "/audio/art/ring.art.mp3"
     },
     "gaTag": "G-DMT1EKGNWP"
@@ -319,12 +325,13 @@
       "spinningSalsRight": "/images/rocks/spinning.rocks.right.webp",
       "spinningSalAudio": "/audio/rocks/spinning.rocks.mp3",
       "bizerkIcon": "/images/rocks/spinning.rocks.cat.gif",
-      "bizerkIconType": "image",
       "ringAudio": "/audio/rocks/ring.rocks.mp3",
       "name1": "Sal",
       "name2": "Barratone",
-      "title": "Rock Star",
-      "lowerBanner": "Want Music from Sal?"
+      "title1": "Rock",
+      "title2": "Star",
+      "lowerBanner": "Want Music from Sal?",
+      "showTicker": true
     },
     "leftNav": {
       "image": "/images/rocks/hardcore.webp",
@@ -385,10 +392,11 @@
     },
     "footer": {
       "text": "welcome rockstars",
-      "icon": "/images/rocks/smashguitar.gif",
-      "iconType": "image",
-      "iconWidth": 225,
-      "iconHeight": 256,
+      "icon": {
+        "image": "/images/rocks/smashguitar.gif",
+        "width": 225,
+        "height": 256
+      },
       "ringAudio": "/audio/rocks/ring.rocks.mp3"
     },
     "gaTag": "G-BCGHB6Z0WX"
@@ -404,12 +412,13 @@
       "spinningSalsRight": "/images/games/spinning.games.right.webp",
       "spinningSalAudio": "/audio/games/spinning.games.mp3",
       "bizerkIcon": "/images/games/coin6.gif",
-      "bizerkIconType": "image",
       "ringAudio": "/audio/games/ring.games.mp3",
       "name1": "Super",
       "name2": "Sal Bros.",
-      "title": "Hardcore Gamer",
-      "lowerBanner": "Want Games from Sal?"
+      "title1": "Hardcore",
+      "title2": "Gamer",
+      "lowerBanner": "Want Games from Sal?",
+      "showTicker": true
     },
     "leftNav": {
       "image": "/images/games/left.games.webp",
@@ -461,10 +470,11 @@
     },
     "footer": {
       "text": "welcome gamers",
-      "icon": "/images/games/star.webp",
-      "iconType": "image",
-      "iconWidth": 300,
-      "iconHeight": 300,
+      "icon": {
+        "image": "/images/games/star.webp",
+        "width": 300,
+        "height": 300
+      },
       "ringAudio": "/audio/games/ring.games.mp3"
     },
     "gaTag": "G-M1N65RK3KR"
@@ -480,12 +490,13 @@
       "spinningSalsRight": "/images/construction/spinning.construction.right.webp",
       "spinningSalAudio": "/audio/construction/cat.call.loud.mp3",
       "bizerkIcon": "/images/construction/under.gif",
-      "bizerkIconType": "image",
       "ringAudio": "/audio/construction/ring.construction.mp3",
       "name1": "Hard Hat",
       "name2": "Sal",
-      "title": "The Master Erecter",
-      "lowerBanner": "Want Construction from Sal?"
+      "title1": "The Master",
+      "title2": "Erecter",
+      "lowerBanner": "Want Construction from Sal?",
+      "showTicker": true
     },
     "leftNav": {
       "image": "/images/construction/nav-sq.webp",
@@ -546,10 +557,11 @@
     },
     "footer": {
       "text": "under construction",
-      "icon": "/images/construction/footer.construction.webp",
-      "iconType": "image",
-      "iconWidth": 255,
-      "iconHeight": 393,
+      "icon": {
+        "image": "/images/construction/footer.construction.webp",
+        "width": 255,
+        "height": 393
+      },
       "ringAudio": "/audio/construction/ring.construction.mp3"
     },
     "gaTag": "G-0F52SEFQX4"
@@ -565,12 +577,13 @@
       "spinningSalsRight": "/images/gallery/gallery-left.png",
       "spinningSalAudio": "/audio/art/spinning.art.mp3",
       "bizerkIcon": "/images/art/spray.gif",
-      "bizerkIconType": "image",
       "ringAudio": "/audio/art/ring.art.mp3",
       "name1": "Salvatore",
       "name2": "Dali",
-      "title": "The Great Masturbator",
-      "lowerBanner": "Want Gallery from Sal?"
+      "title1": "The Great",
+      "title2": "Masturbator",
+      "lowerBanner": "Want Gallery from Sal?",
+      "showTicker": false
     },
     "leftNav": {
       "image": "/images/art/left.art.webp",
@@ -640,10 +653,11 @@
     },
     "footer": {
       "text": "welcome artists",
-      "icon": "/images/art/dali.gif",
-      "iconType": "image",
-      "iconWidth": 462,
-      "iconHeight": 432,
+      "icon": {
+        "image": "/images/art/dali.gif",
+        "width": 462,
+        "height": 432
+      },
       "ringAudio": "/audio/art/ring.art.mp3"
     },
     "gaTag": "G-K60R3CHS4L"

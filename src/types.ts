@@ -4,14 +4,16 @@ import { z } from 'zod';
 export const HeaderValidator = z.object({
     spinningSalsLeft: z.string(),
     spinningSalsRight: z.string(),
-    spinningSalAudio: z.string(),
+    spinningSalAudio1: z.string(),
+    spinningSalAudio2: z.string(),
     bizerkIcon: z.string(),
-    bizerkIconType: z.enum(['image', 'video']),
     ringAudio: z.string(),
     name1: z.string(),
     name2: z.string(),
-    title: z.string(),
+    title1: z.string(),
+    title2: z.string(),
     lowerBanner: z.string(),
+    showTicker: z.boolean(),
 });
 
 export type Header = z.infer<typeof HeaderValidator>;
@@ -24,13 +26,41 @@ export const LeftNavItemValidator = z.object({
     category: z.string().nullable(),
     quote: z.string().nullable(),
     quoteLink: z.string().nullable(),
+    id: z.string().uuid().optional(),
 });
 
 export type LeftNavNavItem = z.infer<typeof LeftNavItemValidator>;
 
-export const SiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery']);
+export const LeftNavValidator = z.object({
+    image: z.string(),
+    text: z.string(),
+    video: z.string().nullable(),
+    audio: z.string().nullable(),
+    items: z.array(LeftNavItemValidator),
+});
 
-export const tickerList = SiteKeyValidator.options.filter(s => s !== 'gallery');
+export type LeftNav = z.infer<typeof LeftNavValidator>;
+
+export const RightNavValidator = z.object({
+    type: z.enum(['image', 'spotify']),
+    objectId: z.string(),
+});
+
+export type RightNav = z.infer<typeof RightNavValidator>;
+
+export const FooterValidator = z.object({
+    text: z.string(),
+    icon: z.object({
+        image: z.string(),
+        width: z.number(),
+        height: z.number(),
+    }),
+    ringAudio: z.string(),
+});
+
+export type Footer = z.infer<typeof FooterValidator>;
+
+export const SiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery', 'wtf']);
 
 export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
@@ -41,25 +71,9 @@ export const SiteValidator = z.object({
     metaDescription: z.string(),
     metaKeywords: z.string(),
     header: HeaderValidator,
-    leftNav: z.object({
-        image: z.string(),
-        text: z.string(),
-        video: z.string().nullable(),
-        audio: z.string().nullable(),
-        items: z.array(LeftNavItemValidator),
-    }),
-    rightNav: z.object({
-        type: z.enum(['image', 'spotify']),
-        objectId: z.string(),
-    }),
-    footer: z.object({
-        text: z.string(),
-        icon: z.string(),
-        iconType: z.enum(['image', 'video']),
-        iconWidth: z.number(),
-        iconHeight: z.number(),
-        ringAudio: z.string(),
-    }),
+    leftNav: LeftNavValidator,
+    rightNav: RightNavValidator,
+    footer: FooterValidator,
     gaTag: z.string(),
 });
 
@@ -73,6 +87,7 @@ export const SiteMapValidator = z.object({
     games: SiteValidator,
     construction: SiteValidator,
     gallery: SiteValidator,
+    wtf: SiteValidator,
 });
 
 export type SiteMap = Record<SiteKey, Site>;
@@ -100,12 +115,30 @@ export type Size = {
     height: number;
 };
 
+const ContentTypeValidator = z.enum(['youtube', 'vimeo', 'video', 'image', 'game']);
+
+export const ContentItemValidator = z.object({
+    name: z.string(),
+    id: z.string(),
+    contentType: ContentTypeValidator,
+    thumb: z.string(),
+
+    display: z.boolean().default(true),
+    category: z.string().optional(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
+
+});
+// export const ContentItemValidator = z.discriminatedUnion('contentType', [
+//     z.object({ contentType: 'youtube', {')
+// ]);
+
 export const BaseContentItemValidator = z.object({
     name: z.string(),
     contentId: z.string(),
     contentType: z.string(), // TODO: add an enum on this and build predicates for each type
     thumb: z.string(),
-    category: z.string(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
+    category: z.string().optional(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
+    display: z.boolean().default(true),
+    site: SiteKeyValidator,
 
     description: z.string().optional(),
     caption: z.string().optional(),
@@ -113,7 +146,7 @@ export const BaseContentItemValidator = z.object({
     year: z.number().optional().nullable(),
     width: z.number().optional().nullable(),
     height: z.number().optional().nullable(),
-    display: z.boolean().default(true),
+
 });
 
 export type BaseContentItem = z.infer<typeof BaseContentItemValidator>;
@@ -123,12 +156,7 @@ export const GameContentItemValidator = BaseContentItemValidator.extend({
     dataUrl: z.string(),
     frameworkUrl: z.string(),
     codeUrl: z.string(),
-    streamingAssetsUrl: z.string(),
-    companyName: z.string(),
-    productName: z.string(),
-    productVersion: z.string(),
     showBanner: z.boolean(),
-    devicePixelRatio: z.number(),
 });
 
 export type GameContentItem = z.infer<typeof GameContentItemValidator>;
@@ -142,6 +170,7 @@ export const ContentMapValidator = z.object({
     games: GameContentListValidator,
     construction: BaseContentListValidator,
     gallery: GameContentListValidator,
+    wtf: BaseContentListValidator.or(GameContentListValidator),
 });
 
 export type ContentMap = z.infer<typeof ContentMapValidator>;

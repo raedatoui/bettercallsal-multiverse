@@ -1,124 +1,136 @@
 {
-  "items": [
-    {
-      "name": "Sound Bath",
-      "contentId": "sound_bath.mp4",
-      "contentType": "video",
-      "thumb": "sound_bath.jpg",
-      "category": "sound-bath",
-      "description": "",
-      "caption": "Instructor",
-      "time": "34:07:00"
-    },
-    {
-      "name": "Gentle Flow",
-      "contentId": "yoga_gentle_flow.mp4",
-      "contentType": "video",
-      "thumb": "yoga_gentle_flow.jpg",
-      "category": "yoga",
-      "description": "",
-      "caption": "Instructor",
-      "time": "31:42:00"
-    },
-    {
-      "name": "Vinyasa",
-      "contentId": "yoga_vinyasa.mp4",
-      "contentType": "video",
-      "thumb": "yoga_vinyasa.jpg",
-      "category": "yoga",
-      "description": "",
-      "caption": "Instructor",
-      "time": "24:23:00"
-    },
-    {
-      "name": "Strength",
-      "contentId": "strength.mp4",
-      "contentType": "video",
-      "thumb": "strength.jpg",
-      "category": "strength",
-      "description": "",
-      "caption": "Instructor",
-      "time": "20:35:00"
-    },
-    {
-      "name": "Meditation",
-      "contentId": "meditation.mp4",
-      "contentType": "video",
-      "thumb": "meditation.jpg",
-      "category": "meditation",
-      "description": "",
-      "caption": "Instructor",
-      "time": "28:24:00"
-    },
-    {
-      "name": "Hip Opener",
-      "contentId": "stretch_hip_opener.mp4",
-      "contentType": "video",
-      "thumb": "stretch_hip_opener.jpg",
-      "category": "stretch",
-      "description": "",
-      "caption": "Instructor",
-      "time": "15:48"
-    },
-    {
-      "name": "Kinstretch",
-      "contentId": "stretch_kinstretch.mp4",
-      "contentType": "video",
-      "thumb": "stretch_kinstretch.jpg",
-      "category": "stretch",
-      "description": "",
-      "caption": "Instructor",
-      "time": "30:53:00"
-    },
-    {
-      "name": "Barre",
-      "contentId": "barre.mp4",
-      "contentType": "video",
-      "thumb": "barre.jpg",
-      "category": "barre",
-      "description": "",
-      "caption": "Instructor",
-      "time": "23:12"
-    },
-    {
-      "name": "Pilates",
-      "contentId": "pilates.mp4",
-      "contentType": "video",
-      "thumb": "pilates.jpg",
-      "category": "pilates",
-      "description": "",
-      "caption": "Instructor",
-      "time": "16:08"
-    },
-    {
-      "name": "Cycling",
-      "contentId": "cycling.mp4",
-      "contentType": "video",
-      "thumb": "cycling.jpg",
-      "category": "cycling",
-      "description": "",
-      "caption": "Instructor",
-      "time": "18:38"
-    },
-    {
-      "name": "Boxing",
-      "contentId": "boxing.mp4",
-      "contentType": "video",
-      "thumb": "boxing.jpg",
-      "category": "boxing",
-      "description": "",
-      "caption": "Instructor",
-      "time": "29:37:00"
-    },
-    {
-      "name": "Prenatal Pilates",
-      "contentId": "prenatal_pilates.mp4",
-      "contentType": "video",
-      "thumb": "prenatal_pilates.jpg",
-      "category": "pilates",
-      "description": "",
-      "caption": "Instructor",
-      "time": "41:06:00"
-    }
-  ]
+    "items": [
+        {
+            "name": "Sound Bath",
+            "contentId": "sound_bath.mp4",
+            "contentType": "video",
+            "thumb": "sound_bath.jpg",
+            "category": "sound-bath",
+            "description": "",
+            "caption": "Instructor",
+            "time": "34:07:00",
+            "site": "fit"
+        },
+        {
+            "name": "Gentle Flow",
+            "contentId": "yoga_gentle_flow.mp4",
+            "contentType": "video",
+            "thumb": "yoga_gentle_flow.jpg",
+            "category": "yoga",
+            "description": "",
+            "caption": "Instructor",
+            "time": "31:42:00",
+            "site": "fit"
+        },
+        {
+            "name": "Vinyasa",
+            "contentId": "yoga_vinyasa.mp4",
+            "contentType": "video",
+            "thumb": "yoga_vinyasa.jpg",
+            "category": "yoga",
+            "description": "",
+            "caption": "Instructor",
+            "time": "24:23:00",
+            "site": "fit"
+        },
+        {
+            "name": "Strength",
+            "contentId": "strength.mp4",
+            "contentType": "video",
+            "thumb": "strength.jpg",
+            "category": "strength",
+            "description": "",
+            "caption": "Instructor",
+            "time": "20:35:00",
+            "site": "fit"
+        },
+        {
+            "name": "Meditation",
+            "contentId": "meditation.mp4",
+            "contentType": "video",
+            "thumb": "meditation.jpg",
+            "category": "meditation",
+            "description": "",
+            "caption": "Instructor",
+            "time": "28:24:00",
+            "site": "fit"
+        },
+        {
+            "name": "Hip Opener",
+            "contentId": "stretch_hip_opener.mp4",
+            "contentType": "video",
+            "thumb": "stretch_hip_opener.jpg",
+            "category": "stretch",
+            "description": "",
+            "caption": "Instructor",
+            "time": "15:48",
+            "site": "fit"
+        },
+        {
+            "name": "Kinstretch",
+            "contentId": "stretch_kinstretch.mp4",
+            "contentType": "video",
+            "thumb": "stretch_kinstretch.jpg",
+            "category": "stretch",
+            "description": "",
+            "caption": "Instructor",
+            "time": "30:53:00",
+            "site": "fit"
+        },
+        {
+            "name": "Barre",
+            "contentId": "barre.mp4",
+            "contentType": "video",
+            "thumb": "barre.jpg",
+            "category": "barre",
+            "description": "",
+            "caption": "Instructor",
+            "time": "23:12",
+            "site": "fit"
+        },
+        {
+            "name": "Pilates",
+            "contentId": "pilates.mp4",
+            "contentType": "video",
+            "thumb": "pilates.jpg",
+            "category": "pilates",
+            "description": "",
+            "caption": "Instructor",
+            "time": "16:08",
+            "site": "fit"
+        },
+        {
+            "name": "Cycling",
+            "contentId": "cycling.mp4",
+            "contentType": "video",
+            "thumb": "cycling.jpg",
+            "category": "cycling",
+            "description": "",
+            "caption": "Instructor",
+            "time": "18:38",
+            "site": "fit"
+        },
+        {
+            "name": "Boxing",
+            "contentId": "boxing.mp4",
+            "contentType": "video",
+            "thumb": "boxing.jpg",
+            "category": "boxing",
+            "description": "",
+            "caption": "Instructor",
+            "time": "29:37:00",
+            "site": "fit"
+        },
+        {
+            "name": "Prenatal Pilates",
+            "contentId": "prenatal_pilates.mp4",
+            "contentType": "video",
+            "thumb": "prenatal_pilates.jpg",
+            "category": "pilates",
+            "description": "",
+            "caption": "Instructor",
+            "time": "41:06:00",
+            "site": "fit"
+        }
+    ]
 }

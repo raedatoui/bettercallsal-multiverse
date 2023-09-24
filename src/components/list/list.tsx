@@ -80,6 +80,11 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
     let cc = bizerkMode !== 'off' ? 'bizerk' : '';
     if (!visible) cc += ' off';
 
+    let finalList = contentList
+        .filter(i => i.display)
+        .filter(i => i.category === category || category === undefined);
+    if (selectedSite === 'wtf')
+        finalList = finalList.slice(0, 36);
     return (
         <>
             <Caption className={cc}>
@@ -91,9 +96,7 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
                     id="content-list"
                     className={visible ? '' : 'off'}
                 >
-                    { contentList
-                        .filter(i => i.display)
-                        .filter(i => i.category === category || category === undefined)
+                    { finalList
                         .map(i => (
                             <RouterLink
                                 onClick={() => {
@@ -105,13 +108,13 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
                                         buffers.play('/audio/art/pavane.mp3', true);
                                 }}
                                 key={i.contentId}
-                                to={`/${URL_MAP[selectedSite]}/${slugify(i.name)}`}
+                                to={`/${URL_MAP[i.site]}/${slugify(i.name)}`}
                                 id={slugify(i.name)}
                             >
                                 <ContentItem>
                                     <Image
                                         alt={i.name}
-                                        src={`/images/${selectedSite}/thumbs/${i.thumb}`}
+                                        src={`/images/${i.site}/thumbs/${i.thumb}`}
                                         width="480"
                                         height="360"
                                         loading="lazy"
@@ -166,13 +169,13 @@ const ServerList = () => {
                     .map(i => (
                         <Link
                             key={i.contentId}
-                            href={`/${URL_MAP[selectedSite]}/${slugify(i.name)}`}
+                            href={`/${URL_MAP[i.site]}/${slugify(i.name)}`}
                             id={slugify(i.name)}
                         >
                             <ContentItem>
                                 <Image
                                     alt={i.name}
-                                    src={`/images/${selectedSite}/thumbs/${i.thumb}`}
+                                    src={`/images/${i.site}/thumbs/${i.thumb}`}
                                     width="480"
                                     height="360"
                                     loading="lazy"
