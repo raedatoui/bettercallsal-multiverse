@@ -9,37 +9,30 @@ import rocks from '../content/content-rocks.json';
 
 // add site to each item
 const artContent = {
-    items: art.items.map(i => ({ ...i, site: 'art' })),
+    items: art.items.map((i) => ({ ...i, site: 'art' })),
 };
 const bizContent = {
-    items: biz.items.map(i => ({ ...i, site: 'biz' })),
+    items: biz.items.map((i) => ({ ...i, site: 'biz' })),
 };
 
 const fitContent = {
-    items: fit.items.map(i => ({ ...i, site: 'fit' })),
+    items: fit.items.map((i) => ({ ...i, site: 'fit' })),
 };
 
 const galleryContent = {
-    items: gallery.items.map(i => ({ ...i, site: 'gallery' })),
+    items: gallery.items.map((i) => ({ ...i, site: 'gallery' })),
 };
 
 const gamesContent = {
-    items: games.items.map(i => ({ ...i, site: 'games' })),
+    items: games.items.map((i) => ({ ...i, site: 'games' })),
 };
 
 const rocksContent = {
-    items: rocks.items.map(i => ({ ...i, site: 'rocks' })),
+    items: rocks.items.map((i) => ({ ...i, site: 'rocks' })),
 };
 
 const mash = {
-    items: [
-        ...artContent.items,
-        ...bizContent.items,
-        ...fitContent.items,
-        ...galleryContent.items,
-        ...gamesContent.items,
-        ...rocksContent.items,
-    ]
+    items: [...artContent.items, ...bizContent.items, ...fitContent.items, ...galleryContent.items, ...gamesContent.items, ...rocksContent.items],
 };
 
 // writeFileSync(join(__dirname, '../', 'content', 'content-art.json'), JSON.stringify(artContent, undefined, 4), {

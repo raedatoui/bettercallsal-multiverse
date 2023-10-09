@@ -1,36 +1,21 @@
 import Script from 'next/script';
-import React, { FC, forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, Player, PlayerContainer, StopButton, VideoElement, VideoText } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, SiteKey, Size } from '@/types';
+import { BaseContentItem, ContentSize, Size, YTPlayer, VimeoPlayer } from '@/types';
 import { useWindowSize, findContent } from '@/utils';
 
 interface Props {
     contentItem: BaseContentItem;
-    selectedSite: SiteKey;
     containerRef: React.RefObject<HTMLDivElement>;
     titleRef: React.RefObject<HTMLDivElement>;
     viewsRef: React.RefObject<HTMLDivElement>;
 }
 
 interface VideoPlayerType {
-    stop: () => void
-}
-
-interface YTPlayer {
-    stopVideo: () => void;
-    playVideo: () => void;
-    destroy: () => void;
-    loadVideoById: (v: string) => void;
-    cueVideoById: (v: string) => void;
-    seekTo: (x: number) => void;
-}
-
-interface VimeoPlayer {
-    pause: () => void;
-    loadVideo: (id: string) => void;
+    stop: () => void;
 }
 
 const getContentSize = (
@@ -56,15 +41,31 @@ const getContentSize = (
         width = workingWidth;
         height = (width * desiredSize.height) / desiredSize.width;
     }
-    return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
+    return {
+        width,
+        height,
+        left: (workingWidth - width) / 2,
+        top: (workingHeight - height) / 2,
+    };
 };
 
-const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, selectedSite, containerRef, viewsRef, titleRef }, ref) => {
-    const [yPlayer, setYPlayer] = useState<YTPlayer>();
-    const [vPlayer, setVPlayer] = useState<VimeoPlayer>();
+const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, containerRef, viewsRef, titleRef }, ref) => {
+    const navigate = useNavigate();
+    const [yPlayer, setYPlayer] = useState<YTPlayer | null>(null);
+    const [vPlayer, setVPlayer] = useState<VimeoPlayer | null>(null);
 
-    const [videoSize, setVideoSize] = useState<ContentSize>({ width: 0, height: 0, left: 0, top: 0 });
-    const [ytSize, setYtSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
+    const [videoSize, setVideoSize] = useState<ContentSize>({
+        width: 0,
+        height: 0,
+        left: 0,
+        top: 0,
+    });
+    const [ytSize, setYtSize] = useState<ContentSize>({
+        width: 640,
+        height: 480,
+        left: 0,
+        top: 0,
+    });
 
     const windowSize = useWindowSize();
 
@@ -95,22 +96,18 @@ const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, selectedS
 
     useEffect(() => {
         getSize();
-        return () => {};
     }, [getSize, windowSize]);
 
     useEffect(() => {
         if (contentItem.contentType === 'youtube') {
             // kill vimeo player if playing youtube from left nav.
             // the day we have vimeo or others in the left nav, we will need to stop the youtube player.
-            if (vPlayer)
-                vPlayer.pause();
+            if (vPlayer) vPlayer.pause();
             if (yPlayer) {
                 yPlayer.loadVideoById(contentItem.contentId);
                 getSize();
             } else
-                // @ts-ignore
-                // eslint-disable-next-line no-new
-                new YT.Player('player', {
+                new window.YT.Player('player', {
                     height: ytSize.height,
                     width: ytSize.width,
                     loop: 1,
@@ -120,71 +117,68 @@ const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, selectedS
                     enablejsapi: 1,
                     startSeconds: 0,
                     events: {
-                        /* eslint-disable @typescript-eslint/no-explicit-any */
-                        onReady: (event: any) => {
-                            setYPlayer(event.target);
-                            event.target.playVideo();
+                        onReady: (event: Record<string, unknown>) => {
+                            const player = event.target as YTPlayer;
+                            setYPlayer(player);
+                            player.playVideo();
                         },
-                        // onStateChange: (event: any) => {
-                        //     // @ts-ignore
-                        //     if (event.data === YT.PlayerState.ENDED)
-                        //         stopVideo();
-                        // },
-                        /* eslint-disable @typescript-eslint/no-explicit-any */
+                        onStateChange: (event: Record<string, unknown>) => {
+                            if (event.data === window.YT.PlayerState.ENDED) navigate('/');
+                        },
                     },
                 });
         }
-
     }, [contentItem, getSize, playerRef, vPlayer, yPlayer, ytSize.height, ytSize.width]);
 
     useEffect(() => {
-        if (contentItem.contentType === 'vimeo' && playerRef.current)
-            // @ts-ignore
-            setVPlayer(new Vimeo.Player('player', {
+        if (contentItem.contentType === 'vimeo' && playerRef.current) {
+            const v = new window.Vimeo.Player('player', {
                 id: contentItem.contentId,
                 width: ytSize.width,
                 autoplay: true,
-                loop: true,
-            }));
+                loop: false,
+            }) as unknown as VimeoPlayer;
+            v.on('ended', function () {
+                v.destroy();
+                navigate('/');
+            });
+            setVPlayer(v);
+        }
     }, [contentItem, playerRef, ytSize.width]);
 
     useImperativeHandle(ref, () => ({
         stop() {
             yPlayer?.stopVideo?.();
             vPlayer?.pause();
-        }
+        },
     }));
 
     return (
         <>
-            { (contentItem.contentType === 'youtube' || contentItem.contentType === 'vimeo') && (
+            {(contentItem.contentType === 'youtube' || contentItem.contentType === 'vimeo') && (
                 <Player width={ytSize.width} height={ytSize.height}>
                     <div id="player" ref={playerRef} />
                 </Player>
             )}
 
-            { contentItem.contentType === 'video' && (
+            {contentItem.contentType === 'video' && (
                 <VideoElement controls autoPlay width={videoSize.width} height={videoSize.height} left={videoSize.left}>
-                    <source src={`${CDN}/videos/${selectedSite}/${contentItem.contentId}`} type="video/mp4" />
+                    <source src={`${CDN}/videos/${contentItem.site}/${contentItem.contentId}`} type="video/mp4" />
                 </VideoElement>
-            ) }
+            )}
         </>
     );
 });
 
-interface VideoWrapperProps {}
+VideoPlayer.displayName = 'VideoPlayer';
 
-const Video:FC<VideoWrapperProps> = () => {
+const Video = () => {
     const { videoId } = useParams<{ videoId: string }>();
     const navigate = useNavigate();
 
     const [ytScriptLoaded, setYtScriptLoaded] = useState<boolean>(false);
     const [vmScriptLoaded, setVmScriptLoaded] = useState<boolean>(false);
-    const {
-        contentMap,
-        selectedSite,
-        siteMap,
-    } = useSiteContext();
+    const { contentMap, selectedSite, siteMap } = useSiteContext();
     const site = siteMap[selectedSite];
     const contentList = contentMap[selectedSite];
     const contentItem = findContent(contentList, videoId ?? '');
@@ -195,18 +189,16 @@ const Video:FC<VideoWrapperProps> = () => {
     const viewsRef = useRef<HTMLDivElement>(null);
 
     const getTile = () => {
-        if (selectedSite === 'biz' || selectedSite === 'rocks')
+        if (contentItem?.site === 'biz' || contentItem?.site === 'rocks')
             return `${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`;
-        if (selectedSite === 'fit')
-            return site.leftNav.items.filter(i => i.category === contentItem?.category ?? '')[0].quote ?? '';
+        if (contentItem?.site === 'fit') return site.leftNav.items.filter((i) => i.category === contentItem?.category ?? '')[0].quote ?? '';
         return contentItem?.name ?? '';
     };
 
     const stopVideo = useCallback(() => {
         videoPlayerRef.current?.stop();
-        // TODO: this goes back to category
-        if (selectedSite === 'biz')
-            navigate('/');
+        // DOC: this goes back to category
+        if (selectedSite === 'biz') navigate('/');
         else navigate(-1);
     }, [navigate]);
 
@@ -216,8 +208,7 @@ const Video:FC<VideoWrapperProps> = () => {
         };
     }, []);
 
-    if (!contentItem)
-        navigate('/');
+    if (!contentItem) navigate('/');
 
     const videoClass = contentItem?.contentId ? 'loaded' : '';
     return (
@@ -226,38 +217,26 @@ const Video:FC<VideoWrapperProps> = () => {
                 id="youtube-iframe"
                 src="https://www.youtube.com/iframe_api"
                 onReady={() => {
-                    // @ts-ignore
-                    if (window.YT.Player)
-                        setYtScriptLoaded(true);
+                    if (window.YT.Player) setYtScriptLoaded(true);
                 }}
             />
-            <Script
-                id="vimeo-player"
-                src="https://player.vimeo.com/api/player.js"
-                onReady={() => setVmScriptLoaded(true)}
-            />
+            <Script id="vimeo-player" src="https://player.vimeo.com/api/player.js" onReady={() => setVmScriptLoaded(true)} />
 
-            { selectedSite !== 'fit' && contentItem?.caption !== undefined
-                && <VideoText ref={titleRef}>{getTile()}</VideoText> }
+            {contentItem?.site !== 'fit' && contentItem?.caption !== undefined && <VideoText ref={titleRef}>{getTile()}</VideoText>}
 
-            { ytScriptLoaded && vmScriptLoaded && contentItem && (
-                <VideoPlayer
-                    contentItem={contentItem}
-                    selectedSite={selectedSite}
-                    containerRef={containerRef}
-                    titleRef={titleRef}
-                    viewsRef={viewsRef}
-                    ref={videoPlayerRef}
-                />
+            {ytScriptLoaded && vmScriptLoaded && contentItem && (
+                <VideoPlayer contentItem={contentItem} containerRef={containerRef} titleRef={titleRef} viewsRef={viewsRef} ref={videoPlayerRef} />
             )}
 
-            { (selectedSite === 'biz' || selectedSite === 'rocks') && contentItem?.views !== undefined
-                && (<VideoText className="lower" ref={viewsRef}>Views: {contentItem?.views?.toLocaleString('US') ?? ''}</VideoText>)}
+            {(contentItem?.site === 'biz' || contentItem?.site === 'rocks') && contentItem?.views !== undefined && (
+                <VideoText className="lower" ref={viewsRef}>
+                    Views: {contentItem?.views?.toLocaleString('US') ?? ''}
+                </VideoText>
+            )}
 
             <ButtonBar>
                 <StopButton onClick={() => stopVideo()}>[x]</StopButton>
             </ButtonBar>
-
         </PlayerContainer>
     );
 };

@@ -3,66 +3,67 @@ import { CDN, headerBreakPoints as breakPoints } from '@/constants';
 import { fadein, ltr, ltr2, rtl, rtl2 } from '@/utils/animations';
 
 export const SpinningSalsContainer = styled.div`
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
-  position: absolute;
-  width: 100%;
-  height: 0;
-  z-index: 1;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    z-index: 1;
 `;
 
 export const SpinningWrapper = styled.div`
-  transition: 0.25s;
+    transition: 0.25s;
 
-  &.left {
-    float: left;
-  }
-  
-  &.right {
-    float: right;
-  }
-  height: 240px;
-  width: 258px;
-  
-  @media only screen and (max-width: ${breakPoints.sm.max}px) {
-    height: 94px;
-    width: 102px;
-    padding-top: 20px;
-    
     &.left {
-      margin-left: -16px;
+        float: left;
     }
-    
+
     &.right {
-      margin-right: -16px;
+        float: right;
     }
-    
-    &.img0.fadein, &.img0.hover {
-      display: block;
+    height: 240px;
+    width: 258px;
+
+    @media only screen and (max-width: ${breakPoints.sm.max}px) {
+        height: 94px;
+        width: 102px;
+        padding-top: 20px;
+
+        &.left {
+            margin-left: -16px;
+        }
+
+        &.right {
+            margin-right: -16px;
+        }
+
+        &.img0.fadein,
+        &.img0.hover {
+            display: block;
+        }
     }
-  }
-  
-  @media only screen and (max-width : ${breakPoints.md.max}px) and (min-width : ${breakPoints.md.min}px) {
-    height: 140px !important;
-    width: 150.5px !important;
-    margin-top: 12px;
-  }
 
-  @media only screen and (max-width : ${breakPoints.lg1a.max}px) and (min-width : ${breakPoints.lg1a.min}px) {
-    height: 163.5px;
-    width: 176px;
-    margin-top: 19px;
-  }
-  
-  @media only screen and (max-width : ${breakPoints.lg1.max}px) and (min-width : ${breakPoints.lg1.min + 101}px) {
-    height: 183px;
-    width: 198px;
-  }
+    @media only screen and (max-width: ${breakPoints.md.max}px) and (min-width: ${breakPoints.md.min}px) {
+        height: 140px !important;
+        width: 150.5px !important;
+        margin-top: 12px;
+    }
 
-  @media only screen and (max-width : ${breakPoints.lg2.max}px) and (min-width : ${breakPoints.lg2.min}px) {
-    height: 219px;
-    width: 237px;
-  }
+    @media only screen and (max-width: ${breakPoints.lg1a.max}px) and (min-width: ${breakPoints.lg1a.min}px) {
+        height: 163.5px;
+        width: 176px;
+        margin-top: 19px;
+    }
+
+    @media only screen and (max-width: ${breakPoints.lg1.max}px) and (min-width: ${breakPoints.lg1.min + 101}px) {
+        height: 183px;
+        width: 198px;
+    }
+
+    @media only screen and (max-width: ${breakPoints.lg2.max}px) and (min-width: ${breakPoints.lg2.min}px) {
+        height: 219px;
+        width: 237px;
+    }
 `;
 
 export const SpinningImg = styled.div<{ image: string }>`
@@ -78,12 +79,16 @@ export const SpinningImg = styled.div<{ image: string }>`
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${props => `${CDN}${props.image}`});
+  background-image: url(${(props) => `${CDN}${props.image}`});
   //cursor: pointer;
 
   /* this used to allow a fadein animation, class was added in header.tsx component */
   &.start {
     opacity: 1;
+  }
+  
+  &.wtfStart {
+    opacity: 0;
   }
   
   &.img0.bizerk {
@@ -92,6 +97,14 @@ export const SpinningImg = styled.div<{ image: string }>`
 
   &.img1.bizerk {
     animation: ${ltr} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+  }
+
+  &.img0.wtf {
+    animation: ${rtl} 0.5s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
+  }
+
+  &.img1.wtf {
+    animation: ${ltr} 0.5s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
   }
 
   &.fadein {

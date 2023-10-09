@@ -1,12 +1,12 @@
 import sitesData from '../content/sites.json';
-import { LeftNavNavItem, SiteMapValidator } from '../src/types';
+import { LeftNavItem, SiteMapValidator } from '../src/types';
 import { convertObjectToCsvString } from './csv';
 
 const run = async () => {
     const siteMap = SiteMapValidator.parse(sitesData);
     Object.entries(siteMap).map(([key, site]) => {
         console.log(key);
-        console.log(convertObjectToCsvString<LeftNavNavItem>(site.leftNav.items));
+        console.log(convertObjectToCsvString<LeftNavItem>(site.leftNav.items));
         console.log('-------');
         return 1;
     });

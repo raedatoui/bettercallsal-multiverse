@@ -13,7 +13,6 @@ const useTimeout = (callback: CbFn, delay: number) => {
 
         const id = setTimeout(tick, delay);
         return () => clearTimeout(id);
-
     }, [delay]);
 };
 

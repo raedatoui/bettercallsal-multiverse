@@ -6,13 +6,7 @@ import { EXTERNAL_LINK, tickerList } from '@/constants';
 import { useBizerkContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Site, SiteKey, BizerkMode } from '@/types';
-import {
-    slideInFromLeft,
-    slideOutFromLeft,
-    squigglySlideInFromLeft,
-    squigglySlideOutFromLeft,
-    squigglyText
-} from '@/utils/animations';
+import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
 
 interface Props {
     backgroundColor: string;
@@ -31,34 +25,26 @@ interface SliderProps {
     siteKey: string;
     index: number;
     selectedSite: SiteKey;
-    setSelectedSite: (s: SiteKey) => void
+    setSelectedSite: (s: SiteKey) => void;
     bizerkMode: BizerkMode;
 }
 
 const sliders = {
     top: SiteUrl,
-    bottom: LowerBanner
+    bottom: LowerBanner,
 };
 
 const sliderContent = {
     top: (s: Site | undefined) => `bettercallsal.${s?.name}`,
-    bottom: (s: Site | undefined) => (<>{s?.header.lowerBanner}<span>Click Here!!!</span></>)
+    bottom: (s: Site | undefined) => (
+        <>
+            {s?.header.lowerBanner}
+            <span>Click Here!!!</span>
+        </>
+    ),
 };
 
-const Slider: FC<SliderProps> = (
-    {
-        setSelectedSite,
-        selectedSite,
-        selectedSlide,
-        site,
-        siteKey,
-        index,
-        start,
-        sliderType,
-        sw,
-        bizerkMode
-    }
-) => {
+const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide, site, siteKey, index, start, sliderType, sw, bizerkMode }) => {
     const [animation, setAnimation] = useState<Keyframes | null>(null);
     const [animationDuration, setAnimationDuration] = useState<string>('2s');
     const [translateX, setTranslateX] = useState<number>(sw);
@@ -102,21 +88,13 @@ const Slider: FC<SliderProps> = (
 
     useEffect(() => {
         if (!start)
-            if (siteKey === selectedSite)
-                selected();
-            else
-                reset();
-        else
-        if (selectedSlide === 0 && index === 0)
-            slideIn();
-        else if (selectedSlide === 0 && index === tickerList.length - 1)
-            slideOut();
-        else if (selectedSlide === index)
-            slideIn();
-        else if (selectedSlide - 1 === index)
-            slideOut();
-        else
-            reset();
+            if (siteKey === selectedSite) selected();
+            else reset();
+        else if (selectedSlide === 0 && index === 0) slideIn();
+        else if (selectedSlide === 0 && index === tickerList.length - 1) slideOut();
+        else if (selectedSlide === index) slideIn();
+        else if (selectedSlide - 1 === index) slideOut();
+        else reset();
     }, [selectedSlide, selectedSite, start, index, selected, reset, slideIn, slideOut]);
 
     const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -135,7 +113,7 @@ const Slider: FC<SliderProps> = (
             visibility={visibility}
             translateX={translateX}
         >
-            { sliderContent[sliderType](site || undefined)}
+            {sliderContent[sliderType](site || undefined)}
         </SliderComponent>
     );
 };
@@ -150,14 +128,13 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
             // onMouseLeave={() => tickerCb(false)}
         >
             <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
-            { tickerList.map(([s, site], i) => (
+            {tickerList.map(([s, site], i) => (
                 <Slider
                     key={s}
                     start={start}
                     selectedSlide={selectedSlide}
-                    selectedSite={
-                        Object.keys(tickerList).indexOf(selectedSite) === -1 ? 'biz' : selectedSite
-                    } // // TODO: this is a gallery ticker hack
+                    // DOC: defaults sites with showTicker:false to biz
+                    selectedSite={Object.keys(tickerList).indexOf(selectedSite) === -1 ? 'biz' : selectedSite}
                     setSelectedSite={setSelectedSite}
                     site={site}
                     sw={sw}

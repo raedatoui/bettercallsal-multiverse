@@ -5,12 +5,12 @@ import AudioBuffers from './audio-buffer';
 import { useSiteContext } from './sites';
 
 type SoundProviderType = {
-    buffers: AudioBuffers,
-    loaded: boolean,
-    play: (audioElement: AudioElement, filter?: string) => void,
-    stop: (audioElement: AudioElement, filter?: string) => void,
-    pause: (audioElement: AudioElement, filter?: string) => void,
-    stopAll: () => void,
+    buffers: AudioBuffers;
+    loaded: boolean;
+    play: (audioElement: AudioElement, filter?: string) => void;
+    stop: (audioElement: AudioElement, filter?: string) => void;
+    pause: (audioElement: AudioElement, filter?: string) => void;
+    stopAll: () => void;
 };
 
 const buffers = new AudioBuffers();
@@ -18,10 +18,10 @@ const buffers = new AudioBuffers();
 const SoundContext = createContext<SoundProviderType>({
     buffers,
     loaded: false,
-    play: () => {},
-    stop: () => {},
-    pause: () => {},
-    stopAll: () => {},
+    play: () => null,
+    stop: () => null,
+    pause: () => null,
+    stopAll: () => null,
 });
 
 interface ProviderProps {
@@ -29,15 +29,9 @@ interface ProviderProps {
 }
 
 const getSiteSoundFiles = (site: Site): string[] => {
-    const navSounds = site.leftNav.items.map(i => i.audio).filter(isNotNull);
-    const sounds = [
-        site.header.ringAudio,
-        site.header.spinningSalAudio1,
-        site.header.spinningSalAudio2,
-        ...navSounds
-    ];
-    if (site.leftNav.audio)
-        sounds.push(site.leftNav.audio);
+    const navSounds = site.leftNav.items.map((i) => i.audio).filter(isNotNull);
+    const sounds = [site.header.ringAudio, site.header.spinningSalAudio1, site.header.spinningSalAudio2, site.footer.ringAudio, ...navSounds];
+    if (site.leftNav.audio) sounds.push(site.leftNav.audio);
     return sounds;
 };
 
@@ -48,16 +42,14 @@ const getSiteSoundMap = (site: Site): Record<string, string> => {
         [AudioElementValidator.enum.spinningRight]: site.header.spinningSalAudio1,
         [AudioElementValidator.enum.spinningLeft]: site.header.spinningSalAudio2,
     };
-    if (site.leftNav.audio)
-        map[AudioElementValidator.enum.leftNavAudio] = site.leftNav.audio;
-    site.leftNav.items.forEach(i => {
-        if (i.audio)
-            map[`${AudioElementValidator.enum.leftNavItemAudio}-${i.name}`] = i.audio;
+    if (site.leftNav.audio) map[AudioElementValidator.enum.leftNavAudio] = site.leftNav.audio;
+    site.leftNav.items.forEach((i) => {
+        if (i.audio) map[`${AudioElementValidator.enum.leftNavItemAudio}-${i.name}`] = i.audio;
     });
     return map;
 };
 
-const SoundProvider:FC<ProviderProps> = ({ children }) => {
+const SoundProvider: FC<ProviderProps> = ({ children }) => {
     const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
     const [loaded, setLoaded] = useState<boolean>(false);
@@ -78,36 +70,32 @@ const SoundProvider:FC<ProviderProps> = ({ children }) => {
         buffers.pause(k);
     };
 
-    const audioBuffers = useMemo<SoundProviderType>(() => ({
-        buffers,
-        loaded,
-        play,
-        stop,
-        pause,
-        stopAll: buffers.stopAll,
-    }), [loaded]);
+    const audioBuffers = useMemo<SoundProviderType>(
+        () => ({
+            buffers,
+            loaded,
+            play,
+            stop,
+            pause,
+            stopAll: buffers.stopAll,
+        }),
+        [loaded]
+    );
 
     useEffect(() => {
         buffers.createContext();
         const loadSounds = async () => {
             await buffers.loadSounds(getSiteSoundFiles(site));
             buffers.mapBuffers(getSiteSoundMap(site));
-            setLoaded(buffers.loaded);
         };
-        loadSounds();
-        return () => {};
+        loadSounds().then(() => setLoaded(buffers.loaded));
     }, [site]);
 
     useEffect(() => {
-        if (bizerkMode !== 'off')
-            buffers.bizerk(selectedSite);
+        if (bizerkMode !== 'off') buffers.bizerk(selectedSite);
     }, [bizerkMode, selectedSite]);
 
-    return (
-        <SoundContext.Provider value={audioBuffers}>
-            { children }
-        </SoundContext.Provider>
-    );
+    return <SoundContext.Provider value={audioBuffers}>{children}</SoundContext.Provider>;
 };
 
 export { SoundProvider, SoundContext };

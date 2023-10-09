@@ -19,7 +19,7 @@ export const breakPoints = {
     lg1: { min: 700, max: 767 },
     lg1a: { min: 700, max: 800 },
     md: { min: 568, max: 699 },
-    sm: { max: 567 }
+    sm: { max: 567 },
 };
 
 export const headerBreakPoints = {
@@ -27,7 +27,7 @@ export const headerBreakPoints = {
     lg1: { min: 700, max: 1023 },
     lg1a: { min: 700, max: 800 },
     md: { min: 568, max: 699 },
-    sm: { max: 567 }
+    sm: { max: 567 },
 };
 
 export const URL_MAP: Record<SiteKey, string> = {
@@ -38,5 +38,10 @@ export const URL_MAP: Record<SiteKey, string> = {
     art: 'art',
     construction: '',
     gallery: '',
-    wtf: ''
+    wtf: '',
+};
+
+export const WTF_RANDOM = {
+    limit: 50,
+    interval: 25,
 };

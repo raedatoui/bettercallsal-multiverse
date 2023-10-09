@@ -11,27 +11,23 @@ type PathProviderType = {
 
 const PathContext = createContext<PathProviderType | undefined>(undefined);
 
-const PathProvider:FC<ProviderProps> = ({ children }) => {
+const PathProvider: FC<ProviderProps> = ({ children }) => {
     const [prevPath, setPrevPath] = useState<string>('/');
 
-    const providedPath = useMemo<PathProviderType>(() => ({
-        prevPath,
-        setPrevPath,
-    }), [
-        prevPath,
-    ]);
-
-    return (
-        <PathContext.Provider value={providedPath}>
-            {children}
-        </PathContext.Provider>
+    const providedPath = useMemo<PathProviderType>(
+        () => ({
+            prevPath,
+            setPrevPath,
+        }),
+        [prevPath]
     );
+
+    return <PathContext.Provider value={providedPath}>{children}</PathContext.Provider>;
 };
 
 function usePathContext() {
     const context = useContext(PathContext);
-    if (context === undefined)
-        throw new Error('usePathContext must be used within a PathProvider');
+    if (context === undefined) throw new Error('usePathContext must be used within a PathProvider');
 
     return context;
 }

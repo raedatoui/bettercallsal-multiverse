@@ -1,22 +1,17 @@
 import React, { FC } from 'react';
 import { CDN } from '@/constants';
 import { useAnimationContext, useBizerkContext } from '@/providers/animations';
-import { Site } from '@/types';
 import { BizerImage, BizerkImageContainer } from './elements';
 
 interface Props {
-    site: Site;
+    name: string;
+    bizerkIcon: string;
     pause: () => void;
 }
 
-const Bizerk:FC<Props> = ({ site, pause }) => {
+const Bizerk: FC<Props> = ({ name, bizerkIcon, pause }) => {
     const { setBizerkMode, bizerkMode } = useBizerkContext();
-    const {
-        animateHeaderFooter,
-        setAnimateHeaderFooter,
-        setAnimateGrid,
-        setAnimateBizerk,
-    } = useAnimationContext();
+    const { animateHeaderFooter, setAnimateHeaderFooter, setAnimateGrid, setAnimateBizerk } = useAnimationContext();
 
     const bizerkAnim = () => {
         setAnimateHeaderFooter(animateHeaderFooter + 1);
@@ -32,14 +27,11 @@ const Bizerk:FC<Props> = ({ site, pause }) => {
     };
 
     return (
-        <BizerkImageContainer
-            onClick={() => setBizerkMode('doubleClick')}
-            className={site.name}
-        >
+        <BizerkImageContainer onClick={() => setBizerkMode('doubleClick')} className={name}>
             <BizerImage
-                src={`${CDN}${site.header.bizerkIcon}`}
-                background={site.header.bizerkIcon}
-                className={site.name}
+                src={`${CDN}${bizerkIcon}`}
+                background={bizerkIcon}
+                className={name}
                 onMouseEnter={() => bizerkAnim()}
                 onMouseLeave={() => bizerkStop()}
             />

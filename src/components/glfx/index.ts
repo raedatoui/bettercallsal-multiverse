@@ -11,7 +11,7 @@ import verticalBlurShader from './verticalBlurShader';
 const mapRange = (value: number, inputMin: number, inputMax: number, outputMin: number, outputMax: number): number =>
     outputMin + ((value - inputMin) / (inputMax - inputMin)) * (outputMax - outputMin);
 
-const downSampled = (poly: number = 512) => {
+const downSampled = (poly = 512) => {
     const amount = poly; // 100000;
 
     const positions = new Float32Array(amount * amount * 3);
@@ -98,8 +98,12 @@ class ParticleSystem {
             uniforms: {
                 uTime: { value: 0.0 },
                 limit: { value: 0.0 },
-                uZoomMultiplier: { value: this.zoomDivider / new THREE.Vector3().distanceTo(this.camera.position) },
-                screenCapture: { value: new THREE.TextureLoader().load(this.imageDataUrl) },
+                uZoomMultiplier: {
+                    value: this.zoomDivider / new THREE.Vector3().distanceTo(this.camera.position),
+                },
+                screenCapture: {
+                    value: new THREE.TextureLoader().load(this.imageDataUrl),
+                },
                 mouse: { value: new THREE.Vector2(0, 0) },
             },
             vertexShader: particlesShader.vertexShader,
@@ -113,8 +117,12 @@ class ParticleSystem {
             uniforms: {
                 uTime: { value: 0.0 },
                 limit: { value: 0.0 },
-                uZoomMultiplier: { value: this.zoomDivider / new THREE.Vector3().distanceTo(this.camera.position) },
-                screenCapture: { value: new THREE.TextureLoader().load(this.imageDataUrl) },
+                uZoomMultiplier: {
+                    value: this.zoomDivider / new THREE.Vector3().distanceTo(this.camera.position),
+                },
+                screenCapture: {
+                    value: new THREE.TextureLoader().load(this.imageDataUrl),
+                },
                 mouse: { value: new THREE.Vector2(0, 0) },
             },
             vertexShader: vertexShader2,
@@ -164,7 +172,7 @@ class ParticleSystem {
     addMouseHandler() {
         document.addEventListener(
             'mousemove',
-            e => {
+            (e) => {
                 this.onMouseMove(e);
             },
             false
@@ -172,7 +180,7 @@ class ParticleSystem {
 
         document.addEventListener(
             'mousedown',
-            e => {
+            (e) => {
                 this.onMouseDown(e);
             },
             false
@@ -221,9 +229,7 @@ class ParticleSystem {
         const size = attributes.size as BufferAttribute;
         for (let i = 0; i < data.length; i++) {
             const v = data[i] / 300.0;
-            for (let j = 0; j < data.length; j++)
-                size.setX(i * data.length + j, v);
-
+            for (let j = 0; j < data.length; j++) size.setX(i * data.length + j, v);
         }
         attributes.size.needsUpdate = true;
 
@@ -243,14 +249,14 @@ class ParticleSystem {
         this.renderer.render(this.scene, this.camera);
     }
 
-    onMouseMove(evt:MouseEvent) {
+    onMouseMove(evt: MouseEvent) {
         // const deltaX = evt.clientX - this.mouseX;
         // const deltaY = evt.clientY - this.mouseY;
         this.mousePos.x = mapRange(evt.clientX, 0, window.innerWidth, -2, 2);
         this.mousePos.y = mapRange(evt.clientY, 0, window.innerHeight, 2, -2);
     }
 
-    onMouseDown(evt:MouseEvent) {
+    onMouseDown(evt: MouseEvent) {
         evt.preventDefault();
         this.mouseDown = true;
         // this.mouseX = evt.clientX;

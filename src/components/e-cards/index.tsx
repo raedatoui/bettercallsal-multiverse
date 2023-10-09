@@ -1,27 +1,19 @@
 import Image from 'next/image';
-import React, { FC } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useBizerkContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, Caption, EcardContainer, StopButton } from '@/styles/sharedstyles';
 
-interface Props {}
-
-const Ecard:FC<Props> = () => {
+const Ecard = () => {
     const navigate = useNavigate();
-    const {
-        siteMap,
-        selectedSite,
-    } = useSiteContext();
+    const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
     const { bizerkMode } = useBizerkContext();
 
     return (
         <>
-            <Caption
-                className={bizerkMode !== 'off' ? 'bizerk' : ''}
-            >{site.contentHeader}
-            </Caption>
+            <Caption className={bizerkMode !== 'off' ? 'bizerk' : ''}>{site.contentHeader}</Caption>
             <EcardContainer>
                 <Image
                     width={1050}
@@ -30,7 +22,7 @@ const Ecard:FC<Props> = () => {
                     alt="front-biz-card"
                     sizes="100vw"
                     style={{
-                        height: 'auto'
+                        height: 'auto',
                     }}
                 />
                 <Image
@@ -40,7 +32,7 @@ const Ecard:FC<Props> = () => {
                     alt="front-biz-card"
                     sizes="100vw"
                     style={{
-                        height: 'auto'
+                        height: 'auto',
                     }}
                 />
 

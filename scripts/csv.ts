@@ -5,10 +5,10 @@ import { unparse, parse } from 'papaparse';
 
 export type CsvRow = Record<string, string | CsvRow[]>;
 export type RowError = {
-    code: string,
-    row: number,
-    message: string,
-    originalRow: CsvRow,
+    code: string;
+    row: number;
+    message: string;
+    originalRow: CsvRow;
 };
 
 const COLUMN_DELIMITER = ',';
@@ -29,7 +29,7 @@ export const parseCsv = (fileContent: string): CsvRow[] => {
         skipEmptyLines: true,
         transformHeader(h: string) {
             return camelCase(h.trim());
-        }
+        },
     });
 
     if (errors.length > 0) {
@@ -37,20 +37,21 @@ export const parseCsv = (fileContent: string): CsvRow[] => {
             code: each.code,
             row: each.row + 1,
             originalRow: data[each.row],
-            message: each.message
+            message: each.message,
         }));
         throw new ValidationException(errorMessage);
     }
     return data;
 };
 
-export const convertObjectToCsvString = <T>(rows: T[], addHeaders = true): string => unparse<T>(rows, {
-    quoteChar: '"',
-    escapeChar: '"',
-    delimiter: ',',
-    header: addHeaders,
-    newline: '\n',
-});
+export const convertObjectToCsvString = <T>(rows: T[], addHeaders = true): string =>
+    unparse<T>(rows, {
+        quoteChar: '"',
+        escapeChar: '"',
+        delimiter: ',',
+        header: addHeaders,
+        newline: '\n',
+    });
 
 export const loadSheet = async (sheet: string): Promise<CsvRow[]> => {
     const csvData = await promises.readFile(join(__dirname, '../', 'content', sheet), 'utf-8');

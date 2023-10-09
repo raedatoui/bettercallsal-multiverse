@@ -1,1 +1,2 @@
-export { ClientList, ServerList } from './list';
+export * from './client-list';
+export * from './server-list';

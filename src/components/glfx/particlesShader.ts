@@ -166,7 +166,7 @@ const uniforms = {
     screenCapture: { value: null },
     limit: { value: 0 },
     uZoomMultiplier: { value: 0 },
-    mouse: { value: null }
+    mouse: { value: null },
 };
 
 const shader = {

@@ -1,1 +1,2 @@
-export { ClientLeftNav, ServerLeftNav } from './nav';
+export * from './client-nav';
+export * from './server-nav';

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Construction from '@/components/construction';
 import { ClientLeftNav } from '@/components/left-nav';
@@ -10,8 +10,6 @@ import { useSiteContext } from '@/providers/sites';
 import { Row, MiddleSection } from '@/styles/sharedstyles';
 import { SiteKey } from '@/types';
 
-interface Props {}
-
 const keyMap: Record<string, SiteKey> = {
     a: 'art',
     b: 'biz',
@@ -20,25 +18,44 @@ const keyMap: Record<string, SiteKey> = {
     g: 'games',
     c: 'construction',
     y: 'gallery',
+    w: 'wtf',
 };
 
 const homeComponent = (site: SiteKey, visible: boolean) => {
-    if (site === 'construction')
-        return <Construction />;
-    if (site === 'gallery')
-        return <Unity visible={visible} />;
+    if (site === 'construction') return <Construction />;
+    if (site === 'gallery') return <Unity visible={visible} />;
     return <ClientList visible={visible} />;
 };
 
-const Layout: FC<Props> = () => {
-    const { keyPressed, selectedSite, setSelectedSite, setFullScreen, fullScreen } = useSiteContext();
+const ClientLayout = () => {
+    const { selectedSite, setSelectedSite, setFullScreen, fullScreen } = useSiteContext();
     const { prevPath, setPrevPath } = usePathContext();
     const navigate = useNavigate();
     const location = useLocation();
+    const [keyPressed, setKeyPressed] = useState<string | null>(null);
 
     useEffect(() => {
-        if (keyPressed === 'Escape' && fullScreen)
-            setFullScreen(false);
+        const downHandler = (ev: KeyboardEvent) => {
+            setKeyPressed(ev.key);
+        };
+
+        const upHandler = () => {
+            setTimeout(() => {
+                setKeyPressed(null);
+            }, 100);
+        };
+
+        window.addEventListener('keydown', downHandler);
+        window.addEventListener('keyup', upHandler);
+
+        return () => {
+            window.removeEventListener('keydown', downHandler);
+            window.removeEventListener('keyup', upHandler);
+        };
+    });
+
+    useEffect(() => {
+        if (keyPressed === 'Escape' && fullScreen) setFullScreen(false);
         if (keyPressed && keyMap[keyPressed] !== undefined && selectedSite !== 'gallery') {
             setSelectedSite(keyMap[keyPressed]);
             setFullScreen(false);
@@ -46,7 +63,6 @@ const Layout: FC<Props> = () => {
             document.body.scrollTo(0, 0);
             document.getElementById('content-row')?.scrollTo(0, 0);
         }
-        return () => {};
     }, [fullScreen, keyPressed, navigate, selectedSite, setFullScreen, setSelectedSite]);
 
     useEffect(() => {
@@ -66,24 +82,22 @@ const Layout: FC<Props> = () => {
             document.getElementById('content-row')?.scrollTo(0, 0);
         }
 
-        if (location.pathname !== '/' && document.body.clientWidth < 768 && !location.pathname.startsWith('/category/'))
-            setFullScreen(true);
-        else if (document.body.clientWidth < 768)
-            setFullScreen(false);
+        if (location.pathname !== '/' && document.body.clientWidth < 768 && !location.pathname.startsWith('/category/')) setFullScreen(true);
+        else if (document.body.clientWidth < 768) setFullScreen(false);
 
         setPrevPath(location.pathname);
     }, [location, prevPath, selectedSite, setFullScreen, setPrevPath]);
 
     return (
         <Row id="content-row">
-            { selectedSite !== 'gallery' && <ClientLeftNav /> }
+            {selectedSite !== 'gallery' && <ClientLeftNav />}
             <MiddleSection id="middle" className={fullScreen ? `${selectedSite} fullScreen` : selectedSite}>
-                { homeComponent(selectedSite, location.pathname === '/') }
+                {homeComponent(selectedSite, location.pathname === '/')}
                 <Outlet />
             </MiddleSection>
-            { selectedSite !== 'gallery' && <RightNav /> }
+            {selectedSite !== 'gallery' && <RightNav />}
         </Row>
     );
 };
 
-export default Layout;
+export default ClientLayout;

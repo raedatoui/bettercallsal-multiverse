@@ -8,14 +8,7 @@ import contentBiz from '../content/content-biz.json';
 import contentFit from '../content/content-fit.json';
 import contentGames from '../content/content-games.json';
 import contentRocks from '../content/content-rocks.json';
-import {
-    BaseContentItem,
-    BaseContentListValidator,
-    GameContentItem,
-    GameContentListValidator,
-    SiteKey,
-    SiteKeyValidator,
-} from '../src/types';
+import { BaseContentItem, BaseContentListValidator, GameContentItem, GameContentListValidator, SiteKey, SiteKeyValidator } from '../src/types';
 import slugify from '../src/utils/slugify';
 
 const URL = 'https://bettercallsal.';
@@ -47,11 +40,13 @@ const Post = z.object({
     domain: SiteKeyValidator,
     slug: z.string(),
     thumb: z.string(),
-    variations: z.array(z.object({
-        description: z.string(),
-        variation: z.number(),
-        queued: z.number(),
-    })),
+    variations: z.array(
+        z.object({
+            description: z.string(),
+            variation: z.number(),
+            queued: z.number(),
+        })
+    ),
 });
 
 type PostType = z.infer<typeof Post>;
@@ -62,28 +57,30 @@ const pickRandomPost = (arr: PostType[], queue: PostType[]) => {
 
     queue.push(random);
     return random;
-}
+};
 
 const transformImage = (src: string) => {
     const f = path.parse(src);
     let ext = path.extname(src);
-    if (ext !== '.webm' && ext !== '.gif')
-        ext = '.webp';
+    if (ext !== '.webm' && ext !== '.gif') ext = '.webp';
     return `${f.name}${ext}`;
 };
 
 const mapContentToUrls = (map: Record<string, string>, site: SiteKey, contentList: (BaseContentItem | GameContentItem)[]) =>
-    contentList.map(i => ({
+    contentList.map((i) => ({
         slug: `${map[site]}${slugify(i.name)}`,
         thumb: i.thumb,
         description: faker.lorem.paragraphs(5),
     }));
 
 const generateContentMap = () => {
-    const urlMap = Object.keys(segMap).reduce((acc, site) => ({
-        ...acc,
-        [site]: '' // `${URL}${site}/${seg}/`
-    }), {});
+    const urlMap = Object.keys(segMap).reduce(
+        (acc, site) => ({
+            ...acc,
+            [site]: '', // `${URL}${site}/${seg}/`
+        }),
+        {}
+    );
 
     return {
         art: mapContentToUrls(urlMap, 'art', BaseContentListValidator.parse(contentArt.items)),
@@ -95,77 +92,68 @@ const generateContentMap = () => {
 };
 
 const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typeof generateContentMap>) => {
-    await conn.query(
-        'DROP TABLE `post_desc`'
-    );
+    await conn.query('DROP TABLE `post_desc`');
+
+    await conn.query('DROP TABLE `posts`');
+
+    await conn.query('DROP TABLE `current_set`');
 
     await conn.query(
-        'DROP TABLE `posts`'
-    );
-
-    await conn.query(
-        'DROP TABLE `current_set`'
-    );
-
-    await conn.query(
-        'CREATE TABLE `posts` ('
-            + '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,'
-            + '`domain` varchar(15) NOT NULL,'
-            + '`slug` varchar(255) NOT NULL,'
-            + '`thumb` varchar(255) DEFAULT NULL,'
-            + '  PRIMARY KEY (`id`)'
-            + ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
+        'CREATE TABLE `posts` (' +
+            '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,' +
+            '`domain` varchar(15) NOT NULL,' +
+            '`slug` varchar(255) NOT NULL,' +
+            '`thumb` varchar(255) DEFAULT NULL,' +
+            '  PRIMARY KEY (`id`)' +
+            ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
     );
 
     await conn.query(
-        'CREATE TABLE `post_desc` ('
-            + '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,'
-            + '`post_id` int(11) unsigned NOT NULL,'
-            + '`variation` tinyint(4) unsigned NOT NULL,'
-            + '`queued` tinyint(1) NOT NULL,'
-            + '`description` text NOT NULL,'
-            + 'PRIMARY KEY (`id`), '
-            + 'KEY `post_id` (`post_id`),'
-            + 'CONSTRAINT `post_desc_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE'
-            + ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
+        'CREATE TABLE `post_desc` (' +
+            '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,' +
+            '`post_id` int(11) unsigned NOT NULL,' +
+            '`variation` tinyint(4) unsigned NOT NULL,' +
+            '`queued` tinyint(1) NOT NULL,' +
+            '`description` text NOT NULL,' +
+            'PRIMARY KEY (`id`), ' +
+            'KEY `post_id` (`post_id`),' +
+            'CONSTRAINT `post_desc_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE' +
+            ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
     );
 
     await conn.query(
-        'CREATE TABLE `current_set` ('
-            + '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,'
-            + '`variation` int(11) NOT NULL,'
-            + 'PRIMARY KEY (`id`)'
-            + ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
+        'CREATE TABLE `current_set` (' +
+            '`id` int(11) unsigned NOT NULL AUTO_INCREMENT,' +
+            '`variation` int(11) NOT NULL,' +
+            'PRIMARY KEY (`id`)' +
+            ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
     );
 
-    const values = Object.entries(contentMap).map(([site, entries]) =>
-        entries.map((entry) => [site, entry.slug, transformImage(entry.thumb)])).flat(1);
+    const values = Object.entries(contentMap)
+        .map(([site, entries]) => entries.map((entry) => [site, entry.slug, transformImage(entry.thumb)]))
+        .flat(1);
 
-    await conn.batch(
-        'INSERT INTO posts (domain, slug, thumb) VALUES(?, ?, ?)',
-        values
-    );
+    await conn.batch('INSERT INTO posts (domain, slug, thumb) VALUES(?, ?, ?)', values);
     await conn.commit();
 
     const rows = await conn.query('SELECT id FROM posts');
-    const descValues = rows.map((row: { id: number }) => [
-        [row.id, 0, 1, faker.lorem.paragraphs(5)],
-        [row.id, 1, 1, faker.lorem.paragraphs(5)],
-        [row.id, 2, 1, faker.lorem.paragraphs(5)],
-        [row.id, 3, 1, faker.lorem.paragraphs(5)],
-    ]).flat(1);
+    const descValues = rows
+        .map((row: { id: number }) => [
+            [row.id, 0, 1, faker.lorem.paragraphs(5)],
+            [row.id, 1, 1, faker.lorem.paragraphs(5)],
+            [row.id, 2, 1, faker.lorem.paragraphs(5)],
+            [row.id, 3, 1, faker.lorem.paragraphs(5)],
+        ])
+        .flat(1);
 
-    await conn.batch(
-        'INSERT INTO post_desc (post_id, variation, queued, description) VALUES(?, ?, ?, ?)',
-        descValues
-    );
+    await conn.batch('INSERT INTO post_desc (post_id, variation, queued, description) VALUES(?, ?, ?, ?)', descValues);
     await conn.commit();
 
     await conn.query('INSERT INTO current_set (variation) VALUES(0)');
 };
 
 const postCountInVariation = async (conn: mariadb.Connection, variation: number) => {
-    const res = await conn.query<{ count : number }[]>({
+    const res = await conn.query<{ count: number }[]>({
         sql: `
     SELECT 
         COUNT(*) as count
@@ -173,7 +161,7 @@ const postCountInVariation = async (conn: mariadb.Connection, variation: number)
         post_desc pd
     WHERE pd.variation = ${variation} AND pd.queued = 1;
     `,
-        bigIntAsNumber: true
+        bigIntAsNumber: true,
     });
     return res[0].count;
 };
@@ -198,11 +186,13 @@ const selectPosts = async (conn: mariadb.Connection, variation: number) => {
         return {
             id: z.number().parse(row.id),
             domain,
-            slug: z.string()
-                .transform(v => `${URL}${domain}/${segMap[domain]}/${v}`)
+            slug: z
+                .string()
+                .transform((v) => `${URL}${domain}/${segMap[domain]}/${v}`)
                 .parse(row.slug),
-            thumb: z.string()
-                .transform(v => `${IMAGE_URL}${domain}/thumbs/${v}`)
+            thumb: z
+                .string()
+                .transform((v) => `${IMAGE_URL}${domain}/thumbs/${v}`)
                 .parse(row.thumb),
             queued: z.number().parse(row.queued),
             variation: z.number().parse(row.variation),
@@ -249,18 +239,13 @@ const run = async () => {
             password: 'root',
             port: 3306,
         });
-        await conn.query(
-            'USE `bcs-social`'
-        );
-        if (command === 'seed')
-            await seedDatabase(conn, generateContentMap());
+        await conn.query('USE `bcs-social`');
+        if (command === 'seed') await seedDatabase(conn, generateContentMap());
 
         if (command === 'pick') {
             const queue: PostType[] = [];
             let hasQueued = true;
-            const res = await conn.query<{ id: number, variation: number }[]>(
-                'SELECT * from current_set;'
-            );
+            const res = await conn.query<{ id: number; variation: number }[]>('SELECT * from current_set;');
             let { variation } = res[0];
             do {
                 const posts = await selectPosts(conn, variation);
@@ -282,7 +267,6 @@ const run = async () => {
                     await conn.query(`UPDATE current_set SET variation = ${variation};`);
                     await conn.commit();
                 }
-
             } while (hasQueued);
         }
     } else {

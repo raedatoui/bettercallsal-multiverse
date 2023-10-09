@@ -17,18 +17,17 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
     const { buffers } = useContext(SoundContext);
 
     const site = siteMap[selectedSite];
+    // TODO: randomize these for wtf
     const audio = wrapperStyle === 'left' ? site.header.spinningSalAudio1 : site.header.spinningSalAudio2;
     const playAndGrid = () => {
         setAnimateGrid(Math.round(Math.random() * 1000));
-        if (site)
-            buffers.play(audio, false);
+        if (site) buffers.play(audio, false);
     };
 
     const pause = () => {
         setAnimateGrid(0);
         if (site)
-            if (wrapperStyle === 'left')
-                buffers.pause(audio);
+            if (wrapperStyle === 'left') buffers.pause(audio);
             else buffers.stop(audio);
     };
 

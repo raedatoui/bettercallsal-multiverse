@@ -85,7 +85,7 @@ export const scalemic = keyframes`
   }
 `;
 
-export const slideInFromLeft = (x:string) => keyframes`
+export const slideInFromLeft = (x: string) => keyframes`
   0% {
     transform: translateX(${x});
   }
@@ -94,7 +94,7 @@ export const slideInFromLeft = (x:string) => keyframes`
   }
 `;
 
-export const slideOutFromLeft = (x:string) => keyframes`
+export const slideOutFromLeft = (x: string) => keyframes`
   0% {
     transform: translateX(0);
   }
@@ -103,7 +103,7 @@ export const slideOutFromLeft = (x:string) => keyframes`
   }
 `;
 
-export const squigglySlideInFromLeft = (x:string) => keyframes`
+export const squigglySlideInFromLeft = (x: string) => keyframes`
     0% { 
       filter: url('#squiggly-0');
       transform: translateX(${x});
@@ -123,7 +123,7 @@ export const squigglySlideInFromLeft = (x:string) => keyframes`
     }
 `;
 
-export const squigglySlideOutFromLeft = (x:string) => keyframes`
+export const squigglySlideOutFromLeft = (x: string) => keyframes`
     0% { 
       filter: url('#squiggly-0');
       transform: translateX(0);
@@ -178,7 +178,7 @@ export const glowShadow = keyframes`
   }
 `;
 
-export const footerLtr = (rotate: number, scaleX: number, scaleY:number) => keyframes`
+export const footerLtr = (rotate: number, scaleX: number, scaleY: number) => keyframes`
     0% { transform: rotateY(0) scaleX(${scaleX}) scaleY(${scaleY}); }
     100% { transform: rotateY(${rotate}deg)  scaleX(${scaleX}) scaleY(${scaleY}); }
 `;

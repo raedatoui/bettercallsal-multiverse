@@ -4,29 +4,26 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, VisibleProps, } from '@/types';
+import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, VisibleProps } from '@/types';
 import { findGame, useWindowSize } from '@/utils';
 import {SoundContext} from "@/providers/audio-context";
 
-const Unity:FC<VisibleProps> = () => {
+const Unity: FC<VisibleProps> = () => {
     const navigate = useNavigate();
     const { gameId } = useParams<{ gameId: string }>();
 
-    const {
-        contentMap,
-        selectedSite,
-        loading,
-        fullScreen,
-        setFullScreen,
-        unityInstance,
-        setUnityInstance
-    } = useSiteContext();
+    const { contentMap, selectedSite, loading, fullScreen, setFullScreen, unityInstance, setUnityInstance } = useSiteContext();
     const contentList = contentMap[selectedSite];
     const { buffers } = useContext(SoundContext);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
     const [game, setGame] = useState<GameContentItem | null>(null);
-    const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({ width: 640, height: 480, left: 0, top: 0 });
+    const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({
+        width: 640,
+        height: 480,
+        left: 0,
+        top: 0,
+    });
     const [gameProgress, setGameProgress] = useState<number>(0);
     const [gameProgressVisible, setGameProgressVisible] = useState<boolean>(false);
 
@@ -56,7 +53,12 @@ const Unity:FC<VisibleProps> = () => {
         // return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
 
         // this was an attempt at full bleeing the game
-        return { width: Math.floor(width), height: Math.floor(workingHeight), left: (workingWidth - width) / 2, top: 0 };
+        return {
+            width: Math.floor(width),
+            height: Math.floor(workingHeight),
+            left: (workingWidth - width) / 2,
+            top: 0,
+        };
         // return { width: 900, height: 600, left: 0, top: 0};
     }, []);
 
@@ -99,44 +101,38 @@ const Unity:FC<VisibleProps> = () => {
     const getGame = (l: (BaseContentItem | GameContentItem)[]) => {
         if (selectedSite === 'gallery') {
             const g: readonly GameContentItem[] = l.filter(isGame);
-            if (g.length > 0)
-                return g[0];
+            if (g.length > 0) return g[0];
             return null;
         }
         return findGame(contentList, gameId ?? '');
     };
 
-    const getGameCb = useCallback(():GameContentItem | null => getGame(contentList), [selectedSite, contentList, gameId]);
+    const getGameCb = useCallback((): GameContentItem | null => getGame(contentList), [selectedSite, contentList, gameId]);
 
     useEffect(() => {
         buffers.stopAll();
         if (game) {
             clearCanvas();
-            if (unityInstance) {
-                unityInstance.Quit()
-                    .then(() => {
-                        setUnityInstance(null);
-                        loadGame();
-                    });
-            }
+            if (unityInstance)
+                unityInstance.Quit().then(() => {
+                    setUnityInstance(null);
+                    loadGame();
+                });
+
             else loadGame();
         }
 
-        if (selectedSite !== 'games' && unityInstance) {
+        if (selectedSite !== 'games' && unityInstance)
             unityInstance.Quit().then(() => {
                 setUnityInstance(null);
             });
-        }
-        return () => {};
     }, [selectedSite, game, clearCanvas, loadGame]);
 
     useEffect(() => {
         if (game) {
             const desired = { width: 1000, height: 600 };
-            if (game.contentId === 'supersalbros')
-                desired.width = 900;
-            if (game.contentId === 'pacman')
-                desired.width = 600;
+            if (game.contentId === 'supersalbros') desired.width = 900;
+            if (game.contentId === 'salman') desired.width = 600;
             setGamesPosterSize(getContentSize(desired));
         }
         if (game && game.contentId === 'gallery') {
@@ -144,19 +140,27 @@ const Unity:FC<VisibleProps> = () => {
             if (r) {
                 r.style.overflow = 'hidden';
                 const rect = r.getBoundingClientRect();
-                setGamesPosterSize({ top: 0, left: 0, width: rect.width, height: rect.height });
+                setGamesPosterSize({
+                    top: 0,
+                    left: 0,
+                    width: rect.width,
+                    height: rect.height,
+                });
             }
         }
-        return () => {};
     }, [windowSize, game, getContentSize]);
 
     useEffect(() => {
         const r = document.getElementById('content-row');
         if (r) {
             const rect = r.getBoundingClientRect();
-            setGamesPosterSize({ top: 0, left: 0, width: rect.width, height: rect.height });
+            setGamesPosterSize({
+                top: 0,
+                left: 0,
+                width: rect.width,
+                height: rect.height,
+            });
         }
-        return () => {};
     }, [fullScreen]);
 
     useEffect(() => {
@@ -168,15 +172,14 @@ const Unity:FC<VisibleProps> = () => {
     }, [gameId, contentList, scriptLoaded]);
 
     const handleClick = async () => {
-        if (selectedSite === 'gallery')
-            setFullScreen(true);
+        if (selectedSite === 'gallery') setFullScreen(true);
     };
 
     const loader = selectedSite === 'gallery' ? 'gallery' : 'game';
 
     return (
         <>
-            { !loading && contentList.length && (
+            {!loading && contentList.length && (
                 <Script
                     src={`${CDN}/unity/${loader}.loader.js`}
                     onReady={() => {
@@ -186,15 +189,15 @@ const Unity:FC<VisibleProps> = () => {
                         setScriptLoaded(true);
                     }}
                 />
-            ) }
+            )}
 
-            { gameProgressVisible && (
+            {gameProgressVisible && (
                 <LoadingBar>
                     <LoadingBarProgressEmpty>
                         <LoadingBarProgressFull width={gameProgress} />
                     </LoadingBarProgressEmpty>
                 </LoadingBar>
-            ) }
+            )}
 
             <GameCanvas
                 ref={canvasRef}
@@ -205,11 +208,11 @@ const Unity:FC<VisibleProps> = () => {
                 onClick={handleClick}
                 className={scriptLoaded && game ? 'on' : 'off'}
             />
-            { game && game.contentId !== 'gallery' && (
+            {game && game.contentId !== 'gallery' && (
                 <ButtonBar>
                     <StopButton onClick={() => handleStop()}>[x]</StopButton>
                 </ButtonBar>
-            ) }
+            )}
         </>
     );
 };
