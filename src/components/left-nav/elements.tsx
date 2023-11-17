@@ -20,9 +20,15 @@ export const LeftNavContainer = styled.div`
 `;
 
 export const LeftNavMenu = styled.div`
-  padding: 8px 0 26px 0;
+  padding: 8px 0;
   width: 100%;
   background-color: #4b7aa3;
+`;
+
+export const LeftNavMenu1 = styled(LeftNavMenu)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const LeftNavButton = styled(NavButton)`
@@ -52,9 +58,23 @@ export const LeftNavButton = styled(NavButton)`
   }
 `;
 
+export const LeftNavButton1 = styled(LeftNavButton)`
+  margin: 8px 16px;
+  border-radius: 8px !important;
+`;
+export const LeftNavButton1Wrapper = styled.div`
+  max-width: 650px;
+  width: 100%;
+  padding: 8px 16px;
+`;
+
 export const LeftNavItemCuck = styled.div`
   width: 100%;
   height: 100%;
+`;
+
+export const LeftNavItemCuck1 = styled(LeftNavItemCuck)`
+  text-align: center;
 `;
 
 export const LeftAdd = styled.div`

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { breakPoints } from '@/constants';
 
-const GlobalStyle = createGlobalStyle`
+const globalStyleWrapper = (pageType: string) => createGlobalStyle`
   body,
   html {
     font-family: Pragmatica, Arial, Helvetica, sans-serif;
@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     margin: 0;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: ${pageType === 'linktree' ? 'auto' : 'hidden'};
 
     @media (max-width: ${breakPoints.sm.max}px){
       overflow-y: auto;
@@ -74,4 +74,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default GlobalStyle;
+const GlobalStyle = globalStyleWrapper('home');
+const GlobalStyleLinkTree = globalStyleWrapper('linktree');
+export { GlobalStyle, GlobalStyleLinkTree };

@@ -6,7 +6,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import React, { FC } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
-import MainContainer from '@/components/main';
+import MainContainer from '@/components/main/linktree-index';
 import { defaultSiteMap } from '@/constants';
 import { AnimationsProvider, BizerkProvider } from '@/providers/animations';
 import { SoundProvider } from '@/providers/audio-context';
