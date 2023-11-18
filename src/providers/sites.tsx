@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { FC, useMemo, useState, createContext, useContext, useCallback } from 'react';
-import { CDN } from '@/constants';
+import { CDN, CONTENT_URL } from '@/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,
@@ -47,7 +47,8 @@ interface ProviderProps {
 const fetchData = async (siteKey: SiteKey): Promise<(BaseContentItem | GameContentItem)[]> => {
     let list;
     try {
-        const { data: response } = await axios.get(`${CDN}/content/content-${siteKey}.json`);
+        console.log(`${CONTENT_URL}/content/content-${siteKey}.json`);
+        const { data: response } = await axios.get(`${CONTENT_URL}/content/content-${siteKey}.json`);
         if (siteKey === 'games' || siteKey === 'gallery') list = GameContentListValidator.parse(response.items);
         else list = BaseContentListValidator.parse(response.items);
         return list;

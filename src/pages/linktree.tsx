@@ -15,11 +15,11 @@ import { WindowSizeProvider } from '@/providers/window-size';
 import Fonts from '@/styles/fonts';
 import { GlobalStyle } from '@/styles/globalstyles';
 import Skeleton from '@/styles/skeleton';
-import { BaseContentItem, BaseContentListValidator, GameContentItem, GameContentListValidator, SiteKey, SiteKeyValidator, } from '@/types';
+import { BaseContentItem, BaseContentListValidator, GameContentItem, GameContentListValidator, SiteKey, SiteKeyValidator } from '@/types';
 
 interface PageProps {
-    defaultSite: SiteKey,
-    defaultContent: (BaseContentItem | GameContentItem)[],
+    defaultSite: SiteKey;
+    defaultContent: (BaseContentItem | GameContentItem)[];
 }
 
 const theme: DefaultTheme = {
@@ -36,10 +36,8 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
         const filePath = path.join(process.cwd(), `content/content-${defaultSite}.json`);
         const jsonData = await fsPromises.readFile(filePath);
         const list = JSON.parse(jsonData.toString());
-        if (defaultSite === 'games' || defaultSite === 'gallery')
-            defaultContent = GameContentListValidator.parse(list.items);
-        else
-            defaultContent = BaseContentListValidator.parse(list.items);
+        if (defaultSite === 'games' || defaultSite === 'gallery') defaultContent = GameContentListValidator.parse(list.items);
+        else defaultContent = BaseContentListValidator.parse(list.items);
     }
     const site = defaultSiteMap[defaultSite];
     if (site.leftNav.video)
@@ -49,10 +47,10 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
             contentType: 'youtube',
             thumb: '',
             category: '',
-            display: false
+            display: false,
         });
 
-    site.leftNav.items.forEach(i => {
+    site.leftNav.items.forEach((i) => {
         if (i.video)
             defaultContent.push({
                 name: i.name,
@@ -60,7 +58,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
                 contentType: 'youtube',
                 thumb: '',
                 category: '',
-                display: false
+                display: false,
             });
     });
 
@@ -72,7 +70,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
     };
 }
 
-const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
+const Home: FC<PageProps> = ({ defaultSite, defaultContent }) => {
     const site = defaultSiteMap[defaultSite];
     return (
         <>
@@ -149,7 +147,7 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
             </ThemeProvider>
 
             <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${site.gaTag}`} />
-            { process.env.gtagEnabled && (
+            {process.env.gtagEnabled && (
                 <Script
                     id="google-analytics"
                     strategy="afterInteractive"
@@ -164,7 +162,7 @@ const Home:FC<PageProps> = ({ defaultSite, defaultContent }) => {
                     `,
                     }}
                 />
-            ) }
+            )}
         </>
     );
 };

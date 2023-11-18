@@ -3,6 +3,8 @@ import sitesData from '../content/sites.next.json';
 
 export const CDN = process.env.cdnUrl;
 
+export const CONTENT_URL = process.env.contentUrl;
+
 export const SPOTIFY_ENABLED = process.env.spotifyEnabled;
 
 export const EXTERNAL_LINK = true;

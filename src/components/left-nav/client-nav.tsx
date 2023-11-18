@@ -8,7 +8,7 @@ import { useAnimationContext, useBizerkContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { WindowSizeContext } from '@/providers/window-size';
-import { LeftNav, LeftNavItem, Site } from '@/types';
+import { LeftNavItem, Site } from '@/types';
 import { pickRandom, shuffleList, slugify } from '@/utils';
 import NavButton from './button';
 
@@ -47,8 +47,9 @@ export const ClientLeftNav = () => {
     };
 
     const handleCategory = (l: LeftNavItem) => {
-        // DOC: if unity is playing, and click on any nav, stop unity
+        // DOC: if unity is playing, and click on any nav, stop unity, stop sal-man audio
         if (unityInstance && l.category === 'all') {
+            buffers.stop('/audio/games/take-five.mp3');
             unityInstance.Quit().then(() => {
                 setUnityInstance(null);
                 navigate('/');
@@ -74,7 +75,8 @@ export const ClientLeftNav = () => {
     };
 
     const handleImageClick = () => {
-        if (site.leftNav.audio) handleAudio(site.leftNav.audio);
+        // DOC: suppress audio sal man
+        if (site.leftNav.audio && selectedSite !== 'games') handleAudio(site.leftNav.audio);
         if (site.leftNav.video) navigate(`/video/${slugify(site.leftNav.text)}`);
     };
 
@@ -106,6 +108,11 @@ export const ClientLeftNav = () => {
         // DOC: wtf load anim
         if (selectedSite === 'wtf' && loaded) animate();
     }, [selectedSite, animateGrid, animateHeaderFooter, bizerkMode, bizerkCounter, loaded, site.leftNav.items]);
+
+    useEffect(() => {
+        setNavItems(site.leftNav.items);
+        setLeftNav(site);
+    }, [site]);
 
     return (
         <>

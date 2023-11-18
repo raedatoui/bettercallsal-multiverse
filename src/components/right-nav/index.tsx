@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { breakPoints, SPOTIFY_ENABLED, WTF_RANDOM } from "@/constants";
+import { breakPoints, SPOTIFY_ENABLED, WTF_RANDOM } from '@/constants';
 import { useBizerkContext, useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Site } from '@/types';
-import { pickRandom} from "@/utils";
+import { pickRandom } from '@/utils';
 
 const blockScroll = keyframes`
   0% {filter:  blur(0px) contrast(1)  saturate(0)}
@@ -37,7 +37,7 @@ const Gap = styled.div`
 
 const RightNav = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
-    const  { animateGrid, animateHeaderFooter } = useAnimationContext();
+    const { animateGrid, animateHeaderFooter } = useAnimationContext();
     const { bizerkMode, bizerkCounter } = useBizerkContext();
     const [site, setSite] = useState<Site>(siteMap[selectedSite]);
 
@@ -55,6 +55,11 @@ const RightNav = () => {
             }, WTF_RANDOM.interval);
         }
     }, [bizerkMode, bizerkCounter, animateGrid, animateHeaderFooter, selectedSite]);
+
+    useEffect(() => {
+        setSite(siteMap[selectedSite]);
+    }, [selectedSite]);
+
     return (
         <>
             <Gap />

@@ -5,6 +5,7 @@ import { z } from 'zod';
 const envValidator = z.object({
     selectedSite: z.string(),
     cdnUrl: z.string(),
+    contentUrl: z.string(),
     spotifyEnabled: z.boolean(),
     localImages: z.boolean(),
     gtagEnabled: z.boolean(),

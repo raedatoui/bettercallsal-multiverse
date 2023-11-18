@@ -56,9 +56,9 @@ export const Row = styled.div`
 `;
 
 export const Row1 = styled(Row)`
-  background-color: #4b7aa3;
-  background-image: inherit;  
-  padding: 10px 0;
+    background-color: #4b7aa3;
+    background-image: inherit;
+    padding: 10px 0;
 `;
 
 export const NavButton = styled.div`

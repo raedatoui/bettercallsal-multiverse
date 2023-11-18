@@ -1,12 +1,12 @@
 import Script from 'next/script';
-import React, {FC, useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
 import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, VisibleProps } from '@/types';
 import { findGame, useWindowSize } from '@/utils';
-import {SoundContext} from "@/providers/audio-context";
+import { SoundContext } from '@/providers/audio-context';
 
 const Unity: FC<VisibleProps> = () => {
     const navigate = useNavigate();
@@ -75,20 +75,25 @@ const Unity: FC<VisibleProps> = () => {
         setGameProgress(0);
         setGameProgressVisible(true);
         if (game)
-            window.createUnityInstance(document.getElementById('unity-canvas'), {
-                showBanner: false,
-                dataUrl: `${CDN}${game.dataUrl}`,
-                frameworkUrl: `${CDN}${game.frameworkUrl}`,
-                codeUrl: `${CDN}${game.codeUrl}`,
-            }, (progress) => {
-                setGameProgress(progress * 100);
-            }).then((c) => {
-                if (game.name === 'Sal-man')
-                    buffers.play('/audio/games/take-five.mp3', true);
-                else buffers.stopAll();
-                setUnityInstance(c);
-                setGameProgressVisible(false);
-            });
+            window
+                .createUnityInstance(
+                    document.getElementById('unity-canvas'),
+                    {
+                        showBanner: false,
+                        dataUrl: `${CDN}${game.dataUrl}`,
+                        frameworkUrl: `${CDN}${game.frameworkUrl}`,
+                        codeUrl: `${CDN}${game.codeUrl}`,
+                    },
+                    (progress) => {
+                        setGameProgress(progress * 100);
+                    }
+                )
+                .then((c) => {
+                    if (game.name === 'Sal-man') buffers.play('/audio/games/take-five.mp3', true);
+                    else buffers.stopAll();
+                    setUnityInstance(c);
+                    setGameProgressVisible(false);
+                });
     }, [game]);
 
     const clearCanvas = useCallback(() => {
@@ -118,7 +123,6 @@ const Unity: FC<VisibleProps> = () => {
                     setUnityInstance(null);
                     loadGame();
                 });
-
             else loadGame();
         }
 

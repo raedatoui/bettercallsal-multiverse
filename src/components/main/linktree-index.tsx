@@ -33,21 +33,21 @@ const MainContainerInner: FC<Props> = () => {
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
-    const [screenCapture, setScreeCapture] = useState<string | null >(null);
+    const [screenCapture, setScreeCapture] = useState<string | null>(null);
 
     const mainRef = useRef<HTMLDivElement | null>(null);
     const particleRef = useRef<HTMLDivElement | null>(null);
 
     const handleClick = () => {
         if (mainRef.current && screenCapture === null && scriptLoaded && selectedSite === 'construction')
-            window.htmlToImage.toPng(mainRef.current)
+            window.htmlToImage
+                .toPng(mainRef.current)
                 .then((dataUrl) => {
                     setScreeCapture(dataUrl);
                     setBizerkMode('construction');
                     if (buffers.analyzer && particleRef.current)
-                    // eslint-disable-next-line no-new
+                        // eslint-disable-next-line no-new
                         new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
-
                 })
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);
@@ -57,13 +57,13 @@ const MainContainerInner: FC<Props> = () => {
     // this is for starting bizerk mode
     useEffect(() => {
         if (mainRef.current && screenCapture === null && bizerkMode === 'doubleClick')
-            window.htmlToImage.toPng(mainRef.current)
+            window.htmlToImage
+                .toPng(mainRef.current)
                 .then((dataUrl) => {
                     setScreeCapture(dataUrl);
                     if (buffers.analyzer && particleRef.current)
-                    // eslint-disable-next-line no-new
+                        // eslint-disable-next-line no-new
                         new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
-
                 })
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);
@@ -73,57 +73,37 @@ const MainContainerInner: FC<Props> = () => {
 
     return (
         <>
-            <style jsx global>{`
-                body {
-                  cursor: url("${cursor}"), auto;
-                }
-              `}
+            <style jsx global>
+                {`
+                    body {
+                        cursor: url('${cursor}'), auto;
+                    }
+                `}
             </style>
 
-            <Script
-                src="/scripts/html-to-image.js"
-                onReady={() =>
-                    setScriptLoaded(true)}
-            />
+            <Script src="/scripts/html-to-image.js" onReady={() => setScriptLoaded(true)} />
             <PathProvider>
-                <Main
-                    onClick={handleClick}
-                    id="main"
-                    ref={mainRef}
-                    className={fullScreen ? 'fullScreen' : ''}
-                >
+                <Main onClick={handleClick} id="main" ref={mainRef} className={fullScreen ? 'fullScreen' : ''}>
                     <HeaderComponent />
                     <Row1 id="content-row">
                         <LeftNavMenu1>
-                            { SiteKeyValidator.options
-                                .filter(s => s !== 'gallery')
-                                .map(s => (
+                            {SiteKeyValidator.options
+                                .filter((s) => s !== 'gallery')
+                                .map((s) => (
                                     <LeftNavButton1Wrapper key={s}>
                                         <LeftNavButton1>
-                                            <Link
-                                                href={`https://bettercallsal.${s}`}
-                                                rel="noreferrer"
-                                            >
-                                                <LeftNavItemCuck1>
-                                                    { s }
-                                                </LeftNavItemCuck1>
+                                            <Link href={`https://bettercallsal.${s}`} rel="noreferrer">
+                                                <LeftNavItemCuck1>{s}</LeftNavItemCuck1>
                                             </Link>
                                         </LeftNavButton1>
                                     </LeftNavButton1Wrapper>
                                 ))}
 
-                            { Object.entries(extraLinks).map(([k, v]) => (
+                            {Object.entries(extraLinks).map(([k, v]) => (
                                 <LeftNavButton1Wrapper key={v}>
                                     <LeftNavButton1>
-                                        <Link
-                                            href={v}
-                                            rel="noreferrer"
-                                        >
-                                            <LeftNavItemCuck1>
-
-                                                { k }
-
-                                            </LeftNavItemCuck1>
+                                        <Link href={v} rel="noreferrer">
+                                            <LeftNavItemCuck1>{k}</LeftNavItemCuck1>
                                         </Link>
                                     </LeftNavButton1>
                                 </LeftNavButton1Wrapper>

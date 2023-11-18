@@ -60,13 +60,13 @@ export const LeftNavButton = styled(NavButton)`
 `;
 
 export const LeftNavButton1 = styled(LeftNavButton)`
-  margin: 8px 16px;
-  border-radius: 8px !important;
+    margin: 8px 16px;
+    border-radius: 8px !important;
 `;
 export const LeftNavButton1Wrapper = styled.div`
-  max-width: 650px;
-  width: 100%;
-  padding: 8px 16px;
+    max-width: 650px;
+    width: 100%;
+    padding: 8px 16px;
 `;
 
 export const LeftNavItemCuck = styled.div`
@@ -75,7 +75,7 @@ export const LeftNavItemCuck = styled.div`
 `;
 
 export const LeftNavItemCuck1 = styled(LeftNavItemCuck)`
-  text-align: center;
+    text-align: center;
 `;
 
 export const LeftAdd = styled.div`
