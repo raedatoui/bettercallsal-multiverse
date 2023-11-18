@@ -97,6 +97,7 @@ const ClientList:FC<VisibleProps> = ({ visible }) => {
                         .map(i => (
                             <RouterLink
                                 onClick={() => {
+                                    console.log(i.name);
                                     // TODO: this stops all audio when loading content from the list
                                     // and loads the pavane audio for art
                                     buffers.stopAll();

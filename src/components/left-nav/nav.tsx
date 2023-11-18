@@ -130,6 +130,7 @@ export const ClientLeftNav: FC<Props> = () => {
     const handleCategory = (l: LeftNavNavItem) => {
         // TODO: if unity is playing, and click on any nav, stop unity
         if (unityInstance && l.category === 'all') {
+            buffers.stop('/audio/games/take-five.mp3');
             unityInstance.Quit()
                 .then(() => {
                     setUnityInstance(null);
@@ -157,7 +158,8 @@ export const ClientLeftNav: FC<Props> = () => {
     };
 
     const handleImageClick = () => {
-        if (site.leftNav.audio)
+        // DOC suppress audio sal man
+        if (site.leftNav.audio && selectedSite !== 'games')
             handleAudio(site.leftNav.audio);
         if (site.leftNav.video)
             navigate(`/video/${slugify(site.leftNav.text)}`);

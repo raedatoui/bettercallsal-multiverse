@@ -25,7 +25,7 @@ const run = async () => {
     env.spotifyEnabled = true;
     env.localImages = false;
     env.gtagEnabled = true;
-    writeFileSync(join(__dirname, '../', 'next.config.env.json'), JSON.stringify(env), {
+    writeFileSync(join(__dirname, '../', 'next.config.env.json'), JSON.stringify(env, null, 4), {
         flag: 'w',
     });
 };

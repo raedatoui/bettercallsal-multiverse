@@ -1,11 +1,12 @@
 import Script from 'next/script';
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, {FC, useCallback, useContext, useEffect, useRef, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
 import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, VisibleProps, } from '@/types';
 import { findGame, useWindowSize } from '@/utils';
+import {SoundContext} from "@/providers/audio-context";
 
 const Unity:FC<VisibleProps> = () => {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Unity:FC<VisibleProps> = () => {
         setUnityInstance
     } = useSiteContext();
     const contentList = contentMap[selectedSite];
+    const { buffers } = useContext(SoundContext);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
     const [game, setGame] = useState<GameContentItem | null>(null);
@@ -59,6 +61,7 @@ const Unity:FC<VisibleProps> = () => {
     }, []);
 
     const handleStop = useCallback(() => {
+        buffers.stopAll();
         if (unityInstance)
             unityInstance.Quit().then(() => {
                 setUnityInstance(null);
@@ -82,6 +85,9 @@ const Unity:FC<VisibleProps> = () => {
             }, (progress) => {
                 setGameProgress(progress * 100);
             }).then((c) => {
+                if (game.name === 'Sal-man')
+                    buffers.play('/audio/games/take-five.mp3', true);
+                else buffers.stopAll();
                 setUnityInstance(c);
                 setGameProgressVisible(false);
             });
@@ -107,21 +113,24 @@ const Unity:FC<VisibleProps> = () => {
     const getGameCb = useCallback(():GameContentItem | null => getGame(contentList), [selectedSite, contentList, gameId]);
 
     useEffect(() => {
+        buffers.stopAll();
         if (game) {
             clearCanvas();
-            if (unityInstance)
+            if (unityInstance) {
                 unityInstance.Quit()
                     .then(() => {
                         setUnityInstance(null);
                         loadGame();
                     });
+            }
             else loadGame();
         }
 
-        if (selectedSite !== 'games' && unityInstance)
+        if (selectedSite !== 'games' && unityInstance) {
             unityInstance.Quit().then(() => {
                 setUnityInstance(null);
             });
+        }
         return () => {};
     }, [selectedSite, game, clearCanvas, loadGame]);
 
