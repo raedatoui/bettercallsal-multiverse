@@ -113,13 +113,15 @@ const HeaderComponent: FC = () => {
     }, [animate, loaded, selectedSite]);
 
     useEffect(() => {
-        if (animateHeaderFooter) {
+        if (selectedSite !== 'wtf' && animateHeaderFooter) {
             // TODO: not all random ring audios are loaded
             buffers.play(ringAudio, false);
             animate(true);
+            return;
         }
         if (selectedSite === 'wtf') animate(false);
-    }, [animate, animateGrid, bizerkCounter, animateHeaderFooter, buffers, site.header.ringAudio]);
+        // DOC: dont add animateGrid, bizerkCounter here, but maybe wtf needs it?
+    }, [animate, selectedSite, animateHeaderFooter, buffers, site.header.ringAudio]);
 
     useEffect(() => {
         if (animateBizerk) {

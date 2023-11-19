@@ -47,7 +47,6 @@ const RightNav = () => {
             const interval = setInterval(() => {
                 counter += 1;
                 setSite(pickRandom(siteMap, [site.name]));
-                console.log('wtf right nav');
                 if (counter === WTF_RANDOM.limit) {
                     clearInterval(interval);
                     return;

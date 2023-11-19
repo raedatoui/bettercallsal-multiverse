@@ -3,12 +3,13 @@ import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DALI } from '@/constants';
+import { CDN, DALI } from '@/constants';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
 import { ContentSize, isContent, Size } from '@/types';
 import { findContent, useWindowSize } from '@/utils';
+import Link from "next/link";
 
 const ArtSlider = () => {
     const { artId } = useParams<{ artId: string }>();
@@ -54,7 +55,7 @@ const ArtSlider = () => {
                     // if (mouseOver) return;
                     timeout = setTimeout(() => {
                         slider.next();
-                    }, 4000);
+                    }, 2800);
                 }
                 slider.on('created', () => {
                     // slider.container.addEventListener('mouseover', () => {
@@ -141,7 +142,7 @@ const ArtSlider = () => {
     return (
         <ImageContainer ref={sliderRef} className="keen-slider">
             {images.map((art, idx) => (
-                <div key={art.name} className="keen-slider__slide lazy__slide">
+                <Link key={art.name} className="keen-slider__slide lazy__slide" href={`${CDN}/images/${art.site}/${art.contentId}`} target="_blank">
                     <Image
                         src={`/images/${art.site}/${art.contentId}`}
                         placeholder="blur"
@@ -155,7 +156,7 @@ const ArtSlider = () => {
                             height: 'auto',
                         }}
                     />
-                </div>
+                </Link>
             ))}
 
             <ButtonBar>

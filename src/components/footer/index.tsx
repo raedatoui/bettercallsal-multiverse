@@ -101,7 +101,7 @@ const LawBreakers = () => {
 
     useEffect(() => {
         if (animateHeaderFooter) {
-            buffers.play(ringAudio, false);
+            // buffers.play(ringAudio, false);
             animate(0);
         }
         if (selectedSite === 'wtf') animate(0);
