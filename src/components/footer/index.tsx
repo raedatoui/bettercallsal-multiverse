@@ -100,10 +100,9 @@ const LawBreakers = () => {
     }, [animate, loaded, selectedSite]);
 
     useEffect(() => {
-        if (animateHeaderFooter) {
+        if (animateHeaderFooter)
             // buffers.play(ringAudio, false);
             animate(0);
-        }
         if (selectedSite === 'wtf') animate(0);
     }, [animate, animateGrid, bizerkCounter, animateHeaderFooter, buffers, site.footer.ringAudio]);
 

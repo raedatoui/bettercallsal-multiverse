@@ -1,6 +1,7 @@
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CDN, DALI } from '@/constants';
@@ -9,7 +10,6 @@ import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
 import { ContentSize, isContent, Size } from '@/types';
 import { findContent, useWindowSize } from '@/utils';
-import Link from "next/link";
 
 const ArtSlider = () => {
     const { artId } = useParams<{ artId: string }>();

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Script from 'next/script';
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import LawBreakers from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
@@ -13,7 +13,6 @@ import { useSiteContext } from '@/providers/sites';
 import { Main, Row1 } from '@/styles/sharedstyles';
 import { SiteKeyValidator } from '@/types';
 
-interface Props {}
 
 const extraLinks = {
     Instagram: 'https://instagram.com/bettercallsal.biz',
@@ -25,7 +24,7 @@ const extraLinks = {
     // 'Nature Creeps Beneath': 'https://www.naturecreepsbeneath.com',
 };
 
-const MainContainerInner: FC<Props> = () => {
+const MainContainerInner = () => {
     const { selectedSite, fullScreen } = useSiteContext();
     const { bizerkMode, setBizerkMode } = useBizerkContext();
     const { buffers } = useContext(SoundContext);
@@ -68,7 +67,6 @@ const MainContainerInner: FC<Props> = () => {
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);
                 });
-        return () => {};
     }, [bizerkMode, buffers.analyzer, screenCapture]);
 
     return (

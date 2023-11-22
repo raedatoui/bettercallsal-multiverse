@@ -48,7 +48,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
             thumb: '',
             category: '',
             display: false,
-        });
+        } as BaseContentItem);
 
     site.leftNav.items.forEach((i) => {
         if (i.video)
@@ -59,7 +59,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
                 thumb: '',
                 category: '',
                 display: false,
-            });
+            } as BaseContentItem);
     });
 
     return {

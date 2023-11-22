@@ -8,7 +8,6 @@ import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
 import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
 import { shuffleList, slugify, useWindowSize, findCategory, pickRandom } from '@/utils';
-import { vi } from '@faker-js/faker';
 
 export const ClientList: FC<VisibleProps> = ({ visible }) => {
     const { category } = useParams<{ category: string }>();
@@ -67,9 +66,8 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
                 setHeaderText(pickRandom(siteMap).contentHeader);
                 setContentList(shuffleList(contentList));
                 counter += 1;
-                if (counter > WTF_RANDOM.limit) {
+                if (counter > WTF_RANDOM.limit)
                     clearInterval(interval);
-                }
             }, WTF_RANDOM.interval);
         }
     }, [loaded, selectedSite, animateGrid, animateHeaderFooter, bizerkCounter, siteMap]);

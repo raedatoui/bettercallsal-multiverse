@@ -17,14 +17,14 @@ deploy() {
 }
 
 # Deploy each section
-deploy "biz"
-deploy "art"
-deploy "games"
-deploy "rocks"
-deploy "construction"
-deploy "fit"
-deploy "gallery"
-deploy "fans"
+#deploy "biz"
+#deploy "art"
+#deploy "games"
+#deploy "rocks"
+#deploy "construction"
+#deploy "fit"
+#deploy "gallery"
+#deploy "fans"
 deploy "wtf"
 
 yarn clean
