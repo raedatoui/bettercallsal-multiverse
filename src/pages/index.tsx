@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import fsPromises from 'fs/promises';
 import path from 'path';
 import { GetStaticPropsResult } from 'next';
@@ -9,7 +8,7 @@ import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { z } from 'zod';
 import MainContainer from '@/components/main';
 import { defaultSiteMap } from '@/constants';
-import { AnimationsProvider, BizerkProvider } from '@/providers/animations';
+import { AnimationsProvider } from '@/providers/animations';
 import { SoundProvider } from '@/providers/audio-context';
 import { SitesDataProvider } from '@/providers/sites';
 import { WindowSizeProvider } from '@/providers/window-size';
@@ -144,15 +143,13 @@ const Home: FC<PageProps> = ({ defaultSite, defaultContent }) => {
                 <GlobalStyle />
                 <Fonts />
                 <SitesDataProvider defaultSite={defaultSite} defaultContent={defaultContent} defaultSiteMap={defaultSiteMap}>
-                    <BizerkProvider>
+                    <AnimationsProvider>
                         <SoundProvider>
                             <WindowSizeProvider>
-                                <AnimationsProvider>
-                                    <MainContainer />
-                                </AnimationsProvider>
+                                <MainContainer />
                             </WindowSizeProvider>
                         </SoundProvider>
-                    </BizerkProvider>
+                    </AnimationsProvider>
                 </SitesDataProvider>
             </ThemeProvider>
 

@@ -171,10 +171,6 @@ export const Caption = styled.h4`
     &.off {
         display: none;
     }
-
-    &.wtf {
-        opacity: 0;
-    }
 `;
 
 export const Quote = styled.h6`

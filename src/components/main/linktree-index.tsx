@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import Script from 'next/script';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import LawBreakers from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
 import { LeftNavButton1, LeftNavButton1Wrapper, LeftNavItemCuck1, LeftNavMenu1 } from '@/components/left-nav/elements';
 import { CDN } from '@/constants';
-import { useBizerkContext } from '@/providers/animations';
+import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { PathProvider } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Main, Row1 } from '@/styles/sharedstyles';
 import { SiteKeyValidator } from '@/types';
-
+import { animateCounterBizerk } from '@/utils/gsap';
 
 const extraLinks = {
     Instagram: 'https://instagram.com/bettercallsal.biz',
@@ -26,7 +26,7 @@ const extraLinks = {
 
 const MainContainerInner = () => {
     const { selectedSite, fullScreen } = useSiteContext();
-    const { bizerkMode, setBizerkMode } = useBizerkContext();
+    const { setBizerkMode, animateGrid, setAnimateGrid } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
     const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
@@ -37,13 +37,15 @@ const MainContainerInner = () => {
     const mainRef = useRef<HTMLDivElement | null>(null);
     const particleRef = useRef<HTMLDivElement | null>(null);
 
-    const handleClick = () => {
-        if (mainRef.current && screenCapture === null && scriptLoaded && selectedSite === 'construction')
+    const handleClick = (event: React.MouseEvent) => {
+        const target = event.target as HTMLElement;
+        if (mainRef.current && screenCapture === null && scriptLoaded && (selectedSite === 'construction' || target.id === 'bizerk-icon'))
             window.htmlToImage
                 .toPng(mainRef.current)
                 .then((dataUrl) => {
                     setScreeCapture(dataUrl);
-                    setBizerkMode('construction');
+                    setBizerkMode('on');
+                    animateCounterBizerk(animateGrid, setAnimateGrid);
                     if (buffers.analyzer && particleRef.current)
                         // eslint-disable-next-line no-new
                         new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
@@ -52,22 +54,6 @@ const MainContainerInner = () => {
                     console.error('oops, something went wrong!', error);
                 });
     };
-
-    // this is for starting bizerk mode
-    useEffect(() => {
-        if (mainRef.current && screenCapture === null && bizerkMode === 'doubleClick')
-            window.htmlToImage
-                .toPng(mainRef.current)
-                .then((dataUrl) => {
-                    setScreeCapture(dataUrl);
-                    if (buffers.analyzer && particleRef.current)
-                        // eslint-disable-next-line no-new
-                        new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
-                })
-                .catch((error) => {
-                    console.error('oops, something went wrong!', error);
-                });
-    }, [bizerkMode, buffers.analyzer, screenCapture]);
 
     return (
         <>

@@ -1,4 +1,4 @@
-import Bizerk from './middle';
+import Bizerk from './bizerk';
 
 export * from './elements';
 export { Bizerk };

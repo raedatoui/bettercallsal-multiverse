@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { FC, useMemo, useState, createContext, useContext, useCallback } from 'react';
-import { CDN, CONTENT_URL } from '@/constants';
+import { CONTENT_URL } from '@/constants';
 import {
     BaseContentItem,
     BaseContentListValidator,

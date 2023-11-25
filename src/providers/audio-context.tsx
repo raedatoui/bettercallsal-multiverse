@@ -1,5 +1,5 @@
 import React, { createContext, FC, useMemo, useEffect, useState } from 'react';
-import { useBizerkContext } from '@/providers/animations';
+import { useAnimationContext } from '@/providers/animations';
 import { AudioElement, AudioElementValidator, isNotNull, Site } from '@/types';
 import AudioBuffers from './audio-buffer';
 import { useSiteContext } from './sites';
@@ -53,7 +53,7 @@ const SoundProvider: FC<ProviderProps> = ({ children }) => {
     const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
     const [loaded, setLoaded] = useState<boolean>(false);
-    const { bizerkMode } = useBizerkContext();
+    const { bizerkMode } = useAnimationContext();
 
     const play = (audioElement: AudioElement, filter?: string) => {
         const k = `${audioElement}${filter ? `-${filter}` : ''}`;

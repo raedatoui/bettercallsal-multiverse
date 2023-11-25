@@ -10,10 +10,9 @@ interface ButtonProps {
     videoCb: (v: LeftNavItem) => void;
     width: number;
     fullScreen: boolean;
-    className: string;
 }
 
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width, fullScreen, className }) => {
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width, fullScreen }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -51,7 +50,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
                 <LeftNavItemCuck
                     ref={ref}
                     dangerouslySetInnerHTML={{
-                        __html: className === 'off' ? '' : navItem.name,
+                        __html: navItem.name,
                     }}
                 />
             )}
@@ -62,7 +61,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
                         target="_blank"
                         rel="noreferrer"
                         dangerouslySetInnerHTML={{
-                            __html: className === 'off' ? '' : navItem.name,
+                            __html: navItem.name,
                         }}
                     />
                 </LeftNavItemCuck>

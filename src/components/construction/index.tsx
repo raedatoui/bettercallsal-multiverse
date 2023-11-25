@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useBizerkContext } from '@/providers/animations';
+import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Caption } from '@/styles/sharedstyles';
 import { ContentSize, Size } from '@/types';
@@ -17,7 +17,7 @@ const Construction = () => {
     const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
 
-    const { bizerkMode } = useBizerkContext();
+    const { bizerkMode } = useAnimationContext();
 
     const [imageSize, setImageSize] = useState<ContentSize>({
         width: 0,

@@ -3,7 +3,7 @@ import { Keyframes } from 'styled-components';
 import { TickerContainer } from '@/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/elements';
 import { EXTERNAL_LINK, tickerList } from '@/constants';
-import { useBizerkContext } from '@/providers/animations';
+import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Site, SiteKey, BizerkMode } from '@/types';
 import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
@@ -120,13 +120,9 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide }) => {
     const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
-    const { bizerkMode } = useBizerkContext();
+    const { bizerkMode } = useAnimationContext();
     return (
-        <TickerContainer
-            background={backgroundColor}
-            // onMouseEnter={() => tickerCb(true)}
-            // onMouseLeave={() => tickerCb(false)}
-        >
+        <TickerContainer background={backgroundColor}>
             <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
             {tickerList.map(([s, site], i) => (
                 <Slider

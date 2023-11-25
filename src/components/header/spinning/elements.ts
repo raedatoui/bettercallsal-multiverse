@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { CDN, headerBreakPoints as breakPoints } from '@/constants';
-import { fadein, ltr, ltr2, rtl, rtl2 } from '@/utils/animations';
+import { ltr, ltr2, rtl, rtl2 } from '@/utils/animations';
 
 export const SpinningSalsContainer = styled.div`
     -webkit-perspective: 1000px;
@@ -36,11 +36,6 @@ export const SpinningWrapper = styled.div`
         &.right {
             margin-right: -16px;
         }
-
-        &.img0.fadein,
-        &.img0.hover {
-            display: block;
-        }
     }
 
     @media only screen and (max-width: ${breakPoints.md.max}px) and (min-width: ${breakPoints.md.min}px) {
@@ -69,7 +64,7 @@ export const SpinningWrapper = styled.div`
 export const SpinningImg = styled.div<{ image: string }>`
   width: 100%;
   height: 100%;
-  transition: 0.25s;
+  //transition: 0.25s;
   box-sizing: border-box;
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -81,15 +76,6 @@ export const SpinningImg = styled.div<{ image: string }>`
   background-repeat: no-repeat;
   background-image: url(${(props) => `${CDN}${props.image}`});
   //cursor: pointer;
-
-  /* this used to allow a fadein animation, class was added in header.tsx component */
-  &.start {
-    opacity: 1;
-  }
-  
-  &.wtfStart {
-    opacity: 0;
-  }
   
   &.img0.bizerk {
     animation: ${rtl} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
@@ -99,28 +85,8 @@ export const SpinningImg = styled.div<{ image: string }>`
     animation: ${ltr} 1s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
   }
 
-  &.img0.wtf {
-    animation: ${rtl} 0.5s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
-  }
-
-  &.img1.wtf {
-    animation: ${ltr} 0.5s cubic-bezier(0.055, 0.825, 0.485, 0.850) infinite alternate;
-  }
-
-  &.fadein {
-    animation: ${fadein} 0.5s linear;
-  }
-
-  &.img1.hover {
-    animation: ${ltr} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
-  }
-
   &.img1:hover {
     animation: ${ltr2} .5s linear 3;
-  }
-
-  &.img0.hover {
-    animation: ${rtl} 3s cubic-bezier(0.055, 0.825, 0.485, 0.850);
   }
 
   &.img0:hover {

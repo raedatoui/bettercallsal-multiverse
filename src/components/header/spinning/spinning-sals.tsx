@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { useAnimationContext, useBizerkContext } from '@/providers/animations';
+import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { SpinningImg, SpinningWrapper } from './elements';
@@ -12,8 +12,7 @@ interface Props {
 
 const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
     const { selectedSite, siteMap } = useSiteContext();
-    const { bizerkMode } = useBizerkContext();
-    const { setAnimateGrid } = useAnimationContext();
+    const { setAnimateGrid, bizerkMode } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
     const site = siteMap[selectedSite];
@@ -21,7 +20,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
     const audio = wrapperStyle === 'left' ? site.header.spinningSalAudio1 : site.header.spinningSalAudio2;
     const playAndGrid = () => {
         setAnimateGrid(Math.round(Math.random() * 1000));
-        if (site) buffers.play(audio, false);
+        buffers.play(audio, false);
     };
 
     const pause = () => {
@@ -40,11 +39,9 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
         <SpinningWrapper className={wrapperStyle}>
             <SpinningImg
                 onClick={() => onClick()}
-                // onMouseEnter={() => playAndGrid()}
                 onMouseOver={() => playAndGrid()}
-                // onMouseLeave={() => pause()}
                 onMouseOut={() => pause()}
-                className={`${imageStyle} ${bizerkMode !== 'off' ? ' bizerk' : ''}`}
+                className={`${bizerkMode !== 'off' ? ' bizerk' : ''} spinner ${imageStyle} `}
                 image={image}
             />
         </SpinningWrapper>

@@ -40,17 +40,9 @@ export const BetterCall = styled.h1.attrs((props) => ({
         rgb(255, 255, 255) 2px 1px 0px,
         rgb(255, 255, 255) 2px 2px 0px;
 
-    &.bizerk {
-        animation: ${neon1} 3s linear infinite alternate;
-    }
-
-    &.better-call-anim {
-        animation: ${neon1} 3s linear;
-    }
-
-    &.better-call-anim-forever {
-        animation: ${neon1} 3s linear infinite alternate;
-    }
+    // &.better-call-anim {
+    //     animation: ${neon1} 3s linear;
+    // }
 
     &.bizerk {
         animation: ${neon1} 1s linear infinite alternate;

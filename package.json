@@ -29,7 +29,8 @@
         "mariadb": "^3.2.0",
         "crawlee": "^3.5.2",
         "playwright": "^1.37.1",
-        "uuid": "^9.0.1"
+        "uuid": "^9.0.1",
+        "gsap": "^3.12.2"
     },
     "devDependencies": {
         "@types/uuid": "^9.0.5",

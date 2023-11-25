@@ -84,5 +84,5 @@ export const SiteMapValidator = z.object({
 });
 export type SiteMap = Record<SiteKey, Site>;
 
-export const BizerkModeValidator = z.enum(['off', 'doubleClick', 'construction']);
+export const BizerkModeValidator = z.enum(['off', 'on']);
 export type BizerkMode = z.infer<typeof BizerkModeValidator>;

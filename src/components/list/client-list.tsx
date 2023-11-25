@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom';
-import { URL_MAP, WTF_RANDOM } from '@/constants';
-import { useAnimationContext, useBizerkContext } from '@/providers/animations';
+import { URL_MAP } from '@/constants';
+import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
 import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
-import { shuffleList, slugify, useWindowSize, findCategory, pickRandom } from '@/utils';
+import { shuffleList, slugify, useWindowSize, findCategory } from '@/utils';
 
 export const ClientList: FC<VisibleProps> = ({ visible }) => {
     const { category } = useParams<{ category: string }>();
@@ -15,7 +15,7 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
 
     const { siteMap, contentMap, selectedSite, loading } = useSiteContext();
     const site = siteMap[selectedSite];
-    const { bizerkMode, bizerkCounter } = useBizerkContext();
+    const { bizerkMode, animateGrid } = useAnimationContext();
 
     const { buffers, loaded } = useContext(SoundContext);
 
@@ -26,7 +26,6 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
 
     // DOC: these contexts are for causing a shuffle
     const windowSize = useWindowSize();
-    const { animateHeaderFooter, animateGrid } = useAnimationContext();
 
     const getHeaderText = () => {
         let headerTxt = site.contentHeader;
@@ -50,27 +49,39 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
 
     useEffect(() => {
         let list = contentMap[selectedSite];
-        // DOC: shuffle list based on spinning counter, or on re-render for all sites but biz
-        if (selectedSite !== 'wtf' && (animateGrid > 0 || bizerkCounter > 0 || selectedSite !== 'biz')) list = shuffleList(list);
+        // DOC: shuffle list based on spinning counter, or on re-render for all sites but biz, animateGrid=0 resets for biz
+        if (selectedSite !== 'wtf' && (animateGrid > 0 || selectedSite !== 'biz')) list = shuffleList(list);
 
         setContentList(list);
-    }, [contentMap, selectedSite, animateGrid, animateHeaderFooter, windowSize, bizerkCounter]);
+    }, [contentMap, selectedSite, animateGrid, windowSize]);
 
     useEffect(() => {
-        // DOC: wtf load animation
-        if (loaded && selectedSite === 'wtf') {
-            setInitialState('');
+        setHeaderText(getHeaderText());
+    }, [site, category]);
 
-            let counter = 0;
-            const interval = setInterval(() => {
-                setHeaderText(pickRandom(siteMap).contentHeader);
-                setContentList(shuffleList(contentList));
-                counter += 1;
-                if (counter > WTF_RANDOM.limit)
-                    clearInterval(interval);
-            }, WTF_RANDOM.interval);
-        }
-    }, [loaded, selectedSite, animateGrid, animateHeaderFooter, bizerkCounter, siteMap]);
+    // useEffect(() => {
+    //     let list = contentMap[selectedSite];
+    //     // DOC: shuffle list based on spinning counter, or on re-render for all sites but biz
+    //     if (selectedSite !== 'wtf' && (animateGrid > 0 || bizerkCounter > 0 || selectedSite !== 'biz')) list = shuffleList(list);
+    //
+    //     setContentList(list);
+    // }, [contentMap, selectedSite, animateGrid, animateHeaderFooter, windowSize, bizerkCounter]);
+
+    // useEffect(() => {
+    //     // DOC: wtf load animation
+    //     if (loaded && selectedSite === 'wtf') {
+    //         setInitialState('');
+    //
+    //         let counter = 0;
+    //         const interval = setInterval(() => {
+    //             setHeaderText(pickRandom(siteMap).contentHeader);
+    //             setContentList(shuffleList(contentList));
+    //             counter += 1;
+    //             if (counter > WTF_RANDOM.limit)
+    //                 clearInterval(interval);
+    //         }, WTF_RANDOM.interval);
+    //     }
+    // }, [loaded, selectedSite, animateGrid, animateHeaderFooter, bizerkCounter, siteMap]);
 
     useEffect(() => {
         setInitialState(getInitialState());

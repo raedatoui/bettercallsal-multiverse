@@ -45,5 +45,5 @@ export const URL_MAP: Record<SiteKey, string> = {
 
 export const WTF_RANDOM = {
     limit: 50,
-    interval: 25,
+    interval: 100,
 };

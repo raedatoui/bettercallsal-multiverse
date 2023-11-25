@@ -1,12 +1,14 @@
-import React, { FC, useContext, useState, useEffect, useCallback } from 'react';
+import { gsap } from 'gsap';
+import React, { FC, useContext, useState, useEffect } from 'react';
 import Ticker from '@/components/header/ticker';
-import { tickerList, WTF_RANDOM } from '@/constants';
-import { useAnimationContext, useBizerkContext } from '@/providers/animations';
+import { tickerList } from '@/constants';
+import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { WindowSizeContext } from '@/providers/window-size';
 import { SiteKeyValidator } from '@/types';
-import { useInterval, pickRandom } from '@/utils';
+import { useInterval } from '@/utils';
+import { betterCallClick, loadAnimation } from '@/utils/gsap';
 import { HeaderContainer, ContentContainer } from './elements';
 import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './middle';
 import { SpinningSal, SpinningSalsContainer } from './spinning';
@@ -14,9 +16,9 @@ import { SpinningSal, SpinningSalsContainer } from './spinning';
 const HeaderComponent: FC = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
 
-    const { animateGrid, animateHeaderFooter, setAnimateHeaderFooter, animateBizerk } = useAnimationContext();
-    const { bizerkMode, bizerkCounter } = useBizerkContext();
     const site = siteMap[selectedSite];
+
+    const { animateGrid, setAnimateGrid, bizerkMode } = useAnimationContext();
 
     const { buffers, loaded } = useContext(SoundContext);
 
@@ -24,16 +26,7 @@ const HeaderComponent: FC = () => {
 
     const sw = width ?? 0;
 
-    const stopBizerk = () => {
-        buffers.stopAll();
-    };
-
-    const startAnimClass = selectedSite === 'wtf' ? 'wtfStart' : 'start';
-    const [leftSpinningState, setLeftSpinningState] = useState<string>(`img0 ${startAnimClass} ${selectedSite}`);
-    const [rightSpinningState, setRightSpinningState] = useState<string>(`img1 ${startAnimClass} ${selectedSite}`);
-    const [betterCallState, setBetterCallSalState] = useState<string>('');
-    const [initialState, setInitialState] = useState<string>(selectedSite === 'wtf' ? 'off' : '');
-    const [loadAnimationDone, setLoadAnimationStart] = useState<boolean>(false);
+    const [loadAnimationDone, setLoadAnimationDone] = useState<boolean>(false);
 
     const [selectedSlide, setSelectedSlide] = useState<number>(
         // DOC: sites with showTicker = false removed from tickerList and default to biz, 0
@@ -52,83 +45,26 @@ const HeaderComponent: FC = () => {
     const [bizerkIcon, setBizerkIcon] = useState<string>(site.header.bizerkIcon);
     const [ringAudio, setRingAudio] = useState<string>(site.header.ringAudio);
 
-    const animate = useCallback(
-        (pauseAnim: boolean) => {
-            if (!pauseAnim) setLoadAnimationStart(false);
-
-            if (selectedSite !== 'wtf') {
-                setBetterCallSalState('better-call-anim');
-                setLeftSpinningState(`img0 hover ${selectedSite}`);
-                setRightSpinningState(`img1 hover ${selectedSite}`);
-                setTimeout(() => {
-                    setLeftSpinningState(`img0 ${selectedSite}`);
-                    setRightSpinningState(`img1 ${selectedSite}`);
-                    setBetterCallSalState('');
-                    setTimeout(() => {
-                        if (!pauseAnim) setLoadAnimationStart(true);
-                    }, 2000);
-                }, 3000);
-            } else {
-                setBetterCallSalState('better-call-anim');
-                setInitialState('');
-                let counter = 0;
-                const interval = setInterval(() => {
-                    const s1 = pickRandom(siteMap);
-                    const s2 = pickRandom(siteMap);
-                    setLeftSpinningState(`img0 wtf ${s1.name}`);
-                    setRightSpinningState(`img1 wtf ${s2.name}`);
-                    setLeftImage(s1.header.spinningSalsLeft);
-                    setRightImage(s2.header.spinningSalsRight);
-                    setName1(pickRandom(siteMap).header.name1);
-                    setName2(pickRandom(siteMap).header.name2);
-                    setTitle1(pickRandom(siteMap).header.title1);
-                    setTitle2(pickRandom(siteMap).header.title2);
-                    const s3 = pickRandom(siteMap);
-                    setSiteName(s3.name);
-                    setBizerkIcon(s3.header.bizerkIcon);
-                    setRingAudio(pickRandom(siteMap).header.ringAudio);
-                    counter += 1;
-                    if (counter === WTF_RANDOM.limit) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            setLeftSpinningState(`img0 ${s1.name}`);
-                            setRightSpinningState(`img1 ${s2.name}`);
-                            setBetterCallSalState('');
-                            setTimeout(() => {
-                                if (!pauseAnim) setLoadAnimationStart(true);
-                            }, 100);
-                        }, 100);
-                    }
-                }, WTF_RANDOM.interval);
-            }
-        },
-        [selectedSite]
-    );
+    const [tl, setTl] = useState<gsap.core.Timeline>();
 
     useEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = betterCallClick(selectedSite, animateGrid, setAnimateGrid);
+            setTl(tl);
+        });
+        return () => ctx.revert();
+    }, [selectedSite]);
+
+    useEffect(() => {
+        // DOC: intro animation, triggered on site changed and buffer loaded
         if (loaded) {
-            animate(false);
+            const timeline = loadAnimation();
+            timeline.play().then(() => {
+                setLoadAnimationDone(true);
+            });
             setTickerCounter(0);
         }
-    }, [animate, loaded, selectedSite]);
-
-    useEffect(() => {
-        if (selectedSite !== 'wtf' && animateHeaderFooter) {
-            // TODO: not all random ring audios are loaded
-            buffers.play(ringAudio, false);
-            animate(true);
-            return;
-        }
-        if (selectedSite === 'wtf') animate(false);
-        // DOC: dont add animateGrid, bizerkCounter here, but maybe wtf needs it?
-    }, [animate, selectedSite, animateHeaderFooter, buffers, site.header.ringAudio]);
-
-    useEffect(() => {
-        if (animateBizerk) {
-            buffers.play(site.header.spinningSalAudio1, false);
-            buffers.play(site.header.spinningSalAudio2, false);
-        }
-    }, [animate, animateBizerk, buffers, site.header.spinningSalAudio1, site.header.spinningSalAudio2]);
+    }, [loaded, selectedSite]);
 
     let ticketInterval = 5000;
     if (bizerkMode !== 'off') ticketInterval = 2000;
@@ -159,25 +95,26 @@ const HeaderComponent: FC = () => {
     return (
         <HeaderContainer id="main-header" className={fullScreen ? `${selectedSite} off` : `${selectedSite} on`}>
             <SpinningSalsContainer>
-                <SpinningSal wrapperStyle="left" imageStyle={leftSpinningState} image={leftImage} />
-                <SpinningSal wrapperStyle="right" imageStyle={rightSpinningState} image={rightImage} />
+                <SpinningSal wrapperStyle="left" imageStyle={`img0 ${selectedSite}`} image={leftImage} />
+                <SpinningSal wrapperStyle="right" imageStyle={`img1 ${selectedSite}`} image={rightImage} />
             </SpinningSalsContainer>
             <ContentContainer>
                 <Ticker backgroundColor="#F13400" sliderType="top" start={loadAnimationDone} sw={sw} selectedSlide={selectedSlide} />
                 <BetterCall
-                    className={`${betterCallState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+                    className={`better-call-title ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                     onClick={() => {
-                        setAnimateHeaderFooter(animateHeaderFooter + 1);
+                        tl?.restart();
+                        buffers.play(ringAudio, false);
                     }}
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>
-                <BizerkContainer className={`${initialState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
+                <BizerkContainer className={`${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                     <SalName>{name1}</SalName>
-                    <Bizerk name={siteName} bizerkIcon={bizerkIcon} pause={stopBizerk} />
+                    <Bizerk name={siteName} bizerkIcon={bizerkIcon} />
                     <SalName>{name2}</SalName>
                 </BizerkContainer>
-                <SalCaption className={`${initialState} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
+                <SalCaption className={`${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                     {title1} {title2}
                 </SalCaption>
                 <Ticker backgroundColor="#FE0000" sliderType="bottom" start={loadAnimationDone} sw={sw} selectedSlide={selectedSlide} />

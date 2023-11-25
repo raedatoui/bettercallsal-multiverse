@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useBizerkContext } from '@/providers/animations';
+import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, Caption, EcardContainer, StopButton } from '@/styles/sharedstyles';
 
@@ -9,7 +9,7 @@ const Ecard = () => {
     const navigate = useNavigate();
     const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
-    const { bizerkMode } = useBizerkContext();
+    const { bizerkMode } = useAnimationContext();
 
     return (
         <>

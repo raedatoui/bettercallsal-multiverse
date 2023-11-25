@@ -12,18 +12,19 @@ import ServerLayout from '@/components/main/server-layout';
 import Unity from '@/components/unity';
 import Video from '@/components/video';
 import { CDN } from '@/constants';
-import { useBizerkContext } from '@/providers/animations';
+import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { PathProvider } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Main } from '@/styles/sharedstyles';
 import { Router } from '@/types';
 import { findCategory, findContentFomStore } from '@/utils/find';
+import { animateCounterBizerk } from '@/utils/gsap';
 
 const MainContainerInner = () => {
     const { selectedSite, fullScreen, contentMap, siteMap } = useSiteContext();
     const site = siteMap[selectedSite];
-    const { bizerkMode, setBizerkMode } = useBizerkContext();
+    const { setBizerkMode, animateGrid, setAnimateGrid, animateNav, setAnimateNav } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
     const trackContent = (url: string, seg: string) => {
@@ -107,14 +108,17 @@ const MainContainerInner = () => {
     const mainRef = useRef<HTMLDivElement | null>(null);
     const particleRef = useRef<HTMLDivElement | null>(null);
 
-    const handleClick = () => {
-        // DOC: construction bizerk on any click
-        if (mainRef.current && screenCapture === null && scriptLoaded && selectedSite === 'construction')
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        // DOC: bizerk click
+        const target = event.target as HTMLElement;
+        if (mainRef.current && screenCapture === null && scriptLoaded && (selectedSite === 'construction' || target.id === 'bizerk-icon'))
             window.htmlToImage
                 .toPng(mainRef.current)
                 .then((dataUrl) => {
                     setScreeCapture(dataUrl);
-                    setBizerkMode('construction');
+                    setBizerkMode('on');
+                    animateCounterBizerk(animateGrid, setAnimateGrid);
+                    animateCounterBizerk(animateNav, setAnimateNav);
                     if (buffers.analyzer && particleRef.current)
                         // eslint-disable-next-line no-new
                         new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
@@ -123,22 +127,6 @@ const MainContainerInner = () => {
                     console.error('oops, something went wrong!', error);
                 });
     };
-
-    useEffect(() => {
-        // DOC: this is for starting bizerk mode
-        if (mainRef.current && screenCapture === null && bizerkMode === 'doubleClick')
-            window.htmlToImage
-                .toPng(mainRef.current)
-                .then((dataUrl) => {
-                    setScreeCapture(dataUrl);
-                    if (buffers.analyzer && particleRef.current)
-                        // eslint-disable-next-line no-new
-                        new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
-                })
-                .catch((error) => {
-                    console.error('oops, something went wrong!', error);
-                });
-    }, [bizerkMode, buffers.analyzer, screenCapture]);
 
     useEffect(() => {
         if (typeof window !== 'undefined') setRouter(createRouter());

@@ -24,7 +24,6 @@ export const ServerLeftNav = () => {
                         <LeftNavMenu>
                             {clonedNavItems.map((i) => (
                                 <NavButton
-                                    className="on"
                                     key={`${i.id}-${i.site}`}
                                     navItem={i}
                                     audioCb={() => null}

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
 import { headerBreakPoints as breakPoints } from '@/constants';
-import { borderAnim, neon2, fadein, footerLtr, squigglyText } from '@/utils/animations';
+import { borderAnim, neon2, footerLtr, squigglyText } from '@/utils/animations';
 
 export const LawBreakersContainer = styled.div`
     background-image: linear-gradient(#fda810, #eae41f);
@@ -68,22 +68,10 @@ export const LawBreakersP = styled.div`
         #fff 4px 2px 0,
         #fff 4px 4px 0;
 
-    &.off {
-        opacity: 0;
-    }
-    &.better-call-anim {
-        animation: ${neon2} 3s linear;
-    }
+    animation: ${borderAnim} 1.5s linear infinite alternate;
 
-    &.init {
-        animation: ${borderAnim} 1.5s linear infinite alternate;
-        &.bizerk {
-            animation: ${neon2} 1s infinite alternate;
-        }
-    }
-
-    &.wtf {
-        animation: ${neon2} 0.5s infinite alternate;
+    &.bizerk {
+        animation: ${neon2} 1s infinite alternate;
     }
 
     img {
@@ -95,21 +83,11 @@ export const LawBreakersP = styled.div`
     video {
         height: 100%;
         margin: 0 20px;
-        transition: 0.25s;
         box-sizing: border-box;
         perspective: 1000px;
         transform-style: preserve-3d;
         transform-origin: 50% 50%;
         backface-visibility: visible;
-        opacity: 1;
-
-        &.start {
-            opacity: 0;
-        }
-
-        &.fadein {
-            animation: ${fadein} 0.5s linear;
-        }
 
         &.img0 {
             &.rocks {
@@ -119,23 +97,13 @@ export const LawBreakersP = styled.div`
                 transform: scale(1.2);
             }
 
-            &.hover {
-                animation: ${footerLtr(-3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85);
-                &.rocks {
-                    animation: ${footerLtr(3600, 1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85);
-                }
-                &.art {
-                    animation: ${footerLtr(3600, 1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85);
-                }
-            }
-
             &.bizerk {
-                animation: ${footerLtr(-3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
+                animation: ${footerLtr(-3600, 1, 1)} 1s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
                 &.rocks {
-                    animation: ${footerLtr(3600, 1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
+                    animation: ${footerLtr(3600, 1.5, 1.5)} 1s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
                 }
                 &.art {
-                    animation: ${footerLtr(3600, 1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
+                    animation: ${footerLtr(3600, 1.2, 1.2)} 1s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
                 }
             }
         }
@@ -149,25 +117,14 @@ export const LawBreakersP = styled.div`
                 transform: scaleX(-1.2) scaleY(1.2);
             }
 
-            &.hover {
-                animation: ${footerLtr(3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85);
-
-                &.rocks {
-                    animation: ${footerLtr(3600, -1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85);
-                }
-                &.art {
-                    animation: ${footerLtr(3600, -1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85);
-                }
-            }
-
             &.bizerk {
-                animation: ${footerLtr(3600, 1, 1)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
+                animation: ${footerLtr(3600, 1, 1)} 1s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
 
                 &.rocks {
-                    animation: ${footerLtr(3600, -1.5, 1.5)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
+                    animation: ${footerLtr(3600, -1.5, 1.5)} 1s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
                 }
                 &.art {
-                    animation: ${footerLtr(3600, -1.2, 1.2)} 3s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
+                    animation: ${footerLtr(3600, -1.2, 1.2)} 1s cubic-bezier(0.055, 0.825, 0.485, 0.85) alternate infinite;
                 }
             }
         }
