@@ -8,7 +8,7 @@ import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { WindowSizeContext } from '@/providers/window-size';
 import { LeftNavItem, Site } from '@/types';
-import { shuffleList, slugify } from '@/utils';
+import { pickRandom, shuffleList, slugify } from '@/utils';
 import NavButton from './button';
 
 export const ClientLeftNav = () => {
@@ -17,7 +17,7 @@ export const ClientLeftNav = () => {
     const { siteMap, selectedSite, fullScreen, unityInstance, setUnityInstance } = useSiteContext();
     const site = siteMap[selectedSite];
 
-    const { bizerkMode, animateNav } = useAnimationContext();
+    const { bizerkMode, animateNav, animateWtf } = useAnimationContext();
     const { buffers, loaded } = useContext(SoundContext);
     const { width } = useContext(WindowSizeContext);
 
@@ -28,8 +28,9 @@ export const ClientLeftNav = () => {
     const [navItems, setNavItems] = useState<LeftNavItem[]>(site.leftNav.items);
 
     const handleAudio = (a: string) => {
-        // DOC: if art is playing, and click on any nav, stop pavane
-        if (selectedSite === 'art') buffers.stop('/audio/art/pavane.mp3');
+        // DOC: if anything is playing, and click on any nav, stop it
+        buffers.stopAll();
+
         if (loaded)
             if (!audioPlaying) {
                 buffers.play(a, false);
@@ -45,9 +46,9 @@ export const ClientLeftNav = () => {
     };
 
     const handleCategory = (l: LeftNavItem) => {
-        // DOC: if unity is playing, and click on any nav, stop unity, stop sal-man audio
+        // DOC: if unity is playing, and click on any nav, stop unity
+        // DOC: almost every category has audio, so the audioCb will handle it.
         if (unityInstance && l.category === 'all') {
-            buffers.stop('/audio/games/take-five.mp3');
             unityInstance.Quit().then(() => {
                 setUnityInstance(null);
                 navigate('/');
@@ -79,25 +80,11 @@ export const ClientLeftNav = () => {
     };
 
     useEffect(() => {
-        setNavItems(shuffleList(site.leftNav.items));
-    }, [animateNav, site.leftNav.items]);
-
-    // useEffect(() => {
-    //     // DOC: bizerk shuffle
-    //     if (bizerkCounter > 1 && bizerkMode !== 'off') {
-    //         setNavItems(shuffleList(site.leftNav.items));
-    //         // DOC: shuffle left nav items on bizerk hover if wtf is selected
-    //         if (selectedSite === 'wtf') setLeftNav(pickRandom(siteMap));
-    //         return;
-    //     }
-    //     // if ((animateGrid > 0 || bizerkCounter > 0 ) && selectedSite === 'wtf') {
-    //     //     setLeftNav(pickRandom(siteMap).leftNav);
-    //     //     return;
-    //     // }
-    //
-    //     // DOC: wtf load anim
-    //     if (selectedSite === 'wtf' && loaded) animate();
-    // }, [selectedSite, bizerkMode, bizerkCounter, loaded, site.leftNav.items]);
+        if (animateNav > 0 || animateWtf > 0) {
+            setNavItems(shuffleList(site.leftNav.items));
+            setLeftNav(pickRandom(siteMap));
+        }
+    }, [animateNav, animateWtf, site]);
 
     useEffect(() => {
         setNavItems(site.leftNav.items);
@@ -108,7 +95,7 @@ export const ClientLeftNav = () => {
         <>
             <Script id="text-fit" src="/scripts/textfit.js" />
 
-            <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
+            <LeftNavContainer className={`animatable ${fullScreen ? 'off' : 'on'}`}>
                 {selectedSite !== 'gallery' && (
                     <>
                         <LeftNavMenu>

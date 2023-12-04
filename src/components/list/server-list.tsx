@@ -23,9 +23,9 @@ export const ServerList = () => {
 
     return (
         <>
-            <Caption className="wtf">{headerTxt}</Caption>
+            <Caption className="off wtf">{headerTxt}</Caption>
 
-            <ContentList id="content-list" className="wtf">
+            <ContentList id="content-list" className={selectedSite}>
                 {contentList
                     .filter((i) => i.display)
                     .map((i) => (

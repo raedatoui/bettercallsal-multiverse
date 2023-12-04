@@ -536,7 +536,7 @@
                     "audio": null,
                     "video": null,
                     "link": null,
-                    "category": "Biz card",
+                    "category": "e-cards",
                     "quote": null,
                     "quoteLink": null
                 },
@@ -590,62 +590,7 @@
             "text": "ABOUT THE<br />ARTIST!!!!",
             "video": null,
             "audio": "/audio/art/cummilker.mp3",
-            "items": [
-                {
-                    "name": "Salutations",
-                    "audio": "/audio/art/pavane.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "salutations",
-                    "quote": null,
-                    "quoteLink": null
-                },
-                {
-                    "name": "Classical",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "classical",
-                    "quote": "Classical",
-                    "quoteLink": null
-                },
-                {
-                    "name": "Sacred",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "sacred",
-                    "quote": "Sacred",
-                    "quoteLink": null
-                },
-                {
-                    "name": "Historical",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "historical",
-                    "quote": "Historical",
-                    "quoteLink": null
-                },
-                {
-                    "name": "Contemporary",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "contemporary",
-                    "quote": "Contemporary",
-                    "quoteLink": null
-                },
-                {
-                    "name": "All",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null
-                }
-            ]
+            "items": []
         },
         "rightNav": {
             "type": "spotify",

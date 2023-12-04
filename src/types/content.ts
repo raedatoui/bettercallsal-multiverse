@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { SiteKeyValidator } from '@/types/site';
+import { SiteKeyValidator } from './site';
 
 export type Size = {
     width: number;

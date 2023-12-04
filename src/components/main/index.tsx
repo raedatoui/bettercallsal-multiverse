@@ -144,7 +144,7 @@ const MainContainerInner = () => {
 
             <Script src="/scripts/html-to-image.js" onReady={() => setScriptLoaded(true)} />
             <PathProvider>
-                <Main onClick={handleClick} id="main" ref={mainRef} className={fullScreen ? 'fullScreen' : ''}>
+                <Main onClick={handleClick} id="main" ref={mainRef} className={`${selectedSite} ${fullScreen ? 'fullScreen' : ''}`}>
                     <HeaderComponent />
                     {router ? <RouterProvider router={router} /> : <ServerLayout selectedSite={selectedSite} fullScreen={fullScreen} />}
 

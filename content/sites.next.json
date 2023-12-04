@@ -18,7 +18,11 @@
             "lowerBanner": "Want Art from Sal?",
             "showTicker": true,
             "spinningSalAudio1": "/audio/art/spinning.art.mp3",
-            "spinningSalAudio2": "/audio/art/spinning.art.mp3"
+            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
+            "bizerk": {
+                "icon": "/images/art/spray.gif",
+                "site": "art"
+            }
         },
         "leftNav": {
             "image": "/images/art/left.art.webp",
@@ -34,7 +38,7 @@
                     "category": "all",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "a7bc0664-435a-4eb6-aa48-3c2f1f5340bc",
+                    "id": "f441aa4c-3648-49f7-a40f-596aed173e3e",
                     "site": "art"
                 },
                 {
@@ -45,7 +49,7 @@
                     "category": "classical",
                     "quote": "Classical",
                     "quoteLink": null,
-                    "id": "b9ac5f65-5e70-4fd4-b7eb-657b19346313",
+                    "id": "d866a899-7b3a-4c83-982c-731c58885da7",
                     "site": "art"
                 },
                 {
@@ -56,7 +60,7 @@
                     "category": "sacred",
                     "quote": "Sacred",
                     "quoteLink": null,
-                    "id": "c5932dcf-501a-42c9-91ed-847f138fff47",
+                    "id": "82803aa2-5080-4c7c-be15-f4ad20a4abbe",
                     "site": "art"
                 },
                 {
@@ -67,7 +71,7 @@
                     "category": "equestrian",
                     "quote": "Equestrian",
                     "quoteLink": null,
-                    "id": "0a5ac919-9849-46e2-82c5-95274b0a2b81",
+                    "id": "d8ba2aca-b834-40d8-82a9-e3a9fa96c70b",
                     "site": "art"
                 },
                 {
@@ -78,7 +82,7 @@
                     "category": "contemporary",
                     "quote": "Contemporary",
                     "quoteLink": null,
-                    "id": "dd62b162-2da7-4022-82ef-2a5f8288c5a9",
+                    "id": "ebfedb3f-0085-49ce-8041-2eaf1e234351",
                     "site": "art"
                 },
                 {
@@ -89,7 +93,7 @@
                     "category": "load",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "6184e4b4-679b-4d79-85db-eb06f26d60dc",
+                    "id": "ab2b8cce-d8f9-450e-a229-adbc13e79861",
                     "site": "art"
                 }
             ]
@@ -103,7 +107,8 @@
             "icon": {
                 "image": "/images/art/dali.gif",
                 "width": 462,
-                "height": 432
+                "height": 432,
+                "site": "art"
             },
             "ringAudio": "/audio/art/ring.art.mp3"
         },
@@ -128,7 +133,11 @@
             "lowerBanner": "Want Emails from Sal?",
             "showTicker": true,
             "spinningSalAudio1": "/audio/biz/airhorn.m4a",
-            "spinningSalAudio2": "/audio/biz/airhorn.m4a"
+            "spinningSalAudio2": "/audio/biz/airhorn.m4a",
+            "bizerk": {
+                "icon": "/images/biz/mic.webp",
+                "site": "biz"
+            }
         },
         "leftNav": {
             "image": "/images/biz/nav-sq.webp",
@@ -144,7 +153,7 @@
                     "category": "all",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "2d4a0cd3-2861-48ef-b144-9587f58b959f",
+                    "id": "24327acc-95dd-421f-9048-65d505205bdd",
                     "site": "biz"
                 },
                 {
@@ -155,7 +164,7 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "70b31148-09bd-46dc-a1d8-6cd08dd0d148",
+                    "id": "0a3865ee-ea63-4a3a-a831-89a5c1076e91",
                     "site": "biz"
                 },
                 {
@@ -166,7 +175,7 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "4950ad35-2c02-4103-ba22-595b21a04c40",
+                    "id": "91970aa8-49b6-4d44-bbf6-bbb02b87123f",
                     "site": "biz"
                 },
                 {
@@ -177,7 +186,7 @@
                     "category": "e-cards",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "248bfdcd-fad2-4cac-bc09-76539a858189",
+                    "id": "f42bd48d-4720-4996-b762-75b778f8e6f8",
                     "site": "biz"
                 },
                 {
@@ -188,7 +197,7 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "7ab2a880-47ba-4b72-9ec4-21dd630868e9",
+                    "id": "b05b5006-40f5-49bb-87ff-5a19cc649996",
                     "site": "biz"
                 }
             ]
@@ -202,7 +211,8 @@
             "icon": {
                 "image": "/images/biz/rca-mic.webp",
                 "width": 148,
-                "height": 393
+                "height": 393,
+                "site": "biz"
             },
             "ringAudio": "/audio/biz/phone-ring.m4a"
         },
@@ -227,7 +237,11 @@
             "lowerBanner": "Want Construction from Sal?",
             "showTicker": true,
             "spinningSalAudio1": "/audio/construction/cat.call.loud.mp3",
-            "spinningSalAudio2": "/audio/construction/cat.call.loud.mp3"
+            "spinningSalAudio2": "/audio/construction/cat.call.loud.mp3",
+            "bizerk": {
+                "icon": "/images/construction/under.gif",
+                "site": "construction"
+            }
         },
         "leftNav": {
             "image": "/images/construction/nav-sq.webp",
@@ -243,7 +257,7 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "92cb1547-d63c-4213-a187-0de3696a53bd",
+                    "id": "c13d65ec-4ce2-4576-8ece-3ce46ee51f85",
                     "site": "construction"
                 },
                 {
@@ -254,7 +268,7 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "5a4e432a-9676-4c32-aac0-2983be412dd9",
+                    "id": "b1b4010d-279e-4a2d-b9fc-6fc7fb9a8759",
                     "site": "construction"
                 },
                 {
@@ -265,7 +279,7 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "9f11bbe2-7d95-4be1-8b7b-106d069c03a0",
+                    "id": "2ca610dc-e540-4a0c-86f4-d175969cb823",
                     "site": "construction"
                 },
                 {
@@ -276,7 +290,7 @@
                     "category": "Biz card",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "f8edddb2-a7ae-4613-97f2-7f4e3c0136d3",
+                    "id": "e1cd7c79-a595-48e0-b9ef-b70b393a6e82",
                     "site": "construction"
                 },
                 {
@@ -287,7 +301,7 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "a9f4dfae-2b76-4f2a-a61e-349a99a41d44",
+                    "id": "b6a678dc-d71d-4851-9954-b785eb25990c",
                     "site": "construction"
                 }
             ]
@@ -301,7 +315,8 @@
             "icon": {
                 "image": "/images/construction/footer.construction.webp",
                 "width": 255,
-                "height": 393
+                "height": 393,
+                "site": "construction"
             },
             "ringAudio": "/audio/construction/ring.construction.mp3"
         },
@@ -326,7 +341,11 @@
             "lowerBanner": "Want Workouts from Sal?",
             "showTicker": true,
             "spinningSalAudio1": "/audio/fit/ready-for-this.m4a",
-            "spinningSalAudio2": "/audio/fit/ready-for-this.m4a"
+            "spinningSalAudio2": "/audio/fit/ready-for-this.m4a",
+            "bizerk": {
+                "icon": "/images/fit/namaste-smoking.gif",
+                "site": "fit"
+            }
         },
         "leftNav": {
             "image": "/images/fit/salwmeout.webp",
@@ -342,7 +361,7 @@
                     "category": "all",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "fed93f0b-b984-4784-99a8-3a6095daef07",
+                    "id": "6f1da169-438e-42bf-8c44-bf4629fd0db7",
                     "site": "fit"
                 },
                 {
@@ -353,7 +372,7 @@
                     "category": "sound-bath",
                     "quote": "You’ve got to be very mindful if you don’t know where you are going",
                     "quoteLink": null,
-                    "id": "aa31d016-9325-4655-8035-8ee96b3551e9",
+                    "id": "d6098307-f53e-4275-92af-68365065732d",
                     "site": "fit"
                 },
                 {
@@ -364,7 +383,7 @@
                     "category": "yoga",
                     "quote": "Yoga is 90% mental and the other half is physical",
                     "quoteLink": null,
-                    "id": "7f7fb880-d860-4f7c-9d12-a4e898631d62",
+                    "id": "96e75edb-4cb6-4d11-b54a-02748c2fd46d",
                     "site": "fit"
                 },
                 {
@@ -375,7 +394,7 @@
                     "category": "strength",
                     "quote": "One’s greatest weakness is not finding the strength in oneself",
                     "quoteLink": null,
-                    "id": "b804e069-4f47-4c25-8280-45d9b4842375",
+                    "id": "8a72d3f5-5da6-4682-aced-b2f27f53b13c",
                     "site": "fit"
                 },
                 {
@@ -386,7 +405,7 @@
                     "category": "meditation",
                     "quote": "When you come to a fork in the road, meditate",
                     "quoteLink": null,
-                    "id": "c534bf98-18d3-4140-aeea-43bb03058771",
+                    "id": "5b8ccecf-3dd9-4b05-96ae-d4e0067ce9be",
                     "site": "fit"
                 },
                 {
@@ -397,7 +416,7 @@
                     "category": "stretch",
                     "quote": "How can you think and stretch at the same time?",
                     "quoteLink": null,
-                    "id": "33bd7b5d-ad15-436c-8e38-239e9f8bc5c8",
+                    "id": "8eee9c2f-2301-4e88-9ea6-ab010ddb27b4",
                     "site": "fit"
                 },
                 {
@@ -408,7 +427,7 @@
                     "category": "barre",
                     "quote": "Grin and barre it",
                     "quoteLink": null,
-                    "id": "9e2cebc3-4317-4204-9472-d4707110a41a",
+                    "id": "5eae7129-ed9d-4834-bb06-3fdf58a2647d",
                     "site": "fit"
                 },
                 {
@@ -419,7 +438,7 @@
                     "category": "boxing",
                     "quote": "You can observe a lot by just boxing",
                     "quoteLink": null,
-                    "id": "96ad2f64-e992-4348-8cc3-0c652758c306",
+                    "id": "684b2773-b4ed-4c1a-bf13-c13c64240cf3",
                     "site": "fit"
                 },
                 {
@@ -430,7 +449,7 @@
                     "category": "pilates",
                     "quote": "In pilates, you don’t know nothing",
                     "quoteLink": null,
-                    "id": "be8a10a4-1f4f-434f-ab4b-30a200960238",
+                    "id": "95ce77e6-54d2-4b5e-9084-7d8387d27426",
                     "site": "fit"
                 },
                 {
@@ -441,7 +460,7 @@
                     "category": "cycling",
                     "quote": "All cyclists are liars or crybabies",
                     "quoteLink": null,
-                    "id": "dbcbbebd-001e-4343-baa8-5eaf6f16b525",
+                    "id": "8306aeea-33fd-41fd-aac6-8b89f8874a36",
                     "site": "fit"
                 }
             ]
@@ -455,7 +474,8 @@
             "icon": {
                 "image": "/images/fit/om.webp",
                 "width": 500,
-                "height": 512
+                "height": 512,
+                "site": "fit"
             },
             "ringAudio": "/audio/fit/ring.fit.mp3"
         },
@@ -480,81 +500,18 @@
             "lowerBanner": "Want Gallery from Sal?",
             "showTicker": false,
             "spinningSalAudio1": "/audio/art/spinning.art.mp3",
-            "spinningSalAudio2": "/audio/art/spinning.art.mp3"
+            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
+            "bizerk": {
+                "icon": "/images/art/spray.gif",
+                "site": "gallery"
+            }
         },
         "leftNav": {
             "image": "/images/art/left.art.webp",
             "text": "ABOUT THE<br />ARTIST!!!!",
             "video": null,
             "audio": "/audio/art/cummilker.mp3",
-            "items": [
-                {
-                    "name": "Salutations",
-                    "audio": "/audio/art/pavane.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "salutations",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "245e7236-f7c0-4dcc-b89a-72f3bcf575c4",
-                    "site": "gallery"
-                },
-                {
-                    "name": "Classical",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "classical",
-                    "quote": "Classical",
-                    "quoteLink": null,
-                    "id": "3122cf4f-eae5-4cc6-8ab5-f8841dc1a7f8",
-                    "site": "gallery"
-                },
-                {
-                    "name": "Sacred",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "sacred",
-                    "quote": "Sacred",
-                    "quoteLink": null,
-                    "id": "0cb7b879-74dc-4612-beef-5d5112b5ca84",
-                    "site": "gallery"
-                },
-                {
-                    "name": "Historical",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "historical",
-                    "quote": "Historical",
-                    "quoteLink": null,
-                    "id": "7b0a5c6c-ef99-4e05-a1f6-a4cedd7933dd",
-                    "site": "gallery"
-                },
-                {
-                    "name": "Contemporary",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "contemporary",
-                    "quote": "Contemporary",
-                    "quoteLink": null,
-                    "id": "ae82a16a-3115-4dcf-9c4c-1624beb40d13",
-                    "site": "gallery"
-                },
-                {
-                    "name": "All",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "ae0c2d1b-0427-4a10-bed2-26acc5de27a2",
-                    "site": "gallery"
-                }
-            ]
+            "items": []
         },
         "rightNav": {
             "type": "spotify",
@@ -565,7 +522,8 @@
             "icon": {
                 "image": "/images/art/dali.gif",
                 "width": 462,
-                "height": 432
+                "height": 432,
+                "site": "gallery"
             },
             "ringAudio": "/audio/art/ring.art.mp3"
         },
@@ -590,7 +548,11 @@
             "lowerBanner": "Want Games from Sal?",
             "showTicker": true,
             "spinningSalAudio1": "/audio/games/spinning.games.mp3",
-            "spinningSalAudio2": "/audio/games/spinning.games.mp3"
+            "spinningSalAudio2": "/audio/games/spinning.games.mp3",
+            "bizerk": {
+                "icon": "/images/games/coin6.gif",
+                "site": "games"
+            }
         },
         "leftNav": {
             "image": "/images/games/left.games.webp",
@@ -606,7 +568,7 @@
                     "category": "all",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "e462ba9c-f354-4816-ab73-5dd98a1b0a08",
+                    "id": "21013ab9-19ee-4091-959d-6626730a539d",
                     "site": "games"
                 },
                 {
@@ -617,7 +579,7 @@
                     "category": "games",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "5a57fa6e-2656-43d7-b65c-933a629b6df1",
+                    "id": "561e6ba1-faeb-474c-a532-1354009c6aee",
                     "site": "games"
                 },
                 {
@@ -628,7 +590,7 @@
                     "category": "games",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "8fe5a2ed-459d-4c6f-9484-6a06a4153847",
+                    "id": "75eec4e3-5dd7-4a3b-b12f-de5da5225b7d",
                     "site": "games"
                 },
                 {
@@ -639,7 +601,7 @@
                     "category": "games",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "4c990296-b28a-468c-b7ae-aa3a793ed642",
+                    "id": "def33b0c-eb47-4b41-b0e3-ea50b76a285c",
                     "site": "games"
                 }
             ]
@@ -653,7 +615,8 @@
             "icon": {
                 "image": "/images/games/star.webp",
                 "width": 300,
-                "height": 300
+                "height": 300,
+                "site": "games"
             },
             "ringAudio": "/audio/games/ring.games.mp3"
         },
@@ -678,7 +641,11 @@
             "lowerBanner": "Want Music from Sal?",
             "showTicker": true,
             "spinningSalAudio1": "/audio/rocks/spinning.rocks.mp3",
-            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3"
+            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3",
+            "bizerk": {
+                "icon": "/images/rocks/spinning.rocks.cat.gif",
+                "site": "rocks"
+            }
         },
         "leftNav": {
             "image": "/images/rocks/hardcore.webp",
@@ -694,7 +661,7 @@
                     "category": "all",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "621f4d5d-b127-4caa-aae1-adf227a154b8",
+                    "id": "fe469fa8-0dd3-42f6-876c-4a95a69c90cb",
                     "site": "rocks"
                 },
                 {
@@ -705,7 +672,7 @@
                     "category": "nature-creeps",
                     "quote": "Nature Creeps Beneath",
                     "quoteLink": "https://naturecreepsbeneath.com/",
-                    "id": "788e2bf9-7493-466c-805f-8bb4c29dc614",
+                    "id": "fd840518-a28e-41bb-90fc-185581c4c30a",
                     "site": "rocks"
                 },
                 {
@@ -716,7 +683,7 @@
                     "category": "blind-archer",
                     "quote": "Blind Archer",
                     "quoteLink": "https://youtube.com/playlist?list=OLAK5uy_lHoyOGbGk0Ib3jHsACMGFfUXPYyXUfuD0",
-                    "id": "86e58641-779e-4913-979f-7b86e31ade46",
+                    "id": "fe4b6c36-5a2f-45b0-ae4c-620100fe6265",
                     "site": "rocks"
                 },
                 {
@@ -727,7 +694,7 @@
                     "category": "harjo",
                     "quote": "all hail harjo",
                     "quoteLink": "https://www.allhailharjo.com/",
-                    "id": "c4ef4acb-a75b-418c-ad8f-a0ccd681889e",
+                    "id": "813b7832-af3d-4160-9d2f-dfab602e57e0",
                     "site": "rocks"
                 },
                 {
@@ -738,7 +705,7 @@
                     "category": "rbn",
                     "quote": "River Bottom Nightmares",
                     "quoteLink": null,
-                    "id": "c33e1865-7c6b-479a-800f-a541cf178ef3",
+                    "id": "d1527276-74af-4cdb-8b4a-a6a1af408638",
                     "site": "rocks"
                 }
             ]
@@ -752,7 +719,8 @@
             "icon": {
                 "image": "/images/rocks/smashguitar.gif",
                 "width": 225,
-                "height": 256
+                "height": 256,
+                "site": "rocks"
             },
             "ringAudio": "/audio/rocks/ring.rocks.mp3"
         },
@@ -760,221 +728,49 @@
     },
     "wtf": {
         "footer": {
-            "text": "welcome artists",
+            "text": "welcome gamers",
             "icon": {
                 "image": "/images/biz/rca-mic.webp",
                 "width": 148,
-                "height": 393
+                "height": 393,
+                "site": "biz"
             },
-            "ringAudio": "/audio/games/ring.games.mp3"
+            "ringAudio": "/audio/art/ring.art.mp3"
         },
         "gaTag": "",
         "header": {
             "showTicker": false,
-            "name1": "Salvatore",
-            "name2": "Dali",
-            "spinningSalAudio1": "/audio/rocks/spinning.rocks.mp3",
-            "spinningSalAudio2": "/audio/fit/ready-for-this.m4a",
-            "spinningSalsRight": "/images/art/spinning.art.right.webp",
-            "spinningSalsLeft": "/images/rocks/spinning.rocks.left.webp",
-            "bizerkIcon": "/images/construction/under.gif",
-            "ringAudio": "/audio/biz/phone-ring.m4a",
-            "title1": "Hardcore",
-            "title2": "Gamer",
-            "lowerBanner": "Want Games from Sal?"
+            "name1": "Super",
+            "name2": "Sal",
+            "spinningSalAudio1": "/audio/games/spinning.games.mp3",
+            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3",
+            "spinningSalsRight": "/images/biz/sal-right.webp",
+            "spinningSalsLeft": "/images/biz/sal-left.webp",
+            "bizerk": {
+                "icon": "/images/art/spray.gif",
+                "site": "art"
+            },
+            "ringAudio": "/audio/art/ring.art.mp3",
+            "title1": "The Great",
+            "title2": "Masturbator",
+            "lowerBanner": "Want Emails from Sal?"
         },
         "leftNav": {
-            "image": "/images/games/left.games.webp",
-            "text": "ABOUT THE<br />ARTIST!!!!",
+            "image": "/images/art/left.art.webp",
+            "text": "SAL WORKED<br />FOR ME!!!!",
             "video": "01agkvzV7Jk",
-            "audio": null,
+            "audio": "/audio/games/take-five.mp3",
             "items": [
                 {
-                    "name": "Pilates",
-                    "audio": "/audio/fit/pilates.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "pilates",
-                    "quote": "In pilates, you don’t know nothing",
-                    "quoteLink": null,
-                    "id": "be8a10a4-1f4f-434f-ab4b-30a200960238",
-                    "site": "fit"
-                },
-                {
-                    "name": "office webcam",
-                    "audio": null,
-                    "video": "_QLX3hugymI",
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "7ab2a880-47ba-4b72-9ec4-21dd630868e9",
-                    "site": "biz"
-                },
-                {
-                    "name": "Meditation",
-                    "audio": "/audio/fit/meditation.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "meditation",
-                    "quote": "When you come to a fork in the road, meditate",
-                    "quoteLink": null,
-                    "id": "c534bf98-18d3-4140-aeea-43bb03058771",
-                    "site": "fit"
-                },
-                {
-                    "name": "as seen on tv",
-                    "audio": null,
-                    "video": null,
-                    "link": "https://www.imdb.com/name/nm5840016/?mode=desktop&ref_=m_ft_dsk",
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "4950ad35-2c02-4103-ba22-595b21a04c40",
-                    "site": "biz"
-                },
-                {
-                    "name": "salutations",
-                    "audio": "/audio/fit/holdmusic.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "fed93f0b-b984-4784-99a8-3a6095daef07",
-                    "site": "fit"
-                },
-                {
-                    "name": "salutations",
-                    "audio": "/audio/rocks/all.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "621f4d5d-b127-4caa-aae1-adf227a154b8",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Sal-man",
-                    "audio": "/audio/games/salman.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "8fe5a2ed-459d-4c6f-9484-6a06a4153847",
-                    "site": "games"
-                },
-                {
-                    "name": "Cycling",
-                    "audio": "/audio/fit/cycling.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "cycling",
-                    "quote": "All cyclists are liars or crybabies",
-                    "quoteLink": null,
-                    "id": "dbcbbebd-001e-4343-baa8-5eaf6f16b525",
-                    "site": "fit"
-                },
-                {
-                    "name": "Boxing",
-                    "audio": "/audio/fit/boxing.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "boxing",
-                    "quote": "You can observe a lot by just boxing",
-                    "quoteLink": null,
-                    "id": "96ad2f64-e992-4348-8cc3-0c652758c306",
-                    "site": "fit"
-                },
-                {
-                    "name": "office webcam",
-                    "audio": null,
-                    "video": "_QLX3hugymI",
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "a9f4dfae-2b76-4f2a-a61e-349a99a41d44",
-                    "site": "construction"
-                },
-                {
                     "name": "Salutations",
-                    "audio": "/audio/art/pavane.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "salutations",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "245e7236-f7c0-4dcc-b89a-72f3bcf575c4",
-                    "site": "gallery"
-                },
-                {
-                    "name": "All",
-                    "audio": null,
+                    "audio": "/audio/art/allart.mp3",
                     "video": null,
                     "link": null,
                     "category": "all",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "ae0c2d1b-0427-4a10-bed2-26acc5de27a2",
-                    "site": "gallery"
-                },
-                {
-                    "name": "Salitaire",
-                    "audio": "/audio/games/salitaire.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "4c990296-b28a-468c-b7ae-aa3a793ed642",
-                    "site": "games"
-                },
-                {
-                    "name": "Sacred",
-                    "audio": "/audio/art/sacred.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "sacred",
-                    "quote": "Sacred",
-                    "quoteLink": null,
-                    "id": "c5932dcf-501a-42c9-91ed-847f138fff47",
+                    "id": "f441aa4c-3648-49f7-a40f-596aed173e3e",
                     "site": "art"
-                },
-                {
-                    "name": "Yoga",
-                    "audio": "/audio/fit/yoga.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "yoga",
-                    "quote": "Yoga is 90% mental and the other half is physical",
-                    "quoteLink": null,
-                    "id": "7f7fb880-d860-4f7c-9d12-a4e898631d62",
-                    "site": "fit"
-                },
-                {
-                    "name": "load",
-                    "audio": "/audio/art/pavane.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "load",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "6184e4b4-679b-4d79-85db-eb06f26d60dc",
-                    "site": "art"
-                },
-                {
-                    "name": "Contemporary",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "contemporary",
-                    "quote": "Contemporary",
-                    "quoteLink": null,
-                    "id": "ae82a16a-3115-4dcf-9c4c-1624beb40d13",
-                    "site": "gallery"
                 },
                 {
                     "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
@@ -984,150 +780,7 @@
                     "category": "e-cards",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "248bfdcd-fad2-4cac-bc09-76539a858189",
-                    "site": "biz"
-                },
-                {
-                    "name": "Contemporary",
-                    "audio": "/audio/art/contemporary.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "contemporary",
-                    "quote": "Contemporary",
-                    "quoteLink": null,
-                    "id": "dd62b162-2da7-4022-82ef-2a5f8288c5a9",
-                    "site": "art"
-                },
-                {
-                    "name": "Classical",
-                    "audio": "/audio/art/classical.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "classical",
-                    "quote": "Classical",
-                    "quoteLink": null,
-                    "id": "b9ac5f65-5e70-4fd4-b7eb-657b19346313",
-                    "site": "art"
-                },
-                {
-                    "name": "Salutations",
-                    "audio": "/audio/games/salutations.games.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "e462ba9c-f354-4816-ab73-5dd98a1b0a08",
-                    "site": "games"
-                },
-                {
-                    "name": "salutations",
-                    "audio": "/audio/biz/salutations.m4a",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "2d4a0cd3-2861-48ef-b144-9587f58b959f",
-                    "site": "biz"
-                },
-                {
-                    "name": "Classical",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "classical",
-                    "quote": "Classical",
-                    "quoteLink": null,
-                    "id": "3122cf4f-eae5-4cc6-8ab5-f8841dc1a7f8",
-                    "site": "gallery"
-                },
-                {
-                    "name": "Barre",
-                    "audio": "/audio/fit/barre.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "barre",
-                    "quote": "Grin and barre it",
-                    "quoteLink": null,
-                    "id": "9e2cebc3-4317-4204-9472-d4707110a41a",
-                    "site": "fit"
-                },
-                {
-                    "name": "Salutations",
-                    "audio": "/audio/art/allart.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "a7bc0664-435a-4eb6-aa48-3c2f1f5340bc",
-                    "site": "art"
-                },
-                {
-                    "name": "Historical",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "historical",
-                    "quote": "Historical",
-                    "quoteLink": null,
-                    "id": "7b0a5c6c-ef99-4e05-a1f6-a4cedd7933dd",
-                    "site": "gallery"
-                },
-                {
-                    "name": "Equestrian",
-                    "audio": "/audio/art/equestrian.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "equestrian",
-                    "quote": "Equestrian",
-                    "quoteLink": null,
-                    "id": "0a5ac919-9849-46e2-82c5-95274b0a2b81",
-                    "site": "art"
-                },
-                {
-                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "Biz card",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "f8edddb2-a7ae-4613-97f2-7f4e3c0136d3",
-                    "site": "construction"
-                },
-                {
-                    "name": "Sound Bath",
-                    "audio": "/audio/fit/drone.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "sound-bath",
-                    "quote": "You’ve got to be very mindful if you don’t know where you are going",
-                    "quoteLink": null,
-                    "id": "aa31d016-9325-4655-8035-8ee96b3551e9",
-                    "site": "fit"
-                },
-                {
-                    "name": "TESTIMONIALS",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "5a4e432a-9676-4c32-aac0-2983be412dd9",
-                    "site": "construction"
-                },
-                {
-                    "name": "as seen on tv",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "9f11bbe2-7d95-4be1-8b7b-106d069c03a0",
+                    "id": "e1cd7c79-a595-48e0-b9ef-b70b393a6e82",
                     "site": "construction"
                 },
                 {
@@ -1138,63 +791,129 @@
                     "category": "strength",
                     "quote": "One’s greatest weakness is not finding the strength in oneself",
                     "quoteLink": null,
-                    "id": "b804e069-4f47-4c25-8280-45d9b4842375",
+                    "id": "8a72d3f5-5da6-4682-aced-b2f27f53b13c",
                     "site": "fit"
+                },
+                {
+                    "name": "office webcam",
+                    "audio": null,
+                    "video": "_QLX3hugymI",
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "b6a678dc-d71d-4851-9954-b785eb25990c",
+                    "site": "construction"
+                },
+                {
+                    "name": "as seen on tv",
+                    "audio": null,
+                    "video": null,
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "2ca610dc-e540-4a0c-86f4-d175969cb823",
+                    "site": "construction"
                 },
                 {
                     "name": "TESTIMONIALS",
                     "audio": null,
                     "video": null,
-                    "link": "https://www.instagram.com/bettercallsal.biz/",
+                    "link": null,
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "70b31148-09bd-46dc-a1d8-6cd08dd0d148",
+                    "id": "b1b4010d-279e-4a2d-b9fc-6fc7fb9a8759",
+                    "site": "construction"
+                },
+                {
+                    "name": "load",
+                    "audio": "/audio/art/pavane.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "load",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "ab2b8cce-d8f9-450e-a229-adbc13e79861",
+                    "site": "art"
+                },
+                {
+                    "name": "Yoga",
+                    "audio": "/audio/fit/yoga.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "yoga",
+                    "quote": "Yoga is 90% mental and the other half is physical",
+                    "quoteLink": null,
+                    "id": "96e75edb-4cb6-4d11-b54a-02748c2fd46d",
+                    "site": "fit"
+                },
+                {
+                    "name": "Salutations",
+                    "audio": "/audio/games/salutations.games.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "all",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "21013ab9-19ee-4091-959d-6626730a539d",
+                    "site": "games"
+                },
+                {
+                    "name": "Sound Bath",
+                    "audio": "/audio/fit/drone.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "sound-bath",
+                    "quote": "You’ve got to be very mindful if you don’t know where you are going",
+                    "quoteLink": null,
+                    "id": "d6098307-f53e-4275-92af-68365065732d",
+                    "site": "fit"
+                },
+                {
+                    "name": "office webcam",
+                    "audio": null,
+                    "video": "_QLX3hugymI",
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "b05b5006-40f5-49bb-87ff-5a19cc649996",
                     "site": "biz"
                 },
                 {
-                    "name": "RBN",
-                    "audio": "/audio/rocks/rbn.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "rbn",
-                    "quote": "River Bottom Nightmares",
-                    "quoteLink": null,
-                    "id": "c33e1865-7c6b-479a-800f-a541cf178ef3",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Blind Archer",
-                    "audio": "/audio/rocks/blind.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "blind-archer",
-                    "quote": "Blind Archer",
-                    "quoteLink": "https://youtube.com/playlist?list=OLAK5uy_lHoyOGbGk0Ib3jHsACMGFfUXPYyXUfuD0",
-                    "id": "86e58641-779e-4913-979f-7b86e31ade46",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Super Sal Bros.",
-                    "audio": "/audio/games/supersal.mp3",
+                    "name": "Salitaire",
+                    "audio": "/audio/games/salitaire.mp3",
                     "video": null,
                     "link": null,
                     "category": "games",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "5a57fa6e-2656-43d7-b65c-933a629b6df1",
+                    "id": "def33b0c-eb47-4b41-b0e3-ea50b76a285c",
                     "site": "games"
                 },
                 {
-                    "name": "Sacred",
-                    "audio": null,
+                    "name": "Boxing",
+                    "audio": "/audio/fit/boxing.mp3",
                     "video": null,
-                    "link": null,
-                    "category": "sacred",
-                    "quote": "Sacred",
+                    "link": "",
+                    "category": "boxing",
+                    "quote": "You can observe a lot by just boxing",
                     "quoteLink": null,
-                    "id": "0cb7b879-74dc-4612-beef-5d5112b5ca84",
-                    "site": "gallery"
+                    "id": "684b2773-b4ed-4c1a-bf13-c13c64240cf3",
+                    "site": "fit"
+                },
+                {
+                    "name": "Barre",
+                    "audio": "/audio/fit/barre.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "barre",
+                    "quote": "Grin and barre it",
+                    "quoteLink": null,
+                    "id": "5eae7129-ed9d-4834-bb06-3fdf58a2647d",
+                    "site": "fit"
                 },
                 {
                     "name": "salutations",
@@ -1204,19 +923,96 @@
                     "category": null,
                     "quote": null,
                     "quoteLink": null,
-                    "id": "92cb1547-d63c-4213-a187-0de3696a53bd",
+                    "id": "c13d65ec-4ce2-4576-8ece-3ce46ee51f85",
                     "site": "construction"
                 },
                 {
-                    "name": "Harjo",
-                    "audio": "/audio/rocks/harjo.mp3",
+                    "name": "salutations",
+                    "audio": "/audio/biz/salutations.m4a",
+                    "video": null,
+                    "link": "",
+                    "category": "all",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "24327acc-95dd-421f-9048-65d505205bdd",
+                    "site": "biz"
+                },
+                {
+                    "name": "Equestrian",
+                    "audio": "/audio/art/equestrian.mp3",
                     "video": null,
                     "link": null,
-                    "category": "harjo",
-                    "quote": "all hail harjo",
-                    "quoteLink": "https://www.allhailharjo.com/",
-                    "id": "c4ef4acb-a75b-418c-ad8f-a0ccd681889e",
+                    "category": "equestrian",
+                    "quote": "Equestrian",
+                    "quoteLink": null,
+                    "id": "d8ba2aca-b834-40d8-82a9-e3a9fa96c70b",
+                    "site": "art"
+                },
+                {
+                    "name": "Super Sal Bros.",
+                    "audio": "/audio/games/supersal.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "games",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "561e6ba1-faeb-474c-a532-1354009c6aee",
+                    "site": "games"
+                },
+                {
+                    "name": "salutations",
+                    "audio": "/audio/fit/holdmusic.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "all",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "6f1da169-438e-42bf-8c44-bf4629fd0db7",
+                    "site": "fit"
+                },
+                {
+                    "name": "RBN",
+                    "audio": "/audio/rocks/rbn.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "rbn",
+                    "quote": "River Bottom Nightmares",
+                    "quoteLink": null,
+                    "id": "d1527276-74af-4cdb-8b4a-a6a1af408638",
                     "site": "rocks"
+                },
+                {
+                    "name": "Contemporary",
+                    "audio": "/audio/art/contemporary.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "contemporary",
+                    "quote": "Contemporary",
+                    "quoteLink": null,
+                    "id": "ebfedb3f-0085-49ce-8041-2eaf1e234351",
+                    "site": "art"
+                },
+                {
+                    "name": "Meditation",
+                    "audio": "/audio/fit/meditation.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "meditation",
+                    "quote": "When you come to a fork in the road, meditate",
+                    "quoteLink": null,
+                    "id": "5b8ccecf-3dd9-4b05-96ae-d4e0067ce9be",
+                    "site": "fit"
+                },
+                {
+                    "name": "Pilates",
+                    "audio": "/audio/fit/pilates.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "pilates",
+                    "quote": "In pilates, you don’t know nothing",
+                    "quoteLink": null,
+                    "id": "95ce77e6-54d2-4b5e-9084-7d8387d27426",
+                    "site": "fit"
                 },
                 {
                     "name": "Nature Creeps Beneath",
@@ -1226,8 +1022,85 @@
                     "category": "nature-creeps",
                     "quote": "Nature Creeps Beneath",
                     "quoteLink": "https://naturecreepsbeneath.com/",
-                    "id": "788e2bf9-7493-466c-805f-8bb4c29dc614",
+                    "id": "fd840518-a28e-41bb-90fc-185581c4c30a",
                     "site": "rocks"
+                },
+                {
+                    "name": "salutations",
+                    "audio": "/audio/rocks/all.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "all",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "fe469fa8-0dd3-42f6-876c-4a95a69c90cb",
+                    "site": "rocks"
+                },
+                {
+                    "name": "Harjo",
+                    "audio": "/audio/rocks/harjo.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "harjo",
+                    "quote": "all hail harjo",
+                    "quoteLink": "https://www.allhailharjo.com/",
+                    "id": "813b7832-af3d-4160-9d2f-dfab602e57e0",
+                    "site": "rocks"
+                },
+                {
+                    "name": "Sacred",
+                    "audio": "/audio/art/sacred.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "sacred",
+                    "quote": "Sacred",
+                    "quoteLink": null,
+                    "id": "82803aa2-5080-4c7c-be15-f4ad20a4abbe",
+                    "site": "art"
+                },
+                {
+                    "name": "TESTIMONIALS",
+                    "audio": null,
+                    "video": null,
+                    "link": "https://www.instagram.com/bettercallsal.biz/",
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "0a3865ee-ea63-4a3a-a831-89a5c1076e91",
+                    "site": "biz"
+                },
+                {
+                    "name": "Sal-man",
+                    "audio": "/audio/games/salman.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "games",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "75eec4e3-5dd7-4a3b-b12f-de5da5225b7d",
+                    "site": "games"
+                },
+                {
+                    "name": "Cycling",
+                    "audio": "/audio/fit/cycling.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "cycling",
+                    "quote": "All cyclists are liars or crybabies",
+                    "quoteLink": null,
+                    "id": "8306aeea-33fd-41fd-aac6-8b89f8874a36",
+                    "site": "fit"
+                },
+                {
+                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
+                    "audio": null,
+                    "video": null,
+                    "link": null,
+                    "category": "e-cards",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "f42bd48d-4720-4996-b762-75b778f8e6f8",
+                    "site": "biz"
                 },
                 {
                     "name": "Stretch",
@@ -1237,19 +1110,52 @@
                     "category": "stretch",
                     "quote": "How can you think and stretch at the same time?",
                     "quoteLink": null,
-                    "id": "33bd7b5d-ad15-436c-8e38-239e9f8bc5c8",
+                    "id": "8eee9c2f-2301-4e88-9ea6-ab010ddb27b4",
                     "site": "fit"
+                },
+                {
+                    "name": "Blind Archer",
+                    "audio": "/audio/rocks/blind.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "blind-archer",
+                    "quote": "Blind Archer",
+                    "quoteLink": "https://youtube.com/playlist?list=OLAK5uy_lHoyOGbGk0Ib3jHsACMGFfUXPYyXUfuD0",
+                    "id": "fe4b6c36-5a2f-45b0-ae4c-620100fe6265",
+                    "site": "rocks"
+                },
+                {
+                    "name": "Classical",
+                    "audio": "/audio/art/classical.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": "classical",
+                    "quote": "Classical",
+                    "quoteLink": null,
+                    "id": "d866a899-7b3a-4c83-982c-731c58885da7",
+                    "site": "art"
+                },
+                {
+                    "name": "as seen on tv",
+                    "audio": null,
+                    "video": null,
+                    "link": "https://www.imdb.com/name/nm5840016/?mode=desktop&ref_=m_ft_dsk",
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "91970aa8-49b6-4d44-bbf6-bbb02b87123f",
+                    "site": "biz"
                 }
             ]
         },
-        "metaDescription": "Bettercallsal.rocks | In Music Trouble? Better Call Sal! For All Your Music Needs | Harjo, Nature Creeps Beneath, Blind Archer",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY, Sound Mixer NYC, Sound Mixer New York",
+        "metaDescription": "Bettercallsal.construction | In Construction Trouble? Better Call Sal! For All Your Construction Needs",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Super Sal Bros., games, gaming, super mario bros., pac-man, pacman, solitaire, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
         "metaTitle": "Better Call Sal",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/0YrapkgfIVsriJXNQBUERZ?utm_source=generator"
+            "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
         },
         "name": "wtf",
-        "contentHeader": "In  fitness  trouble?"
+        "contentHeader": "In  sound  trouble?"
     }
 }

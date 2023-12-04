@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
-import { CDN, headerBreakPoints as breakPoints } from '@/constants';
+import { headerBreakPoints as breakPoints } from '@/constants';
 import { glowShadow, ltr2, neon1, scalemic, scalingYoyo } from '@/utils/animations';
 
 export const BetterCall = styled.h1.attrs((props) => ({
@@ -213,14 +213,10 @@ export const BizerkImageContainer = styled.div`
     }
 `;
 
-export const BizerImage = styled.img<{ background: string }>`
+export const BizerImage = styled.img`
     transition: all 0.5s linear;
     animation: ${glowShadow} 1.5s linear infinite alternate;
     object-fit: contain;
-    // background-image:  url(${(props) => `${CDN}${props.background}`});
-    // background-size: 100% 100%;
-    // background-position: center;
-    // background-repeat: no-repeat;
 
     box-sizing: border-box;
     perspective: 1000px;

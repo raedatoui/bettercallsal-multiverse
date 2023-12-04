@@ -8,7 +8,7 @@ import { LeftNavItem } from '@/types';
 import NavButton from './button';
 
 export const ServerLeftNav = () => {
-    const { siteMap, selectedSite, fullScreen } = useSiteContext();
+    const { siteMap, selectedSite } = useSiteContext();
 
     const site = siteMap[selectedSite];
 
@@ -18,7 +18,7 @@ export const ServerLeftNav = () => {
     return (
         <>
             <Script id="text-fit" src="/scripts/textfit.js" />
-            <LeftNavContainer className={fullScreen ? 'off' : 'on'}>
+            <LeftNavContainer className="off">
                 {selectedSite !== 'gallery' && (
                     <>
                         <LeftNavMenu>
@@ -30,7 +30,7 @@ export const ServerLeftNav = () => {
                                     navItemCb={(l: LeftNavItem) => l}
                                     videoCb={(l: LeftNavItem) => l}
                                     width={width}
-                                    fullScreen={fullScreen}
+                                    fullScreen={false}
                                 />
                             ))}
                         </LeftNavMenu>

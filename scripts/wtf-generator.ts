@@ -32,6 +32,16 @@ const PrevHeaderValidator = z.object({
     lowerBanner: z.string(),
     showTicker: z.boolean(),
 });
+const PrevFooterValidator = z.object({
+    text: z.string(),
+    icon: z.object({
+        image: z.string(),
+        width: z.number(),
+        height: z.number(),
+    }),
+    ringAudio: z.string(),
+});
+
 const PrevLeftNavItemValidator = z.object({
     name: z.string(),
     audio: z.string().nullable(),
@@ -57,7 +67,7 @@ const PrevSiteValidator = z.object({
     header: PrevHeaderValidator,
     leftNav: PrevLeftNavValidator,
     rightNav: RightNavValidator,
-    footer: FooterValidator,
+    footer: PrevFooterValidator,
     gaTag: z.string(),
 });
 
@@ -101,6 +111,17 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                 ...siteMap.art.header,
                 spinningSalAudio1: siteMap.art.header.spinningSalAudio,
                 spinningSalAudio2: siteMap.art.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.art.header.bizerkIcon,
+                    site: 'art',
+                },
+            },
+            footer: {
+                ...siteMap.art.footer,
+                icon: {
+                    ...siteMap.art.footer.icon,
+                    site: 'art',
+                },
             },
             leftNav: {
                 ...siteMap.art.leftNav,
@@ -117,6 +138,17 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                 ...siteMap.biz.header,
                 spinningSalAudio1: siteMap.biz.header.spinningSalAudio,
                 spinningSalAudio2: siteMap.biz.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.biz.header.bizerkIcon,
+                    site: 'biz',
+                },
+            },
+            footer: {
+                ...siteMap.biz.footer,
+                icon: {
+                    ...siteMap.biz.footer.icon,
+                    site: 'biz',
+                },
             },
             leftNav: {
                 ...siteMap.biz.leftNav,
@@ -133,6 +165,17 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                 ...siteMap.construction.header,
                 spinningSalAudio1: siteMap.construction.header.spinningSalAudio,
                 spinningSalAudio2: siteMap.construction.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.construction.header.bizerkIcon,
+                    site: 'construction',
+                },
+            },
+            footer: {
+                ...siteMap.construction.footer,
+                icon: {
+                    ...siteMap.construction.footer.icon,
+                    site: 'construction',
+                },
             },
             leftNav: {
                 ...siteMap.construction.leftNav,
@@ -149,6 +192,17 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                 ...siteMap.fit.header,
                 spinningSalAudio1: siteMap.fit.header.spinningSalAudio,
                 spinningSalAudio2: siteMap.fit.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.fit.header.bizerkIcon,
+                    site: 'fit',
+                },
+            },
+            footer: {
+                ...siteMap.fit.footer,
+                icon: {
+                    ...siteMap.fit.footer.icon,
+                    site: 'fit',
+                },
             },
             leftNav: {
                 ...siteMap.fit.leftNav,
@@ -165,6 +219,17 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                 ...siteMap.gallery.header,
                 spinningSalAudio1: siteMap.gallery.header.spinningSalAudio,
                 spinningSalAudio2: siteMap.gallery.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.gallery.header.bizerkIcon,
+                    site: 'gallery',
+                },
+            },
+            footer: {
+                ...siteMap.gallery.footer,
+                icon: {
+                    ...siteMap.gallery.footer.icon,
+                    site: 'gallery',
+                },
             },
             leftNav: {
                 ...siteMap.gallery.leftNav,
@@ -181,6 +246,17 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                 ...siteMap.games.header,
                 spinningSalAudio1: siteMap.games.header.spinningSalAudio,
                 spinningSalAudio2: siteMap.games.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.games.header.bizerkIcon,
+                    site: 'games',
+                },
+            },
+            footer: {
+                ...siteMap.games.footer,
+                icon: {
+                    ...siteMap.games.footer.icon,
+                    site: 'games',
+                },
             },
             leftNav: {
                 ...siteMap.games.leftNav,
@@ -197,6 +273,17 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                 ...siteMap.rocks.header,
                 spinningSalAudio1: siteMap.rocks.header.spinningSalAudio,
                 spinningSalAudio2: siteMap.rocks.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.rocks.header.bizerkIcon,
+                    site: 'rocks',
+                },
+            },
+            footer: {
+                ...siteMap.rocks.footer,
+                icon: {
+                    ...siteMap.rocks.footer.icon,
+                    site: 'rocks',
+                },
             },
             leftNav: {
                 ...siteMap.rocks.leftNav,
@@ -238,7 +325,7 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
             spinningSalAudio2: picker<Header>(headers).spinningSalAudio2,
             spinningSalsRight: picker<Header>(headers).spinningSalsRight,
             spinningSalsLeft: picker<Header>(headers).spinningSalsLeft,
-            bizerkIcon: picker<Header>(headers).bizerkIcon,
+            bizerk: picker<Header>(headers).bizerk,
             ringAudio: picker<Header>(headers).ringAudio,
             title1: picker<Header>(headers).title1,
             title2: picker<Header>(headers).title2,

@@ -7,7 +7,7 @@ import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
 import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
-import { shuffleList, slugify, useWindowSize, findCategory } from '@/utils';
+import { shuffleList, slugify, useWindowSize, findCategory, pickRandom } from '@/utils';
 
 export const ClientList: FC<VisibleProps> = ({ visible }) => {
     const { category } = useParams<{ category: string }>();
@@ -15,9 +15,9 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
 
     const { siteMap, contentMap, selectedSite, loading } = useSiteContext();
     const site = siteMap[selectedSite];
-    const { bizerkMode, animateGrid } = useAnimationContext();
+    const { animateGrid, animateWtf } = useAnimationContext();
 
-    const { buffers, loaded } = useContext(SoundContext);
+    const { buffers } = useContext(SoundContext);
 
     const defaultList = contentMap[selectedSite].filter((i) => i.display).filter((i) => i.category === category || category === undefined);
     // TODO: why is this not filtering
@@ -36,56 +36,32 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         return headerTxt;
     };
 
-    const getInitialState = () => {
-        let cc = bizerkMode !== 'off' ? 'bizerk' : '';
-        if (!visible) cc += ' off';
-        if (selectedSite === 'wtf' && !loaded) cc += 'wtf';
-        return cc;
-    };
-
     const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(defaultList);
-    const [initialState, setInitialState] = useState<string>(getInitialState());
     const [headerText, setHeaderText] = useState<string>(getHeaderText());
 
     useEffect(() => {
         let list = contentMap[selectedSite];
         // DOC: shuffle list based on spinning counter, or on re-render for all sites but biz, animateGrid=0 resets for biz
-        if (selectedSite !== 'wtf' && (animateGrid > 0 || selectedSite !== 'biz')) list = shuffleList(list);
+        if (animateGrid > 0 || selectedSite !== 'biz') list = shuffleList(list);
 
         setContentList(list);
     }, [contentMap, selectedSite, animateGrid, windowSize]);
 
     useEffect(() => {
+        if (animateWtf > 0) {
+            setHeaderText(pickRandom(siteMap).contentHeader);
+            setContentList(shuffleList(contentMap[selectedSite]));
+        }
+    }, [animateWtf, siteMap]);
+
+    useEffect(() => {
+        if (selectedSite === 'wtf') setHeaderText(pickRandom(siteMap).contentHeader);
+    }, [windowSize, selectedSite, siteMap]);
+
+    useEffect(() => {
         setHeaderText(getHeaderText());
     }, [site, category]);
 
-    // useEffect(() => {
-    //     let list = contentMap[selectedSite];
-    //     // DOC: shuffle list based on spinning counter, or on re-render for all sites but biz
-    //     if (selectedSite !== 'wtf' && (animateGrid > 0 || bizerkCounter > 0 || selectedSite !== 'biz')) list = shuffleList(list);
-    //
-    //     setContentList(list);
-    // }, [contentMap, selectedSite, animateGrid, animateHeaderFooter, windowSize, bizerkCounter]);
-
-    // useEffect(() => {
-    //     // DOC: wtf load animation
-    //     if (loaded && selectedSite === 'wtf') {
-    //         setInitialState('');
-    //
-    //         let counter = 0;
-    //         const interval = setInterval(() => {
-    //             setHeaderText(pickRandom(siteMap).contentHeader);
-    //             setContentList(shuffleList(contentList));
-    //             counter += 1;
-    //             if (counter > WTF_RANDOM.limit)
-    //                 clearInterval(interval);
-    //         }, WTF_RANDOM.interval);
-    //     }
-    // }, [loaded, selectedSite, animateGrid, animateHeaderFooter, bizerkCounter, siteMap]);
-
-    useEffect(() => {
-        setInitialState(getInitialState());
-    }, [visible]);
     // DOC: when category is not found, redirect to home
     if (category !== undefined && !categories.includes(category)) {
         navigate('/');
@@ -96,10 +72,10 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
 
     return (
         <>
-            <Caption className={initialState}>{headerText}</Caption>
+            <Caption className={`animatable ${visible ? '' : 'off'}`}>{headerText}</Caption>
 
             {!loading && selectedSite !== 'construction' && selectedSite !== 'gallery' && (
-                <ContentList id="content-list" className={`${initialState} ${visible ? '' : 'off'}`}>
+                <ContentList id="content-list" className={`animatable ${visible ? '' : 'off'}`}>
                     {finalList.map((i) => (
                         <RouterLink
                             onClick={() => {

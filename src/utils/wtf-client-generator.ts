@@ -44,7 +44,7 @@ const siteMapWtfGenerator = (siteMap: SiteMap): SiteMap => {
                 spinningSalAudio2: picker<Header>(headers).spinningSalAudio2,
                 spinningSalsRight: picker<Header>(headers).spinningSalsRight,
                 spinningSalsLeft: picker<Header>(headers).spinningSalsLeft,
-                bizerkIcon: picker<Header>(headers).bizerkIcon,
+                bizerk: picker<Header>(headers).bizerk,
                 ringAudio: picker<Header>(headers).ringAudio,
                 title1: picker<Header>(headers).title1,
                 title2: picker<Header>(headers).title2,

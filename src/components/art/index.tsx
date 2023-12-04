@@ -15,9 +15,9 @@ const ArtSlider = () => {
     const { artId } = useParams<{ artId: string }>();
     const navigate = useNavigate();
 
-    const { contentMap } = useSiteContext();
+    const { selectedSite, contentMap } = useSiteContext();
 
-    const images = contentMap.art.filter(isContent);
+    const images = (selectedSite === 'wtf' ? contentMap.wtf : contentMap.art).filter(isContent);
     const artImage = findContent(images, artId ?? '');
 
     const start = artImage ? images.indexOf(artImage) : 0;

@@ -4,33 +4,43 @@ import { CDN } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
+import { SiteKey } from '@/types';
 import { bizerkHover } from '@/utils/gsap';
 import { BizerImage, BizerkImageContainer } from './elements';
 
 interface Props {
-    name: string;
-    bizerkIcon: string;
+    bizerk: {
+        icon: string;
+        site: SiteKey;
+    };
 }
 
-const Bizerk: FC<Props> = ({ name, bizerkIcon }) => {
+const Bizerk: FC<Props> = ({ bizerk }) => {
     const { selectedSite, siteMap } = useSiteContext();
     const site = siteMap[selectedSite];
 
     const { buffers } = useContext(SoundContext);
-    const { animateGrid, setAnimateGrid, bizerkMode } = useAnimationContext();
+    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
     const [tl, setTl] = useState<gsap.core.Timeline>();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             // DOC: bizerk hover -> gsap fast animations
-            const tl = bizerkHover(selectedSite, animateGrid, setAnimateGrid);
+            let counter = animateGrid;
+            let setCounter = setAnimateGrid;
+            if (selectedSite === 'wtf') {
+                counter = animateWtf;
+                setCounter = setAnimateWtf;
+            }
+            const tl = bizerkHover(selectedSite, counter, setCounter);
             setTl(tl);
         });
         return () => ctx.revert();
     }, [selectedSite]);
 
-    const playAndGrid = () => {
-        setAnimateGrid(Math.round(Math.random() * 1000));
+    const play = () => {
+        if (selectedSite === 'wtf') setAnimateWtf(Math.round(Math.random() * 1000));
+        else setAnimateGrid(Math.round(Math.random() * 1000));
         tl?.restart();
         buffers.play(site.header.ringAudio, false);
         buffers.play(site.footer.ringAudio, false);
@@ -48,15 +58,8 @@ const Bizerk: FC<Props> = ({ name, bizerkIcon }) => {
     };
 
     return (
-        <BizerkImageContainer className={name}>
-            <BizerImage
-                id="bizerk-icon"
-                src={`${CDN}${bizerkIcon}`}
-                background={bizerkIcon}
-                className={name}
-                onMouseOver={() => playAndGrid()}
-                onMouseOut={() => pause()}
-            />
+        <BizerkImageContainer className={bizerk.site}>
+            <BizerImage id="bizerk-icon" src={`${CDN}${bizerk.icon}`} className={bizerk.site} onMouseOver={() => play()} onMouseOut={() => pause()} />
         </BizerkImageContainer>
     );
 };

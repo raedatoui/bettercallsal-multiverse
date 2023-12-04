@@ -8,7 +8,10 @@ export const HeaderValidator = z.object({
     spinningSalsRight: z.string(),
     spinningSalAudio1: z.string(),
     spinningSalAudio2: z.string(),
-    bizerkIcon: z.string(),
+    bizerk: z.object({
+        icon: z.string(),
+        site: SiteKeyValidator,
+    }),
     ringAudio: z.string(),
     name1: z.string(),
     name2: z.string(),
@@ -53,6 +56,7 @@ export const FooterValidator = z.object({
         image: z.string(),
         width: z.number(),
         height: z.number(),
+        site: SiteKeyValidator,
     }),
     ringAudio: z.string(),
 });

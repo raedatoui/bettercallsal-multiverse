@@ -24,8 +24,8 @@ deploy() {
 #deploy "construction"
 #deploy "fit"
 #deploy "gallery"
-deploy "fans"
-#deploy "wtf"
+#deploy "fans"
+deploy "wtf"
 
 yarn clean
 TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts "biz"

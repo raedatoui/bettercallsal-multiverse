@@ -8,18 +8,18 @@ interface Props {
     wrapperStyle: string;
     imageStyle: string;
     image: string;
+    audio: string;
 }
 
-const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
+const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image, audio }) => {
     const { selectedSite, siteMap } = useSiteContext();
-    const { setAnimateGrid, bizerkMode } = useAnimationContext();
+    const { setAnimateGrid, setAnimateWtf, bizerkMode } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
     const site = siteMap[selectedSite];
-    // TODO: randomize these for wtf
-    const audio = wrapperStyle === 'left' ? site.header.spinningSalAudio1 : site.header.spinningSalAudio2;
-    const playAndGrid = () => {
-        setAnimateGrid(Math.round(Math.random() * 1000));
+    const play = () => {
+        if (selectedSite === 'wtf') setAnimateWtf(Math.round(Math.random() * 1000));
+        else setAnimateGrid(Math.round(Math.random() * 1000));
         buffers.play(audio, false);
     };
 
@@ -31,7 +31,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
     };
 
     const onClick = () => {
-        playAndGrid();
+        play();
         setTimeout(() => pause(), 50);
     };
 
@@ -39,7 +39,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image }) => {
         <SpinningWrapper className={wrapperStyle}>
             <SpinningImg
                 onClick={() => onClick()}
-                onMouseOver={() => playAndGrid()}
+                onMouseOver={() => play()}
                 onMouseOut={() => pause()}
                 className={`${bizerkMode !== 'off' ? ' bizerk' : ''} spinner ${imageStyle} `}
                 image={image}

@@ -6,14 +6,14 @@ import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Size } from '@/types';
-import { useWindowSize } from '@/utils';
-import { betterCallClick } from '@/utils/gsap';
+import { pickRandom, useWindowSize } from '@/utils';
+import { betterCallClick, betterCallClickWtf } from '@/utils/gsap';
 
 const LawBreakers = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const site = siteMap[selectedSite];
 
-    const { animateGrid, setAnimateGrid, bizerkMode } = useAnimationContext();
+    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, animateNav, setAnimateNav, bizerkMode } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
     const windowSize = useWindowSize();
@@ -23,6 +23,7 @@ const LawBreakers = () => {
     const [footerText, setFooterText] = useState<string>(site.footer.text);
     const [leftImage, setLeftImage] = useState(site.footer.icon);
     const [rightImage, setRightImage] = useState(site.footer.icon);
+
     const [ringAudio, setRingAudio] = useState(site.footer.ringAudio);
 
     const ref = useRef<HTMLParagraphElement>(null);
@@ -37,7 +38,16 @@ const LawBreakers = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            const tl = betterCallClick(selectedSite, animateGrid, setAnimateGrid);
+            const tl =
+                selectedSite === 'wtf'
+                    ? /* eslint-disable indent, @typescript-eslint/indent */
+                      betterCallClickWtf(selectedSite, [
+                          [animateGrid, setAnimateGrid],
+                          [animateNav, setAnimateNav],
+                          [animateWtf, setAnimateWtf],
+                      ])
+                    : betterCallClick(selectedSite, animateGrid, setAnimateGrid);
+            /* eslint-enable indent, @typescript-eslint/indent */
             setTl(tl);
         });
         return () => ctx.revert();
@@ -84,13 +94,23 @@ const LawBreakers = () => {
         }
     }, [selectedSite, site]);
 
+    useEffect(() => {
+        if (animateWtf > 0) {
+            const f = pickRandom(siteMap);
+            setFooterText(f.footer.text);
+            setLeftImage(pickRandom(siteMap).footer.icon);
+            setRightImage(pickRandom(siteMap).footer.icon);
+            setRingAudio(pickRandom(siteMap).footer.ringAudio);
+        }
+    }, [animateWtf]);
+
     return (
         <>
             {selectedSite !== 'gallery' && !fullScreen && (
                 <LawBreakersContainer>
-                    <LawBreakersP ref={ref} className={`better-call-title ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
+                    <LawBreakersP ref={ref} className={`better-call-title animatable ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                         <Image
-                            className={`spinner img0 ${selectedSite} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+                            className={`spinner img0 ${leftImage.site} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                             src={leftImage.image}
                             alt="footer-icon"
                             width={leftIconSize.width}
@@ -112,7 +132,7 @@ const LawBreakers = () => {
                         </LawBreakersSpan>
 
                         <Image
-                            className={`spinner img1 ${selectedSite} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+                            className={`spinner img1 ${rightImage.site} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                             src={rightImage.image}
                             alt="footer-icon"
                             width={rightIconSize.width}

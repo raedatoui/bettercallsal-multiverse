@@ -74,9 +74,11 @@ class AudioBuffers {
         return null;
     }
 
-    public play(sound: string, loop = true): AudioBufferSourceNode | null {
+    public async play(sound: string, loop = true): Promise<AudioBufferSourceNode | null> {
         if (this.loaded) {
-            const obj = this.soundMap[sound];
+            let obj = this.soundMap[sound];
+            if (!obj) await this.loadBuffer(sound);
+            obj = this.soundMap[sound];
             return this.playSound(obj, loop);
         }
         return null;
