@@ -41,9 +41,5 @@ export const URL_MAP: Record<SiteKey, string> = {
     construction: '',
     gallery: '',
     wtf: '',
-};
-
-export const WTF_RANDOM = {
-    limit: 50,
-    interval: 100,
+    world: 'video',
 };

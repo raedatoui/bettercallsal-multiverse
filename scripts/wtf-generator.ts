@@ -79,11 +79,12 @@ const SiteMapValidator = z.object({
     games: PrevSiteValidator,
     construction: PrevSiteValidator,
     gallery: PrevSiteValidator,
+    world: PrevSiteValidator,
 });
 
 type SiteMap = z.infer<typeof SiteMapValidator>;
 
-const PrevSiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery']);
+const PrevSiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery', 'world']);
 
 type PrevSiteKey = z.infer<typeof PrevSiteKeyValidator>;
 
@@ -291,6 +292,33 @@ const createWtf = (siteMap: SiteMap): NextSiteMap => {
                     ...i,
                     id: uuidv4(),
                     site: 'rocks',
+                })),
+            },
+        },
+        world: {
+            ...siteMap.world,
+            header: {
+                ...siteMap.world.header,
+                spinningSalAudio1: siteMap.world.header.spinningSalAudio,
+                spinningSalAudio2: siteMap.world.header.spinningSalAudio,
+                bizerk: {
+                    icon: siteMap.world.header.bizerkIcon,
+                    site: 'world',
+                },
+            },
+            footer: {
+                ...siteMap.world.footer,
+                icon: {
+                    ...siteMap.world.footer.icon,
+                    site: 'world',
+                },
+            },
+            leftNav: {
+                ...siteMap.world.leftNav,
+                items: siteMap.world.leftNav.items.map((i) => ({
+                    ...i,
+                    id: uuidv4(),
+                    site: 'world',
                 })),
             },
         },

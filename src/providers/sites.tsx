@@ -33,6 +33,7 @@ const defaultContentMap = {
     construction: [],
     gallery: [],
     wtf: [],
+    world: [],
 };
 
 const SiteContext = createContext<SiteProviderType | undefined>(undefined);
@@ -75,7 +76,7 @@ const SitesDataProvider: FC<ProviderProps> = ({ children, defaultSite, defaultCo
             if (s !== selectedSite) {
                 setLoading(true);
                 setSelectedSite(s);
-                if (s !== 'construction' && contentMap[s].length === 0)
+                if (s !== 'construction' && s !== 'world' && contentMap[s].length === 0)
                     fetchData(s).then((list) => {
                         const site = defaultSiteMap[s];
                         if (site?.leftNav.video)

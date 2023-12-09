@@ -9,6 +9,7 @@ import { SiteKey } from '@/types';
 
 const homeComponent = (site: SiteKey) => {
     if (site === 'construction') return <Construction />;
+    if (site === 'world') return <div>game video</div>;
     if (site === 'gallery') return <GalleryLanding />;
     return <ServerList />;
 };

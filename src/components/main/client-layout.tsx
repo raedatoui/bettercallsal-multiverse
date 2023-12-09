@@ -5,10 +5,11 @@ import { ClientLeftNav } from '@/components/left-nav';
 import { ClientList } from '@/components/list';
 import RightNav from '@/components/right-nav';
 import Unity from '@/components/unity';
+import { Youtube } from '@/components/video';
 import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Row, MiddleSection } from '@/styles/sharedstyles';
-import { SiteKey } from '@/types';
+import { BaseContentItem, SiteKey } from '@/types';
 
 const keyMap: Record<string, SiteKey> = {
     a: 'art',
@@ -21,14 +22,15 @@ const keyMap: Record<string, SiteKey> = {
     w: 'wtf',
 };
 
-const homeComponent = (site: SiteKey, visible: boolean) => {
+const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[]) => {
     if (site === 'construction') return <Construction />;
+    if (site === 'world') return <Youtube contentItem={list[0]} />;
     if (site === 'gallery') return <Unity visible={visible} />;
     return <ClientList visible={visible} />;
 };
 
 const ClientLayout = () => {
-    const { selectedSite, setSelectedSite, setFullScreen, fullScreen } = useSiteContext();
+    const { selectedSite, setSelectedSite, setFullScreen, fullScreen, contentMap } = useSiteContext();
     const { prevPath, setPrevPath } = usePathContext();
     const navigate = useNavigate();
     const location = useLocation();
@@ -92,7 +94,7 @@ const ClientLayout = () => {
         <Row id="content-row">
             {selectedSite !== 'gallery' && <ClientLeftNav />}
             <MiddleSection id="middle" className={fullScreen ? `${selectedSite} fullScreen` : selectedSite}>
-                {homeComponent(selectedSite, location.pathname === '/')}
+                {homeComponent(selectedSite, location.pathname === '/', contentMap[selectedSite])}
                 <Outlet />
             </MiddleSection>
             {selectedSite !== 'gallery' && <RightNav />}

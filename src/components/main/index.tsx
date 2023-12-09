@@ -10,7 +10,7 @@ import { ClientList } from '@/components/list';
 import ClientLayout from '@/components/main/client-layout';
 import ServerLayout from '@/components/main/server-layout';
 import Unity from '@/components/unity';
-import Video from '@/components/video';
+import { Video } from '@/components/video';
 import { CDN } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';

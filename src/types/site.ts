@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const SiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery', 'wtf']);
+export const SiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', 'construction', 'gallery', 'wtf', 'world']);
 export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
 export const HeaderValidator = z.object({
@@ -85,6 +85,7 @@ export const SiteMapValidator = z.object({
     construction: SiteValidator,
     gallery: SiteValidator,
     wtf: SiteValidator,
+    world: SiteValidator,
 });
 export type SiteMap = Record<SiteKey, Site>;
 

@@ -23,6 +23,7 @@ const segMap: Record<SiteKey, string> = {
     gallery: 'gallery',
     construction: 'construction',
     wtf: 'wtf',
+    world: 'world',
 };
 
 type Row = {

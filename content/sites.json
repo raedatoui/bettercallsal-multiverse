@@ -606,5 +606,96 @@
             "ringAudio": "/audio/art/ring.art.mp3"
         },
         "gaTag": "G-K60R3CHS4L"
+    },
+    "world": {
+        "name": "world",
+        "contentHeader": "In  world  trouble?",
+        "metaTitle": "Better Call Sal",
+        "metaDescription": "Bettercallsal.biz | In Sound Trouble? Better Call Sal! For All Your Sound Mixer Needs | Paul McCartney, Harry Styles, Sam Smith, VICE, HBO, CNN, NIKE, ESPN, Adidas",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY, Sound Mixer NYC, Sound Mixer New York",
+        "header": {
+            "spinningSalsLeft": "/images/world/world-left.webp",
+            "spinningSalsRight": "/images/world/world-right.webp",
+            "spinningSalAudio": "/audio/world/spinning.world.mp3",
+            "bizerkIcon": "/images/biz/mic.webp",
+            "ringAudio": "/audio/world/ring.world.mp3",
+            "name1": "Dante",
+            "name2": "Salighieri",
+            "title1": "World",
+            "title2": "Explorer",
+            "lowerBanner": "Want Rocked from Sal?",
+            "showTicker": false,
+            "bizerk": {
+                "icon": "/images/biz/mic.webp",
+                "site": "biz"
+            }
+        },
+        "leftNav": {
+            "image": "/images/biz/nav-sq.webp",
+            "text": "SAL WORKED<br />MY WORLD!!!!",
+            "video": null,
+            "audio": null,
+            "items": [
+                {
+                    "name": "salutations",
+                    "audio": "/audio/world/salu.mp3",
+                    "video": null,
+                    "link": "",
+                    "category": "all",
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "5b9ab84e-e0eb-45ba-ae55-433db89b5c5e",
+                    "site": "world"
+                },
+                {
+                    "name": "Apple app store",
+                    "audio": "/audio/world/waiting.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "b154e8dd-6919-4a5d-98cc-cbb664494267",
+                    "site": "world"
+                },
+                {
+                    "name": "Google play store",
+                    "audio": "/audio/world/fitmusic.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "942c9ac5-b075-4652-8ca7-4e4af86ccc0e",
+                    "site": "world"
+                },
+                {
+                    "name": "Steam",
+                    "audio": "/audio/world/gtr1.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "1efb4b6c-9cc1-4327-879d-28d1a84dd312",
+                    "site": "world"
+                }
+            ]
+        },
+        "rightNav": {
+            "type": "spotify",
+            "objectId": "https://open.spotify.com/embed/playlist/5PmGzLUr3r1ulZzZUf4SAP?utm_source=generator"
+        },
+        "footer": {
+            "text": "welcome explorers",
+            "icon": {
+                "image": "/images/biz/rca-mic.webp",
+                "width": 148,
+                "height": 393,
+                "site": "biz"
+            },
+            "ringAudio": "/audio/biz/phone-ring.m4a"
+        },
+        "gaTag": "G-Y7FV9CTVTS"
     }
 }

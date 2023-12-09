@@ -49,6 +49,7 @@ export const ContentMapValidator = z.object({
     construction: BaseContentListValidator,
     gallery: GameContentListValidator,
     wtf: BaseContentListValidator.or(GameContentListValidator),
+    world: BaseContentListValidator,
 });
 export type ContentMap = z.infer<typeof ContentMapValidator>;
 
