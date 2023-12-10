@@ -30,7 +30,6 @@ class AudioBuffers {
 
     public async loadSounds(files: string[]) {
         if (typeof window !== 'undefined') {
-            console.log(files);
             this.loaded = false;
             this.stopAll();
             const existing = Object.keys(this.soundMap);

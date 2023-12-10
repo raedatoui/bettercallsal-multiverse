@@ -17,9 +17,8 @@ import { SoundContext } from '@/providers/audio-context';
 import { PathProvider } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Main } from '@/styles/sharedstyles';
-import { Router } from '@/types';
-import { findCategory, findContentFomStore } from '@/utils/find';
-import { animateCounterBizerk } from '@/utils/gsap';
+import { Router, SiteKey, SiteKeyValidator } from '@/types';
+import { findCategory, findContentFomStore, picker, animateCounterBizerk  } from '@/utils';
 
 const MainContainerInner = () => {
     const { selectedSite, fullScreen, contentMap, siteMap } = useSiteContext();
@@ -98,8 +97,9 @@ const MainContainerInner = () => {
             },
         ]);
 
-    // TODO: wtf cursor
-    const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
+
+    const cur = selectedSite === 'wtf' ? picker<SiteKey>(SiteKeyValidator.options.filter(s => s !== 'wtf')) : selectedSite;
+    const cursor = `${CDN}/images/${cur}/cursor.webp`;
 
     const [router, setRouter] = useState<Router | null>(null);
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);

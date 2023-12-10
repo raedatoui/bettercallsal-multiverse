@@ -24,8 +24,8 @@ deploy() {
 #deploy "construction"
 #deploy "fit"
 #deploy "gallery"
-#deploy "world"
-#deploy "fans"
+deploy "world"
+deploy "fans"
 deploy "wtf"
 
 yarn clean

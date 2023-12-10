@@ -6,13 +6,25 @@ import shuffleList from './shuffle-list';
 import slugify from './slugify';
 import useTimeout from './timeout';
 import siteMapWtfGenerator from './wtf-client-generator';
+
 export { useInterval };
 export { useWindowSize };
 export { useTimeout };
 export { useFetchData };
 export { shuffleList };
 export { slugify };
-export { findGame, findContent, findCategory } from './find';
+export { findGame, findContent, findCategory, findContentFomStore } from './find';
+export {
+    animateCounter,
+    animateCounterBizerk,
+    animateHeaderFooterSpinners,
+    bizerkHover,
+    loadAnimation,
+    wtfLoadAnimation,
+    colorizeFooterHeaderTitles,
+    betterCallClick,
+    betterCallClickWtf,
+} from './gsap';
 
 const picker = <T>(l: T[]): T => l[Math.floor(Math.random() * l.length)];
 export { picker };

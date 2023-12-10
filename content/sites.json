@@ -624,15 +624,11 @@
             "title1": "World",
             "title2": "Explorer",
             "lowerBanner": "Want Rocked from Sal?",
-            "showTicker": false,
-            "bizerk": {
-                "icon": "/images/biz/mic.webp",
-                "site": "biz"
-            }
+            "showTicker": false
         },
         "leftNav": {
             "image": "/images/biz/nav-sq.webp",
-            "text": "SAL WORKED<br />MY WORLD!!!!",
+            "text": "SAL ROCKED<br />MY WORLD!!!!",
             "video": null,
             "audio": null,
             "items": [
