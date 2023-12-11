@@ -235,13 +235,7 @@ export const ContentItem = styled.div`
     flex-direction: column;
     max-width: 480px;
     position: relative;
-
-    &:hover {
-        transition: all 0.1s ease-in;
-        box-shadow:
-            0 8px 17px 0 rgba(0, 0, 0, 0.3),
-            0 6px 20px 0 rgba(234, 228, 31, 0.19);
-    }
+    transition: all 0.1s ease-in;
 
     img {
         object-fit: contain;
@@ -249,6 +243,14 @@ export const ContentItem = styled.div`
         width: 100% !important;
         position: relative !important;
         height: unset !important;
+    }
+
+    @media only screen and (min-width: ${breakPoints.sm.max}px) {
+       &:hover {
+           box-shadow:
+             0 8px 17px 0 rgba(0, 0, 0, 0.3),
+             0 6px 20px 0 rgba(234, 228, 31, 0.19);
+       }
     }
 `;
 

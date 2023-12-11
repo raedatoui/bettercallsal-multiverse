@@ -331,7 +331,7 @@
         "header": {
             "spinningSalsLeft": "/images/fit/shweaty-left.webp",
             "spinningSalsRight": "/images/fit/shweaty-right.webp",
-            "spinningSalAudio": "/audio/fit/ready-for-this.m4a",
+            "spinningSalAudio": "/audio/fit/ready.mp3",
             "bizerkIcon": "/images/fit/namaste-smoking.gif",
             "ringAudio": "/audio/fit/ring.fit.mp3",
             "name1": "Yogi",
@@ -340,8 +340,8 @@
             "title2": "Guru",
             "lowerBanner": "Want Workouts from Sal?",
             "showTicker": true,
-            "spinningSalAudio1": "/audio/fit/ready-for-this.m4a",
-            "spinningSalAudio2": "/audio/fit/ready-for-this.m4a",
+            "spinningSalAudio1": "/audio/fit/ready.mp3",
+            "spinningSalAudio2": "/audio/fit/ready.mp3",
             "bizerk": {
                 "icon": "/images/fit/namaste-smoking.gif",
                 "site": "fit"
