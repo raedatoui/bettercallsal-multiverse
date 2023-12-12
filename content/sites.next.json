@@ -1168,7 +1168,7 @@
             "spinningSalsLeft": "/images/world/world-left.webp",
             "spinningSalsRight": "/images/world/world-right.webp",
             "spinningSalAudio": "/audio/world/spinning.world.mp3",
-            "bizerkIcon": "/images/biz/mic.webp",
+            "bizerkIcon": "/images/world/compass.gif",
             "ringAudio": "/audio/world/ring.world.mp3",
             "name1": "Dante",
             "name2": "Salighieri",
@@ -1179,8 +1179,8 @@
             "spinningSalAudio1": "/audio/world/spinning.world.mp3",
             "spinningSalAudio2": "/audio/world/spinning.world.mp3",
             "bizerk": {
-                "icon": "/images/biz/mic.webp",
-                "site": "biz"
+                "icon": "/images/world/compass.gif",
+                "site": "world"
             }
         },
         "leftNav": {
@@ -1242,12 +1242,12 @@
         "footer": {
             "text": "welcome explorers",
             "icon": {
-                "image": "/images/biz/rca-mic.webp",
-                "width": 148,
-                "height": 393,
-                "site": "biz"
+                "image": "/images/world/world.gif",
+                "width": 273,
+                "height": 273,
+                "site": "world"
             },
-            "ringAudio": "/audio/biz/phone-ring.m4a"
+            "ringAudio": "/audio/world/ring.world.mp3"
         },
         "gaTag": "G-Y7FV9CTVTS"
     }

@@ -94,7 +94,7 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
                                     src={`/images/${i.site}/thumbs/${i.thumb}`}
                                     width="480"
                                     height="360"
-                                    loading="lazy"
+                                    loading="eager"
                                     sizes="100vw"
                                     style={{
                                         width: '100%',

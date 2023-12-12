@@ -93,7 +93,7 @@ export const colorizeFooterHeaderTitles = (duration: number) => {
     });
 };
 
-export const animateCounter = (duration: number, selectedSite: SiteKey | null, counter: number, setter: S) => {
+export const animateCounter = (duration: number, selectedSite: SiteKey | null, counter: number, setter: S, paused = false) => {
     const house = {
         getAttribute: (key: string) => counter,
         setAttribute: (qualifiedName: string, value: number) => {
@@ -111,6 +111,7 @@ export const animateCounter = (duration: number, selectedSite: SiteKey | null, c
         onComplete: () => {
             if (selectedSite === 'biz' && setter) setter(0);
         },
+        paused
     });
 };
 

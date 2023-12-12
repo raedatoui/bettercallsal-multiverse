@@ -131,6 +131,11 @@ export const BizerkImageContainer = styled.div`
     &.rocks {
         margin-top: -10px;
     }
+    
+    &.world {
+        margin-top: -10px;
+        padding: 0 6px;
+    }
 
     @media only screen and (max-width: ${breakPoints.sm.max}px) {
         height: 38px;
@@ -159,6 +164,11 @@ export const BizerkImageContainer = styled.div`
 
         &.rocks {
             margin-top: -16px;
+        }
+
+        &.world {
+            margin-top: -16px;
+            padding: 0 6px;
         }
     }
 
@@ -253,6 +263,11 @@ export const BizerImage = styled.img`
     &.games {
         margin-right: -4px;
         margin-left: -4px;
+    }
+
+    &.world {
+        width: 45px;
+        height: 45px;
     }
 
     @media only screen and (max-width: ${breakPoints.sm.max}px) {

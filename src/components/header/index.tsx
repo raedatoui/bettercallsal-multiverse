@@ -10,7 +10,7 @@ import { SiteKey, SiteKeyValidator } from '@/types';
 import { pickRandom, useInterval } from '@/utils';
 import { betterCallClick, betterCallClickWtf, loadAnimation, wtfLoadAnimation } from '@/utils/gsap';
 import { HeaderContainer, ContentContainer } from './elements';
-import { BetterCall, BizerkContainer, SalName, SalCaption, Bizerk } from './middle';
+import { BetterCall, SalCaption, BizerkContainerFC } from './middle';
 import { SpinningSal, SpinningSalsContainer } from './spinning';
 
 const HeaderComponent: FC = () => {
@@ -49,12 +49,13 @@ const HeaderComponent: FC = () => {
     const [tl, setTl] = useState<gsap.core.Timeline>();
 
     useEffect(() => {
+        setSpinningAudio1(site.header.spinningSalAudio1);
+        setSpinningAudio2(site.header.spinningSalAudio2);
         const ctx = gsap.context(() => {
             const tl =
                 selectedSite === 'wtf'
                     ? /* eslint-disable indent, @typescript-eslint/indent */
                       betterCallClickWtf(selectedSite, [
-                          [animateGrid, setAnimateGrid],
                           [animateNav, setAnimateNav],
                           [animateWtf, setAnimateWtf],
                       ])
@@ -63,7 +64,7 @@ const HeaderComponent: FC = () => {
             setTl(tl);
         });
         return () => ctx.revert();
-    }, [selectedSite]);
+    }, [selectedSite, site]);
 
     useEffect(() => {
         // DOC: intro animation, triggered on site changed and buffer loaded
@@ -73,7 +74,6 @@ const HeaderComponent: FC = () => {
                     ? loadAnimation()
                     : /* eslint-disable indent, @typescript-eslint/indent */
                       wtfLoadAnimation([
-                          [animateGrid, setAnimateGrid],
                           [animateNav, setAnimateNav],
                           [animateWtf, setAnimateWtf],
                       ]);
@@ -115,8 +115,6 @@ const HeaderComponent: FC = () => {
         if (animateWtf > 0) {
             const s1 = pickRandom(siteMap);
             const s2 = pickRandom(siteMap);
-            // setLeftSpinningState(`img0 wtf ${s1.name}`);
-            // setRightSpinningState(`img1 wtf ${s2.name}`);
             setLeftImage(s1.header.spinningSalsLeft);
             setRightImage(s2.header.spinningSalsRight);
             setName1(pickRandom(siteMap).header.name1);
@@ -149,11 +147,7 @@ const HeaderComponent: FC = () => {
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>
-                <BizerkContainer className={`animatable ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
-                    <SalName>{name1}</SalName>
-                    <Bizerk bizerk={bizerkIcon} />
-                    <SalName>{name2}</SalName>
-                </BizerkContainer>
+                <BizerkContainerFC name1={name1} name2={name2} bizerkMode={bizerkMode} bizerkIcon={bizerkIcon} />
                 <SalCaption className={`animatable ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                     {title1} {title2}
                 </SalCaption>

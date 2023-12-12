@@ -18,7 +18,7 @@ import { PathProvider } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Main } from '@/styles/sharedstyles';
 import { Router, SiteKey, SiteKeyValidator } from '@/types';
-import { findCategory, findContentFomStore, picker, animateCounterBizerk  } from '@/utils';
+import { findCategory, findContentFomStore, picker, animateCounterBizerk } from '@/utils';
 
 const MainContainerInner = () => {
     const { selectedSite, fullScreen, contentMap, siteMap } = useSiteContext();
@@ -97,8 +97,7 @@ const MainContainerInner = () => {
             },
         ]);
 
-
-    const cur = selectedSite === 'wtf' ? picker<SiteKey>(SiteKeyValidator.options.filter(s => s !== 'wtf')) : selectedSite;
+    const cur = selectedSite === 'wtf' ? picker<SiteKey>(SiteKeyValidator.options.filter((s) => s !== 'wtf')) : selectedSite;
     const cursor = `${CDN}/images/${cur}/cursor.webp`;
 
     const [router, setRouter] = useState<Router | null>(null);

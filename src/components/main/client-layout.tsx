@@ -19,7 +19,8 @@ const keyMap: Record<string, SiteKey> = {
     g: 'games',
     c: 'construction',
     y: 'gallery',
-    w: 'wtf',
+    w: 'world',
+    t: 'wtf',
 };
 
 const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[]) => {
@@ -89,6 +90,7 @@ const ClientLayout = () => {
 
         setPrevPath(location.pathname);
     }, [location, prevPath, selectedSite, setFullScreen, setPrevPath]);
+
 
     return (
         <Row id="content-row">

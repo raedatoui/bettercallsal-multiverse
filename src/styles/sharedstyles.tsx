@@ -196,9 +196,6 @@ export const ContentList = styled.div`
     &.off {
         display: none;
     }
-    &.wtf {
-        opacity: 0;
-    }
 
     a {
         text-decoration: none;
@@ -246,11 +243,11 @@ export const ContentItem = styled.div`
     }
 
     @media only screen and (min-width: ${breakPoints.sm.max}px) {
-       &:hover {
-           box-shadow:
-             0 8px 17px 0 rgba(0, 0, 0, 0.3),
-             0 6px 20px 0 rgba(234, 228, 31, 0.19);
-       }
+        &:hover {
+            box-shadow:
+                0 8px 17px 0 rgba(0, 0, 0, 0.3),
+                0 6px 20px 0 rgba(234, 228, 31, 0.19);
+        }
     }
 `;
 

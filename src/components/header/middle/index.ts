@@ -1,4 +1,3 @@
-import Bizerk from './bizerk';
-
+import { BizerkContainerFC } from './container';
 export * from './elements';
-export { Bizerk };
+export { BizerkContainerFC };

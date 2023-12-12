@@ -81,8 +81,10 @@ export const ClientLeftNav = () => {
 
     useEffect(() => {
         if (animateNav > 0 || animateWtf > 0) {
-            setNavItems(shuffleList(site.leftNav.items));
+            let l = shuffleList(site.leftNav.items);
             setLeftNav(pickRandom(siteMap));
+            if (selectedSite === 'wtf') l = l.slice(0, 7);
+            setNavItems(l);
         }
     }, [animateNav, animateWtf, site]);
 

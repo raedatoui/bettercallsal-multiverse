@@ -17,13 +17,13 @@ deploy() {
 }
 
 # Deploy each section
-#deploy "biz"
-#deploy "art"
-#deploy "games"
-#deploy "rocks"
-#deploy "construction"
-#deploy "fit"
-#deploy "gallery"
+deploy "biz"
+deploy "art"
+deploy "games"
+deploy "rocks"
+deploy "construction"
+deploy "fit"
+deploy "gallery"
 deploy "world"
 deploy "fans"
 deploy "wtf"
