@@ -5,7 +5,7 @@ import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { SiteKey } from '@/types';
-import { animateCounter, bizerkHover } from '@/utils';
+import { animateCounter } from '@/utils';
 import Bizerk from './bizerk';
 
 interface Props {
@@ -20,7 +20,7 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon }) => {
     const site = siteMap[selectedSite];
 
     const { buffers } = useContext(SoundContext);
-    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
+    const { animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
     const [tl, setTl] = useState<gsap.core.Tween>();
 
     useEffect(() => {

@@ -8,10 +8,6 @@ export type Size = {
 
 export type ContentSize = Size & { left: number; top: number };
 
-// export const ContentItemValidator = z.discriminatedUnion('contentType', [
-//     z.object({ contentType: 'youtube', {')
-// ]);
-
 export const BaseContentItemValidator = z.object({
     name: z.string(),
     contentId: z.string(),
@@ -36,6 +32,7 @@ export const GameContentItemValidator = BaseContentItemValidator.extend({
     frameworkUrl: z.string(),
     codeUrl: z.string(),
     showBanner: z.boolean(),
+    assetsUrl: z.string().optional(),
 });
 export type GameContentItem = z.infer<typeof GameContentItemValidator>;
 export const GameContentListValidator = z.array(GameContentItemValidator);
@@ -49,7 +46,7 @@ export const ContentMapValidator = z.object({
     construction: BaseContentListValidator,
     gallery: GameContentListValidator,
     wtf: BaseContentListValidator.or(GameContentListValidator),
-    world: BaseContentListValidator,
+    world: BaseContentListValidator.or(GameContentListValidator),
 });
 export type ContentMap = z.infer<typeof ContentMapValidator>;
 

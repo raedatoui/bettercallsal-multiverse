@@ -2,7 +2,7 @@ import { BaseContentItem, ContentMap, GameContentItem, isGame, LeftNavItem, Site
 import slugify from './slugify';
 
 export const findGame = (list: (BaseContentItem | GameContentItem)[], gameId: string): GameContentItem | null => {
-    const l = list.filter((i) => slugify(i.name) === gameId);
+    const l = list.filter((i) => i.contentId === gameId);
     const g: readonly GameContentItem[] = l.filter(isGame);
     return g.length > 0 ? g[0] : null;
 };

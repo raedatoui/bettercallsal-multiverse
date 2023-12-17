@@ -74,26 +74,25 @@ const Unity: FC<VisibleProps> = () => {
     const loadGame = useCallback(() => {
         setGameProgress(0);
         setGameProgressVisible(true);
-        if (game)
+        if (game) {
+            const obj = {
+                showBanner: false,
+                dataUrl: `${CDN}${game.dataUrl}`,
+                frameworkUrl: `${CDN}${game.frameworkUrl}`,
+                codeUrl: `${CDN}${game.codeUrl}`,
+                streamingAssetsUrl: `${CDN}${game.assetsUrl}`,
+            };
             window
-                .createUnityInstance(
-                    document.getElementById('unity-canvas'),
-                    {
-                        showBanner: false,
-                        dataUrl: `${CDN}${game.dataUrl}`,
-                        frameworkUrl: `${CDN}${game.frameworkUrl}`,
-                        codeUrl: `${CDN}${game.codeUrl}`,
-                    },
-                    (progress) => {
-                        setGameProgress(progress * 100);
-                    }
-                )
+                .createUnityInstance(document.getElementById('unity-canvas'), obj, (progress) => {
+                    setGameProgress(progress * 100);
+                })
                 .then((c) => {
                     if (game.name === 'Sal-man') buffers.play('/audio/games/take-five.mp3', true);
                     else buffers.stopAll();
                     setUnityInstance(c);
                     setGameProgressVisible(false);
                 });
+        }
     }, [game]);
 
     const clearCanvas = useCallback(() => {
@@ -179,7 +178,8 @@ const Unity: FC<VisibleProps> = () => {
         if (selectedSite === 'gallery') setFullScreen(true);
     };
 
-    const loader = selectedSite === 'gallery' ? 'gallery' : 'game';
+    let loader = selectedSite === 'gallery' ? 'gallery' : 'game';
+    if (selectedSite === 'world') loader = 'world';
 
     return (
         <>

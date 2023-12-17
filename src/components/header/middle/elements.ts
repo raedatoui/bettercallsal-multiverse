@@ -131,10 +131,10 @@ export const BizerkImageContainer = styled.div`
     &.rocks {
         margin-top: -10px;
     }
-    
+
     &.world {
-        margin-top: -10px;
-        padding: 0 6px;
+        margin-top: -18px;
+        padding: 0 4px;
     }
 
     @media only screen and (max-width: ${breakPoints.sm.max}px) {
@@ -210,6 +210,11 @@ export const BizerkImageContainer = styled.div`
         &.construction {
             margin-top: -10px;
         }
+
+        &.world {
+            margin-top: 0px;
+            padding: 0 3px 0 6px;
+        }
     }
 
     @media only screen and (max-width: ${breakPoints.lg2.max}px) and (min-width: ${breakPoints.lg2.min}px) {
@@ -219,6 +224,11 @@ export const BizerkImageContainer = styled.div`
 
         &.construction {
             margin-top: -10px;
+        }
+
+        &.world {
+            margin-top: -8px;
+            padding: 0 5px 0 3px;
         }
     }
 `;
@@ -331,6 +341,11 @@ export const BizerImage = styled.img`
             height: 42px;
             margin: 0 2px 0 5px;
         }
+
+        &.world {
+            width: 36px;
+            height: 36px;
+        }
     }
 
     @media only screen and (max-width: ${breakPoints.lg2.max}px) and (min-width: ${breakPoints.lg2.min}px) {
@@ -347,6 +362,11 @@ export const BizerImage = styled.img`
         &.rocks {
             height: 56px;
             margin: 0 2px 0 5px;
+        }
+
+        &.world {
+            width: 40px;
+            height: 40px;
         }
     }
 `;

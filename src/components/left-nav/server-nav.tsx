@@ -28,6 +28,7 @@ export const ServerLeftNav = () => {
                                     navItem={i}
                                     audioCb={() => null}
                                     navItemCb={(l: LeftNavItem) => l}
+                                    contentCb={(l: LeftNavItem) => l}
                                     videoCb={(l: LeftNavItem) => l}
                                     width={width}
                                     fullScreen={false}

@@ -10,6 +10,30 @@
             "caption": "",
             "views": 0,
             "site": "world"
+        },
+        {
+            "dataUrl": "/unity/world/lvl1a/world-lvl1.data.br",
+            "frameworkUrl": "/unity/world/lvl1a/world-lvl1.framework.js.br",
+            "codeUrl": "/unity/world/lvl1a/world-lvl1.wasm.br",
+            "showBanner": false,
+            "assetsUrl": "/unity/world/lvl1a/streaming-assets",
+            "thumb": "",
+            "name": "World",
+            "contentId": "level1",
+            "contentType": "game",
+            "site": "world"
+        },
+        {
+            "dataUrl": "/unity/world/lvl2/world-lvl2.data.gz",
+            "frameworkUrl": "/unity/world/lvl2/world-lvl2.framework.js.gz",
+            "codeUrl": "/unity/world/lvl2/world-lvl2.wasm.gz",
+            "showBanner": false,
+            "assetsUrl": "/unity/world/lvl2/streaming-assets",
+            "thumb": "",
+            "name": "World",
+            "contentId": "level2",
+            "contentType": "game",
+            "site": "world"
         }
     ]
 }

@@ -37,13 +37,12 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
         const jsonData = await fsPromises.readFile(filePath);
         const list = JSON.parse(jsonData.toString());
         const items = z.array(z.unknown()).parse(list.items);
+        const siteSchema = z.object({
+            contentType: z.string(),
+        });
         items.forEach((i: unknown) => {
-            const { site } = z
-                .object({
-                    site: z.string(),
-                })
-                .parse(i);
-            if (site === 'games' || site === 'gallery') defaultContent.push(GameContentItemValidator.parse(i));
+            const { contentType } = siteSchema.parse(i);
+            if (contentType === 'game' || contentType === 'gallery') defaultContent.push(GameContentItemValidator.parse(i));
             else defaultContent.push(BaseContentItemValidator.parse(i));
         });
     }

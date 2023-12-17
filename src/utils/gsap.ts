@@ -111,7 +111,7 @@ export const animateCounter = (duration: number, selectedSite: SiteKey | null, c
         onComplete: () => {
             if (selectedSite === 'biz' && setter) setter(0);
         },
-        paused
+        paused,
     });
 };
 

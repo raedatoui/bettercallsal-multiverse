@@ -32,6 +32,7 @@ export const LeftNavItemValidator = z.object({
     quoteLink: z.string().nullable(),
     id: z.string().uuid().optional(),
     site: SiteKeyValidator,
+    contentId: z.string().optional(),
 });
 export type LeftNavItem = z.infer<typeof LeftNavItemValidator>;
 

@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { FC, useMemo, useState, createContext, useContext, useCallback } from 'react';
+import { z } from 'zod';
 import { CONTENT_URL } from '@/constants';
 import {
     BaseContentItem,
-    BaseContentListValidator,
+    BaseContentItemValidator,
     ContentMap,
     GameContentItem,
-    GameContentListValidator,
+    GameContentItemValidator,
     SiteKey,
     SiteMap,
     UnityInstance,
@@ -46,12 +47,20 @@ interface ProviderProps {
 }
 
 const fetchData = async (siteKey: SiteKey): Promise<(BaseContentItem | GameContentItem)[]> => {
-    let list;
+    const list: (BaseContentItem | GameContentItem)[] = [];
     try {
-        console.log(`${CONTENT_URL}/content/content-${siteKey}.json`);
         const { data: response } = await axios.get(`${CONTENT_URL}/content/content-${siteKey}.json`);
-        if (siteKey === 'games' || siteKey === 'gallery') list = GameContentListValidator.parse(response.items);
-        else list = BaseContentListValidator.parse(response.items);
+
+        const items = z.array(z.unknown()).parse(response.items);
+        const siteSchema = z.object({
+            contentType: z.string(),
+        });
+
+        items.forEach((i: unknown) => {
+            const { contentType } = siteSchema.parse(i);
+            if (contentType === 'game' || contentType === 'gallery') list.push(GameContentItemValidator.parse(i));
+            else list.push(BaseContentItemValidator.parse(i));
+        });
         return list;
     } catch (error) {
         console.error(error);
@@ -115,11 +124,6 @@ const SitesDataProvider: FC<ProviderProps> = ({ children, defaultSite, defaultCo
         },
         [contentMap, defaultSiteMap, selectedSite]
     );
-
-    // TODO: how to randomize on load without violating hydration?
-    // useEffect(() => {
-    //     if (selectedSite === 'wtf') setSiteMap(siteMapWtfGenerator(defaultSiteMap));
-    // }, [defaultSiteMap, selectedSite]);
 
     const providedSites = useMemo<SiteProviderType>(
         () => ({

@@ -580,7 +580,8 @@
                     "quote": null,
                     "quoteLink": null,
                     "id": "561e6ba1-faeb-474c-a532-1354009c6aee",
-                    "site": "games"
+                    "site": "games",
+                    "contentId": "/game/supersalbros"
                 },
                 {
                     "name": "Sal-man",
@@ -591,7 +592,8 @@
                     "quote": null,
                     "quoteLink": null,
                     "id": "75eec4e3-5dd7-4a3b-b12f-de5da5225b7d",
-                    "site": "games"
+                    "site": "games",
+                    "contentId": "/game/salman"
                 },
                 {
                     "name": "Salitaire",
@@ -602,7 +604,8 @@
                     "quote": null,
                     "quoteLink": null,
                     "id": "def33b0c-eb47-4b41-b0e3-ea50b76a285c",
-                    "site": "games"
+                    "site": "games",
+                    "contentId": "/game/salitaire"
                 }
             ]
         },
@@ -1184,7 +1187,7 @@
             }
         },
         "leftNav": {
-            "image": "/images/biz/nav-sq.webp",
+            "image": "/images/world/left.world.jpg",
             "text": "SAL ROCKED<br />MY WORLD!!!!",
             "video": null,
             "audio": null,
@@ -1232,6 +1235,30 @@
                     "quoteLink": null,
                     "id": "1efb4b6c-9cc1-4327-879d-28d1a84dd312",
                     "site": "world"
+                },
+                {
+                    "name": "Level 1",
+                    "audio": null,
+                    "video": null,
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "44f5d24a-699e-41b5-8b13-41caef5b32e5",
+                    "site": "world",
+                    "contentId": "/game/level1"
+                },
+                {
+                    "name": "Level 2",
+                    "audio": "/audio/world/gtr1.mp3",
+                    "video": null,
+                    "link": null,
+                    "category": null,
+                    "quote": null,
+                    "quoteLink": null,
+                    "id": "1b386e1b-763d-4908-9209-67143debd286",
+                    "site": "world",
+                    "contentId": "/game/level2"
                 }
             ]
         },

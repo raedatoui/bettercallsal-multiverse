@@ -8,11 +8,12 @@ interface ButtonProps {
     audioCb: (a: string) => void;
     navItemCb: (l: LeftNavItem) => void;
     videoCb: (v: LeftNavItem) => void;
+    contentCb: (c: LeftNavItem) => void;
     width: number;
     fullScreen: boolean;
 }
 
-const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, width, fullScreen }) => {
+const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, contentCb, width, fullScreen }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -39,10 +40,10 @@ const NavButton: FC<ButtonProps> = ({ navItem, audioCb, navItemCb, videoCb, widt
 
     const handleClick = () => {
         // TODO move providers here and remove callback functions. do too many provider subscriber slow things down?
-        console.log(navItem.audio, navItem.category);
         if (navItem.audio) audioCb(navItem.audio);
         if (navItem.category) navItemCb(navItem);
         if (navItem.video) videoCb(navItem);
+        if (navItem.contentId) contentCb(navItem);
     };
 
     return (

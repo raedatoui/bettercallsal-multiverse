@@ -25,7 +25,10 @@ const keyMap: Record<string, SiteKey> = {
 
 const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[]) => {
     if (site === 'construction') return <Construction />;
-    if (site === 'world') return <Youtube contentItem={list[0]} />;
+    if (site === 'world') {
+        if (visible) return <Youtube contentItem={list[0]} />;
+        return <div></div>;
+    }
     if (site === 'gallery') return <Unity visible={visible} />;
     return <ClientList visible={visible} />;
 };
@@ -90,7 +93,6 @@ const ClientLayout = () => {
 
         setPrevPath(location.pathname);
     }, [location, prevPath, selectedSite, setFullScreen, setPrevPath]);
-
 
     return (
         <Row id="content-row">

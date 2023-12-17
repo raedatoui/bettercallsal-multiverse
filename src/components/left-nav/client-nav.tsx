@@ -57,12 +57,15 @@ export const ClientLeftNav = () => {
         }
         // DOC: if all is clicked, navigate home
         if (l.category === '' || l.category === 'all') navigate('/');
-        else if (l.category === 'games') navigate(`/game/${slugify(l.name)}`);
         // nav names slugs to match content slugs
         else {
             const u = l.category === 'e-cards' ? '/e-cards' : `/category/${l.category}`;
             navigate(u);
         }
+    };
+
+    const handleContent = (l: LeftNavItem) => {
+        if (l.contentId) navigate(l.contentId);
     };
 
     const handleVideo = (l: LeftNavItem) => {
@@ -110,6 +113,7 @@ export const ClientLeftNav = () => {
                                         audioCb={handleAudio}
                                         navItemCb={handleCategory}
                                         videoCb={handleVideo}
+                                        contentCb={handleContent}
                                         width={width}
                                         fullScreen={fullScreen}
                                     />
