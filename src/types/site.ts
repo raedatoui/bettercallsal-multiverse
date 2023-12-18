@@ -4,44 +4,44 @@ export const SiteKeyValidator = z.enum(['biz', 'rocks', 'fit', 'art', 'games', '
 export type SiteKey = z.infer<typeof SiteKeyValidator>;
 
 export const HeaderValidator = z.object({
-    spinningSalsLeft: z.string(),
-    spinningSalsRight: z.string(),
-    spinningSalAudio1: z.string(),
-    spinningSalAudio2: z.string(),
     bizerk: z.object({
         icon: z.string(),
         site: SiteKeyValidator,
     }),
-    ringAudio: z.string(),
+    lowerBanner: z.string(),
     name1: z.string(),
     name2: z.string(),
+    ringAudio: z.string(),
+    showTicker: z.boolean(),
+    spinningSalAudio1: z.string(),
+    spinningSalAudio2: z.string(),
+    spinningSalsLeft: z.string(),
+    spinningSalsRight: z.string(),
     title1: z.string(),
     title2: z.string(),
-    lowerBanner: z.string(),
-    showTicker: z.boolean(),
 });
 export type Header = z.infer<typeof HeaderValidator>;
 
 export const LeftNavItemValidator = z.object({
-    name: z.string(),
     audio: z.string().nullable(),
-    video: z.string().nullable(),
-    link: z.string().nullable(),
     category: z.string().nullable(),
+    contentId: z.string().optional(),
+    id: z.string().uuid().optional(),
+    link: z.string().nullable(),
+    name: z.string(),
     quote: z.string().nullable(),
     quoteLink: z.string().nullable(),
-    id: z.string().uuid().optional(),
     site: SiteKeyValidator,
-    contentId: z.string().optional(),
+    video: z.string().nullable(),
 });
 export type LeftNavItem = z.infer<typeof LeftNavItemValidator>;
 
 export const LeftNavValidator = z.object({
+    audio: z.string().nullable(),
     image: z.string(),
+    items: z.array(LeftNavItemValidator),
     text: z.string(),
     video: z.string().nullable(),
-    audio: z.string().nullable(),
-    items: z.array(LeftNavItemValidator),
 });
 export type LeftNav = z.infer<typeof LeftNavValidator>;
 
@@ -52,7 +52,6 @@ export const RightNavValidator = z.object({
 export type RightNav = z.infer<typeof RightNavValidator>;
 
 export const FooterValidator = z.object({
-    text: z.string(),
     icon: z.object({
         image: z.string(),
         width: z.number(),
@@ -60,33 +59,34 @@ export const FooterValidator = z.object({
         site: SiteKeyValidator,
     }),
     ringAudio: z.string(),
+    text: z.string(),
 });
 export type Footer = z.infer<typeof FooterValidator>;
 
 export const SiteValidator = z.object({
-    name: SiteKeyValidator,
     contentHeader: z.string(),
-    metaTitle: z.string(),
-    metaDescription: z.string(),
-    metaKeywords: z.string(),
-    header: HeaderValidator,
-    leftNav: LeftNavValidator,
-    rightNav: RightNavValidator,
     footer: FooterValidator,
     gaTag: z.string(),
+    header: HeaderValidator,
+    leftNav: LeftNavValidator,
+    metaDescription: z.string(),
+    metaKeywords: z.string(),
+    metaTitle: z.string(),
+    name: SiteKeyValidator,
+    rightNav: RightNavValidator,
 });
 export type Site = z.infer<typeof SiteValidator>;
 
 export const SiteMapValidator = z.object({
-    biz: SiteValidator,
-    fit: SiteValidator,
     art: SiteValidator,
-    rocks: SiteValidator,
-    games: SiteValidator,
+    biz: SiteValidator,
     construction: SiteValidator,
+    fit: SiteValidator,
     gallery: SiteValidator,
-    wtf: SiteValidator,
+    games: SiteValidator,
+    rocks: SiteValidator,
     world: SiteValidator,
+    wtf: SiteValidator,
 });
 export type SiteMap = Record<SiteKey, Site>;
 

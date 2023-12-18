@@ -56,7 +56,6 @@ const HeaderComponent: FC = () => {
                 selectedSite === 'wtf'
                     ? /* eslint-disable indent, @typescript-eslint/indent */
                       betterCallClickWtf(selectedSite, [
-                          [animateNav, setAnimateNav],
                           [animateWtf, setAnimateWtf],
                       ])
                     : betterCallClick(selectedSite, animateGrid, setAnimateGrid);
@@ -141,7 +140,6 @@ const HeaderComponent: FC = () => {
                     className={`better-call-title ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                     onClick={() => {
                         tl?.restart();
-                        // TODO: ring audio might not be loaded for wtf
                         buffers.play(ringAudio, false);
                     }}
                 >

@@ -1,1281 +1,1336 @@
 {
     "art": {
-        "name": "art",
         "contentHeader": "In  art  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.art | In Art Trouble? Better Call Sal! For All Your Art Needs | Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Salvatore Dali, Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
-        "header": {
-            "spinningSalsLeft": "/images/art/spinning.art.left.webp",
-            "spinningSalsRight": "/images/art/spinning.art.right.webp",
-            "spinningSalAudio": "/audio/art/spinning.art.mp3",
-            "bizerkIcon": "/images/art/spray.gif",
-            "ringAudio": "/audio/art/ring.art.mp3",
-            "name1": "Salvatore",
-            "name2": "Dali",
-            "title1": "The Great",
-            "title2": "Masturbator",
-            "lowerBanner": "Want Art from Sal?",
-            "showTicker": true,
-            "spinningSalAudio1": "/audio/art/spinning.art.mp3",
-            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
-            "bizerk": {
-                "icon": "/images/art/spray.gif",
-                "site": "art"
-            }
-        },
-        "leftNav": {
-            "image": "/images/art/left.art.webp",
-            "text": "ABOUT THE<br />ARTIST!!!!",
-            "video": null,
-            "audio": "/audio/art/cummilker.mp3",
-            "items": [
-                {
-                    "name": "Salutations",
-                    "audio": "/audio/art/allart.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "f441aa4c-3648-49f7-a40f-596aed173e3e",
-                    "site": "art"
-                },
-                {
-                    "name": "Classical",
-                    "audio": "/audio/art/classical.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "classical",
-                    "quote": "Classical",
-                    "quoteLink": null,
-                    "id": "d866a899-7b3a-4c83-982c-731c58885da7",
-                    "site": "art"
-                },
-                {
-                    "name": "Sacred",
-                    "audio": "/audio/art/sacred.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "sacred",
-                    "quote": "Sacred",
-                    "quoteLink": null,
-                    "id": "82803aa2-5080-4c7c-be15-f4ad20a4abbe",
-                    "site": "art"
-                },
-                {
-                    "name": "Equestrian",
-                    "audio": "/audio/art/equestrian.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "equestrian",
-                    "quote": "Equestrian",
-                    "quoteLink": null,
-                    "id": "d8ba2aca-b834-40d8-82a9-e3a9fa96c70b",
-                    "site": "art"
-                },
-                {
-                    "name": "Contemporary",
-                    "audio": "/audio/art/contemporary.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "contemporary",
-                    "quote": "Contemporary",
-                    "quoteLink": null,
-                    "id": "ebfedb3f-0085-49ce-8041-2eaf1e234351",
-                    "site": "art"
-                },
-                {
-                    "name": "load",
-                    "audio": "/audio/art/pavane.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "load",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "ab2b8cce-d8f9-450e-a229-adbc13e79861",
-                    "site": "art"
-                }
-            ]
-        },
-        "rightNav": {
-            "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
-        },
         "footer": {
-            "text": "welcome artists",
             "icon": {
                 "image": "/images/art/dali.gif",
                 "width": 462,
                 "height": 432,
                 "site": "art"
             },
-            "ringAudio": "/audio/art/ring.art.mp3"
+            "ringAudio": "/audio/art/ring.art.mp3",
+            "text": "welcome artists"
         },
-        "gaTag": "G-DMT1EKGNWP"
-    },
-    "biz": {
-        "name": "biz",
-        "contentHeader": "In  sound  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.biz | In Sound Trouble? Better Call Sal! For All Your Sound Mixer Needs | Paul McCartney, Harry Styles, Sam Smith, VICE, HBO, CNN, NIKE, ESPN, Adidas",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY, Sound Mixer NYC, Sound Mixer New York",
+        "gaTag": "G-DMT1EKGNWP",
         "header": {
-            "spinningSalsLeft": "/images/biz/sal-left.webp",
-            "spinningSalsRight": "/images/biz/sal-right.webp",
-            "spinningSalAudio": "/audio/biz/airhorn.m4a",
-            "bizerkIcon": "/images/biz/mic.webp",
-            "ringAudio": "/audio/biz/phone-ring.m4a",
-            "name1": "Salvatore",
-            "name2": "Barra",
-            "title1": "Sound",
-            "title2": "Mixer",
-            "lowerBanner": "Want Emails from Sal?",
-            "showTicker": true,
-            "spinningSalAudio1": "/audio/biz/airhorn.m4a",
-            "spinningSalAudio2": "/audio/biz/airhorn.m4a",
             "bizerk": {
-                "icon": "/images/biz/mic.webp",
-                "site": "biz"
-            }
+                "icon": "/images/art/spray.gif",
+                "site": "art"
+            },
+            "lowerBanner": "Want Art from Sal?",
+            "name1": "Salvatore",
+            "name2": "Dali",
+            "ringAudio": "/audio/art/ring.art.mp3",
+            "showTicker": true,
+            "spinningSalAudio1": "/audio/art/spinning.art.mp3",
+            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
+            "spinningSalsLeft": "/images/art/spinning.art.left.webp",
+            "spinningSalsRight": "/images/art/spinning.art.right.webp",
+            "title1": "The Great",
+            "title2": "Masturbator"
         },
         "leftNav": {
-            "image": "/images/biz/nav-sq.webp",
-            "text": "SAL WORKED<br />FOR ME!!!!",
-            "video": "01agkvzV7Jk",
-            "audio": null,
+            "audio": "/audio/art/cummilker.mp3",
+            "image": "/images/art/left.art.webp",
             "items": [
                 {
-                    "name": "salutations",
-                    "audio": "/audio/biz/salutations.m4a",
-                    "video": null,
-                    "link": "",
+                    "audio": "/audio/art/allart.mp3",
                     "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "24327acc-95dd-421f-9048-65d505205bdd",
-                    "site": "biz"
-                },
-                {
-                    "name": "TESTIMONIALS",
-                    "audio": null,
-                    "video": null,
-                    "link": "https://www.instagram.com/bettercallsal.biz/",
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "0a3865ee-ea63-4a3a-a831-89a5c1076e91",
-                    "site": "biz"
-                },
-                {
-                    "name": "as seen on tv",
-                    "audio": null,
-                    "video": null,
-                    "link": "https://www.imdb.com/name/nm5840016/?mode=desktop&ref_=m_ft_dsk",
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "91970aa8-49b6-4d44-bbf6-bbb02b87123f",
-                    "site": "biz"
-                },
-                {
-                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
-                    "audio": null,
-                    "video": null,
+                    "id": "f441aa4c-3648-49f7-a40f-596aed173e3e",
                     "link": null,
-                    "category": "e-cards",
+                    "name": "Salutations",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "f42bd48d-4720-4996-b762-75b778f8e6f8",
-                    "site": "biz"
+                    "site": "art",
+                    "video": null
                 },
                 {
-                    "name": "office webcam",
-                    "audio": null,
-                    "video": "_QLX3hugymI",
+                    "audio": "/audio/art/classical.mp3",
+                    "category": "classical",
+                    "id": "d866a899-7b3a-4c83-982c-731c58885da7",
                     "link": null,
-                    "category": null,
+                    "name": "Classical",
+                    "quote": "Classical",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/contemporary.mp3",
+                    "category": "contemporary",
+                    "id": "ebfedb3f-0085-49ce-8041-2eaf1e234351",
+                    "link": null,
+                    "name": "Contemporary",
+                    "quote": "Contemporary",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/equestrian.mp3",
+                    "category": "equestrian",
+                    "id": "d8ba2aca-b834-40d8-82a9-e3a9fa96c70b",
+                    "link": null,
+                    "name": "Equestrian",
+                    "quote": "Equestrian",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/pavane.mp3",
+                    "category": "load",
+                    "id": "ab2b8cce-d8f9-450e-a229-adbc13e79861",
+                    "link": null,
+                    "name": "load",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "b05b5006-40f5-49bb-87ff-5a19cc649996",
-                    "site": "biz"
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/sacred.mp3",
+                    "category": "sacred",
+                    "id": "82803aa2-5080-4c7c-be15-f4ad20a4abbe",
+                    "link": null,
+                    "name": "Sacred",
+                    "quote": "Sacred",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
                 }
-            ]
+            ],
+            "text": "ABOUT THE<br />ARTIST!!!!",
+            "video": null
         },
+        "metaDescription": "Bettercallsal.art | In Art Trouble? Better Call Sal! For All Your Art Needs | Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Salvatore Dali, Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "metaTitle": "Better Call Sal",
+        "name": "art",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/0YrapkgfIVsriJXNQBUERZ?utm_source=generator"
-        },
+            "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
+        }
+    },
+    "biz": {
+        "contentHeader": "In  sound  trouble?",
         "footer": {
-            "text": "welcome producers",
             "icon": {
                 "image": "/images/biz/rca-mic.webp",
                 "width": 148,
                 "height": 393,
                 "site": "biz"
             },
-            "ringAudio": "/audio/biz/phone-ring.m4a"
+            "ringAudio": "/audio/biz/phone-ring.m4a",
+            "text": "welcome producers"
         },
-        "gaTag": "G-BQZKS9QQG8"
-    },
-    "construction": {
-        "name": "construction",
-        "contentHeader": "In  construction  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.construction | In Construction Trouble? Better Call Sal! For All Your Construction Needs",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Hard Hat Sal, construction, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "gaTag": "G-BQZKS9QQG8",
         "header": {
-            "spinningSalsLeft": "/images/construction/spinning.construction.left.webp",
-            "spinningSalsRight": "/images/construction/spinning.construction.right.webp",
-            "spinningSalAudio": "/audio/construction/cat.call.loud.mp3",
-            "bizerkIcon": "/images/construction/under.gif",
-            "ringAudio": "/audio/construction/ring.construction.mp3",
-            "name1": "Hard Hat",
-            "name2": "Sal",
-            "title1": "The Master",
-            "title2": "Erecter",
-            "lowerBanner": "Want Construction from Sal?",
-            "showTicker": true,
-            "spinningSalAudio1": "/audio/construction/cat.call.loud.mp3",
-            "spinningSalAudio2": "/audio/construction/cat.call.loud.mp3",
             "bizerk": {
-                "icon": "/images/construction/under.gif",
-                "site": "construction"
-            }
+                "icon": "/images/biz/mic.webp",
+                "site": "biz"
+            },
+            "lowerBanner": "Want Emails from Sal?",
+            "name1": "Salvatore",
+            "name2": "Barra",
+            "ringAudio": "/audio/biz/phone-ring.m4a",
+            "showTicker": true,
+            "spinningSalAudio1": "/audio/biz/airhorn.m4a",
+            "spinningSalAudio2": "/audio/biz/airhorn.m4a",
+            "spinningSalsLeft": "/images/biz/sal-left.webp",
+            "spinningSalsRight": "/images/biz/sal-right.webp",
+            "title1": "Sound",
+            "title2": "Mixer"
         },
         "leftNav": {
-            "image": "/images/construction/nav-sq.webp",
-            "text": "SAL WORKED<br />FOR ME!!!!",
-            "video": "01agkvzV7Jk",
             "audio": null,
+            "image": "/images/biz/nav-sq.webp",
             "items": [
                 {
-                    "name": "salutations",
-                    "audio": "/audio/construction/salutations.m4a",
-                    "video": null,
+                    "audio": "/audio/biz/salutations.m4a",
+                    "category": "all",
+                    "id": "24327acc-95dd-421f-9048-65d505205bdd",
                     "link": "",
-                    "category": null,
+                    "name": "salutations",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "c13d65ec-4ce2-4576-8ece-3ce46ee51f85",
-                    "site": "construction"
+                    "site": "biz",
+                    "video": null
                 },
                 {
-                    "name": "TESTIMONIALS",
                     "audio": null,
-                    "video": null,
+                    "category": "e-cards",
+                    "id": "f42bd48d-4720-4996-b762-75b778f8e6f8",
                     "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "b1b4010d-279e-4a2d-b9fc-6fc7fb9a8759",
-                    "site": "construction"
-                },
-                {
-                    "name": "as seen on tv",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "2ca610dc-e540-4a0c-86f4-d175969cb823",
-                    "site": "construction"
-                },
-                {
                     "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "Biz card",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "e1cd7c79-a595-48e0-b9ef-b70b393a6e82",
-                    "site": "construction"
+                    "site": "biz",
+                    "video": null
                 },
                 {
-                    "name": "office webcam",
                     "audio": null,
-                    "video": "_QLX3hugymI",
-                    "link": null,
                     "category": null,
+                    "id": "0a3865ee-ea63-4a3a-a831-89a5c1076e91",
+                    "link": "https://www.instagram.com/bettercallsal.biz/",
+                    "name": "TESTIMONIALS",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "b6a678dc-d71d-4851-9954-b785eb25990c",
-                    "site": "construction"
+                    "site": "biz",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "91970aa8-49b6-4d44-bbf6-bbb02b87123f",
+                    "link": "https://www.imdb.com/name/nm5840016/?mode=desktop&ref_=m_ft_dsk",
+                    "name": "as seen on tv",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "biz",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "b05b5006-40f5-49bb-87ff-5a19cc649996",
+                    "link": null,
+                    "name": "office webcam",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "biz",
+                    "video": "_QLX3hugymI"
                 }
-            ]
+            ],
+            "text": "SAL WORKED<br />FOR ME!!!!",
+            "video": "01agkvzV7Jk"
         },
+        "metaDescription": "Bettercallsal.biz | In Sound Trouble? Better Call Sal! For All Your Sound Mixer Needs | Paul McCartney, Harry Styles, Sam Smith, VICE, HBO, CNN, NIKE, ESPN, Adidas",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY, Sound Mixer NYC, Sound Mixer New York",
+        "metaTitle": "Better Call Sal",
+        "name": "biz",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/3QfOAhkYQFs7JEy5eXlSXa?utm_source=generator"
-        },
+            "objectId": "https://open.spotify.com/embed/playlist/0YrapkgfIVsriJXNQBUERZ?utm_source=generator"
+        }
+    },
+    "construction": {
+        "contentHeader": "In  construction  trouble?",
         "footer": {
-            "text": "under construction",
             "icon": {
                 "image": "/images/construction/footer.construction.webp",
                 "width": 255,
                 "height": 393,
                 "site": "construction"
             },
-            "ringAudio": "/audio/construction/ring.construction.mp3"
+            "ringAudio": "/audio/construction/ring.construction.mp3",
+            "text": "under construction"
         },
-        "gaTag": "G-0F52SEFQX4"
-    },
-    "fit": {
-        "name": "fit",
-        "contentHeader": "In  fitness  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.fit | In Fitness Trouble? Better Call Sal! For All Your Fitness Needs | Yoga, Pilates, Barre, Boxing, Sound Bath, Meditation, Strength, Stretch",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Yogi Barra, Sound Bath, Yoga, Strength, Meditation, Stretch, Barre, Boxing, Pilates, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "gaTag": "G-0F52SEFQX4",
         "header": {
-            "spinningSalsLeft": "/images/fit/shweaty-left.webp",
-            "spinningSalsRight": "/images/fit/shweaty-right.webp",
-            "spinningSalAudio": "/audio/fit/ready.mp3",
-            "bizerkIcon": "/images/fit/namaste-smoking.gif",
-            "ringAudio": "/audio/fit/ring.fit.mp3",
-            "name1": "Yogi",
-            "name2": "Barra",
-            "title1": "Fitness",
-            "title2": "Guru",
-            "lowerBanner": "Want Workouts from Sal?",
-            "showTicker": true,
-            "spinningSalAudio1": "/audio/fit/ready.mp3",
-            "spinningSalAudio2": "/audio/fit/ready.mp3",
             "bizerk": {
-                "icon": "/images/fit/namaste-smoking.gif",
-                "site": "fit"
-            }
+                "icon": "/images/construction/under.gif",
+                "site": "construction"
+            },
+            "lowerBanner": "Want Construction from Sal?",
+            "name1": "Hard Hat",
+            "name2": "Sal",
+            "ringAudio": "/audio/construction/ring.construction.mp3",
+            "showTicker": true,
+            "spinningSalAudio1": "/audio/construction/cat.call.loud.mp3",
+            "spinningSalAudio2": "/audio/construction/cat.call.loud.mp3",
+            "spinningSalsLeft": "/images/construction/spinning.construction.left.webp",
+            "spinningSalsRight": "/images/construction/spinning.construction.right.webp",
+            "title1": "The Master",
+            "title2": "Erecter"
         },
         "leftNav": {
-            "image": "/images/fit/salwmeout.webp",
-            "text": "SAL WORKED<br />ME OUT!!!!",
-            "video": null,
             "audio": null,
+            "image": "/images/construction/nav-sq.webp",
             "items": [
                 {
-                    "name": "salutations",
-                    "audio": "/audio/fit/holdmusic.mp3",
-                    "video": null,
+                    "audio": "/audio/construction/salutations.m4a",
+                    "category": null,
+                    "id": "c13d65ec-4ce2-4576-8ece-3ce46ee51f85",
                     "link": "",
-                    "category": "all",
+                    "name": "salutations",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "6f1da169-438e-42bf-8c44-bf4629fd0db7",
-                    "site": "fit"
+                    "site": "construction",
+                    "video": null
                 },
                 {
-                    "name": "Sound Bath",
-                    "audio": "/audio/fit/drone.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "sound-bath",
-                    "quote": "You’ve got to be very mindful if you don’t know where you are going",
+                    "audio": null,
+                    "category": "Biz card",
+                    "id": "e1cd7c79-a595-48e0-b9ef-b70b393a6e82",
+                    "link": null,
+                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
+                    "quote": null,
                     "quoteLink": null,
-                    "id": "d6098307-f53e-4275-92af-68365065732d",
-                    "site": "fit"
+                    "site": "construction",
+                    "video": null
                 },
                 {
-                    "name": "Yoga",
-                    "audio": "/audio/fit/yoga.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "yoga",
-                    "quote": "Yoga is 90% mental and the other half is physical",
+                    "audio": null,
+                    "category": null,
+                    "id": "2ca610dc-e540-4a0c-86f4-d175969cb823",
+                    "link": null,
+                    "name": "as seen on tv",
+                    "quote": null,
                     "quoteLink": null,
-                    "id": "96e75edb-4cb6-4d11-b54a-02748c2fd46d",
-                    "site": "fit"
+                    "site": "construction",
+                    "video": null
                 },
                 {
-                    "name": "Strength",
-                    "audio": "/audio/fit/strength.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "strength",
-                    "quote": "One’s greatest weakness is not finding the strength in oneself",
+                    "audio": null,
+                    "category": null,
+                    "id": "b1b4010d-279e-4a2d-b9fc-6fc7fb9a8759",
+                    "link": null,
+                    "name": "TESTIMONIALS",
+                    "quote": null,
                     "quoteLink": null,
-                    "id": "8a72d3f5-5da6-4682-aced-b2f27f53b13c",
-                    "site": "fit"
+                    "site": "construction",
+                    "video": null
                 },
                 {
-                    "name": "Meditation",
-                    "audio": "/audio/fit/meditation.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "meditation",
-                    "quote": "When you come to a fork in the road, meditate",
+                    "audio": null,
+                    "category": null,
+                    "id": "b6a678dc-d71d-4851-9954-b785eb25990c",
+                    "link": null,
+                    "name": "office webcam",
+                    "quote": null,
                     "quoteLink": null,
-                    "id": "5b8ccecf-3dd9-4b05-96ae-d4e0067ce9be",
-                    "site": "fit"
-                },
-                {
-                    "name": "Stretch",
-                    "audio": "/audio/fit/stretch.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "stretch",
-                    "quote": "How can you think and stretch at the same time?",
-                    "quoteLink": null,
-                    "id": "8eee9c2f-2301-4e88-9ea6-ab010ddb27b4",
-                    "site": "fit"
-                },
-                {
-                    "name": "Barre",
-                    "audio": "/audio/fit/barre.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "barre",
-                    "quote": "Grin and barre it",
-                    "quoteLink": null,
-                    "id": "5eae7129-ed9d-4834-bb06-3fdf58a2647d",
-                    "site": "fit"
-                },
-                {
-                    "name": "Boxing",
-                    "audio": "/audio/fit/boxing.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "boxing",
-                    "quote": "You can observe a lot by just boxing",
-                    "quoteLink": null,
-                    "id": "684b2773-b4ed-4c1a-bf13-c13c64240cf3",
-                    "site": "fit"
-                },
-                {
-                    "name": "Pilates",
-                    "audio": "/audio/fit/pilates.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "pilates",
-                    "quote": "In pilates, you don’t know nothing",
-                    "quoteLink": null,
-                    "id": "95ce77e6-54d2-4b5e-9084-7d8387d27426",
-                    "site": "fit"
-                },
-                {
-                    "name": "Cycling",
-                    "audio": "/audio/fit/cycling.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "cycling",
-                    "quote": "All cyclists are liars or crybabies",
-                    "quoteLink": null,
-                    "id": "8306aeea-33fd-41fd-aac6-8b89f8874a36",
-                    "site": "fit"
+                    "site": "construction",
+                    "video": "_QLX3hugymI"
                 }
-            ]
+            ],
+            "text": "SAL WORKED<br />FOR ME!!!!",
+            "video": "01agkvzV7Jk"
         },
+        "metaDescription": "Bettercallsal.construction | In Construction Trouble? Better Call Sal! For All Your Construction Needs",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Hard Hat Sal, construction, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "metaTitle": "Better Call Sal",
+        "name": "construction",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/5HD5kTdGYpkk0nyF8ifXtS?utm_source=generator"
-        },
+            "objectId": "https://open.spotify.com/embed/playlist/3QfOAhkYQFs7JEy5eXlSXa?utm_source=generator"
+        }
+    },
+    "fit": {
+        "contentHeader": "In  fitness  trouble?",
         "footer": {
-            "text": "NAMASTE",
             "icon": {
                 "image": "/images/fit/om.webp",
                 "width": 500,
                 "height": 512,
                 "site": "fit"
             },
-            "ringAudio": "/audio/fit/ring.fit.mp3"
+            "ringAudio": "/audio/fit/ring.fit.mp3",
+            "text": "NAMASTE"
         },
-        "gaTag": "G-NZSHWYRKKF"
-    },
-    "gallery": {
-        "name": "gallery",
-        "contentHeader": "In  gallery  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.gallery | In Gallery Trouble? Better Call Sal! For All Your Gallery Needs | Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Salvatore Dali, Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "gaTag": "G-NZSHWYRKKF",
         "header": {
-            "spinningSalsLeft": "/images/gallery/gallery-right.png",
-            "spinningSalsRight": "/images/gallery/gallery-left.png",
-            "spinningSalAudio": "/audio/art/spinning.art.mp3",
-            "bizerkIcon": "/images/art/spray.gif",
-            "ringAudio": "/audio/art/ring.art.mp3",
-            "name1": "Salvatore",
-            "name2": "Dali",
-            "title1": "The Great",
-            "title2": "Masturbator",
-            "lowerBanner": "Want Gallery from Sal?",
-            "showTicker": false,
-            "spinningSalAudio1": "/audio/art/spinning.art.mp3",
-            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
             "bizerk": {
-                "icon": "/images/art/spray.gif",
-                "site": "gallery"
-            }
+                "icon": "/images/fit/namaste-smoking.gif",
+                "site": "fit"
+            },
+            "lowerBanner": "Want Workouts from Sal?",
+            "name1": "Yogi",
+            "name2": "Barra",
+            "ringAudio": "/audio/fit/ring.fit.mp3",
+            "showTicker": true,
+            "spinningSalAudio1": "/audio/fit/ready.mp3",
+            "spinningSalAudio2": "/audio/fit/ready.mp3",
+            "spinningSalsLeft": "/images/fit/shweaty-left.webp",
+            "spinningSalsRight": "/images/fit/shweaty-right.webp",
+            "title1": "Fitness",
+            "title2": "Guru"
         },
         "leftNav": {
-            "image": "/images/art/left.art.webp",
-            "text": "ABOUT THE<br />ARTIST!!!!",
-            "video": null,
-            "audio": "/audio/art/cummilker.mp3",
-            "items": []
+            "audio": null,
+            "image": "/images/fit/salwmeout.webp",
+            "items": [
+                {
+                    "audio": "/audio/fit/barre.mp3",
+                    "category": "barre",
+                    "id": "5eae7129-ed9d-4834-bb06-3fdf58a2647d",
+                    "link": "",
+                    "name": "Barre",
+                    "quote": "Grin and barre it",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/boxing.mp3",
+                    "category": "boxing",
+                    "id": "684b2773-b4ed-4c1a-bf13-c13c64240cf3",
+                    "link": "",
+                    "name": "Boxing",
+                    "quote": "You can observe a lot by just boxing",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/cycling.mp3",
+                    "category": "cycling",
+                    "id": "8306aeea-33fd-41fd-aac6-8b89f8874a36",
+                    "link": "",
+                    "name": "Cycling",
+                    "quote": "All cyclists are liars or crybabies",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/drone.mp3",
+                    "category": "sound-bath",
+                    "id": "d6098307-f53e-4275-92af-68365065732d",
+                    "link": "",
+                    "name": "Sound Bath",
+                    "quote": "You’ve got to be very mindful if you don’t know where you are going",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/holdmusic.mp3",
+                    "category": "all",
+                    "id": "6f1da169-438e-42bf-8c44-bf4629fd0db7",
+                    "link": "",
+                    "name": "salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/meditation.mp3",
+                    "category": "meditation",
+                    "id": "5b8ccecf-3dd9-4b05-96ae-d4e0067ce9be",
+                    "link": "",
+                    "name": "Meditation",
+                    "quote": "When you come to a fork in the road, meditate",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/pilates.mp3",
+                    "category": "pilates",
+                    "id": "95ce77e6-54d2-4b5e-9084-7d8387d27426",
+                    "link": "",
+                    "name": "Pilates",
+                    "quote": "In pilates, you don’t know nothing",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/strength.mp3",
+                    "category": "strength",
+                    "id": "8a72d3f5-5da6-4682-aced-b2f27f53b13c",
+                    "link": "",
+                    "name": "Strength",
+                    "quote": "One’s greatest weakness is not finding the strength in oneself",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/stretch.mp3",
+                    "category": "stretch",
+                    "id": "8eee9c2f-2301-4e88-9ea6-ab010ddb27b4",
+                    "link": "",
+                    "name": "Stretch",
+                    "quote": "How can you think and stretch at the same time?",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/yoga.mp3",
+                    "category": "yoga",
+                    "id": "96e75edb-4cb6-4d11-b54a-02748c2fd46d",
+                    "link": "",
+                    "name": "Yoga",
+                    "quote": "Yoga is 90% mental and the other half is physical",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                }
+            ],
+            "text": "SAL WORKED<br />ME OUT!!!!",
+            "video": null
         },
+        "metaDescription": "Bettercallsal.fit | In Fitness Trouble? Better Call Sal! For All Your Fitness Needs | Yoga, Pilates, Barre, Boxing, Sound Bath, Meditation, Strength, Stretch",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Yogi Barra, Sound Bath, Yoga, Strength, Meditation, Stretch, Barre, Boxing, Pilates, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "metaTitle": "Better Call Sal",
+        "name": "fit",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
-        },
+            "objectId": "https://open.spotify.com/embed/playlist/5HD5kTdGYpkk0nyF8ifXtS?utm_source=generator"
+        }
+    },
+    "gallery": {
+        "contentHeader": "In  gallery  trouble?",
         "footer": {
-            "text": "welcome artists",
             "icon": {
                 "image": "/images/art/dali.gif",
                 "width": 462,
                 "height": 432,
                 "site": "gallery"
             },
-            "ringAudio": "/audio/art/ring.art.mp3"
+            "ringAudio": "/audio/art/ring.art.mp3",
+            "text": "welcome artists"
         },
-        "gaTag": "G-K60R3CHS4L"
-    },
-    "games": {
-        "name": "games",
-        "contentHeader": "In  gaming  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.games | In Gaming Trouble? Better Call Sal! For All Your Gaming Needs | Super Sal Bros., Sal-man, Salitaire",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Super Sal Bros., games, gaming, super mario bros., pac-man, pacman, solitaire, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "gaTag": "G-K60R3CHS4L",
         "header": {
-            "spinningSalsLeft": "/images/games/spinning.games.left.webp",
-            "spinningSalsRight": "/images/games/spinning.games.right.webp",
-            "spinningSalAudio": "/audio/games/spinning.games.mp3",
-            "bizerkIcon": "/images/games/coin6.gif",
-            "ringAudio": "/audio/games/ring.games.mp3",
-            "name1": "Super",
-            "name2": "Sal Bros.",
-            "title1": "Hardcore",
-            "title2": "Gamer",
-            "lowerBanner": "Want Games from Sal?",
-            "showTicker": true,
-            "spinningSalAudio1": "/audio/games/spinning.games.mp3",
-            "spinningSalAudio2": "/audio/games/spinning.games.mp3",
             "bizerk": {
-                "icon": "/images/games/coin6.gif",
-                "site": "games"
-            }
+                "icon": "/images/art/spray.gif",
+                "site": "gallery"
+            },
+            "lowerBanner": "Want Gallery from Sal?",
+            "name1": "Salvatore",
+            "name2": "Dali",
+            "ringAudio": "/audio/art/ring.art.mp3",
+            "showTicker": false,
+            "spinningSalAudio1": "/audio/art/spinning.art.mp3",
+            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
+            "spinningSalsLeft": "/images/gallery/gallery-right.png",
+            "spinningSalsRight": "/images/gallery/gallery-left.png",
+            "title1": "The Great",
+            "title2": "Masturbator"
         },
         "leftNav": {
-            "image": "/images/games/left.games.webp",
-            "text": "SAL PLAYED<br />ME!!!!",
-            "video": null,
-            "audio": "/audio/games/take-five.mp3",
-            "items": [
-                {
-                    "name": "Salutations",
-                    "audio": "/audio/games/salutations.games.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "21013ab9-19ee-4091-959d-6626730a539d",
-                    "site": "games"
-                },
-                {
-                    "name": "Super Sal Bros.",
-                    "audio": "/audio/games/supersal.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "561e6ba1-faeb-474c-a532-1354009c6aee",
-                    "site": "games",
-                    "contentId": "/game/supersalbros"
-                },
-                {
-                    "name": "Sal-man",
-                    "audio": "/audio/games/salman.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "75eec4e3-5dd7-4a3b-b12f-de5da5225b7d",
-                    "site": "games",
-                    "contentId": "/game/salman"
-                },
-                {
-                    "name": "Salitaire",
-                    "audio": "/audio/games/salitaire.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "def33b0c-eb47-4b41-b0e3-ea50b76a285c",
-                    "site": "games",
-                    "contentId": "/game/salitaire"
-                }
-            ]
+            "audio": "/audio/art/cummilker.mp3",
+            "image": "/images/art/left.art.webp",
+            "items": [],
+            "text": "ABOUT THE<br />ARTIST!!!!",
+            "video": null
         },
+        "metaDescription": "Bettercallsal.gallery | In Gallery Trouble? Better Call Sal! For All Your Gallery Needs | Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Salvatore Dali, Dali, Mona Lisa, Starry Night, Classical, Sacred, Historical, Modern Art, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "metaTitle": "Better Call Sal",
+        "name": "gallery",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/0YiVMTkk2hrl0ZT6qsP5BC?utm_source=generator"
-        },
+            "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
+        }
+    },
+    "games": {
+        "contentHeader": "In  gaming  trouble?",
         "footer": {
-            "text": "welcome gamers",
             "icon": {
                 "image": "/images/games/star.webp",
                 "width": 300,
                 "height": 300,
                 "site": "games"
             },
-            "ringAudio": "/audio/games/ring.games.mp3"
+            "ringAudio": "/audio/games/ring.games.mp3",
+            "text": "welcome gamers"
         },
-        "gaTag": "G-M1N65RK3KR"
-    },
-    "rocks": {
-        "name": "rocks",
-        "contentHeader": "In  music  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.rocks | In Music Trouble? Better Call Sal! For All Your Music Needs | Harjo, Nature Creeps Beneath, Blind Archer",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Sal Barratone, music, rocks, rock, brooklyn, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "gaTag": "G-M1N65RK3KR",
         "header": {
-            "spinningSalsLeft": "/images/rocks/spinning.rocks.left.webp",
-            "spinningSalsRight": "/images/rocks/spinning.rocks.right.webp",
-            "spinningSalAudio": "/audio/rocks/spinning.rocks.mp3",
-            "bizerkIcon": "/images/rocks/spinning.rocks.cat.gif",
-            "ringAudio": "/audio/rocks/ring.rocks.mp3",
-            "name1": "Sal",
-            "name2": "Barratone",
-            "title1": "Rock",
-            "title2": "Star",
-            "lowerBanner": "Want Music from Sal?",
-            "showTicker": true,
-            "spinningSalAudio1": "/audio/rocks/spinning.rocks.mp3",
-            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3",
             "bizerk": {
-                "icon": "/images/rocks/spinning.rocks.cat.gif",
-                "site": "rocks"
-            }
+                "icon": "/images/games/coin6.gif",
+                "site": "games"
+            },
+            "lowerBanner": "Want Games from Sal?",
+            "name1": "Super",
+            "name2": "Sal Bros.",
+            "ringAudio": "/audio/games/ring.games.mp3",
+            "showTicker": true,
+            "spinningSalAudio1": "/audio/games/spinning.games.mp3",
+            "spinningSalAudio2": "/audio/games/spinning.games.mp3",
+            "spinningSalsLeft": "/images/games/spinning.games.left.webp",
+            "spinningSalsRight": "/images/games/spinning.games.right.webp",
+            "title1": "Hardcore",
+            "title2": "Gamer"
         },
         "leftNav": {
-            "image": "/images/rocks/hardcore.webp",
-            "text": "SAL ROCKED<br />ME!!!!",
-            "video": null,
-            "audio": "/audio/rocks/pavane.mp3",
+            "audio": "/audio/games/take-five.mp3",
+            "image": "/images/games/left.games.webp",
             "items": [
                 {
-                    "name": "salutations",
-                    "audio": "/audio/rocks/all.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
+                    "audio": "/audio/games/salitaire.mp3",
+                    "category": "games",
+                    "contentId": "/game/salitaire",
+                    "id": "def33b0c-eb47-4b41-b0e3-ea50b76a285c",
+                    "link": null,
+                    "name": "Salitaire",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "fe469fa8-0dd3-42f6-876c-4a95a69c90cb",
-                    "site": "rocks"
+                    "site": "games",
+                    "video": null
                 },
                 {
-                    "name": "Nature Creeps Beneath",
-                    "audio": "/audio/rocks/nature.mp3",
-                    "video": null,
+                    "audio": "/audio/games/salman.mp3",
+                    "category": "games",
+                    "contentId": "/game/salman",
+                    "id": "75eec4e3-5dd7-4a3b-b12f-de5da5225b7d",
                     "link": null,
-                    "category": "nature-creeps",
-                    "quote": "Nature Creeps Beneath",
-                    "quoteLink": "https://naturecreepsbeneath.com/",
-                    "id": "fd840518-a28e-41bb-90fc-185581c4c30a",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Blind Archer",
-                    "audio": "/audio/rocks/blind.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "blind-archer",
-                    "quote": "Blind Archer",
-                    "quoteLink": "https://youtube.com/playlist?list=OLAK5uy_lHoyOGbGk0Ib3jHsACMGFfUXPYyXUfuD0",
-                    "id": "fe4b6c36-5a2f-45b0-ae4c-620100fe6265",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Harjo",
-                    "audio": "/audio/rocks/harjo.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "harjo",
-                    "quote": "all hail harjo",
-                    "quoteLink": "https://www.allhailharjo.com/",
-                    "id": "813b7832-af3d-4160-9d2f-dfab602e57e0",
-                    "site": "rocks"
-                },
-                {
-                    "name": "RBN",
-                    "audio": "/audio/rocks/rbn.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "rbn",
-                    "quote": "River Bottom Nightmares",
+                    "name": "Sal-man",
+                    "quote": null,
                     "quoteLink": null,
-                    "id": "d1527276-74af-4cdb-8b4a-a6a1af408638",
-                    "site": "rocks"
+                    "site": "games",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/games/salutations.games.mp3",
+                    "category": "all",
+                    "id": "21013ab9-19ee-4091-959d-6626730a539d",
+                    "link": "",
+                    "name": "Salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "games",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/games/supersal.mp3",
+                    "category": "games",
+                    "contentId": "/game/supersalbros",
+                    "id": "561e6ba1-faeb-474c-a532-1354009c6aee",
+                    "link": null,
+                    "name": "Super Sal Bros.",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "games",
+                    "video": null
                 }
-            ]
+            ],
+            "text": "SAL PLAYED<br />ME!!!!",
+            "video": null
         },
+        "metaDescription": "Bettercallsal.games | In Gaming Trouble? Better Call Sal! For All Your Gaming Needs | Super Sal Bros., Sal-man, Salitaire",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Super Sal Bros., games, gaming, super mario bros., pac-man, pacman, solitaire, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "metaTitle": "Better Call Sal",
+        "name": "games",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/78pu7GaayYtdhTuSmIZz6X?utm_source=generator&theme=0"
-        },
+            "objectId": "https://open.spotify.com/embed/playlist/0YiVMTkk2hrl0ZT6qsP5BC?utm_source=generator"
+        }
+    },
+    "rocks": {
+        "contentHeader": "In  music  trouble?",
         "footer": {
-            "text": "welcome rockstars",
             "icon": {
                 "image": "/images/rocks/smashguitar.gif",
                 "width": 225,
                 "height": 256,
                 "site": "rocks"
             },
-            "ringAudio": "/audio/rocks/ring.rocks.mp3"
+            "ringAudio": "/audio/rocks/ring.rocks.mp3",
+            "text": "welcome rockstars"
         },
-        "gaTag": "G-BCGHB6Z0WX"
-    },
-    "wtf": {
-        "footer": {
-            "text": "welcome gamers",
-            "icon": {
-                "image": "/images/biz/rca-mic.webp",
-                "width": 148,
-                "height": 393,
-                "site": "biz"
-            },
-            "ringAudio": "/audio/art/ring.art.mp3"
-        },
-        "gaTag": "G-X5Z1WBFSXE",
+        "gaTag": "G-BCGHB6Z0WX",
         "header": {
-            "showTicker": false,
-            "name1": "Super",
-            "name2": "Sal",
-            "spinningSalAudio1": "/audio/games/spinning.games.mp3",
-            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3",
-            "spinningSalsRight": "/images/biz/sal-right.webp",
-            "spinningSalsLeft": "/images/biz/sal-left.webp",
             "bizerk": {
-                "icon": "/images/art/spray.gif",
-                "site": "art"
+                "icon": "/images/rocks/spinning.rocks.cat.gif",
+                "site": "rocks"
             },
-            "ringAudio": "/audio/art/ring.art.mp3",
-            "title1": "The Great",
-            "title2": "Masturbator",
-            "lowerBanner": "Want Emails from Sal?"
+            "lowerBanner": "Want Music from Sal?",
+            "name1": "Sal",
+            "name2": "Barratone",
+            "ringAudio": "/audio/rocks/ring.rocks.mp3",
+            "showTicker": true,
+            "spinningSalAudio1": "/audio/rocks/spinning.rocks.mp3",
+            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3",
+            "spinningSalsLeft": "/images/rocks/spinning.rocks.left.webp",
+            "spinningSalsRight": "/images/rocks/spinning.rocks.right.webp",
+            "title1": "Rock",
+            "title2": "Star"
         },
         "leftNav": {
-            "image": "/images/art/left.art.webp",
-            "text": "SAL WORKED<br />FOR ME!!!!",
-            "video": "01agkvzV7Jk",
-            "audio": "/audio/games/take-five.mp3",
+            "audio": "/audio/rocks/pavane.mp3",
+            "image": "/images/rocks/hardcore.webp",
             "items": [
                 {
-                    "name": "Salutations",
-                    "audio": "/audio/art/allart.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "f441aa4c-3648-49f7-a40f-596aed173e3e",
-                    "site": "art"
-                },
-                {
-                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "e-cards",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "e1cd7c79-a595-48e0-b9ef-b70b393a6e82",
-                    "site": "construction"
-                },
-                {
-                    "name": "Strength",
-                    "audio": "/audio/fit/strength.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "strength",
-                    "quote": "One’s greatest weakness is not finding the strength in oneself",
-                    "quoteLink": null,
-                    "id": "8a72d3f5-5da6-4682-aced-b2f27f53b13c",
-                    "site": "fit"
-                },
-                {
-                    "name": "office webcam",
-                    "audio": null,
-                    "video": "_QLX3hugymI",
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "b6a678dc-d71d-4851-9954-b785eb25990c",
-                    "site": "construction"
-                },
-                {
-                    "name": "as seen on tv",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "2ca610dc-e540-4a0c-86f4-d175969cb823",
-                    "site": "construction"
-                },
-                {
-                    "name": "TESTIMONIALS",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "b1b4010d-279e-4a2d-b9fc-6fc7fb9a8759",
-                    "site": "construction"
-                },
-                {
-                    "name": "load",
-                    "audio": "/audio/art/pavane.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "load",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "ab2b8cce-d8f9-450e-a229-adbc13e79861",
-                    "site": "art"
-                },
-                {
-                    "name": "Yoga",
-                    "audio": "/audio/fit/yoga.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "yoga",
-                    "quote": "Yoga is 90% mental and the other half is physical",
-                    "quoteLink": null,
-                    "id": "96e75edb-4cb6-4d11-b54a-02748c2fd46d",
-                    "site": "fit"
-                },
-                {
-                    "name": "Salutations",
-                    "audio": "/audio/games/salutations.games.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "21013ab9-19ee-4091-959d-6626730a539d",
-                    "site": "games"
-                },
-                {
-                    "name": "Sound Bath",
-                    "audio": "/audio/fit/drone.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "sound-bath",
-                    "quote": "You’ve got to be very mindful if you don’t know where you are going",
-                    "quoteLink": null,
-                    "id": "d6098307-f53e-4275-92af-68365065732d",
-                    "site": "fit"
-                },
-                {
-                    "name": "office webcam",
-                    "audio": null,
-                    "video": "_QLX3hugymI",
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "b05b5006-40f5-49bb-87ff-5a19cc649996",
-                    "site": "biz"
-                },
-                {
-                    "name": "Salitaire",
-                    "audio": "/audio/games/salitaire.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "def33b0c-eb47-4b41-b0e3-ea50b76a285c",
-                    "site": "games"
-                },
-                {
-                    "name": "Boxing",
-                    "audio": "/audio/fit/boxing.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "boxing",
-                    "quote": "You can observe a lot by just boxing",
-                    "quoteLink": null,
-                    "id": "684b2773-b4ed-4c1a-bf13-c13c64240cf3",
-                    "site": "fit"
-                },
-                {
-                    "name": "Barre",
-                    "audio": "/audio/fit/barre.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "barre",
-                    "quote": "Grin and barre it",
-                    "quoteLink": null,
-                    "id": "5eae7129-ed9d-4834-bb06-3fdf58a2647d",
-                    "site": "fit"
-                },
-                {
-                    "name": "salutations",
-                    "audio": "/audio/construction/salutations.m4a",
-                    "video": null,
-                    "link": "",
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "c13d65ec-4ce2-4576-8ece-3ce46ee51f85",
-                    "site": "construction"
-                },
-                {
-                    "name": "salutations",
-                    "audio": "/audio/biz/salutations.m4a",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "24327acc-95dd-421f-9048-65d505205bdd",
-                    "site": "biz"
-                },
-                {
-                    "name": "Equestrian",
-                    "audio": "/audio/art/equestrian.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "equestrian",
-                    "quote": "Equestrian",
-                    "quoteLink": null,
-                    "id": "d8ba2aca-b834-40d8-82a9-e3a9fa96c70b",
-                    "site": "art"
-                },
-                {
-                    "name": "Super Sal Bros.",
-                    "audio": "/audio/games/supersal.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "561e6ba1-faeb-474c-a532-1354009c6aee",
-                    "site": "games"
-                },
-                {
-                    "name": "salutations",
-                    "audio": "/audio/fit/holdmusic.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "6f1da169-438e-42bf-8c44-bf4629fd0db7",
-                    "site": "fit"
-                },
-                {
-                    "name": "RBN",
-                    "audio": "/audio/rocks/rbn.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "rbn",
-                    "quote": "River Bottom Nightmares",
-                    "quoteLink": null,
-                    "id": "d1527276-74af-4cdb-8b4a-a6a1af408638",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Contemporary",
-                    "audio": "/audio/art/contemporary.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "contemporary",
-                    "quote": "Contemporary",
-                    "quoteLink": null,
-                    "id": "ebfedb3f-0085-49ce-8041-2eaf1e234351",
-                    "site": "art"
-                },
-                {
-                    "name": "Meditation",
-                    "audio": "/audio/fit/meditation.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "meditation",
-                    "quote": "When you come to a fork in the road, meditate",
-                    "quoteLink": null,
-                    "id": "5b8ccecf-3dd9-4b05-96ae-d4e0067ce9be",
-                    "site": "fit"
-                },
-                {
-                    "name": "Pilates",
-                    "audio": "/audio/fit/pilates.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "pilates",
-                    "quote": "In pilates, you don’t know nothing",
-                    "quoteLink": null,
-                    "id": "95ce77e6-54d2-4b5e-9084-7d8387d27426",
-                    "site": "fit"
-                },
-                {
-                    "name": "Nature Creeps Beneath",
-                    "audio": "/audio/rocks/nature.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "nature-creeps",
-                    "quote": "Nature Creeps Beneath",
-                    "quoteLink": "https://naturecreepsbeneath.com/",
-                    "id": "fd840518-a28e-41bb-90fc-185581c4c30a",
-                    "site": "rocks"
-                },
-                {
-                    "name": "salutations",
                     "audio": "/audio/rocks/all.mp3",
-                    "video": null,
-                    "link": "",
                     "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
                     "id": "fe469fa8-0dd3-42f6-876c-4a95a69c90cb",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Harjo",
-                    "audio": "/audio/rocks/harjo.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "harjo",
-                    "quote": "all hail harjo",
-                    "quoteLink": "https://www.allhailharjo.com/",
-                    "id": "813b7832-af3d-4160-9d2f-dfab602e57e0",
-                    "site": "rocks"
-                },
-                {
-                    "name": "Sacred",
-                    "audio": "/audio/art/sacred.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "sacred",
-                    "quote": "Sacred",
-                    "quoteLink": null,
-                    "id": "82803aa2-5080-4c7c-be15-f4ad20a4abbe",
-                    "site": "art"
-                },
-                {
-                    "name": "TESTIMONIALS",
-                    "audio": null,
-                    "video": null,
-                    "link": "https://www.instagram.com/bettercallsal.biz/",
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "0a3865ee-ea63-4a3a-a831-89a5c1076e91",
-                    "site": "biz"
-                },
-                {
-                    "name": "Sal-man",
-                    "audio": "/audio/games/salman.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": "games",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "75eec4e3-5dd7-4a3b-b12f-de5da5225b7d",
-                    "site": "games"
-                },
-                {
-                    "name": "Cycling",
-                    "audio": "/audio/fit/cycling.mp3",
-                    "video": null,
                     "link": "",
-                    "category": "cycling",
-                    "quote": "All cyclists are liars or crybabies",
-                    "quoteLink": null,
-                    "id": "8306aeea-33fd-41fd-aac6-8b89f8874a36",
-                    "site": "fit"
-                },
-                {
-                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": "e-cards",
+                    "name": "salutations",
                     "quote": null,
                     "quoteLink": null,
-                    "id": "f42bd48d-4720-4996-b762-75b778f8e6f8",
-                    "site": "biz"
+                    "site": "rocks",
+                    "video": null
                 },
                 {
-                    "name": "Stretch",
-                    "audio": "/audio/fit/stretch.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "stretch",
-                    "quote": "How can you think and stretch at the same time?",
-                    "quoteLink": null,
-                    "id": "8eee9c2f-2301-4e88-9ea6-ab010ddb27b4",
-                    "site": "fit"
-                },
-                {
-                    "name": "Blind Archer",
                     "audio": "/audio/rocks/blind.mp3",
-                    "video": null,
-                    "link": null,
                     "category": "blind-archer",
+                    "id": "fe4b6c36-5a2f-45b0-ae4c-620100fe6265",
+                    "link": null,
+                    "name": "Blind Archer",
                     "quote": "Blind Archer",
                     "quoteLink": "https://youtube.com/playlist?list=OLAK5uy_lHoyOGbGk0Ib3jHsACMGFfUXPYyXUfuD0",
-                    "id": "fe4b6c36-5a2f-45b0-ae4c-620100fe6265",
-                    "site": "rocks"
+                    "site": "rocks",
+                    "video": null
                 },
                 {
-                    "name": "Classical",
-                    "audio": "/audio/art/classical.mp3",
-                    "video": null,
+                    "audio": "/audio/rocks/harjo.mp3",
+                    "category": "harjo",
+                    "id": "813b7832-af3d-4160-9d2f-dfab602e57e0",
                     "link": null,
-                    "category": "classical",
-                    "quote": "Classical",
-                    "quoteLink": null,
-                    "id": "d866a899-7b3a-4c83-982c-731c58885da7",
-                    "site": "art"
+                    "name": "Harjo",
+                    "quote": "all hail harjo",
+                    "quoteLink": "https://www.allhailharjo.com/",
+                    "site": "rocks",
+                    "video": null
                 },
                 {
-                    "name": "as seen on tv",
-                    "audio": null,
-                    "video": null,
-                    "link": "https://www.imdb.com/name/nm5840016/?mode=desktop&ref_=m_ft_dsk",
-                    "category": null,
-                    "quote": null,
+                    "audio": "/audio/rocks/nature.mp3",
+                    "category": "nature-creeps",
+                    "id": "fd840518-a28e-41bb-90fc-185581c4c30a",
+                    "link": null,
+                    "name": "Nature Creeps Beneath",
+                    "quote": "Nature Creeps Beneath",
+                    "quoteLink": "https://naturecreepsbeneath.com/",
+                    "site": "rocks",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/rocks/rbn.mp3",
+                    "category": "rbn",
+                    "id": "d1527276-74af-4cdb-8b4a-a6a1af408638",
+                    "link": null,
+                    "name": "RBN",
+                    "quote": "River Bottom Nightmares",
                     "quoteLink": null,
-                    "id": "91970aa8-49b6-4d44-bbf6-bbb02b87123f",
-                    "site": "biz"
+                    "site": "rocks",
+                    "video": null
                 }
-            ]
+            ],
+            "text": "SAL ROCKED<br />ME!!!!",
+            "video": null
         },
-        "metaDescription": "Bettercallsal.construction | In Construction Trouble? Better Call Sal! For All Your Construction Needs",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Super Sal Bros., games, gaming, super mario bros., pac-man, pacman, solitaire, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "metaDescription": "Bettercallsal.rocks | In Music Trouble? Better Call Sal! For All Your Music Needs | Harjo, Nature Creeps Beneath, Blind Archer",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Sal Barratone, music, rocks, rock, brooklyn, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
         "metaTitle": "Better Call Sal",
+        "name": "rocks",
         "rightNav": {
             "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/67ve1iYuE8cmxXaHWkyNKN?utm_source=generator"
-        },
-        "name": "wtf",
-        "contentHeader": "In  sound  trouble?"
+            "objectId": "https://open.spotify.com/embed/playlist/78pu7GaayYtdhTuSmIZz6X?utm_source=generator&theme=0"
+        }
     },
     "world": {
-        "name": "world",
         "contentHeader": "In  world  trouble?",
-        "metaTitle": "Better Call Sal",
-        "metaDescription": "Bettercallsal.biz | In Sound Trouble? Better Call Sal! For All Your Sound Mixer Needs | Paul McCartney, Harry Styles, Sam Smith, VICE, HBO, CNN, NIKE, ESPN, Adidas",
-        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY, Sound Mixer NYC, Sound Mixer New York",
-        "header": {
-            "spinningSalsLeft": "/images/world/world-left.webp",
-            "spinningSalsRight": "/images/world/world-right.webp",
-            "spinningSalAudio": "/audio/world/spinning.world.mp3",
-            "bizerkIcon": "/images/world/compass.gif",
-            "ringAudio": "/audio/world/ring.world.mp3",
-            "name1": "Dante",
-            "name2": "Salighieri",
-            "title1": "World",
-            "title2": "Explorer",
-            "lowerBanner": "Want Rocked from Sal?",
-            "showTicker": false,
-            "spinningSalAudio1": "/audio/world/spinning.world.mp3",
-            "spinningSalAudio2": "/audio/world/spinning.world.mp3",
-            "bizerk": {
-                "icon": "/images/world/compass.gif",
-                "site": "world"
-            }
-        },
-        "leftNav": {
-            "image": "/images/world/left.world.jpg",
-            "text": "SAL ROCKED<br />MY WORLD!!!!",
-            "video": null,
-            "audio": null,
-            "items": [
-                {
-                    "name": "salutations",
-                    "audio": "/audio/world/salu.mp3",
-                    "video": null,
-                    "link": "",
-                    "category": "all",
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "5b9ab84e-e0eb-45ba-ae55-433db89b5c5e",
-                    "site": "world"
-                },
-                {
-                    "name": "Apple app store",
-                    "audio": "/audio/world/waiting.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "b154e8dd-6919-4a5d-98cc-cbb664494267",
-                    "site": "world"
-                },
-                {
-                    "name": "Google play store",
-                    "audio": "/audio/world/fitmusic.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "942c9ac5-b075-4652-8ca7-4e4af86ccc0e",
-                    "site": "world"
-                },
-                {
-                    "name": "Steam",
-                    "audio": "/audio/world/gtr1.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "1efb4b6c-9cc1-4327-879d-28d1a84dd312",
-                    "site": "world"
-                },
-                {
-                    "name": "Level 1",
-                    "audio": null,
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "44f5d24a-699e-41b5-8b13-41caef5b32e5",
-                    "site": "world",
-                    "contentId": "/game/level1"
-                },
-                {
-                    "name": "Level 2",
-                    "audio": "/audio/world/gtr1.mp3",
-                    "video": null,
-                    "link": null,
-                    "category": null,
-                    "quote": null,
-                    "quoteLink": null,
-                    "id": "1b386e1b-763d-4908-9209-67143debd286",
-                    "site": "world",
-                    "contentId": "/game/level2"
-                }
-            ]
-        },
-        "rightNav": {
-            "type": "spotify",
-            "objectId": "https://open.spotify.com/embed/playlist/5PmGzLUr3r1ulZzZUf4SAP?utm_source=generator"
-        },
         "footer": {
-            "text": "welcome explorers",
             "icon": {
                 "image": "/images/world/world.gif",
                 "width": 273,
                 "height": 273,
                 "site": "world"
             },
-            "ringAudio": "/audio/world/ring.world.mp3"
+            "ringAudio": "/audio/world/ring.world.mp3",
+            "text": "welcome explorers"
         },
-        "gaTag": "G-Y7FV9CTVTS"
+        "gaTag": "G-Y7FV9CTVTS",
+        "header": {
+            "bizerk": {
+                "icon": "/images/world/compass.gif",
+                "site": "world"
+            },
+            "lowerBanner": "Want Rocked from Sal?",
+            "name1": "Dante",
+            "name2": "Salighieri",
+            "ringAudio": "/audio/world/ring.world.mp3",
+            "showTicker": false,
+            "spinningSalAudio1": "/audio/world/spinning.world.mp3",
+            "spinningSalAudio2": "/audio/world/spinning.world.mp3",
+            "spinningSalsLeft": "/images/world/world-left.webp",
+            "spinningSalsRight": "/images/world/world-right.webp",
+            "title1": "World",
+            "title2": "Explorer"
+        },
+        "leftNav": {
+            "audio": null,
+            "image": "/images/world/left.world.jpg",
+            "items": [
+                {
+                    "audio": "/audio/world/fitmusic.mp3",
+                    "category": null,
+                    "id": "942c9ac5-b075-4652-8ca7-4e4af86ccc0e",
+                    "link": null,
+                    "name": "Google play store",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/gtr1.mp3",
+                    "category": null,
+                    "contentId": "/game/level2",
+                    "id": "1b386e1b-763d-4908-9209-67143debd286",
+                    "link": null,
+                    "name": "Level 2",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/gtr1.mp3",
+                    "category": null,
+                    "id": "1efb4b6c-9cc1-4327-879d-28d1a84dd312",
+                    "link": null,
+                    "name": "Steam",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/salu.mp3",
+                    "category": "all",
+                    "id": "5b9ab84e-e0eb-45ba-ae55-433db89b5c5e",
+                    "link": "",
+                    "name": "salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/waiting.mp3",
+                    "category": null,
+                    "id": "b154e8dd-6919-4a5d-98cc-cbb664494267",
+                    "link": null,
+                    "name": "Apple app store",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "contentId": "/game/level1",
+                    "id": "44f5d24a-699e-41b5-8b13-41caef5b32e5",
+                    "link": null,
+                    "name": "Level 1",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                }
+            ],
+            "text": "SAL ROCKED<br />MY WORLD!!!!",
+            "video": null
+        },
+        "metaDescription": "Bettercallsal.biz | In Sound Trouble? Better Call Sal! For All Your Sound Mixer Needs | Paul McCartney, Harry Styles, Sam Smith, VICE, HBO, CNN, NIKE, ESPN, Adidas",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY, Sound Mixer NYC, Sound Mixer New York",
+        "metaTitle": "Better Call Sal",
+        "name": "world",
+        "rightNav": {
+            "type": "spotify",
+            "objectId": "https://open.spotify.com/embed/playlist/5PmGzLUr3r1ulZzZUf4SAP?utm_source=generator"
+        }
+    },
+    "wtf": {
+        "contentHeader": "In  gallery  trouble?",
+        "footer": {
+            "text": "NAMASTE",
+            "icon": {
+                "image": "/images/construction/footer.construction.webp",
+                "width": 255,
+                "height": 393,
+                "site": "construction"
+            },
+            "ringAudio": "/audio/biz/phone-ring.m4a"
+        },
+        "gaTag": "G-DMT1EKGNWP",
+        "header": {
+            "bizerk": {
+                "icon": "/images/biz/mic.webp",
+                "site": "biz"
+            },
+            "lowerBanner": "Want Rocked from Sal?",
+            "name1": "Salvatore",
+            "name2": "Sal Bros.",
+            "ringAudio": "/audio/rocks/ring.rocks.mp3",
+            "showTicker": false,
+            "spinningSalAudio1": "/audio/world/spinning.world.mp3",
+            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3",
+            "spinningSalsLeft": "/images/gallery/gallery-right.png",
+            "spinningSalsRight": "/images/gallery/gallery-left.png",
+            "title1": "The Great",
+            "title2": "Explorer"
+        },
+        "leftNav": {
+            "audio": "/audio/art/cummilker.mp3",
+            "image": "/images/world/left.world.jpg",
+            "items": [
+                {
+                    "audio": "/audio/art/equestrian.mp3",
+                    "category": "equestrian",
+                    "id": "d8ba2aca-b834-40d8-82a9-e3a9fa96c70b",
+                    "link": null,
+                    "name": "Equestrian",
+                    "quote": "Equestrian",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/games/supersal.mp3",
+                    "category": "games",
+                    "contentId": "/game/supersalbros",
+                    "id": "561e6ba1-faeb-474c-a532-1354009c6aee",
+                    "link": null,
+                    "name": "Super Sal Bros.",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "games",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/games/salman.mp3",
+                    "category": "games",
+                    "contentId": "/game/salman",
+                    "id": "75eec4e3-5dd7-4a3b-b12f-de5da5225b7d",
+                    "link": null,
+                    "name": "Sal-man",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "games",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/pavane.mp3",
+                    "category": "load",
+                    "id": "ab2b8cce-d8f9-450e-a229-adbc13e79861",
+                    "link": null,
+                    "name": "load",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/stretch.mp3",
+                    "category": "stretch",
+                    "id": "8eee9c2f-2301-4e88-9ea6-ab010ddb27b4",
+                    "link": "",
+                    "name": "Stretch",
+                    "quote": "How can you think and stretch at the same time?",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/games/salutations.games.mp3",
+                    "category": "all",
+                    "id": "21013ab9-19ee-4091-959d-6626730a539d",
+                    "link": "",
+                    "name": "Salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "games",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/gtr1.mp3",
+                    "category": null,
+                    "contentId": "/game/level2",
+                    "id": "1b386e1b-763d-4908-9209-67143debd286",
+                    "link": null,
+                    "name": "Level 2",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/contemporary.mp3",
+                    "category": "contemporary",
+                    "id": "ebfedb3f-0085-49ce-8041-2eaf1e234351",
+                    "link": null,
+                    "name": "Contemporary",
+                    "quote": "Contemporary",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/barre.mp3",
+                    "category": "barre",
+                    "id": "5eae7129-ed9d-4834-bb06-3fdf58a2647d",
+                    "link": "",
+                    "name": "Barre",
+                    "quote": "Grin and barre it",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/meditation.mp3",
+                    "category": "meditation",
+                    "id": "5b8ccecf-3dd9-4b05-96ae-d4e0067ce9be",
+                    "link": "",
+                    "name": "Meditation",
+                    "quote": "When you come to a fork in the road, meditate",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "91970aa8-49b6-4d44-bbf6-bbb02b87123f",
+                    "link": "https://www.imdb.com/name/nm5840016/?mode=desktop&ref_=m_ft_dsk",
+                    "name": "as seen on tv",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "biz",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/holdmusic.mp3",
+                    "category": "all",
+                    "id": "6f1da169-438e-42bf-8c44-bf4629fd0db7",
+                    "link": "",
+                    "name": "salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/allart.mp3",
+                    "category": "all",
+                    "id": "f441aa4c-3648-49f7-a40f-596aed173e3e",
+                    "link": null,
+                    "name": "Salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/cycling.mp3",
+                    "category": "cycling",
+                    "id": "8306aeea-33fd-41fd-aac6-8b89f8874a36",
+                    "link": "",
+                    "name": "Cycling",
+                    "quote": "All cyclists are liars or crybabies",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/rocks/all.mp3",
+                    "category": "all",
+                    "id": "fe469fa8-0dd3-42f6-876c-4a95a69c90cb",
+                    "link": "",
+                    "name": "salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "rocks",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "2ca610dc-e540-4a0c-86f4-d175969cb823",
+                    "link": null,
+                    "name": "as seen on tv",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "construction",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/gtr1.mp3",
+                    "category": null,
+                    "id": "1efb4b6c-9cc1-4327-879d-28d1a84dd312",
+                    "link": null,
+                    "name": "Steam",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/salu.mp3",
+                    "category": "all",
+                    "id": "5b9ab84e-e0eb-45ba-ae55-433db89b5c5e",
+                    "link": "",
+                    "name": "salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/games/salitaire.mp3",
+                    "category": "games",
+                    "contentId": "/game/salitaire",
+                    "id": "def33b0c-eb47-4b41-b0e3-ea50b76a285c",
+                    "link": null,
+                    "name": "Salitaire",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "games",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/sacred.mp3",
+                    "category": "sacred",
+                    "id": "82803aa2-5080-4c7c-be15-f4ad20a4abbe",
+                    "link": null,
+                    "name": "Sacred",
+                    "quote": "Sacred",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/boxing.mp3",
+                    "category": "boxing",
+                    "id": "684b2773-b4ed-4c1a-bf13-c13c64240cf3",
+                    "link": "",
+                    "name": "Boxing",
+                    "quote": "You can observe a lot by just boxing",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/construction/salutations.m4a",
+                    "category": null,
+                    "id": "c13d65ec-4ce2-4576-8ece-3ce46ee51f85",
+                    "link": "",
+                    "name": "salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "construction",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/art/classical.mp3",
+                    "category": "classical",
+                    "id": "d866a899-7b3a-4c83-982c-731c58885da7",
+                    "link": null,
+                    "name": "Classical",
+                    "quote": "Classical",
+                    "quoteLink": null,
+                    "site": "art",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/strength.mp3",
+                    "category": "strength",
+                    "id": "8a72d3f5-5da6-4682-aced-b2f27f53b13c",
+                    "link": "",
+                    "name": "Strength",
+                    "quote": "One’s greatest weakness is not finding the strength in oneself",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "0a3865ee-ea63-4a3a-a831-89a5c1076e91",
+                    "link": "https://www.instagram.com/bettercallsal.biz/",
+                    "name": "TESTIMONIALS",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "biz",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/rocks/blind.mp3",
+                    "category": "blind-archer",
+                    "id": "fe4b6c36-5a2f-45b0-ae4c-620100fe6265",
+                    "link": null,
+                    "name": "Blind Archer",
+                    "quote": "Blind Archer",
+                    "quoteLink": "https://youtube.com/playlist?list=OLAK5uy_lHoyOGbGk0Ib3jHsACMGFfUXPYyXUfuD0",
+                    "site": "rocks",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "contentId": "/game/level1",
+                    "id": "44f5d24a-699e-41b5-8b13-41caef5b32e5",
+                    "link": null,
+                    "name": "Level 1",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/waiting.mp3",
+                    "category": null,
+                    "id": "b154e8dd-6919-4a5d-98cc-cbb664494267",
+                    "link": null,
+                    "name": "Apple app store",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/rocks/harjo.mp3",
+                    "category": "harjo",
+                    "id": "813b7832-af3d-4160-9d2f-dfab602e57e0",
+                    "link": null,
+                    "name": "Harjo",
+                    "quote": "all hail harjo",
+                    "quoteLink": "https://www.allhailharjo.com/",
+                    "site": "rocks",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/biz/salutations.m4a",
+                    "category": "all",
+                    "id": "24327acc-95dd-421f-9048-65d505205bdd",
+                    "link": "",
+                    "name": "salutations",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "biz",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "b6a678dc-d71d-4851-9954-b785eb25990c",
+                    "link": null,
+                    "name": "office webcam",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "construction",
+                    "video": "_QLX3hugymI"
+                },
+                {
+                    "audio": "/audio/rocks/rbn.mp3",
+                    "category": "rbn",
+                    "id": "d1527276-74af-4cdb-8b4a-a6a1af408638",
+                    "link": null,
+                    "name": "RBN",
+                    "quote": "River Bottom Nightmares",
+                    "quoteLink": null,
+                    "site": "rocks",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": "Biz card",
+                    "id": "e1cd7c79-a595-48e0-b9ef-b70b393a6e82",
+                    "link": null,
+                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "construction",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/yoga.mp3",
+                    "category": "yoga",
+                    "id": "96e75edb-4cb6-4d11-b54a-02748c2fd46d",
+                    "link": "",
+                    "name": "Yoga",
+                    "quote": "Yoga is 90% mental and the other half is physical",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "b05b5006-40f5-49bb-87ff-5a19cc649996",
+                    "link": null,
+                    "name": "office webcam",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "biz",
+                    "video": "_QLX3hugymI"
+                },
+                {
+                    "audio": null,
+                    "category": "e-cards",
+                    "id": "f42bd48d-4720-4996-b762-75b778f8e6f8",
+                    "link": null,
+                    "name": "e-cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "biz",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/world/fitmusic.mp3",
+                    "category": null,
+                    "id": "942c9ac5-b075-4652-8ca7-4e4af86ccc0e",
+                    "link": null,
+                    "name": "Google play store",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/rocks/nature.mp3",
+                    "category": "nature-creeps",
+                    "id": "fd840518-a28e-41bb-90fc-185581c4c30a",
+                    "link": null,
+                    "name": "Nature Creeps Beneath",
+                    "quote": "Nature Creeps Beneath",
+                    "quoteLink": "https://naturecreepsbeneath.com/",
+                    "site": "rocks",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/pilates.mp3",
+                    "category": "pilates",
+                    "id": "95ce77e6-54d2-4b5e-9084-7d8387d27426",
+                    "link": "",
+                    "name": "Pilates",
+                    "quote": "In pilates, you don’t know nothing",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                },
+                {
+                    "audio": null,
+                    "category": null,
+                    "id": "b1b4010d-279e-4a2d-b9fc-6fc7fb9a8759",
+                    "link": null,
+                    "name": "TESTIMONIALS",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "construction",
+                    "video": null
+                },
+                {
+                    "audio": "/audio/fit/drone.mp3",
+                    "category": "sound-bath",
+                    "id": "d6098307-f53e-4275-92af-68365065732d",
+                    "link": "",
+                    "name": "Sound Bath",
+                    "quote": "You’ve got to be very mindful if you don’t know where you are going",
+                    "quoteLink": null,
+                    "site": "fit",
+                    "video": null
+                }
+            ],
+            "text": "SAL ROCKED<br />ME!!!!",
+            "video": "01agkvzV7Jk"
+        },
+        "metaDescription": "Bettercallsal.construction | In Construction Trouble? Better Call Sal! For All Your Construction Needs",
+        "metaKeywords": "Salvatore Barra, Sal Barra, Salvatore, Barra, Yogi Barra, Sound Bath, Yoga, Strength, Meditation, Stretch, Barre, Boxing, Pilates, biz, business, Sound, Engineer, Recording, Better Call Sal, Better Call Saul, Saul, New York, NYC, NY",
+        "metaTitle": "Better Call Sal",
+        "name": "wtf",
+        "rightNav": {
+            "type": "spotify",
+            "objectId": "https://open.spotify.com/embed/playlist/0YiVMTkk2hrl0ZT6qsP5BC?utm_source=generator"
+        }
     }
 }

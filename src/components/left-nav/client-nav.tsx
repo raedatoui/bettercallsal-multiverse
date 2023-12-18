@@ -23,8 +23,8 @@ export const ClientLeftNav = () => {
 
     const [audioPlaying, setAudioPlaying] = useState<string | null>(null);
 
-    const [leftNav, setLeftNav] = useState<Site>(site);
-
+    const [leftNavImage, setLeftNavImage] = useState<string>(site.leftNav.image);
+    const [leftNavText, setLeftNavText] = useState<string>(site.leftNav.text);
     const [navItems, setNavItems] = useState<LeftNavItem[]>(site.leftNav.items);
 
     const handleAudio = (a: string) => {
@@ -84,16 +84,19 @@ export const ClientLeftNav = () => {
 
     useEffect(() => {
         if (animateNav > 0 || animateWtf > 0) {
-            let l = shuffleList(site.leftNav.items);
-            setLeftNav(pickRandom(siteMap));
-            if (selectedSite === 'wtf') l = l.slice(0, 7);
+            let l = shuffleList(site.leftNav.items).slice(0, 7);
+            setLeftNavImage(pickRandom(siteMap).leftNav.image);
+            setLeftNavText(pickRandom(siteMap).leftNav.text);
+
+            // if (selectedSite === 'wtf') l = l.slice(0, 7);
             setNavItems(l);
         }
     }, [animateNav, animateWtf, site]);
 
     useEffect(() => {
         setNavItems(site.leftNav.items);
-        setLeftNav(site);
+        setLeftNavImage(site.leftNav.image);
+        setLeftNavText(site.leftNav.text);
     }, [site]);
 
     return (
@@ -123,8 +126,8 @@ export const ClientLeftNav = () => {
                             <LeftAdd2 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
                                 <LeftContent>
                                     <Image
-                                        src={leftNav.leftNav.image}
-                                        alt={leftNav.leftNav.text}
+                                        src={leftNavImage}
+                                        alt={leftNavText}
                                         fill
                                         sizes="100vw"
                                         onClick={() => handleImageClick()}
@@ -135,7 +138,7 @@ export const ClientLeftNav = () => {
                                 </LeftContent>
                                 <span
                                     dangerouslySetInnerHTML={{
-                                        __html: leftNav.leftNav.text,
+                                        __html: leftNavText,
                                     }}
                                 />
                             </LeftAdd2>

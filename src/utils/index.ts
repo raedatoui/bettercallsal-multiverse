@@ -5,7 +5,6 @@ import useWindowSize from './resize';
 import shuffleList from './shuffle-list';
 import slugify from './slugify';
 import useTimeout from './timeout';
-import siteMapWtfGenerator from './wtf-client-generator';
 
 export { useInterval };
 export { useWindowSize };
@@ -28,10 +27,9 @@ export {
 
 const picker = <T>(l: T[]): T => l[Math.floor(Math.random() * l.length)];
 export { picker };
-export { siteMapWtfGenerator };
 
 export const pickRandom = (siteMap: SiteMap, exclude: SiteKey[] = []) => {
     const options = SiteKeyValidator.options.filter((k) => !exclude.includes(k));
-    const r = options[Math.floor(Math.random() * (options.length - 1))];
+    const r = options[Math.floor(Math.random() * (options.length))];
     return siteMap[r];
 };
