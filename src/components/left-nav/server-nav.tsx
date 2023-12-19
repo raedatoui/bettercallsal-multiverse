@@ -23,13 +23,7 @@ export const ServerLeftNav = () => {
                     <>
                         <LeftNavMenu>
                             {clonedNavItems.map((i) => (
-                                <NavButton
-                                    key={`${i.id}-${i.site}`}
-                                    navItem={i}
-                                    callBack={(l: LeftNavItem) => l}
-                                    width={width}
-                                    fullScreen={false}
-                                />
+                                <NavButton key={`${i.id}-${i.site}`} navItem={i} callBack={(l: LeftNavItem) => l} width={width} fullScreen={false} />
                             ))}
                         </LeftNavMenu>
                         <LeftAdd1>

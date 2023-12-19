@@ -67,6 +67,11 @@ export const Row1 = styled(Row)`
     padding: 10px 0;
 `;
 
+export const Row2 = styled(Row)`
+    background: -moz-linear-gradient(top, #eae41f 0%, #fea100);
+    background: -webkit-gradient(linear, left top, left bottom, from(#fea100), to(#eae41f));
+`;
+
 export const NavButton = styled.div`
     font-family: Pragmatica, Arial, Helvetica, sans-serif;
     font-size: 20px;

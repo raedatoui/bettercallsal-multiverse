@@ -31,7 +31,8 @@ export const ClientLeftNav = () => {
     const handleAudio = (a: string) => {
         // DOC: if anything is playing, and click on any nav, stop it
         buffers.stopAll();
-        if (loaded)
+        if (loaded) {
+            let audioSource;
             if (!audioPlaying) {
                 buffers.play(a, false);
                 setAudioPlaying(a);
@@ -43,11 +44,12 @@ export const ClientLeftNav = () => {
                 buffers.play(a, false);
                 setAudioPlaying(a);
             }
+        }
     };
     const handleNav = (c: LeftNavItem) => {
         if (c.audio) handleAudio(c.audio);
 
-        if (c.path) {
+        if (c.path && c.path !== location.pathname) {
             if (unityInstance) {
                 unityInstance.Quit().then(() => {
                     setUnityInstance(null);

@@ -29,7 +29,9 @@ export const Youtube: FC<YTProps> = ({ contentItem }) => {
                 }}
             />
 
-            {ytScriptLoaded && contentItem && <VideoPlayer contentItem={contentItem} ref={videoPlayerRef} containerRef={containerRef} />}
+            {ytScriptLoaded && contentItem && (
+                <VideoPlayer autoPlay={false} contentItem={contentItem} ref={videoPlayerRef} containerRef={containerRef} />
+            )}
         </PlayerContainer>
     );
 };

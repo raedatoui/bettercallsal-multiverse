@@ -2,10 +2,10 @@ import React, { FC, useEffect, useState, MouseEvent, useCallback } from 'react';
 import { Keyframes } from 'styled-components';
 import { TickerContainer } from '@/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/elements';
-import { EXTERNAL_LINK, tickerList } from '@/constants';
+import { defaultSiteMap, EXTERNAL_LINK } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
-import { Site, SiteKey, BizerkMode } from '@/types';
+import { Site, SiteKey, BizerkMode, SiteValidator } from '@/types';
 import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
 
 interface Props {
@@ -43,6 +43,16 @@ const sliderContent = {
         </>
     ),
 };
+
+const tickerList = Object.entries({
+    biz: defaultSiteMap.biz,
+    rocks: defaultSiteMap.rocks,
+    fit: defaultSiteMap.fit,
+    art: defaultSiteMap.art,
+    games: defaultSiteMap.games,
+    construction: defaultSiteMap.construction,
+});
+
 
 const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide, site, siteKey, index, start, sliderType, sw, bizerkMode }) => {
     const [animation, setAnimation] = useState<Keyframes | null>(null);

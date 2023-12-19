@@ -59,7 +59,14 @@ export const Video = () => {
             {contentItem?.caption && <VideoText ref={titleRef}>{getTile()}</VideoText>}
 
             {ytScriptLoaded && vmScriptLoaded && contentItem && (
-                <VideoPlayer contentItem={contentItem} containerRef={containerRef} titleRef={titleRef} viewsRef={viewsRef} ref={videoPlayerRef} />
+                <VideoPlayer
+                    autoPlay
+                    contentItem={contentItem}
+                    containerRef={containerRef}
+                    titleRef={titleRef}
+                    viewsRef={viewsRef}
+                    ref={videoPlayerRef}
+                />
             )}
 
             {contentItem?.views && (

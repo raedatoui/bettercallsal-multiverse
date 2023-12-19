@@ -10,6 +10,7 @@ interface Props {
     containerRef?: React.RefObject<HTMLDivElement>;
     titleRef?: React.RefObject<HTMLDivElement>;
     viewsRef?: React.RefObject<HTMLDivElement>;
+    autoPlay: boolean;
 }
 
 export interface VideoPlayerType {
@@ -47,7 +48,7 @@ const getContentSize = (
     };
 };
 
-export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, containerRef, viewsRef, titleRef }, ref) => {
+export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, contentItem, containerRef, viewsRef, titleRef }, ref) => {
     const navigate = useNavigate();
     const [yPlayer, setYPlayer] = useState<YTPlayer | null>(null);
     const [vPlayer, setVPlayer] = useState<VimeoPlayer | null>(null);
@@ -102,7 +103,8 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, co
             // the day we have vimeo or others in the left nav, we will need to stop the youtube player.
             if (vPlayer) vPlayer.pause();
             if (yPlayer) {
-                yPlayer.loadVideoById(contentItem.contentId);
+                if (autoPlay) yPlayer.loadVideoById(contentItem.contentId);
+                else yPlayer.cueVideoById(contentItem.contentId);
                 getSize();
             } else
                 new window.YT.Player('player', {
@@ -118,7 +120,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ contentItem, co
                         onReady: (event: Record<string, unknown>) => {
                             const player = event.target as YTPlayer;
                             setYPlayer(player);
-                            player.playVideo();
+                            if (autoPlay) player.playVideo();
                         },
                         onStateChange: (event: Record<string, unknown>) => {
                             if (event.data === window.YT.PlayerState.ENDED) navigate('/');
