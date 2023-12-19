@@ -87,8 +87,6 @@ const Unity: FC<VisibleProps> = () => {
                     setGameProgress(progress * 100);
                 })
                 .then((c) => {
-                    if (game.name === 'Sal-man') buffers.play('/audio/games/take-five.mp3', true);
-                    // else buffers.stopAll();
                     setUnityInstance(c);
                     setGameProgressVisible(false);
                 });

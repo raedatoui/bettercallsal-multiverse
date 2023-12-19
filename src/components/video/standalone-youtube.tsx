@@ -1,7 +1,7 @@
 import Script from 'next/script';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { VideoPlayer, VideoPlayerType } from '@/components/video/player';
-import { PlayerContainer } from '@/styles/sharedstyles';
+import { Caption, PlayerContainer, VideoText } from '@/styles/sharedstyles';
 import { BaseContentItem } from '@/types';
 
 interface YTProps {
@@ -12,6 +12,8 @@ export const Youtube: FC<YTProps> = ({ contentItem }) => {
     const [ytScriptLoaded, setYtScriptLoaded] = useState<boolean>(false);
     const videoPlayerRef = useRef<VideoPlayerType>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         window.onYouTubeIframeAPIReady = () => {
             setYtScriptLoaded(true);
@@ -29,8 +31,11 @@ export const Youtube: FC<YTProps> = ({ contentItem }) => {
                 }}
             />
 
+            <Caption ref={titleRef} className="animatable">
+                {contentItem?.caption ?? ''}
+            </Caption>
             {ytScriptLoaded && contentItem && (
-                <VideoPlayer autoPlay={false} contentItem={contentItem} ref={videoPlayerRef} containerRef={containerRef} />
+                <VideoPlayer autoPlay={false} contentItem={contentItem} titleRef={titleRef} ref={videoPlayerRef} containerRef={containerRef} />
             )}
         </PlayerContainer>
     );

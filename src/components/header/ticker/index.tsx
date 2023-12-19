@@ -5,7 +5,7 @@ import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/eleme
 import { defaultSiteMap, EXTERNAL_LINK } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
-import { Site, SiteKey, BizerkMode, SiteValidator } from '@/types';
+import { Site, SiteKey, BizerkMode, SiteValidator, SiteKeyValidator, SiteMap } from '@/types';
 import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
 
 interface Props {
@@ -15,6 +15,23 @@ interface Props {
     sw: number;
     selectedSlide: number;
 }
+
+type SlidingMap = {
+    biz: Site;
+    rocks: Site;
+    fit: Site;
+    art: Site;
+    games: Site;
+    construction: Site;
+};
+const map = {
+    biz: defaultSiteMap.biz,
+    rocks: defaultSiteMap.rocks,
+    fit: defaultSiteMap.fit,
+    art: defaultSiteMap.art,
+    games: defaultSiteMap.games,
+    construction: defaultSiteMap.construction,
+};
 
 interface SliderProps {
     sliderType: 'top' | 'bottom';
@@ -27,6 +44,7 @@ interface SliderProps {
     selectedSite: SiteKey;
     setSelectedSite: (s: SiteKey) => void;
     bizerkMode: BizerkMode;
+    listLength: number;
 }
 
 const sliders = {
@@ -44,17 +62,19 @@ const sliderContent = {
     ),
 };
 
-const tickerList = Object.entries({
-    biz: defaultSiteMap.biz,
-    rocks: defaultSiteMap.rocks,
-    fit: defaultSiteMap.fit,
-    art: defaultSiteMap.art,
-    games: defaultSiteMap.games,
-    construction: defaultSiteMap.construction,
-});
-
-
-const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide, site, siteKey, index, start, sliderType, sw, bizerkMode }) => {
+const Slider: FC<SliderProps> = ({
+    setSelectedSite,
+    selectedSite,
+    selectedSlide,
+    site,
+    siteKey,
+    index,
+    start,
+    sliderType,
+    sw,
+    bizerkMode,
+    listLength,
+}) => {
     const [animation, setAnimation] = useState<Keyframes | null>(null);
     const [animationDuration, setAnimationDuration] = useState<string>('2s');
     const [translateX, setTranslateX] = useState<number>(sw);
@@ -101,7 +121,7 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
             if (siteKey === selectedSite) selected();
             else reset();
         else if (selectedSlide === 0 && index === 0) slideIn();
-        else if (selectedSlide === 0 && index === tickerList.length - 1) slideOut();
+        else if (selectedSlide === 0 && index === listLength - 1) slideOut();
         else if (selectedSlide === index) slideIn();
         else if (selectedSlide - 1 === index) slideOut();
         else reset();
@@ -131,16 +151,26 @@ const Slider: FC<SliderProps> = ({ setSelectedSite, selectedSite, selectedSlide,
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide }) => {
     const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
     const { bizerkMode } = useAnimationContext();
+
+    const k = Object.entries(map);
+    if (Object.keys(map).indexOf(selectedSite) !== -1) {
+        let f = k[0][0];
+        do {
+            const s = k.shift();
+            if (s) k.push(s);
+            f = k[0][0];
+        } while (f !== selectedSite);
+    }
+
     return (
         <TickerContainer background={backgroundColor}>
             <Baseline>{`bettercallsal.${siteMap.biz?.name}`}</Baseline>
-            {tickerList.map(([s, site], i) => (
+            {k.map(([s, site], i) => (
                 <Slider
                     key={s}
                     start={start}
                     selectedSlide={selectedSlide}
-                    // DOC: defaults sites with showTicker:false to biz
-                    selectedSite={Object.keys(tickerList).indexOf(selectedSite) === -1 ? 'biz' : selectedSite}
+                    selectedSite={selectedSite}
                     setSelectedSite={setSelectedSite}
                     site={site}
                     sw={sw}
@@ -148,6 +178,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                     index={i}
                     sliderType={sliderType}
                     bizerkMode={bizerkMode}
+                    listLength={k.length}
                 />
             ))}
         </TickerContainer>

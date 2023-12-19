@@ -14,9 +14,9 @@
             "slug": "super-sal-bros"
         },
         {
-            "dataUrl": "/unity/salman/salman.data.br",
-            "frameworkUrl": "/unity/salman/salman.framework.js.br",
-            "codeUrl": "/unity/salman/salman.wasm.br",
+            "dataUrl": "/unity/salman/SAL-MAN-WEBGL.data.br",
+            "frameworkUrl": "/unity/salman/SAL-MAN-WEBGL.framework.js.br",
+            "codeUrl": "/unity/salman/SAL-MAN-WEBGL.wasm.br",
             "showBanner": false,
             "assetsUrl": null,
             "thumb": "salman.jpg",

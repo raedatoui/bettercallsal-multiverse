@@ -35,11 +35,13 @@ export const LeftNavMenu1 = styled(LeftNavMenu)`
 export const LeftNavButton = styled(NavButton)`
     margin: 9px 6px 2px 0;
     border-radius: 0 4px 4px 0 !important;
-    text-align: left;
     height: 38px;
     line-height: 38px;
     text-align: left !important;
     padding: 0 6px;
+    user-select: none;  
+    -moz-user-select: none; // Firefox
+    -webkit-user-select: none; // Safari
 
     a {
         color: inherit;
