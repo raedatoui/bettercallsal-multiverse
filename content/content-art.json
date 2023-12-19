@@ -11,7 +11,8 @@
             "year": 1934,
             "width": 1061,
             "height": 582,
-            "site": "art"
+            "site": "art",
+            "slug": "allegory-of-an-american-christmas"
         },
         {
             "name": "Debris of an Automobile Giving Birth to a Blind Horse Biting a Telephone",
@@ -24,7 +25,8 @@
             "year": 1938,
             "width": 1536,
             "height": 864,
-            "site": "art"
+            "site": "art",
+            "slug": "debris-of-an-automobile-giving-birth-to-a-blind-horse-biting-a-telephone"
         },
         {
             "name": "The Enigma of Desire",
@@ -37,7 +39,8 @@
             "year": 1958,
             "width": 1919,
             "height": 1075,
-            "site": "art"
+            "site": "art",
+            "slug": "the-enigma-of-desire"
         },
         {
             "name": "Double-sided Verso (Studio Scene)",
@@ -50,7 +53,8 @@
             "year": 1925,
             "width": 1318,
             "height": 734,
-            "site": "art"
+            "site": "art",
+            "slug": "double-sided-verso-studio-scene"
         },
         {
             "name": "Hairdresser Depressed by the Persistent Good Weather",
@@ -63,7 +67,8 @@
             "year": 1934,
             "width": 1744,
             "height": 986,
-            "site": "art"
+            "site": "art",
+            "slug": "hairdresser-depressed-by-the-persistent-good-weather"
         },
         {
             "name": "Head of a Man with a Child",
@@ -76,7 +81,8 @@
             "year": 1924,
             "width": 1632,
             "height": 910,
-            "site": "art"
+            "site": "art",
+            "slug": "head-of-a-man-with-a-child"
         },
         {
             "name": "Portrait of Gala with a Lobster",
@@ -89,7 +95,8 @@
             "year": 1934,
             "width": 1250,
             "height": 704,
-            "site": "art"
+            "site": "art",
+            "slug": "portrait-of-gala-with-a-lobster"
         },
         {
             "name": "Study of a Foot",
@@ -102,7 +109,8 @@
             "year": 1922,
             "width": 1835,
             "height": 1020,
-            "site": "art"
+            "site": "art",
+            "slug": "study-of-a-foot"
         },
         {
             "name": "Surrealist Warriors for a Four-part Screen, Centre Left",
@@ -115,7 +123,8 @@
             "year": 1934,
             "width": 1808,
             "height": 1018,
-            "site": "art"
+            "site": "art",
+            "slug": "surrealist-warriors-for-a-four-part-screen-centre-left"
         },
         {
             "name": "The Mysterious Sources of Harmony",
@@ -128,7 +137,8 @@
             "year": 1932,
             "width": 1502,
             "height": 856,
-            "site": "art"
+            "site": "art",
+            "slug": "the-mysterious-sources-of-harmony"
         },
         {
             "name": "The Persistence of Memory",
@@ -141,7 +151,8 @@
             "year": 1931,
             "width": 1690,
             "height": 946,
-            "site": "art"
+            "site": "art",
+            "slug": "the-persistence-of-memory"
         },
         {
             "name": "The Sick Child",
@@ -154,7 +165,8 @@
             "year": 1923,
             "width": 1053,
             "height": 587,
-            "site": "art"
+            "site": "art",
+            "slug": "the-sick-child"
         },
         {
             "name": "American Gothic",
@@ -167,7 +179,8 @@
             "year": null,
             "width": 1034,
             "height": 1256,
-            "site": "art"
+            "site": "art",
+            "slug": "american-gothic"
         },
         {
             "name": "Campagne De France",
@@ -180,7 +193,8 @@
             "year": null,
             "width": 1395,
             "height": 661,
-            "site": "art"
+            "site": "art",
+            "slug": "campagne-de-france"
         },
         {
             "name": "Crucifixion",
@@ -193,7 +207,8 @@
             "year": null,
             "width": 844,
             "height": 582,
-            "site": "art"
+            "site": "art",
+            "slug": "crucifixion"
         },
         {
             "name": "Depiction of a Lady Riding In an Early Sidesaddle",
@@ -206,7 +221,8 @@
             "year": null,
             "width": 800,
             "height": 1068,
-            "site": "art"
+            "site": "art",
+            "slug": "depiction-of-a-lady-riding-in-an-early-sidesaddle"
         },
         {
             "name": "Girl With a pearl earring",
@@ -219,7 +235,8 @@
             "year": null,
             "width": 684,
             "height": 820,
-            "site": "art"
+            "site": "art",
+            "slug": "girl-with-a-pearl-earring"
         },
         {
             "name": "Mona Lisa",
@@ -232,7 +249,8 @@
             "year": null,
             "width": 847,
             "height": 1262,
-            "site": "art"
+            "site": "art",
+            "slug": "mona-lisa"
         },
         {
             "name": "Our Lady of Guadalupe",
@@ -245,7 +263,8 @@
             "year": null,
             "width": 385,
             "height": 582,
-            "site": "art"
+            "site": "art",
+            "slug": "our-lady-of-guadalupe"
         },
         {
             "name": "Sacred Heart",
@@ -258,7 +277,8 @@
             "year": null,
             "width": 688,
             "height": 1038,
-            "site": "art"
+            "site": "art",
+            "slug": "sacred-heart"
         },
         {
             "name": "The Battle of San Romano",
@@ -271,7 +291,8 @@
             "year": null,
             "width": 1718,
             "height": 1062,
-            "site": "art"
+            "site": "art",
+            "slug": "the-battle-of-san-romano"
         },
         {
             "name": "The Birth of Venus",
@@ -284,7 +305,8 @@
             "year": null,
             "width": 3006,
             "height": 1878,
-            "site": "art"
+            "site": "art",
+            "slug": "the-birth-of-venus"
         },
         {
             "name": "The Starry Night",
@@ -297,7 +319,8 @@
             "year": null,
             "width": 1035,
             "height": 812,
-            "site": "art"
+            "site": "art",
+            "slug": "the-starry-night"
         },
         {
             "name": "Trés Riches heures du Duc de Berry",
@@ -310,7 +333,8 @@
             "year": null,
             "width": 635,
             "height": 1077,
-            "site": "art"
+            "site": "art",
+            "slug": "tres-riches-heures-du-duc-de-berry"
         }
     ]
 }

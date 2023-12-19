@@ -30,6 +30,6 @@ export { picker };
 
 export const pickRandom = (siteMap: SiteMap, exclude: SiteKey[] = []) => {
     const options = SiteKeyValidator.options.filter((k) => !exclude.includes(k));
-    const r = options[Math.floor(Math.random() * (options.length))];
+    const r = options[Math.floor(Math.random() * options.length)];
     return siteMap[r];
 };

@@ -25,7 +25,7 @@ export const Video = () => {
     const getTile = () => {
         if (contentItem?.site === 'biz' || contentItem?.site === 'rocks')
             return `${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`;
-        if (contentItem?.site === 'fit') return site.leftNav.items.filter((i) => i.category === contentItem?.category ?? '')[0].quote ?? '';
+        // if (contentItem?.site === 'fit') return site.leftNav.items.filter((i) => i.category === contentItem?.category ?? '')[0].quote ?? '';
         return contentItem?.name ?? '';
     };
 
@@ -56,13 +56,13 @@ export const Video = () => {
             />
             <Script id="vimeo-player" src="https://player.vimeo.com/api/player.js" onReady={() => setVmScriptLoaded(true)} />
 
-            {contentItem?.site !== 'fit' && contentItem?.caption !== undefined && <VideoText ref={titleRef}>{getTile()}</VideoText>}
+            {contentItem?.caption && <VideoText ref={titleRef}>{getTile()}</VideoText>}
 
             {ytScriptLoaded && vmScriptLoaded && contentItem && (
                 <VideoPlayer contentItem={contentItem} containerRef={containerRef} titleRef={titleRef} viewsRef={viewsRef} ref={videoPlayerRef} />
             )}
 
-            {(contentItem?.site === 'biz' || contentItem?.site === 'rocks') && contentItem?.views !== undefined && (
+            {contentItem?.views && (
                 <VideoText className="lower" ref={viewsRef}>
                     Views: {contentItem?.views?.toLocaleString('US') ?? ''}
                 </VideoText>

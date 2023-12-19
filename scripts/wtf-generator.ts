@@ -1,24 +1,28 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import sitesData from '../content/sites.next.json';
-import {
-    RightNav,
-    Footer,
-    SiteKeyValidator,
-    SiteMapValidator,
-    SiteMap,
-    Header,
-    LeftNav,
-    LeftNavItem,
-} from '../src/types';
+import { RightNav, Footer, SiteValidator, SiteKeyValidator, Header, LeftNav, LeftNavItem, SiteMap as NextSiteMap } from '../src/types';
 import shuffleList from '../src/utils/shuffle-list';
+import { z } from 'zod';
+
+const SiteMapValidator = z.object({
+    art: SiteValidator,
+    biz: SiteValidator,
+    construction: SiteValidator,
+    fit: SiteValidator,
+    gallery: SiteValidator,
+    games: SiteValidator,
+    rocks: SiteValidator,
+    world: SiteValidator,
+});
+
+type SiteMap = z.infer<typeof SiteMapValidator>;
 
 const defaultSiteMap = SiteMapValidator.parse(sitesData);
 
 const picker = <T>(l: T[]): T => l[Math.floor(Math.random() * l.length)];
 
-
-const createWtf = (siteMap: SiteMap): SiteMap => {
+const createWtf = (siteMap: SiteMap): NextSiteMap => {
     const contentHeaders: string[] = [];
     const footers: Footer[] = [];
     const headers: Header[] = [];
@@ -28,7 +32,6 @@ const createWtf = (siteMap: SiteMap): SiteMap => {
     const metaTitles: string[] = [];
     let leftNavItems: LeftNavItem[] = [];
     const rightNavs: RightNav[] = [];
-
 
     Object.entries(siteMap).forEach(([key, site]) => {
         if (site !== null && key !== 'wtf') {
@@ -72,7 +75,7 @@ const createWtf = (siteMap: SiteMap): SiteMap => {
             image: picker<LeftNav>(leftNavs).image,
             items: shuffleList(leftNavItems),
             text: picker<LeftNav>(leftNavs).text,
-            video: picker<LeftNav>(leftNavs).video,
+            path: picker<LeftNav>(leftNavs).path,
         },
         metaDescription: picker<string>(metaDescriptions),
         metaKeywords: picker<string>(metaKeywords),

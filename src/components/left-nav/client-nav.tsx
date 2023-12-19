@@ -1,18 +1,19 @@
 import Image from 'next/image';
 import Script from 'next/script';
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { LeftAdd1, LeftAdd2, LeftContent, LeftNavContainer, LeftNavMenu } from '@/components/left-nav/elements';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { WindowSizeContext } from '@/providers/window-size';
-import { LeftNavItem, Site } from '@/types';
-import { pickRandom, shuffleList, slugify } from '@/utils';
+import { LeftNavItem } from '@/types';
+import { pickRandom, shuffleList } from '@/utils';
 import NavButton from './button';
 
 export const ClientLeftNav = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const { siteMap, selectedSite, fullScreen, unityInstance, setUnityInstance } = useSiteContext();
     const site = siteMap[selectedSite];
@@ -30,7 +31,6 @@ export const ClientLeftNav = () => {
     const handleAudio = (a: string) => {
         // DOC: if anything is playing, and click on any nav, stop it
         buffers.stopAll();
-
         if (loaded)
             if (!audioPlaying) {
                 buffers.play(a, false);
@@ -44,47 +44,64 @@ export const ClientLeftNav = () => {
                 setAudioPlaying(a);
             }
     };
+    const handleNav = (c: LeftNavItem) => {
+        if (c.audio) handleAudio(c.audio);
 
-    const handleCategory = (l: LeftNavItem) => {
-        // DOC: if unity is playing, and click on any nav, stop unity
-        // DOC: almost every category has audio, so the audioCb will handle it.
-        if (unityInstance && l.category === 'all') {
-            unityInstance.Quit().then(() => {
-                setUnityInstance(null);
-                navigate('/');
-            });
-            return;
-        }
-        // DOC: if all is clicked, navigate home
-        if (l.category === '' || l.category === 'all') navigate('/');
-        // nav names slugs to match content slugs
-        else {
-            const u = l.category === 'e-cards' ? '/e-cards' : `/category/${l.category}`;
-            navigate(u);
+        if (c.path) {
+            if (unityInstance) {
+                unityInstance.Quit().then(() => {
+                    setUnityInstance(null);
+                    if (c.path) navigate(c.path);
+                });
+                return;
+            }
+            navigate(c.path);
         }
     };
 
-    const handleContent = (l: LeftNavItem) => {
-        if (l.contentId) navigate(l.contentId);
-    };
+    // const handleCategory = (l: LeftNavItem) => {
+    //     // DOC: if unity is playing, and click on any nav, stop unity
+    //     // DOC: almost every category has audio, so the audioCb will handle it.
+    //     if (unityInstance && l.category === 'all') {
+    //         unityInstance.Quit().then(() => {
+    //             setUnityInstance(null);
+    //             navigate('/');
+    //         });
+    //         return;
+    //     }
+    //     // DOC: if all is clicked, navigate home
+    //     if (l.category === '' || l.category === 'all') navigate('/');
+    //     // nav names slugs to match content slugs
+    //     else {
+    //         const u = l.category === 'e-cards' ? '/e-cards' : `/category/${l.category}`;
+    //         navigate(u);
+    //     }
+    // };
 
-    const handleVideo = (l: LeftNavItem) => {
-        // DOC: this stops all audio when playing VIDEO content from left nav
-        // for art content: audio is stopped by list
-        // for games content: audio is allowed
-        buffers.stopAll();
-        navigate(`/video/${slugify(l.name)}`);
-    };
+    // const handleContent = (l: LeftNavItem) => {
+    //
+    // };
+    //
+    // const handleVideo = (l: LeftNavItem) => {
+    //     // DOC: this stops all audio when playing VIDEO content from left nav
+    //     // for art content: audio is stopped by list
+    //     // for games content: audio is allowed
+    //     // buffers.stopAll();
+    //     navigate(`/video/${slugify(l.name)}`);
+    // };
 
     const handleImageClick = () => {
-        // DOC: suppress audio sal man
-        if (site.leftNav.audio && selectedSite !== 'games') handleAudio(site.leftNav.audio);
-        if (site.leftNav.video) navigate(`/video/${slugify(site.leftNav.text)}`);
+        // DOC: dont play if we are in a game
+        if (site.leftNav.audio) {
+            if (location.pathname.startsWith('/game')) return;
+            handleAudio(site.leftNav.audio);
+        }
+        if (site.leftNav.path) navigate(site.leftNav.path);
     };
 
     useEffect(() => {
         if (animateNav > 0 || animateWtf > 0) {
-            let l = shuffleList(site.leftNav.items).slice(0, 7);
+            const l = shuffleList(site.leftNav.items).slice(0, 7);
             setLeftNavImage(pickRandom(siteMap).leftNav.image);
             setLeftNavText(pickRandom(siteMap).leftNav.text);
 
@@ -107,20 +124,19 @@ export const ClientLeftNav = () => {
                 {selectedSite !== 'gallery' && (
                     <>
                         <LeftNavMenu>
-                            {navItems
-                                .filter((i) => i.category !== 'load')
-                                .map((i) => (
-                                    <NavButton
-                                        key={i.id}
-                                        navItem={i}
-                                        audioCb={handleAudio}
-                                        navItemCb={handleCategory}
-                                        videoCb={handleVideo}
-                                        contentCb={handleContent}
-                                        width={width}
-                                        fullScreen={fullScreen}
-                                    />
-                                ))}
+                            {navItems.map((i) => (
+                                <NavButton
+                                    key={i.id}
+                                    navItem={i}
+                                    callBack={handleNav}
+                                    // audioCb={handleAudio}
+                                    // navItemCb={handleCategory}
+                                    // videoCb={handleVideo}
+                                    // contentCb={handleContent}
+                                    width={width}
+                                    fullScreen={fullScreen}
+                                />
+                            ))}
                         </LeftNavMenu>
                         <LeftAdd1 className={bizerkMode !== 'off' ? 'bizerk' : ''}>
                             <LeftAdd2 className={bizerkMode !== 'off' ? 'bizerk' : ''}>

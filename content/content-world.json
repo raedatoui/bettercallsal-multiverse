@@ -9,7 +9,8 @@
             "description": "",
             "caption": "",
             "views": 0,
-            "site": "world"
+            "site": "world",
+            "slug": "better-call-sal-word"
         },
         {
             "dataUrl": "/unity/world/lvl1a/world-lvl1.data.br",
@@ -21,7 +22,8 @@
             "name": "World",
             "contentId": "level1",
             "contentType": "game",
-            "site": "world"
+            "site": "world",
+            "slug": "world"
         },
         {
             "dataUrl": "/unity/world/lvl2/world-lvl2.data.gz",
@@ -33,7 +35,8 @@
             "name": "World",
             "contentId": "level2",
             "contentType": "game",
-            "site": "world"
+            "site": "world",
+            "slug": "world"
         }
     ]
 }

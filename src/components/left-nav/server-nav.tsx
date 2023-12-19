@@ -26,10 +26,7 @@ export const ServerLeftNav = () => {
                                 <NavButton
                                     key={`${i.id}-${i.site}`}
                                     navItem={i}
-                                    audioCb={() => null}
-                                    navItemCb={(l: LeftNavItem) => l}
-                                    contentCb={(l: LeftNavItem) => l}
-                                    videoCb={(l: LeftNavItem) => l}
+                                    callBack={(l: LeftNavItem) => l}
                                     width={width}
                                     fullScreen={false}
                                 />

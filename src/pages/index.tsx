@@ -46,28 +46,28 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
             else defaultContent.push(BaseContentItemValidator.parse(i));
         });
     }
-    const site = defaultSiteMap[defaultSite];
-    if (site.leftNav.video)
-        defaultContent.push({
-            name: site.leftNav.text,
-            contentId: site.leftNav.video,
-            contentType: 'youtube',
-            thumb: '',
-            category: '',
-            display: false,
-        } as BaseContentItem);
+    // const site = defaultSiteMap[defaultSite];
+    // if (site.leftNav.video)
+    //     defaultContent.push({
+    //         name: site.leftNav.text,
+    //         contentId: site.leftNav.video,
+    //         contentType: 'youtube',
+    //         thumb: '',
+    //         category: '',
+    //         display: false,
+    //     } as BaseContentItem);
 
-    site.leftNav.items.forEach((i) => {
-        if (i.video)
-            defaultContent.push({
-                name: i.name,
-                contentId: i.video,
-                contentType: 'youtube',
-                thumb: '',
-                category: '',
-                display: false,
-            } as BaseContentItem);
-    });
+    // site.leftNav.items.forEach((i) => {
+    //     if (i.video)
+    //         defaultContent.push({
+    //             name: i.name,
+    //             contentId: i.video,
+    //             contentType: 'youtube',
+    //             thumb: '',
+    //             category: '',
+    //             display: false,
+    //         } as BaseContentItem);
+    // });
 
     return {
         props: {

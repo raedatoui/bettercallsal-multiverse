@@ -9,7 +9,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "34:07:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "sound-bath"
         },
         {
             "name": "Gentle Flow",
@@ -20,7 +21,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "31:42:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "gentle-flow"
         },
         {
             "name": "Vinyasa",
@@ -31,7 +33,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "24:23:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "vinyasa"
         },
         {
             "name": "Strength",
@@ -42,7 +45,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "20:35:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "strength"
         },
         {
             "name": "Meditation",
@@ -53,7 +57,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "28:24:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "meditation"
         },
         {
             "name": "Hip Opener",
@@ -64,7 +69,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "15:48",
-            "site": "fit"
+            "site": "fit",
+            "slug": "hip-opener"
         },
         {
             "name": "Kinstretch",
@@ -75,7 +81,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "30:53:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "kinstretch"
         },
         {
             "name": "Barre",
@@ -86,7 +93,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "23:12",
-            "site": "fit"
+            "site": "fit",
+            "slug": "barre"
         },
         {
             "name": "Pilates",
@@ -97,7 +105,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "16:08",
-            "site": "fit"
+            "site": "fit",
+            "slug": "pilates"
         },
         {
             "name": "Cycling",
@@ -108,7 +117,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "18:38",
-            "site": "fit"
+            "site": "fit",
+            "slug": "cycling"
         },
         {
             "name": "Boxing",
@@ -119,7 +129,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "29:37:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "boxing"
         },
         {
             "name": "Prenatal Pilates",
@@ -130,7 +141,8 @@
             "description": "",
             "caption": "Instructor",
             "time": "41:06:00",
-            "site": "fit"
+            "site": "fit",
+            "slug": "prenatal-pilates"
         }
     ]
 }

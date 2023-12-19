@@ -8,9 +8,10 @@
             "assetsUrl": null,
             "thumb": "supersalbros.jpg",
             "name": "Super Sal Bros",
-            "contentId": "supersalbros",
+            "contentId": "super-sal-bros",
             "contentType": "game",
-            "site": "games"
+            "site": "games",
+            "slug": "super-sal-bros"
         },
         {
             "dataUrl": "/unity/salman/salman.data.br",
@@ -20,9 +21,10 @@
             "assetsUrl": null,
             "thumb": "salman.jpg",
             "name": "Sal-man",
-            "contentId": "salman",
+            "contentId": "sal-man",
             "contentType": "game",
-            "site": "games"
+            "site": "games",
+            "slug": "sal-man"
         },
         {
             "dataUrl": "/unity/salitaire/salitaire_v7.data.br",
@@ -34,7 +36,8 @@
             "name": "Salitaire",
             "contentId": "salitaire",
             "contentType": "game",
-            "site": "games"
+            "site": "games",
+            "slug": "salitaire"
         }
     ]
 }

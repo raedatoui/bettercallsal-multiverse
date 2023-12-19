@@ -49,7 +49,7 @@ interface ProviderProps {
 const fetchData = async (siteKey: SiteKey): Promise<(BaseContentItem | GameContentItem)[]> => {
     const list: (BaseContentItem | GameContentItem)[] = [];
     try {
-        const { data: response } = await axios.get(`${CONTENT_URL}/content/content-${siteKey}.json`);
+        const { data: response } = await axios.get(`${CONTENT_URL}/content-${siteKey}.json`);
 
         const items = z.array(z.unknown()).parse(response.items);
         const siteSchema = z.object({
@@ -87,30 +87,30 @@ const SitesDataProvider: FC<ProviderProps> = ({ children, defaultSite, defaultCo
                 setSelectedSite(s);
                 if (s !== 'construction' && contentMap[s].length === 0)
                     fetchData(s).then((list) => {
-                        const site = defaultSiteMap[s];
-                        if (site?.leftNav.video)
-                            list?.push({
-                                name: site.leftNav.text,
-                                contentId: site.leftNav.video,
-                                contentType: 'youtube',
-                                thumb: '',
-                                category: '',
-                                display: false,
-                                site: selectedSite,
-                            } as BaseContentItem);
-
-                        site?.leftNav.items.forEach((i) => {
-                            if (i.video)
-                                list?.push({
-                                    name: i.name,
-                                    contentId: i.video,
-                                    contentType: 'youtube',
-                                    thumb: '',
-                                    category: '',
-                                    display: false,
-                                    site: selectedSite,
-                                });
-                        });
+                        // const site = defaultSiteMap[s];
+                        // if (site?.leftNav.video)
+                        //     list?.push({
+                        //         name: site.leftNav.text,
+                        //         contentId: site.leftNav.video,
+                        //         contentType: 'youtube',
+                        //         thumb: '',
+                        //         category: '',
+                        //         display: false,
+                        //         site: selectedSite,
+                        //     } as BaseContentItem);
+                        //
+                        // site?.leftNav.items.forEach((i) => {
+                        //     if (i.video)
+                        //         list?.push({
+                        //             name: i.name,
+                        //             contentId: i.video,
+                        //             contentType: 'youtube',
+                        //             thumb: '',
+                        //             category: '',
+                        //             display: false,
+                        //             site: selectedSite,
+                        //         });
+                        // });
 
                         setContentMap({
                             ...contentMap,

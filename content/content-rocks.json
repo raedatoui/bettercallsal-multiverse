@@ -10,7 +10,8 @@
             "caption": "Bass",
             "views": 80,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "my-cerebellum"
         },
         {
             "name": "Switch",
@@ -22,7 +23,8 @@
             "caption": "Guitar",
             "views": 278,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "switch"
         },
         {
             "name": "Nocturnus: Dreaming",
@@ -34,7 +36,8 @@
             "caption": "Guitar",
             "views": 35,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "nocturnus-dreaming"
         },
         {
             "name": "Portrait of a Lady",
@@ -46,7 +49,8 @@
             "caption": "Guitar",
             "views": 222,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "portrait-of-a-lady"
         },
         {
             "name": "Surrounded By Scorpions",
@@ -58,7 +62,8 @@
             "caption": "Bass",
             "views": 198,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "surrounded-by-scorpions"
         },
         {
             "name": "Smoke",
@@ -70,7 +75,8 @@
             "caption": "Guitar",
             "views": 180,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "smoke"
         },
         {
             "name": "A Contagious Absence",
@@ -82,7 +88,8 @@
             "caption": "Guitar",
             "views": 90,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "a-contagious-absence"
         },
         {
             "name": "Capsized and Fathoms Deep",
@@ -94,7 +101,8 @@
             "caption": "Guitar",
             "views": 29,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "capsized-and-fathoms-deep"
         },
         {
             "name": "Raptures of the Deep",
@@ -106,7 +114,8 @@
             "caption": "Guitar",
             "views": 22,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "raptures-of-the-deep"
         },
         {
             "name": "New Fire Ceremony",
@@ -118,7 +127,8 @@
             "caption": "Guitar",
             "views": 54,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "new-fire-ceremony"
         },
         {
             "name": "Milton (Live)",
@@ -130,7 +140,8 @@
             "caption": "Guitar",
             "views": 24,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "milton-live"
         },
         {
             "name": "RBN (Live)",
@@ -142,7 +153,8 @@
             "caption": "Guitar",
             "views": 3,
             "display": true,
-            "site": "rocks"
+            "site": "rocks",
+            "slug": "rbn-live"
         }
     ]
 }

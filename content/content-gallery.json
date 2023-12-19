@@ -9,7 +9,8 @@
             "name": "gallery",
             "contentId": "gallery",
             "contentType": "gallery",
-            "site": "gallery"
+            "site": "gallery",
+            "slug": "gallery"
         }
     ]
 }

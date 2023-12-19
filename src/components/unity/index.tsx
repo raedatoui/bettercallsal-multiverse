@@ -88,7 +88,7 @@ const Unity: FC<VisibleProps> = () => {
                 })
                 .then((c) => {
                     if (game.name === 'Sal-man') buffers.play('/audio/games/take-five.mp3', true);
-                    else buffers.stopAll();
+                    // else buffers.stopAll();
                     setUnityInstance(c);
                     setGameProgressVisible(false);
                 });
@@ -114,7 +114,7 @@ const Unity: FC<VisibleProps> = () => {
     const getGameCb = useCallback((): GameContentItem | null => getGame(contentList), [selectedSite, contentList, gameId]);
 
     useEffect(() => {
-        buffers.stopAll();
+        // buffers.stopAll();
         if (game) {
             clearCanvas();
             if (unityInstance)

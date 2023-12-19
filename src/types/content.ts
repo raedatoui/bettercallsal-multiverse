@@ -16,9 +16,9 @@ export const BaseContentItemValidator = z.object({
     category: z.string().optional(), // TODO: add an enum on this that matches the nav, but not .biz, hm....
     display: z.boolean().default(true),
     site: SiteKeyValidator,
-
+    slug: z.string(),
     description: z.string().optional(),
-    caption: z.string().optional(),
+    caption: z.string().optional().nullable(),
     views: z.number().optional().nullable(),
     year: z.number().optional().nullable(),
     width: z.number().optional().nullable(),
@@ -32,7 +32,7 @@ export const GameContentItemValidator = BaseContentItemValidator.extend({
     frameworkUrl: z.string(),
     codeUrl: z.string(),
     showBanner: z.boolean(),
-    assetsUrl: z.string().optional(),
+    assetsUrl: z.string().nullable(),
 });
 export type GameContentItem = z.infer<typeof GameContentItemValidator>;
 export const GameContentListValidator = z.array(GameContentItemValidator);

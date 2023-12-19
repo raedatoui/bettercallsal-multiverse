@@ -8,17 +8,17 @@ export const findGame = (list: (BaseContentItem | GameContentItem)[], gameId: st
 };
 
 export const findContent = (list: BaseContentItem[], contentId: string): BaseContentItem | null => {
-    const l = list.filter((i) => slugify(i.name) === contentId);
+    const l = list.filter((i) => i.slug === contentId);
     return l.length > 0 ? l[0] : null;
 };
 
 const findAny = (list: (BaseContentItem | GameContentItem)[], contentId: string): BaseContentItem | GameContentItem | null => {
-    const l = list.filter((i) => slugify(i.name) === contentId);
+    const l = list.filter((i) => i.slug === contentId);
     return l.length > 0 ? l[0] : null;
 };
 
 export const findCategory = (site: Site, category: string): LeftNavItem | null => {
-    const n = site.leftNav.items.filter((i) => i.category === category);
+    const n = site.leftNav.items.filter((i) => i.path === `/category/${category}`);
     return n.length > 0 ? n[0] : null;
 };
 

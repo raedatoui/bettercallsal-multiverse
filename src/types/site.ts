@@ -24,15 +24,13 @@ export type Header = z.infer<typeof HeaderValidator>;
 
 export const LeftNavItemValidator = z.object({
     audio: z.string().nullable(),
-    category: z.string().nullable(),
-    contentId: z.string().optional(),
+    path: z.string().nullable(),
     id: z.string().uuid().optional(),
     link: z.string().nullable(),
     name: z.string(),
     quote: z.string().nullable(),
     quoteLink: z.string().nullable(),
     site: SiteKeyValidator,
-    video: z.string().nullable(),
 });
 export type LeftNavItem = z.infer<typeof LeftNavItemValidator>;
 
@@ -41,7 +39,7 @@ export const LeftNavValidator = z.object({
     image: z.string(),
     items: z.array(LeftNavItemValidator),
     text: z.string(),
-    video: z.string().nullable(),
+    path: z.string().nullable(),
 });
 export type LeftNav = z.infer<typeof LeftNavValidator>;
 
@@ -88,6 +86,7 @@ export const SiteMapValidator = z.object({
     world: SiteValidator,
     wtf: SiteValidator,
 });
+
 export type SiteMap = Record<SiteKey, Site>;
 
 export const BizerkModeValidator = z.enum(['off', 'on']);

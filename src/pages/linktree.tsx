@@ -39,28 +39,6 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
         if (defaultSite === 'games' || defaultSite === 'gallery') defaultContent = GameContentListValidator.parse(list.items);
         else defaultContent = BaseContentListValidator.parse(list.items);
     }
-    const site = defaultSiteMap[defaultSite];
-    if (site.leftNav.video)
-        defaultContent.push({
-            name: site.leftNav.text,
-            contentId: site.leftNav.video,
-            contentType: 'youtube',
-            thumb: '',
-            category: '',
-            display: false,
-        } as BaseContentItem);
-
-    site.leftNav.items.forEach((i) => {
-        if (i.video)
-            defaultContent.push({
-                name: i.name,
-                contentId: i.video,
-                contentType: 'youtube',
-                thumb: '',
-                category: '',
-                display: false,
-            } as BaseContentItem);
-    });
 
     return {
         props: {

@@ -55,9 +55,7 @@ const HeaderComponent: FC = () => {
             const tl =
                 selectedSite === 'wtf'
                     ? /* eslint-disable indent, @typescript-eslint/indent */
-                      betterCallClickWtf(selectedSite, [
-                          [animateWtf, setAnimateWtf],
-                      ])
+                      betterCallClickWtf(selectedSite, [[animateWtf, setAnimateWtf]])
                     : betterCallClick(selectedSite, animateGrid, setAnimateGrid);
             /* eslint-enable indent, @typescript-eslint/indent */
             setTl(tl);
