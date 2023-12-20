@@ -5,7 +5,7 @@ import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/eleme
 import { defaultSiteMap, EXTERNAL_LINK } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
-import { Site, SiteKey, BizerkMode, SiteValidator, SiteKeyValidator, SiteMap } from '@/types';
+import { Site, SiteKey, BizerkMode } from '@/types';
 import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
 
 interface Props {
@@ -16,14 +16,6 @@ interface Props {
     selectedSlide: number;
 }
 
-type SlidingMap = {
-    biz: Site;
-    rocks: Site;
-    fit: Site;
-    art: Site;
-    games: Site;
-    construction: Site;
-};
 const map = {
     biz: defaultSiteMap.biz,
     rocks: defaultSiteMap.rocks,
@@ -42,7 +34,6 @@ interface SliderProps {
     siteKey: string;
     index: number;
     selectedSite: SiteKey;
-    setSelectedSite: (s: SiteKey) => void;
     bizerkMode: BizerkMode;
     listLength: number;
 }
@@ -62,19 +53,7 @@ const sliderContent = {
     ),
 };
 
-const Slider: FC<SliderProps> = ({
-    setSelectedSite,
-    selectedSite,
-    selectedSlide,
-    site,
-    siteKey,
-    index,
-    start,
-    sliderType,
-    sw,
-    bizerkMode,
-    listLength,
-}) => {
+const Slider: FC<SliderProps> = ({ selectedSite, selectedSlide, site, siteKey, index, start, sliderType, sw, bizerkMode, listLength }) => {
     const [animation, setAnimation] = useState<Keyframes | null>(null);
     const [animationDuration, setAnimationDuration] = useState<string>('2s');
     const [translateX, setTranslateX] = useState<number>(sw);
@@ -127,16 +106,15 @@ const Slider: FC<SliderProps> = ({
         else reset();
     }, [selectedSlide, selectedSite, start, index, selected, reset, slideIn, slideOut]);
 
-    const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-        if (!EXTERNAL_LINK) {
-            event.stopPropagation();
-            if (site) setSelectedSite(site.name);
-        }
-    };
+    // const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    //     if (!EXTERNAL_LINK) {
+    //         event.stopPropagation();
+    //         if (site) setSelectedSite(site.name);
+    //     }
+    // };
 
     return (
         <SliderComponent
-            onClick={handleClick}
             href={`https://bettercallsal.${site?.name}`}
             animation={animation}
             animationDuration={animationDuration}
@@ -149,10 +127,12 @@ const Slider: FC<SliderProps> = ({
 };
 
 const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSlide }) => {
-    const { siteMap, selectedSite, setSelectedSite } = useSiteContext();
+    const { siteMap, selectedSite } = useSiteContext();
     const { bizerkMode } = useAnimationContext();
 
     const k = Object.entries(map);
+    let initialSite = selectedSite;
+
     if (Object.keys(map).indexOf(selectedSite) !== -1) {
         let f = k[0][0];
         do {
@@ -160,7 +140,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
             if (s) k.push(s);
             f = k[0][0];
         } while (f !== selectedSite);
-    }
+    } else initialSite = 'biz'; // DOC: invisible tickers default to biz
 
     return (
         <TickerContainer background={backgroundColor}>
@@ -170,8 +150,7 @@ const Ticker: FC<Props> = ({ backgroundColor, sliderType, start, sw, selectedSli
                     key={s}
                     start={start}
                     selectedSlide={selectedSlide}
-                    selectedSite={selectedSite}
-                    setSelectedSite={setSelectedSite}
+                    selectedSite={initialSite}
                     site={site}
                     sw={sw}
                     siteKey={s}

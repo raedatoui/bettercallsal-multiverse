@@ -7,7 +7,7 @@
             "thumb": "sound_bath.jpg",
             "category": "sound-bath",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "34:07:00",
             "site": "fit",
             "slug": "sound-bath"
@@ -19,7 +19,7 @@
             "thumb": "yoga_gentle_flow.jpg",
             "category": "yoga",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "31:42:00",
             "site": "fit",
             "slug": "gentle-flow"
@@ -31,7 +31,7 @@
             "thumb": "yoga_vinyasa.jpg",
             "category": "yoga",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "24:23:00",
             "site": "fit",
             "slug": "vinyasa"
@@ -43,7 +43,7 @@
             "thumb": "strength.jpg",
             "category": "strength",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "20:35:00",
             "site": "fit",
             "slug": "strength"
@@ -55,7 +55,7 @@
             "thumb": "meditation.jpg",
             "category": "meditation",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "28:24:00",
             "site": "fit",
             "slug": "meditation"
@@ -67,7 +67,7 @@
             "thumb": "stretch_hip_opener.jpg",
             "category": "stretch",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "15:48",
             "site": "fit",
             "slug": "hip-opener"
@@ -79,7 +79,7 @@
             "thumb": "stretch_kinstretch.jpg",
             "category": "stretch",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "30:53:00",
             "site": "fit",
             "slug": "kinstretch"
@@ -91,7 +91,7 @@
             "thumb": "barre.jpg",
             "category": "barre",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "23:12",
             "site": "fit",
             "slug": "barre"
@@ -103,7 +103,7 @@
             "thumb": "pilates.jpg",
             "category": "pilates",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "16:08",
             "site": "fit",
             "slug": "pilates"
@@ -115,7 +115,7 @@
             "thumb": "cycling.jpg",
             "category": "cycling",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "18:38",
             "site": "fit",
             "slug": "cycling"
@@ -127,7 +127,7 @@
             "thumb": "boxing.jpg",
             "category": "boxing",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "29:37:00",
             "site": "fit",
             "slug": "boxing"
@@ -139,7 +139,7 @@
             "thumb": "prenatal_pilates.jpg",
             "category": "pilates",
             "description": "",
-            "caption": "Instructor",
+            "caption": null,
             "time": "41:06:00",
             "site": "fit",
             "slug": "prenatal-pilates"

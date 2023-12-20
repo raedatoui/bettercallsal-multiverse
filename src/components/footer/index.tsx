@@ -106,7 +106,7 @@ const LawBreakers = () => {
 
     return (
         <>
-            {selectedSite !== 'gallery' && !fullScreen && (
+            {!fullScreen && (
                 <LawBreakersContainer>
                     <LawBreakersP ref={ref} className={`better-call-title animatable ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                         <Image
@@ -146,7 +146,7 @@ const LawBreakers = () => {
                     </LawBreakersP>
                 </LawBreakersContainer>
             )}
-            {selectedSite !== 'gallery' && !fullScreen && (
+            {!fullScreen && (
                 <FooterContainer className={bizerkMode !== 'off' ? 'bizerk' : ''}>
                     <h2>
                         <a href="tel:+19173229246">• NOT TOLL FREE (800) CALL-SAL •</a>

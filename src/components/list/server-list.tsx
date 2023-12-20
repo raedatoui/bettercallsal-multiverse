@@ -29,7 +29,7 @@ export const ServerList = () => {
                 {contentList
                     .filter((i) => i.display)
                     .map((i) => (
-                        <Link key={i.contentId} href={`/${URL_MAP[i.site]}/${slugify(i.name)}`} id={slugify(i.name)}>
+                        <Link key={i.contentId} href={`/${URL_MAP[i.site]}/${i.slug}`} id={i.slug}>
                             <ContentItem>
                                 <Image
                                     alt={i.name}

@@ -68,8 +68,7 @@ export const Row1 = styled(Row)`
 `;
 
 export const Row2 = styled(Row)`
-    background: -moz-linear-gradient(top, #eae41f 0%, #fea100);
-    background: -webkit-gradient(linear, left top, left bottom, from(#fea100), to(#eae41f));
+    background: linear-gradient(to bottom, #fea100, #eae41f);
 `;
 
 export const NavButton = styled.div`
@@ -81,8 +80,7 @@ export const NavButton = styled.div`
     color: #232323;
     text-align: center;
     cursor: pointer;
-    background: -moz-linear-gradient(top, #eae41f 0%, #fea100);
-    background: -webkit-gradient(linear, left top, left bottom, from(#eae41f), to(#fea100));
+    background: linear-gradient(to bottom, #eae41f, #fea100);
     border-radius: 7px;
     border: 1px solid #fff;
     box-shadow:
@@ -92,11 +90,9 @@ export const NavButton = styled.div`
         0 -1px 0 rgba(000, 000, 000, 0.4),
         0 1px 0 rgba(255, 255, 255, 0.3);
 
-    &:hover,
-    &.selected {
+    &:hover {
         cursor: pointer;
-        background: -moz-linear-gradient(top, #d1cb06 0%, #e58800);
-        background: -webkit-gradient(linear, left top, left bottom, from(#d1cb06), to(#e58800));
+        background: linear-gradient(to bottom, #d1cb06, #e58800);
         border: 1px solid #fff;
     }
 `;

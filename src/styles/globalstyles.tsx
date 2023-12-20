@@ -72,6 +72,13 @@ const globalStyleWrapper = (pageType: string) => createGlobalStyle`
   .TrackList_backgroundColorContainer__jrWKP.EmbedAudioWidget_trackListContainer__ETJy2 {
     background-color: #F13400 !important;
   }
+  
+  #unity-canvas {
+      background: #231f20;
+      display: none;
+      width: 640px;
+      height: 480px;
+  }
 `;
 
 const GlobalStyle = globalStyleWrapper('home');

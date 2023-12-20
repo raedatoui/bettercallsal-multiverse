@@ -8,7 +8,7 @@
             "thumb": "gallery-left.png",
             "name": "gallery",
             "contentId": "gallery",
-            "contentType": "gallery",
+            "contentType": "game",
             "site": "gallery",
             "slug": "gallery",
             "assetsUrl": null

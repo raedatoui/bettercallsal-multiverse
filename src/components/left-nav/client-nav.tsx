@@ -15,7 +15,7 @@ export const ClientLeftNav = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { siteMap, selectedSite, fullScreen, unityInstance, setUnityInstance } = useSiteContext();
+    const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const site = siteMap[selectedSite];
 
     const { bizerkMode, animateNav, animateWtf } = useAnimationContext();
@@ -31,8 +31,7 @@ export const ClientLeftNav = () => {
     const handleAudio = (a: string) => {
         // DOC: if anything is playing, and click on any nav, stop it
         buffers.stopAll();
-        if (loaded) {
-            let audioSource;
+        if (loaded)
             if (!audioPlaying) {
                 buffers.play(a, false);
                 setAudioPlaying(a);
@@ -44,53 +43,12 @@ export const ClientLeftNav = () => {
                 buffers.play(a, false);
                 setAudioPlaying(a);
             }
-        }
     };
     const handleNav = (c: LeftNavItem) => {
         if (c.audio) handleAudio(c.audio);
 
-        if (c.path && c.path !== location.pathname) {
-            if (unityInstance) {
-                unityInstance.Quit().then(() => {
-                    setUnityInstance(null);
-                    if (c.path) navigate(c.path);
-                });
-                return;
-            }
-            navigate(c.path);
-        }
+        if (c.path && c.path !== location.pathname) navigate(c.path);
     };
-
-    // const handleCategory = (l: LeftNavItem) => {
-    //     // DOC: if unity is playing, and click on any nav, stop unity
-    //     // DOC: almost every category has audio, so the audioCb will handle it.
-    //     if (unityInstance && l.category === 'all') {
-    //         unityInstance.Quit().then(() => {
-    //             setUnityInstance(null);
-    //             navigate('/');
-    //         });
-    //         return;
-    //     }
-    //     // DOC: if all is clicked, navigate home
-    //     if (l.category === '' || l.category === 'all') navigate('/');
-    //     // nav names slugs to match content slugs
-    //     else {
-    //         const u = l.category === 'e-cards' ? '/e-cards' : `/category/${l.category}`;
-    //         navigate(u);
-    //     }
-    // };
-
-    // const handleContent = (l: LeftNavItem) => {
-    //
-    // };
-    //
-    // const handleVideo = (l: LeftNavItem) => {
-    //     // DOC: this stops all audio when playing VIDEO content from left nav
-    //     // for art content: audio is stopped by list
-    //     // for games content: audio is allowed
-    //     // buffers.stopAll();
-    //     navigate(`/video/${slugify(l.name)}`);
-    // };
 
     const handleImageClick = () => {
         // DOC: dont play if we are in a game
@@ -127,17 +85,7 @@ export const ClientLeftNav = () => {
                     <>
                         <LeftNavMenu>
                             {navItems.map((i) => (
-                                <NavButton
-                                    key={i.id}
-                                    navItem={i}
-                                    callBack={handleNav}
-                                    // audioCb={handleAudio}
-                                    // navItemCb={handleCategory}
-                                    // videoCb={handleVideo}
-                                    // contentCb={handleContent}
-                                    width={width}
-                                    fullScreen={fullScreen}
-                                />
+                                <NavButton key={i.id} navItem={i} callBack={handleNav} width={width} fullScreen={fullScreen} />
                             ))}
                         </LeftNavMenu>
                         <LeftAdd1 className={bizerkMode !== 'off' ? 'bizerk' : ''}>

@@ -1,75 +1,46 @@
 import Script from 'next/script';
-import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CDN } from '@/constants';
-import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
-import { ButtonBar, GameCanvas, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, VisibleProps } from '@/types';
+import { ButtonBar, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
+import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, UnityInstance } from '@/types';
 import { findGame, useWindowSize } from '@/utils';
 
-const Unity: FC<VisibleProps> = () => {
+const Unity = () => {
     const navigate = useNavigate();
     const { gameId } = useParams<{ gameId: string }>();
+    const canvasRef = document.getElementById('unity-canvas') as HTMLCanvasElement;
 
-    const { contentMap, selectedSite, loading, fullScreen, setFullScreen, unityInstance, setUnityInstance } = useSiteContext();
+    const { contentMap, selectedSite, loading, fullScreen, setFullScreen } = useSiteContext();
     const contentList = contentMap[selectedSite];
-    const { buffers } = useContext(SoundContext);
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
     const [game, setGame] = useState<GameContentItem | null>(null);
-    const [gamesPosterSize, setGamesPosterSize] = useState<ContentSize>({
-        width: 640,
-        height: 480,
-        left: 0,
-        top: 0,
-    });
     const [gameProgress, setGameProgress] = useState<number>(0);
     const [gameProgressVisible, setGameProgressVisible] = useState<boolean>(false);
 
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
 
     const windowSize = useWindowSize();
 
     const getContentSize = useCallback((desiredSize: Size): ContentSize => {
-        let height: number;
         let width: number;
-
         const workingWidth = document?.getElementById('middle')?.getBoundingClientRect().width ?? 0;
         const workingHeight = document?.getElementById('content-row')?.getBoundingClientRect().height ?? 0;
 
-        if (workingWidth > workingHeight) {
-            height = workingHeight;
-            width = (height * desiredSize.width) / desiredSize.height;
-        } else {
-            width = workingWidth;
-            height = (width * desiredSize.height) / desiredSize.width;
-        }
-        if (width > workingWidth) {
-            width = workingWidth;
-            height = (width * desiredSize.height) / desiredSize.width;
-        }
+        if (workingWidth > workingHeight) width = (workingHeight * desiredSize.width) / desiredSize.height;
+        else width = workingWidth;
 
-        // return { width, height, left: (workingWidth - width) / 2, top: (workingHeight - height) / 2 };
+        if (width > workingWidth) width = workingWidth;
 
-        // this was an attempt at full bleeing the game
         return {
             width: Math.floor(width),
             height: Math.floor(workingHeight),
             left: (workingWidth - width) / 2,
             top: 0,
         };
-        // return { width: 900, height: 600, left: 0, top: 0};
     }, []);
-
-    const handleStop = useCallback(() => {
-        buffers.stopAll();
-        if (unityInstance)
-            unityInstance.Quit().then(() => {
-                setUnityInstance(null);
-                navigate('/');
-            });
-    }, [navigate, unityInstance]);
 
     const loadGame = useCallback(() => {
         setGameProgress(0);
@@ -81,6 +52,9 @@ const Unity: FC<VisibleProps> = () => {
                 frameworkUrl: `${CDN}${game.frameworkUrl}`,
                 codeUrl: `${CDN}${game.codeUrl}`,
                 streamingAssetsUrl: `${CDN}${game.assetsUrl}`,
+                companyName: 'Better Call Sal',
+                productVersion: '1.0',
+                productName: game.name,
             };
             window
                 .createUnityInstance(document.getElementById('unity-canvas'), obj, (progress) => {
@@ -94,8 +68,8 @@ const Unity: FC<VisibleProps> = () => {
     }, [game]);
 
     const clearCanvas = useCallback(() => {
-        if (canvasRef.current) {
-            const context = canvasRef.current.getContext('webgl2');
+        if (canvasRef) {
+            const context = canvasRef.getContext('webgl2');
             context?.clear(0);
         }
     }, []);
@@ -112,7 +86,6 @@ const Unity: FC<VisibleProps> = () => {
     const getGameCb = useCallback((): GameContentItem | null => getGame(contentList), [selectedSite, contentList, gameId]);
 
     useEffect(() => {
-        // buffers.stopAll();
         if (game) {
             clearCanvas();
             if (unityInstance)
@@ -123,30 +96,42 @@ const Unity: FC<VisibleProps> = () => {
             else loadGame();
         }
 
-        if (selectedSite !== 'games' && unityInstance)
-            unityInstance.Quit().then(() => {
-                setUnityInstance(null);
-            });
+        if (selectedSite !== 'games' && unityInstance) {
+            if (canvasRef) {
+                const context = canvasRef.getContext('webgl2');
+                context?.clear(0);
+                canvasRef.style.display = 'none';
+            }
+            if (unityInstance) unityInstance.Quit();
+        }
     }, [selectedSite, game, clearCanvas, loadGame]);
 
     useEffect(() => {
+        const r = document.getElementById('content-row');
+        const rect = r?.getBoundingClientRect();
         if (game) {
-            const desired = { width: 1000, height: 600 };
-            if (game.contentId === 'supersalbros') desired.width = 900;
-            if (game.contentId === 'salman') desired.width = 600;
-            setGamesPosterSize(getContentSize(desired));
-        }
-        if (game && game.contentId === 'gallery') {
-            const r = document.getElementById('content-row');
-            if (r) {
-                r.style.overflow = 'hidden';
-                const rect = r.getBoundingClientRect();
-                setGamesPosterSize({
-                    top: 0,
-                    left: 0,
-                    width: rect.width,
-                    height: rect.height,
-                });
+            if (game.contentId === 'gallery' && selectedSite === 'gallery') {
+                if (r && rect) {
+                    r.style.overflow = 'hidden';
+                    if (canvasRef) {
+                        canvasRef.style.width = `${rect.width}px`;
+                        canvasRef.style.height = `${rect.height}px`;
+                        canvasRef.style.marginLeft = '0px';
+                        canvasRef.style.display = 'block';
+                    }
+                }
+                return;
+            }
+            const desired = { width: rect?.width ?? 1000, height: rect?.height ?? 600 };
+            if (game.contentId === 'super-sal-bros') desired.width = 900;
+            if (game.contentId === 'sal-man') desired.width = 600;
+
+            const props = getContentSize(desired);
+            if (canvasRef) {
+                canvasRef.style.width = `${props.width}px`;
+                canvasRef.style.height = `${props.height}px`;
+                canvasRef.style.marginLeft = `${props.left}px`;
+                canvasRef.style.display = 'block';
             }
         }
     }, [windowSize, game, getContentSize]);
@@ -155,12 +140,12 @@ const Unity: FC<VisibleProps> = () => {
         const r = document.getElementById('content-row');
         if (r) {
             const rect = r.getBoundingClientRect();
-            setGamesPosterSize({
-                top: 0,
-                left: 0,
-                width: rect.width,
-                height: rect.height,
-            });
+            if (canvasRef) {
+                canvasRef.style.width = `${rect.width}px`;
+                canvasRef.style.height = `${rect.height}px`;
+                canvasRef.style.marginLeft = '0px';
+                canvasRef.style.display = 'block';
+            }
         }
     }, [fullScreen]);
 
@@ -176,8 +161,22 @@ const Unity: FC<VisibleProps> = () => {
         if (selectedSite === 'gallery') setFullScreen(true);
     };
 
+    useEffect(() => {
+        if (canvasRef) canvasRef.style.display = 'block';
+        return () => {
+            if (canvasRef) {
+                const context = canvasRef.getContext('webgl2');
+                context?.clear(0);
+                canvasRef.style.display = 'none';
+            }
+            if (unityInstance) unityInstance.Quit();
+        };
+    }, [unityInstance, canvasRef]);
+
     let loader = selectedSite === 'gallery' ? 'gallery' : 'game';
     if (selectedSite === 'world') loader = 'world';
+
+    if (canvasRef) canvasRef.addEventListener('click', handleClick);
 
     return (
         <>
@@ -201,18 +200,9 @@ const Unity: FC<VisibleProps> = () => {
                 </LoadingBar>
             )}
 
-            <GameCanvas
-                ref={canvasRef}
-                id="unity-canvas"
-                height={gamesPosterSize.height}
-                width={gamesPosterSize.width}
-                left={gamesPosterSize.left}
-                onClick={handleClick}
-                className={scriptLoaded && game ? 'on' : 'off'}
-            />
-            {game && game.contentId !== 'gallery' && (
+            {game && selectedSite !== 'gallery' && (
                 <ButtonBar>
-                    <StopButton onClick={() => handleStop()}>[x]</StopButton>
+                    <StopButton onClick={() => navigate('/')}>[x]</StopButton>
                 </ButtonBar>
             )}
         </>

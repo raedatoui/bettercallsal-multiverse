@@ -39,7 +39,7 @@ export const URL_MAP: Record<SiteKey, string> = {
     fit: 'video',
     art: 'art',
     construction: '',
-    gallery: '',
+    gallery: 'game',
     wtf: '',
     world: 'video',
 };

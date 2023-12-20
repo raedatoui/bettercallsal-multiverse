@@ -25,8 +25,7 @@ export const Video = () => {
     const getTile = () => {
         if (contentItem?.site === 'biz' || contentItem?.site === 'rocks')
             return `${contentItem?.caption ?? ''}: ${site.header.name1} ${site.header.name2}`;
-        // if (contentItem?.site === 'fit') return site.leftNav.items.filter((i) => i.category === contentItem?.category ?? '')[0].quote ?? '';
-        return contentItem?.name ?? '';
+        return contentItem?.caption ?? '';
     };
 
     const stopVideo = useCallback(() => {

@@ -1,9 +1,9 @@
 {
     "items": [
         {
-            "dataUrl": "/unity/mario/supersalbros-v7.data.br",
-            "frameworkUrl": "/unity/mario/supersalbros-v7.framework.js.br",
-            "codeUrl": "/unity/mario/supersalbros-v7.wasm.br",
+            "dataUrl": "/unity/mario/supersalbros-v8.data.br",
+            "frameworkUrl": "/unity/mario/supersalbros-v8.framework.js.br",
+            "codeUrl": "/unity/mario/supersalbros-v8.wasm.br",
             "showBanner": false,
             "assetsUrl": null,
             "thumb": "supersalbros.jpg",

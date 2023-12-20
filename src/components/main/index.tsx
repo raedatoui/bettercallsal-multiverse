@@ -56,7 +56,7 @@ const MainContainerInner = () => {
                     },
                     {
                         path: 'game/:gameId',
-                        element: <Unity visible />,
+                        element: <Unity />,
                         loader: ({ request }) => {
                             trackContent(request.url, 'game');
                             return true;

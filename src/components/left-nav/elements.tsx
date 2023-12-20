@@ -39,7 +39,7 @@ export const LeftNavButton = styled(NavButton)`
     line-height: 38px;
     text-align: left !important;
     padding: 0 6px;
-    user-select: none;  
+    user-select: none;
     -moz-user-select: none; // Firefox
     -webkit-user-select: none; // Safari
 

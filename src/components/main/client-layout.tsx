@@ -29,8 +29,24 @@ const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[])
         if (visible) return <Youtube contentItem={list[0]} />;
         return <div></div>;
     }
-    if (site === 'gallery') return <Unity visible={visible} />;
-    return <ClientList visible={visible} />;
+
+    if (site === 'gallery')
+        return (
+            <>
+                <canvas id="unity-canvas" />
+                <Unity />
+            </>
+        );
+    // DOC: the canvas cant be part of the component if we want to manage unityInstance and call Quit on it.
+    // instead of the nav and this component kisten to location changes and cleanup accordingly,
+    // the clean is encapsulated in the unity component, but since cleanup is running when the component is unmounted,
+    // the Quit crashed unity. maybe use portals here. whatever. a single canvas placeholder is actually better.
+    return (
+        <>
+            <ClientList visible={visible} />
+            <canvas id="unity-canvas" />
+        </>
+    );
 };
 
 const ClientLayout = () => {
@@ -62,7 +78,7 @@ const ClientLayout = () => {
 
     useEffect(() => {
         if (keyPressed === 'Escape' && fullScreen) setFullScreen(false);
-        if (keyPressed && keyMap[keyPressed] !== undefined && selectedSite !== 'gallery') {
+        if (keyPressed && keyMap[keyPressed] !== undefined) {
             setSelectedSite(keyMap[keyPressed]);
             setFullScreen(false);
             window.scrollTo(0, 0);
