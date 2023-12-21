@@ -47,7 +47,7 @@ const fetchData = async (siteKey: SiteKey): Promise<(BaseContentItem | GameConte
 
         items.forEach((i: unknown) => {
             const { contentType } = siteSchema.parse(i);
-            if (contentType === 'game' || contentType === 'gallery') list.push(GameContentItemValidator.parse(i));
+            if (contentType === 'game') list.push(GameContentItemValidator.parse(i));
             else list.push(BaseContentItemValidator.parse(i));
         });
         return list;

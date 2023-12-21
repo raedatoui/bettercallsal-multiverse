@@ -85,8 +85,8 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
                                 if (selectedSite === 'art') buffers.play('/audio/art/pavane.mp3', true);
                             }}
                             key={i.contentId}
-                            to={`/${URL_MAP[i.site]}/${slugify(i.name)}`}
-                            id={slugify(i.name)}
+                            to={`/${URL_MAP[i.contentType]}/${i.slug}`}
+                            id={i.slug}
                         >
                             <ContentItem>
                                 <Image
@@ -101,6 +101,11 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
                                         height: 'auto',
                                     }}
                                 />
+                                {i.desktopOnly && (
+                                    <div className="ribbon">
+                                        <span>DESKTOP ONLY</span>
+                                    </div>
+                                )}
                                 <ContentItemTitle>{i.name}</ContentItemTitle>
                             </ContentItem>
                         </RouterLink>

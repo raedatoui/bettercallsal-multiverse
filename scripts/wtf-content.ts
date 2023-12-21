@@ -6,6 +6,7 @@ import fit from '../content/content-fit.json';
 import gallery from '../content/content-gallery.json';
 import games from '../content/content-games.json';
 import rocks from '../content/content-rocks.json';
+import world from '../content/content-world.json';
 
 // add site to each item
 // const artContent = {
@@ -32,7 +33,7 @@ import rocks from '../content/content-rocks.json';
 // };
 //
 const mash = {
-    items: [...art.items, ...biz.items, ...fit.items, ...gallery.items, ...games.items, ...rocks.items],
+    items: [...art.items, ...biz.items, ...fit.items, ...gallery.items, ...games.items, ...rocks.items, ...world.items],
 };
 
 // writeFileSync(join(__dirname, '../', 'content', 'content-art.json'), JSON.stringify(artContent, undefined, 4), {

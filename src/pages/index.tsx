@@ -42,33 +42,10 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<PageProps>>
         });
         items.forEach((i: unknown) => {
             const { contentType } = siteSchema.parse(i);
-            if (contentType === 'game' || contentType === 'gallery') defaultContent.push(GameContentItemValidator.parse(i));
+            if (contentType === 'game') defaultContent.push(GameContentItemValidator.parse(i));
             else defaultContent.push(BaseContentItemValidator.parse(i));
         });
     }
-    // const site = defaultSiteMap[defaultSite];
-    // if (site.leftNav.video)
-    //     defaultContent.push({
-    //         name: site.leftNav.text,
-    //         contentId: site.leftNav.video,
-    //         contentType: 'youtube',
-    //         thumb: '',
-    //         category: '',
-    //         display: false,
-    //     } as BaseContentItem);
-
-    // site.leftNav.items.forEach((i) => {
-    //     if (i.video)
-    //         defaultContent.push({
-    //             name: i.name,
-    //             contentId: i.video,
-    //             contentType: 'youtube',
-    //             thumb: '',
-    //             category: '',
-    //             display: false,
-    //         } as BaseContentItem);
-    // });
-
     return {
         props: {
             defaultSite,

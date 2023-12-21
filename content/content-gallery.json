@@ -4,14 +4,14 @@
             "dataUrl": "/unity/gallery/GALLERYv2.data.br",
             "frameworkUrl": "/unity/gallery/GALLERYv2.framework.js.br",
             "codeUrl": "/unity/gallery/GALLERYv2.wasm.br",
-            "showBanner": false,
             "thumb": "gallery-left.png",
             "name": "gallery",
             "contentId": "gallery",
             "contentType": "game",
             "site": "gallery",
             "slug": "gallery",
-            "assetsUrl": null
+            "assetsUrl": null,
+            "desktopOnly": true
         }
     ]
 }

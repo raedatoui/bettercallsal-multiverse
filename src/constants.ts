@@ -1,4 +1,4 @@
-import { SiteKey, SiteMapValidator } from '@/types';
+import { ContentType, SiteKey, SiteMapValidator } from '@/types';
 import sitesData from '../content/sites.next.json';
 
 export const CDN = process.env.cdnUrl;
@@ -32,14 +32,10 @@ export const headerBreakPoints = {
     sm: { max: 567 },
 };
 
-export const URL_MAP: Record<SiteKey, string> = {
-    biz: 'video',
-    games: 'game',
-    rocks: 'video',
-    fit: 'video',
-    art: 'art',
-    construction: '',
-    gallery: 'game',
-    wtf: '',
-    world: 'video',
+export const URL_MAP: Record<ContentType, string> = {
+    video: 'video',
+    youtube: 'video',
+    vimeo: 'video',
+    game: 'game',
+    image: 'art',
 };

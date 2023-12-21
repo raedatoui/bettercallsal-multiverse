@@ -19,7 +19,6 @@ const Unity = () => {
     const [game, setGame] = useState<GameContentItem | null>(null);
     const [gameProgress, setGameProgress] = useState<number>(0);
     const [gameProgressVisible, setGameProgressVisible] = useState<boolean>(false);
-
     const [unityInstance, setUnityInstance] = useState<UnityInstance | null>(null);
 
     const windowSize = useWindowSize();

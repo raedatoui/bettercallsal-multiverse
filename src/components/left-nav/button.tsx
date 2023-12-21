@@ -36,12 +36,7 @@ const NavButton: FC<ButtonProps> = ({ navItem, callBack, width, fullScreen }) =>
     });
 
     const handleClick = () => {
-        // TODO move providers here and remove callback functions. do too many provider subscriber slow things down?
         callBack(navItem);
-        // if (navItem.audio) audioCb(navItem.audio);
-        // if (navItem.category) navItemCb(navItem);
-        // if (navItem.video) videoCb(navItem);
-        // if (navItem.contentId) contentCb(navItem);
     };
 
     return (
