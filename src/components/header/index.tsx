@@ -143,7 +143,15 @@ const HeaderComponent: FC = () => {
                 >
                     &ldquo;Better Call Sal!&rdquo;
                 </BetterCall>
-                <BizerkContainerFC name1={name1} name2={name2} bizerkMode={bizerkMode} bizerkIcon={bizerkIcon} />
+                <BizerkContainerFC
+                    name1={name1}
+                    name2={name2}
+                    spinningSalAudio1={spinningAudio1}
+                    spinningSalAudio2={spinningAudio2}
+                    ringAudio1={ringAudio}
+                    bizerkMode={bizerkMode}
+                    bizerkIcon={bizerkIcon}
+                />
                 <SalCaption className={`animatable ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                     {title1} {title2}
                 </SalCaption>

@@ -13,11 +13,13 @@ interface Props {
     name2: string;
     bizerkMode: string;
     bizerkIcon: { icon: string; site: SiteKey };
+    spinningSalAudio1: string;
+    spinningSalAudio2: string;
+    ringAudio1: string;
 }
 
-export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon }) => {
-    const { selectedSite, siteMap } = useSiteContext();
-    const site = siteMap[selectedSite];
+export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinningSalAudio1, spinningSalAudio2, ringAudio1 }) => {
+    const { selectedSite } = useSiteContext();
 
     const { buffers } = useContext(SoundContext);
     const { animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
@@ -35,10 +37,9 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon }) => {
     const play = () => {
         if (selectedSite === 'wtf') {
             tl?.restart();
-            buffers.play(site.header.ringAudio, false);
-            buffers.play(site.footer.ringAudio, false);
-            buffers.play(site.header.spinningSalAudio1, false);
-            buffers.play(site.header.spinningSalAudio2, false);
+            buffers.play(ringAudio1, false);
+            buffers.play(spinningSalAudio1, false);
+            buffers.play(spinningSalAudio2, false);
         }
     };
 

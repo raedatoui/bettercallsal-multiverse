@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState, MouseEvent, useCallback } from 'react';
+import React, { FC, useEffect, useState, useCallback } from 'react';
 import { Keyframes } from 'styled-components';
 import { TickerContainer } from '@/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/elements';
-import { defaultSiteMap, EXTERNAL_LINK } from '@/constants';
+import { defaultSiteMap } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Site, SiteKey, BizerkMode } from '@/types';
@@ -105,13 +105,6 @@ const Slider: FC<SliderProps> = ({ selectedSite, selectedSlide, site, siteKey, i
         else if (selectedSlide - 1 === index) slideOut();
         else reset();
     }, [selectedSlide, selectedSite, start, index, selected, reset, slideIn, slideOut]);
-
-    // const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    //     if (!EXTERNAL_LINK) {
-    //         event.stopPropagation();
-    //         if (site) setSelectedSite(site.name);
-    //     }
-    // };
 
     return (
         <SliderComponent

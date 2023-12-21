@@ -51,7 +51,7 @@ export const Row = styled.div`
 
     @media (min-height: 601px) and (min-width: ${breakPoints.sm.max}px) {
         flex: 1;
-        overflow-y: auto;
+        overflow-y: visible;
     }
 
     @media (max-width: ${breakPoints.lg1.max}px) {

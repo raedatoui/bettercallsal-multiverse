@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CDN, DALI } from '@/constants';
+import { CDN } from '@/constants';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
@@ -145,8 +145,6 @@ const ArtSlider = () => {
                 <Link key={art.name} className="keen-slider__slide lazy__slide" href={`${CDN}/images/${art.site}/${art.contentId}`} target="_blank">
                     <Image
                         src={`/images/${art.site}/${art.contentId}`}
-                        placeholder="blur"
-                        blurDataURL={DALI}
                         alt={art.name}
                         width={sizes[idx]?.width ?? 0}
                         height={sizes[idx]?.height ?? 0}

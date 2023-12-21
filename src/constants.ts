@@ -1,4 +1,4 @@
-import { ContentType, SiteKey, SiteMapValidator } from '@/types';
+import { ContentType, SiteMapValidator } from '@/types';
 import sitesData from '../content/sites.next.json';
 
 export const CDN = process.env.cdnUrl;
@@ -6,11 +6,6 @@ export const CDN = process.env.cdnUrl;
 export const CONTENT_URL = process.env.contentUrl;
 
 export const SPOTIFY_ENABLED = process.env.spotifyEnabled;
-
-export const EXTERNAL_LINK = true;
-
-// eslint-disable-next-line max-len
-export const DALI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
 export const defaultSiteMap = SiteMapValidator.parse(sitesData);
 

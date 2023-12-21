@@ -7,7 +7,7 @@ import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
 import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
-import { shuffleList, slugify, useWindowSize, findCategory, pickRandom } from '@/utils';
+import { shuffleList, useWindowSize, findCategory, pickRandom } from '@/utils';
 
 export const ClientList: FC<VisibleProps> = ({ visible }) => {
     const { category } = useParams<{ category: string }>();

@@ -5,7 +5,7 @@ import { URL_MAP } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
 import { BaseContentItem, GameContentItem } from '@/types';
-import { shuffleList, slugify } from '@/utils';
+import { shuffleList } from '@/utils';
 
 export const ServerList = () => {
     const { siteMap, contentMap, selectedSite } = useSiteContext();

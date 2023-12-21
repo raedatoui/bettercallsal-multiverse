@@ -17,8 +17,8 @@ const LawBreakers = () => {
     const { buffers } = useContext(SoundContext);
 
     const windowSize = useWindowSize();
-    const [leftIconSize, setLeftIconSize] = useState<Size>({ width: 148, height: 393 });
-    const [rightIconSize, setRightIconSize] = useState<Size>({ width: 148, height: 393 });
+    const [leftIconSize, setLeftIconSize] = useState<Size>({ width: 148, height: 60 });
+    const [rightIconSize, setRightIconSize] = useState<Size>({ width: 148, height: 60 });
 
     const [footerText, setFooterText] = useState<string>(site.footer.text);
     const [leftImage, setLeftImage] = useState(site.footer.icon);
@@ -117,8 +117,7 @@ const LawBreakers = () => {
                             height={leftIconSize.height}
                             loading="lazy"
                             style={{
-                                maxWidth: '100%',
-                                height: 'auto',
+                                height: '100%',
                             }}
                         />
 
@@ -139,8 +138,7 @@ const LawBreakers = () => {
                             height={rightIconSize.height}
                             loading="lazy"
                             style={{
-                                maxWidth: '100%',
-                                height: 'auto',
+                                height: '100%',
                             }}
                         />
                     </LawBreakersP>
