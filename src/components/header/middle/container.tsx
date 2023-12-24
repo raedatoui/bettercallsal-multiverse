@@ -22,13 +22,13 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
     const { selectedSite } = useSiteContext();
 
     const { buffers } = useContext(SoundContext);
-    const { animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
+    const { animateWtf, setAnimateWtf, bizerkMode, setAnimateGrid } = useAnimationContext();
     const [tl, setTl] = useState<gsap.core.Tween>();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             // DOC: bizerk hover -> gsap fast animations
-            const tl = animateCounter(3, selectedSite, animateWtf, setAnimateWtf, true);
+            const tl = animateCounter(3, animateWtf, setAnimateWtf, true, selectedSite === 'biz' || selectedSite === 'wtf');
             setTl(tl);
         });
         return () => ctx.revert();
@@ -49,6 +49,7 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
             tl?.pause();
             // TODO: should this audio stop or let the accumulated sources play
             buffers.stopAll();
+            setAnimateGrid(0);
             setAnimateWtf(0);
         }
     };

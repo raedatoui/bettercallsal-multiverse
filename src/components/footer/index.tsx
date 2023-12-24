@@ -13,7 +13,7 @@ const LawBreakers = () => {
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const site = siteMap[selectedSite];
 
-    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, animateNav, setAnimateNav, bizerkMode } = useAnimationContext();
+    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
     const windowSize = useWindowSize();
@@ -43,7 +43,6 @@ const LawBreakers = () => {
                     ? /* eslint-disable indent, @typescript-eslint/indent */
                       betterCallClickWtf(selectedSite, [
                           [animateGrid, setAnimateGrid],
-                          [animateNav, setAnimateNav],
                           [animateWtf, setAnimateWtf],
                       ])
                     : betterCallClick(selectedSite, animateGrid, setAnimateGrid);

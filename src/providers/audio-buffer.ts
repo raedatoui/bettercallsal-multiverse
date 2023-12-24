@@ -20,6 +20,7 @@ class AudioBuffers {
     public contextLoaded: boolean;
     public audioMap: Record<string, Sound>;
     private allSounds: AudioBufferSourceNode[] = [];
+    private gainNode: GainNode | null = null;
 
     constructor() {
         this.soundMap = {};
@@ -58,10 +59,15 @@ class AudioBuffers {
     public createContext() {
         if (!this.context) {
             this.context = new (window.AudioContext || window.webkitAudioContext)();
+
+            this.contextLoaded = true;
+            this.gainNode = this.context.createGain();
+            this.gainNode.connect(this.context.destination);
+            this.gainNode.gain.value = 0.5;
+
             this.analyzer = this.context.createAnalyser();
             this.analyzer.fftSize = 1024;
-            this.analyzer.connect(this.context.destination);
-            this.contextLoaded = true;
+            this.analyzer.connect(this.gainNode);
         }
     }
 
@@ -73,26 +79,30 @@ class AudioBuffers {
         return null;
     }
 
-    public async play(sound: string, loop = true): Promise<AudioBufferSourceNode | null> {
+    public async play(sound: string, loop = true, randomStart = false): Promise<AudioBufferSourceNode | null> {
         if (this.loaded) {
             let obj = this.soundMap[sound];
             if (!obj) await this.loadBuffer(sound);
             obj = this.soundMap[sound];
-            return this.playSound(obj, loop);
+            return this.playSound(obj, loop, randomStart);
         }
         return null;
     }
 
-    private playSound(sound: Sound, loop = true): AudioBufferSourceNode | null {
+    private playSound(sound: Sound, loop = true, randomStart = false): AudioBufferSourceNode | null {
         // DOC: assigns a new buffer to the sound object
-        if (sound && this.context && this.analyzer) {
+        if (sound && this.context && this.analyzer && this.gainNode) {
             const source = this.context.createBufferSource();
             source.buffer = sound.buffer;
             source.connect(this.analyzer);
             source.loop = loop;
             // eslint-disable-next-line no-param-reassign
             sound.source = source;
-            source.start(0, sound.pausedAt);
+
+            source.connect(this.gainNode);
+            // DOC: offset used to be sound.pausedAt
+
+            source.start(0, randomStart ? Math.random() * source.buffer.duration : sound.pausedAt);
             // eslint-disable-next-line no-param-reassign
             sound.startedAt = this.context.currentTime - sound.pausedAt;
             this.allSounds.push(source);

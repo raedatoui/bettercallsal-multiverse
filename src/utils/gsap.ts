@@ -17,7 +17,7 @@ export const bizerkHover = (selectedSite: SiteKey, counter?: number, setter?: Di
     });
     tl.add(animateHeaderFooterSpinners(true));
     tl.add(colorizeFooterHeaderTitles(FAST), '<');
-    if (counter !== undefined && setter !== undefined) tl.add(animateCounter(FAST, selectedSite, counter, setter), '<');
+    if (counter !== undefined && setter !== undefined) tl.add(animateCounter(FAST, counter, setter, false, selectedSite === 'biz'), '<');
     return tl;
 };
 
@@ -41,7 +41,7 @@ export const betterCallClick = (selectedSite: SiteKey, counter: number, setter: 
     tl.add(colorizeFooterHeaderTitles(DEFAULT), '<');
 
     if (counter !== undefined && setter !== undefined)
-        tl.add(animateCounter(DEFAULT - (selectedSite === 'biz' ? 0.8 : 0), selectedSite, counter, setter), '<');
+        tl.add(animateCounter(DEFAULT - (selectedSite === 'biz' ? 0.8 : 0), counter, setter, false, selectedSite === 'biz'), '<');
     return tl;
 };
 
@@ -93,7 +93,7 @@ export const colorizeFooterHeaderTitles = (duration: number) => {
     });
 };
 
-export const animateCounter = (duration: number, selectedSite: SiteKey | null, counter: number, setter: S, paused = false) => {
+export const animateCounter = (duration: number, counter: number, setter: S, paused: boolean, reset: boolean) => {
     const house = {
         getAttribute: (key: string) => counter,
         setAttribute: (qualifiedName: string, value: number) => {
@@ -109,7 +109,7 @@ export const animateCounter = (duration: number, selectedSite: SiteKey | null, c
         duration: duration,
         ease: 'power2.out',
         onComplete: () => {
-            if (selectedSite === 'biz' && setter) setter(0);
+            if (reset && setter) setter(0);
         },
         paused,
     });
@@ -159,7 +159,7 @@ export const wtfLoadAnimation = (entries: Entry[]) => {
     tl.add(r, '<');
     tl.add(colorizeFooterHeaderTitles(3), '<');
     entries.forEach((entry) => {
-        tl.add(animateCounter(DEFAULT, null, entry[0], entry[1]), '<');
+        tl.add(animateCounter(DEFAULT, entry[0], entry[1], false, true), '<');
     });
     return tl;
 };
@@ -177,7 +177,7 @@ export const betterCallClickWtf = (selectedSite: SiteKey, entries: Entry[]) => {
     tl.add(colorizeFooterHeaderTitles(DEFAULT), '<');
 
     entries.forEach((entry) => {
-        tl.add(animateCounter(DEFAULT, selectedSite, entry[0], entry[1]), '<');
+        tl.add(animateCounter(DEFAULT, entry[0], entry[1], false, true), '<');
     });
     return tl;
 };

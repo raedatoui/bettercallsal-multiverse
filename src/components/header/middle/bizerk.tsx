@@ -54,8 +54,16 @@ const Bizerk: FC<Props> = ({ bizerk }) => {
             // TODO: should this audio stop or let the accumulated sources play
             buffers.stopAll();
             setAnimateGrid(0);
+            setAnimateWtf(0);
         }
     };
+
+    useEffect(() => {
+        if (bizerkMode === 'off') {
+            setAnimateWtf(0);
+            setAnimateGrid(0);
+        }
+    }, [bizerk]);
 
     return (
         <BizerkImageContainer className={bizerk.site}>

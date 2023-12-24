@@ -18,7 +18,7 @@ const HeaderComponent: FC = () => {
 
     const site = siteMap[selectedSite];
 
-    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, animateNav, setAnimateNav, bizerkMode } = useAnimationContext();
+    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
 
     const { buffers, loaded } = useContext(SoundContext);
 
@@ -70,10 +70,7 @@ const HeaderComponent: FC = () => {
                 selectedSite !== 'wtf'
                     ? loadAnimation()
                     : /* eslint-disable indent, @typescript-eslint/indent */
-                      wtfLoadAnimation([
-                          [animateNav, setAnimateNav],
-                          [animateWtf, setAnimateWtf],
-                      ]);
+                      wtfLoadAnimation([[animateWtf, setAnimateWtf]]);
             /* eslint-enable indent, @typescript-eslint/indent */
             timeline.play().then(() => {
                 setLoadAnimationDone(true);

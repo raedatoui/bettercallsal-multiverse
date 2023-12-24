@@ -17,16 +17,16 @@ deploy() {
 }
 
 # Deploy each section
-deploy "biz"
-deploy "art"
-deploy "games"
-deploy "rocks"
-deploy "construction"
-deploy "fit"
-deploy "gallery"
-deploy "world"
-deploy "fans"
+#deploy "biz"
+#deploy "art"
+#deploy "games"
+#deploy "rocks"
+#deploy "construction"
+#deploy "fit"
+#deploy "gallery"
+#deploy "world"
+#deploy "fans"
 deploy "wtf"
 
 yarn clean
-TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts "biz"
+#TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts "biz"

@@ -25,6 +25,7 @@ const SpinningSal: FC<Props> = ({ wrapperStyle, imageStyle, image, audio }) => {
 
     const pause = () => {
         setAnimateGrid(0);
+        setAnimateWtf(0);
         if (site)
             if (wrapperStyle === 'left') buffers.pause(audio);
             else buffers.stop(audio);
