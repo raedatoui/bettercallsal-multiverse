@@ -34,14 +34,14 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
                 repeat: window.devicePixelRatio,
                 duration: 0.01,
                 onComplete: () => {
-                    if (ref && ref.current)
-                        makeLightTween();
+                    if (ref && ref.current) makeLightTween();
                 },
             });
     };
 
-    const makeTween = (target: HTMLElement) => {
-        gsap.to(target, {
+    const makeTween = () => {
+        if (ref && ref.current) gsap.killTweensOf(ref.current);
+        gsap.to(ref.current, {
             x: random(-animOffset, animOffset),
             y: random(-animOffset, animOffset),
             overwrite: true,
@@ -49,8 +49,10 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
             duration: 0.03,
             onComplete: () => {
                 // if (window.devicePixelRatio > 1)
+                // TODO: bug on exit
                 buffers.stop(siteMap[i.site].header.spinningSalAudio1);
-                makeTween(target);
+                if (ref.current)
+                    makeTween();
             },
             onStart: () => {
                 buffers.play(siteMap[i.site].header.spinningSalAudio1, false, true);
@@ -82,12 +84,6 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
             gsap.killTweensOf(ref.current);
             gsap.to(ref.current, { x: 0, y: 0, duration: 0 });
         }
-        return () => {
-            if (ref && ref.current) {
-                gsap.killTweensOf(ref.current);
-                gsap.to(ref.current, { x: 0, y: 0, duration: 0 });
-            }
-        }
     }, [animateWtf, ref.current]);
 
     return (
@@ -98,16 +94,14 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
             id={i.slug}
             className="grid-item"
             onMouseOver={(event) => {
-                if (selectedSite === 'wtf')
+                if (selectedSite === 'wtf' && ref && ref.current)
                     // buffers.play(siteMap[i.site].header.spinningSalAudio1, false);
-                    makeTween(event.currentTarget);
+                    makeTween();
             }}
             onMouseOut={(event) => {
-                if (selectedSite === 'wtf') {
-                    buffers.stop(siteMap[i.site].header.spinningSalAudio1);
-                    gsap.killTweensOf(event.currentTarget);
-                    gsap.to(event.currentTarget, { x: 0, y: 0, duration: 0 });
-                }
+                buffers.stop(siteMap[i.site].header.spinningSalAudio1);
+                gsap.killTweensOf(event.currentTarget);
+                gsap.to(event.currentTarget, { x: 0, y: 0, duration: 0 });
             }}
             ref={ref}
         >
@@ -157,7 +151,7 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         let headerTxt = site.contentHeader;
         if (category !== undefined && category !== 'all') {
             const cat = findCategory(site, category);
-            if (cat &&  cat.quote) headerTxt = cat.quote;
+            if (cat && cat.quote) headerTxt = cat.quote;
         }
         return headerTxt;
     };
@@ -166,7 +160,11 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
     const [headerText, setHeaderText] = useState<string>(getHeaderText());
 
     useEffect(() => {
+        let list = contentMap[selectedSite];
+        // DOC: shuffle list based on spinning counter, or on re-render for all sites but biz, animateGrid=0 resets for biz
+        if (animateGrid > 0 || selectedSite !== 'biz') list = shuffleList(list);
 
+        setContentList(list);
     }, [contentMap, selectedSite, animateGrid, windowSize]);
 
     useEffect(() => {

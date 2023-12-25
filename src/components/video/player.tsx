@@ -65,6 +65,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
         left: 0,
         top: 0,
     });
+    const [currentContentId, setCurrentContentId] = useState<string>('');
 
     const windowSize = useWindowSize();
 
@@ -98,11 +99,14 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
     }, [getSize, windowSize]);
 
     useEffect(() => {
-        if (contentItem.contentType === 'youtube') {
+        console.log(currentContentId, contentItem.contentId);
+        if (contentItem.contentType === 'youtube' && currentContentId !== contentItem.contentId) {
+            // DOC: if not, then we risk calling loadVideoById on the same videoId, which will cause the video to restart.
+            setCurrentContentId(contentItem.contentId);
             // kill vimeo player if playing youtube from left nav.
             // the day we have vimeo or others in the left nav, we will need to stop the youtube player.
             if (vPlayer) vPlayer.pause();
-            if (yPlayer) {
+            if (yPlayer && contentItem.contentId) {
                 if (autoPlay) yPlayer.loadVideoById(contentItem.contentId);
                 else yPlayer.cueVideoById(contentItem.contentId);
                 getSize();
@@ -115,7 +119,6 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
                     theme: 'light',
                     videoId: contentItem.contentId,
                     enablejsapi: 1,
-                    startSeconds: 0,
                     events: {
                         onReady: (event: Record<string, unknown>) => {
                             const player = event.target as YTPlayer;

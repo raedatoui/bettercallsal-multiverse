@@ -740,36 +740,6 @@
                     "quote": null,
                     "quoteLink": null,
                     "site": "world"
-                },
-                {
-                    "audio": null,
-                    "path": "/game/level2",
-                    "id": "1b386e1b-763d-4908-9209-67143debd286",
-                    "link": null,
-                    "name": "Purgatorio",
-                    "quote": null,
-                    "quoteLink": null,
-                    "site": "world"
-                },
-                {
-                    "audio": null,
-                    "path": "/game/level3",
-                    "id": "8ea8f055-0074-483c-83f6-c793fd1d4860",
-                    "link": null,
-                    "name": "Inferno",
-                    "quote": null,
-                    "quoteLink": null,
-                    "site": "world"
-                },
-                {
-                    "audio": null,
-                    "path": "/game/level4",
-                    "id": "1417b8c3-0364-45c4-bd51-73812a39965b",
-                    "link": null,
-                    "name": "Saltan",
-                    "quote": null,
-                    "quoteLink": null,
-                    "site": "world"
                 }
             ],
             "text": "SAL ROCKED<br />MY WORLD!!!!",
