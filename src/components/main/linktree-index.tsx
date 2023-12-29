@@ -45,7 +45,7 @@ const MainContainerInner = () => {
                 .then((dataUrl) => {
                     setScreeCapture(dataUrl);
                     setBizerkMode('on');
-                    animateCounterBizerk(animateGrid, setAnimateGrid);
+                    animateCounterBizerk(animateGrid, setAnimateGrid, false);
                     if (buffers.analyzer && particleRef.current)
                         // eslint-disable-next-line no-new
                         new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);

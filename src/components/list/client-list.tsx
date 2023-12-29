@@ -31,11 +31,8 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
             gsap.to(ref.current, {
                 x: random(-animOffset, animOffset),
                 y: random(-animOffset, animOffset),
-                repeat: window.devicePixelRatio,
-                duration: 0.01,
-                onComplete: () => {
-                    if (ref && ref.current) makeLightTween();
-                },
+                repeat: 1,
+                duration: 0.02,
             });
     };
 
@@ -51,31 +48,12 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
                 // if (window.devicePixelRatio > 1)
                 // TODO: bug on exit
                 buffers.stop(siteMap[i.site].header.spinningSalAudio1);
-                if (ref.current)
-                    makeTween();
+                if (ref.current) makeTween();
             },
             onStart: () => {
                 buffers.play(siteMap[i.site].header.spinningSalAudio1, false, true);
             },
-            // onRepeat: (t) => {
-            //     t.vars.x = random(-animOffset, animOffset);
-            //     t.vars.y = random(-animOffset, animOffset);
-            //
-            //     // DOC: without a counter and locked at 3 is A version
-            //     // DOC: with a counter and valye of 3 for repeat and counter max is B version
-            //     // counter += 1;
-            //     // if (counter === 3)
-            //     //     buffers.stop(siteMap[i.site].header.spinningSalAudio1);
-            //
-            //
-            //     // if (counter % Math.floor(Math.random()* 3) === 0)
-            //     //     buffers.play(siteMap[i.site].header.spinningSalAudio1, false);
-            //     // else
-            //     //     buffers.stop(siteMap[i.site].header.spinningSalAudio1);
-            // },
         });
-        // g.vars.onRepeatParams = [g];
-        // g.play();
     };
 
     useEffect(() => {
@@ -93,7 +71,7 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
             to={`/${URL_MAP[i.contentType]}/${i.slug}`}
             id={i.slug}
             className="grid-item"
-            onMouseOver={(event) => {
+            onMouseOver={() => {
                 if (selectedSite === 'wtf' && ref && ref.current)
                     // buffers.play(siteMap[i.site].header.spinningSalAudio1, false);
                     makeTween();
@@ -139,12 +117,6 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
 
     const { buffers } = useContext(SoundContext);
 
-    const defaultList = contentMap[selectedSite].filter((i) => i.display).filter((i) => i.category === category || category === undefined);
-    // TODO: why is this not filtering
-    // if (defaultList.length !== 135) console.log('FUCCCCCK');
-    const categories = defaultList.map((i) => i.category);
-
-    // DOC: these contexts are for causing a shuffle
     const windowSize = useWindowSize();
 
     const getHeaderText = () => {
@@ -156,39 +128,54 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         return headerTxt;
     };
 
-    const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(defaultList);
+    const getList = () => contentMap[selectedSite].filter((i) => i.display).filter((i) => i.category === category || category === undefined);
+
+    const [contentList, setContentList] = useState<(BaseContentItem | GameContentItem)[]>(getList());
     const [headerText, setHeaderText] = useState<string>(getHeaderText());
 
+    // DOC: this is for switching selected site
     useEffect(() => {
-        let list = contentMap[selectedSite];
-        // DOC: shuffle list based on spinning counter, or on re-render for all sites but biz, animateGrid=0 resets for biz
-        if (animateGrid > 0 || selectedSite !== 'biz') list = shuffleList(list);
+        if (selectedSite !== 'wtf') {
+            setHeaderText(getHeaderText());
+            setContentList(getList());
+        }
+    }, [contentMap, selectedSite, category]);
 
+    // DOC: windowSize shuffles the list for non .biz
+    useEffect(() => {
+        let list = getList();
+        if (selectedSite !== 'biz') list = shuffleList(list);
         setContentList(list);
-    }, [contentMap, selectedSite, animateGrid, windowSize]);
+    }, [windowSize, selectedSite]);
 
+    // DOC: shuffle list based on spinning counter, animateGrid = 0 resets list order for biz
+    useEffect(() => {
+        let list = getList();
+        if (animateGrid > 0) list = shuffleList(list);
+        if (animateGrid === 0 && selectedSite !== 'biz') list = shuffleList(list);
+        setContentList(list);
+    }, [animateGrid, selectedSite]);
+
+    // DOC: this is for wtf, animate
     useEffect(() => {
         if (animateWtf > 0) {
             setHeaderText(pickRandom(siteMap).contentHeader);
-            setContentList(shuffleList(contentMap[selectedSite]));
+            setContentList(shuffleList(getList()));
+        } else if (animateWtf === 0 && selectedSite !== 'wtf') {
+            setHeaderText(getHeaderText());
+            setContentList(getList());
         }
-    }, [animateWtf, siteMap]);
+    }, [animateWtf, selectedSite]);
 
-    useEffect(() => {
-        if (selectedSite === 'wtf') setHeaderText(pickRandom(siteMap).contentHeader);
-    }, [windowSize, selectedSite, siteMap]);
-
-    useEffect(() => {
-        setHeaderText(getHeaderText());
-    }, [site, category]);
-
-    // DOC: when category is not found, redirect to home
-    if (category !== undefined && !categories.includes(category)) {
-        navigate('/');
-        return <div />;
+    // DOC: when loading category, that doesnt exist on current site, go to home
+    if (category !== undefined && category !== 'all') {
+        const categories = getList().map((i) => i.category);
+        if (!categories.includes(category)) {
+            navigate('/', { replace: true });
+            history.pushState({}, '', '/');
+            return <div></div>;
+        }
     }
-
-    const finalList = contentList.filter((i) => i.display).filter((i) => i.category === category || category === undefined);
 
     return (
         <>
@@ -196,7 +183,7 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
 
             {!loading && selectedSite !== 'construction' && selectedSite !== 'gallery' && (
                 <ContentList id="content-list" className={`animatable ${visible ? '' : 'off'}`}>
-                    {finalList.map((i) => (
+                    {contentList?.map((i) => (
                         <AnimatableGridItem
                             i={i}
                             key={i.contentId}

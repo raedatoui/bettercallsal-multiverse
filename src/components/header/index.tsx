@@ -46,19 +46,27 @@ const HeaderComponent: FC = () => {
     const [spinningAudio1, setSpinningAudio1] = useState<string>(site.header.spinningSalAudio1);
     const [spinningAudio2, setSpinningAudio2] = useState<string>(site.header.spinningSalAudio2);
 
-    const [tl, setTl] = useState<gsap.core.Timeline>();
+    const [clickTl, setClickTl] = useState<gsap.core.Timeline>();
+    const [loadTl, setLoadTl] = useState<gsap.core.Timeline>();
 
     useEffect(() => {
+        if (loadTl) loadTl.kill();
+        // DOC: set content to selected site.
+        setLeftImage(site.header.spinningSalsLeft);
+        setRightImage(site.header.spinningSalsRight);
+        setName1(site.header.name1);
+        setName2(site.header.name2);
+        setTitle1(site.header.title1);
+        setTitle2(site.header.title2);
+        setBizerkIcon(site.header.bizerk);
+        setRingAudio(site.header.ringAudio);
         setSpinningAudio1(site.header.spinningSalAudio1);
         setSpinningAudio2(site.header.spinningSalAudio2);
+
         const ctx = gsap.context(() => {
-            const tl =
-                selectedSite === 'wtf'
-                    ? /* eslint-disable indent, @typescript-eslint/indent */
-                      betterCallClickWtf(selectedSite, [[animateWtf, setAnimateWtf]])
-                    : betterCallClick(selectedSite, animateGrid, setAnimateGrid);
-            /* eslint-enable indent, @typescript-eslint/indent */
-            setTl(tl);
+            let tl = betterCallClick(selectedSite, animateGrid, setAnimateGrid);
+            if (selectedSite === 'wtf') tl = betterCallClickWtf(animateWtf, setAnimateWtf);
+            setClickTl(tl);
         });
         return () => ctx.revert();
     }, [selectedSite, site]);
@@ -66,18 +74,16 @@ const HeaderComponent: FC = () => {
     useEffect(() => {
         // DOC: intro animation, triggered on site changed and buffer loaded
         if (loaded) {
-            const timeline =
-                selectedSite !== 'wtf'
-                    ? loadAnimation()
-                    : /* eslint-disable indent, @typescript-eslint/indent */
-                      wtfLoadAnimation([[animateWtf, setAnimateWtf]]);
-            /* eslint-enable indent, @typescript-eslint/indent */
-            timeline.play().then(() => {
+            if (loadTl) loadTl.kill();
+            let tl = loadAnimation();
+            if (selectedSite === 'wtf') tl = wtfLoadAnimation(animateWtf, setAnimateWtf);
+            setLoadTl(tl);
+            tl.play().then(() => {
                 setLoadAnimationDone(true);
             });
             setTickerCounter(0);
         }
-    }, [loaded, selectedSite]);
+    }, [loaded, selectedSite, site]);
 
     let ticketInterval = 5000;
     if (bizerkMode !== 'off') ticketInterval = 2000;
@@ -92,21 +98,7 @@ const HeaderComponent: FC = () => {
     }, ticketInterval);
 
     useEffect(() => {
-        // DOC: reset out of wtf when hot keying
-        if (selectedSite !== 'wtf') {
-            setLeftImage(site.header.spinningSalsLeft);
-            setRightImage(site.header.spinningSalsRight);
-            setName1(site.header.name1);
-            setName2(site.header.name2);
-            setTitle1(site.header.title1);
-            setTitle2(site.header.title2);
-            setBizerkIcon(site.header.bizerk);
-            setRingAudio(site.header.ringAudio);
-        }
-    }, [selectedSite, site]);
-
-    useEffect(() => {
-        if (animateWtf > 0) {
+        if (selectedSite === 'wtf') {
             const s1 = pickRandom(siteMap);
             const s2 = pickRandom(siteMap);
             setLeftImage(s1.header.spinningSalsLeft);
@@ -121,7 +113,7 @@ const HeaderComponent: FC = () => {
             setSpinningAudio1(pickRandom(siteMap).header.spinningSalAudio1);
             setSpinningAudio2(pickRandom(siteMap).header.spinningSalAudio2);
         }
-    }, [animateWtf]);
+    }, [animateWtf, selectedSite]);
 
     return (
         <HeaderContainer id="main-header" className={fullScreen ? `${selectedSite} off` : `${selectedSite} on`}>
@@ -134,7 +126,7 @@ const HeaderComponent: FC = () => {
                 <BetterCall
                     className={`better-call-title ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                     onClick={() => {
-                        tl?.restart();
+                        clickTl?.restart();
                         buffers.play(ringAudio, false);
                     }}
                 >

@@ -29,4 +29,14 @@ deploy "fans"
 deploy "wtf"
 
 yarn clean
-#TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts "biz"
+
+json_content='{
+    "selectedSite": "biz",
+    "cdnUrl": "https://storage.googleapis.com/bcs-assets",
+    "contentUrl": "https://storage.googleapis.com/bcs-assets/content/v8",
+    "spotifyEnabled": false,
+    "localImages": false,
+    "gtagEnabled": false
+}'
+
+echo "$json_content" > next.config.env.json

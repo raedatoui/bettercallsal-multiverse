@@ -8,57 +8,20 @@ type S = (v: number | P) => void;
 const FAST = 0.1;
 const DEFAULT = 3;
 
-export const bizerkHover = (selectedSite: SiteKey, counter?: number, setter?: Dispatch<SetStateAction<number>>): gsap.core.Timeline => {
-    const tl = gsap.timeline({
-        paused: true,
-        onComplete: () => {
-            if (selectedSite === 'biz' && setter) setter(0);
-        },
-    });
-    tl.add(animateHeaderFooterSpinners(true));
-    tl.add(colorizeFooterHeaderTitles(FAST), '<');
-    if (counter !== undefined && setter !== undefined) tl.add(animateCounter(FAST, counter, setter, false, selectedSite === 'biz'), '<');
-    return tl;
-};
-
-export const loadAnimation = () => {
-    const tl = gsap.timeline({
-        paused: true,
-    });
-    tl.add(animateHeaderFooterSpinners(false));
-    tl.add(colorizeFooterHeaderTitles(DEFAULT), '<');
-    return tl;
-};
-
-export const betterCallClick = (selectedSite: SiteKey, counter: number, setter: Dispatch<SetStateAction<number>>) => {
-    const tl = gsap.timeline({
-        paused: true,
-        onStart: () => {
-            setter?.(0);
-        },
-    });
-    tl.add(animateHeaderFooterSpinners(false));
-    tl.add(colorizeFooterHeaderTitles(DEFAULT), '<');
-
-    if (counter !== undefined && setter !== undefined)
-        tl.add(animateCounter(DEFAULT - (selectedSite === 'biz' ? 0.8 : 0), counter, setter, false, selectedSite === 'biz'), '<');
-    return tl;
-};
-
-export const animateHeaderFooterSpinners = (fast: boolean) => {
+const animateHeaderFooterSpinners = (duration: number) => {
     return gsap.fromTo(
         '.spinner',
         { rotateY: 0 },
         {
             rotateY: (index) => (index % 0 ? -3600 : 3600),
-            duration: fast ? FAST : DEFAULT,
+            duration,
             ease: 'power2.out',
             clearProps: 'all',
         }
     );
 };
 
-export const colorizeFooterHeaderTitles = (duration: number) => {
+const colorizeFooterHeaderTitles = (duration: number) => {
     const from = {
         color: 'rgb(255, 255, 255)',
         textShadow:
@@ -93,21 +56,22 @@ export const colorizeFooterHeaderTitles = (duration: number) => {
     });
 };
 
-export const animateCounter = (duration: number, counter: number, setter: S, paused: boolean, reset: boolean) => {
+const animateCounter = (duration: number, counter: number, setter: S, paused: boolean, reset: boolean, ease = 'power2.out') => {
     const house = {
         getAttribute: (key: string) => counter,
         setAttribute: (qualifiedName: string, value: number) => {
             setter((prev: number) => {
-                if (value - prev > 0.25) return value;
-                return prev;
+                let a = prev;
+                if (value - prev > 0.005) a = value;
+                return a;
             });
         },
     };
 
     return gsap.to(house, {
-        attr: { counter: counter + 10 },
+        attr: { counter: counter + 1 },
         duration: duration,
-        ease: 'power2.out',
+        ease: ease,
         onComplete: () => {
             if (reset && setter) setter(0);
         },
@@ -115,7 +79,7 @@ export const animateCounter = (duration: number, counter: number, setter: S, pau
     });
 };
 
-export const animateCounterBizerk = (counter: number, setter: S) => {
+export const animateCounterBizerk = (counter: number, setter: S, paused = true) => {
     const house = {
         getAttribute: (key: string) => counter,
         setAttribute: (qualifiedName: string, value: number) => {
@@ -124,14 +88,24 @@ export const animateCounterBizerk = (counter: number, setter: S) => {
     };
 
     return gsap.to(house, {
-        attr: { counter: counter + 10 },
+        attr: { counter: counter + 1 },
         duration: FAST,
         ease: 'power2.out',
         repeat: -1,
+        paused,
     });
 };
 
-export const wtfLoadAnimation = (entries: Entry[]) => {
+export const loadAnimation = () => {
+    const tl = gsap.timeline({
+        paused: true,
+    });
+    tl.add(animateHeaderFooterSpinners(DEFAULT));
+    tl.add(colorizeFooterHeaderTitles(DEFAULT), '<');
+    return tl;
+};
+
+export const wtfLoadAnimation = (counter: number, setter: Dispatch<SetStateAction<number>>) => {
     const tl = gsap.timeline({
         paused: true,
         onComplete: () => {
@@ -158,26 +132,46 @@ export const wtfLoadAnimation = (entries: Entry[]) => {
     );
     tl.add(r, '<');
     tl.add(colorizeFooterHeaderTitles(3), '<');
-    entries.forEach((entry) => {
-        tl.add(animateCounter(DEFAULT, entry[0], entry[1], false, true), '<');
-    });
+    tl.add(animateCounter(DEFAULT, counter, setter, false, true, 'linear'), '<');
     return tl;
 };
 
-type Entry = [number, Dispatch<SetStateAction<number>>];
+export const bizerkHover = (selectedSite: SiteKey, counter: number, setter: Dispatch<SetStateAction<number>>): gsap.core.Timeline => {
+    const tl = gsap.timeline({
+        paused: true,
+        onComplete: () => {
+            if (selectedSite === 'biz') setter(0);
+        },
+    });
+    tl.add(animateHeaderFooterSpinners(FAST));
+    tl.add(colorizeFooterHeaderTitles(FAST), '<');
+    tl.add(animateCounter(FAST, counter, setter, false, selectedSite === 'biz'), '<');
+    return tl;
+};
 
-export const betterCallClickWtf = (selectedSite: SiteKey, entries: Entry[]) => {
+export const betterCallClick = (selectedSite: SiteKey, counter: number, setter: Dispatch<SetStateAction<number>>) => {
     const tl = gsap.timeline({
         paused: true,
         onStart: () => {
-            entries.forEach((entry) => entry[1](0));
+            setter(0);
         },
     });
-    tl.add(animateHeaderFooterSpinners(false));
+    tl.add(animateHeaderFooterSpinners(DEFAULT));
     tl.add(colorizeFooterHeaderTitles(DEFAULT), '<');
+    tl.add(animateCounter(DEFAULT - (selectedSite === 'biz' ? 0.8 : 0), counter, setter, false, selectedSite === 'biz'), '<');
+    return tl;
+};
 
-    entries.forEach((entry) => {
-        tl.add(animateCounter(DEFAULT, entry[0], entry[1], false, true), '<');
+export const betterCallClickWtf = (counter: number, setter: Dispatch<SetStateAction<number>>) => {
+    const tl = gsap.timeline({
+        paused: true,
+        onStart: () => {
+            setter(0);
+        },
     });
+    tl.add(animateHeaderFooterSpinners(DEFAULT));
+    tl.add(colorizeFooterHeaderTitles(DEFAULT), '<');
+    tl.add(animateCounter(DEFAULT, counter, setter, false, true, 'linear'), '<');
+
     return tl;
 };

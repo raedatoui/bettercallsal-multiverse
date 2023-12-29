@@ -21,31 +21,31 @@ const Bizerk: FC<Props> = ({ bizerk }) => {
 
     const { buffers } = useContext(SoundContext);
     const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
-    const [tl, setTl] = useState<gsap.core.Timeline>();
+    const [tl, setTl] = useState<gsap.core.Timeline | null>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             // DOC: bizerk hover -> gsap fast animations
-            let counter = animateGrid;
-            let setCounter = setAnimateGrid;
-            if (selectedSite === 'wtf') {
-                counter = animateWtf;
-                setCounter = setAnimateWtf;
+            if (selectedSite !== 'wtf') {
+                const tl = bizerkHover(selectedSite, animateGrid, setAnimateGrid);
+                setTl(tl);
             }
-            const tl = bizerkHover(selectedSite, counter, setCounter);
-            setTl(tl);
         });
         return () => ctx.revert();
     }, [selectedSite]);
 
     const play = () => {
-        if (selectedSite === 'wtf') setAnimateWtf(Math.round(Math.random() * 1000));
-        else setAnimateGrid(Math.round(Math.random() * 1000));
-        tl?.restart();
-        buffers.play(site.header.ringAudio, false);
-        buffers.play(site.footer.ringAudio, false);
-        buffers.play(site.header.spinningSalAudio1, false);
-        buffers.play(site.header.spinningSalAudio2, false);
+        // if (selectedSite === 'wtf') setAnimateWtf(Math.round(Math.random() * 1000));
+        // else setAnimateGrid(Math.round(Math.random() * 1000));
+        // TODO: drill site props in
+        if (tl) {
+            console.log('restart');
+            tl.restart();
+            buffers.play(site.header.ringAudio, false);
+            buffers.play(site.footer.ringAudio, false);
+            buffers.play(site.header.spinningSalAudio1, false);
+            buffers.play(site.header.spinningSalAudio2, false);
+        }
     };
 
     const pause = () => {
@@ -57,13 +57,6 @@ const Bizerk: FC<Props> = ({ bizerk }) => {
             setAnimateWtf(0);
         }
     };
-
-    useEffect(() => {
-        if (bizerkMode === 'off') {
-            setAnimateWtf(0);
-            setAnimateGrid(0);
-        }
-    }, [bizerk]);
 
     return (
         <BizerkImageContainer className={bizerk.site}>

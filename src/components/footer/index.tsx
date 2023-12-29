@@ -38,15 +38,9 @@ const LawBreakers = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            const tl =
-                selectedSite === 'wtf'
-                    ? /* eslint-disable indent, @typescript-eslint/indent */
-                      betterCallClickWtf(selectedSite, [
-                          [animateGrid, setAnimateGrid],
-                          [animateWtf, setAnimateWtf],
-                      ])
-                    : betterCallClick(selectedSite, animateGrid, setAnimateGrid);
-            /* eslint-enable indent, @typescript-eslint/indent */
+            let tl = betterCallClick(selectedSite, animateGrid, setAnimateGrid);
+            if (selectedSite === 'wtf')
+                tl = betterCallClickWtf(animateWtf, setAnimateWtf);
             setTl(tl);
         });
         return () => ctx.revert();

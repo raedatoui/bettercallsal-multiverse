@@ -5,7 +5,7 @@ import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { SiteKey } from '@/types';
-import { animateCounter } from '@/utils';
+import { animateCounterBizerk } from '@/utils';
 import Bizerk from './bizerk';
 
 interface Props {
@@ -23,19 +23,21 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
 
     const { buffers } = useContext(SoundContext);
     const { animateWtf, setAnimateWtf, bizerkMode, setAnimateGrid } = useAnimationContext();
-    const [tl, setTl] = useState<gsap.core.Tween>();
+    const [tl, setTl] = useState<gsap.core.Tween | null>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             // DOC: bizerk hover -> gsap fast animations
-            const tl = animateCounter(3, animateWtf, setAnimateWtf, true, selectedSite === 'biz' || selectedSite === 'wtf');
-            setTl(tl);
+            if (selectedSite === 'wtf') {
+                const tl = animateCounterBizerk(animateWtf, setAnimateWtf);
+                setTl(tl);
+            }
         });
         return () => ctx.revert();
     }, [selectedSite]);
 
     const play = () => {
-        if (selectedSite === 'wtf') {
+        if (tl) {
             tl?.restart();
             buffers.play(ringAudio1, false);
             buffers.play(spinningSalAudio1, false);
@@ -45,7 +47,7 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
 
     const pause = () => {
         // DOC: in bizerk mode, dont stop anything
-        if (bizerkMode === 'off') {
+        if (bizerkMode === 'off' && tl) {
             tl?.pause();
             // TODO: should this audio stop or let the accumulated sources play
             buffers.stopAll();

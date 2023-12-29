@@ -1,4 +1,5 @@
-import React, { createContext, FC, useMemo, useState, useContext, Dispatch, SetStateAction } from 'react';
+import React, { createContext, FC, useMemo, useState, useContext, Dispatch, SetStateAction, useEffect } from 'react';
+import { useSiteContext } from '@/providers/sites';
 import { BizerkMode } from '@/types';
 
 type AnimationProviderType = {
@@ -28,11 +29,20 @@ const AnimationContext = createContext<AnimationProviderType>({
 });
 
 const AnimationsProvider: FC<ProviderProps> = ({ children }) => {
+    const { selectedSite } = useSiteContext();
+
     const [animateGrid, setAnimateGrid] = useState<number>(0);
     const [animateNav, setAnimateNav] = useState<number>(0);
     const [animateWtf, setAnimateWtf] = useState<number>(0);
 
     const [bizerkMode, setBizerkMode] = useState<BizerkMode>('off');
+
+    useEffect(() => {
+        // DOC: kill all animations when site changes.
+        setAnimateWtf(0);
+        setAnimateGrid(0);
+        setAnimateNav(0);
+    }, [selectedSite]);
 
     const animationCounters = useMemo<AnimationProviderType>(
         () => ({

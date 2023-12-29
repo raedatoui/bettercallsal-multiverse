@@ -14,13 +14,11 @@ export { shuffleList };
 export { slugify };
 export { findGame, findContent, findCategory, findContentFomStore } from './find';
 export {
-    animateCounter,
+    // animateCounter,
     animateCounterBizerk,
-    animateHeaderFooterSpinners,
     bizerkHover,
     loadAnimation,
     wtfLoadAnimation,
-    colorizeFooterHeaderTitles,
     betterCallClick,
     betterCallClickWtf,
 } from './gsap';
