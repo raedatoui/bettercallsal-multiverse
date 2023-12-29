@@ -113,6 +113,7 @@ const MainContainerInner = () => {
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         // DOC: bizerk click
+        // TODO: MOVE THIS CLICK OUT OF HERE?!
         const target = event.target as HTMLElement;
         if (mainRef.current && screenCapture === null && scriptLoaded && (selectedSite === 'construction' || target.id === 'bizerk-icon'))
             window.htmlToImage

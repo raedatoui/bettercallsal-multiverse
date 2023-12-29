@@ -167,6 +167,11 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         }
     }, [animateWtf, selectedSite]);
 
+    useEffect(() => {
+        setContentList(getList());
+        setHeaderText(getHeaderText());
+    }, [category]);
+
     // DOC: when loading category, that doesnt exist on current site, go to home
     if (category !== undefined && category !== 'all') {
         const categories = getList().map((i) => i.category);

@@ -59,16 +59,22 @@ export const ClientLeftNav = () => {
         if (site.leftNav.path) navigate(site.leftNav.path);
     };
 
+    // DOC: only shuffle nav list on animate nav
     useEffect(() => {
-        if (animateNav > 0 || animateWtf > 0) {
-            const l = shuffleList(site.leftNav.items).slice(0, 7);
+        if (animateNav > 0)
+            setNavItems(shuffleList(site.leftNav.items));
+    }, [animateNav, site]);
+
+
+    // DOC: randomize entire nav on animate wtf
+    useEffect(() => {
+        if (animateWtf > 0) {
             setLeftNavImage(pickRandom(siteMap).leftNav.image);
             setLeftNavText(pickRandom(siteMap).leftNav.text);
-
-            // if (selectedSite === 'wtf') l = l.slice(0, 7);
-            setNavItems(l);
+            // setNavItems(site.leftNav.items.sort((a, b) => a.name.localeCompare(b.name)));
+            setNavItems(shuffleList(site.leftNav.items).slice(0, 7));
         }
-    }, [animateNav, animateWtf, site]);
+    }, [animateWtf, site]);
 
     useEffect(() => {
         setNavItems(site.leftNav.items);

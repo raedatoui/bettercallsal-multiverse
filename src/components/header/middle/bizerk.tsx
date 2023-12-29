@@ -20,10 +20,10 @@ interface Props {
 }
 
 const Bizerk: FC<Props> = ({ bizerk, spinningSalAudio1, spinningSalAudio2, ringAudio1, ringAudio2 }) => {
-    const { selectedSite, siteMap } = useSiteContext();
+    const { selectedSite } = useSiteContext();
 
     const { buffers } = useContext(SoundContext);
-    const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
+    const { animateGrid, setAnimateGrid, bizerkMode } = useAnimationContext();
     const [tl, setTl] = useState<gsap.core.Timeline | null>(null);
 
     useEffect(() => {
@@ -53,7 +53,6 @@ const Bizerk: FC<Props> = ({ bizerk, spinningSalAudio1, spinningSalAudio2, ringA
             // TODO: should this audio stop or let the accumulated sources play
             buffers.stopAll();
             setAnimateGrid(0);
-            setAnimateWtf(0);
         }
     };
 
