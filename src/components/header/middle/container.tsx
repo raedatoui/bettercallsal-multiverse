@@ -16,9 +16,10 @@ interface Props {
     spinningSalAudio1: string;
     spinningSalAudio2: string;
     ringAudio1: string;
+    ringAudio2: string;
 }
 
-export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinningSalAudio1, spinningSalAudio2, ringAudio1 }) => {
+export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinningSalAudio1, spinningSalAudio2, ringAudio1, ringAudio2 }) => {
     const { selectedSite } = useSiteContext();
 
     const { buffers } = useContext(SoundContext);
@@ -27,7 +28,6 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // DOC: bizerk hover -> gsap fast animations
             if (selectedSite === 'wtf') {
                 const tl = animateCounterBizerk(animateWtf, setAnimateWtf);
                 setTl(tl);
@@ -40,6 +40,7 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
         if (tl) {
             tl?.restart();
             buffers.play(ringAudio1, false);
+            buffers.play(ringAudio2, false);
             buffers.play(spinningSalAudio1, false);
             buffers.play(spinningSalAudio2, false);
         }
@@ -65,7 +66,13 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
             onMouseOut={() => pause()}
         >
             <SalName>{name1}</SalName>
-            <Bizerk bizerk={bizerkIcon} />
+            <Bizerk
+                bizerk={bizerkIcon}
+                spinningSalAudio1={spinningSalAudio1}
+                spinningSalAudio2={spinningSalAudio2}
+                ringAudio1={ringAudio1}
+                ringAudio2={ringAudio2}
+            />
             <SalName>{name2}</SalName>
         </BizerkContainer>
     );

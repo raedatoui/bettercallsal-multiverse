@@ -42,7 +42,8 @@ const HeaderComponent: FC = () => {
     const [title1, setTitle1] = useState<string>(site.header.title1);
     const [title2, setTitle2] = useState<string>(site.header.title2);
     const [bizerkIcon, setBizerkIcon] = useState<{ icon: string; site: SiteKey }>(site.header.bizerk);
-    const [ringAudio, setRingAudio] = useState<string>(site.header.ringAudio);
+    const [ringAudio1, setRingAudio1] = useState<string>(site.header.ringAudio);
+    const [ringAudio2, setRingAudio2] = useState<string>(site.footer.ringAudio);
     const [spinningAudio1, setSpinningAudio1] = useState<string>(site.header.spinningSalAudio1);
     const [spinningAudio2, setSpinningAudio2] = useState<string>(site.header.spinningSalAudio2);
 
@@ -59,7 +60,8 @@ const HeaderComponent: FC = () => {
         setTitle1(site.header.title1);
         setTitle2(site.header.title2);
         setBizerkIcon(site.header.bizerk);
-        setRingAudio(site.header.ringAudio);
+        setRingAudio1(site.header.ringAudio);
+        setRingAudio2(site.footer.ringAudio);
         setSpinningAudio1(site.header.spinningSalAudio1);
         setSpinningAudio2(site.header.spinningSalAudio2);
 
@@ -109,7 +111,8 @@ const HeaderComponent: FC = () => {
             setTitle2(pickRandom(siteMap).header.title2);
             const s3 = pickRandom(siteMap);
             setBizerkIcon(s3.header.bizerk);
-            setRingAudio(pickRandom(siteMap).header.ringAudio);
+            setRingAudio1(pickRandom(siteMap).header.ringAudio);
+            setRingAudio2(pickRandom(siteMap).footer.ringAudio);
             setSpinningAudio1(pickRandom(siteMap).header.spinningSalAudio1);
             setSpinningAudio2(pickRandom(siteMap).header.spinningSalAudio2);
         }
@@ -127,7 +130,7 @@ const HeaderComponent: FC = () => {
                     className={`better-call-title ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
                     onClick={() => {
                         clickTl?.restart();
-                        buffers.play(ringAudio, false);
+                        buffers.play(ringAudio1, false);
                     }}
                 >
                     &ldquo;Better Call Sal!&rdquo;
@@ -137,7 +140,8 @@ const HeaderComponent: FC = () => {
                     name2={name2}
                     spinningSalAudio1={spinningAudio1}
                     spinningSalAudio2={spinningAudio2}
-                    ringAudio1={ringAudio}
+                    ringAudio1={ringAudio1}
+                    ringAudio2={ringAudio2}
                     bizerkMode={bizerkMode}
                     bizerkIcon={bizerkIcon}
                 />

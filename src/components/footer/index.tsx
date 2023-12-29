@@ -39,8 +39,7 @@ const LawBreakers = () => {
     useEffect(() => {
         const ctx = gsap.context(() => {
             let tl = betterCallClick(selectedSite, animateGrid, setAnimateGrid);
-            if (selectedSite === 'wtf')
-                tl = betterCallClickWtf(animateWtf, setAnimateWtf);
+            if (selectedSite === 'wtf') tl = betterCallClickWtf(animateWtf, setAnimateWtf);
             setTl(tl);
         });
         return () => ctx.revert();

@@ -9,15 +9,18 @@ import { bizerkHover } from '@/utils/gsap';
 import { BizerImage, BizerkImageContainer } from './elements';
 
 interface Props {
+    spinningSalAudio1: string;
+    spinningSalAudio2: string;
+    ringAudio1: string;
+    ringAudio2: string;
     bizerk: {
         icon: string;
         site: SiteKey;
     };
 }
 
-const Bizerk: FC<Props> = ({ bizerk }) => {
+const Bizerk: FC<Props> = ({ bizerk, spinningSalAudio1, spinningSalAudio2, ringAudio1, ringAudio2 }) => {
     const { selectedSite, siteMap } = useSiteContext();
-    const site = siteMap[selectedSite];
 
     const { buffers } = useContext(SoundContext);
     const { animateGrid, setAnimateGrid, animateWtf, setAnimateWtf, bizerkMode } = useAnimationContext();
@@ -25,7 +28,6 @@ const Bizerk: FC<Props> = ({ bizerk }) => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // DOC: bizerk hover -> gsap fast animations
             if (selectedSite !== 'wtf') {
                 const tl = bizerkHover(selectedSite, animateGrid, setAnimateGrid);
                 setTl(tl);
@@ -35,16 +37,13 @@ const Bizerk: FC<Props> = ({ bizerk }) => {
     }, [selectedSite]);
 
     const play = () => {
-        // if (selectedSite === 'wtf') setAnimateWtf(Math.round(Math.random() * 1000));
-        // else setAnimateGrid(Math.round(Math.random() * 1000));
-        // TODO: drill site props in
         if (tl) {
-            console.log('restart');
             tl.restart();
-            buffers.play(site.header.ringAudio, false);
-            buffers.play(site.footer.ringAudio, false);
-            buffers.play(site.header.spinningSalAudio1, false);
-            buffers.play(site.header.spinningSalAudio2, false);
+            setAnimateGrid(Math.random()); // extra random to trigger the animation
+            buffers.play(ringAudio1, false);
+            buffers.play(ringAudio2, false);
+            buffers.play(spinningSalAudio1, false);
+            buffers.play(spinningSalAudio2, false);
         }
     };
 
