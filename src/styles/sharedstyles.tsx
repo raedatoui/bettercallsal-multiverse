@@ -20,12 +20,6 @@ export const Main = styled.main`
             height: 100%;
         }
     }
-
-    &.wtf {
-        .animatable {
-            opacity: 0;
-        }
-    }
 `;
 
 export const Section = styled.section`

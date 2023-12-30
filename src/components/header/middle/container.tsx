@@ -28,6 +28,7 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // DOC: bizerk hover -> gsap fast animations
             if (selectedSite === 'wtf') {
                 const tl = animateCounterBizerk(animateWtf, setAnimateWtf);
                 setTl(tl);
@@ -37,13 +38,11 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
     }, [selectedSite]);
 
     const play = () => {
-        if (tl) {
-            tl?.restart();
-            buffers.play(ringAudio1, false);
-            buffers.play(ringAudio2, false);
-            buffers.play(spinningSalAudio1, false);
-            buffers.play(spinningSalAudio2, false);
-        }
+        tl?.restart();
+        buffers.play(ringAudio1, false);
+        buffers.play(ringAudio2, false);
+        buffers.play(spinningSalAudio1, false);
+        buffers.play(spinningSalAudio2, false);
     };
 
     const pause = () => {
@@ -61,7 +60,7 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
         <BizerkContainer
             className={`animatable ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
             onMouseOver={() => {
-                if (selectedSite === 'wtf') play();
+                if (tl) play();
             }}
             onMouseOut={() => pause()}
         >

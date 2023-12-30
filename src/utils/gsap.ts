@@ -106,19 +106,21 @@ export const loadAnimation = () => {
 };
 
 export const wtfLoadAnimation = (counter: number, setter: Dispatch<SetStateAction<number>>) => {
+    document.getElementById('main')?.classList.remove('wtf');
+
     const tl = gsap.timeline({
         paused: true,
         onComplete: () => {
             document.getElementById('main')?.classList.remove('wtf');
         },
     });
-    tl.add(
-        gsap.to('.animatable', {
-            opacity: 1,
-            ease: 'power2.out',
-            duration: 0.1,
-        })
-    );
+    // tl.add(
+    //     gsap.to('.animatable', {
+    //         opacity: 1,
+    //         ease: 'power2.out',
+    //         duration: 0.1,
+    //     })
+    // );
     const r = gsap.fromTo(
         '.spinner',
         { rotateY: 0 },

@@ -44,6 +44,7 @@ export const ClientLeftNav = () => {
                 setAudioPlaying(a);
             }
     };
+
     const handleNav = (c: LeftNavItem) => {
         if (c.audio) handleAudio(c.audio);
 
@@ -61,10 +62,8 @@ export const ClientLeftNav = () => {
 
     // DOC: only shuffle nav list on animate nav
     useEffect(() => {
-        if (animateNav > 0)
-            setNavItems(shuffleList(site.leftNav.items));
+        if (animateNav > 0) setNavItems(shuffleList(site.leftNav.items));
     }, [animateNav, site]);
-
 
     // DOC: randomize entire nav on animate wtf
     useEffect(() => {
@@ -72,7 +71,7 @@ export const ClientLeftNav = () => {
             setLeftNavImage(pickRandom(siteMap).leftNav.image);
             setLeftNavText(pickRandom(siteMap).leftNav.text);
             // setNavItems(site.leftNav.items.sort((a, b) => a.name.localeCompare(b.name)));
-            setNavItems(shuffleList(site.leftNav.items).slice(0, 7));
+            setNavItems(shuffleList(site.leftNav.items).slice(0, Math.floor(Math.random() * 3) + 5));
         }
     }, [animateWtf, site]);
 

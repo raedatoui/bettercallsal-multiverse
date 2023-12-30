@@ -42,25 +42,12 @@ const LawBreakers = () => {
             if (selectedSite === 'wtf') tl = betterCallClickWtf(animateWtf, setAnimateWtf);
             setTl(tl);
         });
-        return () => ctx.revert();
-    }, [selectedSite]);
 
-    useEffect(() => {
-        setLeftIconSize(
-            getContentSize({
-                width: leftImage.width,
-                height: leftImage.height,
-            })
-        );
-        setRightIconSize(
-            getContentSize({
-                width: rightImage.width,
-                height: rightImage.height,
-            })
-        );
-    }, [windowSize, site, leftImage, rightImage]);
+        setFooterText(site.footer.text);
+        setLeftImage(site.footer.icon);
+        setRightImage(site.footer.icon);
+        setRingAudio(site.footer.ringAudio);
 
-    useEffect(() => {
         // DOC: adjust size on hot key
         setLeftIconSize(
             getContentSize({
@@ -74,27 +61,32 @@ const LawBreakers = () => {
                 height: rightImage.height,
             })
         );
-    }, [selectedSite]);
-
-    useEffect(() => {
-        // DOC: reset out of wtf when hot keying
-        if (selectedSite !== 'wtf') {
-            setFooterText(site.footer.text);
-            setLeftImage(site.footer.icon);
-            setRightImage(site.footer.icon);
-            setRingAudio(site.footer.ringAudio);
-        }
+        return () => ctx.revert();
     }, [selectedSite, site]);
 
     useEffect(() => {
-        if (animateWtf > 0) {
-            const f = pickRandom(siteMap);
-            setFooterText(f.footer.text);
+        setLeftIconSize(
+            getContentSize({
+                width: leftImage.width,
+                height: leftImage.height,
+            })
+        );
+        setRightIconSize(
+            getContentSize({
+                width: rightImage.width,
+                height: rightImage.height,
+            })
+        );
+    }, [windowSize, site, leftImage]);
+
+    useEffect(() => {
+        if (selectedSite === 'wtf') {
+            setFooterText(pickRandom(siteMap).footer.text);
             setLeftImage(pickRandom(siteMap).footer.icon);
             setRightImage(pickRandom(siteMap).footer.icon);
             setRingAudio(pickRandom(siteMap).footer.ringAudio);
         }
-    }, [animateWtf]);
+    }, [animateWtf, selectedSite]);
 
     return (
         <>
