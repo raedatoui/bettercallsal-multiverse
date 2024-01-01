@@ -1,6 +1,8 @@
 import { gsap } from 'gsap';
 import { Dispatch, SetStateAction } from 'react';
-import { SiteKey } from '@/types';
+import { Site, SiteKey, SiteKeyValidator } from '@/types';
+import AudioBuffers from '@/providers/audio-buffer';
+import Timeout from '@/utils/timeout';
 
 type P = (v: number) => number;
 type S = (v: number | P) => void;
@@ -176,4 +178,60 @@ export const betterCallClickWtf = (counter: number, setter: Dispatch<SetStateAct
     tl.add(animateCounter(DEFAULT, counter, setter, false, true, 'linear'), '<');
 
     return tl;
+};
+
+export const audioTween = (buffers: AudioBuffers, site: Site) => {
+    let counter1 = 0;
+    let counter2 = 0;
+    let interval: Timeout;
+
+    const copy = {
+        counter1,
+        counter2,
+    };
+    const house = {
+        getAttribute: (key: string) => copy[key],
+        setAttribute: (qualifiedName: string, value: number) => {
+            counter1 = value;
+            // if (value - counter1 > 0.02) {
+            //     console.log('counter');
+            //     if (interval) {
+            //         clearTimeout(interval);
+            //         buffers.stopAll();
+            //     }
+            //     buffers.play(site.header.ringAudio, false);
+            //     buffers.play(site.footer.ringAudio, false);
+            //     buffers.play(site.header.spinningSalAudio1, false);
+            //     buffers.play(site.header.spinningSalAudio2, false);
+            //     counter1 = value;
+            //
+            //     interval = setTimeout(() => {
+            //         buffers.stop(site.header.ringAudio);
+            //         buffers.stop(site.footer.ringAudio);
+            //         buffers.stop(site.header.spinningSalAudio1);
+            //         buffers.stop(site.header.spinningSalAudio2);
+            //         counter2 = value;
+            //     }, 1000);
+            // }
+        },
+    };
+
+    const tween = gsap.to(house, {
+        attr: { counter1: counter1 + 1 },
+        duration: 0.1,
+        onRepeat: (self: gsap.core.Tween) => {
+            if (counter2++ % 2 === 0) {
+                buffers.play(site.header.ringAudio, false);
+                buffers.play(site.footer.ringAudio, false);
+                buffers.play(site.header.spinningSalAudio1, false);
+                buffers.play(site.header.spinningSalAudio2, false);
+            } else buffers.stopAll();
+
+            if (counter2 % 10 === 0) self.timeScale(self.timeScale() + 0.25);
+        },
+        repeat: 200,
+        paused: true,
+    });
+    tween.vars.onRepeatParams = [tween];
+    return tween;
 };

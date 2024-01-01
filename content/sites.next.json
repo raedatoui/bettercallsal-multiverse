@@ -8,7 +8,7 @@
                 "height": 432,
                 "site": "art"
             },
-            "ringAudio": "/audio/art/ring.art.mp3",
+            "ringAudio": "/audio/art/ring-art.mp3",
             "text": "welcome artists"
         },
         "gaTag": "G-DMT1EKGNWP",
@@ -20,10 +20,10 @@
             "lowerBanner": "Want Art from Sal?",
             "name1": "Salvatore",
             "name2": "Dali",
-            "ringAudio": "/audio/art/ring.art.mp3",
+            "ringAudio": "/audio/art/ring-art.mp3",
             "showTicker": true,
-            "spinningSalAudio1": "/audio/art/spinning.art.mp3",
-            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
+            "spinningSalAudio1": "/audio/art/spinning-art.mp3",
+            "spinningSalAudio2": "/audio/art/spinning-art.mp3",
             "spinningSalsLeft": "/images/art/spinning.art.left.webp",
             "spinningSalsRight": "/images/art/spinning.art.right.webp",
             "title1": "The Great",
@@ -105,7 +105,7 @@
                 "height": 393,
                 "site": "biz"
             },
-            "ringAudio": "/audio/biz/phone-ring.m4a",
+            "ringAudio": "/audio/biz/ring-biz.mp3",
             "text": "welcome producers"
         },
         "gaTag": "G-BQZKS9QQG8",
@@ -117,10 +117,10 @@
             "lowerBanner": "Want Emails from Sal?",
             "name1": "Salvatore",
             "name2": "Barra",
-            "ringAudio": "/audio/biz/phone-ring.m4a",
+            "ringAudio": "/audio/biz/ring-biz.mp3",
             "showTicker": true,
-            "spinningSalAudio1": "/audio/biz/airhorn.m4a",
-            "spinningSalAudio2": "/audio/biz/airhorn.m4a",
+            "spinningSalAudio1": "/audio/biz/spinning-biz.mp3",
+            "spinningSalAudio2": "/audio/biz/spinning-biz.mp3",
             "spinningSalsLeft": "/images/biz/sal-left.webp",
             "spinningSalsRight": "/images/biz/sal-right.webp",
             "title1": "Sound",
@@ -202,7 +202,7 @@
                 "height": 393,
                 "site": "construction"
             },
-            "ringAudio": "/audio/construction/ring.construction.mp3",
+            "ringAudio": "/audio/construction/ring-construction.mp3",
             "text": "under construction"
         },
         "gaTag": "G-0F52SEFQX4",
@@ -214,7 +214,7 @@
             "lowerBanner": "Want Construction from Sal?",
             "name1": "Hard Hat",
             "name2": "Sal",
-            "ringAudio": "/audio/construction/ring.construction.mp3",
+            "ringAudio": "/audio/construction/ring-construction.mp3",
             "showTicker": true,
             "spinningSalAudio1": "/audio/construction/cat.call.loud.mp3",
             "spinningSalAudio2": "/audio/construction/cat.call.loud.mp3",
@@ -299,7 +299,7 @@
                 "height": 512,
                 "site": "fit"
             },
-            "ringAudio": "/audio/fit/ring.fit.mp3",
+            "ringAudio": "/audio/fit/ring-fit.mp3",
             "text": "NAMASTE"
         },
         "gaTag": "G-NZSHWYRKKF",
@@ -311,7 +311,7 @@
             "lowerBanner": "Want Workouts from Sal?",
             "name1": "Yogi",
             "name2": "Barra",
-            "ringAudio": "/audio/fit/ring.fit.mp3",
+            "ringAudio": "/audio/fit/ring-fit.mp3",
             "showTicker": true,
             "spinningSalAudio1": "/audio/fit/ready.mp3",
             "spinningSalAudio2": "/audio/fit/ready.mp3",
@@ -446,7 +446,7 @@
                 "height": 432,
                 "site": "gallery"
             },
-            "ringAudio": "/audio/art/ring.art.mp3",
+            "ringAudio": "/audio/art/ring-art.mp3",
             "text": "welcome artists"
         },
         "gaTag": "G-K60R3CHS4L",
@@ -458,10 +458,10 @@
             "lowerBanner": "Want Gallery from Sal?",
             "name1": "Salvatore",
             "name2": "Dali",
-            "ringAudio": "/audio/art/ring.art.mp3",
+            "ringAudio": "/audio/art/ring-art.mp3",
             "showTicker": false,
-            "spinningSalAudio1": "/audio/art/spinning.art.mp3",
-            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
+            "spinningSalAudio1": "/audio/art/spinning-art.mp3",
+            "spinningSalAudio2": "/audio/art/spinning-art.mp3",
             "spinningSalsLeft": "/images/gallery/gallery-right.png",
             "spinningSalsRight": "/images/gallery/gallery-left.png",
             "title1": "The Great",
@@ -492,7 +492,7 @@
                 "height": 300,
                 "site": "games"
             },
-            "ringAudio": "/audio/games/ring.games.mp3",
+            "ringAudio": "/audio/games/ring-games.mp3",
             "text": "welcome gamers"
         },
         "gaTag": "G-M1N65RK3KR",
@@ -504,10 +504,10 @@
             "lowerBanner": "Want Games from Sal?",
             "name1": "Super",
             "name2": "Sal Bros.",
-            "ringAudio": "/audio/games/ring.games.mp3",
+            "ringAudio": "/audio/games/ring-games.mp3",
             "showTicker": true,
-            "spinningSalAudio1": "/audio/games/spinning.games.mp3",
-            "spinningSalAudio2": "/audio/games/spinning.games.mp3",
+            "spinningSalAudio1": "/audio/games/spinning-games.mp3",
+            "spinningSalAudio2": "/audio/games/spinning-games.mp3",
             "spinningSalsLeft": "/images/games/spinning.games.left.webp",
             "spinningSalsRight": "/images/games/spinning.games.right.webp",
             "title1": "Hardcore",
@@ -579,7 +579,7 @@
                 "height": 256,
                 "site": "rocks"
             },
-            "ringAudio": "/audio/rocks/ring.rocks.mp3",
+            "ringAudio": "/audio/rocks/ring-rocks.mp3",
             "text": "welcome rockstars"
         },
         "gaTag": "G-BCGHB6Z0WX",
@@ -591,10 +591,10 @@
             "lowerBanner": "Want Music from Sal?",
             "name1": "Sal",
             "name2": "Barratone",
-            "ringAudio": "/audio/rocks/ring.rocks.mp3",
+            "ringAudio": "/audio/rocks/ring-rocks.mp3",
             "showTicker": true,
-            "spinningSalAudio1": "/audio/rocks/spinning.rocks.mp3",
-            "spinningSalAudio2": "/audio/rocks/spinning.rocks.mp3",
+            "spinningSalAudio1": "/audio/rocks/spinning-rocks.mp3",
+            "spinningSalAudio2": "/audio/rocks/spinning-rocks.mp3",
             "spinningSalsLeft": "/images/rocks/spinning.rocks.left.webp",
             "spinningSalsRight": "/images/rocks/spinning.rocks.right.webp",
             "title1": "Rock",
@@ -676,7 +676,7 @@
                 "height": 273,
                 "site": "world"
             },
-            "ringAudio": "/audio/world/ring.world.mp3",
+            "ringAudio": "/audio/world/ring-world.mp3",
             "text": "welcome explorers"
         },
         "gaTag": "G-Y7FV9CTVTS",
@@ -688,10 +688,10 @@
             "lowerBanner": "Want Rocked from Sal?",
             "name1": "Dante",
             "name2": "Salighieri",
-            "ringAudio": "/audio/world/ring.world.mp3",
+            "ringAudio": "/audio/world/ring-world.mp3",
             "showTicker": false,
-            "spinningSalAudio1": "/audio/world/spinning.world.mp3",
-            "spinningSalAudio2": "/audio/world/spinning.world.mp3",
+            "spinningSalAudio1": "/audio/world/spinning-world.mp3",
+            "spinningSalAudio2": "/audio/world/spinning-world.mp3",
             "spinningSalsLeft": "/images/world/world-left.webp",
             "spinningSalsRight": "/images/world/world-right.webp",
             "title1": "World",
@@ -764,7 +764,7 @@
                 "height": 300,
                 "site": "games"
             },
-            "ringAudio": "/audio/games/ring.games.mp3"
+            "ringAudio": "/audio/games/ring-games.mp3"
         },
         "gaTag": "G-DMT1EKGNWP",
         "header": {
@@ -775,10 +775,10 @@
             "lowerBanner": "Want Construction from Sal?",
             "name1": "Yogi",
             "name2": "Dali",
-            "ringAudio": "/audio/rocks/ring.rocks.mp3",
+            "ringAudio": "/audio/rocks/ring-rocks.mp3",
             "showTicker": false,
-            "spinningSalAudio1": "/audio/art/spinning.art.mp3",
-            "spinningSalAudio2": "/audio/art/spinning.art.mp3",
+            "spinningSalAudio1": "/audio/art/spinning-art.mp3",
+            "spinningSalAudio2": "/audio/art/spinning-art.mp3",
             "spinningSalsLeft": "/images/fit/shweaty-left.webp",
             "spinningSalsRight": "/images/games/spinning.games.right.webp",
             "title1": "The Great",
@@ -899,7 +899,7 @@
                     "site": "construction"
                 },
                 {
-                    "audio": "/audio/biz/salutations.m4a",
+                    "audio": "/audio/biz/salutations.mp3",
                     "path": "/",
                     "id": "24327acc-95dd-421f-9048-65d505205bdd",
                     "link": null,
@@ -1169,7 +1169,7 @@
                     "site": "world"
                 },
                 {
-                    "audio": "/audio/construction/salutations.m4a",
+                    "audio": "/audio/construction/salutations.mp3",
                     "path": null,
                     "id": "c13d65ec-4ce2-4576-8ece-3ce46ee51f85",
                     "link": null,

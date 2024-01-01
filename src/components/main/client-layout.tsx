@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Construction from '@/components/construction';
 import { ClientLeftNav } from '@/components/left-nav';
@@ -10,6 +10,8 @@ import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Row, MiddleSection } from '@/styles/sharedstyles';
 import { BaseContentItem, SiteKey } from '@/types';
+import { audioTween } from '@/utils/gsap';
+import { SoundContext } from '@/providers/audio-context';
 
 const keyMap: Record<string, SiteKey> = {
     a: 'art',
@@ -38,11 +40,15 @@ const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[])
 };
 
 const ClientLayout = () => {
-    const { selectedSite, setSelectedSite, setFullScreen, fullScreen, contentMap } = useSiteContext();
+    const { selectedSite, siteMap, setSelectedSite, setFullScreen, fullScreen, contentMap } = useSiteContext();
     const { prevPath, setPrevPath } = usePathContext();
+    const { buffers } = useContext(SoundContext);
     const navigate = useNavigate();
     const location = useLocation();
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
+    const [hotKeyMode, setHotKeyMode] = useState<boolean>(true);
+
+    const [aTween, setATween] = useState<gsap.core.Tween>();
 
     useEffect(() => {
         const downHandler = (ev: KeyboardEvent) => {
@@ -66,12 +72,25 @@ const ClientLayout = () => {
 
     useEffect(() => {
         if (keyPressed === 'Escape' && fullScreen) setFullScreen(false);
+        if (keyPressed === ' ') setHotKeyMode(!hotKeyMode);
         if (keyPressed && keyMap[keyPressed] !== undefined) {
-            setSelectedSite(keyMap[keyPressed]);
-            setFullScreen(false);
-            window.scrollTo(0, 0);
-            document.body.scrollTo(0, 0);
-            document.getElementById('content-row')?.scrollTo(0, 0);
+            if (hotKeyMode) {
+                setSelectedSite(keyMap[keyPressed]);
+                setFullScreen(false);
+                window.scrollTo(0, 0);
+                document.body.scrollTo(0, 0);
+                document.getElementById('content-row')?.scrollTo(0, 0);
+                return;
+            } else {
+                let tween = aTween;
+                if (aTween?.isActive()) {
+                    buffers.stopAll();
+                    aTween.kill();
+                }
+                tween = audioTween(buffers, siteMap[keyMap[keyPressed]]);
+                setATween(tween);
+                tween.play();
+            }
         }
     }, [fullScreen, keyPressed, navigate, selectedSite, setFullScreen, setSelectedSite]);
 
