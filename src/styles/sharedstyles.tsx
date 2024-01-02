@@ -40,8 +40,13 @@ export const Row = styled.div`
     display: flex;
     overflow-x: hidden;
     overflow-y: hidden;
-
     height: 100%;
+
+    box-sizing: border-box;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    backface-visibility: visible;
 
     @media (min-height: 601px) and (min-width: ${breakPoints.sm.max}px) {
         flex: 1;
@@ -50,6 +55,24 @@ export const Row = styled.div`
 
     @media (max-width: ${breakPoints.lg1.max}px) {
         flex-direction: column;
+    }
+
+    > #middle,
+    > #audio-board {
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition-duration: 0.5s;
+        transition-property: transform, opacity;
+        backface-visibility: visible;
+    }
+
+    &:hover {
+        > #middle {
+            transform: rotateY(540deg);
+        }
+        > #audio-board {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
     }
 `;
 
@@ -135,6 +158,15 @@ export const MiddleSection = styled.div`
             height: 100%;
         }
     }
+`;
+
+export const AudioBoard = styled.div`
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(-540deg);
+    background: blue;
 `;
 
 export const Caption = styled.h4`

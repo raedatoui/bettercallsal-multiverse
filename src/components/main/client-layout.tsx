@@ -9,7 +9,7 @@ import { Youtube } from '@/components/video';
 import { SoundContext } from '@/providers/audio-context';
 import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
-import { Row, MiddleSection } from '@/styles/sharedstyles';
+import { Row, MiddleSection, AudioBoard } from '@/styles/sharedstyles';
 import { BaseContentItem, SiteKey } from '@/types';
 import { audioTween } from '@/utils/gsap';
 
@@ -124,6 +124,7 @@ const ClientLayout = () => {
                 {homeComponent(selectedSite, location.pathname === '/', contentMap[selectedSite])}
                 <Outlet />
             </MiddleSection>
+            <AudioBoard id="audio-board" />
             {selectedSite !== 'gallery' && <RightNav />}
         </Row>
     );

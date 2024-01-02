@@ -154,7 +154,6 @@ const MainContainerInner = () => {
                 <Main id="main" ref={mainRef} className={`${selectedSite} ${fullScreen ? 'fullScreen' : ''}`} onClick={handleClick}>
                     <HeaderComponent />
                     {router ? <RouterProvider router={router} /> : <ServerLayout selectedSite={selectedSite} fullScreen={fullScreen} />}
-
                     {selectedSite !== 'gallery' && <LawBreakers />}
                 </Main>
             </PathProvider>
