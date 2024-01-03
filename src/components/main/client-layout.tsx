@@ -6,12 +6,12 @@ import { ClientList } from '@/components/list';
 import RightNav from '@/components/right-nav';
 import Unity from '@/components/unity';
 import { Youtube } from '@/components/video';
+import { SoundContext } from '@/providers/audio-context';
 import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Row, MiddleSection } from '@/styles/sharedstyles';
 import { BaseContentItem, SiteKey } from '@/types';
 import { audioTween } from '@/utils/gsap';
-import { SoundContext } from '@/providers/audio-context';
 
 const keyMap: Record<string, SiteKey> = {
     a: 'art',
@@ -73,7 +73,7 @@ const ClientLayout = () => {
     useEffect(() => {
         if (keyPressed === 'Escape' && fullScreen) setFullScreen(false);
         if (keyPressed === ' ') setHotKeyMode(!hotKeyMode);
-        if (keyPressed && keyMap[keyPressed] !== undefined) {
+        if (keyPressed && keyMap[keyPressed] !== undefined)
             if (hotKeyMode) {
                 setSelectedSite(keyMap[keyPressed]);
                 setFullScreen(false);
@@ -91,7 +91,6 @@ const ClientLayout = () => {
                 setATween(tween);
                 tween.play();
             }
-        }
     }, [fullScreen, keyPressed, navigate, selectedSite, setFullScreen, setSelectedSite]);
 
     useEffect(() => {

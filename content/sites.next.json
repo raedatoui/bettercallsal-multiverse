@@ -712,11 +712,11 @@
                     "site": "world"
                 },
                 {
-                    "audio": "/audio/world/waiting.mp3",
-                    "path": null,
+                    "audio": null,
+                    "path": "/game/level1",
                     "id": "b154e8dd-6919-4a5d-98cc-cbb664494267",
                     "link": null,
-                    "name": "Apple app store",
+                    "name": "Demo",
                     "quote": null,
                     "quoteLink": null,
                     "site": "world"
@@ -724,19 +724,29 @@
                 {
                     "audio": "/audio/world/gtr1.mp3",
                     "path": null,
-                    "id": "1efb4b6c-9cc1-4327-879d-28d1a84dd312",
-                    "link": null,
-                    "name": "Steam",
+                    "id": "6cfbb88c-f8c7-4adb-9211-244c2bd5563a",
+                    "link": "https://apps.apple.com/us/app/better-call-sal-world/id6474566926?mt=12",
+                    "name": "Mac App Store",
                     "quote": null,
                     "quoteLink": null,
                     "site": "world"
                 },
                 {
-                    "audio": null,
-                    "path": "/game/level1",
-                    "id": "44f5d24a-699e-41b5-8b13-41caef5b32e5",
-                    "link": null,
-                    "name": "Barradiso",
+                    "audio": "/audio/world/gtr1.mp3",
+                    "path": null,
+                    "id": "d1f90d8c-9045-4397-97ec-562410d1680b",
+                    "link": "https://storage.googleapis.com/bcs-assets/downloads/BetterCallSalWorldCodeSigned.zip",
+                    "name": "Mac Download",
+                    "quote": null,
+                    "quoteLink": null,
+                    "site": "world"
+                },
+                {
+                    "audio": "/audio/world/gtr1.mp3",
+                    "path": null,
+                    "id": "d14787d2-4dd3-4840-9d36-47afde2dc0e7",
+                    "link": "https://storage.googleapis.com/bcs-assets/downloads/BetterCallSalWorldPC.zip",
+                    "name": "PC Download",
                     "quote": null,
                     "quoteLink": null,
                     "site": "world"

@@ -54,6 +54,8 @@ const Unity = () => {
                 companyName: 'Better Call Sal',
                 productVersion: '1.0',
                 productName: game.name,
+                matchWebGLToCanvasSize: true,
+                devicePixelRatio: 2,
             };
             window
                 .createUnityInstance(document.getElementById('unity-canvas'), obj, (progress) => {

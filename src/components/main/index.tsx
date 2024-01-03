@@ -136,7 +136,6 @@ const MainContainerInner = () => {
         if (typeof window !== 'undefined') setRouter(createRouter());
     }, [contentMap, selectedSite]);
 
-
     return (
         <>
             <style jsx global>
@@ -149,7 +148,7 @@ const MainContainerInner = () => {
 
             <Script src="/scripts/html-to-image.js" onReady={() => setScriptLoaded(true)} />
             <PathProvider>
-                <Main id="main" ref={mainRef} className={`${selectedSite} ${fullScreen ? 'fullScreen' : ''}`}  onClick={handleClick}>
+                <Main id="main" ref={mainRef} className={`${selectedSite} ${fullScreen ? 'fullScreen' : ''}`} onClick={handleClick}>
                     <HeaderComponent />
                     {router ? <RouterProvider router={router} /> : <ServerLayout selectedSite={selectedSite} fullScreen={fullScreen} />}
 

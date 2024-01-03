@@ -1,8 +1,7 @@
 import { gsap } from 'gsap';
 import { Dispatch, SetStateAction } from 'react';
-import { Site, SiteKey, SiteKeyValidator } from '@/types';
 import AudioBuffers from '@/providers/audio-buffer';
-import Timeout from '@/utils/timeout';
+import { Site, SiteKey } from '@/types';
 
 type P = (v: number) => number;
 type S = (v: number | P) => void;
@@ -183,14 +182,14 @@ export const betterCallClickWtf = (counter: number, setter: Dispatch<SetStateAct
 export const audioTween = (buffers: AudioBuffers, site: Site) => {
     let counter1 = 0;
     let counter2 = 0;
-    let interval: Timeout;
+    // let interval: typeof Timeout;
 
     const copy = {
         counter1,
         counter2,
     };
     const house = {
-        getAttribute: (key: string) => copy[key],
+        getAttribute: (key: string) => key, //copy[key],
         setAttribute: (qualifiedName: string, value: number) => {
             counter1 = value;
             // if (value - counter1 > 0.02) {
