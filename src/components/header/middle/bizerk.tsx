@@ -40,6 +40,9 @@ const Bizerk: FC<Props> = ({ bizerk, spinningSalAudio1, spinningSalAudio2, ringA
         if (tl) {
             tl.restart();
             setAnimateGrid(Math.random()); // extra random to trigger the animation
+            // DOC: play / stop can be part of the TL
+            // since the TL is repeat -1, hovering over the container in negative space will trigger the animation
+            // and loop without audio. 
             buffers.play(ringAudio1, false);
             buffers.play(ringAudio2, false);
             buffers.play(spinningSalAudio1, false);

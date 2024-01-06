@@ -33,7 +33,7 @@ const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[])
     }
     if (site === 'gallery') return <Unity />;
     // DOC: the canvas cant be part of the component if we want to manage unityInstance and call Quit on it.
-    // instead of the nav and this component kisten to location changes and cleanup accordingly,
+    // instead of the nav and this component listen to location changes and cleanup accordingly,
     // the clean is encapsulated in the unity component, but since cleanup is running when the component is unmounted,
     // the Quit crashed unity. maybe use portals here. whatever. a single canvas placeholder is actually better.
     return <ClientList visible={visible} />;

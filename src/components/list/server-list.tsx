@@ -23,7 +23,7 @@ export const ServerList = () => {
 
     return (
         <>
-            <Caption className="off wtf">{headerTxt}</Caption>
+            <Caption>{headerTxt}</Caption>
 
             <ContentList id="content-list" className={selectedSite}>
                 {contentList

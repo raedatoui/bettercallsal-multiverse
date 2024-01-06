@@ -1,6 +1,6 @@
 import Script from 'next/script';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, redirect } from 'react-router-dom';
 import ArtSlider from '@/components/art';
 import Ecard from '@/components/e-cards';
 import LawBreakers from '@/components/footer';
@@ -96,6 +96,9 @@ const MainContainerInner = () => {
                     {
                         path: '*',
                         element: <div>OOPS</div>,
+                        loader: () => {
+                            return redirect('/', 301);
+                        }
                     },
                 ],
             },

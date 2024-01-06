@@ -32,17 +32,19 @@ export const BizerkContainerFC: FC<Props> = ({ name1, name2, bizerkIcon, spinnin
             if (selectedSite === 'wtf') {
                 const tl = animateCounterBizerk(animateWtf, setAnimateWtf);
                 setTl(tl);
-            }
+            } else setTl(null);
         });
         return () => ctx.revert();
     }, [selectedSite]);
 
     const play = () => {
-        tl?.restart();
-        buffers.play(ringAudio1, false);
-        buffers.play(ringAudio2, false);
-        buffers.play(spinningSalAudio1, false);
-        buffers.play(spinningSalAudio2, false);
+        if (tl) {
+            tl.restart();
+            buffers.play(ringAudio1, false);
+            buffers.play(ringAudio2, false);
+            buffers.play(spinningSalAudio1, false);
+            buffers.play(spinningSalAudio2, false);
+        }
     };
 
     const pause = () => {

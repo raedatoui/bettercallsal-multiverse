@@ -18,7 +18,7 @@ export const ServerLeftNav = () => {
     return (
         <>
             <Script id="text-fit" src="/scripts/textfit.js" />
-            <LeftNavContainer className="off">
+            <LeftNavContainer>
                 {selectedSite !== 'gallery' && (
                     <>
                         <LeftNavMenu>
