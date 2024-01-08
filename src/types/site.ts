@@ -91,3 +91,13 @@ export type SiteMap = Record<SiteKey, Site>;
 
 export const BizerkModeValidator = z.enum(['off', 'on']);
 export type BizerkMode = z.infer<typeof BizerkModeValidator>;
+
+export const ConfigValidator = z.object({
+    selectedSite: SiteKeyValidator,
+    cdnUrl: z.string(),
+    contentUrl: z.string(),
+    spotifyEnabled: z.boolean(),
+    localImages: z.boolean(),
+    gtagEnabled: z.boolean(),
+    experiments: z.boolean(),
+});

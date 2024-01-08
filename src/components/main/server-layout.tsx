@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import Construction from '@/components/construction';
+import { ServerLawBreakers } from '@/components/footer';
 import GalleryLanding from '@/components/gallery';
+import HeaderComponent from '@/components/header';
 import { ServerLeftNav } from '@/components/left-nav';
 import { ServerList } from '@/components/list';
 import RightNav from '@/components/right-nav';
@@ -15,13 +17,17 @@ const homeComponent = (site: SiteKey) => {
 };
 
 const ServerLayout: FC<{ selectedSite: SiteKey; fullScreen: boolean }> = ({ selectedSite, fullScreen }) => (
-    <Row id="content-row" suppressHydrationWarning>
-        {selectedSite !== 'gallery' && <ServerLeftNav />}
-        <MiddleSection id="middle" className={fullScreen ? `${selectedSite} fullScreen` : selectedSite}>
-            {homeComponent(selectedSite)}
-        </MiddleSection>
-        {selectedSite !== 'gallery' && <RightNav />}
-    </Row>
+    <>
+        <HeaderComponent />
+        <Row id="content-row" suppressHydrationWarning>
+            {selectedSite !== 'gallery' && <ServerLeftNav />}
+            <MiddleSection id="middle" className={fullScreen ? `${selectedSite} fullScreen` : selectedSite}>
+                {homeComponent(selectedSite)}
+            </MiddleSection>
+            {selectedSite !== 'gallery' && <RightNav />}
+        </Row>
+        {selectedSite !== 'gallery' && <ServerLawBreakers />}
+    </>
 );
 
 export default ServerLayout;

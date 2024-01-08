@@ -1,9 +1,9 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import sitesData from '../content/sites.next.json';
-import { RightNav, Footer, SiteValidator, SiteKeyValidator, Header, LeftNav, LeftNavItem, SiteMap as NextSiteMap } from '../src/types';
-import shuffleList from '../src/utils/shuffle-list';
 import { z } from 'zod';
+import sitesData from '../content/sites.next.json';
+import { Footer, Header, LeftNav, LeftNavItem, SiteMap as NextSiteMap, RightNav, SiteKeyValidator, SiteValidator } from '../src/types';
+import shuffleList from '../src/utils/shuffle-list';
 
 const SiteMapValidator = z.object({
     art: SiteValidator,

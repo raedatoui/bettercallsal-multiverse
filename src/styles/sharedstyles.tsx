@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakPoints, CDN } from '@/constants';
+import { breakPoints, config } from '@/constants';
 import { glowShadow, scalingYoyo } from '@/utils/animations';
 
 export const Main = styled.main`
@@ -65,7 +65,7 @@ export const Row = styled.div`
         backface-visibility: visible;
     }
 
-    &:hover {
+    &.audio {
         > #middle {
             transform: rotateY(540deg);
         }
@@ -161,12 +161,11 @@ export const MiddleSection = styled.div`
 `;
 
 export const AudioBoard = styled.div`
-    position: absolute;
-    opacity: 0;
     width: 100%;
     height: 100%;
     transform: rotateY(-540deg);
-    background: blue;
+    display: grid;
+    background-image: linear-gradient(#fd9f00, #fbfa00);
 `;
 
 export const Caption = styled.h4`
@@ -270,16 +269,16 @@ export const ContentItem = styled.div`
 
     .ribbon {
         position: absolute;
-        right: -5px;
-        top: -5px;
+        right: 5px;
+        top: 5px;
         z-index: 1;
         overflow: hidden;
-        width: 75px;
-        height: 75px;
+        width: 235px;
+        height: 255px;
         text-align: right;
     }
     .ribbon span {
-        font-size: 8px;
+        font-size: 10px;
         font-weight: bold;
         color: #000;
         text-transform: uppercase;
@@ -543,12 +542,12 @@ export const LoadingBarProgressEmpty = styled.div`
     width: 141px;
     height: 18px;
     margin-top: 10px;
-    background: url(${() => `${CDN}/unity/progress-bar-empty-dark.png`}) no-repeat center;
+    background: url(${() => `${config.cdnUrl}/unity/progress-bar-empty-dark.png`}) no-repeat center;
 `;
 
 export const LoadingBarProgressFull = styled.div<{ width: number }>`
     width: ${(props) => `${props.width}%`};
     height: 18px;
     margin-top: 10px;
-    background: url(${() => `${CDN}/unity/progress-bar-full-dark.png`}) no-repeat center;
+    background: url(${() => `${config.cdnUrl}/unity/progress-bar-full-dark.png`}) no-repeat center;
 `;

@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CDN } from '@/constants';
+import { config } from '@/constants';
 import { Player, VideoElement } from '@/styles/sharedstyles';
 import { BaseContentItem, ContentSize, Size, VimeoPlayer, YTPlayer } from '@/types';
 import { useWindowSize } from '@/utils';
@@ -166,7 +166,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
 
             {contentItem.contentType === 'video' && (
                 <VideoElement controls autoPlay width={videoSize.width} height={videoSize.height} left={videoSize.left}>
-                    <source src={`${CDN}/videos/${contentItem.site}/${contentItem.contentId}`} type="video/mp4" />
+                    <source src={`${config.cdnUrl}/videos/${contentItem.site}/${contentItem.contentId}`} type="video/mp4" />
                 </VideoElement>
             )}
         </>

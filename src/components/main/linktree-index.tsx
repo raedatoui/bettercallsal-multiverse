@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Script from 'next/script';
 import React, { useContext, useRef, useState } from 'react';
-import LawBreakers from '@/components/footer';
+import { LawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
 import { LeftNavButton1, LeftNavButton1Wrapper, LeftNavItemCuck1, LeftNavMenu1 } from '@/components/left-nav/elements';
-import { CDN } from '@/constants';
+import { config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { PathProvider } from '@/providers/path';
@@ -29,7 +29,7 @@ const MainContainerInner = () => {
     const { setBizerkMode, animateGrid, setAnimateGrid } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
-    const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
+    const cursor = `${config.cdnUrl}/images/${selectedSite}/cursor.webp`;
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
     const [screenCapture, setScreeCapture] = useState<string | null>(null);

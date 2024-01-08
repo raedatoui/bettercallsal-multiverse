@@ -1,5 +1,5 @@
 import { generateUUID } from 'three/src/math/MathUtils';
-import { CDN } from '@/constants';
+import { config } from '@/constants';
 import { AudioElementValidator, SiteKey, Sound } from '@/types';
 
 const copyBuffer = (buffer: AudioBuffer, context: AudioContext): AudioBuffer => {
@@ -142,7 +142,7 @@ class AudioBuffers {
     }
 
     private async loadBuffer(sound: string) {
-        const audioRequest = new Request(`${CDN}${sound}`);
+        const audioRequest = new Request(`${config.cdnUrl}${sound}`);
         const xhr = await fetch(audioRequest);
         const buffer = await xhr.arrayBuffer();
         if (this.context) {

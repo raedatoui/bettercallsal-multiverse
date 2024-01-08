@@ -2,9 +2,9 @@ import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CDN } from '@/constants';
+import { config } from '@/constants';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
@@ -142,7 +142,12 @@ const ArtSlider = () => {
     return (
         <ImageContainer ref={sliderRef} className="keen-slider">
             {images.map((art, idx) => (
-                <Link key={art.name} className="keen-slider__slide lazy__slide" href={`${CDN}/images/${art.site}/${art.contentId}`} target="_blank">
+                <Link
+                    key={art.name}
+                    className="keen-slider__slide lazy__slide"
+                    href={`${config.cdnUrl}/images/${art.site}/${art.contentId}`}
+                    target="_blank"
+                >
                     <Image
                         src={`/images/${art.site}/${art.contentId}`}
                         alt={art.name}

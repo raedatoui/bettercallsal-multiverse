@@ -2,8 +2,8 @@
     'object' == typeof exports && 'undefined' != typeof module
         ? e(exports)
         : 'function' == typeof define && define.amd
-        ? define(['exports'], e)
-        : e(((t = 'undefined' != typeof globalThis ? globalThis : t || self).htmlToImage = {}));
+          ? define(['exports'], e)
+          : e(((t = 'undefined' != typeof globalThis ? globalThis : t || self).htmlToImage = {}));
 })(this, function (t) {
     'use strict';
     function e(t, e, n, r) {
@@ -488,10 +488,10 @@
                                               return d(t, HTMLCanvasElement)
                                                   ? [2, P(t)]
                                                   : d(t, HTMLVideoElement)
-                                                  ? [2, R(t, r)]
-                                                  : d(t, HTMLIFrameElement)
-                                                  ? [2, T(t)]
-                                                  : [2, t.cloneNode(!1)];
+                                                    ? [2, R(t, r)]
+                                                    : d(t, HTMLIFrameElement)
+                                                      ? [2, T(t)]
+                                                      : [2, t.cloneNode(!1)];
                                           });
                                       });
                                   })(t, r);
@@ -511,10 +511,10 @@
                                                                   A(t) && t.assignedNodes
                                                                       ? o(t.assignedNodes())
                                                                       : d(t, HTMLIFrameElement) &&
-                                                                        (null === (u = t.contentDocument) || void 0 === u ? void 0 : u.body)
-                                                                      ? o(t.contentDocument.body.childNodes)
-                                                                      : o((null !== (c = t.shadowRoot) && void 0 !== c ? c : t).childNodes)).length ||
-                                                          d(t, HTMLVideoElement)
+                                                                          (null === (u = t.contentDocument) || void 0 === u ? void 0 : u.body)
+                                                                        ? o(t.contentDocument.body.childNodes)
+                                                                        : o((null !== (c = t.shadowRoot) && void 0 !== c ? c : t).childNodes))
+                                                                  .length || d(t, HTMLVideoElement)
                                                               ? [2, r]
                                                               : [
                                                                     4,
@@ -1103,8 +1103,8 @@
                                                     ? ((t.height *= a / t.width), (t.width = a))
                                                     : ((t.width *= a / t.height), (t.height = a))
                                                 : t.width > a
-                                                ? ((t.height *= a / t.width), (t.width = a))
-                                                : ((t.width *= a / t.height), (t.height = a)));
+                                                  ? ((t.height *= a / t.width), (t.width = a))
+                                                  : ((t.width *= a / t.height), (t.height = a)));
                                     })(s),
                                 (s.style.width = ''.concat(d)),
                                 (s.style.height = ''.concat(v)),
