@@ -122,7 +122,7 @@ const Home: FC<PageProps> = ({ defaultSite, defaultContent }) => {
                     <AnimationsProvider>
                         <SoundProvider>
                             <WindowSizeProvider>
-                                <MainContainer />
+                                <MainContainer page="app" />
                             </WindowSizeProvider>
                         </SoundProvider>
                     </AnimationsProvider>

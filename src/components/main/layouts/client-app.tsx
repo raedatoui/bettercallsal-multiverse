@@ -48,7 +48,7 @@ const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[])
     return <ClientList visible={visible} />;
 };
 
-const ClientLayout = () => {
+const AppLayout = () => {
     const { selectedSite, siteMap, setSelectedSite, setFullScreen, fullScreen, contentMap } = useSiteContext();
     const { prevPath, setPrevPath } = usePathContext();
     const { buffers } = useContext(SoundContext);
@@ -143,7 +143,7 @@ const ClientLayout = () => {
     );
 };
 
-const ClientLayoutWrapper = () => {
+const ClientAppLayout = () => {
     const { selectedSite, fullScreen, contentMap, siteMap } = useSiteContext();
     const site = siteMap[selectedSite];
 
@@ -190,7 +190,7 @@ const ClientLayoutWrapper = () => {
 
     const route: RouteObject = {
         path: '/',
-        element: <ClientLayout />,
+        element: <AppLayout />,
         children: [
             {
                 path: 'e-cards',
@@ -270,4 +270,4 @@ const ClientLayoutWrapper = () => {
     );
 };
 
-export default ClientLayoutWrapper;
+export default ClientAppLayout;

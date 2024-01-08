@@ -34,9 +34,10 @@ json_content='{
     "selectedSite": "biz",
     "cdnUrl": "https://storage.googleapis.com/bcs-assets",
     "contentUrl": "https://storage.googleapis.com/bcs-assets/content/v8",
-    "spotifyEnabled": false,
-    "localImages": false,
-    "gtagEnabled": false
+    "spotifyEnabled": "false",
+    "localImages": "false",
+    "gtagEnabled": "false",
+    "experiments": "false"
 }'
 
 echo "$json_content" > next.config.env.json

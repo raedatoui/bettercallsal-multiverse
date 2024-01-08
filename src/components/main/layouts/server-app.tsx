@@ -16,7 +16,7 @@ const homeComponent = (site: SiteKey) => {
     return <ServerList />;
 };
 
-const ServerLayout: FC<{ selectedSite: SiteKey; fullScreen: boolean }> = ({ selectedSite, fullScreen }) => (
+const ServerAppLayout: FC<{ selectedSite: SiteKey; fullScreen: boolean }> = ({ selectedSite, fullScreen }) => (
     <>
         <HeaderComponent />
         <Row id="content-row" suppressHydrationWarning>
@@ -30,4 +30,4 @@ const ServerLayout: FC<{ selectedSite: SiteKey; fullScreen: boolean }> = ({ sele
     </>
 );
 
-export default ServerLayout;
+export default ServerAppLayout;

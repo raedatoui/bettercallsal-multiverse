@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import ClientLayout from '@/components/main/client-layout';
-import ServerLayout from '@/components/main/server-layout';
+import React, { FC, useEffect, useState } from 'react';
+import ClientAppLayout from '@/components/main/layouts/client-app';
+import LinktreeLayout from '@/components/main/layouts/linktree';
+import PrivacyLayout from '@/components/main/layouts/privacy';
+import ServerAppLayout from '@/components/main/layouts/server-app';
 import { config } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { SiteKey, SiteKeyValidator } from '@/types';
 import { picker } from '@/utils';
 
-const MainContainerInner = () => {
+interface Props {
+    page: string;
+}
+
+const MainContainer: FC<Props> = ({ page }) => {
     const { selectedSite, fullScreen } = useSiteContext();
     const cur = selectedSite === 'wtf' ? picker<SiteKey>(SiteKeyValidator.options.filter((s) => s !== 'wtf')) : selectedSite;
     const cursor = `${config.cdnUrl}/images/${cur}/cursor.webp`;
@@ -17,6 +23,13 @@ const MainContainerInner = () => {
         setIsSSR(false);
     }, []);
 
+    const getElement = () => {
+        if (page === 'privacy') return <PrivacyLayout />;
+        if (page === 'linktree') return <LinktreeLayout />;
+        if (isSSR) return <ServerAppLayout selectedSite={selectedSite} fullScreen={fullScreen}/>;
+        return <ClientAppLayout />;
+    };
+
     return (
         <>
             <style jsx global>
@@ -26,11 +39,11 @@ const MainContainerInner = () => {
                     }
                 `}
             </style>
-            {isSSR ? <ServerLayout selectedSite={selectedSite} fullScreen={fullScreen} /> : <ClientLayout />}
+            {getElement()}
         </>
     );
 };
 
 // const MainContainer = React.memo(MainContainerInner);
 
-export default MainContainerInner;
+export default MainContainer;
