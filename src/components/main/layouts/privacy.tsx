@@ -2,7 +2,7 @@
 import Script from 'next/script';
 import React, { useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { LawBreakers, ServerLawBreakers } from "@/components/footer";
+import { ServerLawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
 import { breakPoints, config } from '@/constants';

@@ -26,7 +26,7 @@ const MainContainer: FC<Props> = ({ page }) => {
     const getElement = () => {
         if (page === 'privacy') return <PrivacyLayout />;
         if (page === 'linktree') return <LinktreeLayout />;
-        if (isSSR) return <ServerAppLayout selectedSite={selectedSite} fullScreen={fullScreen}/>;
+        if (isSSR) return <ServerAppLayout selectedSite={selectedSite} fullScreen={fullScreen} />;
         return <ClientAppLayout />;
     };
 

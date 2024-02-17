@@ -98,7 +98,9 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
                 />
                 {i.desktopOnly && (
                     <div className="ribbon">
-                        <span>DESKTOP ONLY</span>
+                        <div className="ribbon-inner">
+                            <span>DESKTOP ONLY</span>
+                        </div>
                     </div>
                 )}
                 <ContentItemTitle>{i.name}</ContentItemTitle>

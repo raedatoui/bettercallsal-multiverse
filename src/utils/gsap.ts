@@ -127,15 +127,15 @@ export const wtfLoadAnimation = (counter: number, setter: Dispatch<SetStateActio
         { rotateY: 0 },
         {
             rotateY: (index) => (index % 0 ? -3600 : 3600),
-            duration: 3,
+            duration: 2,
             ease: 'power2.out',
             opacity: 1,
             clearProps: 'all',
         }
     );
     tl.add(r, '<');
-    tl.add(colorizeFooterHeaderTitles(3), '<');
-    tl.add(animateCounter(DEFAULT, counter, setter, false, true, 'linear'), '<');
+    tl.add(colorizeFooterHeaderTitles(1), '<');
+    tl.add(animateCounter(1, counter, setter, false, true, 'linear'), '<');
     return tl;
 };
 

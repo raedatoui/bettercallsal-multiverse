@@ -160,14 +160,6 @@ export const MiddleSection = styled.div`
     }
 `;
 
-export const AudioBoard = styled.div`
-    width: 100%;
-    height: 100%;
-    transform: rotateY(-540deg);
-    display: grid;
-    background-image: linear-gradient(#fd9f00, #fbfa00);
-`;
-
 export const Caption = styled.h4`
     color: rgb(253, 0, 0);
     text-transform: uppercase;
@@ -269,32 +261,37 @@ export const ContentItem = styled.div`
 
     .ribbon {
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: -5px;
+        top: -5px;
         z-index: 1;
         overflow: hidden;
-        width: 235px;
-        height: 255px;
+        width: 75px;
+        height: 75px;
         text-align: right;
+        transform: scale(1.7) translate(-18%, 18%);
     }
-    .ribbon span {
-        font-size: 10px;
+    .ribbon .ribbon-inner {
+        font-size: 7px;
         font-weight: bold;
         color: #000;
         text-transform: uppercase;
         text-align: center;
-        line-height: 20px;
+        height: 20px;
         transform: rotate(45deg);
         width: 100px;
-        display: block;
-        background: #79a70a;
         background: linear-gradient(#eae41f 0%, #fea100 100%);
         box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
         position: absolute;
         top: 19px;
         right: -21px;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        justify-items: center;
     }
-    .ribbon span::before {
+
+    .ribbon .ribbon-inner::before {
         content: '';
         position: absolute;
         left: 0px;
@@ -305,7 +302,7 @@ export const ContentItem = styled.div`
         border-bottom: 3px solid transparent;
         border-top: 3px solid #fea100;
     }
-    .ribbon span::after {
+    .ribbon .ribbon-inner::after {
         content: '';
         position: absolute;
         right: 0px;

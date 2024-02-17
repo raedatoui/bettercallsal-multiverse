@@ -2,6 +2,7 @@ import Script from 'next/script';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createBrowserRouter, Outlet, redirect, RouteObject, RouterProvider, useLocation, useNavigate } from 'react-router-dom';
 import ArtSlider from '@/components/art';
+import AudioExperiment from '@/components/board';
 import Construction from '@/components/construction';
 import Ecard from '@/components/e-cards';
 import { LawBreakers } from '@/components/footer';
@@ -17,7 +18,7 @@ import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { PathProvider, usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
-import { AudioBoard, Main, MiddleSection, Row } from '@/styles/sharedstyles';
+import { Main, MiddleSection, Row } from '@/styles/sharedstyles';
 import { BaseContentItem, SiteKey } from '@/types';
 import { findCategory, findContentFomStore } from '@/utils';
 import { animateCounterBizerk, audioTween } from '@/utils/gsap';
@@ -50,7 +51,7 @@ const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[])
 
 const AppLayout = () => {
     const { selectedSite, siteMap, setSelectedSite, setFullScreen, fullScreen, contentMap } = useSiteContext();
-    const { prevPath, setPrevPath } = usePathContext();
+    const { prevPath, setPrevPath, pathStack, setPathStack } = usePathContext();
     const { buffers } = useContext(SoundContext);
     const navigate = useNavigate();
     const path = useLocation().pathname;
@@ -123,8 +124,13 @@ const AppLayout = () => {
         if (location.pathname !== '/' && document.body.clientWidth < 768 && !location.pathname.startsWith('/category/')) setFullScreen(true);
         else if (document.body.clientWidth < 768) setFullScreen(false);
 
-        setPrevPath(location.pathname);
-    }, [location, prevPath, selectedSite, setFullScreen, setPrevPath]);
+        if (prevPath !== location.pathname) setPrevPath(location.pathname);
+
+        if (pathStack.length > 1) {
+            const lastPath = pathStack[pathStack.length - 1];
+            if (lastPath !== location.pathname) setPathStack([...pathStack, location.pathname]);
+        } else setPathStack([...pathStack, location.pathname]);
+    }, [location, prevPath, pathStack, selectedSite, setFullScreen, setPrevPath]);
 
     return (
         <>
@@ -254,7 +260,7 @@ const ClientAppLayout = () => {
     if (config.experiments)
         route.children?.push({
             path: 'audio',
-            element: <AudioBoard />,
+            element: <AudioExperiment />,
         });
 
     const router = createBrowserRouter([route]);

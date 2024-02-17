@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Script from 'next/script';
 import React, { useContext, useRef, useState } from 'react';
-import { LawBreakers, ServerLawBreakers } from "@/components/footer";
+import { ServerLawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
 import { LeftNavButton1, LeftNavButton1Wrapper, LeftNavItemCuck1, LeftNavMenu1 } from '@/components/left-nav/elements';
