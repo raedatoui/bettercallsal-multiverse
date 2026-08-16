@@ -1,13 +1,17 @@
-import { ContentType, SiteMapValidator } from '@/types';
+import { ConfigValidator, ContentType, SiteKeyValidator, SiteMapValidator } from '@/types';
 import sitesData from '../content/sites.next.json';
 
-export const CDN = process.env.cdnUrl;
-
-export const CONTENT_URL = process.env.contentUrl;
-
-export const SPOTIFY_ENABLED = process.env.spotifyEnabled;
-
 export const defaultSiteMap = SiteMapValidator.parse(sitesData);
+
+export const config = ConfigValidator.parse({
+    selectedSite: SiteKeyValidator.parse(process.env.selectedSite),
+    cdnUrl: process.env.cdnUrl,
+    contentUrl: process.env.contentUrl,
+    spotifyEnabled: process.env.spotifyEnabled === 'true',
+    localImages: process.env.spotifyEnabled === 'true',
+    gtagEnabled: process.env.gtagEnabled === 'true',
+    experiments: process.env.experiments === 'true',
+});
 
 export const tickerList = Object.entries(defaultSiteMap).filter(([, v]) => v?.header.showTicker);
 

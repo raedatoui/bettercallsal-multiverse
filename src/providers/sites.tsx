@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { FC, useMemo, useState, createContext, useContext, useCallback } from 'react';
+import React, { createContext, FC, useCallback, useContext, useMemo, useState } from 'react';
 import { z } from 'zod';
-import { CONTENT_URL } from '@/constants';
+import { config } from '@/constants';
 import { BaseContentItem, BaseContentItemValidator, ContentMap, GameContentItem, GameContentItemValidator, SiteKey, SiteMap } from '@/types';
 
 type SiteProviderType = {
@@ -38,7 +38,7 @@ interface ProviderProps {
 const fetchData = async (siteKey: SiteKey): Promise<(BaseContentItem | GameContentItem)[]> => {
     const list: (BaseContentItem | GameContentItem)[] = [];
     try {
-        const { data: response } = await axios.get(`${CONTENT_URL}/content-${siteKey}.json`);
+        const { data: response } = await axios.get(`${config.contentUrl}/content-${siteKey}.json`);
 
         const items = z.array(z.unknown()).parse(response.items);
         const siteSchema = z.object({

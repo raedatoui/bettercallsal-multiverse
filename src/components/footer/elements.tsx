@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components';
 import { headerBreakPoints as breakPoints } from '@/constants';
-import { borderAnim, neon2, footerLtr, squigglyText } from '@/utils/animations';
+import { borderAnim, footerLtr, neon2, squigglyText } from '@/utils/animations';
 
 export const LawBreakersContainer = styled.div`
     background-image: linear-gradient(#fda810, #eae41f);

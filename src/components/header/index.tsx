@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import React, { FC, useContext, useState, useEffect } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import Ticker from '@/components/header/ticker';
 import { tickerList } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
@@ -9,8 +9,8 @@ import { WindowSizeContext } from '@/providers/window-size';
 import { SiteKey, SiteKeyValidator } from '@/types';
 import { pickRandom, useInterval } from '@/utils';
 import { betterCallClick, betterCallClickWtf, loadAnimation, wtfLoadAnimation } from '@/utils/gsap';
-import { HeaderContainer, ContentContainer } from './elements';
-import { BetterCall, SalCaption, BizerkContainerFC } from './middle';
+import { ContentContainer, HeaderContainer } from './elements';
+import { BetterCall, BizerkContainerFC, SalCaption } from './middle';
 import { SpinningSal, SpinningSalsContainer } from './spinning';
 
 const HeaderComponent: FC = () => {

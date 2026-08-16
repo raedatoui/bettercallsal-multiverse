@@ -2,10 +2,10 @@
 import Script from 'next/script';
 import React, { useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
-import LawBreakers from '@/components/footer';
+import { ServerLawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
-import { breakPoints, CDN } from '@/constants';
+import { breakPoints, config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { PathProvider } from '@/providers/path';
@@ -37,12 +37,12 @@ const PrivacyContainer = styled.div`
         font-size: 16px;
     }
 `;
-const MainContainerInner = () => {
+const PrivacyLayout = () => {
     const { selectedSite, fullScreen } = useSiteContext();
     const { setBizerkMode, animateGrid, setAnimateGrid } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
-    const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
+    const cursor = `${config.cdnUrl}/images/${selectedSite}/cursor.webp`;
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
     const [screenCapture, setScreeCapture] = useState<string | null>(null);
@@ -174,7 +174,7 @@ const MainContainerInner = () => {
                             </p>
                         </PrivacyContainer>
                     </Row2>
-                    <LawBreakers />
+                    <ServerLawBreakers />
                 </Main>
             </PathProvider>
 
@@ -183,4 +183,4 @@ const MainContainerInner = () => {
     );
 };
 
-export default MainContainerInner;
+export default PrivacyLayout;

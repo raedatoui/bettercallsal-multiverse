@@ -1,14 +1,14 @@
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { URL_MAP } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
 import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
-import { shuffleList, useWindowSize, findCategory, pickRandom } from '@/utils';
+import { findCategory, pickRandom, shuffleList, useWindowSize } from '@/utils';
 
 interface AnimateProps {
     i: BaseContentItem | GameContentItem;
@@ -98,7 +98,9 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
                 />
                 {i.desktopOnly && (
                     <div className="ribbon">
-                        <span>DESKTOP ONLY</span>
+                        <div className="ribbon-inner">
+                            <span>DESKTOP ONLY</span>
+                        </div>
                     </div>
                 )}
                 <ContentItemTitle>{i.name}</ContentItemTitle>

@@ -5,5 +5,7 @@
     "tabWidth": 4,
     "useTabs": false,
     "arrowParens": "always",
-    "printWidth": 150
+    "printWidth": 150,
+    "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+    "importOrder": ["<THIRD_PARTY_MODULES>", "^@/(.*)$", "^[./]"]
 }

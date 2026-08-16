@@ -7,7 +7,7 @@ import React, { FC } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { z } from 'zod';
 import MainContainer from '@/components/main';
-import { defaultSiteMap } from '@/constants';
+import { config, defaultSiteMap } from '@/constants';
 import { AnimationsProvider } from '@/providers/animations';
 import { SoundProvider } from '@/providers/audio-context';
 import { SitesDataProvider } from '@/providers/sites';
@@ -122,7 +122,7 @@ const Home: FC<PageProps> = ({ defaultSite, defaultContent }) => {
                     <AnimationsProvider>
                         <SoundProvider>
                             <WindowSizeProvider>
-                                <MainContainer />
+                                <MainContainer page="app" />
                             </WindowSizeProvider>
                         </SoundProvider>
                     </AnimationsProvider>
@@ -130,7 +130,7 @@ const Home: FC<PageProps> = ({ defaultSite, defaultContent }) => {
             </ThemeProvider>
 
             <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${site.gaTag}`} />
-            {process.env.gtagEnabled && (
+            {config.gtagEnabled && (
                 <Script
                     id="google-analytics"
                     strategy="afterInteractive"

@@ -1,7 +1,7 @@
 import Script from 'next/script';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CDN } from '@/constants';
+import { config } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
 import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, UnityInstance } from '@/types';
@@ -47,10 +47,10 @@ const Unity = () => {
         if (game) {
             const obj = {
                 showBanner: false,
-                dataUrl: `${CDN}${game.dataUrl}`,
-                frameworkUrl: `${CDN}${game.frameworkUrl}`,
-                codeUrl: `${CDN}${game.codeUrl}`,
-                streamingAssetsUrl: `${CDN}${game.assetsUrl}`,
+                dataUrl: `${config.cdnUrl}${game.dataUrl}`,
+                frameworkUrl: `${config.cdnUrl}${game.frameworkUrl}`,
+                codeUrl: `${config.cdnUrl}${game.codeUrl}`,
+                streamingAssetsUrl: `${config.cdnUrl}${game.assetsUrl}`,
                 companyName: 'Better Call Sal',
                 productVersion: '1.0',
                 productName: game.name,
@@ -183,7 +183,7 @@ const Unity = () => {
         <>
             {!loading && contentList.length && (
                 <Script
-                    src={`${CDN}/unity/${loader}.loader.js`}
+                    src={`${config.cdnUrl}/unity/${loader}.loader.js`}
                     onReady={() => {
                         const g = getGame(contentList);
                         if (!g) navigate('/');

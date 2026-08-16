@@ -6,7 +6,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import React, { FC } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
-import MainContainer from '@/components/main/privacy-index';
+import MainContainer from '@/components/main';
 import { defaultSiteMap } from '@/constants';
 import { AnimationsProvider } from '@/providers/animations';
 import { SoundProvider } from '@/providers/audio-context';
@@ -115,7 +115,7 @@ const Home: FC<PageProps> = ({ defaultSite, defaultContent }) => {
                     <AnimationsProvider>
                         <SoundProvider>
                             <WindowSizeProvider>
-                                <MainContainer />
+                                <MainContainer page="privacy" />
                             </WindowSizeProvider>
                         </SoundProvider>
                     </AnimationsProvider>

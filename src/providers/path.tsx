@@ -7,17 +7,21 @@ interface ProviderProps {
 type PathProviderType = {
     prevPath: string;
     setPrevPath: (s: string) => void;
+    pathStack: string[];
+    setPathStack: (s: string[]) => void;
 };
 
 const PathContext = createContext<PathProviderType | undefined>(undefined);
 
 const PathProvider: FC<ProviderProps> = ({ children }) => {
     const [prevPath, setPrevPath] = useState<string>('/');
-
+    const [pathStack, setPathStack] = useState<string[]>([]);
     const providedPath = useMemo<PathProviderType>(
         () => ({
             prevPath,
             setPrevPath,
+            pathStack,
+            setPathStack,
         }),
         [prevPath]
     );

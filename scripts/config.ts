@@ -6,9 +6,10 @@ const envValidator = z.object({
     selectedSite: z.string(),
     cdnUrl: z.string(),
     contentUrl: z.string(),
-    spotifyEnabled: z.boolean(),
-    localImages: z.boolean(),
-    gtagEnabled: z.boolean(),
+    spotifyEnabled: z.string(),
+    localImages: z.string(),
+    gtagEnabled: z.string(),
+    experiments: z.string(),
 });
 
 const run = async () => {
@@ -23,9 +24,11 @@ const run = async () => {
     const config = await promises.readFile(join(__dirname, '../', 'next.config.env.json'), 'utf-8');
     const env = envValidator.parse(JSON.parse(config));
     env.selectedSite = site === 'fans' ? 'biz' : site;
-    env.spotifyEnabled = true;
-    env.localImages = false;
-    env.gtagEnabled = true;
+    env.spotifyEnabled = 'true';
+    env.localImages = 'false';
+    env.gtagEnabled = 'true';
+    env.experiments = env.experiments || 'false';
+
     writeFileSync(join(__dirname, '../', 'next.config.env.json'), JSON.stringify(env, null, 4), {
         flag: 'w',
     });
