@@ -6,9 +6,9 @@ current_dir=$(pwd)
 deploy() {
   local project=$1
   cd "$current_dir"
-  yarn clean
-  TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/config.ts $project
-  yarn static
+  pnpm clean
+  TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' pnpm ts-node scripts/config.ts $project
+  pnpm static
   rm -rf "../firebase/$project/out"
   mv out "../firebase/$project/"
   cd "../firebase/$project"
@@ -28,7 +28,7 @@ deploy "world"
 deploy "fans"
 deploy "wtf"
 
-yarn clean
+pnpm clean
 
 json_content='{
     "selectedSite": "biz",
