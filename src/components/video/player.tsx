@@ -99,7 +99,6 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
     }, [getSize, windowSize]);
 
     useEffect(() => {
-        console.log(currentContentId, contentItem.contentId);
         if (contentItem.contentType === 'youtube' && currentContentId !== contentItem.contentId) {
             // DOC: if not, then we risk calling loadVideoById on the same videoId, which will cause the video to restart.
             setCurrentContentId(contentItem.contentId);

@@ -1,12 +1,14 @@
 import Script from 'next/script';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, PlayerContainer, StopButton, VideoText } from '@/styles/sharedstyles';
 import { findContent } from '@/utils';
 import { VideoPlayer, VideoPlayerType } from './player';
 
 export const Video = () => {
+    const { pathStack } = usePathContext();
     const { videoId } = useParams<{ videoId: string }>();
     const navigate = useNavigate();
 
@@ -30,9 +32,12 @@ export const Video = () => {
 
     const stopVideo = useCallback(() => {
         videoPlayerRef.current?.stop();
-        // DOC: this goes back to category
-        if (selectedSite === 'biz') navigate('/');
-        else navigate(-1);
+
+        if (pathStack.length >= 1) {
+            const p = pathStack[pathStack.length - 1];
+            if (/\/category\/.*/.test(p)) navigate(-1);
+            else navigate('/');
+        } else navigate('/');
     }, [navigate]);
 
     useEffect(() => {
