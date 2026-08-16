@@ -12,7 +12,9 @@ import { findGame, useWindowSize } from '@/utils';
 const Unity = () => {
     const router = useRouter();
     const { slug: gameId } = useParams<{ slug: string }>();
-    const canvasRef = document.getElementById('unity-canvas') as HTMLCanvasElement;
+    // DOC: prerendering the game routes for the static export has no document. every use below
+    //  is already null-guarded, so this stays null until hydration puts the canvas in place.
+    const canvasRef = typeof document === 'undefined' ? null : (document.getElementById('unity-canvas') as HTMLCanvasElement | null);
 
     const { contentMap, selectedSite, loading, fullScreen, setFullScreen } = useSiteContext();
     const contentList = contentMap[selectedSite];
