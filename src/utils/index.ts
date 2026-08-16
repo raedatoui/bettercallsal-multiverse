@@ -1,3 +1,5 @@
+'use client';
+
 import { SiteKey, SiteKeyValidator, SiteMap } from '@/types';
 import useFetchData from './fetch';
 import useInterval from './interval';

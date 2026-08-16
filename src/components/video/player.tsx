@@ -1,5 +1,7 @@
+'use client';
+
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { config } from '@/constants';
 import { Player, VideoElement } from '@/styles/sharedstyles';
 import { BaseContentItem, ContentSize, Size, VimeoPlayer, YTPlayer } from '@/types';
@@ -49,7 +51,7 @@ const getContentSize = (
 };
 
 export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, contentItem, containerRef, viewsRef, titleRef }, ref) => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const [yPlayer, setYPlayer] = useState<YTPlayer | null>(null);
     const [vPlayer, setVPlayer] = useState<VimeoPlayer | null>(null);
 
@@ -125,7 +127,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
                             if (autoPlay) player.playVideo();
                         },
                         onStateChange: (event: Record<string, unknown>) => {
-                            if (event.data === window.YT.PlayerState.ENDED) navigate('/');
+                            if (event.data === window.YT.PlayerState.ENDED) router.push('/');
                         },
                     },
                 });
@@ -142,7 +144,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
             }) as unknown as VimeoPlayer;
             v.on('ended', function () {
                 v.destroy();
-                navigate('/');
+                router.push('/');
             });
             setVPlayer(v);
         }

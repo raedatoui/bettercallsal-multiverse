@@ -1,3 +1,5 @@
+'use client';
+
 import { gsap } from 'gsap';
 import { Dispatch, SetStateAction } from 'react';
 import AudioBuffers from '@/providers/audio-buffer';

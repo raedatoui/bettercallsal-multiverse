@@ -1,7 +1,10 @@
+'use client';
+
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
+import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
 import { URL_MAP } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
@@ -65,10 +68,10 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
     }, [animateWtf, ref.current]);
 
     return (
-        <RouterLink
+        <Link
             onClick={onClick}
             key={i.contentId}
-            to={`/${URL_MAP[i.contentType]}/${i.slug}`}
+            href={`/${URL_MAP[i.contentType]}/${i.slug}`}
             id={i.slug}
             className="grid-item"
             onMouseOver={() => {
@@ -105,13 +108,13 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
                 )}
                 <ContentItemTitle>{i.name}</ContentItemTitle>
             </ContentItem>
-        </RouterLink>
+        </Link>
     );
 };
 
 export const ClientList: FC<VisibleProps> = ({ visible }) => {
     const { category } = useParams<{ category: string }>();
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const { siteMap, contentMap, selectedSite, loading } = useSiteContext();
     const site = siteMap[selectedSite];
@@ -174,15 +177,16 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         setHeaderText(getHeaderText());
     }, [category]);
 
-    // DOC: when loading category, that doesnt exist on current site, go to home
-    if (category !== undefined && category !== 'all') {
-        const categories = getList().map((i) => i.category);
-        if (!categories.includes(category)) {
-            navigate('/', { replace: true });
-            history.pushState({}, '', '/');
-            return <div></div>;
-        }
-    }
+    // DOC: when loading category, that doesnt exist on current site, go to home. this has to
+    //  run in an effect rather than during render — prerendering the category routes for the
+    //  static export has no history or location to touch.
+    const categoryMissing = category !== undefined && category !== 'all' && !getList().some((i) => i.category === category);
+
+    useEffect(() => {
+        if (categoryMissing) router.replace('/');
+    }, [categoryMissing]);
+
+    if (categoryMissing) return <div></div>;
 
     return (
         <>

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Keyframes } from 'styled-components';
 import { TickerContainer } from '@/components/header/elements';

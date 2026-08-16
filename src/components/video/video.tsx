@@ -1,6 +1,8 @@
+'use client';
+
 import Script from 'next/script';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
 import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, PlayerContainer, StopButton, VideoText } from '@/styles/sharedstyles';
@@ -9,8 +11,8 @@ import { VideoPlayer, VideoPlayerType } from './player';
 
 export const Video = () => {
     const { pathStack } = usePathContext();
-    const { videoId } = useParams<{ videoId: string }>();
-    const navigate = useNavigate();
+    const { slug: videoId } = useParams<{ slug: string }>();
+    const router = useRouter();
 
     const [ytScriptLoaded, setYtScriptLoaded] = useState<boolean>(false);
     const [vmScriptLoaded, setVmScriptLoaded] = useState<boolean>(false);
@@ -35,10 +37,10 @@ export const Video = () => {
 
         if (pathStack.length >= 1) {
             const p = pathStack[pathStack.length - 1];
-            if (/\/category\/.*/.test(p)) navigate(-1);
-            else navigate('/');
-        } else navigate('/');
-    }, [navigate]);
+            if (/\/category\/.*/.test(p)) router.back();
+            else router.push('/');
+        } else router.push('/');
+    }, [router, pathStack]);
 
     useEffect(() => {
         window.onYouTubeIframeAPIReady = () => {
@@ -46,7 +48,7 @@ export const Video = () => {
         };
     }, []);
 
-    if (!contentItem) navigate('/');
+    if (!contentItem) router.push('/');
 
     const videoClass = contentItem?.contentId ? 'loaded' : '';
     return (

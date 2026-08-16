@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useContext } from 'react';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';

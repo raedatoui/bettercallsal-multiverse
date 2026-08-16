@@ -1,3 +1,5 @@
+'use client';
+
 import styled, { Keyframes } from 'styled-components';
 import { headerBreakPoints as breakPoints } from '@/constants';
 

@@ -1,9 +1,11 @@
+'use client';
+
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
 import { config } from '@/constants';
 import { SoundContext } from '@/providers/audio-context';
 import { usePathContext } from '@/providers/path';
@@ -13,8 +15,8 @@ import { ContentSize, isContent, Size } from '@/types';
 import { findContent, useWindowSize } from '@/utils';
 
 const ArtSlider = () => {
-    const { artId } = useParams<{ artId: string }>();
-    const navigate = useNavigate();
+    const { slug: artId } = useParams<{ slug: string }>();
+    const router = useRouter();
 
     const { selectedSite, contentMap } = useSiteContext();
     const { prevPath, pathStack } = usePathContext();
@@ -139,7 +141,7 @@ const ArtSlider = () => {
         }
     }, [keyPressed, sliderInstance]);
 
-    if (artId && !artImage) navigate('/');
+    if (artId && !artImage) router.push('/');
 
     return (
         <ImageContainer ref={sliderRef} className="keen-slider">
@@ -169,8 +171,8 @@ const ArtSlider = () => {
                     onClick={() => {
                         // DOC: this stops the pavane just like salutations
                         buffers.stop('/audio/art/pavane.mp3');
-                        if (pathStack.length > 2) navigate(-1);
-                        else navigate('/');
+                        if (pathStack.length > 2) router.back();
+                        else router.push('/');
                     }}
                 >
                     [x]

@@ -1,7 +1,9 @@
+'use client';
+
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import Link from 'next/link';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from '@/components/footer/elements';
 import { config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
@@ -93,7 +95,7 @@ export const LawBreakers = () => {
     //<RouterLink to={`${path}/audio`}>
 
     const renderImage = (img: React.JSX.Element) => {
-        if (config.experiments) return <RouterLink to="/audio">{img}</RouterLink>;
+        if (config.experiments) return <Link href="/audio">{img}</Link>;
         return img;
     };
 

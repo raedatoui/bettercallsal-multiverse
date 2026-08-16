@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Script from 'next/script';
 import React, { useContext, useRef, useState } from 'react';

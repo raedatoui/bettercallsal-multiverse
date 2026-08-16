@@ -1,3 +1,5 @@
+'use client';
+
 import { gsap } from 'gsap';
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { config } from '@/constants';

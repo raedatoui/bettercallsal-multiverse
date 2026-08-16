@@ -1,3 +1,5 @@
+'use client';
+
 import { BaseContentItem, ContentMap, GameContentItem, isGame, LeftNavItem, Site } from '@/types';
 
 export const findGame = (list: (BaseContentItem | GameContentItem)[], gameId: string): GameContentItem | null => {

@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { breakPoints } from '@/constants';
 import { NavButton } from '@/styles/sharedstyles';

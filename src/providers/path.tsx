@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, FC, useContext, useMemo, useState } from 'react';
 
 interface ProviderProps {

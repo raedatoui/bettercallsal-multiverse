@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { useSiteContext } from '@/providers/sites';
 import { BizerkMode } from '@/types';

@@ -1,3 +1,5 @@
+'use client';
+
 import { Youtube } from './standalone-youtube';
 import { Video } from './video';
 

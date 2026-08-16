@@ -1,3 +1,5 @@
+'use client';
+
 const shuffleList = <T>(array: T[]): T[] => {
     let currentIndex = array.length;
     let temporaryValue;

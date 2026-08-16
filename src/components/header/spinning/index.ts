@@ -1,3 +1,5 @@
+'use client';
+
 import SpinningSal from './spinning-sals';
 
 export * from './elements';

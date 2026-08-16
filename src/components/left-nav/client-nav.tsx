@@ -1,7 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Script from 'next/script';
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import { LeftAdd1, LeftAdd2, LeftContent, LeftNavContainer, LeftNavMenu } from '@/components/left-nav/elements';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
@@ -12,8 +14,8 @@ import { pickRandom, shuffleList } from '@/utils';
 import NavButton from './button';
 
 export const ClientLeftNav = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const router = useRouter();
+    const pathname = usePathname();
 
     const { siteMap, selectedSite, fullScreen } = useSiteContext();
     const site = siteMap[selectedSite];
@@ -48,16 +50,16 @@ export const ClientLeftNav = () => {
     const handleNav = (c: LeftNavItem) => {
         if (c.audio) handleAudio(c.audio);
 
-        if (c.path && c.path !== location.pathname) navigate(c.path);
+        if (c.path && c.path !== pathname) router.push(c.path);
     };
 
     const handleImageClick = () => {
         // DOC: dont play if we are in a game
         if (site.leftNav.audio) {
-            if (location.pathname.startsWith('/game')) return;
+            if (pathname.startsWith('/game')) return;
             handleAudio(site.leftNav.audio);
         }
-        if (site.leftNav.path) navigate(site.leftNav.path);
+        if (site.leftNav.path) router.push(site.leftNav.path);
     };
 
     // DOC: only shuffle nav list on animate nav

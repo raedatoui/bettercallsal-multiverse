@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { breakPoints, config } from '@/constants';

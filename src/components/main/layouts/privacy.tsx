@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable max-len */
 import Script from 'next/script';
 import React, { useContext, useRef, useState } from 'react';

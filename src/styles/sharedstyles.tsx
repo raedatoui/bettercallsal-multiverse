@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { breakPoints, config } from '@/constants';
 import { glowShadow, scalingYoyo } from '@/utils/animations';

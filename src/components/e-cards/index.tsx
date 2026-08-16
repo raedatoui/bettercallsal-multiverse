@@ -1,12 +1,14 @@
+'use client';
+
 import Image from 'next/image';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, Caption, EcardContainer, StopButton } from '@/styles/sharedstyles';
 
 const Ecard = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const { siteMap, selectedSite } = useSiteContext();
     const site = siteMap[selectedSite];
     const { bizerkMode } = useAnimationContext();
@@ -37,7 +39,7 @@ const Ecard = () => {
                 />
 
                 <ButtonBar>
-                    <StopButton onClick={() => navigate('/')}>[x]</StopButton>
+                    <StopButton onClick={() => router.push('/')}>[x]</StopButton>
                 </ButtonBar>
             </EcardContainer>
         </>

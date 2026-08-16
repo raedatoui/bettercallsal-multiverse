@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { headerBreakPoints as breakPoints, config } from '@/constants';
 import { ltr, ltr2, rtl, rtl2 } from '@/utils/animations';
