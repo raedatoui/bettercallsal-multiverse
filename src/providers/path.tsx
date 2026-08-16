@@ -1,7 +1,7 @@
 import React, { createContext, FC, useContext, useMemo, useState } from 'react';
 
 interface ProviderProps {
-    children: JSX.Element;
+    children: React.JSX.Element;
 }
 
 type PathProviderType = {

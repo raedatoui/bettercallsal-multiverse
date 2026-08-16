@@ -1,4 +1,4 @@
-import { generateUUID } from 'three/src/math/MathUtils';
+import { generateUUID } from 'three/src/math/MathUtils.js';
 import { config } from '@/constants';
 import { AudioElementValidator, SiteKey, Sound } from '@/types';
 

@@ -14,7 +14,7 @@ type AnimationProviderType = {
 };
 
 interface ProviderProps {
-    children: JSX.Element;
+    children: React.JSX.Element;
 }
 
 const AnimationContext = createContext<AnimationProviderType>({

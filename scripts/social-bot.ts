@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import path from 'path';
 import { faker } from '@faker-js/faker';
-import mariadb from 'mariadb';
+import mariadb, { type Connection } from 'mariadb';
 import { z } from 'zod';
 import contentArt from '../content/content-art.json';
 import contentBiz from '../content/content-biz.json';
@@ -92,7 +92,7 @@ const generateContentMap = () => {
     };
 };
 
-const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typeof generateContentMap>) => {
+const seedDatabase = async (conn: Connection, contentMap: ReturnType<typeof generateContentMap>) => {
     await conn.query('DROP TABLE `post_desc`');
 
     await conn.query('DROP TABLE `posts`');
@@ -153,7 +153,7 @@ const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typ
     await conn.query('INSERT INTO current_set (variation) VALUES(0)');
 };
 
-const postCountInVariation = async (conn: mariadb.Connection, variation: number) => {
+const postCountInVariation = async (conn: Connection, variation: number) => {
     const res = await conn.query<{ count: number }[]>({
         sql: `
     SELECT 
@@ -167,7 +167,7 @@ const postCountInVariation = async (conn: mariadb.Connection, variation: number)
     return res[0].count;
 };
 
-const selectPosts = async (conn: mariadb.Connection, variation: number) => {
+const selectPosts = async (conn: Connection, variation: number) => {
     const rows = await conn.query<Row[]>(`
     SELECT 
         p.id, p.domain, p.slug, p.thumb, pd.queued, pd.description, pd.variation

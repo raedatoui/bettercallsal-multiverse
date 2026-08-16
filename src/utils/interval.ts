@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { CbFn } from '@/types';
 
 const useInterval = (callback: CbFn, delay: number) => {
-    const savedCallback = useRef<CbFn>();
+    const savedCallback = useRef<CbFn | undefined>(undefined);
 
     useEffect(() => {
         savedCallback.current = callback;

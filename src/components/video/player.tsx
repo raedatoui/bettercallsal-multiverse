@@ -7,9 +7,9 @@ import { useWindowSize } from '@/utils';
 
 interface Props {
     contentItem: BaseContentItem;
-    containerRef?: React.RefObject<HTMLDivElement>;
-    titleRef?: React.RefObject<HTMLDivElement>;
-    viewsRef?: React.RefObject<HTMLDivElement>;
+    containerRef?: React.RefObject<HTMLDivElement | null>;
+    titleRef?: React.RefObject<HTMLDivElement | null>;
+    viewsRef?: React.RefObject<HTMLDivElement | null>;
     autoPlay: boolean;
 }
 

@@ -92,7 +92,7 @@ export const LawBreakers = () => {
     }, [animateWtf, selectedSite]);
     //<RouterLink to={`${path}/audio`}>
 
-    const renderImage = (img: JSX.Element) => {
+    const renderImage = (img: React.JSX.Element) => {
         if (config.experiments) return <RouterLink to="/audio">{img}</RouterLink>;
         return img;
     };
