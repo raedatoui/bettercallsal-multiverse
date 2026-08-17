@@ -19,8 +19,10 @@ export const ServerLawBreakers = () => {
     const { buffers } = useContext(SoundContext);
 
     const windowSize = useWindowSize();
-    const [leftIconSize, setLeftIconSize] = useState<Size>({ width: 148, height: 60 });
-    const [rightIconSize, setRightIconSize] = useState<Size>({ width: 148, height: 60 });
+    // DOC: seed from the icon's own ratio so the first paint isn't oversized before the measure below
+    const initialSize: Size = { width: (60 * site.footer.icon.width) / site.footer.icon.height, height: 60 };
+    const [leftIconSize, setLeftIconSize] = useState<Size>(initialSize);
+    const [rightIconSize, setRightIconSize] = useState<Size>(initialSize);
 
     const [footerText, setFooterText] = useState<string>(site.footer.text);
     const [leftImage, setLeftImage] = useState(site.footer.icon);
@@ -29,6 +31,12 @@ export const ServerLawBreakers = () => {
     const [ringAudio, setRingAudio] = useState(site.footer.ringAudio);
 
     const ref = useRef<HTMLParagraphElement>(null);
+
+    // DOC: render the icon off `site` so its class lands with the site change. The load animation
+    // samples the img's transform in the effect phase, before an effect-driven swap would apply, and
+    // would otherwise hold the previous site's scale for the whole tween. wtf keeps its random state.
+    const leftIcon = selectedSite === 'wtf' ? leftImage : site.footer.icon;
+    const rightIcon = selectedSite === 'wtf' ? rightImage : site.footer.icon;
 
     const [tl, setTl] = useState<gsap.core.Timeline>();
 
@@ -50,17 +58,17 @@ export const ServerLawBreakers = () => {
         setRightImage(site.footer.icon);
         setRingAudio(site.footer.ringAudio);
 
-        // DOC: adjust size on hot key
+        // DOC: adjust size on hot key, off the incoming icon — leftImage/rightImage are still the old site's here
         setLeftIconSize(
             getContentSize({
-                width: leftImage.width,
-                height: leftImage.height,
+                width: site.footer.icon.width,
+                height: site.footer.icon.height,
             })
         );
         setRightIconSize(
             getContentSize({
-                width: rightImage.width,
-                height: rightImage.height,
+                width: site.footer.icon.width,
+                height: site.footer.icon.height,
             })
         );
         return () => ctx.revert();
@@ -96,8 +104,8 @@ export const ServerLawBreakers = () => {
                 <LawBreakersContainer>
                     <LawBreakersP ref={ref} className={`better-call-title animatable ${bizerkMode !== 'off' ? 'bizerk' : ''}`}>
                         <Image
-                            className={`spinner img0 ${leftImage.site} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
-                            src={leftImage.image}
+                            className={`spinner img0 ${leftIcon.site} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+                            src={leftIcon.image}
                             alt="footer-icon"
                             width={leftIconSize.width}
                             height={leftIconSize.height}
@@ -117,8 +125,8 @@ export const ServerLawBreakers = () => {
                         </LawBreakersSpan>
 
                         <Image
-                            className={`spinner img1 ${rightImage.site} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
-                            src={rightImage.image}
+                            className={`spinner img1 ${rightIcon.site} ${bizerkMode !== 'off' ? 'bizerk' : ''}`}
+                            src={rightIcon.image}
                             alt="footer-icon"
                             width={rightIconSize.width}
                             height={rightIconSize.height}

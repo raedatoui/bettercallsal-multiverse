@@ -12,6 +12,9 @@ const FAST = 0.1;
 const DEFAULT = 3;
 
 const animateHeaderFooterSpinners = (duration: number) => {
+    // DOC: gsap caches each element's transform, so after a site switch it would re-apply the previous
+    // site's css scale (.rocks/.art) for the whole tween and only drop it on clearProps. Force a re-read.
+    gsap.set('.spinner', { clearProps: 'all' });
     return gsap.fromTo(
         '.spinner',
         { rotateY: 0 },
