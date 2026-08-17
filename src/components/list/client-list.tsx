@@ -2,9 +2,9 @@
 
 import { gsap } from 'gsap';
 import Image from 'next/image';
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { URL_MAP } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';

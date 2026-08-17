@@ -40,8 +40,15 @@ There is no test suite.
 `next.config.env.json` at the repo root is the build-time switch:
 
 ```json
-{ "selectedSite": "biz", "cdnUrl": "...", "contentUrl": "...",
-  "spotifyEnabled": "false", "localImages": "false", "gtagEnabled": "false", "experiments": "false" }
+{
+    "selectedSite": "biz",
+    "cdnUrl": "...",
+    "contentUrl": "...",
+    "spotifyEnabled": "false",
+    "localImages": "false",
+    "gtagEnabled": "false",
+    "experiments": "false"
+}
 ```
 
 `next.config.js` spreads that whole object into `env`, so every value lands on `process.env.*` in
@@ -49,7 +56,7 @@ app code and is baked into the bundle. `src/constants.ts` parses it once through
 into the exported `config` object — **read `config`, not `process.env`, from components.**
 
 **To work on a different site locally, edit `selectedSite` in `next.config.env.json` and restart.**
-There is no runtime site switcher for the *default* site; the in-app hotkeys (below) swap the
+There is no runtime site switcher for the _default_ site; the in-app hotkeys (below) swap the
 rendered site but the build's `selectedSite` still determines metadata, favicons, and the
 server-rendered first paint.
 
@@ -75,7 +82,7 @@ have to be kept visually in sync by hand.
 - The **default site's** content is read from `content/content-{site}.json` at build time in
   `getStaticProps` and passed in as `defaultContent`.
 - **Every other site's** content is fetched at runtime by `providers/sites.tsx` from
-  `${config.contentUrl}/content-{site}.json` — a *versioned* GCS path
+  `${config.contentUrl}/content-{site}.json` — a _versioned_ GCS path
   (`https://storage.googleapis.com/bcs-assets/content/v8`), cached in `contentMap` after first load.
 
 So editing `content/content-art.json` only affects a build whose `selectedSite` is `art`. For every
@@ -89,13 +96,13 @@ version means changing `contentUrl` and redeploying all ten sites.
 `content/` holds both the generated JSON and the CSV sources the scripts read (`loadSheet` in
 `scripts/csv.ts` resolves names against `content/`):
 
-| Script | Reads | Writes |
-|---|---|---|
-| `parse-content.ts` | `content-biz.csv` | `content/content-biz.json` |
-| `parse-structure.ts` | `site-structure.csv`, `nav-{key}.csv` | `content/sites.next.json` |
-| `wtf-generator.ts` | `content/sites.next.json` | the `wtf` entry (shuffles the other sites' pieces) |
-| `crawl.ts` | the live sites (Playwright/crawlee) | crawl dataset |
-| `social-bot.ts` | content JSON + mariadb | social posts |
+| Script               | Reads                                 | Writes                                             |
+| -------------------- | ------------------------------------- | -------------------------------------------------- |
+| `parse-content.ts`   | `content-biz.csv`                     | `content/content-biz.json`                         |
+| `parse-structure.ts` | `site-structure.csv`, `nav-{key}.csv` | `content/sites.next.json`                          |
+| `wtf-generator.ts`   | `content/sites.next.json`             | the `wtf` entry (shuffles the other sites' pieces) |
+| `crawl.ts`           | the live sites (Playwright/crawlee)   | crawl dataset                                      |
+| `social-bot.ts`      | content JSON + mariadb                | social posts                                       |
 
 `wtf` is **procedurally generated** by mixing headers/footers/navs from the real sites — it isn't
 authored. Note `wtf-generator.ts` declares its own local `SiteMapValidator` (8 keys, no `wtf`)

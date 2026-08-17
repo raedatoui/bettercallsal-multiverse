@@ -1,8 +1,8 @@
 'use client';
 
+import { useParams, useRouter } from 'next/navigation';
 import Script from 'next/script';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
 import { config } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';

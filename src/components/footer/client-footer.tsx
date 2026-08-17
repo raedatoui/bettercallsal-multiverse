@@ -2,8 +2,8 @@
 
 import { gsap } from 'gsap';
 import Image from 'next/image';
-import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from '@/components/footer/elements';
 import { config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';

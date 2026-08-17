@@ -1,14 +1,7 @@
 import fsPromises from 'fs/promises';
 import path from 'path';
 import { z } from 'zod';
-import {
-    BaseContentItem,
-    BaseContentItemValidator,
-    GameContentItem,
-    GameContentItemValidator,
-    SiteKey,
-    SiteKeyValidator,
-} from '@/types';
+import { BaseContentItem, BaseContentItemValidator, GameContentItem, GameContentItemValidator, SiteKey, SiteKeyValidator } from '@/types';
 
 // DOC: the site a build targets is fixed by next.config.env.json, so every server component
 //  reads the same key. see scripts/config.ts, which rewrites it per deploy target.

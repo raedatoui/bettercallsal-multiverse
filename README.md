@@ -18,15 +18,15 @@ Inspired by this [website](http://bettercallsaul.amc.com), the BetterCallSal Mul
 
 ## Frontend
 
--   next.js
--   styled components
--   react
--   three.js / glsl
--   zod
--   keen-slider
--   unity / wasm / webgl
+- next.js
+- styled components
+- react
+- three.js / glsl
+- zod
+- keen-slider
+- unity / wasm / webgl
 
 ## Backend
 
--   Firebase for hosting
--   Google Cloud Storage for assets
+- Firebase for hosting
+- Google Cloud Storage for assets

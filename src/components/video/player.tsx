@@ -1,7 +1,7 @@
 'use client';
 
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { config } from '@/constants';
 import { Player, VideoElement } from '@/styles/sharedstyles';
 import { BaseContentItem, ContentSize, Size, VimeoPlayer, YTPlayer } from '@/types';
