@@ -1,21 +1,25 @@
+'use client';
+
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { CDN } from '@/constants';
+import { useParams, useRouter } from 'next/navigation';
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { config } from '@/constants';
 import { SoundContext } from '@/providers/audio-context';
+import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
-import { ContentSize, isContent, Size } from '@/types';
+import { type ContentSize, isContent, type Size } from '@/types';
 import { findContent, useWindowSize } from '@/utils';
 
 const ArtSlider = () => {
-    const { artId } = useParams<{ artId: string }>();
-    const navigate = useNavigate();
+    const { slug: artId } = useParams<{ slug: string }>();
+    const router = useRouter();
 
     const { selectedSite, contentMap } = useSiteContext();
+    const { pathStack } = usePathContext();
 
     const images = (selectedSite === 'wtf' ? contentMap.wtf : contentMap.art).filter(isContent);
     const artImage = findContent(images, artId ?? '');
@@ -137,12 +141,21 @@ const ArtSlider = () => {
         }
     }, [keyPressed, sliderInstance]);
 
-    if (artId && !artImage) navigate('/');
+    // DOC: when the piece isnt on the current site, go home. this has to run in an effect rather
+    //  than during render — prerendering the art routes for the static export has no location to touch.
+    useEffect(() => {
+        if (artId && !artImage) router.push('/');
+    }, [artId, artImage]);
 
     return (
         <ImageContainer ref={sliderRef} className="keen-slider">
             {images.map((art, idx) => (
-                <Link key={art.name} className="keen-slider__slide lazy__slide" href={`${CDN}/images/${art.site}/${art.contentId}`} target="_blank">
+                <Link
+                    key={art.name}
+                    className="keen-slider__slide lazy__slide"
+                    href={`${config.cdnUrl}/images/${art.site}/${art.contentId}`}
+                    target="_blank"
+                >
                     <Image
                         src={`/images/${art.site}/${art.contentId}`}
                         alt={art.name}
@@ -162,7 +175,8 @@ const ArtSlider = () => {
                     onClick={() => {
                         // DOC: this stops the pavane just like salutations
                         buffers.stop('/audio/art/pavane.mp3');
-                        navigate(-1);
+                        if (pathStack.length > 2) router.back();
+                        else router.push('/');
                     }}
                 >
                     [x]

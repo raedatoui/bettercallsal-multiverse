@@ -1,4 +1,5 @@
-/* eslint-disable max-len */
+'use client';
+
 import styled from 'styled-components';
 import { headerBreakPoints as breakPoints } from '@/constants';
 
@@ -51,13 +52,15 @@ export const ContentContainer = styled.div`
     height: 100%;
 `;
 
+// DOC: these declarations used to sit inside a bare `{ ... }` block. v5's stylis flattened that
+//  onto the component; stylis 4 in v6 reads it as a nested rule with an empty selector and drops
+//  the lot — losing the red background, the flex row, and the positioning context the absolutely
+//  positioned tickers anchor to.
 export const TickerContainer = styled.div<{ background: string }>`
-     {
-        display: flex;
-        background-color: ${(props) => props.background};
-        position: relative;
-        width: 100%;
-    }
+    display: flex;
+    background-color: ${(props) => props.background};
+    position: relative;
+    width: 100%;
 `;
 
 export const SalHolder = styled.div`

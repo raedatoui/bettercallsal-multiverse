@@ -1,5 +1,8 @@
-import React, { createContext, FC } from 'react';
-import { Size } from '@/types';
+'use client';
+
+import type React from 'react';
+import { createContext, type FC } from 'react';
+import type { Size } from '@/types';
 import { useWindowSize } from '@/utils';
 
 const WindowSizeContext = createContext<Size>({
@@ -8,11 +11,11 @@ const WindowSizeContext = createContext<Size>({
 });
 
 interface ProviderProps {
-    children: JSX.Element;
+    children: React.ReactNode;
 }
 const WindowSizeProvider: FC<ProviderProps> = ({ children }) => {
     const windowSize = useWindowSize();
     return <WindowSizeContext.Provider value={windowSize}>{children}</WindowSizeContext.Provider>;
 };
 
-export { WindowSizeProvider, WindowSizeContext };
+export { WindowSizeContext, WindowSizeProvider };

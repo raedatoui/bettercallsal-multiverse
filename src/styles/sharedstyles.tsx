@@ -1,5 +1,7 @@
+'use client';
+
 import styled from 'styled-components';
-import { breakPoints, CDN } from '@/constants';
+import { breakPoints, config } from '@/constants';
 import { glowShadow, scalingYoyo } from '@/utils/animations';
 
 export const Main = styled.main`
@@ -40,8 +42,13 @@ export const Row = styled.div`
     display: flex;
     overflow-x: hidden;
     overflow-y: hidden;
-
     height: 100%;
+
+    box-sizing: border-box;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    backface-visibility: visible;
 
     @media (min-height: 601px) and (min-width: ${breakPoints.sm.max}px) {
         flex: 1;
@@ -50,6 +57,24 @@ export const Row = styled.div`
 
     @media (max-width: ${breakPoints.lg1.max}px) {
         flex-direction: column;
+    }
+
+    > #middle,
+    > #audio-board {
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition-duration: 0.5s;
+        transition-property: transform, opacity;
+        backface-visibility: visible;
+    }
+
+    &.audio {
+        > #middle {
+            transform: rotateY(540deg);
+        }
+        > #audio-board {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
     }
 `;
 
@@ -245,25 +270,30 @@ export const ContentItem = styled.div`
         width: 75px;
         height: 75px;
         text-align: right;
+        transform: scale(1.7) translate(-18%, 18%);
     }
-    .ribbon span {
-        font-size: 8px;
+    .ribbon .ribbon-inner {
+        font-size: 7px;
         font-weight: bold;
         color: #000;
         text-transform: uppercase;
         text-align: center;
-        line-height: 20px;
+        height: 20px;
         transform: rotate(45deg);
         width: 100px;
-        display: block;
-        background: #79a70a;
         background: linear-gradient(#eae41f 0%, #fea100 100%);
         box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
         position: absolute;
         top: 19px;
         right: -21px;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        justify-items: center;
     }
-    .ribbon span::before {
+
+    .ribbon .ribbon-inner::before {
         content: '';
         position: absolute;
         left: 0px;
@@ -274,7 +304,7 @@ export const ContentItem = styled.div`
         border-bottom: 3px solid transparent;
         border-top: 3px solid #fea100;
     }
-    .ribbon span::after {
+    .ribbon .ribbon-inner::after {
         content: '';
         position: absolute;
         right: 0px;
@@ -511,12 +541,12 @@ export const LoadingBarProgressEmpty = styled.div`
     width: 141px;
     height: 18px;
     margin-top: 10px;
-    background: url(${() => `${CDN}/unity/progress-bar-empty-dark.png`}) no-repeat center;
+    background: url(${() => `${config.cdnUrl}/unity/progress-bar-empty-dark.png`}) no-repeat center;
 `;
 
 export const LoadingBarProgressFull = styled.div<{ width: number }>`
     width: ${(props) => `${props.width}%`};
     height: 18px;
     margin-top: 10px;
-    background: url(${() => `${CDN}/unity/progress-bar-full-dark.png`}) no-repeat center;
+    background: url(${() => `${config.cdnUrl}/unity/progress-bar-full-dark.png`}) no-repeat center;
 `;

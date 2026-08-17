@@ -1,46 +1,22 @@
 /** @type {import('next').NextConfig} */
 
-const env = require('./next.config.env.json');
+const fileEnv = require('./next.config.env.json');
 
-const images = env.localImages ? { loader: 'default' } : { loader: 'custom', loaderFile: './image-loader.js' };
+// DOC: deploy.sh passes each site's overrides as real env vars so the tracked JSON is never
+// rewritten. Only keys already in the JSON are read, so an unrelated shell variable can't
+// leak into the bundle; edit the JSON to change what `pnpm dev` picks up.
+const env = Object.fromEntries(Object.entries(fileEnv).map(([key, value]) => [key, process.env[key] ?? value]));
+
+// DOC: the default loader can't run under `output: 'export'`, so local images go unoptimized.
+const images = env.localImages === 'true' ? { unoptimized: true } : { loader: 'custom', loaderFile: './image-loader.js' };
 
 const nextConfig = {
+    output: 'export',
     images,
     env,
     reactStrictMode: true,
     compiler: {
         styledComponents: true,
-    },
-    webpack(config, options) {
-        const { isServer } = options;
-        config.module.rules.push({
-            test: /\.(ogg|mp3|wav|mpe?g|mov)$/i,
-            exclude: config.exclude,
-            use: [
-                {
-                    loader: require.resolve('url-loader'),
-                    options: {
-                        limit: config.inlineImageLimit,
-                        fallback: require.resolve('file-loader'),
-                        publicPath: `${config.assetPrefix}/_next/static/images/`,
-                        outputPath: `${isServer ? '../' : ''}static/images/`,
-                        name: '[name]-[hash].[ext]',
-                        esModule: config.esModule || false,
-                    },
-                },
-            ],
-        });
-        config.experiments = { ...config.experiments, topLevelAwait: true };
-        return config;
-    },
-    async rewrites() {
-        return [
-            // Rewrite everything else to use `pages/index`
-            {
-                source: '/:path*',
-                destination: '/',
-            },
-        ];
     },
 };
 

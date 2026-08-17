@@ -1,14 +1,17 @@
+'use client';
+
 import { gsap } from 'gsap';
 import Image from 'next/image';
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
+import { type FC, useContext, useEffect, useRef, useState } from 'react';
 import { URL_MAP } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
-import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
-import { shuffleList, useWindowSize, findCategory, pickRandom } from '@/utils';
+import type { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
+import { findCategory, pickRandom, shuffleList, useWindowSize } from '@/utils';
 
 interface AnimateProps {
     i: BaseContentItem | GameContentItem;
@@ -27,7 +30,7 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
     const { animateWtf } = useAnimationContext();
 
     const makeLightTween = () => {
-        if (ref && ref.current)
+        if (ref?.current)
             gsap.to(ref.current, {
                 x: random(-animOffset, animOffset),
                 y: random(-animOffset, animOffset),
@@ -37,7 +40,7 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
     };
 
     const makeTween = () => {
-        if (ref && ref.current) gsap.killTweensOf(ref.current);
+        if (ref?.current) gsap.killTweensOf(ref.current);
         gsap.to(ref.current, {
             x: random(-animOffset, animOffset),
             y: random(-animOffset, animOffset),
@@ -65,10 +68,10 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
     }, [animateWtf, ref.current]);
 
     return (
-        <RouterLink
+        <Link
             onClick={onClick}
             key={i.contentId}
-            to={`/${URL_MAP[i.contentType]}/${i.slug}`}
+            href={`/${URL_MAP[i.contentType]}/${i.slug}`}
             id={i.slug}
             className="grid-item"
             onMouseOver={() => {
@@ -98,18 +101,20 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
                 />
                 {i.desktopOnly && (
                     <div className="ribbon">
-                        <span>DESKTOP ONLY</span>
+                        <div className="ribbon-inner">
+                            <span>DESKTOP ONLY</span>
+                        </div>
                     </div>
                 )}
                 <ContentItemTitle>{i.name}</ContentItemTitle>
             </ContentItem>
-        </RouterLink>
+        </Link>
     );
 };
 
 export const ClientList: FC<VisibleProps> = ({ visible }) => {
     const { category } = useParams<{ category: string }>();
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const { siteMap, contentMap, selectedSite, loading } = useSiteContext();
     const site = siteMap[selectedSite];
@@ -123,7 +128,7 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         let headerTxt = site.contentHeader;
         if (category !== undefined && category !== 'all') {
             const cat = findCategory(site, category);
-            if (cat && cat.quote) headerTxt = cat.quote;
+            if (cat?.quote) headerTxt = cat.quote;
         }
         return headerTxt;
     };
@@ -172,15 +177,16 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         setHeaderText(getHeaderText());
     }, [category]);
 
-    // DOC: when loading category, that doesnt exist on current site, go to home
-    if (category !== undefined && category !== 'all') {
-        const categories = getList().map((i) => i.category);
-        if (!categories.includes(category)) {
-            navigate('/', { replace: true });
-            history.pushState({}, '', '/');
-            return <div></div>;
-        }
-    }
+    // DOC: when loading category, that doesnt exist on current site, go to home. this has to
+    //  run in an effect rather than during render — prerendering the category routes for the
+    //  static export has no history or location to touch.
+    const categoryMissing = category !== undefined && category !== 'all' && !getList().some((i) => i.category === category);
+
+    useEffect(() => {
+        if (categoryMissing) router.replace('/');
+    }, [categoryMissing]);
+
+    if (categoryMissing) return <div />;
 
     return (
         <>

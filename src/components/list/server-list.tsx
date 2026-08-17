@@ -1,10 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { URL_MAP } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
-import { BaseContentItem, GameContentItem } from '@/types';
+import type { BaseContentItem, GameContentItem } from '@/types';
 import { shuffleList } from '@/utils';
 
 export const ServerList = () => {

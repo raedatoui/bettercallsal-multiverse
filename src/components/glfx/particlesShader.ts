@@ -1,3 +1,5 @@
+'use client';
+
 const vertexShader = `
 uniform float uTime;
 uniform sampler2D screenCapture;

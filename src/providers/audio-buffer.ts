@@ -1,6 +1,8 @@
-import { generateUUID } from 'three/src/math/MathUtils';
-import { CDN } from '@/constants';
-import { AudioElementValidator, SiteKey, Sound } from '@/types';
+'use client';
+
+import { generateUUID } from 'three/src/math/MathUtils.js';
+import { config } from '@/constants';
+import { AudioElementValidator, type SiteKey, type Sound } from '@/types';
 
 const copyBuffer = (buffer: AudioBuffer, context: AudioContext): AudioBuffer => {
     const copy = context.createBuffer(buffer.numberOfChannels, buffer.length, buffer.sampleRate);
@@ -96,14 +98,12 @@ class AudioBuffers {
             source.buffer = sound.buffer;
             source.connect(this.analyzer);
             source.loop = loop;
-            // eslint-disable-next-line no-param-reassign
             sound.source = source;
 
             source.connect(this.gainNode);
             // DOC: offset used to be sound.pausedAt
 
             source.start(0, randomStart ? Math.random() * source.buffer.duration : sound.pausedAt);
-            // eslint-disable-next-line no-param-reassign
             sound.startedAt = this.context.currentTime - sound.pausedAt;
             this.allSounds.push(source);
             return source;
@@ -115,7 +115,7 @@ class AudioBuffers {
         // DOC: this stops the currently held buffer by the sound object
         //  allowing the spinning hover effect
         const obj = this.soundMap[sound];
-        if (obj && obj.source) {
+        if (obj?.source) {
             obj.source.disconnect();
             obj.source.stop(0);
             obj.startedAt = 0;
@@ -142,7 +142,7 @@ class AudioBuffers {
     }
 
     private async loadBuffer(sound: string) {
-        const audioRequest = new Request(`${CDN}${sound}`);
+        const audioRequest = new Request(`${config.cdnUrl}${sound}`);
         const xhr = await fetch(audioRequest);
         const buffer = await xhr.arrayBuffer();
         if (this.context) {

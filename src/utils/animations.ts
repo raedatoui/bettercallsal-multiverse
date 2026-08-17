@@ -1,4 +1,5 @@
-/* eslint-disable max-len */
+'use client';
+
 import { keyframes } from 'styled-components';
 
 export const fadein = keyframes`

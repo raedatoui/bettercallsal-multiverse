@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# per-site export output, one directory per hosting target
+/dist/
+
 # production
 /build
 

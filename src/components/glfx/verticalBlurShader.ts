@@ -1,3 +1,5 @@
+'use client';
+
 const vertexShader = `
 varying vec2 vUv;
 void main() {

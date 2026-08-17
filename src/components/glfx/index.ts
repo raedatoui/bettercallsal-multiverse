@@ -1,8 +1,10 @@
+'use client';
+
+import type { BufferAttribute } from 'three';
 import * as THREE from 'three';
-import { BufferAttribute } from 'three';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import horizontalBlurShader from './horizontalBlurShader';
 import particlesShader from './particlesShader';
 import vertexShader2 from './vertex';
@@ -58,13 +60,12 @@ class ParticleSystem {
     private container: HTMLElement;
     private limit: number;
     private readonly zoomDivider: number;
+    // biome-ignore lint/correctness/noUnusedPrivateClassMembers: written by the mouse listeners; the only reader is commented out in render()
     private mouseDown: boolean;
     private mousePos: THREE.Vector2;
     private analyser: AnalyserNode;
     private readonly resizeCbWrapper: () => void;
     private geometry: THREE.BufferGeometry | undefined;
-    private geometry2: THREE.BufferGeometry | undefined;
-    private readonly defaultMousePos = new THREE.Vector2(0, 0);
 
     constructor(imageDataUrl: string, container: HTMLElement, analyser: AnalyserNode) {
         // if (!Detector.webgl) Detector.addGetWebGLMessage();
@@ -93,7 +94,6 @@ class ParticleSystem {
         this.scene = new THREE.Scene();
 
         this.geometry = downSampled(512);
-        this.geometry2 = downSampled(512);
         this.material = new THREE.ShaderMaterial({
             uniforms: {
                 uTime: { value: 0.0 },
@@ -163,7 +163,7 @@ class ParticleSystem {
         window.addEventListener('resize', this.resizeCbWrapper, false);
         this.addMouseHandler();
 
-        this.startTime = new Date().getTime();
+        this.startTime = Date.now();
 
         this.container.style.display = 'block';
         this.animate();
@@ -201,7 +201,7 @@ class ParticleSystem {
     }
 
     render() {
-        const time = new Date().getTime() - this.startTime;
+        const time = Date.now() - this.startTime;
         this.material.uniforms.uTime.value = time * 0.000001;
         this.material2.uniforms.uTime.value = time * 0.000001;
 

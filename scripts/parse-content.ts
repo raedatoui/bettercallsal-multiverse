@@ -1,6 +1,8 @@
-import { promises } from 'fs';
-import { join } from 'path';
+import { promises } from 'node:fs';
+import { join } from 'node:path';
+import { z } from 'zod';
 import { BaseContentListValidator } from '../src/types';
+import slugify from '../src/utils/slugify';
 import { loadSheet } from './csv';
 
 const run = async () => {
@@ -8,7 +10,9 @@ const run = async () => {
     const contentList = BaseContentListValidator.parse(
         rows.map((r) => ({
             ...r,
-            views: r.views === '' ? null : parseInt(r.views.toString(), 10),
+            site: 'biz',
+            views: r.views === '' ? null : Number.parseInt(r.views.toString(), 10),
+            slug: slugify(z.string().parse(r.name)),
         }))
     );
     const content = JSON.stringify({ items: contentList }, null, 2);

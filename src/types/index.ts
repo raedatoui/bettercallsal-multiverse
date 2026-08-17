@@ -1,8 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
-
 export const isNotNull = <T>(x: T): x is NonNullable<T> => !!x;
-
-export type Router = ReturnType<typeof createBrowserRouter>;
 
 export type CbFn = () => void;
 

@@ -1,0 +1,21 @@
+{
+    "projects": {
+        "default": "api-project-992432653598"
+    },
+    "targets": {
+        "api-project-992432653598": {
+            "hosting": {
+                "biz": ["bettercallsal-biz"],
+                "art": ["bettercallsal-art"],
+                "games": ["bettercallsal-games"],
+                "rocks": ["bettercallsal-rocks"],
+                "construction": ["bettercallsal-construction"],
+                "fit": ["bettercallsal-fit"],
+                "gallery": ["bettercallsal-gallery"],
+                "world": ["bettercallsal-world"],
+                "fans": ["bettercallsal-fans"],
+                "wtf": ["bettercallsal-wtf"]
+            }
+        }
+    }
+}

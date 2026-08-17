@@ -6,11 +6,13 @@
             "contentType": "youtube",
             "thumb": "wired.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "paul-mccartney",
             "description": "Paul McCartney Answers the Web's Most Searched Questions | WIRED",
             "caption": "Sound Mixer",
-            "views": 11779492,
-            "site": "biz",
-            "slug": "paul-mccartney"
+            "views": 12134231,
+            "desktopOnly": false
         },
         {
             "name": "Harry Styles",
@@ -18,11 +20,13 @@
             "contentType": "youtube",
             "thumb": "late.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "harry-styles",
             "description": "Harry Styles Makes 'Daylight' Music Video for $300 w/ James Corden",
             "caption": "Boom Op & Playback",
-            "views": 11050392,
-            "site": "biz",
-            "slug": "harry-styles"
+            "views": 11449247,
+            "desktopOnly": false
         },
         {
             "name": "John Mayer",
@@ -30,11 +34,13 @@
             "contentType": "youtube",
             "thumb": "johnmayer.png",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "john-mayer",
             "description": "John Mayer - World Tour 2019",
             "caption": "Sound Mixer",
-            "views": 671925,
-            "site": "biz",
-            "slug": "john-mayer"
+            "views": 841007,
+            "desktopOnly": false
         },
         {
             "name": "Scarlett Johansson",
@@ -42,11 +48,13 @@
             "contentType": "youtube",
             "thumb": "scarlett.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "scarlett-johansson",
             "description": "In Conversation With Scarlett Johansson",
             "caption": "Sound Mixer",
-            "views": 1203,
-            "site": "biz",
-            "slug": "scarlett-johansson"
+            "views": 1425,
+            "desktopOnly": false
         },
         {
             "name": "Kendrick Lamar",
@@ -54,11 +62,13 @@
             "contentType": "youtube",
             "thumb": "kendrick.jpg",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "kendrick-lamar",
             "description": "Louder Together: Kendrick Lamar on the Responsibility of Celebs and the Importance of Positivity",
             "caption": "Sound Mixer",
-            "views": 6883,
-            "site": "biz",
-            "slug": "kendrick-lamar"
+            "views": 6899,
+            "desktopOnly": false
         },
         {
             "name": "Sam Smith",
@@ -66,11 +76,13 @@
             "contentType": "youtube",
             "thumb": "sam.jpg",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "sam-smith",
             "description": "Sam Smith - Like I Can (Official Video)",
             "caption": "Playback Engineer",
-            "views": 142938569,
-            "site": "biz",
-            "slug": "sam-smith"
+            "views": 146255153,
+            "desktopOnly": false
         },
         {
             "name": "Pentatonix",
@@ -78,11 +90,13 @@
             "contentType": "youtube",
             "thumb": "pentatonix.jpg",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "pentatonix",
             "description": "TOP POP, VOL. I MEDLEY - Pentatonix",
             "caption": "Audio Engineer",
-            "views": 6565566,
-            "site": "biz",
-            "slug": "pentatonix"
+            "views": 6595956,
+            "desktopOnly": false
         },
         {
             "name": "They Call Me Magic",
@@ -90,11 +104,13 @@
             "contentType": "youtube",
             "thumb": "magic.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "they-call-me-magic",
             "description": "They Call Me Magic — Official Trailer | Apple TV+",
             "caption": "Sound Mixer",
-            "views": 3367521,
-            "site": "biz",
-            "slug": "they-call-me-magic"
+            "views": 3379388,
+            "desktopOnly": false
         },
         {
             "name": "Samsung",
@@ -102,11 +118,13 @@
             "contentType": "youtube",
             "thumb": "kloss.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "samsung",
             "description": "Create with Gear 360: Casey Neistat x Karlie Kloss",
             "caption": "Sound Mixer",
-            "views": 492199,
-            "site": "biz",
-            "slug": "samsung"
+            "views": 492907,
+            "desktopOnly": false
         },
         {
             "name": "Nas",
@@ -114,11 +132,13 @@
             "contentType": "youtube",
             "thumb": "nas.jpg",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "nas",
             "description": "Celebrating history's BLACK MUSICIAN with NAS | Google Arts & Culture",
             "caption": "Sound Mixer",
-            "views": 34223,
-            "site": "biz",
-            "slug": "nas"
+            "views": 35163,
+            "desktopOnly": false
         },
         {
             "name": "KITH",
@@ -126,11 +146,13 @@
             "contentType": "vimeo",
             "thumb": "kith.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "kith",
             "description": "Kithmas 2022 featuring Gorilla Nems",
             "caption": "Sound Mixer",
             "views": 106,
-            "site": "biz",
-            "slug": "kith"
+            "desktopOnly": false
         },
         {
             "name": "Lizzo",
@@ -138,11 +160,13 @@
             "contentType": "youtube",
             "thumb": "lizzo.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "lizzo",
             "description": "Lizzo Tries 9 Things She's Never Done Before | Allure",
             "caption": "Sound Mixer",
-            "views": 6948694,
-            "site": "biz",
-            "slug": "lizzo"
+            "views": 6951949,
+            "desktopOnly": false
         },
         {
             "name": "NCT 127",
@@ -150,11 +174,13 @@
             "contentType": "youtube",
             "thumb": "nct127.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "nct-127",
             "description": "NCT 127 Tries 9 Things They've Never Done Before | Allure",
             "caption": "Sound Mixer",
-            "views": 2197234,
-            "site": "biz",
-            "slug": "nct-127"
+            "views": 2206764,
+            "desktopOnly": false
         },
         {
             "name": "David Beckham",
@@ -162,11 +188,13 @@
             "contentType": "vimeo",
             "thumb": "lifetime.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "david-beckham",
             "description": "PASS THE BALL - All Star Spot",
             "caption": "Sound Mixer",
             "views": 247,
-            "site": "biz",
-            "slug": "david-beckham"
+            "desktopOnly": false
         },
         {
             "name": "ESPN",
@@ -174,11 +202,13 @@
             "contentType": "youtube",
             "thumb": "espn.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "espn",
             "description": "Mike Tomlin joins the search to rescue trafficked children | NFL Countdown | ESPN",
             "caption": "Sound Mixer",
-            "views": 13333,
-            "site": "biz",
-            "slug": "espn"
+            "views": 13726,
+            "desktopOnly": false
         },
         {
             "name": "TaylorMade",
@@ -186,11 +216,13 @@
             "contentType": "vimeo",
             "thumb": "taylor.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "taylormade",
             "description": "Kith for TaylorMade",
             "caption": "Sound Mixer",
             "views": 200002,
-            "site": "biz",
-            "slug": "taylormade"
+            "desktopOnly": false
         },
         {
             "name": "Slow Machine",
@@ -198,11 +230,13 @@
             "contentType": "youtube",
             "thumb": "slow.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "slow-machine",
             "description": "Slow Machine | Official Trailer",
             "caption": "Sound Mixer",
-            "views": 31766,
-            "site": "biz",
-            "slug": "slow-machine"
+            "views": 32648,
+            "desktopOnly": false
         },
         {
             "name": "NYC Tips & Tricks",
@@ -210,11 +244,13 @@
             "contentType": "vimeo",
             "thumb": "nyc.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "nyc-tips-tricks",
             "description": "NYC Tips and Tricks",
             "caption": "Sound Mixer",
             "views": 58302,
-            "site": "biz",
-            "slug": "nyc-tips-tricks"
+            "desktopOnly": false
         },
         {
             "name": "Streamer Stalker",
@@ -222,11 +258,13 @@
             "contentType": "youtube",
             "thumb": "streamer.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "streamer-stalker",
             "description": "A Famous Twitch Streamer Gets Stalked By One Of His Superfans - Award Winning Short Film",
             "caption": "Sound Mixer",
-            "views": 869,
-            "site": "biz",
-            "slug": "streamer-stalker"
+            "views": 988,
+            "desktopOnly": false
         },
         {
             "name": "Ryuichi Sakamoto: Coda",
@@ -234,11 +272,13 @@
             "contentType": "youtube",
             "thumb": "ryuichi.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "ryuichi-sakamoto-coda",
             "description": "RYUICHI SAKAMOTO: CODA | Official Trailer | MUBI",
             "caption": "Sound Mixer",
-            "views": 321241,
-            "site": "biz",
-            "slug": "ryuichi-sakamoto-coda"
+            "views": 338990,
+            "desktopOnly": false
         },
         {
             "name": "FX",
@@ -246,11 +286,13 @@
             "contentType": "youtube",
             "thumb": "theweekly.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "fx",
             "description": "The Weekly | Season 1 Ep. 23: The Gallagher Effect Highlight | FX",
             "caption": "Sound Mixer",
-            "views": 19430,
-            "site": "biz",
-            "slug": "fx"
+            "views": 19614,
+            "desktopOnly": false
         },
         {
             "name": "CNN",
@@ -258,11 +300,13 @@
             "contentType": "youtube",
             "thumb": "cnn+.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "cnn",
             "description": "Andrew Yang | No Mercy No Malice with Scott Galloway | Clip | CNN+",
             "caption": "Sound Mixer",
-            "views": 1047,
-            "site": "biz",
-            "slug": "cnn"
+            "views": 1123,
+            "desktopOnly": false
         },
         {
             "name": "Al Jazeera",
@@ -270,11 +314,13 @@
             "contentType": "youtube",
             "thumb": "aljazeera.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "al-jazeera",
             "description": "US: Police Brutality and Black Lives Matter | Generation Change",
             "caption": "Sound Mixer",
-            "views": 16355,
-            "site": "biz",
-            "slug": "al-jazeera"
+            "views": 18799,
+            "desktopOnly": false
         },
         {
             "name": "Showtime",
@@ -282,11 +328,13 @@
             "contentType": "youtube",
             "thumb": "showtime.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "showtime",
             "description": "Mark McKinnon Visits The Daily Caller | THE CIRCUS | SHOWTIME",
             "caption": "Sound Mixer",
-            "views": 20518,
-            "site": "biz",
-            "slug": "showtime"
+            "views": 20913,
+            "desktopOnly": false
         },
         {
             "name": "Niall Horan",
@@ -294,11 +342,13 @@
             "contentType": "youtube",
             "thumb": "niallhoran.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "niall-horan",
             "description": "Niall Horan Answers the Web's Most Searched Questions | WIRED",
             "caption": "Sound Mixer",
-            "views": 5751456,
-            "site": "biz",
-            "slug": "niall-horan"
+            "views": 5806139,
+            "desktopOnly": false
         },
         {
             "name": "Casper",
@@ -306,11 +356,13 @@
             "contentType": "youtube",
             "thumb": "casper.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "casper",
             "description": "The Sandman Has a New Gig | Casper",
             "caption": "Sound Mixer",
-            "views": 1504165,
-            "site": "biz",
-            "slug": "casper"
+            "views": 1504174,
+            "desktopOnly": false
         },
         {
             "name": "CNN Travel",
@@ -318,11 +370,13 @@
             "contentType": "youtube",
             "thumb": "cnn.png",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "cnn-travel",
             "description": "The chefs that run New York City",
             "caption": "Sound Mixer",
-            "views": 33940,
-            "site": "biz",
-            "slug": "cnn-travel"
+            "views": 34748,
+            "desktopOnly": false
         },
         {
             "name": "Nike",
@@ -330,11 +384,13 @@
             "contentType": "vimeo",
             "thumb": "nike.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "nike",
             "description": "Nike | Rose Classic",
             "caption": "Sound Mixer",
             "views": 442,
-            "site": "biz",
-            "slug": "nike"
+            "desktopOnly": false
         },
         {
             "name": "Desi Me Dating",
@@ -342,11 +398,13 @@
             "contentType": "youtube",
             "thumb": "desi.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "desi-me-dating",
             "description": "DESI ME DATING | Official Trailer | South Asian Dating Show | Not Indian Matchmaking",
             "caption": "Sound Mixer",
-            "views": 79651,
-            "site": "biz",
-            "slug": "desi-me-dating"
+            "views": 87600,
+            "desktopOnly": false
         },
         {
             "name": "Adidas",
@@ -354,11 +412,13 @@
             "contentType": "youtube",
             "thumb": "adidas.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "adidas",
             "description": "adidas by Stella McCartney AW20 Campaign",
             "caption": "Sound Mixer",
-            "views": 9008,
-            "site": "biz",
-            "slug": "adidas"
+            "views": 9267,
+            "desktopOnly": false
         },
         {
             "name": "HBO",
@@ -366,11 +426,13 @@
             "contentType": "youtube",
             "thumb": "hbo.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "hbo",
             "description": "BTS: Unfiltered w/ Katja Blichfeld & Ben Sinclair | High Maintenance | Season 3",
             "caption": "Sound Mixer",
-            "views": 13985,
-            "site": "biz",
-            "slug": "hbo"
+            "views": 14179,
+            "desktopOnly": false
         },
         {
             "name": "Ashley Graham",
@@ -378,11 +440,13 @@
             "contentType": "youtube",
             "thumb": "ashley.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "ashley-graham",
             "description": "Ashley Graham Tries 9 Things She's Never Done Before | Allure",
             "caption": "Sound Mixer",
-            "views": 491464,
-            "site": "biz",
-            "slug": "ashley-graham"
+            "views": 492041,
+            "desktopOnly": false
         },
         {
             "name": "Acorns",
@@ -390,11 +454,13 @@
             "contentType": "youtube",
             "thumb": "acorns.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "acorns",
             "description": "$5 A Day Can Really Add Up",
             "caption": "Sound Mixer",
-            "views": 1186692,
-            "site": "biz",
-            "slug": "acorns"
+            "views": 1186788,
+            "desktopOnly": false
         },
         {
             "name": "Nick Kroll",
@@ -402,11 +468,13 @@
             "contentType": "youtube",
             "thumb": "nickkroll.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "nick-kroll",
             "description": "Nick Kroll Improvises 7 New Cartoon Voices | Vanity Fair",
             "caption": "Sound Mixer",
-            "views": 1976019,
-            "site": "biz",
-            "slug": "nick-kroll"
+            "views": 1979744,
+            "desktopOnly": false
         },
         {
             "name": "Karlie Kloss",
@@ -414,11 +482,13 @@
             "contentType": "youtube",
             "thumb": "kloss1.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "karlie-kloss",
             "description": "Epic NYC Holiday Tour with the Fam | Karlie Kloss",
             "caption": "Sound Mixer",
-            "views": 161906,
-            "site": "biz",
-            "slug": "karlie-kloss"
+            "views": 162347,
+            "desktopOnly": false
         },
         {
             "name": "Wired",
@@ -426,11 +496,13 @@
             "contentType": "youtube",
             "thumb": "wired-2.png",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "wired",
             "description": "Nikolaj Coster-Waldau Answers the Web's Most Searched Questions | WIRED",
             "caption": "Sound Mixer",
-            "views": 6729377,
-            "site": "biz",
-            "slug": "wired"
+            "views": 6847001,
+            "desktopOnly": false
         },
         {
             "name": "Allure Work It",
@@ -438,11 +510,13 @@
             "contentType": "youtube",
             "thumb": "workit.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "allure-work-it",
             "description": "A Flight Attendant's Entire Routine, From Waking Up to Layovers | Work It | Allure",
             "caption": "Sound Mixer",
-            "views": 7969128,
-            "site": "biz",
-            "slug": "allure-work-it"
+            "views": 7998248,
+            "desktopOnly": false
         },
         {
             "name": "VH1",
@@ -450,11 +524,13 @@
             "contentType": "youtube",
             "thumb": "vh1.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "vh1",
             "description": "Black Ink Crew | Official Season 4 Super Trailer | Premieres April 4th + 9/8C",
             "caption": "Sound Mixer",
-            "views": 375594,
-            "site": "biz",
-            "slug": "vh1"
+            "views": 376211,
+            "desktopOnly": false
         },
         {
             "name": "All My Exes",
@@ -462,11 +538,13 @@
             "contentType": "youtube",
             "thumb": "exes.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "all-my-exes",
             "description": "3 Ex-Boyfriends Describe Their Relationship With the Same Woman - Isabella | Glamour",
             "caption": "Sound Mixer",
-            "views": 4909612,
-            "site": "biz",
-            "slug": "all-my-exes"
+            "views": 4914881,
+            "desktopOnly": false
         },
         {
             "name": "Fuse",
@@ -474,11 +552,13 @@
             "contentType": "youtube",
             "thumb": "fuse.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "fuse",
             "description": "A$AP Ferg On Working At Victoria's Secret & His Painting Side Hustle | What's Ur Thing | Fuse",
             "caption": "Sound Mixer",
-            "views": 251089,
-            "site": "biz",
-            "slug": "fuse"
+            "views": 251117,
+            "desktopOnly": false
         },
         {
             "name": "Lilly Singh",
@@ -486,11 +566,13 @@
             "contentType": "youtube",
             "thumb": "lillysingh.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "lilly-singh",
             "description": "Lilly Singh Answers the Web's Most Searched Questions | WIRED",
             "caption": "Sound Mixer",
-            "views": 2776233,
-            "site": "biz",
-            "slug": "lilly-singh"
+            "views": 2779054,
+            "desktopOnly": false
         },
         {
             "name": "VICE",
@@ -498,11 +580,13 @@
             "contentType": "youtube",
             "thumb": "viceland.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "vice",
             "description": "The White House Preacher: HATE THY NEIGHBOR (Preview)",
             "caption": "Sound Mixer",
             "views": 12946,
-            "site": "biz",
-            "slug": "vice"
+            "desktopOnly": false
         },
         {
             "name": "Ed Sheeran",
@@ -510,11 +594,13 @@
             "contentType": "vimeo",
             "thumb": "edsheeran.png",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "ed-sheeran",
             "description": "Ginger Ed Man",
             "caption": "Sound Mixer",
             "views": 124,
-            "site": "biz",
-            "slug": "ed-sheeran"
+            "desktopOnly": false
         },
         {
             "name": "Sarah Paulson",
@@ -522,11 +608,13 @@
             "contentType": "youtube",
             "thumb": "sarah.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "sarah-paulson",
             "description": "Sarah Paulson Breaks Down Her Most Iconic Characters | GQ",
             "caption": "Sound Mixer",
-            "views": 2800895,
-            "site": "biz",
-            "slug": "sarah-paulson"
+            "views": 2825547,
+            "desktopOnly": false
         },
         {
             "name": "Vanity Fair",
@@ -534,11 +622,13 @@
             "contentType": "youtube",
             "thumb": "vanityfair.png",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "vanity-fair",
             "description": "Choreographers Break Down a Mary Poppins Dance Scene | Movies in Motion | Vanity Fair",
             "caption": "Sound Mixer",
-            "views": 262801,
-            "site": "biz",
-            "slug": "vanity-fair"
+            "views": 268225,
+            "desktopOnly": false
         },
         {
             "name": "Fine Points",
@@ -546,11 +636,13 @@
             "contentType": "youtube",
             "thumb": "finepoints.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "fine-points",
             "description": "Jewelry Expert Critiques More Rappers' Chains | Fine Points | GQ",
             "caption": "Sound Mixer",
-            "views": 1858231,
-            "site": "biz",
-            "slug": "fine-points"
+            "views": 1863639,
+            "desktopOnly": false
         },
         {
             "name": "Freddie Highmore",
@@ -558,11 +650,13 @@
             "contentType": "youtube",
             "thumb": "freddie.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "freddie-highmore",
             "description": "Freddie Highmore Answers the Web's Most Searched Questions | WIRED",
             "caption": "Sound Mixer",
-            "views": 14627736,
-            "site": "biz",
-            "slug": "freddie-highmore"
+            "views": 14905996,
+            "desktopOnly": false
         },
         {
             "name": "Tidal",
@@ -570,11 +664,13 @@
             "contentType": "youtube",
             "thumb": "tidal.jpg",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "tidal",
             "description": "1,061",
             "caption": "Sound Mixer",
             "views": 1069,
-            "site": "biz",
-            "slug": "tidal"
+            "desktopOnly": false
         },
         {
             "name": "United",
@@ -582,11 +678,13 @@
             "contentType": "youtube",
             "thumb": "united.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "united",
             "description": "United Airline's Big Metal Bird- Newark Episode",
             "caption": "Sound Mixer",
-            "views": 1731,
-            "site": "biz",
-            "slug": "united"
+            "views": 1880,
+            "desktopOnly": false
         },
         {
             "name": "Alan Taylor",
@@ -594,23 +692,27 @@
             "contentType": "youtube",
             "thumb": "alantaylor.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "alan-taylor",
             "description": "Game of Thrones’ Director Breaks Down Ned Stark’s Final Scene | Vanity Fair",
             "caption": "Sound Mixer",
-            "views": 1127774,
-            "site": "biz",
-            "slug": "alan-taylor"
+            "views": 1129595,
+            "desktopOnly": false
         },
         {
             "name": "L'Oreal",
-            "contentId": "sitVNGixBn0",
+            "contentId": "BzRDBf-8BN0",
             "contentType": "youtube",
             "thumb": "loreal.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "loreal",
             "description": "L'Oréal Paris Revitalift Challenge",
             "caption": "Sound Mixer",
-            "views": 13518,
-            "site": "biz",
-            "slug": "loreal"
+            "views": 89,
+            "desktopOnly": false
         },
         {
             "name": "Iris",
@@ -618,11 +720,13 @@
             "contentType": "youtube",
             "thumb": "iris.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "iris",
             "description": "Why Did You Cheat? Couple Confronts Each Other On Infidelity | Iris",
             "caption": "Sound Mixer",
-            "views": 2184974,
-            "site": "biz",
-            "slug": "iris"
+            "views": 2231823,
+            "desktopOnly": false
         },
         {
             "name": "Megan Thee Stallion",
@@ -630,11 +734,13 @@
             "contentType": "youtube",
             "thumb": "megan.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "megan-thee-stallion",
             "description": "Megan Thee Stallion Creates the Playlist of Her Life | Teen Vogue",
             "caption": "Sound Mixer",
-            "views": 1876533,
-            "site": "biz",
-            "slug": "megan-thee-stallion"
+            "views": 1882514,
+            "desktopOnly": false
         },
         {
             "name": "First Date",
@@ -642,11 +748,13 @@
             "contentType": "youtube",
             "thumb": "firstdate.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "first-date",
             "description": "Interviewed Before and After Our First Date - Sarah & Daniel | Glamour",
             "caption": "Sound Mixer",
-            "views": 975109,
-            "site": "biz",
-            "slug": "first-date"
+            "views": 975371,
+            "desktopOnly": false
         },
         {
             "name": "SYFY",
@@ -654,11 +762,13 @@
             "contentType": "youtube",
             "thumb": "syfy.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "syfy",
             "description": "Let's Play POGS - Gaming Throwback Episode 3 | SYFY WIRE",
             "caption": "Sound Mixer",
-            "views": 8645,
-            "site": "biz",
-            "slug": "syfy"
+            "views": 8732,
+            "desktopOnly": false
         },
         {
             "name": "Glamour",
@@ -666,11 +776,13 @@
             "contentType": "youtube",
             "thumb": "glamour.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "glamour",
             "description": "Women Sizes 0 Through 28 Try on the Same Sports Bra | Glamour",
             "caption": "Sound Mixer",
-            "views": 777574,
-            "site": "biz",
-            "slug": "glamour"
+            "views": 778155,
+            "desktopOnly": false
         },
         {
             "name": "Eddie Redmayne",
@@ -678,11 +790,13 @@
             "contentType": "youtube",
             "thumb": "eddie.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "eddie-redmayne",
             "description": "Eddie Redmayne Replies to Fans on the Internet | Actually Me | GQ",
             "caption": "Sound Mixer",
-            "views": 939122,
-            "site": "biz",
-            "slug": "eddie-redmayne"
+            "views": 946935,
+            "desktopOnly": false
         },
         {
             "name": "them",
@@ -690,11 +804,13 @@
             "contentType": "youtube",
             "thumb": "them.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "them",
             "description": "Christine and The Queens Gets a Drag Makeover from Milk | them.",
             "caption": "Sound Mixer",
-            "views": 498506,
-            "site": "biz",
-            "slug": "them"
+            "views": 500871,
+            "desktopOnly": false
         },
         {
             "name": "Xerox",
@@ -702,11 +818,13 @@
             "contentType": "youtube",
             "thumb": "xerox.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "xerox",
             "description": "Xerox and World-Renowned Authors Set the Page Free in Collaborative Book Project",
             "caption": "Sound Mixer",
-            "views": 77,
-            "site": "biz",
-            "slug": "xerox"
+            "views": 81,
+            "desktopOnly": false
         },
         {
             "name": "Johnnie Walker",
@@ -714,11 +832,13 @@
             "contentType": "youtube",
             "thumb": "johnniewalker.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "johnnie-walker",
             "description": "MarkLives #BrandFocus: Johnnie Walker's Keep Walking South Africa",
             "caption": "Sound Mixer",
-            "views": 7106,
-            "site": "biz",
-            "slug": "johnnie-walker"
+            "views": 7443,
+            "desktopOnly": false
         },
         {
             "name": "Pretty Detailed",
@@ -726,11 +846,13 @@
             "contentType": "youtube",
             "thumb": "pretty.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "pretty-detailed",
             "description": "Rihanna's Hairstylist Breaks Down Her Most Iconic Looks | Pretty Detailed | Allure",
             "caption": "Sound Mixer",
-            "views": 241257,
-            "site": "biz",
-            "slug": "pretty-detailed"
+            "views": 242322,
+            "desktopOnly": false
         },
         {
             "name": "AXE",
@@ -738,11 +860,13 @@
             "contentType": "vimeo",
             "thumb": "axe.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "axe",
             "description": "AXE : Spike TV “One Night Only”",
             "caption": "Sound Mixer",
             "views": 287,
-            "site": "biz",
-            "slug": "axe"
+            "desktopOnly": false
         },
         {
             "name": "Laura Mercier",
@@ -750,23 +874,27 @@
             "contentType": "youtube",
             "thumb": "lauramercier.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "laura-mercier",
             "description": "How to Apply Pure Canvas Primers | Laura Mercier",
             "caption": "Sound Mixer",
-            "views": 23324,
-            "site": "biz",
-            "slug": "laura-mercier"
+            "views": 26289,
+            "desktopOnly": false
         },
         {
-            "name": "T-Mobile",
-            "contentId": "jaoS3TFqDnI",
+            "name": "Anne Klein",
+            "contentId": "XnxeiRJJ488",
             "contentType": "youtube",
-            "thumb": "tmobile.jpg",
+            "thumb": "anneklein.jpg",
             "category": "COMMERCIAL",
-            "description": "DIGITS is ready for customers! | T-Mobile",
-            "caption": "Sound Mixer",
-            "views": 70716,
+            "display": true,
             "site": "biz",
-            "slug": "t-mobile"
+            "slug": "anne-klein",
+            "description": "Anne Klein Spring Summer 2023 NYFW",
+            "caption": "Sound Mixer",
+            "views": 1405,
+            "desktopOnly": false
         },
         {
             "name": "Etsy",
@@ -774,11 +902,13 @@
             "contentType": "youtube",
             "thumb": "etsy.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "etsy",
             "description": "Making Holiday Magic: Increase Your Etsy Sales With These Seller Tips",
             "caption": "Sound Mixer",
-            "views": 42848,
-            "site": "biz",
-            "slug": "etsy"
+            "views": 42865,
+            "desktopOnly": false
         },
         {
             "name": "BCRF",
@@ -786,11 +916,13 @@
             "contentType": "youtube",
             "thumb": "bcrf.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "bcrf",
             "description": "Research Is the Reason 2019",
             "caption": "Sound Mixer",
-            "views": 1295,
-            "site": "biz",
-            "slug": "bcrf"
+            "views": 1302,
+            "desktopOnly": false
         },
         {
             "name": "Rakuten",
@@ -798,11 +930,13 @@
             "contentType": "vimeo",
             "thumb": "rakuten.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "rakuten",
             "description": "A+E Rakuten Xmas 2019",
             "caption": "Sound Mixer",
             "views": 70,
-            "site": "biz",
-            "slug": "rakuten"
+            "desktopOnly": false
         },
         {
             "name": "EY",
@@ -810,11 +944,13 @@
             "contentType": "youtube",
             "thumb": "ey.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "ey",
             "description": "Meet Brett",
             "caption": "Sound Mixer",
-            "views": 7758,
-            "site": "biz",
-            "slug": "ey"
+            "views": 7783,
+            "desktopOnly": false
         },
         {
             "name": "Jubilee",
@@ -822,11 +958,13 @@
             "contentType": "youtube",
             "thumb": "jubilee.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "jubilee",
             "description": "Recipe for Change: Standing Up to Antisemitism with Idina Menzel, Ilana Glazer & Moshe Kasher",
             "caption": "Audio Supervisor",
-            "views": 973588,
-            "site": "biz",
-            "slug": "jubilee"
+            "views": 984741,
+            "desktopOnly": false
         },
         {
             "name": "One Love",
@@ -834,11 +972,13 @@
             "contentType": "youtube",
             "thumb": "onelove.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "one-love",
             "description": "#LoveBetter",
             "caption": "Sound Mixer",
-            "views": 72237,
-            "site": "biz",
-            "slug": "one-love"
+            "views": 76820,
+            "desktopOnly": false
         },
         {
             "name": "Complex",
@@ -846,11 +986,13 @@
             "contentType": "youtube",
             "thumb": "complex.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "complex",
             "description": "Famous Dex Opens Up Plus Rico Nasty, La La Anthony & Jess Hilarious | Open Late with Peter Rosenberg",
             "caption": "Sound Mixer",
-            "views": 154240,
-            "site": "biz",
-            "slug": "complex"
+            "views": 154456,
+            "desktopOnly": false
         },
         {
             "name": "Vogue",
@@ -858,11 +1000,13 @@
             "contentType": "vimeo",
             "thumb": "vogue1.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "vogue",
             "description": "One Night in Vogue starring Teyana Taylor & Iman Shumpert (Director’s Cut)",
             "caption": "Sound Mixer",
             "views": 296,
-            "site": "biz",
-            "slug": "vogue"
+            "desktopOnly": false
         },
         {
             "name": "Sunset Park",
@@ -870,11 +1014,13 @@
             "contentType": "youtube",
             "thumb": "sunset.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "sunset-park",
             "description": "[NEW] Sunset Park (2017) Starring Michael Trevino",
             "caption": "Sound Editor",
-            "views": 14516,
-            "site": "biz",
-            "slug": "sunset-park"
+            "views": 14927,
+            "desktopOnly": false
         },
         {
             "name": "Allure",
@@ -882,11 +1028,13 @@
             "contentType": "youtube",
             "thumb": "allure.jpg",
             "category": "SOCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "allure",
             "description": "I Took a Bath in Red Wine For Science | Beauty Haus With Sable | Allure",
             "caption": "Sound Mixer",
-            "views": 28670,
-            "site": "biz",
-            "slug": "allure"
+            "views": 28743,
+            "desktopOnly": false
         },
         {
             "name": "Dove",
@@ -894,11 +1042,13 @@
             "contentType": "youtube",
             "thumb": "dove.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "dove",
             "description": "Dove Love Your Curls",
             "caption": "Boom Op",
-            "views": 18570,
-            "site": "biz",
-            "slug": "dove"
+            "views": 19876,
+            "desktopOnly": false
         },
         {
             "name": "Audible",
@@ -906,11 +1056,13 @@
             "contentType": "vimeo",
             "thumb": "audible.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "audible",
             "description": "Audible - Alexa Moments",
             "caption": "Sound Mixer",
             "views": 1575,
-            "site": "biz",
-            "slug": "audible"
+            "desktopOnly": false
         },
         {
             "name": "Rihanna Secret Show",
@@ -918,11 +1070,13 @@
             "contentType": "vimeo",
             "thumb": "rihanna.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "rihanna-secret-show",
             "description": "RIHANNA SECRET SHOW",
             "caption": "Sound Mixer",
             "views": 336,
-            "site": "biz",
-            "slug": "rihanna-secret-show"
+            "desktopOnly": false
         },
         {
             "name": "Vogue X H&M",
@@ -930,11 +1084,13 @@
             "contentType": "vimeo",
             "thumb": "vogue.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "vogue-x-hm",
             "description": "Vogue | All In A Night - H&M",
             "caption": "Sound Mixer & Voiceover",
             "views": 12,
-            "site": "biz",
-            "slug": "vogue-x-hm"
+            "desktopOnly": false
         },
         {
             "name": "Milk Makeup",
@@ -942,11 +1098,13 @@
             "contentType": "youtube",
             "thumb": "milk.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "milk-makeup",
             "description": "Milk Makeup Looks - \"Sonic\"",
             "caption": "Sound Mixer",
-            "views": 752050,
-            "site": "biz",
-            "slug": "milk-makeup"
+            "views": 753261,
+            "desktopOnly": false
         },
         {
             "name": "GQ X Amex",
@@ -954,11 +1112,13 @@
             "contentType": "youtube",
             "thumb": "amex.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "gq-x-amex",
             "description": "The Post-Vacation Detox | Good As Gold Presented By American Express",
             "caption": "Sound Mixer",
-            "views": 319150,
-            "site": "biz",
-            "slug": "gq-x-amex"
+            "views": 319289,
+            "desktopOnly": false
         },
         {
             "name": "DRAM",
@@ -966,11 +1126,13 @@
             "contentType": "youtube",
             "thumb": "dram.jpg",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "dram",
             "description": "DRAM - Google Play Live at the Milk Jam Room",
             "caption": "Sound Mixer",
-            "views": 106366,
-            "site": "biz",
-            "slug": "dram"
+            "views": 106483,
+            "desktopOnly": false
         },
         {
             "name": "Empress Of",
@@ -978,11 +1140,13 @@
             "contentType": "youtube",
             "thumb": "google.jpg",
             "category": "MUSIC",
+            "display": true,
+            "site": "biz",
+            "slug": "empress-of",
             "description": "Empress Of: Google Play Live at The Milk Jam Room",
             "caption": "Audio Engineer",
-            "views": 8114,
-            "site": "biz",
-            "slug": "empress-of"
+            "views": 8189,
+            "desktopOnly": false
         },
         {
             "name": "Johnson & Johnson",
@@ -990,11 +1154,13 @@
             "contentType": "youtube",
             "thumb": "johnson.jpg",
             "category": "COMMERCIAL",
+            "display": true,
+            "site": "biz",
+            "slug": "johnson-johnson",
             "description": "An Interview with Dr. Paul Stoffels, Chief Scientific Officer of Johnson & Johnson",
             "caption": "Sound Mixer",
-            "views": 5797,
-            "site": "biz",
-            "slug": "johnson-johnson"
+            "views": 5820,
+            "desktopOnly": false
         },
         {
             "name": "Berenice",
@@ -1002,11 +1168,13 @@
             "contentType": "youtube",
             "thumb": "berenice.jpg",
             "category": "TV & FILM",
+            "display": true,
+            "site": "biz",
+            "slug": "berenice",
             "description": "Edgar Allan Poe's \"Berenice\" - TRAILER",
             "caption": "Sound Mixer",
-            "views": 20586,
-            "site": "biz",
-            "slug": "berenice"
+            "views": 20709,
+            "desktopOnly": false
         },
         {
             "name": "Office Webcam",

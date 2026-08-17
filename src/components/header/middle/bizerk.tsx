@@ -1,10 +1,12 @@
+'use client';
+
 import { gsap } from 'gsap';
-import React, { FC, useContext, useEffect, useState } from 'react';
-import { CDN } from '@/constants';
+import { type FC, useContext, useEffect, useState } from 'react';
+import { config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
-import { SiteKey } from '@/types';
+import type { SiteKey } from '@/types';
 import { bizerkHover } from '@/utils/gsap';
 import { BizerImage, BizerkImageContainer } from './elements';
 
@@ -42,7 +44,7 @@ const Bizerk: FC<Props> = ({ bizerk, spinningSalAudio1, spinningSalAudio2, ringA
             setAnimateGrid(Math.random()); // extra random to trigger the animation
             // DOC: play / stop can be part of the TL
             // since the TL is repeat -1, hovering over the container in negative space will trigger the animation
-            // and loop without audio. 
+            // and loop without audio.
             buffers.play(ringAudio1, false);
             buffers.play(ringAudio2, false);
             buffers.play(spinningSalAudio1, false);
@@ -61,7 +63,13 @@ const Bizerk: FC<Props> = ({ bizerk, spinningSalAudio1, spinningSalAudio2, ringA
 
     return (
         <BizerkImageContainer className={bizerk.site}>
-            <BizerImage id="bizerk-icon" src={`${CDN}${bizerk.icon}`} className={bizerk.site} onMouseOver={() => play()} onMouseOut={() => pause()} />
+            <BizerImage
+                id="bizerk-icon"
+                src={`${config.cdnUrl}${bizerk.icon}`}
+                className={bizerk.site}
+                onMouseOver={() => play()}
+                onMouseOut={() => pause()}
+            />
         </BizerkImageContainer>
     );
 };

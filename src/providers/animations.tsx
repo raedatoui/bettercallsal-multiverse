@@ -1,6 +1,9 @@
-import React, { createContext, FC, useMemo, useState, useContext, Dispatch, SetStateAction, useEffect } from 'react';
+'use client';
+
+import type React from 'react';
+import { createContext, type Dispatch, type FC, type SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { useSiteContext } from '@/providers/sites';
-import { BizerkMode } from '@/types';
+import type { BizerkMode } from '@/types';
 
 type AnimationProviderType = {
     animateGrid: number;
@@ -14,7 +17,7 @@ type AnimationProviderType = {
 };
 
 interface ProviderProps {
-    children: JSX.Element;
+    children: React.ReactNode;
 }
 
 const AnimationContext = createContext<AnimationProviderType>({

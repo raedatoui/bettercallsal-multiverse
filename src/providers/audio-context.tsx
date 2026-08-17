@@ -1,6 +1,9 @@
-import React, { createContext, FC, useMemo, useEffect, useState } from 'react';
+'use client';
+
+import type React from 'react';
+import { createContext, type FC, useEffect, useMemo, useState } from 'react';
 import { useAnimationContext } from '@/providers/animations';
-import { AudioElement, AudioElementValidator, isNotNull, Site } from '@/types';
+import { type AudioElement, AudioElementValidator, isNotNull, type Site } from '@/types';
 import AudioBuffers from './audio-buffer';
 import { useSiteContext } from './sites';
 
@@ -25,7 +28,7 @@ const SoundContext = createContext<SoundProviderType>({
 });
 
 interface ProviderProps {
-    children: JSX.Element;
+    children: React.ReactNode;
 }
 
 const getSiteSoundFiles = (site: Site): string[] => {
@@ -98,4 +101,4 @@ const SoundProvider: FC<ProviderProps> = ({ children }) => {
     return <SoundContext.Provider value={audioBuffers}>{children}</SoundContext.Provider>;
 };
 
-export { SoundProvider, SoundContext };
+export { SoundContext, SoundProvider };

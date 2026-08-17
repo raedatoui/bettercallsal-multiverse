@@ -1,10 +1,12 @@
+'use client';
+
 import Image from 'next/image';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
 import { Caption } from '@/styles/sharedstyles';
-import { ContentSize, Size } from '@/types';
+import type { ContentSize, Size } from '@/types';
 import { useWindowSize } from '@/utils';
 
 // TODO: do this for other images that rely on the parent props for margins

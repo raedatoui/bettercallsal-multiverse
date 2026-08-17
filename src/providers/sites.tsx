@@ -1,8 +1,19 @@
+'use client';
+
 import axios from 'axios';
-import React, { FC, useMemo, useState, createContext, useContext, useCallback } from 'react';
+import type React from 'react';
+import { createContext, type FC, useCallback, useContext, useMemo, useState } from 'react';
 import { z } from 'zod';
-import { CONTENT_URL } from '@/constants';
-import { BaseContentItem, BaseContentItemValidator, ContentMap, GameContentItem, GameContentItemValidator, SiteKey, SiteMap } from '@/types';
+import { config } from '@/constants';
+import {
+    type BaseContentItem,
+    BaseContentItemValidator,
+    type ContentMap,
+    type GameContentItem,
+    GameContentItemValidator,
+    type SiteKey,
+    type SiteMap,
+} from '@/types';
 
 type SiteProviderType = {
     siteMap: SiteMap;
@@ -29,7 +40,7 @@ const defaultContentMap = {
 const SiteContext = createContext<SiteProviderType | undefined>(undefined);
 
 interface ProviderProps {
-    children: JSX.Element;
+    children: React.ReactNode;
     defaultSite: SiteKey;
     defaultSiteMap: SiteMap;
     defaultContent: (BaseContentItem | GameContentItem)[];
@@ -38,7 +49,7 @@ interface ProviderProps {
 const fetchData = async (siteKey: SiteKey): Promise<(BaseContentItem | GameContentItem)[]> => {
     const list: (BaseContentItem | GameContentItem)[] = [];
     try {
-        const { data: response } = await axios.get(`${CONTENT_URL}/content-${siteKey}.json`);
+        const { data: response } = await axios.get(`${config.contentUrl}/content-${siteKey}.json`);
 
         const items = z.array(z.unknown()).parse(response.items);
         const siteSchema = z.object({
@@ -110,4 +121,4 @@ function useSiteContext() {
     return context;
 }
 
-export { SitesDataProvider, SiteContext, useSiteContext };
+export { SiteContext, SitesDataProvider, useSiteContext };

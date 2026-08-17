@@ -1,3 +1,5 @@
+'use client';
+
 import { createGlobalStyle } from 'styled-components';
 import { breakPoints } from '@/constants';
 
@@ -83,4 +85,5 @@ const globalStyleWrapper = (pageType: string) => createGlobalStyle`
 
 const GlobalStyle = globalStyleWrapper('home');
 const GlobalStyleLinkTree = globalStyleWrapper('linktree');
+
 export { GlobalStyle, GlobalStyleLinkTree };

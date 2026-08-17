@@ -1,15 +1,18 @@
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { CDN } from '@/constants';
+'use client';
+
+import { useRouter } from 'next/navigation';
+import type React from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { config } from '@/constants';
 import { Player, VideoElement } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, Size, VimeoPlayer, YTPlayer } from '@/types';
+import type { BaseContentItem, ContentSize, Size, VimeoPlayer, YTPlayer } from '@/types';
 import { useWindowSize } from '@/utils';
 
 interface Props {
     contentItem: BaseContentItem;
-    containerRef?: React.RefObject<HTMLDivElement>;
-    titleRef?: React.RefObject<HTMLDivElement>;
-    viewsRef?: React.RefObject<HTMLDivElement>;
+    containerRef?: React.RefObject<HTMLDivElement | null>;
+    titleRef?: React.RefObject<HTMLDivElement | null>;
+    viewsRef?: React.RefObject<HTMLDivElement | null>;
     autoPlay: boolean;
 }
 
@@ -49,7 +52,7 @@ const getContentSize = (
 };
 
 export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, contentItem, containerRef, viewsRef, titleRef }, ref) => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const [yPlayer, setYPlayer] = useState<YTPlayer | null>(null);
     const [vPlayer, setVPlayer] = useState<VimeoPlayer | null>(null);
 
@@ -99,7 +102,6 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
     }, [getSize, windowSize]);
 
     useEffect(() => {
-        console.log(currentContentId, contentItem.contentId);
         if (contentItem.contentType === 'youtube' && currentContentId !== contentItem.contentId) {
             // DOC: if not, then we risk calling loadVideoById on the same videoId, which will cause the video to restart.
             setCurrentContentId(contentItem.contentId);
@@ -126,7 +128,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
                             if (autoPlay) player.playVideo();
                         },
                         onStateChange: (event: Record<string, unknown>) => {
-                            if (event.data === window.YT.PlayerState.ENDED) navigate('/');
+                            if (event.data === window.YT.PlayerState.ENDED) router.push('/');
                         },
                     },
                 });
@@ -141,9 +143,9 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
                 autoplay: true,
                 loop: false,
             }) as unknown as VimeoPlayer;
-            v.on('ended', function () {
+            v.on('ended', () => {
                 v.destroy();
-                navigate('/');
+                router.push('/');
             });
             setVPlayer(v);
         }
@@ -166,7 +168,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
 
             {contentItem.contentType === 'video' && (
                 <VideoElement controls autoPlay width={videoSize.width} height={videoSize.height} left={videoSize.left}>
-                    <source src={`${CDN}/videos/${contentItem.site}/${contentItem.contentId}`} type="video/mp4" />
+                    <source src={`${config.cdnUrl}/videos/${contentItem.site}/${contentItem.contentId}`} type="video/mp4" />
                 </VideoElement>
             )}
         </>

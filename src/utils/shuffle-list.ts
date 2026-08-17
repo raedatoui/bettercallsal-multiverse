@@ -1,7 +1,9 @@
+'use client';
+
 const shuffleList = <T>(array: T[]): T[] => {
     let currentIndex = array.length;
-    let temporaryValue;
-    let randomIndex;
+    let temporaryValue: T;
+    let randomIndex: number;
     const clone = Array.from(array);
     // While there remain elements to shuffle...
     while (currentIndex !== 0) {

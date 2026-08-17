@@ -1,14 +1,18 @@
+'use client';
+
+import { useParams, useRouter } from 'next/navigation';
 import Script from 'next/script';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, PlayerContainer, StopButton, VideoText } from '@/styles/sharedstyles';
 import { findContent } from '@/utils';
-import { VideoPlayer, VideoPlayerType } from './player';
+import { VideoPlayer, type VideoPlayerType } from './player';
 
 export const Video = () => {
-    const { videoId } = useParams<{ videoId: string }>();
-    const navigate = useNavigate();
+    const { pathStack } = usePathContext();
+    const { slug: videoId } = useParams<{ slug: string }>();
+    const router = useRouter();
 
     const [ytScriptLoaded, setYtScriptLoaded] = useState<boolean>(false);
     const [vmScriptLoaded, setVmScriptLoaded] = useState<boolean>(false);
@@ -30,10 +34,13 @@ export const Video = () => {
 
     const stopVideo = useCallback(() => {
         videoPlayerRef.current?.stop();
-        // DOC: this goes back to category
-        if (selectedSite === 'biz') navigate('/');
-        else navigate(-1);
-    }, [navigate]);
+
+        if (pathStack.length >= 1) {
+            const p = pathStack[pathStack.length - 1];
+            if (/\/category\/.*/.test(p)) router.back();
+            else router.push('/');
+        } else router.push('/');
+    }, [router, pathStack]);
 
     useEffect(() => {
         window.onYouTubeIframeAPIReady = () => {
@@ -41,7 +48,11 @@ export const Video = () => {
         };
     }, []);
 
-    if (!contentItem) navigate('/');
+    // DOC: when the video isnt on the current site, go home. this has to run in an effect rather
+    //  than during render — prerendering the video routes for the static export has no location to touch.
+    useEffect(() => {
+        if (!contentItem) router.push('/');
+    }, [contentItem]);
 
     const videoClass = contentItem?.contentId ? 'loaded' : '';
     return (

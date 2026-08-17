@@ -1,7 +1,9 @@
+'use client';
+
 import { gsap } from 'gsap';
-import { Dispatch, SetStateAction } from 'react';
-import AudioBuffers from '@/providers/audio-buffer';
-import { Site, SiteKey } from '@/types';
+import type { Dispatch, SetStateAction } from 'react';
+import type AudioBuffers from '@/providers/audio-buffer';
+import type { Site, SiteKey } from '@/types';
 
 type P = (v: number) => number;
 type S = (v: number | P) => void;
@@ -10,6 +12,9 @@ const FAST = 0.1;
 const DEFAULT = 3;
 
 const animateHeaderFooterSpinners = (duration: number) => {
+    // DOC: gsap caches each element's transform, so after a site switch it would re-apply the previous
+    // site's css scale (.rocks/.art) for the whole tween and only drop it on clearProps. Force a re-read.
+    gsap.set('.spinner', { clearProps: 'all' });
     return gsap.fromTo(
         '.spinner',
         { rotateY: 0 },
@@ -59,8 +64,8 @@ const colorizeFooterHeaderTitles = (duration: number) => {
 
 const animateCounter = (duration: number, counter: number, setter: S, paused: boolean, reset: boolean, ease = 'power2.out') => {
     const house = {
-        getAttribute: (key: string) => counter,
-        setAttribute: (qualifiedName: string, value: number) => {
+        getAttribute: (_key: string) => counter,
+        setAttribute: (_qualifiedName: string, value: number) => {
             setter((prev: number) => {
                 let a = prev;
                 if (value - prev > 0.005) a = value;
@@ -82,8 +87,8 @@ const animateCounter = (duration: number, counter: number, setter: S, paused: bo
 
 export const animateCounterBizerk = (counter: number, setter: S, paused = true) => {
     const house = {
-        getAttribute: (key: string) => counter,
-        setAttribute: (qualifiedName: string, value: number) => {
+        getAttribute: (_key: string) => counter,
+        setAttribute: (_qualifiedName: string, value: number) => {
             setter(value);
         },
     };
@@ -127,15 +132,15 @@ export const wtfLoadAnimation = (counter: number, setter: Dispatch<SetStateActio
         { rotateY: 0 },
         {
             rotateY: (index) => (index % 0 ? -3600 : 3600),
-            duration: 3,
+            duration: 2,
             ease: 'power2.out',
             opacity: 1,
             clearProps: 'all',
         }
     );
     tl.add(r, '<');
-    tl.add(colorizeFooterHeaderTitles(3), '<');
-    tl.add(animateCounter(DEFAULT, counter, setter, false, true, 'linear'), '<');
+    tl.add(colorizeFooterHeaderTitles(1), '<');
+    tl.add(animateCounter(1, counter, setter, false, true, 'linear'), '<');
     return tl;
 };
 
@@ -184,13 +189,9 @@ export const audioTween = (buffers: AudioBuffers, site: Site) => {
     let counter2 = 0;
     // let interval: typeof Timeout;
 
-    const copy = {
-        counter1,
-        counter2,
-    };
     const house = {
         getAttribute: (key: string) => key, //copy[key],
-        setAttribute: (qualifiedName: string, value: number) => {
+        setAttribute: (_qualifiedName: string, value: number) => {
             counter1 = value;
             // if (value - counter1 > 0.02) {
             //     console.log('counter');

@@ -1,16 +1,20 @@
+'use client';
+
+import { useParams, useRouter } from 'next/navigation';
 import Script from 'next/script';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { CDN } from '@/constants';
+import { useCallback, useEffect, useState } from 'react';
+import { config } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, UnityInstance } from '@/types';
+import { type BaseContentItem, type ContentSize, type GameContentItem, isGame, type Size, type UnityInstance } from '@/types';
 import { findGame, useWindowSize } from '@/utils';
 
 const Unity = () => {
-    const navigate = useNavigate();
-    const { gameId } = useParams<{ gameId: string }>();
-    const canvasRef = document.getElementById('unity-canvas') as HTMLCanvasElement;
+    const router = useRouter();
+    const { slug: gameId } = useParams<{ slug: string }>();
+    // DOC: prerendering the game routes for the static export has no document. every use below
+    //  is already null-guarded, so this stays null until hydration puts the canvas in place.
+    const canvasRef = typeof document === 'undefined' ? null : (document.getElementById('unity-canvas') as HTMLCanvasElement | null);
 
     const { contentMap, selectedSite, loading, fullScreen, setFullScreen } = useSiteContext();
     const contentList = contentMap[selectedSite];
@@ -47,10 +51,10 @@ const Unity = () => {
         if (game) {
             const obj = {
                 showBanner: false,
-                dataUrl: `${CDN}${game.dataUrl}`,
-                frameworkUrl: `${CDN}${game.frameworkUrl}`,
-                codeUrl: `${CDN}${game.codeUrl}`,
-                streamingAssetsUrl: `${CDN}${game.assetsUrl}`,
+                dataUrl: `${config.cdnUrl}${game.dataUrl}`,
+                frameworkUrl: `${config.cdnUrl}${game.frameworkUrl}`,
+                codeUrl: `${config.cdnUrl}${game.codeUrl}`,
+                streamingAssetsUrl: `${config.cdnUrl}${game.assetsUrl}`,
                 companyName: 'Better Call Sal',
                 productVersion: '1.0',
                 productName: game.name,
@@ -153,7 +157,7 @@ const Unity = () => {
     useEffect(() => {
         if (scriptLoaded) {
             const g = getGameCb();
-            if (!g) navigate('/');
+            if (!g) router.push('/');
             setGame(g);
         }
     }, [gameId, contentList, scriptLoaded]);
@@ -183,10 +187,10 @@ const Unity = () => {
         <>
             {!loading && contentList.length && (
                 <Script
-                    src={`${CDN}/unity/${loader}.loader.js`}
+                    src={`${config.cdnUrl}/unity/${loader}.loader.js`}
                     onReady={() => {
                         const g = getGame(contentList);
-                        if (!g) navigate('/');
+                        if (!g) router.push('/');
                         else setGame(g);
                         setScriptLoaded(true);
                     }}
@@ -203,7 +207,7 @@ const Unity = () => {
 
             {game && selectedSite !== 'gallery' && (
                 <ButtonBar>
-                    <StopButton onClick={() => navigate('/')}>[x]</StopButton>
+                    <StopButton onClick={() => router.push('/')}>[x]</StopButton>
                 </ButtonBar>
             )}
         </>

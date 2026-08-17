@@ -1,13 +1,17 @@
-import { ContentType, SiteMapValidator } from '@/types';
+import { ConfigValidator, type ContentType, type SiteKey, SiteKeyValidator, SiteMapValidator } from '@/types';
 import sitesData from '../content/sites.next.json';
 
-export const CDN = process.env.cdnUrl;
-
-export const CONTENT_URL = process.env.contentUrl;
-
-export const SPOTIFY_ENABLED = process.env.spotifyEnabled;
-
 export const defaultSiteMap = SiteMapValidator.parse(sitesData);
+
+export const config = ConfigValidator.parse({
+    selectedSite: SiteKeyValidator.parse(process.env.selectedSite),
+    cdnUrl: process.env.cdnUrl,
+    contentUrl: process.env.contentUrl,
+    spotifyEnabled: process.env.spotifyEnabled === 'true',
+    localImages: process.env.spotifyEnabled === 'true',
+    gtagEnabled: process.env.gtagEnabled === 'true',
+    experiments: process.env.experiments === 'true',
+});
 
 export const tickerList = Object.entries(defaultSiteMap).filter(([, v]) => v?.header.showTicker);
 
@@ -34,3 +38,21 @@ export const URL_MAP: Record<ContentType, string> = {
     game: 'game',
     image: 'art',
 };
+
+// DOC: the hotkeys that swap the rendered site. `as const satisfies` keeps the literal keys — so
+//  isHotKey can narrow a raw KeyboardEvent.key — while still checking every value is a real SiteKey.
+export const keyMap = {
+    a: 'art',
+    b: 'biz',
+    f: 'fit',
+    r: 'rocks',
+    g: 'games',
+    c: 'construction',
+    y: 'gallery',
+    w: 'world',
+    t: 'wtf',
+} as const satisfies Record<string, SiteKey>;
+
+export type HotKey = keyof typeof keyMap;
+
+export const isHotKey = (key: string): key is HotKey => key in keyMap;

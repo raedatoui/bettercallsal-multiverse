@@ -1,11 +1,14 @@
+'use client';
+
 import Link from 'next/link';
 import Script from 'next/script';
-import React, { useContext, useRef, useState } from 'react';
-import LawBreakers from '@/components/footer';
+import type React from 'react';
+import { useContext, useRef, useState } from 'react';
+import { ServerLawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
 import { LeftNavButton1, LeftNavButton1Wrapper, LeftNavItemCuck1, LeftNavMenu1 } from '@/components/left-nav/elements';
-import { CDN } from '@/constants';
+import { config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { PathProvider } from '@/providers/path';
@@ -24,12 +27,12 @@ const extraLinks = {
     // 'Nature Creeps Beneath': 'https://www.naturecreepsbeneath.com',
 };
 
-const MainContainerInner = () => {
+const LinktreeLayout = () => {
     const { selectedSite, fullScreen } = useSiteContext();
     const { setBizerkMode, animateGrid, setAnimateGrid } = useAnimationContext();
     const { buffers } = useContext(SoundContext);
 
-    const cursor = `${CDN}/images/${selectedSite}/cursor.webp`;
+    const cursor = `${config.cdnUrl}/images/${selectedSite}/cursor.webp`;
 
     const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
     const [screenCapture, setScreeCapture] = useState<string | null>(null);
@@ -46,9 +49,7 @@ const MainContainerInner = () => {
                     setScreeCapture(dataUrl);
                     setBizerkMode('on');
                     animateCounterBizerk(animateGrid, setAnimateGrid, false);
-                    if (buffers.analyzer && particleRef.current)
-                        // eslint-disable-next-line no-new
-                        new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
+                    if (buffers.analyzer && particleRef.current) new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
                 })
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);
@@ -94,7 +95,7 @@ const MainContainerInner = () => {
                             ))}
                         </LeftNavMenu1>
                     </Row1>
-                    <LawBreakers />
+                    <ServerLawBreakers />
                 </Main>
             </PathProvider>
 
@@ -105,4 +106,4 @@ const MainContainerInner = () => {
 
 // const MainContainer = React.memo(MainContainerInner);
 
-export default MainContainerInner;
+export default LinktreeLayout;

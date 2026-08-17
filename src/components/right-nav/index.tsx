@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { breakPoints, SPOTIFY_ENABLED } from '@/constants';
+import { breakPoints, config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
-import { Site } from '@/types';
+import type { Site } from '@/types';
 
 const colorTwist = keyframes`
   0% {filter:  blur(0px) contrast(1)  saturate(0)}
@@ -49,7 +51,7 @@ const RightNav = () => {
             <Gap />
             {selectedSite !== 'gallery' && !fullScreen && (
                 <SpotifyContainer className={bizerkMode !== 'off' ? 'bizerk' : ''}>
-                    {SPOTIFY_ENABLED && (
+                    {config.spotifyEnabled && (
                         <iframe title="spotify" src={site.rightNav.objectId} width="100%" height="100%" loading="lazy" frameBorder="0" />
                     )}
                 </SpotifyContainer>

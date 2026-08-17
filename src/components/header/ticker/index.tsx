@@ -1,11 +1,13 @@
-import React, { FC, useEffect, useState, useCallback } from 'react';
-import { Keyframes } from 'styled-components';
+'use client';
+
+import { type FC, useCallback, useEffect, useState } from 'react';
+import type { Keyframes } from 'styled-components';
 import { TickerContainer } from '@/components/header/elements';
 import { Baseline, LowerBanner, SiteUrl } from '@/components/header/ticker/elements';
 import { defaultSiteMap } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
-import { Site, SiteKey, BizerkMode } from '@/types';
+import type { BizerkMode, Site, SiteKey } from '@/types';
 import { slideInFromLeft, slideOutFromLeft, squigglySlideInFromLeft, squigglySlideOutFromLeft, squigglyText } from '@/utils/animations';
 
 interface Props {

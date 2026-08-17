@@ -1,5 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Size } from '@/types';
+'use client';
+
+import { useEffect, useState } from 'react';
+import type { Size } from '@/types';
+
 // Define general type for useWindowSize hook, which includes width and height
 
 // Hook

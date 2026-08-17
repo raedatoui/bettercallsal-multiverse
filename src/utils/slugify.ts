@@ -1,3 +1,5 @@
+'use client';
+
 const slugify = (str: string): string =>
     String(str)
         .normalize('NFKD') // split accented characters into their base characters and diacritical marks

@@ -1,5 +1,7 @@
+'use client';
+
 import styled from 'styled-components';
-import { CDN, headerBreakPoints as breakPoints } from '@/constants';
+import { headerBreakPoints as breakPoints, config } from '@/constants';
 import { ltr, ltr2, rtl, rtl2 } from '@/utils/animations';
 
 export const SpinningSalsContainer = styled.div`
@@ -74,7 +76,7 @@ export const SpinningImg = styled.div<{ image: string }>`
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${(props) => `${CDN}${props.image}`});
+  background-image: url(${(props) => `${config.cdnUrl}${props.image}`});
   //cursor: pointer;
   
   &.img0.bizerk {

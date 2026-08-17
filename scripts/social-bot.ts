@@ -1,14 +1,20 @@
-/* eslint-disable no-await-in-loop */
-import path from 'path';
+import path from 'node:path';
 import { faker } from '@faker-js/faker';
-import mariadb from 'mariadb';
+import mariadb, { type Connection } from 'mariadb';
 import { z } from 'zod';
 import contentArt from '../content/content-art.json';
 import contentBiz from '../content/content-biz.json';
 import contentFit from '../content/content-fit.json';
 import contentGames from '../content/content-games.json';
 import contentRocks from '../content/content-rocks.json';
-import { BaseContentItem, BaseContentListValidator, GameContentItem, GameContentListValidator, SiteKey, SiteKeyValidator } from '../src/types';
+import {
+    type BaseContentItem,
+    BaseContentListValidator,
+    type GameContentItem,
+    GameContentListValidator,
+    type SiteKey,
+    SiteKeyValidator,
+} from '../src/types';
 import slugify from '../src/utils/slugify';
 
 const URL = 'https://bettercallsal.';
@@ -54,7 +60,6 @@ type PostType = z.infer<typeof Post>;
 
 const pickRandomPost = (arr: PostType[], queue: PostType[]) => {
     const random = arr[Math.floor(Math.random() * arr.length)];
-    const lastPick = queue.length > 0 ? queue[queue.length - 1] : null;
 
     queue.push(random);
     return random;
@@ -75,13 +80,10 @@ const mapContentToUrls = (map: Record<string, string>, site: SiteKey, contentLis
     }));
 
 const generateContentMap = () => {
-    const urlMap = Object.keys(segMap).reduce(
-        (acc, site) => ({
-            ...acc,
-            [site]: '', // `${URL}${site}/${seg}/`
-        }),
-        {}
-    );
+    const urlMap = Object.keys(segMap).reduce<Record<string, string>>((acc, site) => {
+        acc[site] = ''; // `${URL}${site}/${seg}/`
+        return acc;
+    }, {});
 
     return {
         art: mapContentToUrls(urlMap, 'art', BaseContentListValidator.parse(contentArt.items)),
@@ -92,7 +94,7 @@ const generateContentMap = () => {
     };
 };
 
-const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typeof generateContentMap>) => {
+const seedDatabase = async (conn: Connection, contentMap: ReturnType<typeof generateContentMap>) => {
     await conn.query('DROP TABLE `post_desc`');
 
     await conn.query('DROP TABLE `posts`');
@@ -130,22 +132,18 @@ const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typ
             ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;'
     );
 
-    const values = Object.entries(contentMap)
-        .map(([site, entries]) => entries.map((entry) => [site, entry.slug, transformImage(entry.thumb)]))
-        .flat(1);
+    const values = Object.entries(contentMap).flatMap(([site, entries]) => entries.map((entry) => [site, entry.slug, transformImage(entry.thumb)]));
 
     await conn.batch('INSERT INTO posts (domain, slug, thumb) VALUES(?, ?, ?)', values);
     await conn.commit();
 
     const rows = await conn.query('SELECT id FROM posts');
-    const descValues = rows
-        .map((row: { id: number }) => [
-            [row.id, 0, 1, faker.lorem.paragraphs(5)],
-            [row.id, 1, 1, faker.lorem.paragraphs(5)],
-            [row.id, 2, 1, faker.lorem.paragraphs(5)],
-            [row.id, 3, 1, faker.lorem.paragraphs(5)],
-        ])
-        .flat(1);
+    const descValues = rows.flatMap((row: { id: number }) => [
+        [row.id, 0, 1, faker.lorem.paragraphs(5)],
+        [row.id, 1, 1, faker.lorem.paragraphs(5)],
+        [row.id, 2, 1, faker.lorem.paragraphs(5)],
+        [row.id, 3, 1, faker.lorem.paragraphs(5)],
+    ]);
 
     await conn.batch('INSERT INTO post_desc (post_id, variation, queued, description) VALUES(?, ?, ?, ?)', descValues);
     await conn.commit();
@@ -153,7 +151,7 @@ const seedDatabase = async (conn: mariadb.Connection, contentMap: ReturnType<typ
     await conn.query('INSERT INTO current_set (variation) VALUES(0)');
 };
 
-const postCountInVariation = async (conn: mariadb.Connection, variation: number) => {
+const postCountInVariation = async (conn: Connection, variation: number) => {
     const res = await conn.query<{ count: number }[]>({
         sql: `
     SELECT 
@@ -167,7 +165,7 @@ const postCountInVariation = async (conn: mariadb.Connection, variation: number)
     return res[0].count;
 };
 
-const selectPosts = async (conn: mariadb.Connection, variation: number) => {
+const selectPosts = async (conn: Connection, variation: number) => {
     const rows = await conn.query<Row[]>(`
     SELECT 
         p.id, p.domain, p.slug, p.thumb, pd.queued, pd.description, pd.variation

@@ -1,4 +1,6 @@
-import { SiteKey, SiteKeyValidator, SiteMap } from '@/types';
+'use client';
+
+import { type SiteKey, SiteKeyValidator, type SiteMap } from '@/types';
 import useFetchData from './fetch';
 import useInterval from './interval';
 import useWindowSize from './resize';
@@ -6,24 +8,20 @@ import shuffleList from './shuffle-list';
 import slugify from './slugify';
 import useTimeout from './timeout';
 
-export { useInterval };
-export { useWindowSize };
-export { useTimeout };
-export { useFetchData };
-export { shuffleList };
-export { slugify };
-export { findGame, findContent, findCategory, findContentFomStore } from './find';
+export { findCategory, findContent, findContentFomStore, findGame } from './find';
 export {
     // animateCounter,
     animateCounterBizerk,
+    betterCallClick,
+    betterCallClickWtf,
     bizerkHover,
     loadAnimation,
     wtfLoadAnimation,
-    betterCallClick,
-    betterCallClickWtf,
 } from './gsap';
+export { shuffleList, slugify, useFetchData, useInterval, useTimeout, useWindowSize };
 
 const picker = <T>(l: T[]): T => l[Math.floor(Math.random() * l.length)];
+
 export { picker };
 
 export const pickRandom = (siteMap: SiteMap, exclude: SiteKey[] = []) => {
