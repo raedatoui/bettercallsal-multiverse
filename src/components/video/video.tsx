@@ -48,7 +48,11 @@ export const Video = () => {
         };
     }, []);
 
-    if (!contentItem) router.push('/');
+    // DOC: when the video isnt on the current site, go home. this has to run in an effect rather
+    //  than during render — prerendering the video routes for the static export has no location to touch.
+    useEffect(() => {
+        if (!contentItem) router.push('/');
+    }, [contentItem]);
 
     const videoClass = contentItem?.contentId ? 'loaded' : '';
     return (

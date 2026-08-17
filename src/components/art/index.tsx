@@ -141,7 +141,11 @@ const ArtSlider = () => {
         }
     }, [keyPressed, sliderInstance]);
 
-    if (artId && !artImage) router.push('/');
+    // DOC: when the piece isnt on the current site, go home. this has to run in an effect rather
+    //  than during render — prerendering the art routes for the static export has no location to touch.
+    useEffect(() => {
+        if (artId && !artImage) router.push('/');
+    }, [artId, artImage]);
 
     return (
         <ImageContainer ref={sliderRef} className="keen-slider">
