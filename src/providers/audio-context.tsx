@@ -28,7 +28,7 @@ const SoundContext = createContext<SoundProviderType>({
 });
 
 interface ProviderProps {
-    children: React.JSX.Element;
+    children: React.ReactNode;
 }
 
 const getSiteSoundFiles = (site: Site): string[] => {

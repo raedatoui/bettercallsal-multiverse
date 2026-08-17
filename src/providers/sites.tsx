@@ -40,7 +40,7 @@ const defaultContentMap = {
 const SiteContext = createContext<SiteProviderType | undefined>(undefined);
 
 interface ProviderProps {
-    children: React.JSX.Element;
+    children: React.ReactNode;
     defaultSite: SiteKey;
     defaultSiteMap: SiteMap;
     defaultContent: (BaseContentItem | GameContentItem)[];

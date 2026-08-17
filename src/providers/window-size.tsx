@@ -11,7 +11,7 @@ const WindowSizeContext = createContext<Size>({
 });
 
 interface ProviderProps {
-    children: React.JSX.Element;
+    children: React.ReactNode;
 }
 const WindowSizeProvider: FC<ProviderProps> = ({ children }) => {
     const windowSize = useWindowSize();
