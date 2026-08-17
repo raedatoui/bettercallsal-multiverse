@@ -22,8 +22,10 @@ pnpm static         # next build (output: 'export' writes out/)
 pnpm lint           # biome lint
 pnpm format         # biome format --write
 pnpm check          # biome check --write (format + lint + organize imports)
-pnpm clean          # rm -rf out
+pnpm clean          # rm -rf out dist
 ./deploy.sh         # build + deploy ALL ten sites (see Deploy below)
+./deploy.sh biz wtf # build + deploy just those two
+./deploy.sh --dry-run  # build every site into dist/, deploy nothing
 ```
 
 Content-pipeline scripts are ts-node and **require the commonjs override**:
@@ -169,16 +171,29 @@ navigation between routes.
 
 ## Deploy
 
-`./deploy.sh` loops over all ten site keys. For each: `pnpm clean` → `scripts/config.ts <site>`
-(rewrites `next.config.env.json`) → `pnpm static` → move `out/` to `../firebase/<site>/out` →
-`firebase deploy` from there.
+All ten sites are **hosting targets of one Firebase project** (`api-project-992432653598`), and both
+halves of that mapping live in this repo:
 
-This depends on a **sibling checkout at `../firebase/`** with one directory per site, each holding
-its own Firebase project config. That directory is outside this repo.
+- `.firebaserc` — the project id plus the ten `target → site id` pairs (`biz` → `bettercallsal-biz`).
+- `firebase.json` — a `hosting` **array**, one entry per target, each serving `dist/<site>`.
 
-`config.ts` also force-sets `spotifyEnabled: true`, `localImages: false`, `gtagEnabled: true` for
-every deploy, and maps the `fans` target onto `selectedSite: 'biz'` (`fans` is a deploy target, not
-a `SiteKey`). `deploy.sh` restores `next.config.env.json` to its committed defaults at the end.
+`./deploy.sh` builds each requested site into `dist/<site>`, then ships them in a **single**
+`firebase deploy --only hosting:biz,hosting:art,…`. With no arguments it does all ten; pass site
+keys to do a subset, or `--dry-run` to build without deploying.
+
+Per-build config is passed as **real env vars** (`selectedSite=… spotifyEnabled=true
+gtagEnabled=true localImages=false pnpm static`). `next.config.js` overlays `process.env` onto
+`next.config.env.json`, so deploys never write to the tracked file and the working tree stays clean.
+Only keys already present in the JSON are read. `deploy.sh` maps the `fans` target onto
+`selectedSite: 'biz'` (`fans` is a deploy target, not a `SiteKey`).
+
+`experiments` is *not* pinned by `deploy.sh` — it ships whatever `next.config.env.json` has
+committed.
+
+Cache headers are set per target: `/_next/**` is immutable for a year, `/scripts/**` for a day, and
+`**/*.@(html|txt)` is `no-cache` so pages and RSC route payloads never outlive a deploy. The three
+globs are deliberately disjoint — Firebase does not document precedence when two header rules match
+one path, so don't add an overlapping `**` rule.
 
 ## Conventions
 
@@ -202,9 +217,8 @@ a `SiteKey`). `deploy.sh` restores `next.config.env.json` to its committed defau
 
 ## Gotchas
 
-- **`next.config.env.json` is tracked but machine-written.** `scripts/config.ts` and `deploy.sh`
-  both rewrite it, so builds and deploys dirty the working tree. Check `git diff` on it before
-  committing.
+- **`next.config.env.json` is the local-dev default, not a deploy input.** Deploys override it with
+  env vars and leave it untouched. Edit it to change what `pnpm dev` picks up; nothing rewrites it.
 - **`.nvmrc` says 22, which may not be installed.** If the shell has an nvm auto-switch hook, `cd`
   into this repo fails with `N/A: version "v22" is not yet installed` and takes the whole command
   with it. Either `nvm install 22` or use absolute paths / `git -C` instead of `cd`.
@@ -218,4 +232,4 @@ a `SiteKey`). `deploy.sh` restores `next.config.env.json` to its committed defau
   land before running it.
 - **`buildSiteSlugs` in `src/lib/content.ts` is unused.** Both dynamic routes use `readAllContent`
   instead. Left in place deliberately; don't wire it up without reading its DOC comment first.
-- **`pnpm clean` only removes `out/`,** not `.next/`.
+- **`pnpm clean` only removes `out/` and `dist/`,** not `.next/`.

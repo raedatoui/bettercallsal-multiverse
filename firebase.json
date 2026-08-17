@@ -1,0 +1,492 @@
+{
+    "hosting": [
+        {
+            "target": "biz",
+            "public": "dist/biz",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "art",
+            "public": "dist/art",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "games",
+            "public": "dist/games",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "rocks",
+            "public": "dist/rocks",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "construction",
+            "public": "dist/construction",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "fit",
+            "public": "dist/fit",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "gallery",
+            "public": "dist/gallery",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "world",
+            "public": "dist/world",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "/privacy",
+                    "destination": "/privacy.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "fans",
+            "public": "dist/fans",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "target": "wtf",
+            "public": "dist/wtf",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "rewrites": [
+                {
+                    "source": "/linktree",
+                    "destination": "/linktree.html"
+                },
+                {
+                    "source": "/hbd",
+                    "destination": "/hbd.html"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "/_next/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=31536000, immutable"
+                        }
+                    ]
+                },
+                {
+                    "source": "/scripts/**",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "public, max-age=86400"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(html|txt)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

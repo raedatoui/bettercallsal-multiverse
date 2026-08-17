@@ -11,7 +11,7 @@
         "lint": "biome lint",
         "format": "biome format --write",
         "check": "biome check --write",
-        "clean": "rm -rf out"
+        "clean": "rm -rf out dist"
     },
     "dependencies": {
         "@emotion/is-prop-valid": "^1.4.0",
