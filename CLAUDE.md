@@ -4,32 +4,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The BetterCallSal Multiverse: **one Next.js 13 codebase that builds and deploys ten separate
+The BetterCallSal Multiverse: **one Next.js 16 codebase that builds and deploys ten separate
 websites**, each on its own `bettercallsal.*` domain (biz, rocks, fit, art, games, construction,
 gallery, world, wtf, fans). Which site a build produces is decided at build time, not at runtime.
 
-Stack: Next.js 13 (pages router) · styled-components v5 · react-router-dom (client-side) ·
+Stack: Next.js 16 (app router, static export, Turbopack) · React 19 · styled-components v6 ·
 three.js/GLSL · GSAP · Unity WebGL · zod · Firebase Hosting · Google Cloud Storage.
 
-Package manager is **yarn** (`yarn.lock`). Node is pinned to **20.7.0** in `.nvmrc`.
+Package manager is **pnpm** (`pnpm-lock.yaml`). Node is `22` in `.nvmrc`, `>=22` in `package.json`.
 
 ## Commands
 
 ```bash
-yarn dev            # dev server
-yarn build          # next build
-yarn static         # next build && next export → out/
-yarn lint           # biome lint
-yarn format         # biome format --write
-yarn check          # biome check --write (format + lint + organize imports)
-yarn clean          # rm -rf out
+pnpm dev            # dev server
+pnpm build          # next build
+pnpm static         # next build (output: 'export' writes out/)
+pnpm lint           # biome lint
+pnpm format         # biome format --write
+pnpm check          # biome check --write (format + lint + organize imports)
+pnpm clean          # rm -rf out
 ./deploy.sh         # build + deploy ALL ten sites (see Deploy below)
 ```
 
 Content-pipeline scripts are ts-node and **require the commonjs override**:
 
 ```bash
-TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' yarn ts-node scripts/<script>.ts
+TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' pnpm ts-node scripts/<script>.ts
 ```
 
 There is no test suite.
@@ -61,27 +61,54 @@ There is no runtime site switcher for the _default_ site; the in-app hotkeys (be
 rendered site but the build's `selectedSite` still determines metadata, favicons, and the
 server-rendered first paint.
 
-### Everything routes through `/`
+### Routing
 
-`next.config.js` rewrites `/:path*` → `/`. There is exactly one real page (`src/pages/index.tsx`,
-plus `linktree` and `privacy`). All in-app routing is **react-router-dom** inside
-`components/main/layouts/client-app.tsx` — routes for `e-cards`, `game/:gameId`, `video/:videoId`,
-`art/:artId`, `category/:category`, and a `*` that redirects to `/`.
+`next.config.js` sets `output: 'export'`. Routes are directories under `src/app`:
 
-Adding a route means editing that `RouteObject`, not adding a file under `pages/`.
+- `app/layout.tsx` — root layout. Calls `buildSite()` for the build's key, derives every
+  `metadata` field and favicon from it, and loads that site's content with `readSiteContent()`
+  to pass into `Providers` as `defaultContent`.
+- `app/(app)/` — route group, so it adds no URL segment. Its layout wraps children in `<Shell>`
+  (`src/app/shell.tsx`), the persistent header/nav/footer chrome. `(app)/page.tsx` returns `null`
+  on purpose: the home grid belongs to Shell and stays mounted behind every route.
+- `app/(app)/[type]/[slug]/` — one route for video/art/game, since `URL_MAP` already collapses the
+  five content types into those three segments.
+- `app/(app)/category/[category]/`, `audio/`, `e-cards/` — the remaining in-app routes.
+- `app/linktree/`, `app/privacy/` — outside the group, so they render their own chrome.
 
-### The SSR → CSR swap
+Adding a route means adding a directory under `src/app`. A dynamic one also needs
+`generateStaticParams`: under `output: 'export'` a param that isn't listed has no HTML to serve,
+and `next dev` throws on it outright.
 
-`components/main/index.tsx` holds an `isSSR` state that starts `true` and flips in a `useEffect`.
-First paint renders `ServerAppLayout`; after hydration it swaps to `ClientAppLayout`. This exists
-because `createBrowserRouter` can't run during static export. **Anything that must appear in the
-exported HTML (SEO, above-the-fold markup) has to live in the server layout**, and the two layouts
-have to be kept visually in sync by hand.
+### Every build carries every site's routes
+
+A hotkey swaps the rendered site without a rebuild, so `generateStaticParams` calls
+`readAllContent()` — every site's slugs and categories, not just the build's. So all ten sites emit
+HTML for the same ~143 slugs; what differs per build is the *content baked in*, not the routes.
+
+A cold deep link to a slug belonging to a different site therefore finds a page, looks the slug up
+in the current site's `contentMap`, misses, and redirects to `/`. That is intended — don't try to
+resolve the slug back to its owning site.
+
+Those redirects **must run in an effect, not during render**: prerendering has no `location`, and
+calling `router.push` at render time throws for every exported page. See the DOC comments in
+`components/video`, `components/art`, and `components/list/client-list`.
+
+The DOC comments in `src/lib/content.ts` are the authority on param generation — read them first.
+
+### Server vs client components
+
+Server components do the build-time work: `app/layout.tsx` reads content off disk, the dynamic
+routes generate params. Everything interactive is a client component (`'use client'`), and several
+areas are split in two — `server-list`/`client-list`, `server-nav`/`client-nav`,
+`server-footer`/`client-footer`. The server half is what lands in the exported HTML, so
+**anything that must be in the static markup (SEO, above-the-fold) belongs in the server half.**
 
 ### Content: baked vs fetched
 
-- The **default site's** content is read from `content/content-{site}.json` at build time in
-  `getStaticProps` and passed in as `defaultContent`.
+- The **default site's** content is read from `content/content-{site}.json` at build time by
+  `readSiteContent()` in `src/lib/content.ts`, called from `app/layout.tsx` (a server component)
+  and passed into `Providers` as `defaultContent`.
 - **Every other site's** content is fetched at runtime by `providers/sites.tsx` from
   `${config.contentUrl}/content-{site}.json` — a _versioned_ GCS path
   (`https://storage.googleapis.com/bcs-assets/content/v8`), cached in `contentMap` after first load.
@@ -94,14 +121,15 @@ version means changing `contentUrl` and redeploying all ten sites.
 
 ### Content generation
 
-`content/` holds both the generated JSON and the CSV sources the scripts read (`loadSheet` in
-`scripts/csv.ts` resolves names against `content/`):
+`content/` holds the generated JSON. The CSV sources these scripts read are **not in the repo** —
+`loadSheet` in `scripts/csv.ts` resolves names against `content/`, so you have to put them there
+before any of the parse scripts will run.
 
 | Script               | Reads                                 | Writes                                             |
 | -------------------- | ------------------------------------- | -------------------------------------------------- |
 | `parse-content.ts`   | `content-biz.csv`                     | `content/content-biz.json`                         |
-| `parse-structure.ts` | `site-structure.csv`, `nav-{key}.csv` | `content/sites.next.json`                          |
-| `wtf-generator.ts`   | `content/sites.next.json`             | the `wtf` entry (shuffles the other sites' pieces) |
+| `parse-structure.ts` | `site-structure.csv`, `nav-{key}.csv` | `content/sites.json` (see gotcha)                  |
+| `wtf-generator.ts`   | `content/sites.next.json`             | `content/sites.next.json`, with the `wtf` entry    |
 | `crawl.ts`           | the live sites (Playwright/crawlee)   | crawl dataset                                      |
 | `social-bot.ts`      | content JSON + mariadb                | social posts                                       |
 
@@ -121,25 +149,28 @@ from `public/`.
 
 ### Providers
 
-Nested in `pages/index.tsx`, outermost first:
+All in `src/app/providers.tsx`, outermost first:
 `ThemeProvider` → `SitesDataProvider` (selected site, per-site content map, fullScreen) →
 `AnimationsProvider` (bizerk mode, grid/nav animation counters) → `SoundProvider` (Web Audio
-buffers, analyzer) → `WindowSizeProvider`. `PathProvider` (prevPath, pathStack) is mounted lower, in
-`ClientAppLayout`.
+buffers, analyzer) → `WindowSizeProvider` → `PathProvider` (prevPath, pathStack).
+
+Mounted once in the root layout, above `{children}`, which is what lets client state survive
+navigation between routes.
 
 ### Interaction model
 
-- **Hotkeys** (`client-app.tsx`): `a b f r g c y w t` switch site; **space** toggles between
+- **Hotkeys** (`src/app/shell.tsx`): `a b f r g c y w t` switch site; **space** toggles between
   hotkey mode and audio-preview mode (same keys then play that site's audio via a GSAP tween);
-  **Escape** exits fullscreen.
+  **Escape** exits fullscreen. The map and its `isHotKey` type guard live in `src/constants.ts` —
+  go through the guard, so a raw `KeyboardEvent.key` narrows to a real `SiteKey` before any lookup.
 - **"Bizerk"**: clicking `#bizerk-icon` (or anywhere on `construction`) screenshots the DOM with
   html-to-image and feeds the PNG into the GLSL `ParticleSystem` in `components/glfx`.
 - Below 768px, navigating anywhere other than `/` or `/category/*` forces fullscreen.
 
 ## Deploy
 
-`./deploy.sh` loops over all ten site keys. For each: `yarn clean` → `scripts/config.ts <site>`
-(rewrites `next.config.env.json`) → `yarn static` → move `out/` to `../firebase/<site>/out` →
+`./deploy.sh` loops over all ten site keys. For each: `pnpm clean` → `scripts/config.ts <site>`
+(rewrites `next.config.env.json`) → `pnpm static` → move `out/` to `../firebase/<site>/out` →
 `firebase deploy` from there.
 
 This depends on a **sibling checkout at `../firebase/`** with one directory per site, each holding
@@ -164,20 +195,27 @@ a `SiteKey`). `deploy.sh` restores `next.config.env.json` to its committed defau
 - **Types are zod-first**: `src/types/` defines `XValidator` schemas and infers the TS type from
   them. Content and site structure are parsed through these at both build and runtime — adding a
   field means updating the validator, the CSV, and the generated JSON together.
+- **Don't index a map with an unvalidated string.** `SiteMap`/`contentMap` are keyed by `SiteKey`;
+  anything arriving as a bare `string` (a keypress, a route param) goes through a zod validator or
+  a type guard first. `Record<string, SiteKey>` looks safe and isn't — it claims every string is a
+  hit, so an `!== undefined` check narrows nothing.
 
 ## Gotchas
 
 - **`next.config.env.json` is tracked but machine-written.** `scripts/config.ts` and `deploy.sh`
   both rewrite it, so builds and deploys dirty the working tree. Check `git diff` on it before
   committing.
-- **`.nvmrc` pins 20.7.0, which may not be installed.** If the shell has an nvm auto-switch hook,
-  `cd` into this repo fails with `N/A: version "v20.7.0" is not yet installed` and takes the whole
-  command with it. Either `nvm install 20.7.0` or use absolute paths / `git -C` instead of `cd`.
+- **`.nvmrc` says 22, which may not be installed.** If the shell has an nvm auto-switch hook, `cd`
+  into this repo fails with `N/A: version "v22" is not yet installed` and takes the whole command
+  with it. Either `nvm install 22` or use absolute paths / `git -C` instead of `cd`.
 - **`SiteKey` has 9 values; there are 10 deploy targets.** `fans` builds from `biz`.
 - **`config.localImages` is wired to the wrong env var** — `src/constants.ts:11` reads
   `process.env.spotifyEnabled`. Nothing consumes `config.localImages` today (only `next.config.js`
   reads `env.localImages`, correctly), so it's latent, but don't trust that field.
-- **`yarn static` uses `next export`**, which is deprecated in Next 13 in favour of
-  `output: 'export'`. It still works here; be aware if upgrading.
-- **`.next/` is stale and committed to disk** (not to git) from a Feb 2024 build — `yarn clean` only
-  removes `out/`.
+- **`parse-structure.ts` writes `content/sites.json`, but the app reads `content/sites.next.json`**
+  (via `src/constants.ts`, and `wtf-generator.ts` reads *and* rewrites it). `sites.json` isn't in
+  the repo, so regenerating site structure is not a one-script job — check where the output has to
+  land before running it.
+- **`buildSiteSlugs` in `src/lib/content.ts` is unused.** Both dynamic routes use `readAllContent`
+  instead. Left in place deliberately; don't wire it up without reading its DOC comment first.
+- **`pnpm clean` only removes `out/`,** not `.next/`.
