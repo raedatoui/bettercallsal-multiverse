@@ -2,7 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { type FC, useContext, useEffect, useRef, useState } from 'react';
 import Construction from '@/components/construction';
 import { LawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
@@ -12,25 +13,14 @@ import { ClientList } from '@/components/list';
 import RightNav from '@/components/right-nav';
 import Unity from '@/components/unity';
 import { Youtube } from '@/components/video';
+import { isHotKey, keyMap } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { Main, MiddleSection, Row } from '@/styles/sharedstyles';
-import { BaseContentItem, SiteKey } from '@/types';
+import type { BaseContentItem, SiteKey } from '@/types';
 import { animateCounterBizerk, audioTween } from '@/utils/gsap';
-
-const keyMap: Record<string, SiteKey> = {
-    a: 'art',
-    b: 'biz',
-    f: 'fit',
-    r: 'rocks',
-    g: 'games',
-    c: 'construction',
-    y: 'gallery',
-    w: 'world',
-    t: 'wtf',
-};
 
 // DOC: the canvas cant be part of the component if we want to manage unityInstance and call Quit on it.
 // instead of the nav and this component listen to location changes and cleanup accordingly,
@@ -40,7 +30,7 @@ const homeComponent = (site: SiteKey, visible: boolean, list: BaseContentItem[])
     if (site === 'construction') return <Construction />;
     if (site === 'world') {
         if (visible) return <Youtube contentItem={list[0]} />;
-        return <div></div>;
+        return <div />;
     }
     if (site === 'gallery') return <Unity />;
     return <ClientList visible={visible} />;
@@ -55,7 +45,6 @@ const Shell: FC<{ children: React.ReactNode }> = ({ children }) => {
     const { buffers } = useContext(SoundContext);
 
     const pathname = usePathname();
-    const site = siteMap[selectedSite];
 
     const [keyPressed, setKeyPressed] = useState<string | null>(null);
     const [hotKeyMode, setHotKeyMode] = useState<boolean>(true);
@@ -89,24 +78,26 @@ const Shell: FC<{ children: React.ReactNode }> = ({ children }) => {
     useEffect(() => {
         if (keyPressed === 'Escape' && fullScreen) setFullScreen(false);
         if (keyPressed === ' ') setHotKeyMode(!hotKeyMode);
-        if (keyPressed && keyMap[keyPressed] !== undefined)
-            if (hotKeyMode) {
-                setSelectedSite(keyMap[keyPressed]);
-                setFullScreen(false);
-                window.scrollTo(0, 0);
-                document.body.scrollTo(0, 0);
-                document.getElementById('content-row')?.scrollTo(0, 0);
-                return;
-            } else {
-                let tween = aTween;
-                if (aTween?.isActive()) {
-                    buffers.stopAll();
-                    aTween.kill();
-                }
-                tween = audioTween(buffers, siteMap[keyMap[keyPressed]]);
-                setATween(tween);
-                tween.play();
-            }
+        if (!keyPressed || !isHotKey(keyPressed)) return;
+
+        const site = keyMap[keyPressed];
+
+        if (hotKeyMode) {
+            setSelectedSite(site);
+            setFullScreen(false);
+            window.scrollTo(0, 0);
+            document.body.scrollTo(0, 0);
+            document.getElementById('content-row')?.scrollTo(0, 0);
+            return;
+        }
+
+        if (aTween?.isActive()) {
+            buffers.stopAll();
+            aTween.kill();
+        }
+        const tween = audioTween(buffers, siteMap[site]);
+        setATween(tween);
+        tween.play();
     }, [fullScreen, keyPressed, selectedSite, setFullScreen, setSelectedSite]);
 
     useEffect(() => {
