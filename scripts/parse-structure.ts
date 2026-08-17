@@ -1,7 +1,7 @@
-import { writeFileSync } from 'fs';
-import { join } from 'path';
-import { Site, SiteKey, SiteMapValidator, SiteValidator } from '../src/types';
-import { CsvRow, loadSheet } from './csv';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { type Site, type SiteKey, SiteMapValidator, SiteValidator } from '../src/types';
+import { type CsvRow, loadSheet } from './csv';
 
 type RowWithNav = CsvRow & {
     items: CsvRow[];
@@ -59,20 +59,17 @@ const loadSites = async (): Promise<Record<SiteKey, Site>> => {
                         text: r.footerText,
                         icon: {
                             image: `/images/${r.key}/${r.footerIcon}`,
-                            width: parseInt(r.footerIconWidth.toString(), 10),
-                            height: parseInt(r.footerIconHeight.toString(), 10),
+                            width: Number.parseInt(r.footerIconWidth.toString(), 10),
+                            height: Number.parseInt(r.footerIconHeight.toString(), 10),
                         },
                         ringAudio: `/audio/${r.key}/${r.footerAudio}`,
                     },
                 })
             )
-            .reduce(
-                (acc, v) => ({
-                    ...acc,
-                    [v.name]: v,
-                }),
-                {}
-            )
+            .reduce<Record<string, Site>>((acc, v) => {
+                acc[v.name] = v;
+                return acc;
+            }, {})
     );
 
     writeFileSync(join(__dirname, '../', 'content', 'sites.json'), JSON.stringify(sites), {

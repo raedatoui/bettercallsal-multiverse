@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { breakPoints, config } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { useSiteContext } from '@/providers/sites';
-import { Site } from '@/types';
+import type { Site } from '@/types';
 
 const colorTwist = keyframes`
   0% {filter:  blur(0px) contrast(1)  saturate(0)}

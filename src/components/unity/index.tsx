@@ -2,11 +2,11 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import Script from 'next/script';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { config } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, LoadingBar, LoadingBarProgressEmpty, LoadingBarProgressFull, StopButton } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, GameContentItem, isGame, Size, UnityInstance } from '@/types';
+import { type BaseContentItem, type ContentSize, type GameContentItem, isGame, type Size, type UnityInstance } from '@/types';
 import { findGame, useWindowSize } from '@/utils';
 
 const Unity = () => {

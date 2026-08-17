@@ -3,13 +3,13 @@
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Script from 'next/script';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { LeftAdd1, LeftAdd2, LeftContent, LeftNavContainer, LeftNavMenu } from '@/components/left-nav/elements';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { WindowSizeContext } from '@/providers/window-size';
-import { LeftNavItem } from '@/types';
+import type { LeftNavItem } from '@/types';
 import { pickRandom, shuffleList } from '@/utils';
 import NavButton from './button';
 

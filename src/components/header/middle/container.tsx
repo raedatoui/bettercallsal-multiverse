@@ -1,12 +1,12 @@
 'use client';
 
 import { gsap } from 'gsap';
-import React, { FC, useContext, useEffect, useState } from 'react';
+import { type FC, useContext, useEffect, useState } from 'react';
 import { BizerkContainer, SalName } from '@/components/header/middle/elements';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
-import { SiteKey } from '@/types';
+import type { SiteKey } from '@/types';
 import { animateCounterBizerk } from '@/utils';
 import Bizerk from './bizerk';
 

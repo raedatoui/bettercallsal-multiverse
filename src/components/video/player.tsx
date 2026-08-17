@@ -1,10 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import type React from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { config } from '@/constants';
 import { Player, VideoElement } from '@/styles/sharedstyles';
-import { BaseContentItem, ContentSize, Size, VimeoPlayer, YTPlayer } from '@/types';
+import type { BaseContentItem, ContentSize, Size, VimeoPlayer, YTPlayer } from '@/types';
 import { useWindowSize } from '@/utils';
 
 interface Props {
@@ -142,7 +143,7 @@ export const VideoPlayer = forwardRef<VideoPlayerType, Props>(({ autoPlay, conte
                 autoplay: true,
                 loop: false,
             }) as unknown as VimeoPlayer;
-            v.on('ended', function () {
+            v.on('ended', () => {
                 v.destroy();
                 router.push('/');
             });

@@ -2,12 +2,12 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import Script from 'next/script';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, PlayerContainer, StopButton, VideoText } from '@/styles/sharedstyles';
 import { findContent } from '@/utils';
-import { VideoPlayer, VideoPlayerType } from './player';
+import { VideoPlayer, type VideoPlayerType } from './player';
 
 export const Video = () => {
     const { pathStack } = usePathContext();

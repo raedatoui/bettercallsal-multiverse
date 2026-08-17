@@ -1,8 +1,9 @@
 'use client';
 
-import React, { createContext, FC, useEffect, useMemo, useState } from 'react';
+import type React from 'react';
+import { createContext, type FC, useEffect, useMemo, useState } from 'react';
 import { useAnimationContext } from '@/providers/animations';
-import { AudioElement, AudioElementValidator, isNotNull, Site } from '@/types';
+import { type AudioElement, AudioElementValidator, isNotNull, type Site } from '@/types';
 import AudioBuffers from './audio-buffer';
 import { useSiteContext } from './sites';
 

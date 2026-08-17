@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import React, { FC, useEffect, useRef } from 'react';
+import { type FC, useEffect, useRef } from 'react';
 import { LeftNavButton, LeftNavItemCuck } from '@/components/left-nav/elements';
-import { LeftNavItem } from '@/types';
+import type { LeftNavItem } from '@/types';
 
 interface ButtonProps {
     navItem: LeftNavItem;

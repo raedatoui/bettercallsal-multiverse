@@ -1,7 +1,8 @@
 'use client';
 
-import React, { FC } from 'react';
-import { DefaultTheme, ThemeProvider } from 'styled-components';
+import type React from 'react';
+import type { FC } from 'react';
+import { type DefaultTheme, ThemeProvider } from 'styled-components';
 import { defaultSiteMap } from '@/constants';
 import { AnimationsProvider } from '@/providers/animations';
 import { SoundProvider } from '@/providers/audio-context';
@@ -11,7 +12,7 @@ import { WindowSizeProvider } from '@/providers/window-size';
 import Fonts from '@/styles/fonts';
 import { GlobalStyle } from '@/styles/globalstyles';
 import Skeleton from '@/styles/skeleton';
-import { BaseContentItem, GameContentItem, SiteKey } from '@/types';
+import type { BaseContentItem, GameContentItem, SiteKey } from '@/types';
 
 const theme: DefaultTheme = {
     colors: {
@@ -37,9 +38,7 @@ const Providers: FC<Props> = ({ defaultSite, defaultContent, children }) => (
             <AnimationsProvider>
                 <SoundProvider>
                     <WindowSizeProvider>
-                        <PathProvider>
-                            <>{children}</>
-                        </PathProvider>
+                        <PathProvider>{children}</PathProvider>
                     </WindowSizeProvider>
                 </SoundProvider>
             </AnimationsProvider>

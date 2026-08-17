@@ -1,7 +1,7 @@
-import { promises } from 'fs';
+import { promises } from 'node:fs';
+import { join } from 'node:path';
 import { camelCase } from 'lodash';
 import { parse, unparse } from 'papaparse';
-import { join } from 'path';
 
 export type CsvRow = Record<string, string | CsvRow[]>;
 export type RowError = {

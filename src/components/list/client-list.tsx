@@ -4,13 +4,13 @@ import { gsap } from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import { type FC, useContext, useEffect, useRef, useState } from 'react';
 import { URL_MAP } from '@/constants';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
 import { Caption, ContentItem, ContentItemTitle, ContentList } from '@/styles/sharedstyles';
-import { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
+import type { BaseContentItem, GameContentItem, VisibleProps } from '@/types';
 import { findCategory, pickRandom, shuffleList, useWindowSize } from '@/utils';
 
 interface AnimateProps {
@@ -30,7 +30,7 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
     const { animateWtf } = useAnimationContext();
 
     const makeLightTween = () => {
-        if (ref && ref.current)
+        if (ref?.current)
             gsap.to(ref.current, {
                 x: random(-animOffset, animOffset),
                 y: random(-animOffset, animOffset),
@@ -40,7 +40,7 @@ const AnimatableGridItem: FC<AnimateProps> = ({ i, onClick }) => {
     };
 
     const makeTween = () => {
-        if (ref && ref.current) gsap.killTweensOf(ref.current);
+        if (ref?.current) gsap.killTweensOf(ref.current);
         gsap.to(ref.current, {
             x: random(-animOffset, animOffset),
             y: random(-animOffset, animOffset),
@@ -128,7 +128,7 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         let headerTxt = site.contentHeader;
         if (category !== undefined && category !== 'all') {
             const cat = findCategory(site, category);
-            if (cat && cat.quote) headerTxt = cat.quote;
+            if (cat?.quote) headerTxt = cat.quote;
         }
         return headerTxt;
     };
@@ -186,7 +186,7 @@ export const ClientList: FC<VisibleProps> = ({ visible }) => {
         if (categoryMissing) router.replace('/');
     }, [categoryMissing]);
 
-    if (categoryMissing) return <div></div>;
+    if (categoryMissing) return <div />;
 
     return (
         <>

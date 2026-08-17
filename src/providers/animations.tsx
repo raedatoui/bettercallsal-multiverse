@@ -1,8 +1,9 @@
 'use client';
 
-import React, { createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
+import type React from 'react';
+import { createContext, type Dispatch, type FC, type SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { useSiteContext } from '@/providers/sites';
-import { BizerkMode } from '@/types';
+import type { BizerkMode } from '@/types';
 
 type AnimationProviderType = {
     animateGrid: number;

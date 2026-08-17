@@ -1,9 +1,10 @@
 'use client';
 
-import React, { createContext, FC, useContext, useMemo, useState } from 'react';
+import type React from 'react';
+import { createContext, type FC, useContext, useMemo, useState } from 'react';
 
 interface ProviderProps {
-    children: React.JSX.Element;
+    children: React.ReactNode;
 }
 
 type PathProviderType = {

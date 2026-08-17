@@ -1,9 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
 import { AudioBoard } from '@/components/board/elements';
-import { config } from '@/constants';
 import { useSiteContext } from '@/providers/sites';
 import { SiteKeyValidator } from '@/types';
 

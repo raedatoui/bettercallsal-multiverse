@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import React from 'react';
+import type React from 'react';
 import { defaultSiteMap } from '@/constants';
 import { buildSite, readSiteContent } from '@/lib/content';
 import Providers from './providers';
@@ -61,7 +61,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
                         supplied #__next; the app router has no such wrapper, so .root takes over. */}
                     <div className="root">
                         <Providers defaultSite={key} defaultContent={defaultContent}>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="text-effect">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="text-effect" role="img" aria-label="text-effect">
                                 <defs>
                                     <filter id="squiggly-0">
                                         <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0" />

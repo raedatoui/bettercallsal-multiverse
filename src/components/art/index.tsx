@@ -5,13 +5,13 @@ import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { config } from '@/constants';
 import { SoundContext } from '@/providers/audio-context';
 import { usePathContext } from '@/providers/path';
 import { useSiteContext } from '@/providers/sites';
 import { ButtonBar, ImageContainer, StopButton } from '@/styles/sharedstyles';
-import { ContentSize, isContent, Size } from '@/types';
+import { type ContentSize, isContent, type Size } from '@/types';
 import { findContent, useWindowSize } from '@/utils';
 
 const ArtSlider = () => {
@@ -19,7 +19,7 @@ const ArtSlider = () => {
     const router = useRouter();
 
     const { selectedSite, contentMap } = useSiteContext();
-    const { prevPath, pathStack } = usePathContext();
+    const { pathStack } = usePathContext();
 
     const images = (selectedSite === 'wtf' ? contentMap.wtf : contentMap.art).filter(isContent);
     const artImage = findContent(images, artId ?? '');

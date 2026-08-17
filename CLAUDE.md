@@ -156,9 +156,9 @@ a `SiteKey`). `deploy.sh` restores `next.config.env.json` to its committed defau
   order, and `suspicious/noExplicitAny` errors via the recommended preset.
 - **Style biome does not enforce, but match anyway**: single-statement `if`s have no braces (the old
   `curly: multi`), and components are arrow functions.
-- **`useExhaustiveDependencies` is noisy here on purpose** — several effects deliberately omit deps
-  (see the `dont add images as a dep!` note in `components/art`). Don't let `biome check` "fix" an
-  effect's dep array without reading why it's short.
+- **`useExhaustiveDependencies` is off** in `biome.json`. Effects here deliberately omit deps (see
+  the `dont add images as a dep!` note in `components/art`), and a dep array is load-bearing — it
+  decides when the effect re-runs. Don't add deps to satisfy a linter; don't turn the rule back on.
 - **Imports**: `@/*` → `src/*`. Scripts import across the boundary with relative paths
   (`../src/types`), since they run outside Next's alias resolution.
 - **Types are zod-first**: `src/types/` defines `XValidator` schemas and infers the TS type from

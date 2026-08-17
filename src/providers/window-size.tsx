@@ -1,7 +1,8 @@
 'use client';
 
-import React, { createContext, FC } from 'react';
-import { Size } from '@/types';
+import type React from 'react';
+import { createContext, type FC } from 'react';
+import type { Size } from '@/types';
 import { useWindowSize } from '@/utils';
 
 const WindowSizeContext = createContext<Size>({

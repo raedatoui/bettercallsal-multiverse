@@ -1,7 +1,8 @@
 'use client';
 
 import Script from 'next/script';
-import React, { useContext, useRef, useState } from 'react';
+import type React from 'react';
+import { useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { ServerLawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';

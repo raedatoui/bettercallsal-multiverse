@@ -2,7 +2,7 @@
 
 import { generateUUID } from 'three/src/math/MathUtils.js';
 import { config } from '@/constants';
-import { AudioElementValidator, SiteKey, Sound } from '@/types';
+import { AudioElementValidator, type SiteKey, type Sound } from '@/types';
 
 const copyBuffer = (buffer: AudioBuffer, context: AudioContext): AudioBuffer => {
     const copy = context.createBuffer(buffer.numberOfChannels, buffer.length, buffer.sampleRate);
@@ -115,7 +115,7 @@ class AudioBuffers {
         // DOC: this stops the currently held buffer by the sound object
         //  allowing the spinning hover effect
         const obj = this.soundMap[sound];
-        if (obj && obj.source) {
+        if (obj?.source) {
             obj.source.disconnect();
             obj.source.stop(0);
             obj.startedAt = 0;

@@ -2,7 +2,8 @@
 
 import isPropValid from '@emotion/is-prop-valid';
 import { useServerInsertedHTML } from 'next/navigation';
-import React, { FC, useState } from 'react';
+import type React from 'react';
+import { type FC, useState } from 'react';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
 // DOC: v5 filtered unknown props off DOM elements automatically. v6 dropped that, so a custom

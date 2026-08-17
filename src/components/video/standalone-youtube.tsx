@@ -1,10 +1,10 @@
 'use client';
 
 import Script from 'next/script';
-import React, { FC, useEffect, useRef, useState } from 'react';
-import { VideoPlayer, VideoPlayerType } from '@/components/video/player';
+import { type FC, useEffect, useRef, useState } from 'react';
+import { VideoPlayer, type VideoPlayerType } from '@/components/video/player';
 import { Caption, PlayerContainer } from '@/styles/sharedstyles';
-import { BaseContentItem } from '@/types';
+import type { BaseContentItem } from '@/types';
 
 interface YTProps {
     contentItem: BaseContentItem;

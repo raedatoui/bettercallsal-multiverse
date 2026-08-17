@@ -1,10 +1,19 @@
 'use client';
 
 import axios from 'axios';
-import React, { createContext, FC, useCallback, useContext, useMemo, useState } from 'react';
+import type React from 'react';
+import { createContext, type FC, useCallback, useContext, useMemo, useState } from 'react';
 import { z } from 'zod';
 import { config } from '@/constants';
-import { BaseContentItem, BaseContentItemValidator, ContentMap, GameContentItem, GameContentItemValidator, SiteKey, SiteMap } from '@/types';
+import {
+    type BaseContentItem,
+    BaseContentItemValidator,
+    type ContentMap,
+    type GameContentItem,
+    GameContentItemValidator,
+    type SiteKey,
+    type SiteMap,
+} from '@/types';
 
 type SiteProviderType = {
     siteMap: SiteMap;

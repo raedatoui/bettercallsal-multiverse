@@ -2,12 +2,12 @@
 
 import { gsap } from 'gsap';
 import Image from 'next/image';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { FooterContainer, LawBreakersContainer, LawBreakersP, LawBreakersSpan } from '@/components/footer/elements';
 import { useAnimationContext } from '@/providers/animations';
 import { SoundContext } from '@/providers/audio-context';
 import { useSiteContext } from '@/providers/sites';
-import { Size } from '@/types';
+import type { Size } from '@/types';
 import { pickRandom, useWindowSize } from '@/utils';
 import { betterCallClick, betterCallClickWtf } from '@/utils/gsap';
 

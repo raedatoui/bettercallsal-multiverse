@@ -1,5 +1,5 @@
-import { promises, writeFileSync } from 'fs';
-import { join } from 'path';
+import { promises, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { z } from 'zod';
 
 const envValidator = z.object({

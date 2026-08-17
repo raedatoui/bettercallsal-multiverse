@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Script from 'next/script';
-import React, { useContext, useRef, useState } from 'react';
+import type React from 'react';
+import { useContext, useRef, useState } from 'react';
 import { ServerLawBreakers } from '@/components/footer';
 import ParticleSystem from '@/components/glfx';
 import HeaderComponent from '@/components/header';
