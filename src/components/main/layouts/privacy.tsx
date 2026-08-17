@@ -1,6 +1,5 @@
 'use client';
 
-/* eslint-disable max-len */
 import Script from 'next/script';
 import React, { useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -61,9 +60,7 @@ const PrivacyLayout = () => {
                     setScreeCapture(dataUrl);
                     setBizerkMode('on');
                     animateCounterBizerk(animateGrid, setAnimateGrid, false);
-                    if (buffers.analyzer && particleRef.current)
-                        // eslint-disable-next-line no-new
-                        new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
+                    if (buffers.analyzer && particleRef.current) new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
                 })
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);

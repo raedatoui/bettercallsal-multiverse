@@ -38,4 +38,4 @@ function usePathContext() {
     return context;
 }
 
-export { PathProvider, PathContext, usePathContext };
+export { PathContext, PathProvider, usePathContext };

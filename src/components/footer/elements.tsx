@@ -1,6 +1,5 @@
 'use client';
 
-/* eslint-disable max-len */
 import styled from 'styled-components';
 import { headerBreakPoints as breakPoints } from '@/constants';
 import { borderAnim, footerLtr, neon2, squigglyText } from '@/utils/animations';

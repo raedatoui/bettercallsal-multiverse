@@ -98,14 +98,12 @@ class AudioBuffers {
             source.buffer = sound.buffer;
             source.connect(this.analyzer);
             source.loop = loop;
-            // eslint-disable-next-line no-param-reassign
             sound.source = source;
 
             source.connect(this.gainNode);
             // DOC: offset used to be sound.pausedAt
 
             source.start(0, randomStart ? Math.random() * source.buffer.duration : sound.pausedAt);
-            // eslint-disable-next-line no-param-reassign
             sound.startedAt = this.context.currentTime - sound.pausedAt;
             this.allSounds.push(source);
             return source;

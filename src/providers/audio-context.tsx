@@ -100,4 +100,4 @@ const SoundProvider: FC<ProviderProps> = ({ children }) => {
     return <SoundContext.Provider value={audioBuffers}>{children}</SoundContext.Provider>;
 };
 
-export { SoundProvider, SoundContext };
+export { SoundContext, SoundProvider };

@@ -85,4 +85,5 @@ const globalStyleWrapper = (pageType: string) => createGlobalStyle`
 
 const GlobalStyle = globalStyleWrapper('home');
 const GlobalStyleLinkTree = globalStyleWrapper('linktree');
+
 export { GlobalStyle, GlobalStyleLinkTree };

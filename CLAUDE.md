@@ -19,8 +19,9 @@ Package manager is **yarn** (`yarn.lock`). Node is pinned to **20.7.0** in `.nvm
 yarn dev            # dev server
 yarn build          # next build
 yarn static         # next build && next export → out/
-yarn lint           # prettier --write . && next lint
-yarn format         # prettier --write .
+yarn lint           # biome lint
+yarn format         # biome format --write
+yarn check          # biome check --write (format + lint + organize imports)
 yarn clean          # rm -rf out
 ./deploy.sh         # build + deploy ALL ten sites (see Deploy below)
 ```
@@ -150,11 +151,14 @@ a `SiteKey`). `deploy.sh` restores `next.config.env.json` to its committed defau
 
 ## Conventions
 
-- **Prettier**: 4-space, single quotes, semicolons, 150 width, trailing comma `es5`. The
-  `@ianvs/prettier-plugin-sort-imports` plugin enforces order: third-party → `@/*` → relative.
-- **ESLint**: `indent: 4`, `max-len: 150`, `curly: ["error", "multi"]` (so single-statement `if`s
-  have no braces — match that), `@typescript-eslint/no-explicit-any: error`, components must be
-  arrow functions (`react/function-component-definition`).
+- **Biome** (`biome.json`) is the only formatter and linter — prettier and eslint are gone. 4-space,
+  single quotes, semicolons, 150 width, trailing comma `es5`; `assist.organizeImports` handles import
+  order, and `suspicious/noExplicitAny` errors via the recommended preset.
+- **Style biome does not enforce, but match anyway**: single-statement `if`s have no braces (the old
+  `curly: multi`), and components are arrow functions.
+- **`useExhaustiveDependencies` is noisy here on purpose** — several effects deliberately omit deps
+  (see the `dont add images as a dep!` note in `components/art`). Don't let `biome check` "fix" an
+  effect's dep array without reading why it's short.
 - **Imports**: `@/*` → `src/*`. Scripts import across the boundary with relative paths
   (`../src/types`), since they run outside Next's alias resolution.
 - **Types are zod-first**: `src/types/` defines `XValidator` schemas and infers the TS type from

@@ -1,7 +1,6 @@
-/* eslint-disable no-await-in-loop */
-import path from 'path';
 import { faker } from '@faker-js/faker';
 import mariadb, { type Connection } from 'mariadb';
+import path from 'path';
 import { z } from 'zod';
 import contentArt from '../content/content-art.json';
 import contentBiz from '../content/content-biz.json';

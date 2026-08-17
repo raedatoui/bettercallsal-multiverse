@@ -153,9 +153,7 @@ const Shell: FC<{ children: React.ReactNode }> = ({ children }) => {
                     setBizerkMode('on');
                     animateCounterBizerk(animateGrid, setAnimateGrid, false);
                     animateCounterBizerk(animateNav, setAnimateNav, false);
-                    if (buffers.analyzer && particleRef.current)
-                        // eslint-disable-next-line no-new
-                        new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
+                    if (buffers.analyzer && particleRef.current) new ParticleSystem(dataUrl, particleRef.current, buffers.analyzer);
                 })
                 .catch((error) => {
                     console.error('oops, something went wrong!', error);

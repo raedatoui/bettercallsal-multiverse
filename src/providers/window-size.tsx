@@ -17,4 +17,4 @@ const WindowSizeProvider: FC<ProviderProps> = ({ children }) => {
     return <WindowSizeContext.Provider value={windowSize}>{children}</WindowSizeContext.Provider>;
 };
 
-export { WindowSizeProvider, WindowSizeContext };
+export { WindowSizeContext, WindowSizeProvider };

@@ -112,4 +112,4 @@ function useSiteContext() {
     return context;
 }
 
-export { SitesDataProvider, SiteContext, useSiteContext };
+export { SiteContext, SitesDataProvider, useSiteContext };

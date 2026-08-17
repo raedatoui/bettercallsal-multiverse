@@ -1,6 +1,5 @@
 'use client';
 
-/* eslint-disable max-len, react/style-prop-object */
 import React from 'react';
 
 const GalleryLanding = () => (
