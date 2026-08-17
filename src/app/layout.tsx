@@ -57,33 +57,37 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         <html lang="en">
             <body>
                 <StyledRegistry>
-                    <Providers defaultSite={key} defaultContent={defaultContent}>
-                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="text-effect">
-                            <defs>
-                                <filter id="squiggly-0">
-                                    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0" />
-                                    <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6" />
-                                </filter>
-                                <filter id="squiggly-1">
-                                    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1" />
-                                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
-                                </filter>
-                                <filter id="squiggly-2">
-                                    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
-                                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
-                                </filter>
-                                <filter id="squiggly-3">
-                                    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3" />
-                                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
-                                </filter>
-                                <filter id="squiggly-4">
-                                    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4" />
-                                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
-                                </filter>
-                            </defs>
-                        </svg>
-                        {children}
-                    </Providers>
+                    {/* DOC: globalstyles targets `#__next, .root` for height: 100%. the pages router
+                        supplied #__next; the app router has no such wrapper, so .root takes over. */}
+                    <div className="root">
+                        <Providers defaultSite={key} defaultContent={defaultContent}>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="text-effect">
+                                <defs>
+                                    <filter id="squiggly-0">
+                                        <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0" />
+                                        <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6" />
+                                    </filter>
+                                    <filter id="squiggly-1">
+                                        <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1" />
+                                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+                                    </filter>
+                                    <filter id="squiggly-2">
+                                        <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
+                                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+                                    </filter>
+                                    <filter id="squiggly-3">
+                                        <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3" />
+                                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+                                    </filter>
+                                    <filter id="squiggly-4">
+                                        <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4" />
+                                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+                                    </filter>
+                                </defs>
+                            </svg>
+                            {children}
+                        </Providers>
+                    </div>
                 </StyledRegistry>
 
                 <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${site.gaTag}`} />
