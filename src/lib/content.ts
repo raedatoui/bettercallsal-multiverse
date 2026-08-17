@@ -31,6 +31,14 @@ export const readSiteContent = async (site: SiteKey): Promise<(BaseContentItem |
     });
 };
 
+// DOC: a hotkey swaps the rendered site without a rebuild, so every build has to carry routes
+//  for every site's slugs and categories, not just its own. under output: export a param that
+//  isn't in generateStaticParams has no html to serve, and next dev throws outright on it.
+export const readAllContent = async (): Promise<(BaseContentItem | GameContentItem)[]> => {
+    const lists = await Promise.all(SiteKeyValidator.options.map(readSiteContent));
+    return lists.flat();
+};
+
 // DOC: only the build's own site can be pre-rendered. content for the other eight is fetched
 //  from GCS at runtime when you hotkey across, so those slugs fall through to the firebase
 //  `**` rewrite and boot the client at home.
