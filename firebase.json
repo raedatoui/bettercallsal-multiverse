@@ -3,6 +3,7 @@
         {
             "target": "biz",
             "public": "dist/biz",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -51,6 +52,7 @@
         {
             "target": "art",
             "public": "dist/art",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -99,6 +101,7 @@
         {
             "target": "games",
             "public": "dist/games",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -147,6 +150,7 @@
         {
             "target": "rocks",
             "public": "dist/rocks",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -195,6 +199,7 @@
         {
             "target": "construction",
             "public": "dist/construction",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -243,6 +248,7 @@
         {
             "target": "fit",
             "public": "dist/fit",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -291,6 +297,7 @@
         {
             "target": "gallery",
             "public": "dist/gallery",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -339,6 +346,7 @@
         {
             "target": "world",
             "public": "dist/world",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -391,6 +399,7 @@
         {
             "target": "fans",
             "public": "dist/fans",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -439,6 +448,7 @@
         {
             "target": "wtf",
             "public": "dist/wtf",
+            "cleanUrls": true,
             "ignore": [
                 "firebase.json",
                 "**/.*",
