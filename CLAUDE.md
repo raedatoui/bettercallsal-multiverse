@@ -11,7 +11,7 @@ gallery, world, wtf, fans). Which site a build produces is decided at build time
 Stack: Next.js 16 (app router, static export, Turbopack) · React 19 · styled-components v6 ·
 three.js/GLSL · GSAP · Unity WebGL · zod · Firebase Hosting · Google Cloud Storage.
 
-Package manager is **pnpm** (`pnpm-lock.yaml`). Node is `22` in `.nvmrc`, `>=22` in `package.json`.
+Package manager is **pnpm** (`pnpm-lock.yaml`). Node is `24` in `.nvmrc`, `>=24` in `package.json`.
 
 ## Commands
 
@@ -219,9 +219,9 @@ one path, so don't add an overlapping `**` rule.
 
 - **`next.config.env.json` is the local-dev default, not a deploy input.** Deploys override it with
   env vars and leave it untouched. Edit it to change what `pnpm dev` picks up; nothing rewrites it.
-- **`.nvmrc` says 22, which may not be installed.** If the shell has an nvm auto-switch hook, `cd`
-  into this repo fails with `N/A: version "v22" is not yet installed` and takes the whole command
-  with it. Either `nvm install 22` or use absolute paths / `git -C` instead of `cd`.
+- **`.nvmrc` says 24, which may not be installed.** If the shell has an nvm auto-switch hook, `cd`
+  into this repo fails with `N/A: version "v24" is not yet installed` and takes the whole command
+  with it. Either `nvm install 24` or use absolute paths / `git -C` instead of `cd`.
 - **`SiteKey` has 9 values; there are 10 deploy targets.** `fans` builds from `biz`.
 - **`config.localImages` is wired to the wrong env var** — `src/constants.ts:11` reads
   `process.env.spotifyEnabled`. Nothing consumes `config.localImages` today (only `next.config.js`
